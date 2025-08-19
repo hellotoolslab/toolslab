@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { tools, categories, getPopularTools } from '@/lib/tools';
 import { ToolCard } from '@/components/tools/ToolCard';
 // import { CategoryCard } from '@/components/tools/CategoryCard';
@@ -65,10 +66,12 @@ export default function HomePage() {
               }[category.id] || '#3B82F6';
               
               return (
-                <div 
-                  key={category.id} 
-                  className="relative p-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group cursor-pointer overflow-hidden"
+                <Link
+                  key={category.id}
+                  href={`/category/${category.id}`}
                 >
+                  <div className="relative p-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group cursor-pointer overflow-hidden"
+                  >
                   {/* Color accent */}
                   <div 
                     className="absolute top-0 left-0 right-0 h-1"
@@ -148,7 +151,8 @@ export default function HomePage() {
                     className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none"
                     style={{ backgroundColor: categoryColor }}
                   />
-                </div>
+                  </div>
+                </Link>
               );
             })}
           </div>

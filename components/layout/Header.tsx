@@ -75,7 +75,7 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 text-sm font-medium ml-8">
             <Link 
-              href="/" 
+              href="/"
               className={cn(
                 'flex items-center text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors duration-200',
                 pathname === '/' && 'text-blue-600 dark:text-blue-400'
@@ -85,13 +85,22 @@ export function Header() {
               Tools
             </Link>
             <Link 
-              href="/about" 
+              href="/about"
               className={cn(
                 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors duration-200',
                 pathname === '/about' && 'text-blue-600 dark:text-blue-400'
               )}
             >
               About
+            </Link>
+            <Link 
+              href="/manifesto"
+              className={cn(
+                'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors duration-200',
+                pathname === '/manifesto' && 'text-blue-600 dark:text-blue-400'
+              )}
+            >
+              Manifesto
             </Link>
             
             {/* Categories dropdown */}
@@ -110,7 +119,7 @@ export function Header() {
                     {categories.map((category) => (
                       <Link
                         key={category.id}
-                        href={`/?category=${category.id}`}
+                        href={`/category/${category.id}`}
                         className="flex items-center p-3 rounded-lg hover:bg-white/10 transition-colors"
                       >
                         <span className="text-xl mr-3">{category.icon}</span>
@@ -238,6 +247,7 @@ export function Header() {
               <Link
                 href="/"
                 className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Zap className="w-5 h-5" />
                 <span>Tools</span>
@@ -245,8 +255,16 @@ export function Header() {
               <Link
                 href="/about"
                 className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span>About</span>
+              </Link>
+              <Link
+                href="/manifesto"
+                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span>Manifesto</span>
               </Link>
               
               <div className="pt-4 border-t border-white/10">
@@ -255,7 +273,7 @@ export function Header() {
                   {categories.map((category) => (
                     <Link
                       key={category.id}
-                      href={`/?category=${category.id}`}
+                      href={`/category/${category.id}`}
                       className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"
                     >
                       <span className="text-lg">{category.icon}</span>
