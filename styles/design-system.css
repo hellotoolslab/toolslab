@@ -1,0 +1,290 @@
+/* OctoTools Design System */
+
+/* Typography Imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* === CATEGORY COLORS === */
+  
+  /* Data & Conversion - Blu oceano */
+  --color-data-primary: #0EA5E9;
+  --color-data-light: #38BDF8;
+  --color-data-dark: #0284C7;
+  --color-data-bg: rgba(14, 165, 233, 0.1);
+  --color-data-border: rgba(14, 165, 233, 0.2);
+  
+  /* Encoding & Security - Verde smeraldo */
+  --color-encoding-primary: #10B981;
+  --color-encoding-light: #34D399;
+  --color-encoding-dark: #059669;
+  --color-encoding-bg: rgba(16, 185, 129, 0.1);
+  --color-encoding-border: rgba(16, 185, 129, 0.2);
+  
+  /* Text & Format - Viola */
+  --color-text-primary: #8B5CF6;
+  --color-text-light: #A78BFA;
+  --color-text-dark: #7C3AED;
+  --color-text-bg: rgba(139, 92, 246, 0.1);
+  --color-text-border: rgba(139, 92, 246, 0.2);
+  
+  /* Generators - Arancione */
+  --color-generators-primary: #F97316;
+  --color-generators-light: #FB923C;
+  --color-generators-dark: #EA580C;
+  --color-generators-bg: rgba(249, 115, 22, 0.1);
+  --color-generators-border: rgba(249, 115, 22, 0.2);
+  
+  /* Web & Design - Rosa/Fucsia */
+  --color-web-primary: #EC4899;
+  --color-web-light: #F472B6;
+  --color-web-dark: #DB2777;
+  --color-web-bg: rgba(236, 72, 153, 0.1);
+  --color-web-border: rgba(236, 72, 153, 0.2);
+  
+  /* Dev Utilities - Giallo ambra */
+  --color-dev-primary: #F59E0B;
+  --color-dev-light: #FBBF24;
+  --color-dev-dark: #D97706;
+  --color-dev-bg: rgba(245, 158, 11, 0.1);
+  --color-dev-border: rgba(245, 158, 11, 0.2);
+  
+  /* === SEMANTIC COLORS === */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* === GLASSMORPHISM === */
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-backdrop: blur(20px);
+  
+  /* === ANIMATIONS === */
+  --transition-fast: 200ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+  
+  /* === SPACING === */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+  
+  /* === BORDER RADIUS === */
+  --radius-sm: 0.5rem;   /* 8px */
+  --radius-md: 0.75rem;  /* 12px */
+  --radius-lg: 1rem;     /* 16px */
+  --radius-xl: 1.5rem;   /* 24px */
+  
+  /* === TYPOGRAPHY === */
+  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-2xl: 2rem;      /* 32px */
+  --font-size-3xl: 3rem;      /* 48px */
+  
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+  
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* Dark mode overrides */
+.dark {
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  
+  /* Enhanced category colors for dark mode */
+  --color-data-primary: #38BDF8;
+  --color-encoding-primary: #34D399;
+  --color-text-primary: #A78BFA;
+  --color-generators-primary: #FB923C;
+  --color-web-primary: #F472B6;
+  --color-dev-primary: #FBBF24;
+  
+  /* Dark mode shadows become glows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Typography classes */
+.font-mono {
+  font-family: var(--font-family-mono);
+}
+
+.font-sans {
+  font-family: var(--font-family-sans);
+}
+
+/* Animation utilities */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(var(--glow-color), 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(var(--glow-color), 0.8);
+  }
+}
+
+/* Utility classes */
+.transition-fast { transition: all var(--transition-fast); }
+.transition-normal { transition: all var(--transition-normal); }
+.transition-slow { transition: all var(--transition-slow); }
+
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Category color utilities */
+.category-data {
+  --category-primary: var(--color-data-primary);
+  --category-light: var(--color-data-light);
+  --category-dark: var(--color-data-dark);
+  --category-bg: var(--color-data-bg);
+  --category-border: var(--color-data-border);
+}
+
+.category-encoding {
+  --category-primary: var(--color-encoding-primary);
+  --category-light: var(--color-encoding-light);
+  --category-dark: var(--color-encoding-dark);
+  --category-bg: var(--color-encoding-bg);
+  --category-border: var(--color-encoding-border);
+}
+
+.category-text {
+  --category-primary: var(--color-text-primary);
+  --category-light: var(--color-text-light);
+  --category-dark: var(--color-text-dark);
+  --category-bg: var(--color-text-bg);
+  --category-border: var(--color-text-border);
+}
+
+.category-generators {
+  --category-primary: var(--color-generators-primary);
+  --category-light: var(--color-generators-light);
+  --category-dark: var(--color-generators-dark);
+  --category-bg: var(--color-generators-bg);
+  --category-border: var(--color-generators-border);
+}
+
+.category-web {
+  --category-primary: var(--color-web-primary);
+  --category-light: var(--color-web-light);
+  --category-dark: var(--color-web-dark);
+  --category-bg: var(--color-web-bg);
+  --category-border: var(--color-web-border);
+}
+
+.category-dev {
+  --category-primary: var(--color-dev-primary);
+  --category-light: var(--color-dev-light);
+  --category-dark: var(--color-dev-dark);
+  --category-bg: var(--color-dev-bg);
+  --category-border: var(--color-dev-border);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --color-data-primary: #0066CC;
+    --color-encoding-primary: #008844;
+    --color-text-primary: #6633CC;
+    --color-generators-primary: #CC6600;
+    --color-web-primary: #CC3366;
+    --color-dev-primary: #CC9900;
+  }
+}

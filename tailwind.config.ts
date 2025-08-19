@@ -6,6 +6,8 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx}",
+    "./styles/**/*.css",
   ],
   theme: {
     container: {
@@ -98,6 +100,10 @@ const config: Config = {
         "slide-in": "slide-in 0.3s ease-out",
         "tentacle-wave": "tentacle-wave 2s ease-in-out infinite",
         shimmer: "shimmer 2s infinite",
+      },
+      scale: {
+        '102': '1.02',
+        '105': '1.05',
       },
       fontFamily: {
         mono: ["JetBrains Mono", "monospace"],

@@ -6,7 +6,19 @@ export interface Tool {
   icon: string;
   keywords: string[];
   searchVolume: number;
-  category: 'encoder' | 'generator' | 'converter' | 'formatter';
+  category: 'data' | 'encoding' | 'text' | 'generators' | 'web' | 'dev';
+  categoryColor: string;
+  isPopular?: boolean;
+  isNew?: boolean;
+}
+
+export interface ToolCategory {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+  tools: Tool[];
 }
 
 export const tools: Tool[] = [
@@ -18,7 +30,9 @@ export const tools: Tool[] = [
     icon: '{}',
     keywords: ['json', 'format', 'beautify', 'validate', 'pretty'],
     searchVolume: 1000,
-    category: 'formatter',
+    category: 'data',
+    categoryColor: 'data',
+    isPopular: true,
   },
   {
     id: 'base64',
@@ -28,7 +42,9 @@ export const tools: Tool[] = [
     icon: '🔐',
     keywords: ['base64', 'encode', 'decode', 'conversion'],
     searchVolume: 800,
-    category: 'encoder',
+    category: 'encoding',
+    categoryColor: 'encoding',
+    isPopular: true,
   },
   {
     id: 'url-encode',
@@ -38,7 +54,8 @@ export const tools: Tool[] = [
     icon: '🔗',
     keywords: ['url', 'encode', 'decode', 'uri', 'percent'],
     searchVolume: 700,
-    category: 'encoder',
+    category: 'encoding',
+    categoryColor: 'encoding',
   },
   {
     id: 'jwt',
@@ -48,7 +65,9 @@ export const tools: Tool[] = [
     icon: '🎫',
     keywords: ['jwt', 'token', 'decode', 'json', 'web'],
     searchVolume: 600,
-    category: 'converter',
+    category: 'encoding',
+    categoryColor: 'encoding',
+    isPopular: true,
   },
   {
     id: 'uuid',
@@ -58,7 +77,8 @@ export const tools: Tool[] = [
     icon: '🆔',
     keywords: ['uuid', 'guid', 'generate', 'unique', 'identifier'],
     searchVolume: 500,
-    category: 'generator',
+    category: 'generators',
+    categoryColor: 'generators',
   },
   {
     id: 'hash',
@@ -68,7 +88,8 @@ export const tools: Tool[] = [
     icon: '#️⃣',
     keywords: ['hash', 'md5', 'sha1', 'sha256', 'checksum'],
     searchVolume: 400,
-    category: 'generator',
+    category: 'encoding',
+    categoryColor: 'encoding',
   },
   {
     id: 'timestamp',
@@ -78,7 +99,59 @@ export const tools: Tool[] = [
     icon: '⏰',
     keywords: ['timestamp', 'unix', 'date', 'time', 'convert'],
     searchVolume: 300,
-    category: 'converter',
+    category: 'dev',
+    categoryColor: 'dev',
+  },
+];
+
+export const categories: ToolCategory[] = [
+  {
+    id: 'data',
+    name: 'Data & Conversion',
+    description: 'JSON, CSV, XML formatting and data transformation tools',
+    icon: '📊',
+    color: 'data',
+    tools: tools.filter(tool => tool.category === 'data'),
+  },
+  {
+    id: 'encoding',
+    name: 'Encoding & Security',
+    description: 'Base64, JWT, Hash, and encryption/decryption utilities',
+    icon: '🔒',
+    color: 'encoding',
+    tools: tools.filter(tool => tool.category === 'encoding'),
+  },
+  {
+    id: 'text',
+    name: 'Text & Format',
+    description: 'Case converters, text diff, character counters',
+    icon: '📝',
+    color: 'text',
+    tools: tools.filter(tool => tool.category === 'text'),
+  },
+  {
+    id: 'generators',
+    name: 'Generators',
+    description: 'UUID, passwords, Lorem Ipsum, and random data generators',
+    icon: '⚡',
+    color: 'generators',
+    tools: tools.filter(tool => tool.category === 'generators'),
+  },
+  {
+    id: 'web',
+    name: 'Web & Design',
+    description: 'Color pickers, CSS utilities, meta tag generators',
+    icon: '🎨',
+    color: 'web',
+    tools: tools.filter(tool => tool.category === 'web'),
+  },
+  {
+    id: 'dev',
+    name: 'Dev Utilities',
+    description: 'Regex tester, SQL formatter, timestamp converters',
+    icon: '🛠️',
+    color: 'dev',
+    tools: tools.filter(tool => tool.category === 'dev'),
   },
 ];
 
@@ -90,6 +163,22 @@ export const getToolsByCategory = (category: Tool['category']): Tool[] => {
   return tools.filter(tool => tool.category === category);
 };
 
+export const getCategoryById = (id: string): ToolCategory | undefined => {
+  return categories.find(category => category.id === id);
+};
+
+export const getCategoryByTool = (tool: Tool): ToolCategory | undefined => {
+  return categories.find(category => category.id === tool.category);
+};
+
+export const getPopularTools = (): Tool[] => {
+  return tools.filter(tool => tool.isPopular);
+};
+
+export const getNewTools = (): Tool[] => {
+  return tools.filter(tool => tool.isNew);
+};
+
 export const searchTools = (query: string): Tool[] => {
   const lowercaseQuery = query.toLowerCase();
   return tools.filter(tool =>
@@ -97,4 +186,8 @@ export const searchTools = (query: string): Tool[] => {
     tool.description.toLowerCase().includes(lowercaseQuery) ||
     tool.keywords.some(keyword => keyword.toLowerCase().includes(lowercaseQuery))
   );
+};
+
+export const getCategoryColorClass = (categoryColor: string): string => {
+  return `category-${categoryColor}`;
 };

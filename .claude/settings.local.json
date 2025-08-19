@@ -9,7 +9,9 @@
       "Bash(npm run type-check:*)",
       "Bash(npm install:*)",
       "Bash(npm run lint)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(rm:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": [],
