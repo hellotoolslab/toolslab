@@ -1,54 +1,48 @@
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
-import { tools, getToolById } from '@/lib/tools';
-import { ToolLayout } from '@/components/tools/ToolLayout';
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import ToolPageClient from '@/components/tools/ToolPageClient'
+import { tools } from '@/data/tools'
 
 interface ToolPageProps {
   params: {
-    tool: string;
-  };
+    tool: string
+  }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
+  const tool = tools.find(t => t.slug === params.tool)
+  
+  if (!tool) {
+    return {
+      title: 'Tool Not Found - OctoTools',
+    }
+  }
+
+  return {
+    title: `${tool.name} - Free Online Tool | OctoTools`,
+    description: tool.description,
+    keywords: `${tool.name}, ${tool.category}, online tool, free tool, web utility`,
+    openGraph: {
+      title: `${tool.name} - OctoTools`,
+      description: tool.description,
+      type: 'website',
+    },
+  }
 }
 
 export async function generateStaticParams() {
   return tools.map((tool) => ({
-    tool: tool.id,
-  }));
+    tool: tool.slug,
+  }))
 }
 
-export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
-  const tool = getToolById(params.tool);
-  
-  if (!tool) {
-    return {
-      title: 'Tool Not Found',
-    };
-  }
-
-  return {
-    title: `${tool.name} - OctoTools`,
-    description: tool.description,
-    keywords: tool.keywords,
-    openGraph: {
-      title: `${tool.name} - OctoTools`,
-      description: tool.description,
-      url: `https://octotools.dev${tool.route}`,
-      siteName: 'OctoTools',
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${tool.name} - OctoTools`,
-      description: tool.description,
-    },
-  };
-}
-
-export default function ToolPage({ params }: ToolPageProps) {
-  const tool = getToolById(params.tool);
+export default function ToolPage({ params, searchParams }: ToolPageProps) {
+  const tool = tools.find(t => t.slug === params.tool)
 
   if (!tool) {
-    notFound();
+    notFound()
   }
 
-  return <ToolLayout tool={tool} />;
+  return <ToolPageClient toolSlug={params.tool} searchParams={searchParams} />
 }
