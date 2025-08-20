@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/layout/Header';
@@ -62,8 +63,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const isProduction = process.env.NODE_ENV === 'production';
+  
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {isProduction && (
+          <Script
+            defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id="6e294d5a-5c43-4720-8753-6aa3ab169f4b"
+            strategy="afterInteractive"
+          />
+        )}
+      </head>
       <body className={cn(inter.className, 'min-h-screen bg-background font-sans antialiased')}>
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
