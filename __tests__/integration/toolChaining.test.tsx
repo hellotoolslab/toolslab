@@ -75,7 +75,7 @@ describe('Tool Chaining Integration', () => {
 
       // Check suggestion appears
       await waitFor(() => {
-        expect(screen.getByText('JWT token detected')).toBeInTheDocument();
+        expect(screen.getByText('JWT token detected')).toBeDefined();
       });
 
       // Verify JWT is extracted

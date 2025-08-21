@@ -29,7 +29,8 @@
       "Bash(npx husky init:*)",
       "Bash(chmod:*)",
       "Bash(npm run status:check:*)",
-      "Bash(npm run test:unit:*)"
+      "Bash(npm run test:unit:*)",
+      "Bash(npm run typecheck:*)"
     ],
     "deny": [],
     "ask": [],
