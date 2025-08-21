@@ -22,7 +22,13 @@
       "Bash(cp:*)",
       "Bash(touch:*)",
       "Bash(npm uninstall:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(git commit:*)",
+      "Bash(echo:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx husky init:*)",
+      "Bash(chmod:*)",
+      "Bash(npm run status:check:*)"
     ],
     "deny": [],
     "ask": [],

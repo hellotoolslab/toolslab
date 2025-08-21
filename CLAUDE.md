@@ -1,17 +1,70 @@
-# Claude.md - OctoTools Complete Implementation Guide
+# CLAUDE.md - Standard Operativi per OctoTools
 
-## 🎯 Project Overview
+## 🤖 Workflow di Sviluppo con Claude Code
 
-You are building **OctoTools** - a user-centric developer toolbox focused on real workflows and task chaining. The project monetizes through privacy-focused advertising (EthicalAds) and optional Pro features ($2.99/month).
+### 1. PRIMA DI OGNI SESSIONE
 
-**Core Principle**: Dual Mode Approach - Serve both single-task users (90%) and workflow power users (10%) without forcing either path.
+```bash
+# Sincronizza con il repository
+git pull origin main
 
-**URL**: octotools.org  
-**Tagline**: "Developer Tools That Actually Work - Chain, Batch, Share"  
-**Business Model**: 100% free forever + EthicalAds + Donations + Optional Pro ($2.99/mo)  
-**Tech Stack**: Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Zustand
+# Verifica lo stato del progetto
+npm run status:check
 
-## 🏗️ Project Structure (Next.js)
+# Aggiorna le dipendenze se necessario
+npm update
+```
+
+### 2. DURANTE LO SVILUPPO
+
+#### Creazione di nuovi tool
+
+1. Usa sempre il template standard in `templates/tool-template.tsx`
+2. Crea prima i test in `__tests__/unit/tools/[tool-name].test.ts`
+3. Implementa la logica in `lib/tools/[tool-name].ts`
+4. Crea il componente UI in `components/tools/[ToolName].tsx`
+5. Aggiungi la route in `app/tools/[tool-name]/page.tsx`
+
+#### Standard di codice
+
+- Usa TypeScript strict mode
+- Tutti i componenti devono avere props tipizzate
+- Usa Zod per la validazione runtime
+- Documenta le funzioni complesse con JSDoc
+- Mantieni le funzioni pure in `lib/tools/`
+
+### 3. PRIMA DI OGNI COMMIT
+
+#### Checklist obbligatoria
+
+- [ ] I test passano localmente (`npm run test`)
+- [ ] Il linter non riporta errori (`npm run lint`)
+- [ ] La build funziona (`npm run build`)
+- [ ] Le performance sono verificate (`npm run analyze:size`)
+- [ ] La documentazione è aggiornata
+
+#### Processo di commit automatizzato
+
+```bash
+# Il pre-commit hook eseguirà automaticamente:
+# 1. Linting e formatting
+# 2. Test relativi ai file modificati
+# 3. Build check
+# 4. Bundle size analysis
+
+git add .
+git commit -m "tipo: descrizione breve"
+
+# Tipi di commit:
+# feat: nuova funzionalità
+# fix: correzione bug
+# test: aggiunta o modifica test
+# docs: documentazione
+# style: formattazione
+# refactor: refactoring codice
+# perf: miglioramento performance
+# chore: manutenzione
+```
 
 ```
 octotools/
@@ -64,7 +117,7 @@ export const CATEGORIES = {
     gradient: 'from-sky-400 to-blue-600',
     bgLight: 'bg-sky-50',
     bgDark: 'bg-sky-950/20',
-    borderColor: 'border-sky-500'
+    borderColor: 'border-sky-500',
   },
   'encoding-security': {
     name: 'Encoding & Security',
@@ -74,7 +127,7 @@ export const CATEGORIES = {
     gradient: 'from-emerald-400 to-green-600',
     bgLight: 'bg-emerald-50',
     bgDark: 'bg-emerald-950/20',
-    borderColor: 'border-emerald-500'
+    borderColor: 'border-emerald-500',
   },
   'text-format': {
     name: 'Text & Format',
@@ -84,9 +137,9 @@ export const CATEGORIES = {
     gradient: 'from-violet-400 to-purple-600',
     bgLight: 'bg-violet-50',
     bgDark: 'bg-violet-950/20',
-    borderColor: 'border-violet-500'
+    borderColor: 'border-violet-500',
   },
-  'generators': {
+  generators: {
     name: 'Generators',
     color: '#F97316', // Orange
     tools: ['uuid-generator', 'password-generator', 'lorem-ipsum'],
@@ -94,7 +147,7 @@ export const CATEGORIES = {
     gradient: 'from-orange-400 to-orange-600',
     bgLight: 'bg-orange-50',
     bgDark: 'bg-orange-950/20',
-    borderColor: 'border-orange-500'
+    borderColor: 'border-orange-500',
   },
   'web-design': {
     name: 'Web & Design',
@@ -104,7 +157,7 @@ export const CATEGORIES = {
     gradient: 'from-pink-400 to-fuchsia-600',
     bgLight: 'bg-pink-50',
     bgDark: 'bg-pink-950/20',
-    borderColor: 'border-pink-500'
+    borderColor: 'border-pink-500',
   },
   'dev-utilities': {
     name: 'Dev Utilities',
@@ -114,8 +167,8 @@ export const CATEGORIES = {
     gradient: 'from-amber-400 to-yellow-600',
     bgLight: 'bg-amber-50',
     bgDark: 'bg-amber-950/20',
-    borderColor: 'border-amber-500'
-  }
+    borderColor: 'border-amber-500',
+  },
 };
 ```
 
@@ -135,7 +188,7 @@ module.exports = {
         'fade-in': 'fadeIn 0.3s ease-in',
         'slide-up': 'slideUp 0.3s ease-out',
         'pulse-slow': 'pulse 3s ease-in-out infinite',
-        'shimmer': 'shimmer 2s infinite',
+        shimmer: 'shimmer 2s infinite',
       },
       keyframes: {
         fadeIn: {
@@ -206,7 +259,7 @@ interface ToolStore {
   workspace: WorkspacePanel[];
   userLevel: 'first_time' | 'returning' | 'power';
   proUser: boolean;
-  
+
   addToHistory: (operation: ToolOperation) => void;
   setChainedData: (data: any) => void;
   updateUserLevel: () => void;
@@ -220,22 +273,23 @@ export const useToolStore = create<ToolStore>()(
       workspace: [],
       userLevel: 'first_time',
       proUser: false,
-      
+
       addToHistory: (operation) => {
         set((state) => ({
-          history: [...state.history.slice(-19), operation]
+          history: [...state.history.slice(-19), operation],
         }));
         get().updateUserLevel();
       },
-      
+
       setChainedData: (data) => set({ chainedData: data }),
-      
+
       updateUserLevel: () => {
         const usage = get().history.length;
         set({
-          userLevel: usage < 2 ? 'first_time' : usage < 5 ? 'returning' : 'power'
+          userLevel:
+            usage < 2 ? 'first_time' : usage < 5 ? 'returning' : 'power',
         });
-      }
+      },
     }),
     {
       name: 'octotools-storage',
@@ -259,20 +313,20 @@ export default function HomePage() {
         <p className="text-xl text-gray-600 dark:text-gray-400">
           No signup. No limits. Just tools.
         </p>
-        
+
         {/* Quick Search */}
         <div className="mt-8 max-w-2xl mx-auto">
           <SearchBar />
         </div>
       </section>
-      
+
       {/* Tool Categories */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {Object.entries(CATEGORIES).map(([key, category]) => (
           <CategoryCard key={key} category={category} />
         ))}
       </section>
-      
+
       {/* Popular Tools */}
       <section>
         <h2 className="text-2xl font-bold mb-6">Most Used Tools</h2>
@@ -293,7 +347,7 @@ export default function HomePage() {
 // components/ui/ToolCard.tsx
 export function ToolCard({ tool }) {
   const category = getCategoryForTool(tool.id);
-  
+
   return (
     <Link href={`/tools/${tool.id}`}>
       <div className={`
@@ -304,7 +358,7 @@ export function ToolCard({ tool }) {
       `}>
         {/* Category color accent bar */}
         <div className={`absolute top-0 left-0 right-0 h-1 ${category.gradient} rounded-t-xl`} />
-        
+
         {/* Icon with category color background */}
         <div className={`
           w-12 h-12 rounded-lg ${category.bgLight} dark:${category.bgDark}
@@ -313,7 +367,7 @@ export function ToolCard({ tool }) {
         `}>
           <span className="text-2xl">{tool.icon}</span>
         </div>
-        
+
         {/* Tool name and description */}
         <h3 className="font-semibold text-lg mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">
           {tool.name}
@@ -321,7 +375,7 @@ export function ToolCard({ tool }) {
         <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
           {tool.description}
         </p>
-        
+
         {/* Usage stats */}
         {tool.dailyUses > 1000 && (
           <div className="mt-4 flex items-center gap-2">
@@ -361,9 +415,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const toolConfig = TOOLS_CONFIG[params.tool];
-  
+
   if (!toolConfig) return {};
-  
+
   return {
     title: `${toolConfig.name} - Free Online ${toolConfig.function} | OctoTools`,
     description: toolConfig.description,
@@ -374,9 +428,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default function ToolPage({ params }: Props) {
   const toolConfig = TOOLS_CONFIG[params.tool];
   if (!toolConfig) notFound();
-  
+
   const category = getCategoryForTool(params.tool);
-  
+
   return (
     <div className="min-h-screen">
       {/* Breadcrumb */}
@@ -391,7 +445,7 @@ export default function ToolPage({ params }: Props) {
           <span>{toolConfig.name}</span>
         </div>
       </nav>
-      
+
       {/* Tool Header */}
       <div className="container mx-auto px-4 pb-8">
         <div className="flex items-center gap-4 mb-4">
@@ -416,11 +470,11 @@ export default function ToolPage({ params }: Props) {
             </p>
           </div>
         </div>
-        
+
         {/* Ad Slot - Header */}
         <EthicalAd placement="header" />
       </div>
-      
+
       {/* Main Content */}
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -433,18 +487,18 @@ export default function ToolPage({ params }: Props) {
             `}>
               <ToolComponent config={toolConfig} category={category} />
             </div>
-            
+
             {/* How to Use Section */}
             <div className="mt-8">
               <HowToUse tool={toolConfig} />
             </div>
-            
+
             {/* FAQ Section */}
             <div className="mt-8">
               <FAQ tool={toolConfig} />
             </div>
           </div>
-          
+
           {/* Sidebar - Desktop Only */}
           <aside className="hidden lg:block">
             <div className="sticky top-20 space-y-6">
@@ -453,10 +507,10 @@ export default function ToolPage({ params }: Props) {
                 <h3 className="font-semibold mb-4">Related Tools</h3>
                 <RelatedTools currentTool={params.tool} category={category} />
               </div>
-              
+
               {/* Ad Slot - Sidebar */}
               <EthicalAd placement="sidebar" />
-              
+
               {/* Pro Features */}
               <ProFeatureCard />
             </div>
@@ -475,36 +529,40 @@ export default function ToolPage({ params }: Props) {
 import * as Comlink from 'comlink';
 
 class ToolProcessor {
-  async formatJSON(input: string): Promise<{ success: boolean; result?: string; error?: string }> {
+  async formatJSON(
+    input: string
+  ): Promise<{ success: boolean; result?: string; error?: string }> {
     try {
       const parsed = JSON.parse(input);
       return {
         success: true,
-        result: JSON.stringify(parsed, null, 2)
+        result: JSON.stringify(parsed, null, 2),
       };
     } catch (error) {
       return {
         success: false,
-        error: error.message
+        error: error.message,
       };
     }
   }
-  
-  async minifyJSON(input: string): Promise<{ success: boolean; result?: string; error?: string }> {
+
+  async minifyJSON(
+    input: string
+  ): Promise<{ success: boolean; result?: string; error?: string }> {
     try {
       const parsed = JSON.parse(input);
       return {
         success: true,
-        result: JSON.stringify(parsed)
+        result: JSON.stringify(parsed),
       };
     } catch (error) {
       return {
         success: false,
-        error: error.message
+        error: error.message,
       };
     }
   }
-  
+
   async batchProcess<T>(items: T[], processor: (item: T) => Promise<any>) {
     const results = [];
     for (const item of items) {
@@ -527,25 +585,25 @@ import { useToolStore } from '@/lib/store/toolStore';
 
 export function EthicalAd({ placement }: { placement: 'header' | 'sidebar' | 'footer' }) {
   const { userLevel, proUser } = useToolStore();
-  
+
   // Don't show ads to:
   // - Pro users
   // - First-time users (on header placement)
   if (proUser) return null;
   if (userLevel === 'first_time' && placement === 'header') return null;
-  
+
   // Only show if ads are enabled
   if (process.env.NEXT_PUBLIC_ENABLE_ADS !== 'true') return null;
-  
+
   const sizes = {
     header: '728x90',
     sidebar: '300x250',
     footer: '728x90'
   };
-  
+
   return (
     <div className={`ethical-ad ad-${placement} my-4`}>
-      <div 
+      <div
         data-ea-publisher={process.env.NEXT_PUBLIC_ETHICAL_ADS_PUBLISHER}
         data-ea-type={sizes[placement]}
         className="bordered rounded-lg"
@@ -576,7 +634,7 @@ export function UmamiProvider({ children }: { children: React.ReactNode }) {
       });
     }
   };
-  
+
   const trackPerformance = (tool: string, action: string, duration: number) => {
     if (typeof window !== 'undefined' && window.umami) {
       window.umami.track('performance', {
@@ -586,7 +644,7 @@ export function UmamiProvider({ children }: { children: React.ReactNode }) {
       });
     }
   };
-  
+
   return (
     <UmamiContext.Provider value={{ logToolAction, trackPerformance }}>
       <Script
@@ -619,16 +677,16 @@ interface ProFeatures {
 
 export function ProFeatureCard() {
   const { proUser } = useToolStore();
-  
+
   if (proUser) {
     return <ProUserDashboard />;
   }
-  
+
   return (
     <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-xl text-white">
       <h3 className="text-xl font-bold mb-4">OctoTools Pro</h3>
       <p className="text-2xl font-bold mb-4">$2.99/month</p>
-      
+
       <ul className="space-y-2 mb-6">
         <li>✓ No ads</li>
         <li>✓ Unlimited history</li>
@@ -637,11 +695,11 @@ export function ProFeatureCard() {
         <li>✓ Custom workspaces</li>
         <li>✓ Export to multiple formats</li>
       </ul>
-      
+
       <button className="w-full bg-white text-blue-600 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100">
         Upgrade to Pro
       </button>
-      
+
       <p className="text-xs text-white/80 mt-4">
         Cancel anytime. Supports development.
       </p>
@@ -668,34 +726,34 @@ export function ToolComponent({ config, category }) {
   const [output, setOutput] = useState('');
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState(null);
-  
+
   const { addToHistory, setChainedData } = useToolStore();
   const { logToolAction, trackPerformance } = useUmami();
-  
+
   const handleProcess = async () => {
     const startTime = Date.now();
     setProcessing(true);
     setError(null);
-    
+
     try {
       // Use Web Worker for processing
       const worker = new Worker(
         new URL('@/lib/workers/toolWorker.ts', import.meta.url)
       );
-      
+
       const result = await processWithWorker(worker, input, config.processor);
-      
+
       setOutput(result);
-      
+
       // Track success
       logToolAction(config.id, 'process', true, {
         inputSize: input.length,
         outputSize: result.length
       });
-      
+
       // Track performance
       trackPerformance(config.id, 'process', Date.now() - startTime);
-      
+
       // Add to history
       addToHistory({
         id: Date.now().toString(),
@@ -704,10 +762,10 @@ export function ToolComponent({ config, category }) {
         output: result,
         timestamp: Date.now()
       });
-      
+
       // Set chained data for next tool
       setChainedData(result);
-      
+
     } catch (err) {
       setError(err.message);
       logToolAction(config.id, 'process', false, {
@@ -717,7 +775,7 @@ export function ToolComponent({ config, category }) {
       setProcessing(false);
     }
   };
-  
+
   return (
     <div className="space-y-6">
       {/* Input Section */}
@@ -745,7 +803,7 @@ export function ToolComponent({ config, category }) {
           </div>
         </div>
       </div>
-      
+
       {/* Action Bar */}
       <div className="flex gap-4">
         <button
@@ -760,7 +818,7 @@ export function ToolComponent({ config, category }) {
         >
           {processing ? 'Processing...' : config.actionLabel}
         </button>
-        
+
         <button
           onClick={() => {
             setInput('');
@@ -771,21 +829,21 @@ export function ToolComponent({ config, category }) {
         >
           Clear
         </button>
-        
+
         {config.hasOptions && (
           <button className="px-6 py-2 rounded-lg font-medium border-2 hover:bg-gray-50 dark:hover:bg-gray-800">
             Options
           </button>
         )}
       </div>
-      
+
       {/* Error Display */}
       {error && (
         <div className="p-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-lg">
           <p className="text-red-600 dark:text-red-400">{error}</p>
         </div>
       )}
-      
+
       {/* Output Section */}
       {output && (
         <div>
@@ -811,7 +869,7 @@ export function ToolComponent({ config, category }) {
               </button>
             </div>
           </div>
-          
+
           {/* Tool Chaining Suggestions */}
           <ToolChainingSuggestions output={output} currentTool={config.id} />
         </div>
@@ -828,7 +886,7 @@ export function ToolComponent({ config, category }) {
 ```typescript
 // All tool pages are pre-rendered at build time
 export async function generateStaticParams() {
-  return TOOLS.map(tool => ({ tool: tool.id }));
+  return TOOLS.map((tool) => ({ tool: tool.id }));
 }
 ```
 
@@ -854,27 +912,29 @@ const worker = new Worker(
 ## 📱 Responsive Design
 
 ### Breakpoints
+
 - Mobile: < 640px (sm)
 - Tablet: 640px - 1024px (md)
 - Desktop: > 1024px (lg)
 
 ### Mobile Optimizations
+
 ```css
 /* Stack input/output vertically on mobile */
 @media (max-width: 640px) {
   .tool-layout {
     grid-template-columns: 1fr;
   }
-  
+
   /* Sticky action bar */
   .action-bar {
     position: sticky;
     bottom: 0;
     background: white;
     padding: 1rem;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   }
-  
+
   /* Full-width buttons */
   .action-bar button {
     width: 100%;
@@ -889,7 +949,7 @@ const worker = new Worker(
 ```typescript
 export async function generateMetadata({ params }): Promise<Metadata> {
   const tool = TOOLS_CONFIG[params.tool];
-  
+
   return {
     title: `${tool.name} - Free Online ${tool.function} | OctoTools`,
     description: tool.seoDescription,
@@ -915,6 +975,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 ## 🚦 Implementation Timeline
 
 ### Phase 1: MVP (Days 1-4)
+
 1. Next.js setup with TypeScript
 2. Design system implementation
 3. 7 core tools (SSG):
@@ -927,6 +988,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
    - Timestamp Converter
 
 ### Phase 2: Enhancement (Days 5-7)
+
 1. Zustand state management
 2. Tool chaining system
 3. Progressive disclosure
@@ -934,6 +996,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 5. EthicalAds integration (disabled initially)
 
 ### Phase 3: Expansion (Days 8-14)
+
 1. Workspace mode for power users
 2. Web Worker optimizations
 3. Pro subscription system
@@ -970,12 +1033,14 @@ vercel --prod
 ## 🎯 Success Metrics
 
 ### User Experience
+
 - Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1
 - Task Completion Rate: >95%
 - Return Rate: 40%+ within 30 days
 - Tool Chaining Adoption: 10% of users
 
 ### Monetization
+
 - Month 1: $15 (donations only, ads disabled)
 - Month 2: $150 (ads enabled + donations)
 - Month 3: $370 (ads + donations + pro)
@@ -998,6 +1063,7 @@ STRIPE_PRICE_ID=price_xxx  # $2.99/month subscription
 ## 🎨 Visual Identity
 
 ### Octopus Theme
+
 - Logo: Animated SVG octopus with moving tentacles
 - Each tentacle represents a tool category
 - Loading states: Tentacle wave animation
@@ -1005,8 +1071,9 @@ STRIPE_PRICE_ID=price_xxx  # $2.99/month subscription
 - Success messages: "Tentacular!", "Ink-redible!"
 
 ### UI Personality
+
 - Professional but playful
-- Clean but not sterile  
+- Clean but not sterile
 - Modern but not trendy
 - Fast but not rushed
 - Helpful but not pushy
