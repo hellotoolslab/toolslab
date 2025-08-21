@@ -1,8 +1,4 @@
-import {
-  formatJSON,
-  minifyJSON,
-  validateJSON,
-} from '../../../src/lib/tools/json';
+import { formatJSON, minifyJSON, validateJSON } from '@/lib/tools/json';
 import { TEST_JSON } from '../../fixtures/test-data';
 
 describe('JSON Formatter', () => {
@@ -146,7 +142,7 @@ describe('JSON Formatter', () => {
       for (let i = 0; i < 100; i++) {
         deepJSON += '}';
       }
-      deepJSON += '}';
+      // Note: no extra closing brace needed, we already have 100 opens and 100 closes
 
       const result = formatJSON(deepJSON);
       expect(result.success).toBe(true);

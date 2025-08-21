@@ -17,7 +17,7 @@ const customJestConfig = {
     '!**/node_modules/**',
     '!**/.next/**',
   ],
-  coverageThresholds: {
+  coverageThreshold: {
     global: {
       branches: 80,
       functions: 80,
