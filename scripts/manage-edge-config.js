@@ -260,6 +260,67 @@ async function updateFeatures(updates) {
 }
 
 /**
+ * Abilita/disabilita una categoria
+ */
+async function toggleCategory(categoryId, enabled) {
+  try {
+    // Prima ottieni la configurazione corrente
+    const currentResponse = await makeRequest(EDGE_CONFIG_URL, 'GET');
+    if (currentResponse.status !== 200) {
+      throw new Error('Failed to get current config');
+    }
+
+    const config = currentResponse.data.items || currentResponse.data;
+
+    if (!config.categories || !config.categories[categoryId]) {
+      console.error(`❌ Category "${categoryId}" not found`);
+      return;
+    }
+
+    // Aggiorna la categoria
+    const updatedCategory = {
+      ...config.categories[categoryId],
+      enabled: enabled,
+    };
+
+    const updatedCategories = {
+      ...config.categories,
+      [categoryId]: updatedCategory,
+    };
+
+    // Invia l'aggiornamento
+    const apiUrl = getApiUrl();
+    const response = await makeRequest(
+      apiUrl,
+      'PATCH',
+      {
+        items: [
+          {
+            operation: 'upsert',
+            key: 'categories',
+            value: updatedCategories,
+          },
+        ],
+      },
+      true
+    ); // Usa autenticazione
+
+    if (response.status === 200 || response.status === 204) {
+      const status = enabled ? 'enabled' : 'disabled';
+      console.log(`✅ Category "${categoryId}" ${status} successfully!`);
+    } else {
+      console.error(
+        '❌ Failed to update category:',
+        response.status,
+        response.data
+      );
+    }
+  } catch (error) {
+    console.error('❌ Error toggling category:', error.message);
+  }
+}
+
+/**
  * Aggiunge un nuovo tool
  */
 async function addTool(toolData) {
@@ -350,6 +411,12 @@ function showHelp() {
     '  node scripts/manage-edge-config.js disable <tool-slug>     # Disable a tool'
   );
   console.log(
+    '  node scripts/manage-edge-config.js enable-cat <cat-id>     # Enable a category'
+  );
+  console.log(
+    '  node scripts/manage-edge-config.js disable-cat <cat-id>    # Disable a category'
+  );
+  console.log(
     '  node scripts/manage-edge-config.js maintenance on|off     # Toggle maintenance mode'
   );
   console.log(
@@ -362,6 +429,7 @@ function showHelp() {
   console.log('📝 Examples:');
   console.log('  node scripts/manage-edge-config.js show');
   console.log('  node scripts/manage-edge-config.js disable json-formatter');
+  console.log('  node scripts/manage-edge-config.js disable-cat generators');
   console.log('  node scripts/manage-edge-config.js maintenance on');
   console.log(
     '  node scripts/manage-edge-config.js add-tool \'{"name":"Test Tool","slug":"test-tool","description":"A test"}\''
@@ -399,6 +467,24 @@ async function main() {
         return;
       }
       await toggleTool(disableSlug, false);
+      break;
+
+    case 'enable-cat':
+      const enableCatId = args[1];
+      if (!enableCatId) {
+        console.error('❌ Category ID required');
+        return;
+      }
+      await toggleCategory(enableCatId, true);
+      break;
+
+    case 'disable-cat':
+      const disableCatId = args[1];
+      if (!disableCatId) {
+        console.error('❌ Category ID required');
+        return;
+      }
+      await toggleCategory(disableCatId, false);
       break;
 
     case 'maintenance':

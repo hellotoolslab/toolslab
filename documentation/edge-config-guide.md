@@ -118,6 +118,53 @@ npm run edge-config:manage enable json-formatter
 # → Tool riabilitato immediatamente
 ```
 
+### Gestione Categorie
+
+Le categorie organizzano i tool e controllano la navigazione del sito.
+
+```bash
+# Disabilita una categoria (nasconde tutti i tool della categoria)
+npm run edge-config:manage disable-cat generators
+
+# Riabilita una categoria
+npm run edge-config:manage enable-cat generators
+
+# Lista tutte le categorie disponibili
+npm run edge-config:manage show
+```
+
+**📋 Categorie disponibili:**
+
+| ID Categoria        | Nome Visualizzato   | Descrizione                               |
+| ------------------- | ------------------- | ----------------------------------------- |
+| `data-conversion`   | Data & Conversion   | Tool per conversione e formattazione dati |
+| `encoding-security` | Encoding & Security | Codifica, decodifica e sicurezza          |
+| `text-format`       | Text & Format       | Manipolazione e formattazione testo       |
+| `generators`        | Generators          | Generatori di vari tipi di dati           |
+| `web-design`        | Web & Design        | Tool per sviluppo web e design            |
+| `dev-utilities`     | Dev Utilities       | Utilità per sviluppatori                  |
+
+**⚡ Effetti immediati:**
+
+- ❌ **Categoria disabilitata** = non appare nel menu di navigazione
+- 🔍 **Tool della categoria** potrebbero essere nascosti nell'interfaccia
+- 📱 **Gestione sezioni** intere del sito con un singolo comando
+- ⚡ **Propagazione** entro 30 secondi (cache TTL)
+
+**💡 Casi d'uso:**
+
+```bash
+# Nascondi tutti i generatori temporaneamente
+npm run edge-config:manage disable-cat generators
+
+# Disabilita la sezione design durante manutenzione
+npm run edge-config:manage disable-cat web-design
+
+# Test A/B: mostra solo encoding e data conversion
+npm run edge-config:manage disable-cat text-format
+npm run edge-config:manage disable-cat dev-utilities
+```
+
 ---
 
 ## 🎯 Gestione Feature Flags
@@ -408,6 +455,10 @@ npm run edge-config:test
 # Gestione tool
 npm run edge-config:manage enable tool-slug
 npm run edge-config:manage disable tool-slug
+
+# Gestione categorie
+npm run edge-config:manage enable-cat category-id
+npm run edge-config:manage disable-cat category-id
 
 # Feature flags
 npm run edge-config:manage maintenance on|off
