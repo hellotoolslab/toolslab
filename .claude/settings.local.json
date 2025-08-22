@@ -30,7 +30,15 @@
       "Bash(chmod:*)",
       "Bash(npm run status:check:*)",
       "Bash(npm run test:unit:*)",
-      "Bash(npm run typecheck:*)"
+      "Bash(npm run typecheck:*)",
+      "Bash(git push:*)",
+      "Bash(git config:*)",
+      "Bash(ssh:*)",
+      "Bash(npm run edge-config:manage:*)",
+      "Bash(npm run edge-config:view:*)",
+      "Bash(npm run edge-config:health:*)",
+      "Bash(npm run edge-config:test:*)",
+      "Bash(lsof:*)"
     ],
     "deny": [],
     "ask": [],

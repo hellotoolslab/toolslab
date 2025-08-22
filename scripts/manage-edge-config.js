@@ -5,9 +5,15 @@
  * Permette di visualizzare, modificare, abilitare/disabilitare tool
  */
 
+// Carica le variabili d'ambiente da .env.local
+require('dotenv').config({ path: '.env.local' });
+
 const https = require('https');
 
 const EDGE_CONFIG_URL = process.env.EDGE_CONFIG;
+const VERCEL_API_TOKEN = process.env.VERCEL_API_TOKEN;
+const EDGE_CONFIG_ID = process.env.EDGE_CONFIG_ID;
+const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
 
 if (!EDGE_CONFIG_URL) {
   console.error('❌ EDGE_CONFIG environment variable is required');
@@ -17,17 +23,24 @@ if (!EDGE_CONFIG_URL) {
 /**
  * Funzione per fare richieste HTTPS
  */
-function makeRequest(url, method, data) {
+function makeRequest(url, method, data, useAuth = false) {
   return new Promise((resolve, reject) => {
     const parsedUrl = new URL(url);
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    // Aggiungi autenticazione per API Vercel
+    if (useAuth && VERCEL_API_TOKEN) {
+      headers['Authorization'] = `Bearer ${VERCEL_API_TOKEN}`;
+    }
+
     const options = {
       hostname: parsedUrl.hostname,
       port: 443,
       path: parsedUrl.pathname + parsedUrl.search,
       method: method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: headers,
     };
 
     const req = https.request(options, (res) => {
@@ -57,14 +70,20 @@ function makeRequest(url, method, data) {
  * Ottieni API URL per modifiche
  */
 function getApiUrl() {
-  const configId = EDGE_CONFIG_URL.match(/ecfg_[^?]+/)?.[0];
-  const token = EDGE_CONFIG_URL.match(/token=([^&]+)/)?.[1];
-
-  if (!configId || !token) {
-    throw new Error('Invalid Edge Config URL format');
+  if (!VERCEL_API_TOKEN || !EDGE_CONFIG_ID) {
+    throw new Error(
+      'VERCEL_API_TOKEN and EDGE_CONFIG_ID are required for write operations. Run: node scripts/setup-edge-config-management.js'
+    );
   }
 
-  return `https://api.vercel.com/v1/edge-config/${configId}/items?token=${token}`;
+  let baseUrl = `https://api.vercel.com/v1/edge-config/${EDGE_CONFIG_ID}/items`;
+
+  // Aggiungi team ID se presente
+  if (VERCEL_TEAM_ID) {
+    baseUrl += `?teamId=${VERCEL_TEAM_ID}`;
+  }
+
+  return baseUrl;
 }
 
 /**
@@ -79,7 +98,7 @@ async function showConfig() {
       return;
     }
 
-    const config = response.data;
+    const config = response.data.items || response.data;
 
     console.log('📋 Current Edge Config:');
     console.log('=======================');
@@ -136,7 +155,7 @@ async function toggleTool(toolSlug, enabled) {
       throw new Error('Failed to get current config');
     }
 
-    const config = currentResponse.data;
+    const config = currentResponse.data.items || currentResponse.data;
 
     if (!config.tools || !config.tools[toolSlug]) {
       console.error(`❌ Tool "${toolSlug}" not found`);
@@ -156,15 +175,20 @@ async function toggleTool(toolSlug, enabled) {
 
     // Invia l'aggiornamento
     const apiUrl = getApiUrl();
-    const response = await makeRequest(apiUrl, 'PATCH', {
-      items: [
-        {
-          operation: 'upsert',
-          key: 'tools',
-          value: updatedTools,
-        },
-      ],
-    });
+    const response = await makeRequest(
+      apiUrl,
+      'PATCH',
+      {
+        items: [
+          {
+            operation: 'upsert',
+            key: 'tools',
+            value: updatedTools,
+          },
+        ],
+      },
+      true
+    ); // Usa autenticazione
 
     if (response.status === 200 || response.status === 204) {
       const status = enabled ? 'enabled' : 'disabled';
@@ -192,7 +216,7 @@ async function updateFeatures(updates) {
       throw new Error('Failed to get current config');
     }
 
-    const config = currentResponse.data;
+    const config = currentResponse.data.items || currentResponse.data;
     const currentFeatures = config.features || {};
 
     // Merge delle modifiche
@@ -203,15 +227,20 @@ async function updateFeatures(updates) {
 
     // Invia aggiornamento
     const apiUrl = getApiUrl();
-    const response = await makeRequest(apiUrl, 'PATCH', {
-      items: [
-        {
-          operation: 'upsert',
-          key: 'features',
-          value: updatedFeatures,
-        },
-      ],
-    });
+    const response = await makeRequest(
+      apiUrl,
+      'PATCH',
+      {
+        items: [
+          {
+            operation: 'upsert',
+            key: 'features',
+            value: updatedFeatures,
+          },
+        ],
+      },
+      true
+    ); // Usa autenticazione
 
     if (response.status === 200 || response.status === 204) {
       console.log('✅ Feature flags updated successfully!');
@@ -241,7 +270,7 @@ async function addTool(toolData) {
       throw new Error('Failed to get current config');
     }
 
-    const config = currentResponse.data;
+    const config = currentResponse.data.items || currentResponse.data;
     const currentTools = config.tools || {};
 
     // Controlla se esiste già
@@ -278,15 +307,20 @@ async function addTool(toolData) {
 
     // Invia aggiornamento
     const apiUrl = getApiUrl();
-    const response = await makeRequest(apiUrl, 'PATCH', {
-      items: [
-        {
-          operation: 'upsert',
-          key: 'tools',
-          value: updatedTools,
-        },
-      ],
-    });
+    const response = await makeRequest(
+      apiUrl,
+      'PATCH',
+      {
+        items: [
+          {
+            operation: 'upsert',
+            key: 'tools',
+            value: updatedTools,
+          },
+        ],
+      },
+      true
+    ); // Usa autenticazione
 
     if (response.status === 200 || response.status === 204) {
       console.log(`✅ Tool "${toolData.name}" added successfully!`);

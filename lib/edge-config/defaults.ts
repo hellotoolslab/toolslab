@@ -281,4 +281,5 @@ export const MAX_CACHE_SIZE = 100;
 /**
  * Default cache TTL in milliseconds (5 minutes)
  */
-export const DEFAULT_CACHE_TTL = 5 * 60 * 1000;
+// Reduced cache TTL for faster feature flag updates (30 seconds instead of 5 minutes)
+export const DEFAULT_CACHE_TTL = 30 * 1000;

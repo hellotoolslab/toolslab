@@ -61,6 +61,7 @@
     "critters": "^0.0.23",
     "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.2.1",
     "framer-motion": "^12.23.12",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.451.0",
