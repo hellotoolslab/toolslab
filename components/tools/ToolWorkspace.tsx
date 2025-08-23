@@ -326,7 +326,6 @@ export default function ToolWorkspace({ tool, categoryColor, initialInput }: Too
             className="w-full h-40 px-4 py-3 rounded-lg border-2 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all focus:outline-none focus:ring-2 font-mono text-sm resize-none"
             style={{
               borderColor: `${categoryColor}30`,
-              focusBorderColor: categoryColor,
             }}
           />
         </div>

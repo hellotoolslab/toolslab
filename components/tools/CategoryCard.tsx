@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { ToolCategory, getCategoryColorClass } from '@/lib/tools';
+import { Category, getCategoryColorClass } from '@/lib/tools';
 import { cn } from '@/lib/utils';
 import { ArrowRight, Zap } from 'lucide-react';
 
 interface CategoryCardProps {
-  category: ToolCategory;
+  category: Category;
   className?: string;
 }
 
 export function CategoryCard({ category, className }: CategoryCardProps) {
-  const categoryClass = getCategoryColorClass(category.color);
+  const categoryClass = getCategoryColorClass(category.id);
   const previewTools = category.tools.slice(0, 4);
 
   return (

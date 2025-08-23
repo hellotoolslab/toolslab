@@ -160,7 +160,7 @@ export default function ToolChainSuggestions({ className }: ToolChainSuggestions
                   className="group flex items-center gap-3 p-3 bg-white/70 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-700 rounded-xl border border-white/50 dark:border-gray-700/50 hover:border-blue-200 dark:hover:border-blue-700 transition-all duration-200 hover:shadow-md"
                 >
                   <div className="flex-shrink-0 text-2xl">
-                    {tool.icon}
+                    {typeof tool.icon === 'string' ? tool.icon : <tool.icon className="w-6 h-6" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">

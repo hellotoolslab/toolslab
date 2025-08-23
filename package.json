@@ -1,5 +1,5 @@
 {
-  "name": "octotools",
+  "name": "toolslab",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,12 +7,35 @@
     "dev:ads": "NEXT_PUBLIC_ENABLE_ADS=true next dev",
     "build": "next build",
     "build:prod": "NEXT_PUBLIC_ENABLE_ADS=true next build",
+    "build:check": "next build --no-lint",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
     "analyze": "ANALYZE=true next build",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "analyze:size": "ANALYZE=true next build",
+    "test": "jest --watch",
+    "test:ci": "jest --ci --coverage --maxWorkers=2",
+    "test:unit": "jest __tests__/unit",
+    "test:integration": "jest __tests__/integration",
+    "test:e2e": "jest __tests__/e2e",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:e2e",
+    "status:check": "node scripts/status-check.js",
+    "logs:production": "echo 'Configure with your deployment provider'",
+    "seo:check": "echo 'SEO check would run here'",
+    "pre-commit": "lint-staged",
+    "prepare": "husky",
+    "edge-config:dev": "node scripts/dev-edge-config.js",
+    "edge-config:health": "curl -s http://localhost:3001/health | jq",
+    "edge-config:populate": "node scripts/populate-edge-config.js",
+    "edge-config:test": "curl -s \"$EDGE_CONFIG\" | jq",
+    "edge-config:show": "node scripts/manage-edge-config.js show",
+    "edge-config:manage": "node scripts/manage-edge-config.js",
+    "local:config": "node scripts/local-config.js",
+    "local:ads": "node scripts/local-config.js ads",
+    "local:maintenance": "node scripts/local-config.js maintenance",
+    "local:clear": "node scripts/local-config.js clear-all"
   },
   "dependencies": {
     "@codemirror/lang-css": "^6.3.0",
@@ -33,7 +56,8 @@
     "@radix-ui/react-tooltip": "^1.1.3",
     "@uiw/react-codemirror": "^4.23.0",
     "@vercel/analytics": "^1.3.1",
-    "@vercel/speed-insights": "^1.0.12",
+    "@vercel/edge-config": "^1.4.0",
+    "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "codemirror": "^6.0.1",
@@ -41,6 +65,7 @@
     "critters": "^0.0.23",
     "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.2.1",
     "framer-motion": "^12.23.12",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.451.0",
@@ -63,9 +88,11 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.2.15",
-    "@testing-library/jest-dom": "^6.5.0",
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/crypto-js": "^4.2.2",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.7.6",
     "@types/papaparse": "^5.3.14",
     "@types/react": "^18.3.11",
@@ -74,10 +101,14 @@
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
     "autoprefixer": "^10.4.20",
+    "cors": "^2.8.5",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.15",
+    "express": "^5.1.0",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^16.1.5",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
@@ -86,5 +117,14 @@
   },
   "engines": {
     "node": ">=18.17.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml}": [
+      "prettier --write"
+    ]
   }
 }
