@@ -86,6 +86,44 @@ function getCache<T>(key: string): T | null {
 }
 
 /**
+ * Apply local development overrides to features
+ */
+function applyLocalOverrides(features: any): any {
+  // Only apply overrides in development
+  if (process.env.NODE_ENV !== 'development') {
+    return features;
+  }
+
+  const overrides: Record<string, any> = {};
+
+  // Check for local override environment variables
+  if (process.env.LOCAL_OVERRIDE_ADS !== undefined) {
+    overrides.adsEnabled = process.env.LOCAL_OVERRIDE_ADS === 'true';
+  }
+
+  if (process.env.LOCAL_OVERRIDE_MAINTENANCE !== undefined) {
+    overrides.maintenanceMode =
+      process.env.LOCAL_OVERRIDE_MAINTENANCE === 'true';
+  }
+
+  if (process.env.LOCAL_OVERRIDE_PRO !== undefined) {
+    overrides.proEnabled = process.env.LOCAL_OVERRIDE_PRO === 'true';
+  }
+
+  if (process.env.LOCAL_OVERRIDE_BETA !== undefined) {
+    overrides.betaFeatures = process.env.LOCAL_OVERRIDE_BETA === 'true';
+  }
+
+  // Merge overrides with original features
+  if (Object.keys(overrides).length > 0) {
+    console.log('🔧 Applying local development overrides:', overrides);
+    return { ...features, ...overrides };
+  }
+
+  return features;
+}
+
+/**
  * Main function to get data from Edge Config with fallback
  */
 export async function getEdgeConfig<T = EdgeConfigSchema>(
@@ -136,9 +174,14 @@ export async function getEdgeConfig<T = EdgeConfigSchema>(
     }
 
     // Fetch from Edge Config
-    const data = key
-      ? await edgeConfig.get<T>(key)
-      : await edgeConfig.getAll<T>();
+    let data;
+    if (key) {
+      data = await edgeConfig.get<T>(key);
+    } else {
+      const allData = await edgeConfig.getAll();
+      // Edge Config returns data wrapped in 'items' when fetched via URL
+      data = (allData as any)?.items || allData;
+    }
 
     if (!data) {
       const error = createError(
@@ -154,6 +197,15 @@ export async function getEdgeConfig<T = EdgeConfigSchema>(
         fallback: (fallback || DEFAULT_EDGE_CONFIG) as T,
         responseTime: Date.now() - startTime,
       };
+    }
+
+    // Apply local overrides in development
+    if (!key || key === 'features') {
+      if ((data as any).features) {
+        (data as any).features = applyLocalOverrides((data as any).features);
+      } else if (key === 'features') {
+        data = applyLocalOverrides(data) as T;
+      }
     }
 
     // Cache successful response

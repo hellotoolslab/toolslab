@@ -38,7 +38,9 @@
       "Bash(npm run edge-config:view:*)",
       "Bash(npm run edge-config:health:*)",
       "Bash(npm run edge-config:test:*)",
-      "Bash(lsof:*)"
+      "Bash(lsof:*)",
+      "Bash(npm run local:config:*)",
+      "Bash(npm run local:ads:*)"
     ],
     "deny": [],
     "ask": [],

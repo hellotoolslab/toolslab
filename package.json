@@ -31,7 +31,11 @@
     "edge-config:populate": "node scripts/populate-edge-config.js",
     "edge-config:test": "curl -s \"$EDGE_CONFIG\" | jq",
     "edge-config:show": "node scripts/manage-edge-config.js show",
-    "edge-config:manage": "node scripts/manage-edge-config.js"
+    "edge-config:manage": "node scripts/manage-edge-config.js",
+    "local:config": "node scripts/local-config.js",
+    "local:ads": "node scripts/local-config.js ads",
+    "local:maintenance": "node scripts/local-config.js maintenance",
+    "local:clear": "node scripts/local-config.js clear-all"
   },
   "dependencies": {
     "@codemirror/lang-css": "^6.3.0",
