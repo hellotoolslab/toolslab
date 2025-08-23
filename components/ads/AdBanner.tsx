@@ -9,7 +9,7 @@ interface AdBannerProps {
 
 export default function AdBanner({ type }: AdBannerProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const adsEnabled = useFeatureFlag('ads');
+  const adsEnabled = useFeatureFlag('adsEnabled');
 
   useEffect(() => {
     // Only simulate ad loading if ads are enabled

@@ -66,13 +66,12 @@ export function useFeatureFlag(
 ): boolean {
   const { config } = useEdgeConfig();
 
-  // Special handling for ads flag - check 'adsEnabled' key
-  if (flag === 'ads') {
-    return (
-      config.features['adsEnabled' as keyof EdgeConfigSchema['features']] ??
-      false
-    );
+  const value = config.features[flag];
+
+  // Handle experiments object differently
+  if (flag === 'experiments') {
+    return false; // Return false for experiments object itself
   }
 
-  return config.features[flag] ?? false;
+  return (value as boolean) ?? false;
 }

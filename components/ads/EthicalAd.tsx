@@ -20,7 +20,7 @@ export function EthicalAd({
   const [adError, setAdError] = useState(false);
 
   // Check if ads are enabled via Edge Config
-  const adsEnabledFromConfig = useFeatureFlag('ads');
+  const adsEnabledFromConfig = useFeatureFlag('adsEnabled');
   // Allow force override for testing or fallback to env variable
   const adsEnabled =
     force ||
