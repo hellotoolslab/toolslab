@@ -24,6 +24,32 @@ npm update
 3. Implementa la logica in `lib/tools/[tool-name].ts`
 4. Crea il componente UI in `components/tools/[ToolName].tsx`
 5. Aggiungi la route in `app/tools/[tool-name]/page.tsx`
+6. **IMPORTANTE**: Crea i comandi npm per gestione Edge Config:
+   - Aggiungi in `package.json`:
+     ```json
+     "edge-config:enable:[tool-name]": "node scripts/manage-edge-config.js enable [tool-name]",
+     "edge-config:disable:[tool-name]": "node scripts/manage-edge-config.js disable [tool-name]",
+     "local:[tool-name]:test": "node scripts/local-config.js test-tool [tool-name]"
+     ```
+   - Documenta i nuovi comandi in `documentation/edge-config-guide.md` sezione COMANDI
+
+#### Creazione di nuove categorie
+
+Quando crei una nuova categoria di tool:
+
+1. Aggiorna `lib/utils/categoryColors.ts` con colori e configurazioni
+2. **IMPORTANTE**: Crea i comandi npm per gestione categoria:
+   - Aggiungi in `package.json`:
+     ```json
+     "edge-config:enable-cat:[category-id]": "node scripts/manage-edge-config.js enable-cat [category-id]",
+     "edge-config:disable-cat:[category-id]": "node scripts/manage-edge-config.js disable-cat [category-id]",
+     "edge-config:list:[category-id]": "node scripts/manage-edge-config.js list-category [category-id]"
+     ```
+3. Aggiorna Edge Config con la nuova categoria:
+   ```bash
+   npm run edge-config:manage add-category '{"id":"[category-id]","name":"[Category Name]","description":"[Description]"}'
+   ```
+4. Documenta i nuovi comandi in `documentation/edge-config-guide.md` sezione COMANDI
 
 #### Standard di codice
 

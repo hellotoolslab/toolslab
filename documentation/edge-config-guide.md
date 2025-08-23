@@ -520,3 +520,301 @@ In caso di problemi:
 4. **Check logs** di Next.js per errori Edge Config
 
 **Remember**: Edge Config è progettato per la massima affidabilità. In caso di problemi, l'app usa automaticamente configurazioni di fallback garantendo zero downtime! 🛡️
+
+---
+
+## 📌 COMANDI - Riferimento Completo
+
+### 🔧 Comandi di Configurazione Locale
+
+#### Setup e Configurazione
+
+```bash
+# Inizializza configurazione locale per development
+npm run local:config init
+
+# Mostra la configurazione locale corrente
+npm run local:config show
+
+# Reset configurazione locale ai default
+npm run local:config reset
+```
+
+#### Gestione Feature Flags Locali
+
+```bash
+# Abilita/disabilita ads in locale
+npm run local:ads on
+npm run local:ads off
+
+# Toggle maintenance mode locale
+npm run local:maintenance on
+npm run local:maintenance off
+
+# Abilita/disabilita features Pro in locale
+npm run local:pro on
+npm run local:pro off
+
+# Abilita/disabilita beta features in locale
+npm run local:beta on
+npm run local:beta off
+```
+
+#### Test e Debug Locali
+
+```bash
+# Test configurazione ads locale
+npm run local:ads test
+
+# Verifica tutte le configurazioni locali
+npm run local:config verify
+
+# Export configurazione locale come JSON
+npm run local:config export > my-local-config.json
+
+# Import configurazione locale da JSON
+npm run local:config import < my-local-config.json
+```
+
+### 🌐 Comandi Edge Config
+
+#### Setup Iniziale
+
+```bash
+# Popola Edge Config con dati iniziali
+npm run edge-config:populate
+
+# Inizializza Edge Config vuoto
+npm run edge-config:init
+
+# Backup completo Edge Config
+npm run edge-config:backup
+```
+
+#### Visualizzazione e Test
+
+```bash
+# Mostra configurazione Edge Config formattata
+npm run edge-config:show
+
+# Visualizza solo tool abilitati
+npm run edge-config:show:enabled
+
+# Visualizza solo tool featured
+npm run edge-config:show:featured
+
+# Test connessione Edge Config (raw JSON)
+npm run edge-config:test
+
+# Verifica salute Edge Config
+npm run edge-config:health
+
+# Confronta Edge Config con configurazione locale
+npm run edge-config:diff
+```
+
+#### Gestione Tool
+
+```bash
+# Abilita/disabilita singolo tool
+npm run edge-config:manage enable <tool-slug>
+npm run edge-config:manage disable <tool-slug>
+
+# Toggle tool (inverte stato corrente)
+npm run edge-config:manage toggle <tool-slug>
+
+# Aggiungi nuovo tool
+npm run edge-config:manage add-tool '{"name":"Tool Name","slug":"tool-slug","description":"Description"}'
+
+# Rimuovi tool
+npm run edge-config:manage remove-tool <tool-slug>
+
+# Aggiorna tool esistente
+npm run edge-config:manage update-tool <tool-slug> '{"field":"new-value"}'
+
+# Imposta tool come featured
+npm run edge-config:manage feature <tool-slug>
+npm run edge-config:manage unfeature <tool-slug>
+
+# Riordina tool (cambia priorità)
+npm run edge-config:manage reorder <tool-slug> <new-order-number>
+```
+
+#### Gestione Categorie
+
+```bash
+# Abilita/disabilita categoria
+npm run edge-config:manage enable-cat <category-id>
+npm run edge-config:manage disable-cat <category-id>
+
+# Aggiungi nuova categoria
+npm run edge-config:manage add-category '{"id":"new-cat","name":"New Category","description":"Description"}'
+
+# Rimuovi categoria
+npm run edge-config:manage remove-category <category-id>
+
+# Aggiorna categoria
+npm run edge-config:manage update-category <category-id> '{"field":"new-value"}'
+
+# Lista tool in una categoria
+npm run edge-config:manage list-category <category-id>
+
+# Sposta tool in altra categoria
+npm run edge-config:manage move-tool <tool-slug> <new-category-id>
+```
+
+#### Gestione Feature Flags
+
+```bash
+# Maintenance mode
+npm run edge-config:manage maintenance on
+npm run edge-config:manage maintenance off
+npm run edge-config:manage maintenance status
+
+# Controllo Ads
+npm run edge-config:manage ads on
+npm run edge-config:manage ads off
+npm run edge-config:manage ads status
+
+# Pro features
+npm run edge-config:manage pro on
+npm run edge-config:manage pro off
+npm run edge-config:manage pro status
+
+# Beta features
+npm run edge-config:manage beta on
+npm run edge-config:manage beta off
+npm run edge-config:manage beta status
+
+# Imposta tutti i flags contemporaneamente
+npm run edge-config:manage flags '{"ads":true,"maintenance":false,"pro":true,"beta":false}'
+```
+
+#### Operazioni Batch
+
+```bash
+# Abilita tutti i tool
+npm run edge-config:manage enable-all
+
+# Disabilita tutti i tool
+npm run edge-config:manage disable-all
+
+# Abilita tutti i tool di una categoria
+npm run edge-config:manage enable-category-tools <category-id>
+
+# Disabilita tutti i tool di una categoria
+npm run edge-config:manage disable-category-tools <category-id>
+
+# Importa configurazione completa da file
+npm run edge-config:manage import < config.json
+
+# Esporta configurazione corrente
+npm run edge-config:manage export > backup.json
+
+# Reset ai default
+npm run edge-config:manage reset
+```
+
+#### Comandi di Sviluppo
+
+```bash
+# Avvia server Edge Config locale per development
+npm run edge-config:dev
+
+# Simula Edge Config con dati mock
+npm run edge-config:mock
+
+# Genera TypeScript types da Edge Config
+npm run edge-config:generate-types
+
+# Valida schema Edge Config
+npm run edge-config:validate
+
+# Benchmark performance Edge Config
+npm run edge-config:benchmark
+```
+
+#### Help e Documentazione
+
+```bash
+# Mostra help generale
+npm run edge-config:manage help
+
+# Help per comando specifico
+npm run edge-config:manage help <command>
+
+# Lista tutti i comandi disponibili
+npm run edge-config:manage list-commands
+
+# Genera documentazione markdown
+npm run edge-config:manage docs
+```
+
+### 🎯 Comandi Combinati (Workflow)
+
+```bash
+# Workflow: Deploy nuovo tool
+npm run workflow:new-tool
+
+# Workflow: Emergenza (disabilita tutto)
+npm run workflow:emergency
+
+# Workflow: Ripristino da backup
+npm run workflow:restore
+
+# Workflow: A/B test setup
+npm run workflow:ab-test
+
+# Workflow: Migrazione da locale a Edge Config
+npm run workflow:migrate
+```
+
+### 🔍 Comandi di Monitoraggio
+
+```bash
+# Monitor real-time Edge Config
+npm run edge-config:monitor
+
+# Check latenza Edge Config
+npm run edge-config:latency
+
+# Statistiche di utilizzo
+npm run edge-config:stats
+
+# Log delle modifiche
+npm run edge-config:changelog
+```
+
+### 🚀 Alias Rapidi
+
+```bash
+# Alias brevi per comandi frequenti
+npm run ec:show         # edge-config:show
+npm run ec:enable       # edge-config:manage enable
+npm run ec:disable      # edge-config:manage disable
+npm run ec:test         # edge-config:test
+
+npm run lc:show         # local:config show
+npm run lc:ads-on       # local:ads on
+npm run lc:ads-off      # local:ads off
+```
+
+### 📝 Note Importanti
+
+1. **Precedenza delle configurazioni:**
+   - Le configurazioni locali (`local:*`) hanno precedenza su Edge Config in development
+   - In produzione, solo Edge Config è utilizzato
+
+2. **Permessi richiesti:**
+   - Comandi `edge-config:manage` richiedono `ADMIN_SECRET_KEY`
+   - Comandi `edge-config:show` e `test` sono read-only
+
+3. **Tempi di propagazione:**
+   - Modifiche locali: Immediate
+   - Modifiche Edge Config: ~10ms globalmente, cache TTL 30 secondi
+
+4. **Best practices:**
+   - Usa comandi locali per development/test
+   - Usa Edge Config per produzione
+   - Sempre fare backup prima di modifiche massive
+   - Testa in locale prima di applicare a Edge Config
