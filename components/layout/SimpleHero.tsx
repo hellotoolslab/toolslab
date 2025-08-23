@@ -1,4 +1,4 @@
-import { Search, ArrowRight, Sparkles, Flask } from 'lucide-react';
+import { Search, ArrowRight, Sparkles } from 'lucide-react';
 
 export function SimpleHero() {
   return (

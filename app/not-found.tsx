@@ -6,12 +6,15 @@ import { ArrowLeft, Home } from 'lucide-react';
 export default function NotFound() {
   return (
     <div className="container py-16">
-      <div className="max-w-md mx-auto text-center">
+      <div className="mx-auto max-w-md text-center">
         <div className="mb-8">
-          <div className="text-8xl mb-4">🐙</div>
-          <h1 className="text-3xl font-bold tracking-tight mb-2">Page Not Found</h1>
+          <div className="mb-4 text-8xl">🐙</div>
+          <h1 className="mb-2 text-3xl font-bold tracking-tight">
+            Page Not Found
+          </h1>
           <p className="text-muted-foreground">
-            Looks like this octopus got lost in the deep web! The page you're looking for doesn't exist.
+            Looks like this octopus got lost in the deep web! The page
+            you&rsquo;re looking for doesn&rsquo;t exist.
           </p>
         </div>
 
@@ -23,11 +26,11 @@ export default function NotFound() {
             <Home className="h-4 w-4" />
             <span>Go Home</span>
           </Link>
-          
+
           <div>
             <button
               onClick={() => window.history.back()}
-              className="inline-flex items-center space-x-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center space-x-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4" />
               <span>Go Back</span>

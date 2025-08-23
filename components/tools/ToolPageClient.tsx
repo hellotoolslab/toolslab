@@ -35,7 +35,7 @@ export default function ToolPageClient({
   const [isAdDismissed, setIsAdDismissed] = useState(false);
   const [usageCount, setUsageCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const adsEnabled = useFeatureFlag('ads');
+  const adsEnabled = useFeatureFlag('adsEnabled');
 
   // Extract initial input from search params
   const initialInput = searchParams?.input

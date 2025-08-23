@@ -19,7 +19,6 @@ import {
   Settings,
   CheckCircle,
   ArrowRight,
-  Github,
   Twitter,
   Mail,
   ExternalLink,
@@ -33,7 +32,7 @@ import {
   Download,
   Clock,
   Cpu,
-  Flask,
+  Beaker,
   Microscope,
   TestTube,
 } from 'lucide-react';
@@ -41,7 +40,7 @@ import { tools } from '@/data/tools';
 import { LabLogo } from '@/components/icons/LabLogo';
 
 const stats = [
-  { label: 'Laboratory Tools', value: '35+', icon: Flask },
+  { label: 'Laboratory Tools', value: '35+', icon: Beaker },
   { label: 'Researchers Worldwide', value: '10K+', icon: Users },
   { label: 'Experiments Daily', value: '50K+', icon: TestTube },
   { label: 'Countries', value: '150+', icon: Globe },
@@ -49,7 +48,7 @@ const stats = [
 
 const features = [
   {
-    icon: Flask,
+    icon: Beaker,
     title: 'Lab-Grade Privacy',
     description:
       'Your data stays in your secure laboratory environment. All experiments run locally.',
@@ -118,7 +117,7 @@ const team = [
     role: 'Open Research',
     description:
       'Brilliant minds contributing experiments, discoveries, and insights.',
-    icon: Flask,
+    icon: Beaker,
     color: 'text-lab-accent dark:text-lab-accent',
   },
 ];
@@ -182,7 +181,7 @@ export default function AboutPageClient() {
                   animated
                 />
                 <div className="absolute -right-2 -top-2 flex h-8 w-8 animate-pulse-glow items-center justify-center rounded-full bg-lab-success">
-                  <Flask className="h-4 w-4 text-white" />
+                  <Beaker className="h-4 w-4 text-white" />
                 </div>
               </div>
             </div>
