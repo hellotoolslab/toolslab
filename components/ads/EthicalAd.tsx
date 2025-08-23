@@ -27,7 +27,7 @@ export function EthicalAd({
     adsEnabledFromConfig ||
     process.env.NEXT_PUBLIC_ENABLE_ADS === 'true';
   const publisherId =
-    process.env.NEXT_PUBLIC_ETHICAL_ADS_PUBLISHER || 'octotools';
+    process.env.NEXT_PUBLIC_ETHICAL_ADS_PUBLISHER || 'toolslab';
 
   useEffect(() => {
     if (!adRef.current || isLoaded) return;

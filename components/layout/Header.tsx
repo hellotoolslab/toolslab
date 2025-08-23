@@ -7,6 +7,7 @@ import { Moon, Sun, Menu, X, Zap } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { categories } from '@/lib/tools';
 import { cn } from '@/lib/utils';
+import { LabLogo } from '@/components/icons/LabLogo';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -51,9 +52,9 @@ export function Header() {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3">
-              <span className="animate-pulse text-2xl">🐙</span>
-              <span className="hidden bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-xl font-bold text-transparent sm:inline-block">
-                OctoTools
+              <LabLogo className="h-8 w-8 text-lab-primary" animated />
+              <span className="hidden bg-gradient-to-r from-lab-primary to-lab-secondary bg-clip-text text-xl font-bold text-transparent sm:inline-block">
+                ToolsLab
               </span>
             </Link>
           </div>
@@ -64,7 +65,7 @@ export function Header() {
               href="/"
               className={cn(
                 'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/' && 'text-blue-600 dark:text-blue-400'
+                pathname === '/' && 'text-lab-primary dark:text-lab-primary'
               )}
             >
               <Zap className="mr-1 h-4 w-4" />
@@ -74,7 +75,8 @@ export function Header() {
               href="/about"
               className={cn(
                 'text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/about' && 'text-blue-600 dark:text-blue-400'
+                pathname === '/about' &&
+                  'text-lab-primary dark:text-lab-primary'
               )}
             >
               About
@@ -83,7 +85,8 @@ export function Header() {
               href="/manifesto"
               className={cn(
                 'text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/manifesto' && 'text-blue-600 dark:text-blue-400'
+                pathname === '/manifesto' &&
+                  'text-lab-primary dark:text-lab-primary'
               )}
             >
               Manifesto
@@ -171,8 +174,8 @@ export function Header() {
           <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white/95 p-6 shadow-xl backdrop-blur-md dark:bg-gray-900/95">
             <div className="mb-8 flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <span className="text-2xl">🐙</span>
-                <span className="font-bold">OctoTools</span>
+                <LabLogo className="h-6 w-6 text-lab-primary" animated />
+                <span className="font-bold">ToolsLab</span>
               </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}

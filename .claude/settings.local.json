@@ -40,7 +40,9 @@
       "Bash(npm run edge-config:test:*)",
       "Bash(lsof:*)",
       "Bash(npm run local:config:*)",
-      "Bash(npm run local:ads:*)"
+      "Bash(npm run local:ads:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": [],
