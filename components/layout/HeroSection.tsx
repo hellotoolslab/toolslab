@@ -120,8 +120,8 @@ export function HeroSection() {
                     ) : (
                       <div className="text-center py-8 text-white/70">
                         <Search className="w-8 h-8 mx-auto mb-3 opacity-50" />
-                        <div className="text-sm">No tools found for "{searchQuery}"</div>
-                        <div className="text-xs mt-1">Try searching for "json", "encode", or "hash"</div>
+                        <div className="text-sm">No tools found for &ldquo;{searchQuery}&rdquo;</div>
+                        <div className="text-xs mt-1">Try searching for &ldquo;json&rdquo;, &ldquo;encode&rdquo;, or &ldquo;hash&rdquo;</div>
                       </div>
                     )}
                   </div>

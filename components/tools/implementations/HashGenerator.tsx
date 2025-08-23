@@ -273,7 +273,7 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
         {/* Info */}
         <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
           <p className="text-sm text-blue-800 dark:text-blue-200">
-            Cryptographic hash functions produce a fixed-size output from any input. The same input always produces the same hash, but it's computationally infeasible to reverse.
+            Cryptographic hash functions produce a fixed-size output from any input. The same input always produces the same hash, but it&rsquo;s computationally infeasible to reverse.
           </p>
         </div>
       </div>

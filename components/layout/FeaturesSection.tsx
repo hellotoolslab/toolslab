@@ -46,7 +46,7 @@ export function FeaturesSection() {
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-4">Why Developers Choose OctoTools</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            We've built every tool with the same principles that guide great software: 
+            We&rsquo;ve built every tool with the same principles that guide great software: 
             fast, reliable, secure, and delightfully simple to use.
           </p>
         </div>

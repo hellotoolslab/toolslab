@@ -211,7 +211,7 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
               <Search className="h-8 w-8 mx-auto" />
             </div>
             <p className="text-gray-600 dark:text-gray-400 font-medium">
-              No tools found for "{query}"
+              No tools found for &ldquo;{query}&rdquo;
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
               Try searching with different keywords

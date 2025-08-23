@@ -106,7 +106,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     if (data === null) return <span className="text-gray-500">null</span>
     if (typeof data === 'boolean') return <span className="text-purple-600 dark:text-purple-400">{String(data)}</span>
     if (typeof data === 'number') return <span className="text-blue-600 dark:text-blue-400">{data}</span>
-    if (typeof data === 'string') return <span className="text-green-600 dark:text-green-400">"{data}"</span>
+    if (typeof data === 'string') return <span className="text-green-600 dark:text-green-400">&ldquo;{data}&rdquo;</span>
     
     if (Array.isArray(data)) {
       return (
@@ -136,7 +136,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
           <div className="ml-4">
             {entries.map(([key, value]) => (
               <div key={key} className="flex items-start gap-2">
-                <span className="text-purple-600 dark:text-purple-400">"{key}":</span>
+                <span className="text-purple-600 dark:text-purple-400">&ldquo;{key}&rdquo;:</span>
                 {renderJsonTree(value, depth + 1)}
               </div>
             ))}

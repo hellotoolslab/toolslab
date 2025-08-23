@@ -11,7 +11,7 @@ export default function NotFound() {
           <div className="text-8xl mb-4">🐙</div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Page Not Found</h1>
           <p className="text-muted-foreground">
-            Looks like this octopus got lost in the deep web! The page you're looking for doesn't exist.
+            Looks like this octopus got lost in the deep web! The page you&rsquo;re looking for doesn&rsquo;t exist.
           </p>
         </div>
 
