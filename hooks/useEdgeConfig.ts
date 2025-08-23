@@ -67,11 +67,11 @@ export function useFeatureFlag(
   const { config } = useEdgeConfig();
 
   const value = config.features[flag];
-  
+
   // Handle experiments object differently
   if (flag === 'experiments') {
     return false; // Return false for experiments object itself
   }
-  
+
   return (value as boolean) ?? false;
 }

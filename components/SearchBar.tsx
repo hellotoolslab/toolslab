@@ -12,7 +12,10 @@ interface SearchBarProps {
   className?: string;
 }
 
-export function SearchBar({ placeholder = "Search tools...", className }: SearchBarProps) {
+export function SearchBar({
+  placeholder = 'Search tools...',
+  className,
+}: SearchBarProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Tool[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +38,10 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     }
@@ -52,13 +58,13 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault();
-        setSelectedIndex(prev => 
+        setSelectedIndex((prev) =>
           prev < results.length - 1 ? prev + 1 : prev
         );
         break;
       case 'ArrowUp':
         event.preventDefault();
-        setSelectedIndex(prev => prev > 0 ? prev - 1 : -1);
+        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : -1));
         break;
       case 'Enter':
         event.preventDefault();
@@ -85,11 +91,11 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
   const getCategoryColor = (categoryColor: string) => {
     const colors = {
       data: '#0EA5E9',
-      encoding: '#10B981', 
+      encoding: '#10B981',
       text: '#8B5CF6',
       generators: '#F97316',
       web: '#EC4899',
-      dev: '#F59E0B'
+      dev: '#F59E0B',
     };
     return colors[categoryColor as keyof typeof colors] || '#3B82F6';
   };
@@ -97,7 +103,7 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
   return (
     <div ref={searchRef} className={`relative ${className}`}>
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <Search className="h-5 w-5 text-gray-400" />
         </div>
         <input
@@ -110,18 +116,12 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
             if (results.length > 0) setIsOpen(true);
           }}
           placeholder={placeholder}
-          className="
-            w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 
-            rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-            placeholder-gray-500 dark:placeholder-gray-400
-            focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400
-            transition-colors duration-200
-          "
+          className="w-full rounded-xl border border-gray-300 bg-white py-3 pl-10 pr-10 text-gray-900 placeholder-gray-500 transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:ring-blue-400"
         />
         {query && (
           <button
             onClick={handleClear}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center hover:text-gray-600 dark:hover:text-gray-300"
+            className="absolute inset-y-0 right-0 flex items-center pr-3 hover:text-gray-600 dark:hover:text-gray-300"
           >
             <X className="h-5 w-5 text-gray-400" />
           </button>
@@ -130,11 +130,7 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
 
       {/* Search Results Dropdown */}
       {isOpen && results.length > 0 && (
-        <div className="
-          absolute z-50 w-full mt-2 bg-white dark:bg-gray-800 
-          border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl
-          max-h-96 overflow-y-auto
-        ">
+        <div className="absolute z-50 mt-2 max-h-96 w-full overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800">
           <div className="p-2">
             {results.map((tool, index) => (
               <Link
@@ -144,43 +140,41 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
                   setIsOpen(false);
                   setQuery('');
                 }}
-                className={`
-                  block p-3 rounded-lg transition-colors duration-150
-                  ${selectedIndex === index 
-                    ? 'bg-blue-50 dark:bg-blue-900/30' 
+                className={`block rounded-lg p-3 transition-colors duration-150 ${
+                  selectedIndex === index
+                    ? 'bg-blue-50 dark:bg-blue-900/30'
                     : 'hover:bg-gray-50 dark:hover:bg-gray-700'
-                  }
-                `}
+                } `}
               >
                 <div className="flex items-center gap-3">
-                  <div 
-                    className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-lg border"
-                    style={{ 
+                  <div
+                    className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border text-lg"
+                    style={{
                       backgroundColor: `${getCategoryColor(tool.categoryColor)}20`,
-                      borderColor: `${getCategoryColor(tool.categoryColor)}40`
+                      borderColor: `${getCategoryColor(tool.categoryColor)}40`,
                     }}
                   >
                     <span>{tool.icon}</span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-gray-900 dark:text-white truncate">
+                  <div className="min-w-0 flex-1">
+                    <h4 className="truncate font-medium text-gray-900 dark:text-white">
                       {tool.name}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                    <p className="truncate text-sm text-gray-600 dark:text-gray-400">
                       {tool.description}
                     </p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span 
-                        className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium"
+                    <div className="mt-1 flex items-center gap-2">
+                      <span
+                        className="inline-flex items-center rounded px-2 py-0.5 text-xs font-medium"
                         style={{
                           backgroundColor: `${getCategoryColor(tool.categoryColor)}20`,
-                          color: getCategoryColor(tool.categoryColor)
+                          color: getCategoryColor(tool.categoryColor),
                         }}
                       >
                         {tool.category}
                       </span>
                       {tool.isPopular && (
-                        <span className="text-xs text-yellow-600 dark:text-yellow-400 font-medium">
+                        <span className="text-xs font-medium text-yellow-600 dark:text-yellow-400">
                           🔥 Popular
                         </span>
                       )}
@@ -190,11 +184,22 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
               </Link>
             ))}
           </div>
-          
+
           {/* Search Footer */}
-          <div className="border-t border-gray-200 dark:border-gray-700 p-3 text-center">
+          <div className="border-t border-gray-200 p-3 text-center dark:border-gray-700">
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              Press <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">↑</kbd> <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">↓</kbd> to navigate, <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">Enter</kbd> to select
+              Press{' '}
+              <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-700">
+                ↑
+              </kbd>{' '}
+              <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-700">
+                ↓
+              </kbd>{' '}
+              to navigate,{' '}
+              <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-700">
+                Enter
+              </kbd>{' '}
+              to select
             </p>
           </div>
         </div>
@@ -202,18 +207,15 @@ export function SearchBar({ placeholder = "Search tools...", className }: Search
 
       {/* No Results */}
       {isOpen && query.trim() && results.length === 0 && (
-        <div className="
-          absolute z-50 w-full mt-2 bg-white dark:bg-gray-800 
-          border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl
-        ">
+        <div className="absolute z-50 mt-2 w-full rounded-xl border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800">
           <div className="p-6 text-center">
-            <div className="text-gray-400 mb-2">
-              <Search className="h-8 w-8 mx-auto" />
+            <div className="mb-2 text-gray-400">
+              <Search className="mx-auto h-8 w-8" />
             </div>
-            <p className="text-gray-600 dark:text-gray-400 font-medium">
+            <p className="font-medium text-gray-600 dark:text-gray-400">
               No tools found for &ldquo;{query}&rdquo;
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-500">
               Try searching with different keywords
             </p>
           </div>
