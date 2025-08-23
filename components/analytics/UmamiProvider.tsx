@@ -80,22 +80,31 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    // Only load in production
+    if (process.env.NODE_ENV !== 'production') {
+      return;
+    }
+
     // Load Umami script
     if (
       typeof window !== 'undefined' &&
       !document.getElementById('umami-script')
     ) {
+      const websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+      const scriptUrl =
+        process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL ||
+        'https://cloud.umami.is/script.js';
+
+      if (!websiteId) {
+        return;
+      }
+
       const script = document.createElement('script');
       script.id = 'umami-script';
       script.async = true;
       script.defer = true;
-      script.src =
-        process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL ||
-        'https://cloud.umami.is/script.js';
-      script.setAttribute(
-        'data-website-id',
-        process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || ''
-      );
+      script.src = scriptUrl;
+      script.setAttribute('data-website-id', websiteId);
 
       // Optional: Self-hosted Umami settings
       if (process.env.NEXT_PUBLIC_UMAMI_DOMAINS) {
@@ -123,18 +132,27 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
 
   // Track route changes
   useEffect(() => {
-    // Track page view
-    if (window.umami) {
-      // Umami automatically tracks pageviews, but we can add custom data
-      if (pathname.startsWith('/tools/')) {
-        const toolName = pathname.split('/')[2];
-        trackEvent('tool-view', {
-          tool: toolName,
-          referrer: document.referrer,
-          query: searchParams.toString(),
-        });
-      }
+    // Only track in production
+    if (process.env.NODE_ENV !== 'production') {
+      return;
     }
+
+    // Wait a bit for script to load and track page view
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined' && window.umami) {
+        // Umami automatically tracks pageviews, but we can add custom data
+        if (pathname.startsWith('/tools/')) {
+          const toolName = pathname.split('/')[2];
+          trackEvent('tool-view', {
+            tool: toolName,
+            referrer: document.referrer,
+            query: searchParams.toString(),
+          });
+        }
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, [pathname, searchParams]);
 
   return <>{children}</>;
