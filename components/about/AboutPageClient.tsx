@@ -12,7 +12,7 @@ import {
   Code,
   Heart,
   Star,
-  GitBranch,
+  Github,
   Smartphone,
   Monitor,
   Palette,
@@ -212,18 +212,12 @@ export default function AboutPageClient() {
                 Try Our Tools
               </Link>
               <a
-                href="https://bitbucket.org/toolslab/toolslab"
+                href="https://github.com/hellotoolslab/toolslab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-xl border-2 border-gray-300 px-8 py-4 font-medium text-gray-700 transition-all hover:scale-105 hover:border-gray-400 active:scale-95 dark:border-gray-600 dark:text-gray-300 dark:hover:border-gray-500"
               >
-                <svg
-                  className="h-5 w-5"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M.778 1.213a.768.768 0 00-.768.892l3.263 19.81c.084.5.515.868 1.022.873H19.95a.772.772 0 00.77-.646l3.27-20.03a.768.768 0 00-.768-.891zM14.52 15.53H9.522L8.17 8.466h7.561z" />
-                </svg>
+                <Github className="h-5 w-5" />
                 View Source
                 <ExternalLink className="h-4 w-4" />
               </a>
@@ -574,18 +568,12 @@ export default function AboutPageClient() {
                   <ExternalLink className="h-4 w-4" />
                 </a>
                 <a
-                  href="https://bitbucket.org/toolslab/toolslab"
+                  href="https://github.com/hellotoolslab/toolslab"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 rounded-xl border-2 border-gray-300 px-8 py-4 font-medium text-gray-700 transition-all hover:scale-105 hover:border-gray-400 dark:border-gray-600 dark:text-gray-300 dark:hover:border-gray-500"
                 >
-                  <svg
-                    className="h-5 w-5"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M.778 1.213a.768.768 0 00-.768.892l3.263 19.81c.084.5.515.868 1.022.873H19.95a.772.772 0 00.77-.646l3.27-20.03a.768.768 0 00-.768-.891zM14.52 15.53H9.522L8.17 8.466h7.561z" />
-                  </svg>
+                  <Github className="h-5 w-5" />
                   View Source Code
                   <ExternalLink className="h-4 w-4" />
                 </a>

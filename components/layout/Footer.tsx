@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Coffee, Twitter, Heart, GitBranch } from 'lucide-react';
+import { Coffee, Twitter, Heart, Github } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -48,7 +48,7 @@ export function Footer() {
             {/* Social Links */}
             <div className="flex gap-3">
               <a
-                href="https://x.com/octotoolsonx"
+                href="https://x.com/tools_lab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground transition-colors hover:text-foreground"
@@ -57,13 +57,13 @@ export function Footer() {
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="https://bitbucket.org/octotools/octotools"
+                href="https://github.com/hellotoolslab/toolslab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground transition-colors hover:text-foreground"
-                aria-label="Bitbucket"
+                aria-label="GitHub"
               >
-                <GitBranch className="h-5 w-5" />
+                <Github className="h-5 w-5" />
               </a>
             </div>
           </div>

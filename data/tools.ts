@@ -1,4 +1,4 @@
-import { Tool } from '@/types/tool'
+import { Tool } from '@/types/tool';
 import {
   FileJson,
   Lock,
@@ -28,7 +28,6 @@ import {
   Filter,
   Shuffle,
   Package,
-  GitBranch,
   QrCode,
   BarChart,
   PieChart,
@@ -123,8 +122,8 @@ import {
   FileX,
   FilePlus,
   FileMinus,
-  FileCheck
-} from 'lucide-react'
+  FileCheck,
+} from 'lucide-react';
 
 export const tools: Tool[] = [
   // Text Tools
@@ -132,11 +131,12 @@ export const tools: Tool[] = [
     id: '1',
     slug: 'json-formatter',
     name: 'JSON Formatter',
-    description: 'Format, validate, and minify JSON data with syntax highlighting',
+    description:
+      'Format, validate, and minify JSON data with syntax highlighting',
     category: 'text',
     icon: FileJson,
     featured: true,
-    popular: true
+    popular: true,
   },
   {
     id: '2',
@@ -145,7 +145,7 @@ export const tools: Tool[] = [
     description: 'Encode text or files to Base64 format',
     category: 'converters',
     icon: Lock,
-    popular: true
+    popular: true,
   },
   {
     id: '3',
@@ -154,7 +154,7 @@ export const tools: Tool[] = [
     description: 'Decode Base64 strings back to original text',
     category: 'converters',
     icon: Unlock,
-    popular: true
+    popular: true,
   },
   {
     id: '4',
@@ -163,7 +163,7 @@ export const tools: Tool[] = [
     description: 'Generate unique identifiers (UUID v4) instantly',
     category: 'generators',
     icon: Hash,
-    featured: true
+    featured: true,
   },
   {
     id: '5',
@@ -173,7 +173,7 @@ export const tools: Tool[] = [
     category: 'security',
     icon: Key,
     featured: true,
-    popular: true
+    popular: true,
   },
   {
     id: '6',
@@ -181,7 +181,7 @@ export const tools: Tool[] = [
     name: 'Hash Generator',
     description: 'Generate MD5, SHA-1, SHA-256, and SHA-512 hashes',
     category: 'security',
-    icon: Shield
+    icon: Shield,
   },
   {
     id: '7',
@@ -189,7 +189,7 @@ export const tools: Tool[] = [
     name: 'URL Encoder',
     description: 'Encode URLs for safe transmission',
     category: 'converters',
-    icon: Link
+    icon: Link,
   },
   {
     id: '8',
@@ -197,7 +197,7 @@ export const tools: Tool[] = [
     name: 'URL Decoder',
     description: 'Decode URL-encoded strings',
     category: 'converters',
-    icon: Link
+    icon: Link,
   },
   {
     id: '9',
@@ -205,7 +205,7 @@ export const tools: Tool[] = [
     name: 'HTML Encoder',
     description: 'Convert special characters to HTML entities',
     category: 'converters',
-    icon: Code
+    icon: Code,
   },
   {
     id: '10',
@@ -213,7 +213,7 @@ export const tools: Tool[] = [
     name: 'HTML Decoder',
     description: 'Convert HTML entities back to characters',
     category: 'converters',
-    icon: Code
+    icon: Code,
   },
   {
     id: '11',
@@ -221,7 +221,7 @@ export const tools: Tool[] = [
     name: 'JWT Decoder',
     description: 'Decode and inspect JWT tokens',
     category: 'security',
-    icon: Shield
+    icon: Shield,
   },
   {
     id: '12',
@@ -229,7 +229,7 @@ export const tools: Tool[] = [
     name: 'SQL Formatter',
     description: 'Format and beautify SQL queries',
     category: 'formatters',
-    icon: Database
+    icon: Database,
   },
   {
     id: '13',
@@ -237,7 +237,7 @@ export const tools: Tool[] = [
     name: 'XML Formatter',
     description: 'Format and validate XML documents',
     category: 'formatters',
-    icon: FileCode
+    icon: FileCode,
   },
   {
     id: '14',
@@ -245,7 +245,7 @@ export const tools: Tool[] = [
     name: 'CSS Minifier',
     description: 'Minify CSS code to reduce file size',
     category: 'minifiers',
-    icon: Braces
+    icon: Braces,
   },
   {
     id: '15',
@@ -253,7 +253,7 @@ export const tools: Tool[] = [
     name: 'JavaScript Minifier',
     description: 'Minify JavaScript code for production',
     category: 'minifiers',
-    icon: FileCode
+    icon: FileCode,
   },
   {
     id: '16',
@@ -261,7 +261,7 @@ export const tools: Tool[] = [
     name: 'HTML Minifier',
     description: 'Compress HTML by removing unnecessary characters',
     category: 'minifiers',
-    icon: Code
+    icon: Code,
   },
   {
     id: '17',
@@ -269,7 +269,7 @@ export const tools: Tool[] = [
     name: 'Markdown Editor',
     description: 'Write and preview Markdown with live rendering',
     category: 'text',
-    icon: FileText
+    icon: FileText,
   },
   {
     id: '18',
@@ -277,7 +277,7 @@ export const tools: Tool[] = [
     name: 'Regex Tester',
     description: 'Test and debug regular expressions',
     category: 'text',
-    icon: Search
+    icon: Search,
   },
   {
     id: '19',
@@ -285,7 +285,7 @@ export const tools: Tool[] = [
     name: 'Text Diff',
     description: 'Compare two texts and highlight differences',
     category: 'text',
-    icon: FileText
+    icon: FileText,
   },
   {
     id: '20',
@@ -293,7 +293,7 @@ export const tools: Tool[] = [
     name: 'Word Counter',
     description: 'Count words, characters, and paragraphs',
     category: 'text',
-    icon: Type
+    icon: Type,
   },
   {
     id: '21',
@@ -301,7 +301,7 @@ export const tools: Tool[] = [
     name: 'Lorem Ipsum Generator',
     description: 'Generate placeholder text for designs',
     category: 'generators',
-    icon: FileText
+    icon: FileText,
   },
   {
     id: '22',
@@ -310,7 +310,7 @@ export const tools: Tool[] = [
     description: 'Pick colors and convert between formats',
     category: 'css',
     icon: Palette,
-    featured: true
+    featured: true,
   },
   {
     id: '23',
@@ -318,7 +318,7 @@ export const tools: Tool[] = [
     name: 'Gradient Generator',
     description: 'Create beautiful CSS gradients',
     category: 'css',
-    icon: Palette
+    icon: Palette,
   },
   {
     id: '24',
@@ -326,7 +326,7 @@ export const tools: Tool[] = [
     name: 'Box Shadow Generator',
     description: 'Generate CSS box-shadow effects',
     category: 'css',
-    icon: Square
+    icon: Square,
   },
   {
     id: '25',
@@ -334,7 +334,7 @@ export const tools: Tool[] = [
     name: 'Border Radius Generator',
     description: 'Create custom border radius CSS',
     category: 'css',
-    icon: Square
+    icon: Square,
   },
   {
     id: '26',
@@ -342,7 +342,7 @@ export const tools: Tool[] = [
     name: 'Image Converter',
     description: 'Convert images between different formats',
     category: 'image',
-    icon: Image
+    icon: Image,
   },
   {
     id: '27',
@@ -351,7 +351,7 @@ export const tools: Tool[] = [
     description: 'Reduce image file size without quality loss',
     category: 'image',
     icon: Image,
-    popular: true
+    popular: true,
   },
   {
     id: '28',
@@ -359,7 +359,7 @@ export const tools: Tool[] = [
     name: 'Image Resizer',
     description: 'Resize images to specific dimensions',
     category: 'image',
-    icon: Image
+    icon: Image,
   },
   {
     id: '29',
@@ -368,7 +368,7 @@ export const tools: Tool[] = [
     description: 'Generate QR codes for text, URLs, and more',
     category: 'generators',
     icon: QrCode,
-    featured: true
+    featured: true,
   },
   {
     id: '30',
@@ -376,7 +376,7 @@ export const tools: Tool[] = [
     name: 'Unix Timestamp Converter',
     description: 'Convert between Unix timestamps and dates',
     category: 'converters',
-    icon: Clock
+    icon: Clock,
   },
   {
     id: '31',
@@ -384,7 +384,7 @@ export const tools: Tool[] = [
     name: 'Cron Expression Generator',
     description: 'Build and validate cron expressions',
     category: 'generators',
-    icon: Clock
+    icon: Clock,
   },
   {
     id: '32',
@@ -393,7 +393,7 @@ export const tools: Tool[] = [
     description: 'Validate and format YAML files',
     category: 'formatters',
     icon: FileCode,
-    new: true
+    new: true,
   },
   {
     id: '33',
@@ -401,7 +401,7 @@ export const tools: Tool[] = [
     name: 'CSV to JSON',
     description: 'Convert CSV data to JSON format',
     category: 'converters',
-    icon: FileSpreadsheet
+    icon: FileSpreadsheet,
   },
   {
     id: '34',
@@ -409,7 +409,7 @@ export const tools: Tool[] = [
     name: 'JSON to CSV',
     description: 'Convert JSON data to CSV format',
     category: 'converters',
-    icon: FileSpreadsheet
+    icon: FileSpreadsheet,
   },
   {
     id: '35',
@@ -417,6 +417,6 @@ export const tools: Tool[] = [
     name: 'Binary Converter',
     description: 'Convert between binary, decimal, and hex',
     category: 'converters',
-    icon: Binary
-  }
-]
+    icon: Binary,
+  },
+];
