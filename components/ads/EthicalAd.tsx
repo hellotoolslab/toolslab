@@ -2,6 +2,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useFeatureFlag } from '@/hooks/useEdgeConfig';
 
 interface EthicalAdProps {
   placement?: 'header' | 'sidebar' | 'footer';
@@ -18,10 +19,15 @@ export function EthicalAd({
   const [isLoaded, setIsLoaded] = useState(false);
   const [adError, setAdError] = useState(false);
 
-  // Check if ads are enabled via environment variable
-  const adsEnabled = process.env.NEXT_PUBLIC_ENABLE_ADS === 'true';
+  // Check if ads are enabled via Edge Config
+  const adsEnabledFromConfig = useFeatureFlag('ads');
+  // Allow force override for testing or fallback to env variable
+  const adsEnabled =
+    force ||
+    adsEnabledFromConfig ||
+    process.env.NEXT_PUBLIC_ENABLE_ADS === 'true';
   const publisherId =
-    process.env.NEXT_PUBLIC_ETHICAL_ADS_PUBLISHER || 'octotools';
+    process.env.NEXT_PUBLIC_ETHICAL_ADS_PUBLISHER || 'toolslab';
 
   useEffect(() => {
     if (!adRef.current || isLoaded) return;

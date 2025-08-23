@@ -8,6 +8,7 @@ import { tools } from '@/data/tools';
 import { categoryColors } from '@/data/categories';
 import ToolWorkspace from './ToolWorkspace';
 import AdBanner from '@/components/ads/AdBanner';
+import { useFeatureFlag } from '@/hooks/useEdgeConfig';
 import {
   ChevronRight,
   Share2,
@@ -34,6 +35,7 @@ export default function ToolPageClient({
   const [isAdDismissed, setIsAdDismissed] = useState(false);
   const [usageCount, setUsageCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const adsEnabled = useFeatureFlag('ads');
 
   // Extract initial input from search params
   const initialInput = searchParams?.input
@@ -104,7 +106,7 @@ export default function ToolPageClient({
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
       {/* Header Ad Banner */}
-      {!isAdDismissed && (
+      {!isAdDismissed && adsEnabled && (
         <div className="relative border-b border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800">
           <div className="mx-auto max-w-7xl px-4 py-2">
             <button
@@ -371,12 +373,14 @@ export default function ToolPageClient({
               </div>
 
               {/* Sidebar Ad */}
-              <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                  Advertisement
-                </span>
-                <AdBanner type="sidebar" />
-              </div>
+              {adsEnabled && (
+                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    Advertisement
+                  </span>
+                  <AdBanner type="sidebar" />
+                </div>
+              )}
 
               {/* Quick Tips */}
               <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-purple-50 p-6 dark:border-blue-800 dark:from-blue-900/20 dark:to-purple-900/20">

@@ -1,48 +1,50 @@
-import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import ToolPageClient from '@/components/tools/ToolPageClient'
-import { tools } from '@/data/tools'
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import ToolPageClient from '@/components/tools/ToolPageClient';
+import { tools } from '@/data/tools';
 
 interface ToolPageProps {
   params: {
-    tool: string
-  }
-  searchParams: { [key: string]: string | string[] | undefined }
+    tool: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
-  const tool = tools.find(t => t.slug === params.tool)
-  
+export async function generateMetadata({
+  params,
+}: ToolPageProps): Promise<Metadata> {
+  const tool = tools.find((t) => t.slug === params.tool);
+
   if (!tool) {
     return {
-      title: 'Tool Not Found - OctoTools',
-    }
+      title: 'Tool Not Found - ToolsLab',
+    };
   }
 
   return {
-    title: `${tool.name} - Free Online Tool | OctoTools`,
+    title: `${tool.name} - Free Online Tool | ToolsLab`,
     description: tool.description,
     keywords: `${tool.name}, ${tool.category}, online tool, free tool, web utility`,
     openGraph: {
-      title: `${tool.name} - OctoTools`,
+      title: `${tool.name} - ToolsLab`,
       description: tool.description,
       type: 'website',
     },
-  }
+  };
 }
 
 export async function generateStaticParams() {
   return tools.map((tool) => ({
     tool: tool.slug,
-  }))
+  }));
 }
 
 export default function ToolPage({ params, searchParams }: ToolPageProps) {
-  const tool = tools.find(t => t.slug === params.tool)
+  const tool = tools.find((t) => t.slug === params.tool);
 
   if (!tool) {
-    notFound()
+    notFound();
   }
 
-  return <ToolPageClient toolSlug={params.tool} searchParams={searchParams} />
+  return <ToolPageClient toolSlug={params.tool} searchParams={searchParams} />;
 }

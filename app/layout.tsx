@@ -12,11 +12,11 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'OctoTools - Essential Developer Tools',
-    template: '%s | OctoTools',
+    default: 'ToolsLab - Your Developer Tools Laboratory',
+    template: '%s | ToolsLab',
   },
   description:
-    'A comprehensive collection of developer tools for encoding, formatting, converting, and generating. All tools work offline and respect your privacy.',
+    'Professional developer tools crafted with scientific precision. All tools work offline and deliver laboratory-grade accuracy.',
   keywords: [
     'developer tools',
     'json formatter',
@@ -29,22 +29,22 @@ export const metadata: Metadata = {
     'online tools',
     'web tools',
   ],
-  authors: [{ name: 'OctoTools' }],
-  creator: 'OctoTools',
+  authors: [{ name: 'ToolsLab' }],
+  creator: 'ToolsLab',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://octotools.dev',
-    title: 'OctoTools - Essential Developer Tools',
+    url: 'https://toolslab.dev',
+    title: 'ToolsLab - Your Developer Tools Laboratory',
     description:
-      'A comprehensive collection of developer tools for encoding, formatting, converting, and generating. All tools work offline and respect your privacy.',
-    siteName: 'OctoTools',
+      'Professional developer tools crafted with scientific precision. All tools work offline and deliver laboratory-grade accuracy.',
+    siteName: 'ToolsLab',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OctoTools - Essential Developer Tools',
+    title: 'ToolsLab - Your Developer Tools Laboratory',
     description:
-      'A comprehensive collection of developer tools for encoding, formatting, converting, and generating. All tools work offline and respect your privacy.',
+      'Professional developer tools crafted with scientific precision. All tools work offline and deliver laboratory-grade accuracy.',
   },
   robots: {
     index: true,

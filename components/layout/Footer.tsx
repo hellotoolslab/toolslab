@@ -11,15 +11,16 @@ export function Footer() {
             <div className="mx-auto max-w-2xl">
               <div className="mb-4 flex items-center justify-center gap-3">
                 <Coffee className="h-8 w-8 text-yellow-600 dark:text-yellow-400" />
-                <h2 className="text-2xl font-bold">Support OctoTools</h2>
+                <h2 className="text-2xl font-bold">Support ToolsLab</h2>
                 <Coffee className="h-8 w-8 text-yellow-600 dark:text-yellow-400" />
               </div>
               <p className="mb-6 text-lg text-muted-foreground">
-                If you find OctoTools helpful, consider buying us a coffee! Your
-                support helps us keep the tools free for everyone.
+                If you find ToolsLab helpful, consider supporting our research!
+                Your support helps us keep the laboratory equipment running for
+                everyone.
               </p>
               <a
-                href="https://buymeacoffee.com/octotools"
+                href="https://buymeacoffee.com/toolslab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 px-8 py-4 text-lg font-semibold text-white shadow-xl transition-all hover:scale-105 hover:from-yellow-600 hover:to-orange-600"
@@ -28,7 +29,8 @@ export function Footer() {
                 Buy Me a Coffee
               </a>
               <p className="mt-4 text-sm text-muted-foreground">
-                Every coffee counts! ☕ Thank you for your support! 🙏
+                Every contribution fuels our research! ⚗️ Thank you for your
+                support! 🧪
               </p>
             </div>
           </div>
@@ -38,10 +40,10 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* About Section */}
           <div>
-            <h3 className="mb-3 font-semibold">About OctoTools</h3>
+            <h3 className="mb-3 font-semibold">About ToolsLab</h3>
             <p className="mb-4 text-sm text-muted-foreground">
-              A comprehensive collection of developer tools designed to make
-              your workflow faster and more efficient.
+              A digital laboratory of precision-engineered developer tools
+              designed to accelerate your development experiments.
             </p>
             {/* Social Links */}
             <div className="flex gap-3">
@@ -188,7 +190,7 @@ export function Footer() {
         <div className="mt-8 border-t pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-muted-foreground">
-              © 2024 OctoTools. All rights reserved.
+              © 2025 ToolsLab. Crafted with ⚗️ in our digital laboratory.
             </p>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <Link
