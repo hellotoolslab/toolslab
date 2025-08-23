@@ -150,11 +150,20 @@ const DEFAULT_CATEGORIES = {
 
 // Configurazione Edge Config
 const EDGE_CONFIG_URL = process.env.EDGE_CONFIG;
+const VERCEL_API_TOKEN = process.env.VERCEL_API_TOKEN;
 
 if (!EDGE_CONFIG_URL) {
   console.error('❌ EDGE_CONFIG environment variable is required');
   console.error(
     '💡 Make sure you have set EDGE_CONFIG in your .env.local file'
+  );
+  process.exit(1);
+}
+
+if (!VERCEL_API_TOKEN) {
+  console.error('❌ VERCEL_API_TOKEN environment variable is required');
+  console.error(
+    '💡 Make sure you have set VERCEL_API_TOKEN in your .env.local file'
   );
   process.exit(1);
 }
@@ -165,7 +174,7 @@ console.log(`📡 Target: ${EDGE_CONFIG_URL.substring(0, 50)}...`);
 /**
  * Funzione per fare richieste HTTPS
  */
-function makeRequest(url, method, data) {
+function makeRequest(url, method, data, useAuth = false) {
   return new Promise((resolve, reject) => {
     const parsedUrl = new URL(url);
     const options = {
@@ -175,6 +184,7 @@ function makeRequest(url, method, data) {
       method: method,
       headers: {
         'Content-Type': 'application/json',
+        ...(useAuth && { Authorization: `Bearer ${VERCEL_API_TOKEN}` }),
       },
     };
 
@@ -217,7 +227,7 @@ async function populateEdgeConfig() {
     console.log(`📋 Config ID: ${configId}`);
 
     // URL dell'API Vercel per aggiornare Edge Config
-    const apiUrl = `https://api.vercel.com/v1/edge-config/${configId}/items?token=${token}`;
+    const apiUrl = `https://api.vercel.com/v1/edge-config/${configId}/items`;
 
     // Prepara i dati da caricare - struttura flat per Edge Config
     const items = [];
@@ -273,7 +283,7 @@ async function populateEdgeConfig() {
     console.log(`📦 Preparing ${items.length} sections for upload...`);
 
     // Carica i dati
-    const response = await makeRequest(apiUrl, 'PATCH', { items });
+    const response = await makeRequest(apiUrl, 'PATCH', { items }, true);
 
     if (response.status === 200 || response.status === 204) {
       console.log('✅ Edge Config populated successfully!');
@@ -338,7 +348,7 @@ async function testConnection() {
 
 // Main execution
 async function main() {
-  console.log('🔧 OctoTools Edge Config Population Script');
+  console.log('🔧 ToolsLab Edge Config Population Script');
   console.log('==========================================');
   console.log('');
 

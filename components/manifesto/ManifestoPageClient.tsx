@@ -314,14 +314,16 @@ export default function ManifestoPageClient() {
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
 
-              <Link
-                href="https://bitbucket.org/toolslab/toolslab"
+              <a
+                href="https://github.com/hellotoolslab/toolslab"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center gap-3 rounded-2xl border-2 border-white/30 bg-transparent px-10 py-5 font-semibold text-white transition-all hover:scale-105 hover:border-white/50"
               >
                 <Github className="h-6 w-6" />
                 Join the Movement
                 <ExternalLink className="h-5 w-5" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
