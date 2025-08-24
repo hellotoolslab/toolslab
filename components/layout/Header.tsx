@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
-import { Moon, Sun, Menu, X, Zap, Beaker } from 'lucide-react';
+import { Moon, Sun, Menu, X, Zap, Beaker, Grid3X3 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { categories } from '@/lib/tools';
 import { cn } from '@/lib/utils';
@@ -73,44 +73,11 @@ export function Header() {
               <Zap className="mr-1 h-4 w-4" />
               Tools
             </Link>
-            <Link
-              href="/lab"
-              className={cn(
-                'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/lab' && 'text-violet-600 dark:text-violet-400'
-              )}
-            >
-              <Beaker className="mr-1 h-4 w-4" />
-              The Lab
-              {mounted && getNewFavoritesCount() > 0 && (
-                <span className="ml-1 rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
-                  {getNewFavoritesCount()}
-                </span>
-              )}
-            </Link>
-            <Link
-              href="/about"
-              className={cn(
-                'text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/about' && 'text-violet-600 dark:text-violet-400'
-              )}
-            >
-              About
-            </Link>
-            <Link
-              href="/manifesto"
-              className={cn(
-                'text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/manifesto' &&
-                  'text-violet-600 dark:text-violet-400'
-              )}
-            >
-              Manifesto
-            </Link>
 
             {/* Categories dropdown */}
             <div className="group relative">
               <button className="flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
+                <Grid3X3 className="mr-1 h-4 w-4" />
                 Categories
                 <svg
                   className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180"
@@ -152,10 +119,37 @@ export function Header() {
                 </div>
               </div>
             </div>
+
+            <Link
+              href="/lab"
+              className={cn(
+                'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
+                pathname === '/lab' && 'text-violet-600 dark:text-violet-400'
+              )}
+            >
+              <Beaker className="mr-1 h-4 w-4" />
+              The Lab
+              {mounted && getNewFavoritesCount() > 0 && (
+                <span className="ml-1 rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
+                  {getNewFavoritesCount()}
+                </span>
+              )}
+            </Link>
           </nav>
 
           {/* Right side controls */}
           <div className="ml-auto flex items-center space-x-4">
+            {/* About Link */}
+            <Link
+              href="/about"
+              className={cn(
+                'hidden items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 md:flex',
+                pathname === '/about' && 'text-violet-600 dark:text-violet-400'
+              )}
+            >
+              About
+            </Link>
+
             {/* Theme Toggle */}
             {mounted && (
               <button
@@ -229,13 +223,6 @@ export function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span>About</span>
-              </Link>
-              <Link
-                href="/manifesto"
-                className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <span>Manifesto</span>
               </Link>
 
               <div className="border-t border-white/10 pt-4">
