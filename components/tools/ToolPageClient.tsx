@@ -9,6 +9,7 @@ import { categoryColors } from '@/data/categories';
 import ToolWorkspace from './ToolWorkspace';
 import AdBanner from '@/components/ads/AdBanner';
 import { useFeatureFlag } from '@/hooks/useEdgeConfig';
+import { useUmami } from '@/components/analytics/UmamiProvider';
 import {
   ChevronRight,
   Share2,
@@ -33,6 +34,7 @@ export default function ToolPageClient({
   searchParams,
 }: ToolPageClientProps) {
   const { theme } = useTheme();
+  const { trackEngagement, trackToolUse } = useUmami();
   const [isAdDismissed, setIsAdDismissed] = useState(false);
   const [usageCount, setUsageCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -54,6 +56,15 @@ export default function ToolPageClient({
     // Simulate usage count
     setUsageCount(Math.floor(Math.random() * 5000) + 1000);
 
+    // Track tool page view
+    if (toolSlug) {
+      trackEngagement('tool-page-viewed', {
+        tool: toolSlug,
+        has_initial_input: !!initialInput,
+        is_mobile: window.innerWidth < 768,
+      });
+    }
+
     // Check ad dismiss state
     const dismissed = localStorage.getItem('ad-dismissed');
     if (dismissed) {
@@ -65,7 +76,7 @@ export default function ToolPageClient({
     }
 
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [toolSlug, initialInput, trackEngagement]);
 
   const tool = tools.find((t) => t.slug === toolSlug);
 
@@ -76,9 +87,18 @@ export default function ToolPageClient({
   const handleDismissAd = () => {
     setIsAdDismissed(true);
     localStorage.setItem('ad-dismissed', new Date().toISOString());
+    trackEngagement('ad-dismissed', {
+      tool: toolSlug,
+      ad_type: 'banner',
+    });
   };
 
   const handleShare = async () => {
+    trackEngagement('tool-share-clicked', {
+      tool: toolSlug,
+      method: navigator.share ? 'native' : 'clipboard',
+    });
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -86,12 +106,24 @@ export default function ToolPageClient({
           text: tool.description,
           url: window.location.href,
         });
+        trackEngagement('tool-share-completed', {
+          tool: toolSlug,
+          method: 'native',
+        });
       } catch (err) {
         console.log('Share cancelled');
+        trackEngagement('tool-share-cancelled', {
+          tool: toolSlug,
+          method: 'native',
+        });
       }
     } else {
       // Fallback - copy to clipboard
       navigator.clipboard.writeText(window.location.href);
+      trackEngagement('tool-share-completed', {
+        tool: toolSlug,
+        method: 'clipboard',
+      });
       // Show toast notification
     }
   };

@@ -17,6 +17,7 @@ import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { cn } from '@/lib/utils';
 import { categories as CATEGORIES, tools as TOOLS_CONFIG } from '@/lib/tools';
 import { labToasts } from '@/lib/utils/toasts';
+import { useUmami } from '@/components/analytics/UmamiProvider';
 
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;
@@ -156,6 +157,7 @@ function LabToolCard({
 }
 
 export function LabPageClient() {
+  const { trackEngagement } = useUmami();
   const {
     favoriteTools,
     favoriteCategories,
@@ -173,18 +175,32 @@ export function LabPageClient() {
     // Mark Lab as visited to reset navbar counter
     setLabVisited();
 
+    // Track Lab visit
+    const { favoriteTools, favoriteCategories } = useToolStore.getState();
+    const favoriteCount = favoriteTools.length + favoriteCategories.length;
+
+    if (favoriteCount === 0) {
+      trackEngagement('lab-empty-state-visited');
+    } else {
+      trackEngagement('lab-visited', {
+        favorites_count: favoriteCount,
+        tools_count: favoriteTools.length,
+        categories_count: favoriteCategories.length,
+      });
+    }
+
     // Show welcome toast if user has favorites and hasn't been welcomed
-    const { favoriteTools, favoriteCategories, labVisited } =
-      useToolStore.getState();
+    const { labVisited } = useToolStore.getState();
     if (
       !labVisited &&
       (favoriteTools.length > 0 || favoriteCategories.length > 0)
     ) {
       setTimeout(() => {
         labToasts.welcomeToLab();
+        trackEngagement('lab-welcome-toast-shown');
       }, 1000);
     }
-  }, [setLabVisited]);
+  }, [setLabVisited, trackEngagement]);
 
   if (!mounted) {
     return (

@@ -1,7 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import { Coffee, Twitter, Heart, Github } from 'lucide-react';
+import { useUmami } from '@/components/analytics/UmamiProvider';
 
 export function Footer() {
+  const { trackConversion, trackSocial, trackEngagement } = useUmami();
   return (
     <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 py-8">
@@ -23,6 +27,7 @@ export function Footer() {
                   href="https://buymeacoffee.com/toolslab"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackConversion('donation', 'footer-widget')}
                   className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-6 py-2.5 text-sm font-medium text-white shadow-lg transition-all hover:scale-105 hover:from-yellow-600 hover:to-orange-600"
                 >
                   <Coffee className="h-4 w-4" />
@@ -30,6 +35,9 @@ export function Footer() {
                 </a>
                 <Link
                   href="/about"
+                  onClick={() =>
+                    trackEngagement('why-donate-clicked', { from: 'footer' })
+                  }
                   className="text-xs text-muted-foreground underline underline-offset-2 transition-colors hover:text-foreground"
                 >
                   Why donate?
@@ -65,6 +73,7 @@ export function Footer() {
                 href="https://x.com/tools_lab"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackSocial('twitter', 'footer-about')}
                 className="text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="X (Twitter)"
               >
@@ -74,6 +83,7 @@ export function Footer() {
                 href="https://github.com/hellotoolslab/toolslab"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackSocial('github', 'footer-about')}
                 className="text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="GitHub"
               >

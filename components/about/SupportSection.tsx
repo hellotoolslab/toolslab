@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Coffee, Server, Zap, Shield, Heart, ExternalLink } from 'lucide-react';
+import { useUmami } from '@/components/analytics/UmamiProvider';
 import Link from 'next/link';
 
 const supportBenefits = [
@@ -15,6 +16,7 @@ const supportBenefits = [
 export function SupportSection() {
   const [clickCount, setClickCount] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const { trackConversion, trackSocial, trackEngagement } = useUmami();
 
   const handleLogoClick = () => {
     const newCount = clickCount + 1;
@@ -22,10 +24,22 @@ export function SupportSection() {
 
     if (newCount === 5) {
       setShowEasterEgg(true);
+      trackEngagement('easter-egg-discovered', {
+        location: 'about-support-section',
+        clicks: newCount,
+      });
       setTimeout(() => setShowEasterEgg(false), 5000);
     } else if (newCount > 5) {
       setClickCount(0);
     }
+  };
+
+  const handleDonationClick = () => {
+    trackConversion('donation', 'about-support-section');
+  };
+
+  const handleSocialClick = (platform: 'twitter') => {
+    trackSocial(platform, 'about-support-section');
   };
 
   return (
@@ -95,6 +109,7 @@ export function SupportSection() {
                   href="https://buymeacoffee.com/toolslab"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleDonationClick}
                   className="inline-flex transform items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 px-8 py-4 font-bold text-white shadow-lg transition-all hover:scale-105 hover:from-amber-600 hover:to-orange-700"
                 >
                   <Coffee className="h-5 w-5" />
@@ -106,6 +121,7 @@ export function SupportSection() {
                   href="https://twitter.com/toolslab"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => handleSocialClick('twitter')}
                   className="inline-flex items-center gap-2 rounded-xl border-2 border-gray-300 px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
                 >
                   Follow on 𝕏 @toolslab

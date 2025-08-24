@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { useToolStore } from '@/lib/store/toolStore';
 import { labToasts } from '@/lib/utils/toasts';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useUmami } from '@/components/analytics/UmamiProvider';
 
 interface FavoriteButtonProps {
   type: 'tool' | 'category';
@@ -25,6 +26,7 @@ export function FavoriteButton({
 }: FavoriteButtonProps) {
   const { isFavorite, toggleToolFavorite, toggleCategoryFavorite } =
     useToolStore();
+  const { trackFavorite, trackEngagement } = useUmami();
 
   const isFav = isFavorite(type, id);
 
@@ -40,6 +42,11 @@ export function FavoriteButton({
         const { favoriteTools } = useToolStore.getState();
         if (favoriteTools.length >= 50) {
           labToasts.labLimitReached('tools', 50);
+          trackEngagement('lab-limit-reached', {
+            type: 'tools',
+            limit: 50,
+            current_count: favoriteTools.length,
+          });
           return;
         }
       }
@@ -50,11 +57,19 @@ export function FavoriteButton({
         const { favoriteCategories } = useToolStore.getState();
         if (favoriteCategories.length >= 10) {
           labToasts.labLimitReached('categories', 10);
+          trackEngagement('lab-limit-reached', {
+            type: 'categories',
+            limit: 10,
+            current_count: favoriteCategories.length,
+          });
           return;
         }
       }
       toggleCategoryFavorite(id);
     }
+
+    // Track the favorite action
+    trackFavorite(type, id, wasAdded);
 
     // Show toast notification
     if (wasAdded) {
