@@ -192,7 +192,7 @@ export default function HomePage() {
             Ready to boost your productivity?
           </h2>
           <p className="mb-8 text-xl opacity-90">
-            Join thousands of developers who trust OctoTools for their daily
+            Join thousands of developers who trust ToolsLab for their daily
             tasks.
           </p>
           <div className="mx-auto flex max-w-lg flex-col justify-center gap-4 sm:flex-row">
