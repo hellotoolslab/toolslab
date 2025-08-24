@@ -42,8 +42,28 @@ export const trackEvent = (
 ) => {
   if (typeof window !== 'undefined' && (window as UmamiWindow).umami) {
     (window as UmamiWindow).umami!.track(eventName, eventData);
-  } else if (process.env.NODE_ENV === 'development') {
-    console.log('📊 Umami Event:', eventName, eventData);
+  }
+
+  // Always log in development OR if UMAMI_DEBUG is enabled
+  if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true'
+  ) {
+    console.group(`📊 Umami Event: ${eventName}`);
+    console.log('📅 Time:', new Date().toISOString());
+    console.log('📍 Event:', eventName);
+    console.log('📋 Data:', eventData || 'No data');
+    console.log(
+      '🌍 URL:',
+      typeof window !== 'undefined' ? window.location.href : 'SSR'
+    );
+    console.log(
+      '👤 User Agent:',
+      typeof navigator !== 'undefined'
+        ? navigator.userAgent.substring(0, 50) + '...'
+        : 'SSR'
+    );
+    console.groupEnd();
   }
 };
 
