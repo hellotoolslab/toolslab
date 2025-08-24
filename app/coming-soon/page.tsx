@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 export default function ComingSoonPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50 dark:from-gray-900 dark:via-emerald-950 dark:to-cyan-950">
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <div className="mx-auto max-w-3xl px-4 py-8 text-center md:py-16">
         {/* Animated Laboratory Flask */}
-        <div className="relative mb-12">
-          <div className="mx-auto flex h-40 w-40 items-center justify-center">
+        <div className="relative mb-8 md:mb-12">
+          <div className="mx-auto flex h-32 w-32 items-center justify-center md:h-40 md:w-40">
             {/* Main flask */}
             <div className="absolute animate-pulse">
-              <span className="text-8xl">⚗️</span>
+              <span className="text-6xl md:text-8xl">⚗️</span>
             </div>
             {/* Floating molecules/atoms */}
             <div className="absolute -top-4 left-8 animate-bounce">
@@ -37,7 +37,7 @@ export default function ComingSoonPage() {
         </div>
 
         {/* Main Title */}
-        <h1 className="mb-6 text-5xl font-bold md:text-7xl">
+        <h1 className="mb-4 text-3xl font-bold md:mb-6 md:text-5xl lg:text-7xl">
           <span className="bg-gradient-to-r from-emerald-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
             Experiments in Progress
           </span>
@@ -47,7 +47,7 @@ export default function ComingSoonPage() {
           </span>
         </h1>
 
-        <p className="mb-12 text-xl text-gray-600 dark:text-gray-300 md:text-2xl">
+        <p className="mb-8 text-lg text-gray-600 dark:text-gray-300 md:mb-12 md:text-xl lg:text-2xl">
           Our laboratory is synthesizing the most
           <br className="hidden md:block" />
           <span className="font-semibold text-emerald-600 dark:text-emerald-400">
@@ -58,31 +58,31 @@ export default function ComingSoonPage() {
         </p>
 
         {/* Countdown-ish Box */}
-        <div className="mb-12 inline-block rounded-2xl bg-white/80 p-8 shadow-2xl backdrop-blur-sm dark:bg-gray-800/80">
-          <div className="mb-6 text-lg font-medium text-gray-700 dark:text-gray-300">
+        <div className="mb-8 inline-block rounded-2xl bg-white/80 p-4 shadow-2xl backdrop-blur-sm dark:bg-gray-800/80 md:mb-12 md:p-8">
+          <div className="mb-4 text-base font-medium text-gray-700 dark:text-gray-300 md:mb-6 md:text-lg">
             Laboratory Analysis Time Remaining:
           </div>
-          <div className="flex items-center justify-center space-x-4">
+          <div className="flex items-center justify-center space-x-2 md:space-x-4">
             <div className="flex flex-col items-center">
-              <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-600 text-3xl font-bold text-white shadow-lg">
+              <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-600 text-2xl font-bold text-white shadow-lg md:h-20 md:w-20 md:text-3xl">
                 ?
               </div>
               <span className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                 Days
               </span>
             </div>
-            <span className="text-3xl text-gray-400">:</span>
+            <span className="text-2xl text-gray-400 md:text-3xl">:</span>
             <div className="flex flex-col items-center">
-              <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 text-3xl font-bold text-white shadow-lg">
+              <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 text-2xl font-bold text-white shadow-lg md:h-20 md:w-20 md:text-3xl">
                 ?
               </div>
               <span className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                 Hours
               </span>
             </div>
-            <span className="text-3xl text-gray-400">:</span>
+            <span className="text-2xl text-gray-400 md:text-3xl">:</span>
             <div className="flex flex-col items-center">
-              <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-3xl font-bold text-white shadow-lg">
+              <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-2xl font-bold text-white shadow-lg md:h-20 md:w-20 md:text-3xl">
                 ?
               </div>
               <span className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -96,8 +96,8 @@ export default function ComingSoonPage() {
         </div>
 
         {/* Features Preview */}
-        <div className="mb-12">
-          <h2 className="mb-8 text-2xl font-bold text-gray-900 dark:text-white">
+        <div className="mb-8 md:mb-12">
+          <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white md:mb-8 md:text-2xl">
             Laboratory Features Under Development:
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -132,7 +132,7 @@ export default function ComingSoonPage() {
         </div>
 
         {/* Fun Messages */}
-        <div className="mb-12 space-y-3">
+        <div className="mb-8 space-y-3 md:mb-12">
           <p className="text-lg text-gray-700 dark:text-gray-300">
             <span className="font-mono text-emerald-600 dark:text-emerald-400">
               while(experimenting) {'{'}
@@ -151,7 +151,7 @@ export default function ComingSoonPage() {
         </div>
 
         {/* Teaser List */}
-        <div className="mb-12 inline-block rounded-lg border-2 border-dashed border-emerald-300 bg-emerald-50/50 p-6 text-left dark:border-emerald-700 dark:bg-emerald-950/20">
+        <div className="mb-8 inline-block rounded-lg border-2 border-dashed border-emerald-300 bg-emerald-50/50 p-4 text-left dark:border-emerald-700 dark:bg-emerald-950/20 md:mb-12 md:p-6">
           <h3 className="mb-4 text-center text-lg font-semibold text-emerald-900 dark:text-emerald-300">
             🧬 Laboratory Tools in Final Testing Phase:
           </h3>
@@ -197,7 +197,7 @@ export default function ComingSoonPage() {
         </div>
 
         {/* Fun Footer */}
-        <div className="mt-16 text-sm text-gray-500 dark:text-gray-500">
+        <div className="mt-12 text-sm text-gray-500 dark:text-gray-500 md:mt-16">
           <p className="mb-2">
             🧪 Laboratory experiments in progress. Safety goggles recommended.
           </p>
