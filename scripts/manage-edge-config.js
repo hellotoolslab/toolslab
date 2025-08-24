@@ -128,6 +128,9 @@ async function showConfig() {
       console.log(
         `   Maintenance: ${config.features.maintenanceMode ? '🚧' : '✅'}`
       );
+      console.log(
+        `   Coming Soon: ${config.features.comingSoon ? '🚀' : '❌'}`
+      );
       console.log(`   Pro: ${config.features.proEnabled ? '✅' : '❌'}`);
     }
 
@@ -420,6 +423,9 @@ function showHelp() {
     '  node scripts/manage-edge-config.js maintenance on|off     # Toggle maintenance mode'
   );
   console.log(
+    '  node scripts/manage-edge-config.js coming-soon on|off     # Toggle coming soon mode'
+  );
+  console.log(
     '  node scripts/manage-edge-config.js ads on|off             # Toggle ads'
   );
   console.log(
@@ -431,6 +437,7 @@ function showHelp() {
   console.log('  node scripts/manage-edge-config.js disable json-formatter');
   console.log('  node scripts/manage-edge-config.js disable-cat generators');
   console.log('  node scripts/manage-edge-config.js maintenance on');
+  console.log('  node scripts/manage-edge-config.js coming-soon on');
   console.log(
     '  node scripts/manage-edge-config.js add-tool \'{"name":"Test Tool","slug":"test-tool","description":"A test"}\''
   );
@@ -490,6 +497,11 @@ async function main() {
     case 'maintenance':
       const maintenanceMode = args[1] === 'on';
       await updateFeatures({ maintenanceMode });
+      break;
+
+    case 'coming-soon':
+      const comingSoon = args[1] === 'on';
+      await updateFeatures({ comingSoon });
       break;
 
     case 'ads':

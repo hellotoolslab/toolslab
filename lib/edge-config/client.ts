@@ -106,6 +106,10 @@ function applyLocalOverrides(features: any): any {
       process.env.LOCAL_OVERRIDE_MAINTENANCE === 'true';
   }
 
+  if (process.env.LOCAL_OVERRIDE_COMING_SOON !== undefined) {
+    overrides.comingSoon = process.env.LOCAL_OVERRIDE_COMING_SOON === 'true';
+  }
+
   if (process.env.LOCAL_OVERRIDE_PRO !== undefined) {
     overrides.proEnabled = process.env.LOCAL_OVERRIDE_PRO === 'true';
   }
