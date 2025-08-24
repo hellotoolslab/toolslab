@@ -9,7 +9,8 @@ const commitments = [
   { text: 'Your data stays in your browser', icon: Check, positive: true },
   { text: 'New tools added regularly', icon: Check, positive: true },
   { text: 'Open to community suggestions', icon: Check, positive: true },
-  { text: 'Will never sell out to Big Tech', icon: X, positive: false },
+  { text: 'Code is fully open source', icon: Check, positive: true },
+  { text: 'Privacy-first analytics with Umami', icon: Check, positive: true },
   { text: 'Will never paywall existing tools', icon: X, positive: false },
   { text: 'Will never track or profile you', icon: X, positive: false },
 ];
