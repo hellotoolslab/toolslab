@@ -21,6 +21,7 @@ import {
   ArrowRight,
   Star,
 } from 'lucide-react';
+import { FavoriteButton } from '@/components/lab/FavoriteButton';
 
 interface ToolPageClientProps {
   toolSlug: string;
@@ -158,9 +159,18 @@ export default function ToolPageClient({
                     style={{ color: categoryColor }}
                   />
                 </div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-                  {tool.name}
-                </h1>
+                <div className="flex items-center gap-4">
+                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+                    {tool.name}
+                  </h1>
+                  <FavoriteButton
+                    type="tool"
+                    id={tool.slug}
+                    name={tool.name}
+                    size="lg"
+                    showLabel={false}
+                  />
+                </div>
                 <span
                   className="rounded-full px-3 py-1 text-xs font-medium capitalize"
                   style={{

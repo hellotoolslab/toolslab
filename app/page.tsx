@@ -5,6 +5,7 @@ import { ToolCard } from '@/components/tools/ToolCard';
 // import { CategoryCard } from '@/components/tools/CategoryCard';
 import { SimpleHero } from '@/components/layout/SimpleHero';
 import { FeaturesSection } from '@/components/layout/FeaturesSection';
+// import { ToastDemo } from '@/components/lab/ToastDemo';
 
 export const metadata: Metadata = {
   title: 'ToolsLab - Your Developer Tools Laboratory',
@@ -211,6 +212,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Toast Demo - Commentato per produzione */}
+      {/* <ToastDemo /> */}
     </main>
   );
 }

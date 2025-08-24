@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { usePathname, useRouter } from 'next/navigation';
-import { Moon, Sun, Menu, X, Zap } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { Moon, Sun, Menu, X, Zap, Beaker } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { categories } from '@/lib/tools';
 import { cn } from '@/lib/utils';
 import { LabLogo } from '@/components/icons/LabLogo';
+import { useToolStore } from '@/lib/store/toolStore';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -15,6 +16,7 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const { getNewFavoritesCount } = useToolStore();
 
   useEffect(() => {
     setMounted(true);
@@ -52,8 +54,8 @@ export function Header() {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3">
-              <LabLogo className="h-8 w-8 text-lab-primary" animated />
-              <span className="hidden bg-gradient-to-r from-lab-primary to-lab-secondary bg-clip-text text-xl font-bold text-transparent sm:inline-block">
+              <LabLogo className="h-8 w-8 text-violet-600" animated />
+              <span className="hidden bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-xl font-bold text-transparent sm:inline-block">
                 ToolsLab
               </span>
             </Link>
@@ -65,18 +67,32 @@ export function Header() {
               href="/"
               className={cn(
                 'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/' && 'text-lab-primary dark:text-lab-primary'
+                pathname === '/' && 'text-violet-600 dark:text-violet-400'
               )}
             >
               <Zap className="mr-1 h-4 w-4" />
               Tools
             </Link>
             <Link
+              href="/lab"
+              className={cn(
+                'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
+                pathname === '/lab' && 'text-violet-600 dark:text-violet-400'
+              )}
+            >
+              <Beaker className="mr-1 h-4 w-4" />
+              The Lab
+              {mounted && getNewFavoritesCount() > 0 && (
+                <span className="ml-1 rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
+                  {getNewFavoritesCount()}
+                </span>
+              )}
+            </Link>
+            <Link
               href="/about"
               className={cn(
                 'text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/about' &&
-                  'text-lab-primary dark:text-lab-primary'
+                pathname === '/about' && 'text-violet-600 dark:text-violet-400'
               )}
             >
               About
@@ -86,7 +102,7 @@ export function Header() {
               className={cn(
                 'text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
                 pathname === '/manifesto' &&
-                  'text-lab-primary dark:text-lab-primary'
+                  'text-violet-600 dark:text-violet-400'
               )}
             >
               Manifesto
@@ -174,7 +190,7 @@ export function Header() {
           <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white/95 p-6 shadow-xl backdrop-blur-md dark:bg-gray-900/95">
             <div className="mb-8 flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <LabLogo className="h-6 w-6 text-lab-primary" animated />
+                <LabLogo className="h-6 w-6 text-violet-600" animated />
                 <span className="font-bold">ToolsLab</span>
               </div>
               <button
@@ -193,6 +209,19 @@ export function Header() {
               >
                 <Zap className="h-5 w-5" />
                 <span>Tools</span>
+              </Link>
+              <Link
+                href="/lab"
+                className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Beaker className="h-5 w-5" />
+                <span>The Lab</span>
+                {mounted && getNewFavoritesCount() > 0 && (
+                  <span className="ml-auto rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
+                    {getNewFavoritesCount()}
+                  </span>
+                )}
               </Link>
               <Link
                 href="/about"

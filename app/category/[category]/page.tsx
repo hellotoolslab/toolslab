@@ -8,6 +8,7 @@ import {
 } from '@/lib/tools';
 import { ToolCard } from '@/components/tools/ToolCard';
 import { SearchBar } from '@/components/SearchBar';
+import { FavoriteButton } from '@/components/lab/FavoriteButton';
 
 interface Props {
   params: { category: string };
@@ -92,9 +93,18 @@ export default function CategoryPage({ params }: Props) {
             </div>
           </div>
 
-          <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
-            {category.name} Tools
-          </h1>
+          <div className="mb-4 flex items-center justify-center gap-4">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+              {category.name} Tools
+            </h1>
+            <FavoriteButton
+              type="category"
+              id={category.id}
+              name={category.name}
+              size="lg"
+              showLabel={false}
+            />
+          </div>
 
           <p className="mx-auto mb-6 max-w-3xl text-xl text-gray-600 dark:text-gray-400">
             {category.description}
