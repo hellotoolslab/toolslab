@@ -94,12 +94,15 @@ export default function ToolPageClient({
   };
 
   const handleShare = async () => {
+    const hasNativeShare =
+      typeof navigator !== 'undefined' && 'share' in navigator;
+
     trackEngagement('tool-share-clicked', {
       tool: toolSlug,
-      method: navigator.share ? 'native' : 'clipboard',
+      method: hasNativeShare ? 'native' : 'clipboard',
     });
 
-    if (navigator.share) {
+    if (hasNativeShare && navigator.share) {
       try {
         await navigator.share({
           title: `${tool.name} - OctoTools`,

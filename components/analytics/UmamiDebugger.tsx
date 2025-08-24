@@ -2,13 +2,64 @@
 
 import { useState, useEffect } from 'react';
 import { useUmami } from '@/components/analytics/UmamiProvider';
-import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 interface EventLog {
   id: string;
   timestamp: Date;
   event: string;
   data: any;
+}
+
+// Simple Button component for the debugger
+function Button({
+  children,
+  onClick,
+  variant = 'default',
+  size = 'md',
+  className = '',
+  ...props
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  variant?: 'default' | 'outline' | 'ghost' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  [key: string]: any;
+}) {
+  const baseClasses =
+    'inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2';
+
+  const variantClasses = {
+    default: 'bg-purple-600 text-white hover:bg-purple-700',
+    outline:
+      'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700',
+    ghost:
+      'text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800',
+    secondary:
+      'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600',
+  };
+
+  const sizeClasses = {
+    sm: 'px-3 py-1.5 text-xs',
+    md: 'px-4 py-2 text-sm',
+    lg: 'px-6 py-3 text-base',
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        baseClasses,
+        variantClasses[variant],
+        sizeClasses[size],
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </button>
+  );
 }
 
 export function UmamiDebugger() {

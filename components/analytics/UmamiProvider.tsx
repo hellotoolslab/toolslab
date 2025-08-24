@@ -1,6 +1,12 @@
 'use client';
 
-import { createContext, useContext, useCallback, useEffect } from 'react';
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useEffect,
+  Suspense,
+} from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 interface UmamiWindow extends Window {
@@ -110,7 +116,7 @@ export const trackPerformance = (
   });
 };
 
-export function UmamiProvider({ children }: { children: React.ReactNode }) {
+function UmamiProviderInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -279,6 +285,15 @@ export function UmamiProvider({ children }: { children: React.ReactNode }) {
     >
       {children}
     </UmamiContext.Provider>
+  );
+}
+
+// Wrapper with Suspense boundary for SSG compatibility
+export function UmamiProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<div>{children}</div>}>
+      <UmamiProviderInner>{children}</UmamiProviderInner>
+    </Suspense>
   );
 }
 
