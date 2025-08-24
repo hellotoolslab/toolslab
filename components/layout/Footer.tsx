@@ -5,32 +5,30 @@ export function Footer() {
   return (
     <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 py-8">
-        {/* Buy Me a Coffee - Full Width Section */}
-        <div className="mb-12">
-          <div className="rounded-xl border-2 border-yellow-400/30 bg-gradient-to-r from-yellow-400/10 via-orange-400/10 to-yellow-400/10 p-8 text-center">
-            <div className="mx-auto max-w-2xl">
-              <div className="mb-4 flex items-center justify-center gap-3">
-                <Coffee className="h-8 w-8 text-yellow-600 dark:text-yellow-400" />
-                <h2 className="text-2xl font-bold">Support ToolsLab</h2>
-                <Coffee className="h-8 w-8 text-yellow-600 dark:text-yellow-400" />
+        {/* Buy Me a Coffee - Smaller Section */}
+        <div className="mb-8">
+          <div className="rounded-lg border border-yellow-400/20 bg-gradient-to-r from-yellow-400/5 via-orange-400/5 to-yellow-400/5 p-4 text-center">
+            <div className="mx-auto max-w-xl">
+              <div className="mb-3 flex items-center justify-center gap-2">
+                <Coffee className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+                <h2 className="text-lg font-semibold">Support ToolsLab</h2>
+                <Coffee className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
               </div>
-              <p className="mb-6 text-lg text-muted-foreground">
-                If you find ToolsLab helpful, consider supporting our research!
-                Your support helps us keep the laboratory equipment running for
-                everyone.
+              <p className="mb-4 text-sm text-muted-foreground">
+                If you find ToolsLab helpful, consider supporting our research.
+                Your support keeps the laboratory running!
               </p>
               <a
                 href="https://buymeacoffee.com/toolslab"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 px-8 py-4 text-lg font-semibold text-white shadow-xl transition-all hover:scale-105 hover:from-yellow-600 hover:to-orange-600"
+                className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-6 py-2.5 text-sm font-medium text-white shadow-lg transition-all hover:scale-105 hover:from-yellow-600 hover:to-orange-600"
               >
-                <Coffee className="h-6 w-6" />
+                <Coffee className="h-4 w-4" />
                 Buy Me a Coffee
               </a>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Every contribution fuels our research! ⚗️ Thank you for your
-                support! 🧪
+              <p className="mt-3 text-xs text-muted-foreground">
+                Every contribution fuels our research! ⚗️ Thank you! 🧪
               </p>
             </div>
           </div>

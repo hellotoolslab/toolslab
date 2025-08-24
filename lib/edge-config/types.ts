@@ -90,6 +90,8 @@ export interface EdgeConfigSchema {
     adsEnabled: boolean;
     /** Maintenance mode */
     maintenanceMode: boolean;
+    /** Coming soon mode */
+    comingSoon: boolean;
     /** Pro features enabled */
     proEnabled: boolean;
     /** A/B test flags */

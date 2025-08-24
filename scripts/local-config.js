@@ -14,6 +14,7 @@ const ENV_FILE_PATH = path.join(process.cwd(), '.env.local');
 const FLAG_MAPPING = {
   ads: 'LOCAL_OVERRIDE_ADS',
   maintenance: 'LOCAL_OVERRIDE_MAINTENANCE',
+  'coming-soon': 'LOCAL_OVERRIDE_COMING_SOON',
   pro: 'LOCAL_OVERRIDE_PRO',
   beta: 'LOCAL_OVERRIDE_BETA',
 };
@@ -144,6 +145,7 @@ Usage:
 Flags:
   ads         - Advertisement display
   maintenance - Maintenance mode
+  coming-soon - Coming soon mode
   pro         - Pro features
   beta        - Beta features
 
