@@ -226,6 +226,17 @@ export function UmamiDebugger() {
                 <li>• Share a tool</li>
                 <li>• Dismiss ads</li>
               </ul>
+
+              <div className="mt-4 rounded-lg bg-orange-50 p-3 dark:bg-orange-950/20">
+                <div className="flex items-center gap-2 text-xs font-medium text-orange-700 dark:text-orange-400">
+                  <span>⚠️</span>
+                  <span>Development Mode</span>
+                </div>
+                <p className="mt-1 text-xs text-orange-600 dark:text-orange-300">
+                  Events are logged but NOT sent to Umami in development. Data
+                  is only sent in production.
+                </p>
+              </div>
             </div>
           </div>
 

@@ -46,15 +46,22 @@ export const trackEvent = (
   eventName: string,
   eventData?: Record<string, any>
 ) => {
-  if (typeof window !== 'undefined' && (window as UmamiWindow).umami) {
+  // ONLY send data to Umami in production environment
+  if (
+    process.env.NODE_ENV === 'production' &&
+    typeof window !== 'undefined' &&
+    (window as UmamiWindow).umami
+  ) {
     (window as UmamiWindow).umami!.track(eventName, eventData);
   }
 
-  // Always log in development OR if UMAMI_DEBUG is enabled
+  // Always log in development OR if UMAMI_DEBUG is enabled (for testing)
   if (
     process.env.NODE_ENV === 'development' ||
     process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true'
   ) {
+    const isProductionMode = process.env.NODE_ENV === 'production';
+
     console.group(`📊 Umami Event: ${eventName}`);
     console.log('📅 Time:', new Date().toISOString());
     console.log('📍 Event:', eventName);
@@ -68,6 +75,11 @@ export const trackEvent = (
       typeof navigator !== 'undefined'
         ? navigator.userAgent.substring(0, 50) + '...'
         : 'SSR'
+    );
+    console.log(
+      isProductionMode
+        ? '✅ PRODUCTION: Data sent to Umami'
+        : '🚨 DEVELOPMENT: Data NOT sent to Umami (localhost only)'
     );
     console.groupEnd();
   }
@@ -120,8 +132,14 @@ function UmamiProviderInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Load Umami script
+  // Load Umami script ONLY in production
   useEffect(() => {
+    // Don't load Umami script in development
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('🚨 Umami script NOT loaded in development mode');
+      return;
+    }
+
     if (
       typeof window !== 'undefined' &&
       !document.getElementById('umami-script')
@@ -132,6 +150,7 @@ function UmamiProviderInner({ children }: { children: React.ReactNode }) {
         'https://cloud.umami.is/script.js';
 
       if (!websiteId) {
+        console.warn('⚠️ Umami website ID not configured');
         return;
       }
 
