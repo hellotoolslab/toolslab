@@ -235,6 +235,7 @@ export const DEFAULT_EDGE_CONFIG: EdgeConfigSchema = {
   features: {
     adsEnabled: process.env.NODE_ENV === 'production',
     maintenanceMode: false,
+    comingSoon: false,
     proEnabled: true,
     experiments: {
       newToolChaining: false,

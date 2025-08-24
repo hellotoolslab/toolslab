@@ -66,6 +66,19 @@ export async function middleware(request: NextRequest) {
     );
     response.headers.set('X-Processed-At', new Date().toISOString());
 
+    // Handle coming soon mode
+    if (config?.features?.comingSoon && pathname !== '/coming-soon') {
+      // Allow admin access during coming soon
+      const isAdmin = request.headers
+        .get('authorization')
+        ?.includes(process.env.ADMIN_SECRET_KEY || '');
+
+      if (!isAdmin) {
+        const comingSoonUrl = new URL('/coming-soon', request.url);
+        return NextResponse.redirect(comingSoonUrl);
+      }
+    }
+
     // Handle maintenance mode
     if (config?.features?.maintenanceMode && pathname !== '/maintenance') {
       // Allow admin access during maintenance

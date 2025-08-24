@@ -8,13 +8,13 @@ export default function NotFound() {
     <div className="container py-16">
       <div className="mx-auto max-w-md text-center">
         <div className="mb-8">
-          <div className="mb-4 text-8xl">🐙</div>
+          <div className="mb-4 text-8xl">🧪</div>
           <h1 className="mb-2 text-3xl font-bold tracking-tight">
-            Page Not Found
+            Experiment Not Found
           </h1>
           <p className="text-muted-foreground">
-            Looks like this octopus got lost in the deep web! The page
-            you&rsquo;re looking for doesn&rsquo;t exist.
+            This laboratory experiment doesn&rsquo;t exist! The page
+            you&rsquo;re looking for couldn&rsquo;t be synthesized.
           </p>
         </div>
 

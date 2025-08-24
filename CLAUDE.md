@@ -1,4 +1,4 @@
-# CLAUDE.md - Standard Operativi per OctoTools
+# CLAUDE.md - Standard Operativi per ToolsLab
 
 ## 🤖 Workflow di Sviluppo con Claude Code
 
@@ -93,7 +93,7 @@ git commit -m "tipo: descrizione breve"
 ```
 
 ```
-octotools/
+toolslab/
 ├── app/                      # Next.js App Router
 │   ├── layout.tsx           # Root layout with providers
 │   ├── page.tsx             # Homepage (SSG)
@@ -318,7 +318,7 @@ export const useToolStore = create<ToolStore>()(
       },
     }),
     {
-      name: 'octotools-storage',
+      name: 'toolslab-storage',
     }
   )
 );
@@ -445,7 +445,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!toolConfig) return {};
 
   return {
-    title: `${toolConfig.name} - Free Online ${toolConfig.function} | OctoTools`,
+    title: `${toolConfig.name} - Free Online ${toolConfig.function} | ToolsLab`,
     description: toolConfig.description,
     keywords: toolConfig.keywords,
   };
@@ -710,7 +710,7 @@ export function ProFeatureCard() {
 
   return (
     <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-xl text-white">
-      <h3 className="text-xl font-bold mb-4">OctoTools Pro</h3>
+      <h3 className="text-xl font-bold mb-4">ToolsLab Pro</h3>
       <p className="text-2xl font-bold mb-4">$2.99/month</p>
 
       <ul className="space-y-2 mb-6">
@@ -977,14 +977,14 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const tool = TOOLS_CONFIG[params.tool];
 
   return {
-    title: `${tool.name} - Free Online ${tool.function} | OctoTools`,
+    title: `${tool.name} - Free Online ${tool.function} | ToolsLab`,
     description: tool.seoDescription,
     keywords: tool.keywords,
     openGraph: {
       title: tool.name,
       description: tool.description,
       type: 'website',
-      url: `https://octotools.org/tools/${params.tool}`,
+      url: `https://toolslab.dev/tools/${params.tool}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -992,7 +992,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
       description: tool.description,
     },
     alternates: {
-      canonical: `https://octotools.org/tools/${params.tool}`,
+      canonical: `https://toolslab.dev/tools/${params.tool}`,
     },
   };
 }
@@ -1033,8 +1033,8 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 
 ```bash
 # Create project
-npx create-next-app@latest octotools --typescript --tailwind --app --src-dir --import-alias "@/*"
-cd octotools
+npx create-next-app@latest toolslab --typescript --tailwind --app --src-dir --import-alias "@/*"
+cd toolslab
 
 # Install dependencies
 npm install zustand @codemirror/lang-json @codemirror/lang-sql codemirror comlink
@@ -1088,13 +1088,13 @@ STRIPE_PRICE_ID=price_xxx  # $2.99/month subscription
 
 ## 🎨 Visual Identity
 
-### Octopus Theme
+### Laboratory Theme
 
-- Logo: Animated SVG octopus with moving tentacles
-- Each tentacle represents a tool category
-- Loading states: Tentacle wave animation
-- 404 page: "This tentacle couldn't reach that page"
-- Success messages: "Tentacular!", "Ink-redible!"
+- Logo: Animated SVG flask with bubbling reactions
+- Each category represents a different scientific discipline
+- Loading states: Chemical reaction animations
+- 404 page: "Experiment not found - formula doesn't exist"
+- Success messages: "Experiment successful!", "Precisely calibrated!"
 
 ### UI Personality
 
@@ -1117,7 +1117,7 @@ STRIPE_PRICE_ID=price_xxx  # $2.99/month subscription
 
 ## 🚀 Launch Checklist
 
-- [ ] Domain configured (octotools.org)
+- [ ] Domain configured (toolslab.dev)
 - [ ] SSL certificate active
 - [ ] All 7 MVP tools working perfectly
 - [ ] Mobile experience tested
