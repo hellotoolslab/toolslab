@@ -1,28 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Search, ArrowRight, Sparkles } from 'lucide-react';
-import { SearchBar } from '@/components/SearchBar';
+import { useRef } from 'react';
+import { Sparkles } from 'lucide-react';
+import { SearchBar, SearchBarRef } from '@/components/SearchBar';
 
 export function SimpleHero() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const router = useRouter();
-
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      router.push(`/?search=${encodeURIComponent(searchQuery.trim())}`);
-    }
-  };
+  const searchBarRef = useRef<SearchBarRef>(null);
 
   const handleQuickSearch = (term: string) => {
-    router.push(`/?search=${encodeURIComponent(term)}`);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
+    searchBarRef.current?.setQuery(term);
   };
 
   return (
@@ -58,26 +44,7 @@ export function SimpleHero() {
 
           {/* Hero Search */}
           <div className="mx-auto max-w-2xl">
-            <div className="relative">
-              <Search className="absolute left-6 top-1/2 h-6 w-6 -translate-y-1/2 transform text-gray-400" />
-              <input
-                type="search"
-                placeholder="Try 'json analyzer'"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={handleKeyPress}
-                className="h-16 w-full rounded-2xl border border-white/20 bg-white/10 pl-16 pr-32 text-lg text-white placeholder-white/70 backdrop-blur-md transition-all duration-200 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/30"
-              />
-
-              {/* Search button */}
-              <button
-                onClick={handleSearch}
-                className="absolute right-3 top-1/2 flex -translate-y-1/2 transform items-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-lab-primary transition-all hover:bg-gray-100 active:scale-95"
-              >
-                Search
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
+            <SearchBar ref={searchBarRef} placeholder="Try 'json analyzer'" />
 
             {/* Quick suggestions */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
