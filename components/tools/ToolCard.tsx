@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import { Tool } from '@/lib/tools';
 import { cn } from '@/lib/utils';
@@ -13,6 +14,7 @@ const getCategoryColor = (category: string) => {
     generators: '#F97316',
     web: '#EC4899',
     dev: '#F59E0B',
+    formatters: '#6366F1',
   };
   return colors[category as keyof typeof colors] || '#3B82F6';
 };
@@ -70,7 +72,7 @@ export function ToolCard({
       <div
         className="absolute left-0 right-0 top-0 h-1 opacity-80"
         style={{
-          background: `linear-gradient(90deg, ${getCategoryColor(tool.categoryColor)}, transparent)`,
+          background: `linear-gradient(90deg, ${getCategoryColor(tool.categories[0])}, transparent)`,
         }}
       />
 
@@ -92,12 +94,12 @@ export function ToolCard({
           <div
             className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border-2 text-2xl transition-all duration-200"
             style={{
-              backgroundColor: `${getCategoryColor(tool.categoryColor)}20`,
-              borderColor: `${getCategoryColor(tool.categoryColor)}40`,
+              backgroundColor: `${getCategoryColor(tool.categories[0])}20`,
+              borderColor: `${getCategoryColor(tool.categories[0])}40`,
             }}
           >
             <span className="text-3xl" aria-hidden="true">
-              {tool.icon}
+              {typeof tool.icon === 'string' ? tool.icon : '📄'}
             </span>
           </div>
 
@@ -130,12 +132,12 @@ export function ToolCard({
               labelInfo.isComingSoon && 'opacity-60'
             )}
             style={{
-              backgroundColor: `${getCategoryColor(tool.categoryColor)}15`,
-              color: getCategoryColor(tool.categoryColor),
-              borderColor: `${getCategoryColor(tool.categoryColor)}30`,
+              backgroundColor: `${getCategoryColor(tool.categories[0])}15`,
+              color: getCategoryColor(tool.categories[0]),
+              borderColor: `${getCategoryColor(tool.categories[0])}30`,
             }}
           >
-            {tool.category}
+            {tool.categories[0]}
           </div>
         </div>
 
@@ -154,30 +156,32 @@ export function ToolCard({
         </p>
 
         {/* Keywords - Bottom section */}
-        <div className="mt-auto">
-          <div className="flex flex-wrap gap-1.5">
-            {tool.keywords.slice(0, 4).map((keyword) => (
-              <span
-                key={keyword}
-                className={cn(
-                  'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium transition-colors',
-                  labelInfo.isComingSoon
-                    ? 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-500'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
-                )}
-              >
-                {keyword}
-              </span>
-            ))}
+        {tool.keywords && tool.keywords.length > 0 && (
+          <div className="mt-auto">
+            <div className="flex flex-wrap gap-1.5">
+              {tool.keywords.slice(0, 4).map((keyword) => (
+                <span
+                  key={keyword}
+                  className={cn(
+                    'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium transition-colors',
+                    labelInfo.isComingSoon
+                      ? 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-500'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                  )}
+                >
+                  {keyword}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Hover effect overlay - only for clickable cards */}
       {labelInfo.isClickable && (
         <div
           className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-200 group-hover:opacity-5"
-          style={{ backgroundColor: getCategoryColor(tool.categoryColor) }}
+          style={{ backgroundColor: getCategoryColor(tool.categories[0]) }}
         />
       )}
     </CardWrapper>

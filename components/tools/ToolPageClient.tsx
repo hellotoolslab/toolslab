@@ -3,9 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { Tool } from '@/types/tool';
-import { tools } from '@/data/tools';
-import { categoryColors } from '@/data/categories';
+import {
+  tools,
+  getToolById,
+  categories,
+  getCategoryColorClass,
+} from '@/lib/tools';
 import ToolWorkspace from './ToolWorkspace';
 import AdBanner from '@/components/ads/AdBanner';
 import { useFeatureFlag } from '@/hooks/useEdgeConfig';
@@ -82,11 +85,33 @@ export default function ToolPageClient({
     return () => window.removeEventListener('resize', checkMobile);
   }, [toolSlug, initialInput, trackEngagement]);
 
-  const tool = tools.find((t) => t.slug === toolSlug);
+  const tool = getToolById(toolSlug);
 
   if (!tool) {
     return <div>Tool not found</div>;
   }
+
+  // Get primary category information
+  const primaryCategory = categories.find(
+    (cat) => cat.id === tool.categories[0]
+  );
+  const categoryId = tool.categories[0];
+
+  // Get category color using the same system as ToolCard
+  const getCategoryColor = (category: string) => {
+    const colors = {
+      data: '#0EA5E9',
+      encoding: '#10B981',
+      text: '#8B5CF6',
+      generators: '#F97316',
+      web: '#EC4899',
+      dev: '#F59E0B',
+      formatters: '#6366F1',
+    };
+    return colors[category as keyof typeof colors] || '#3B82F6';
+  };
+
+  const categoryColor = getCategoryColor(categoryId);
 
   const handleDismissAd = () => {
     setIsAdDismissed(true);
@@ -137,11 +162,10 @@ export default function ToolPageClient({
 
   // Get related tools from same category
   const relatedTools = tools
-    .filter((t) => t.category === tool.category && t.slug !== tool.slug)
+    .filter(
+      (t) => t.categories.includes(tool.categories[0]) && t.id !== tool.id
+    )
     .slice(0, 4);
-
-  // Get color for category
-  const categoryColor = categoryColors[tool.category] || categoryColors.default;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
@@ -172,11 +196,11 @@ export default function ToolPageClient({
           </Link>
           <ChevronRight className="h-4 w-4 text-gray-400" />
           <Link
-            href={`/category/${tool.category}`}
+            href={`/category/${categoryId}`}
             className="capitalize text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             style={{ color: categoryColor }}
           >
-            {tool.category}
+            {primaryCategory?.name || categoryId}
           </Link>
           <ChevronRight className="h-4 w-4 text-gray-400" />
           <span className="font-medium text-gray-900 dark:text-white">
@@ -193,10 +217,12 @@ export default function ToolPageClient({
                   className="rounded-xl p-2 sm:p-3"
                   style={{ backgroundColor: `${categoryColor}20` }}
                 >
-                  <tool.icon
-                    className="h-6 w-6 sm:h-8 sm:w-8"
+                  <span
+                    className="flex h-6 w-6 items-center justify-center text-2xl sm:h-8 sm:w-8 sm:text-3xl"
                     style={{ color: categoryColor }}
-                  />
+                  >
+                    {tool.icon}
+                  </span>
                 </div>
                 <div className="flex items-center gap-4">
                   <h1 className="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
@@ -204,7 +230,7 @@ export default function ToolPageClient({
                   </h1>
                   <FavoriteButton
                     type="tool"
-                    id={tool.slug}
+                    id={tool.id}
                     name={tool.name}
                     size="lg"
                     showLabel={false}
@@ -217,7 +243,7 @@ export default function ToolPageClient({
                     color: categoryColor,
                   }}
                 >
-                  {tool.category}
+                  {primaryCategory?.name || categoryId}
                 </span>
                 {labelInfo.hasLabel && (
                   <div>{getLabelComponent(toolLabel, 'sm')}</div>
@@ -246,7 +272,7 @@ export default function ToolPageClient({
           {/* Tool Workspace */}
           <div className="lg:col-span-2">
             <ToolWorkspace
-              tool={tool}
+              tool={{ ...tool, slug: tool.id, category: categoryId } as any}
               categoryColor={categoryColor}
               initialInput={initialInput}
             />
@@ -373,18 +399,20 @@ export default function ToolPageClient({
                 <div className="space-y-3">
                   {relatedTools.map((relatedTool) => (
                     <Link
-                      key={relatedTool.slug}
-                      href={`/tools/${relatedTool.slug}`}
+                      key={relatedTool.id}
+                      href={`/tools/${relatedTool.id}`}
                       className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                       <div
                         className="rounded-lg p-2"
                         style={{ backgroundColor: `${categoryColor}20` }}
                       >
-                        <relatedTool.icon
-                          className="h-5 w-5"
+                        <span
+                          className="flex h-5 w-5 items-center justify-center text-lg"
                           style={{ color: categoryColor }}
-                        />
+                        >
+                          {relatedTool.icon}
+                        </span>
                       </div>
                       <div className="flex-1">
                         <p className="text-sm font-medium text-gray-900 dark:text-white">
@@ -452,18 +480,20 @@ export default function ToolPageClient({
             <div className="grid grid-cols-2 gap-4">
               {relatedTools.map((relatedTool) => (
                 <Link
-                  key={relatedTool.slug}
-                  href={`/tools/${relatedTool.slug}`}
+                  key={relatedTool.id}
+                  href={`/tools/${relatedTool.id}`}
                   className="rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
                 >
                   <div
                     className="mb-2 inline-block rounded-lg p-2"
                     style={{ backgroundColor: `${categoryColor}20` }}
                   >
-                    <relatedTool.icon
-                      className="h-5 w-5"
+                    <span
+                      className="flex h-5 w-5 items-center justify-center text-lg"
                       style={{ color: categoryColor }}
-                    />
+                    >
+                      {relatedTool.icon}
+                    </span>
                   </div>
                   <p className="text-sm font-medium text-gray-900 dark:text-white">
                     {relatedTool.name}

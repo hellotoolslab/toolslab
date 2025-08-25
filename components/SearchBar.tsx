@@ -150,8 +150,8 @@ export function SearchBar({
                   <div
                     className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border text-lg"
                     style={{
-                      backgroundColor: `${getCategoryColor(tool.categoryColor)}20`,
-                      borderColor: `${getCategoryColor(tool.categoryColor)}40`,
+                      backgroundColor: `${getCategoryColor(tool.categories[0])}20`,
+                      borderColor: `${getCategoryColor(tool.categories[0])}40`,
                     }}
                   >
                     <span>{tool.icon}</span>
@@ -167,11 +167,11 @@ export function SearchBar({
                       <span
                         className="inline-flex items-center rounded px-2 py-0.5 text-xs font-medium"
                         style={{
-                          backgroundColor: `${getCategoryColor(tool.categoryColor)}20`,
-                          color: getCategoryColor(tool.categoryColor),
+                          backgroundColor: `${getCategoryColor(tool.categories[0])}20`,
+                          color: getCategoryColor(tool.categories[0]),
                         }}
                       >
-                        {tool.category}
+                        {tool.categories[0]}
                       </span>
                       {tool.isPopular && (
                         <span className="text-xs font-medium text-yellow-600 dark:text-yellow-400">
