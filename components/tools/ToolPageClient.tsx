@@ -160,10 +160,13 @@ export default function ToolPageClient({
     }
   };
 
-  // Get related tools from same category
+  // Get related tools from same category (excluding coming-soon tools)
   const relatedTools = tools
     .filter(
-      (t) => t.categories.includes(tool.categories[0]) && t.id !== tool.id
+      (t) =>
+        t.categories.includes(tool.categories[0]) &&
+        t.id !== tool.id &&
+        t.label !== 'coming-soon'
     )
     .slice(0, 4);
 

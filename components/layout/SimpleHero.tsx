@@ -1,6 +1,30 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Search, ArrowRight, Sparkles } from 'lucide-react';
+import { SearchBar } from '@/components/SearchBar';
 
 export function SimpleHero() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleQuickSearch = (term: string) => {
+    router.push(`/?search=${encodeURIComponent(term)}`);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-lab-primary via-lab-secondary to-lab-primary py-20 lg:py-32">
       {/* Pattern overlay */}
@@ -39,27 +63,33 @@ export function SimpleHero() {
               <input
                 type="search"
                 placeholder="Try 'json analyzer'"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleKeyPress}
                 className="h-16 w-full rounded-2xl border border-white/20 bg-white/10 pl-16 pr-32 text-lg text-white placeholder-white/70 backdrop-blur-md transition-all duration-200 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/30"
-                readOnly
               />
 
               {/* Search button */}
-              <div className="absolute right-3 top-1/2 flex -translate-y-1/2 transform items-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-lab-primary">
+              <button
+                onClick={handleSearch}
+                className="absolute right-3 top-1/2 flex -translate-y-1/2 transform items-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-lab-primary transition-all hover:bg-gray-100 active:scale-95"
+              >
                 Search
                 <ArrowRight className="h-4 w-4" />
-              </div>
+              </button>
             </div>
 
             {/* Quick suggestions */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <span className="text-sm text-white/70">Popular:</span>
               {['JSON', 'Base64', 'UUID', 'Hash'].map((term) => (
-                <div
+                <button
                   key={term}
-                  className="cursor-pointer rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm transition-all duration-200 hover:scale-105 hover:bg-white/20"
+                  onClick={() => handleQuickSearch(term)}
+                  className="cursor-pointer rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm transition-all duration-200 hover:scale-105 hover:bg-white/20 active:scale-95"
                 >
                   {term}
-                </div>
+                </button>
               ))}
             </div>
           </div>

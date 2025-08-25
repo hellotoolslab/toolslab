@@ -320,11 +320,12 @@ export function searchTools(query: string): Tool[] {
   return tools
     .filter(
       (tool) =>
-        tool.name.toLowerCase().includes(searchTerm) ||
-        tool.description.toLowerCase().includes(searchTerm) ||
-        tool.keywords.some((keyword) =>
-          keyword.toLowerCase().includes(searchTerm)
-        )
+        tool.label !== 'coming-soon' &&
+        (tool.name.toLowerCase().includes(searchTerm) ||
+          tool.description.toLowerCase().includes(searchTerm) ||
+          tool.keywords.some((keyword) =>
+            keyword.toLowerCase().includes(searchTerm)
+          ))
     )
     .sort((a, b) => b.searchVolume - a.searchVolume);
 }

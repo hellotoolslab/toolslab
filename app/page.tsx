@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import HomePageContent from '@/components/layout/HomePageContent';
 
 export const metadata: Metadata = {
@@ -16,7 +17,11 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <HomePageContent />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomePageContent />
+    </Suspense>
+  );
 }
 
 export async function generateStaticParams() {
