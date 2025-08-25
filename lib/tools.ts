@@ -5,11 +5,13 @@ export interface Tool {
   icon: string;
   route: string;
   category: string;
+  categories?: string[]; // Multiple categories support
   categoryColor: string;
   keywords: string[];
   isPopular?: boolean;
   isNew?: boolean;
   searchVolume: number;
+  label?: 'popular' | 'new' | 'coming-soon' | ''; // Tool label for badges
 }
 
 export interface Category {
@@ -26,14 +28,17 @@ export const tools: Tool[] = [
   {
     id: 'json-formatter',
     name: 'JSON Formatter',
-    description: 'Format, validate and beautify JSON data with syntax highlighting',
+    description:
+      'Format, validate and beautify JSON data with syntax highlighting',
     icon: '📋',
     route: '/tools/json-formatter',
-    category: 'Data & Conversion',
+    category: 'Data & Conversion', // Primary category
+    categories: ['Data & Conversion', 'Formatters'], // Multiple categories
     categoryColor: 'data',
     keywords: ['json', 'format', 'validate', 'prettify', 'parse'],
     isPopular: true,
-    searchVolume: 8500
+    searchVolume: 8500,
+    label: 'popular',
   },
   {
     id: 'csv-to-json',
@@ -45,7 +50,7 @@ export const tools: Tool[] = [
     categoryColor: 'data',
     keywords: ['csv', 'json', 'convert', 'data', 'transform'],
     isPopular: true,
-    searchVolume: 7200
+    searchVolume: 7200,
   },
   {
     id: 'sql-formatter',
@@ -53,10 +58,12 @@ export const tools: Tool[] = [
     description: 'Format and beautify SQL queries with proper indentation',
     icon: '🗃️',
     route: '/tools/sql-formatter',
-    category: 'Data & Conversion',
-    categoryColor: 'data',
+    category: 'Formatters', // Primary category
+    categories: ['Formatters', 'Data & Conversion', 'Text & Format'], // Multiple categories
+    categoryColor: 'formatters',
     keywords: ['sql', 'format', 'database', 'query', 'beautify'],
-    searchVolume: 6800
+    searchVolume: 6800,
+    label: 'popular',
   },
   {
     id: 'xml-formatter',
@@ -64,10 +71,12 @@ export const tools: Tool[] = [
     description: 'Format and validate XML documents with syntax highlighting',
     icon: '📄',
     route: '/tools/xml-formatter',
-    category: 'Data & Conversion',
-    categoryColor: 'data',
+    category: 'Formatters', // Primary category
+    categories: ['Formatters', 'Data & Conversion'], // Multiple categories
+    categoryColor: 'formatters',
     keywords: ['xml', 'format', 'validate', 'markup', 'document'],
-    searchVolume: 5500
+    searchVolume: 5500,
+    label: '',
   },
 
   // Encoding & Security Tools
@@ -81,7 +90,8 @@ export const tools: Tool[] = [
     categoryColor: 'encoding',
     keywords: ['base64', 'encode', 'decode', 'encryption', 'security'],
     isPopular: true,
-    searchVolume: 9200
+    searchVolume: 9200,
+    label: 'coming-soon',
   },
   {
     id: 'url-encode',
@@ -93,7 +103,8 @@ export const tools: Tool[] = [
     categoryColor: 'encoding',
     keywords: ['url', 'encode', 'decode', 'percent', 'uri'],
     isPopular: true,
-    searchVolume: 7800
+    searchVolume: 7800,
+    label: 'coming-soon',
   },
   {
     id: 'hash-generator',
@@ -105,7 +116,8 @@ export const tools: Tool[] = [
     categoryColor: 'encoding',
     keywords: ['hash', 'md5', 'sha1', 'sha256', 'checksum'],
     isPopular: true,
-    searchVolume: 6500
+    searchVolume: 6500,
+    label: 'new',
   },
   {
     id: 'jwt-decoder',
@@ -117,7 +129,8 @@ export const tools: Tool[] = [
     categoryColor: 'encoding',
     keywords: ['jwt', 'json', 'web', 'token', 'decode'],
     isNew: true,
-    searchVolume: 5800
+    searchVolume: 5800,
+    label: '',
   },
 
   // Text & Format Tools
@@ -130,7 +143,7 @@ export const tools: Tool[] = [
     category: 'Text & Format',
     categoryColor: 'text',
     keywords: ['diff', 'compare', 'text', 'difference', 'merge'],
-    searchVolume: 5200
+    searchVolume: 5200,
   },
   {
     id: 'markdown-preview',
@@ -141,7 +154,7 @@ export const tools: Tool[] = [
     category: 'Text & Format',
     categoryColor: 'text',
     keywords: ['markdown', 'preview', 'html', 'convert', 'format'],
-    searchVolume: 4800
+    searchVolume: 4800,
   },
   {
     id: 'regex-tester',
@@ -153,7 +166,7 @@ export const tools: Tool[] = [
     categoryColor: 'text',
     keywords: ['regex', 'regexp', 'pattern', 'test', 'match'],
     isPopular: true,
-    searchVolume: 7500
+    searchVolume: 7500,
   },
 
   // Generators
@@ -167,7 +180,8 @@ export const tools: Tool[] = [
     categoryColor: 'generators',
     keywords: ['uuid', 'guid', 'generate', 'unique', 'identifier'],
     isPopular: true,
-    searchVolume: 8200
+    searchVolume: 8200,
+    label: 'new',
   },
   {
     id: 'password-generator',
@@ -179,7 +193,7 @@ export const tools: Tool[] = [
     categoryColor: 'generators',
     keywords: ['password', 'generate', 'secure', 'random', 'strong'],
     isPopular: true,
-    searchVolume: 9500
+    searchVolume: 9500,
   },
   {
     id: 'qr-generator',
@@ -190,10 +204,10 @@ export const tools: Tool[] = [
     category: 'Generators',
     categoryColor: 'generators',
     keywords: ['qr', 'code', 'generate', 'barcode', 'scan'],
-    searchVolume: 6200
+    searchVolume: 6200,
   },
 
-  // Web & Design Tools  
+  // Web & Design Tools
   {
     id: 'color-picker',
     name: 'Color Picker',
@@ -203,7 +217,7 @@ export const tools: Tool[] = [
     category: 'Web & Design',
     categoryColor: 'web',
     keywords: ['color', 'picker', 'hex', 'rgb', 'hsl'],
-    searchVolume: 5800
+    searchVolume: 5800,
   },
   {
     id: 'image-optimizer',
@@ -215,7 +229,7 @@ export const tools: Tool[] = [
     categoryColor: 'web',
     keywords: ['image', 'optimize', 'compress', 'resize', 'webp'],
     isNew: true,
-    searchVolume: 4500
+    searchVolume: 4500,
   },
 
   // Dev Utilities
@@ -228,7 +242,8 @@ export const tools: Tool[] = [
     category: 'Dev Utilities',
     categoryColor: 'dev',
     keywords: ['api', 'rest', 'test', 'http', 'request'],
-    searchVolume: 6800
+    searchVolume: 6800,
+    label: 'coming-soon',
   },
   {
     id: 'json-validator',
@@ -239,8 +254,9 @@ export const tools: Tool[] = [
     category: 'Dev Utilities',
     categoryColor: 'dev',
     keywords: ['json', 'schema', 'validate', 'check', 'format'],
-    searchVolume: 4200
-  }
+    searchVolume: 4200,
+    label: 'coming-soon',
+  },
 ];
 
 // Group tools by category
@@ -248,67 +264,109 @@ export const categories: Category[] = [
   {
     id: 'data',
     name: 'Data & Conversion',
-    description: 'Transform and format data between different formats like JSON, CSV, XML, and SQL.',
+    description:
+      'Transform and format data between different formats like JSON, CSV, XML, and SQL.',
     icon: '📊',
-    tools: tools.filter(tool => tool.categoryColor === 'data')
+    tools: getToolsByCategory('data'),
   },
   {
     id: 'encoding',
     name: 'Encoding & Security',
-    description: 'Encode, decode, hash, and secure your data with various encryption methods.',
+    description:
+      'Encode, decode, hash, and secure your data with various encryption methods.',
     icon: '🔐',
-    tools: tools.filter(tool => tool.categoryColor === 'encoding')
+    tools: getToolsByCategory('encoding'),
   },
   {
     id: 'text',
     name: 'Text & Format',
-    description: 'Process, compare, and format text content with powerful text manipulation tools.',
+    description:
+      'Process, compare, and format text content with powerful text manipulation tools.',
     icon: '📝',
-    tools: tools.filter(tool => tool.categoryColor === 'text')
+    tools: getToolsByCategory('text'),
   },
   {
     id: 'generators',
     name: 'Generators',
-    description: 'Generate UUIDs, passwords, QR codes, and other useful content for development.',
+    description:
+      'Generate UUIDs, passwords, QR codes, and other useful content for development.',
     icon: '⚡',
-    tools: tools.filter(tool => tool.categoryColor === 'generators')
+    tools: getToolsByCategory('generators'),
   },
   {
     id: 'web',
     name: 'Web & Design',
-    description: 'Tools for web developers and designers including color pickers and image optimization.',
+    description:
+      'Tools for web developers and designers including color pickers and image optimization.',
     icon: '🎨',
-    tools: tools.filter(tool => tool.categoryColor === 'web')
+    tools: getToolsByCategory('web'),
   },
   {
     id: 'dev',
     name: 'Dev Utilities',
-    description: 'Development utilities for testing APIs, validating schemas, and debugging code.',
+    description:
+      'Development utilities for testing APIs, validating schemas, and debugging code.',
     icon: '🔧',
-    tools: tools.filter(tool => tool.categoryColor === 'dev')
-  }
+    tools: getToolsByCategory('dev'),
+  },
+  {
+    id: 'formatters',
+    name: 'Formatters',
+    description:
+      'Format and beautify code, SQL, JSON, XML and other structured data.',
+    icon: '🪄',
+    tools: getToolsByCategory('formatters'),
+  },
 ];
 
 // Helper functions
 export function getPopularTools(): Tool[] {
-  return tools.filter(tool => tool.isPopular).sort((a, b) => b.searchVolume - a.searchVolume);
+  return tools
+    .filter((tool) => tool.isPopular)
+    .sort((a, b) => b.searchVolume - a.searchVolume);
 }
 
 export function searchTools(query: string): Tool[] {
   const searchTerm = query.toLowerCase();
-  return tools.filter(tool => 
-    tool.name.toLowerCase().includes(searchTerm) ||
-    tool.description.toLowerCase().includes(searchTerm) ||
-    tool.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm))
-  ).sort((a, b) => b.searchVolume - a.searchVolume);
+  return tools
+    .filter(
+      (tool) =>
+        tool.name.toLowerCase().includes(searchTerm) ||
+        tool.description.toLowerCase().includes(searchTerm) ||
+        tool.keywords.some((keyword) =>
+          keyword.toLowerCase().includes(searchTerm)
+        )
+    )
+    .sort((a, b) => b.searchVolume - a.searchVolume);
 }
 
 export function getToolsByCategory(categoryId: string): Tool[] {
-  return tools.filter(tool => tool.categoryColor === categoryId);
+  return tools.filter((tool) => {
+    // Check primary category
+    if (tool.categoryColor === categoryId) return true;
+
+    // Check multiple categories if they exist
+    if (tool.categories) {
+      // Map category names to category IDs/colors
+      const categoryMapping: { [key: string]: string } = {
+        'Data & Conversion': 'data',
+        'Encoding & Security': 'encoding',
+        'Text & Format': 'text',
+        Generators: 'generators',
+        'Web & Design': 'web',
+        'Dev Utilities': 'dev',
+        Formatters: 'formatters',
+      };
+
+      return tool.categories.some((cat) => categoryMapping[cat] === categoryId);
+    }
+
+    return false;
+  });
 }
 
 export function getToolById(id: string): Tool | undefined {
-  return tools.find(tool => tool.id === id);
+  return tools.find((tool) => tool.id === id);
 }
 
 export function getCategoryColorClass(categoryColor: string): string {
@@ -318,11 +376,17 @@ export function getCategoryColorClass(categoryColor: string): string {
     text: 'border-purple-500 bg-purple-50 dark:bg-purple-950',
     generators: 'border-orange-500 bg-orange-50 dark:bg-orange-950',
     web: 'border-pink-500 bg-pink-50 dark:bg-pink-950',
-    dev: 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950'
+    dev: 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950',
+    formatters: 'border-indigo-500 bg-indigo-50 dark:bg-indigo-950',
   };
-  return colorClasses[categoryColor as keyof typeof colorClasses] || 'border-blue-500 bg-blue-50 dark:bg-blue-950';
+  return (
+    colorClasses[categoryColor as keyof typeof colorClasses] ||
+    'border-blue-500 bg-blue-50 dark:bg-blue-950'
+  );
 }
 
 export function getCategoryByTool(tool: Tool): Category | undefined {
-  return categories.find(category => category.tools.some(t => t.id === tool.id));
+  return categories.find((category) =>
+    category.tools.some((t) => t.id === tool.id)
+  );
 }

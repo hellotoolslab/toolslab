@@ -2,6 +2,7 @@
 
 import { ToolLabel } from '@/lib/edge-config/types';
 import { useFeatureFlag } from '@/hooks/useEdgeConfig';
+import { getToolById } from '@/lib/tools';
 
 /**
  * Service for managing tool labels via Edge Config
@@ -101,15 +102,9 @@ export function useToolLabelService() {
   };
 }
 
-// Default tool labels for demonstration
-export const DEFAULT_TOOL_LABELS: Record<string, ToolLabel> = {
-  'json-formatter': 'popular',
-  'base64-encode': 'popular',
-  'url-encode': 'coming-soon',
-  'hash-generator': 'new',
-  'uuid-generator': 'new',
-  // Add more as needed
-};
+// DEPRECATED: Default tool labels - now defined in individual tools
+// This is kept for backward compatibility and will be removed
+export const DEFAULT_TOOL_LABELS: Record<string, ToolLabel> = {};
 
 /**
  * Hook to get tool label with fallbacks
@@ -117,6 +112,14 @@ export const DEFAULT_TOOL_LABELS: Record<string, ToolLabel> = {
 export function useToolLabel(toolId: string): ToolLabel | undefined {
   const { getToolLabel } = useToolLabelService();
 
-  // Try to get from service first, then fallback to defaults
-  return getToolLabel(toolId) || DEFAULT_TOOL_LABELS[toolId];
+  // Try to get from service first
+  const serviceLabel = getToolLabel(toolId);
+  if (serviceLabel) return serviceLabel;
+
+  // Get from tool definition
+  const tool = getToolById(toolId);
+  if (tool?.label) return tool.label as ToolLabel;
+
+  // Fallback to defaults (deprecated)
+  return DEFAULT_TOOL_LABELS[toolId];
 }

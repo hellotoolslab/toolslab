@@ -13,16 +13,15 @@ import { useUmami } from '@/components/analytics/UmamiProvider';
 import {
   ChevronRight,
   Share2,
-  Clock,
-  TrendingUp,
   X,
   Info,
   BookOpen,
   HelpCircle,
   ArrowRight,
-  Star,
 } from 'lucide-react';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
+import { useToolLabel } from '@/lib/services/toolLabelService';
+import { useToolLabels } from '@/lib/hooks/useToolLabels';
 
 interface ToolPageClientProps {
   toolSlug: string;
@@ -39,6 +38,11 @@ export default function ToolPageClient({
   const [usageCount, setUsageCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const adsEnabled = useFeatureFlag('adsEnabled');
+
+  // Tool label system
+  const toolLabel = useToolLabel(toolSlug);
+  const { getToolLabelInfo, getLabelComponent } = useToolLabels();
+  const labelInfo = getToolLabelInfo(toolLabel);
 
   // Extract initial input from search params
   const initialInput = searchParams?.input
@@ -215,37 +219,16 @@ export default function ToolPageClient({
                 >
                   {tool.category}
                 </span>
-                {usageCount > 2000 && (
-                  <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                    Popular
-                  </span>
+                {labelInfo.hasLabel && (
+                  <div>{getLabelComponent(toolLabel, 'sm')}</div>
                 )}
               </div>
               <p className="mb-4 text-sm text-gray-600 dark:text-gray-400 sm:text-lg">
                 {tool.description}
               </p>
 
-              {/* Tool Stats Bar */}
+              {/* Share Button */}
               <div className="flex flex-wrap items-center gap-2 text-xs sm:gap-4 sm:text-sm">
-                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                  <TrendingUp className="h-4 w-4" />
-                  <span>Used {usageCount.toLocaleString()} times today</span>
-                </div>
-                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                  <Clock className="h-4 w-4" />
-                  <span>Saves ~5 min per use</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`h-4 w-4 ${i < 4 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
-                    />
-                  ))}
-                  <span className="ml-1 text-gray-500 dark:text-gray-400">
-                    4.8
-                  </span>
-                </div>
                 <button
                   onClick={handleShare}
                   className="flex items-center gap-1 rounded-lg border border-gray-300 px-3 py-1 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800"
