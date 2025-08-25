@@ -1,0 +1,35 @@
+<svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle for better visibility -->
+  <circle cx="64" cy="64" r="64" fill="#1e293b"/>
+  
+  <!-- Flask body (conical shape) -->
+  <path
+    d="M48 45 L48 32 Q48 28 52 28 L76 28 Q80 28 80 32 L80 45 L92 70 Q96 78 92 86 Q88 94 78 94 L50 94 Q40 94 36 86 Q32 78 36 70 L48 45 Z"
+    fill="none"
+    stroke="url(#flaskGradient)"
+    stroke-width="6"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+  
+  <!-- Liquid inside flask -->
+  <path
+    d="M42 70 Q46 68 52 70 Q58 72 64 70 Q70 68 74 70 Q80 72 86 70 L86 88 Q82 90 78 88 L50 88 Q46 90 42 88 L42 70 Z"
+    fill="#10b981"
+  />
+  
+  <!-- Bubbles rising from liquid -->
+  <circle cx="54" cy="60" r="3" fill="#34d399" opacity="0.8"/>
+  <circle cx="64" cy="55" r="2.5" fill="#34d399" opacity="0.7"/>
+  <circle cx="74" cy="50" r="2" fill="#34d399" opacity="0.6"/>
+  <circle cx="58" cy="45" r="1.5" fill="#34d399" opacity="0.5"/>
+  <circle cx="70" cy="40" r="1" fill="#34d399" opacity="0.4"/>
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="flaskGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+</svg>
