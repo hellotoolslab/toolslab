@@ -157,9 +157,9 @@ export default function ToolPageClient({
         </div>
       )}
 
-      <div className="mx-auto max-w-7xl px-4 py-8">
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:py-8">
         {/* Breadcrumb */}
-        <nav className="mb-6 flex items-center space-x-2 text-sm">
+        <nav className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:mb-6 sm:text-sm">
           <Link
             href="/"
             className="text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -181,21 +181,21 @@ export default function ToolPageClient({
         </nav>
 
         {/* Tool Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <div className="mb-4 flex items-start justify-between">
             <div className="flex-1">
-              <div className="mb-2 flex items-center gap-3">
+              <div className="mb-2 flex flex-wrap items-center gap-2 sm:gap-3">
                 <div
-                  className="rounded-xl p-3"
+                  className="rounded-xl p-2 sm:p-3"
                   style={{ backgroundColor: `${categoryColor}20` }}
                 >
                   <tool.icon
-                    className="h-8 w-8"
+                    className="h-6 w-6 sm:h-8 sm:w-8"
                     style={{ color: categoryColor }}
                   />
                 </div>
                 <div className="flex items-center gap-4">
-                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
                     {tool.name}
                   </h1>
                   <FavoriteButton
@@ -221,12 +221,12 @@ export default function ToolPageClient({
                   </span>
                 )}
               </div>
-              <p className="mb-4 text-lg text-gray-600 dark:text-gray-400">
+              <p className="mb-4 text-sm text-gray-600 dark:text-gray-400 sm:text-lg">
                 {tool.description}
               </p>
 
               {/* Tool Stats Bar */}
-              <div className="flex flex-wrap items-center gap-4 text-sm">
+              <div className="flex flex-wrap items-center gap-2 text-xs sm:gap-4 sm:text-sm">
                 <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
                   <TrendingUp className="h-4 w-4" />
                   <span>Used {usageCount.toLocaleString()} times today</span>
@@ -269,7 +269,7 @@ export default function ToolPageClient({
             />
 
             {/* How to Use Section */}
-            <div className="mt-12 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:mt-12 sm:p-6">
               <div className="mb-4 flex items-center gap-2">
                 <BookOpen
                   className="h-5 w-5"
@@ -328,7 +328,7 @@ export default function ToolPageClient({
             </div>
 
             {/* FAQ Section */}
-            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
               <div className="mb-4 flex items-center gap-2">
                 <HelpCircle
                   className="h-5 w-5"
@@ -462,8 +462,8 @@ export default function ToolPageClient({
 
         {/* Mobile Related Tools */}
         {isMobile && (
-          <div className="mt-12">
-            <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+          <div className="mt-8 sm:mt-12">
+            <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
               Related Tools
             </h3>
             <div className="grid grid-cols-2 gap-4">

@@ -241,7 +241,7 @@ export default function PasswordGenerator({
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3 dark:border-gray-700 sm:px-6 sm:py-4">
         <div className="flex items-center gap-3">
           <Key className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -259,7 +259,7 @@ export default function PasswordGenerator({
         </div>
       </div>
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-4 p-4 sm:space-y-6 sm:p-6">
         {/* Generated Password Display */}
         <div className="relative">
           <div
@@ -267,26 +267,26 @@ export default function PasswordGenerator({
             style={{ borderColor: `${categoryColor}30` }}
           >
             <div className="flex items-center justify-between gap-4">
-              <code className="flex-1 break-all font-mono text-lg text-gray-900 dark:text-white md:text-xl">
+              <code className="flex-1 break-all font-mono text-sm text-gray-900 dark:text-white sm:text-lg md:text-xl">
                 {password || 'Click generate to create password'}
               </code>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-shrink-0 items-center gap-1 sm:gap-2">
                 <button
                   onClick={handleCopy}
                   disabled={!password}
-                  className="rounded-lg p-2 transition-colors hover:bg-gray-200 disabled:opacity-50 dark:hover:bg-gray-700"
+                  className="rounded-lg p-1.5 transition-colors hover:bg-gray-200 disabled:opacity-50 dark:hover:bg-gray-700 sm:p-2"
                 >
                   {isCopied ? (
-                    <Check className="h-5 w-5 text-green-500" />
+                    <Check className="h-4 w-4 text-green-500 sm:h-5 sm:w-5" />
                   ) : (
-                    <Copy className="h-5 w-5" />
+                    <Copy className="h-4 w-4 sm:h-5 sm:w-5" />
                   )}
                 </button>
                 <button
                   onClick={generatePassword}
-                  className="rounded-lg p-2 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700"
+                  className="rounded-lg p-1.5 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 sm:p-2"
                 >
-                  <RefreshCw className="h-5 w-5" />
+                  <RefreshCw className="h-4 w-4 sm:h-5 sm:w-5" />
                 </button>
               </div>
             </div>
@@ -347,8 +347,8 @@ export default function PasswordGenerator({
           </div>
 
           {/* Character Options */}
-          <div className="grid grid-cols-2 gap-3">
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-3 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-2 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900 sm:p-3">
               <input
                 type="checkbox"
                 checked={includeUppercase}
@@ -371,7 +371,7 @@ export default function PasswordGenerator({
               </span>
             </label>
 
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-3 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900">
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-2 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900 sm:p-3">
               <input
                 type="checkbox"
                 checked={includeLowercase}
@@ -394,7 +394,7 @@ export default function PasswordGenerator({
               </span>
             </label>
 
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-3 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900">
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-2 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900 sm:p-3">
               <input
                 type="checkbox"
                 checked={includeNumbers}
@@ -417,7 +417,7 @@ export default function PasswordGenerator({
               </span>
             </label>
 
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-3 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900">
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-2 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900 sm:p-3">
               <input
                 type="checkbox"
                 checked={includeSymbols}
@@ -440,7 +440,7 @@ export default function PasswordGenerator({
               </span>
             </label>
 
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-3 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900">
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-2 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900 sm:p-3">
               <input
                 type="checkbox"
                 checked={excludeSimilar}
@@ -463,7 +463,7 @@ export default function PasswordGenerator({
               </span>
             </label>
 
-            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-3 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900">
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 p-2 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900 sm:p-3">
               <input
                 type="checkbox"
                 checked={includePronounceable}
@@ -492,7 +492,7 @@ export default function PasswordGenerator({
         <div className="flex justify-center">
           <button
             onClick={generatePassword}
-            className="flex items-center gap-2 rounded-lg px-8 py-3 font-medium text-white transition-all hover:scale-105 active:scale-95"
+            className="flex items-center gap-2 rounded-lg px-6 py-2.5 font-medium text-white transition-all hover:scale-105 active:scale-95 sm:px-8 sm:py-3"
             style={{
               backgroundColor: categoryColor,
               boxShadow: `0 4px 12px ${categoryColor}40`,
