@@ -184,10 +184,10 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/tools/base64-encoder"
+                  href="/tools/regex-tester"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Base64 Encoder
+                  Regex Tester
                 </Link>
               </li>
               <li>
@@ -196,14 +196,6 @@ export function Footer() {
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   UUID Generator
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/tools/jwt-decoder"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  JWT Decoder
                 </Link>
               </li>
             </ul>

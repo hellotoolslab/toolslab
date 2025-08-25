@@ -4,9 +4,7 @@ export interface Tool {
   description: string;
   icon: string;
   route: string;
-  category: string;
-  categories?: string[]; // Multiple categories support
-  categoryColor: string;
+  categories: string[]; // Array of category IDs from categories: Category[]
   keywords: string[];
   isPopular?: boolean;
   isNew?: boolean;
@@ -32,13 +30,11 @@ export const tools: Tool[] = [
       'Format, validate and beautify JSON data with syntax highlighting',
     icon: '📋',
     route: '/tools/json-formatter',
-    category: 'Data & Conversion', // Primary category
-    categories: ['Data & Conversion', 'Formatters'], // Multiple categories
-    categoryColor: 'data',
+    categories: ['data', 'formatters'],
     keywords: ['json', 'format', 'validate', 'prettify', 'parse'],
     isPopular: true,
     searchVolume: 8500,
-    label: 'popular',
+    label: '',
   },
   {
     id: 'csv-to-json',
@@ -46,11 +42,11 @@ export const tools: Tool[] = [
     description: 'Convert CSV files to JSON format with customizable options',
     icon: '🔄',
     route: '/tools/csv-to-json',
-    category: 'Data & Conversion',
-    categoryColor: 'data',
+    categories: ['data'],
     keywords: ['csv', 'json', 'convert', 'data', 'transform'],
     isPopular: true,
     searchVolume: 7200,
+    label: 'coming-soon',
   },
   {
     id: 'sql-formatter',
@@ -58,12 +54,10 @@ export const tools: Tool[] = [
     description: 'Format and beautify SQL queries with proper indentation',
     icon: '🗃️',
     route: '/tools/sql-formatter',
-    category: 'Formatters', // Primary category
-    categories: ['Formatters', 'Data & Conversion', 'Text & Format'], // Multiple categories
-    categoryColor: 'formatters',
+    categories: ['formatters', 'data', 'text'],
     keywords: ['sql', 'format', 'database', 'query', 'beautify'],
     searchVolume: 6800,
-    label: 'popular',
+    label: 'coming-soon',
   },
   {
     id: 'xml-formatter',
@@ -71,12 +65,10 @@ export const tools: Tool[] = [
     description: 'Format and validate XML documents with syntax highlighting',
     icon: '📄',
     route: '/tools/xml-formatter',
-    category: 'Formatters', // Primary category
-    categories: ['Formatters', 'Data & Conversion'], // Multiple categories
-    categoryColor: 'formatters',
+    categories: ['formatters', 'data'],
     keywords: ['xml', 'format', 'validate', 'markup', 'document'],
     searchVolume: 5500,
-    label: '',
+    label: 'coming-soon',
   },
 
   // Encoding & Security Tools
@@ -86,8 +78,7 @@ export const tools: Tool[] = [
     description: 'Encode and decode Base64 strings with file support',
     icon: '🔐',
     route: '/tools/base64',
-    category: 'Encoding & Security',
-    categoryColor: 'encoding',
+    categories: ['encoding'],
     keywords: ['base64', 'encode', 'decode', 'encryption', 'security'],
     isPopular: true,
     searchVolume: 9200,
@@ -99,8 +90,7 @@ export const tools: Tool[] = [
     description: 'Encode and decode URL components and query parameters',
     icon: '🔗',
     route: '/tools/url-encode',
-    category: 'Encoding & Security',
-    categoryColor: 'encoding',
+    categories: ['encoding'],
     keywords: ['url', 'encode', 'decode', 'percent', 'uri'],
     isPopular: true,
     searchVolume: 7800,
@@ -112,12 +102,11 @@ export const tools: Tool[] = [
     description: 'Generate MD5, SHA1, SHA256 and other hash functions',
     icon: '#️⃣',
     route: '/tools/hash-generator',
-    category: 'Encoding & Security',
-    categoryColor: 'encoding',
+    categories: ['encoding'],
     keywords: ['hash', 'md5', 'sha1', 'sha256', 'checksum'],
     isPopular: true,
     searchVolume: 6500,
-    label: 'new',
+    label: 'coming-soon',
   },
   {
     id: 'jwt-decoder',
@@ -125,12 +114,11 @@ export const tools: Tool[] = [
     description: 'Decode and validate JSON Web Tokens (JWT)',
     icon: '🎫',
     route: '/tools/jwt-decoder',
-    category: 'Encoding & Security',
-    categoryColor: 'encoding',
+    categories: ['encoding'],
     keywords: ['jwt', 'json', 'web', 'token', 'decode'],
     isNew: true,
     searchVolume: 5800,
-    label: '',
+    label: 'coming-soon',
   },
 
   // Text & Format Tools
@@ -140,10 +128,10 @@ export const tools: Tool[] = [
     description: 'Compare two texts and highlight differences',
     icon: '📝',
     route: '/tools/text-diff',
-    category: 'Text & Format',
-    categoryColor: 'text',
+    categories: ['text'],
     keywords: ['diff', 'compare', 'text', 'difference', 'merge'],
     searchVolume: 5200,
+    label: 'coming-soon',
   },
   {
     id: 'markdown-preview',
@@ -151,10 +139,10 @@ export const tools: Tool[] = [
     description: 'Preview and convert Markdown to HTML in real-time',
     icon: '📖',
     route: '/tools/markdown-preview',
-    category: 'Text & Format',
-    categoryColor: 'text',
+    categories: ['text'],
     keywords: ['markdown', 'preview', 'html', 'convert', 'format'],
     searchVolume: 4800,
+    label: 'coming-soon',
   },
   {
     id: 'regex-tester',
@@ -162,11 +150,11 @@ export const tools: Tool[] = [
     description: 'Test and debug regular expressions with live matching',
     icon: '🔍',
     route: '/tools/regex-tester',
-    category: 'Text & Format',
-    categoryColor: 'text',
+    categories: ['text'],
     keywords: ['regex', 'regexp', 'pattern', 'test', 'match'],
     isPopular: true,
     searchVolume: 7500,
+    label: '',
   },
 
   // Generators
@@ -176,12 +164,11 @@ export const tools: Tool[] = [
     description: 'Generate UUID/GUID in various formats (v1, v4, etc.)',
     icon: '🆔',
     route: '/tools/uuid-generator',
-    category: 'Generators',
-    categoryColor: 'generators',
+    categories: ['generators'],
     keywords: ['uuid', 'guid', 'generate', 'unique', 'identifier'],
     isPopular: true,
     searchVolume: 8200,
-    label: 'new',
+    label: '',
   },
   {
     id: 'password-generator',
@@ -189,11 +176,11 @@ export const tools: Tool[] = [
     description: 'Generate secure passwords with customizable options',
     icon: '🔑',
     route: '/tools/password-generator',
-    category: 'Generators',
-    categoryColor: 'generators',
+    categories: ['generators'],
     keywords: ['password', 'generate', 'secure', 'random', 'strong'],
     isPopular: true,
     searchVolume: 9500,
+    label: '',
   },
   {
     id: 'qr-generator',
@@ -201,10 +188,10 @@ export const tools: Tool[] = [
     description: 'Generate QR codes for text, URLs, and other data',
     icon: '📱',
     route: '/tools/qr-generator',
-    category: 'Generators',
-    categoryColor: 'generators',
+    categories: ['generators'],
     keywords: ['qr', 'code', 'generate', 'barcode', 'scan'],
     searchVolume: 6200,
+    label: 'coming-soon',
   },
 
   // Web & Design Tools
@@ -214,10 +201,10 @@ export const tools: Tool[] = [
     description: 'Pick colors and get HEX, RGB, HSL values',
     icon: '🎨',
     route: '/tools/color-picker',
-    category: 'Web & Design',
-    categoryColor: 'web',
+    categories: ['web'],
     keywords: ['color', 'picker', 'hex', 'rgb', 'hsl'],
     searchVolume: 5800,
+    label: 'coming-soon',
   },
   {
     id: 'image-optimizer',
@@ -225,11 +212,11 @@ export const tools: Tool[] = [
     description: 'Compress and optimize images for web use',
     icon: '🖼️',
     route: '/tools/image-optimizer',
-    category: 'Web & Design',
-    categoryColor: 'web',
+    categories: ['web'],
     keywords: ['image', 'optimize', 'compress', 'resize', 'webp'],
     isNew: true,
     searchVolume: 4500,
+    label: 'coming-soon',
   },
 
   // Dev Utilities
@@ -239,8 +226,7 @@ export const tools: Tool[] = [
     description: 'Test REST APIs with custom headers and body',
     icon: '🔧',
     route: '/tools/api-tester',
-    category: 'Dev Utilities',
-    categoryColor: 'dev',
+    categories: ['dev'],
     keywords: ['api', 'rest', 'test', 'http', 'request'],
     searchVolume: 6800,
     label: 'coming-soon',
@@ -251,8 +237,7 @@ export const tools: Tool[] = [
     description: 'Validate JSON against schema definitions',
     icon: '✅',
     route: '/tools/json-validator',
-    category: 'Dev Utilities',
-    categoryColor: 'dev',
+    categories: ['dev'],
     keywords: ['json', 'schema', 'validate', 'check', 'format'],
     searchVolume: 4200,
     label: 'coming-soon',
@@ -323,7 +308,11 @@ export const categories: Category[] = [
 export function getPopularTools(): Tool[] {
   return tools
     .filter((tool) => tool.isPopular)
-    .sort((a, b) => b.searchVolume - a.searchVolume);
+    .sort((a, b) => b.searchVolume - a.searchVolume)
+    .map((tool) => ({
+      ...tool,
+      keywords: tool.keywords || [], // Ensure keywords is always an array
+    }));
 }
 
 export function searchTools(query: string): Tool[] {
@@ -331,37 +320,19 @@ export function searchTools(query: string): Tool[] {
   return tools
     .filter(
       (tool) =>
-        tool.name.toLowerCase().includes(searchTerm) ||
-        tool.description.toLowerCase().includes(searchTerm) ||
-        tool.keywords.some((keyword) =>
-          keyword.toLowerCase().includes(searchTerm)
-        )
+        tool.label !== 'coming-soon' &&
+        (tool.name.toLowerCase().includes(searchTerm) ||
+          tool.description.toLowerCase().includes(searchTerm) ||
+          tool.keywords.some((keyword) =>
+            keyword.toLowerCase().includes(searchTerm)
+          ))
     )
     .sort((a, b) => b.searchVolume - a.searchVolume);
 }
 
 export function getToolsByCategory(categoryId: string): Tool[] {
   return tools.filter((tool) => {
-    // Check primary category
-    if (tool.categoryColor === categoryId) return true;
-
-    // Check multiple categories if they exist
-    if (tool.categories) {
-      // Map category names to category IDs/colors
-      const categoryMapping: { [key: string]: string } = {
-        'Data & Conversion': 'data',
-        'Encoding & Security': 'encoding',
-        'Text & Format': 'text',
-        Generators: 'generators',
-        'Web & Design': 'web',
-        'Dev Utilities': 'dev',
-        Formatters: 'formatters',
-      };
-
-      return tool.categories.some((cat) => categoryMapping[cat] === categoryId);
-    }
-
-    return false;
+    return tool.categories.includes(categoryId);
   });
 }
 

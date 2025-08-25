@@ -1,35 +1,74 @@
-<svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background circle for better visibility -->
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark background circle -->
   <circle cx="64" cy="64" r="64" fill="#1e293b"/>
   
-  <!-- Flask body (conical shape) -->
+  <!-- Flask body (conical shape with purple gradient outline) -->
   <path
-    d="M48 45 L48 32 Q48 28 52 28 L76 28 Q80 28 80 32 L80 45 L92 70 Q96 78 92 86 Q88 94 78 94 L50 94 Q40 94 36 86 Q32 78 36 70 L48 45 Z"
+    d="M48 32 L48 24 Q48 20 52 20 L76 20 Q80 20 80 24 L80 32 L96 64 Q100 72 96 80 Q92 88 82 88 L46 88 Q36 88 32 80 Q28 72 32 64 L48 32 Z"
     fill="none"
     stroke="url(#flaskGradient)"
-    stroke-width="6"
+    stroke-width="3"
     stroke-linejoin="round"
     stroke-linecap="round"
   />
   
-  <!-- Liquid inside flask -->
+  <!-- Flask neck -->
+  <rect x="50" y="16" width="28" height="8" rx="2" 
+        fill="none" 
+        stroke="url(#flaskGradient)" 
+        stroke-width="3"/>
+  
+  <!-- Green liquid inside flask -->
   <path
-    d="M42 70 Q46 68 52 70 Q58 72 64 70 Q70 68 74 70 Q80 72 86 70 L86 88 Q82 90 78 88 L50 88 Q46 90 42 88 L42 70 Z"
+    d="M36 64 Q42 60 52 64 Q58 68 64 64 Q70 60 76 64 Q82 68 92 64 L92 82 Q88 86 82 84 L46 84 Q40 86 36 82 L36 64 Z"
     fill="#10b981"
   />
   
-  <!-- Bubbles rising from liquid -->
-  <circle cx="54" cy="60" r="3" fill="#34d399" opacity="0.8"/>
-  <circle cx="64" cy="55" r="2.5" fill="#34d399" opacity="0.7"/>
-  <circle cx="74" cy="50" r="2" fill="#34d399" opacity="0.6"/>
-  <circle cx="58" cy="45" r="1.5" fill="#34d399" opacity="0.5"/>
-  <circle cx="70" cy="40" r="1" fill="#34d399" opacity="0.4"/>
+  <!-- Bubbles rising from liquid (various sizes, green tones) -->
+  <circle cx="54" cy="50" r="3" fill="#34d399" opacity="0.9">
+    <animate attributeName="cy" values="70;30;70" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="64" cy="45" r="2.5" fill="#34d399" opacity="0.8">
+    <animate attributeName="cy" values="65;25;65" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+  
+  <circle cx="74" cy="40" r="2" fill="#34d399" opacity="0.7">
+    <animate attributeName="cy" values="60;20;60" dur="3s" repeatCount="indefinite" begin="1s"/>
+    <animate attributeName="opacity" values="0.1;0.7;0.1" dur="3s" repeatCount="indefinite" begin="1s"/>
+  </circle>
+  
+  <circle cx="58" cy="35" r="1.5" fill="#6ee7b7" opacity="0.6">
+    <animate attributeName="cy" values="55;15;55" dur="2.5s" repeatCount="indefinite" begin="1.5s"/>
+    <animate attributeName="opacity" values="0.1;0.6;0.1" dur="2.5s" repeatCount="indefinite" begin="1.5s"/>
+  </circle>
+  
+  <circle cx="70" cy="30" r="1" fill="#6ee7b7" opacity="0.5">
+    <animate attributeName="cy" values="50;10;50" dur="2s" repeatCount="indefinite" begin="2s"/>
+    <animate attributeName="opacity" values="0;0.5;0" dur="2s" repeatCount="indefinite" begin="2s"/>
+  </circle>
+  
+  <!-- Small code symbols floating in the liquid -->
+  <text x="48" y="76" font-size="8" fill="rgba(255,255,255,0.7)" font-family="monospace">
+    {}
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="5s" repeatCount="indefinite"/>
+  </text>
+  
+  <text x="68" y="72" font-size="6" fill="rgba(255,255,255,0.6)" font-family="monospace">
+    &lt;/&gt;
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="4s" repeatCount="indefinite" begin="1s"/>
+  </text>
   
   <!-- Gradient definitions -->
   <defs>
     <linearGradient id="flaskGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#a855f7"/>
+      <stop offset="30%" stop-color="#a855f7"/>
+      <stop offset="70%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
     </linearGradient>
   </defs>
 </svg>

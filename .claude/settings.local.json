@@ -43,7 +43,8 @@
       "Bash(npm run local:ads:*)",
       "Bash(find:*)",
       "Bash(grep:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": [],

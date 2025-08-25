@@ -301,7 +301,7 @@ export function LabPageClient() {
       favoriteTools
         .map(
           (toolSlug) =>
-            TOOLS_CONFIG.find((t) => t.id === toolSlug)?.categoryColor
+            TOOLS_CONFIG.find((t) => t.id === toolSlug)?.categories[0]
         )
         .filter(Boolean)
     )
@@ -316,7 +316,7 @@ export function LabPageClient() {
   // Get tools that don't belong to favorite categories (for separate section)
   const standaloneFavoriteTools = favoriteTools.filter((toolSlug) => {
     const tool = TOOLS_CONFIG.find((t) => t.id === toolSlug);
-    return tool && !favoriteCategories.includes(tool.categoryColor);
+    return tool && !favoriteCategories.includes(tool.categories[0]);
   });
 
   // Get categories that have been explicitly favorited AND have tools

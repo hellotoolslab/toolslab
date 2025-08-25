@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ToolPageClient from '@/components/tools/ToolPageClient';
-import { tools } from '@/data/tools';
+import { tools, getToolById, categories } from '@/lib/tools';
 
 interface ToolPageProps {
   params: {
@@ -13,7 +13,7 @@ interface ToolPageProps {
 export async function generateMetadata({
   params,
 }: ToolPageProps): Promise<Metadata> {
-  const tool = tools.find((t) => t.slug === params.tool);
+  const tool = getToolById(params.tool);
 
   if (!tool) {
     return {
@@ -21,10 +21,16 @@ export async function generateMetadata({
     };
   }
 
+  // Get primary category name
+  const primaryCategory = categories.find(
+    (cat) => cat.id === tool.categories[0]
+  );
+  const categoryName = primaryCategory?.name || 'Tools';
+
   return {
     title: `${tool.name} - Free Online Tool | ToolsLab`,
     description: tool.description,
-    keywords: `${tool.name}, ${tool.category}, online tool, free tool, web utility`,
+    keywords: `${tool.name}, ${categoryName}, online tool, free tool, web utility`,
     openGraph: {
       title: `${tool.name} - ToolsLab`,
       description: tool.description,
@@ -35,12 +41,12 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   return tools.map((tool) => ({
-    tool: tool.slug,
+    tool: tool.id,
   }));
 }
 
 export default function ToolPage({ params, searchParams }: ToolPageProps) {
-  const tool = tools.find((t) => t.slug === params.tool);
+  const tool = getToolById(params.tool);
 
   if (!tool) {
     notFound();
