@@ -48,6 +48,12 @@ export const metadata: Metadata = {
     description:
       'Professional developer tools crafted with scientific precision. All tools work offline and deliver laboratory-grade accuracy.',
   },
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
+  manifest: '/manifest.json',
   robots: {
     index: true,
     follow: true,

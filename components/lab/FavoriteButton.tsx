@@ -6,6 +6,7 @@ import { useToolStore } from '@/lib/store/toolStore';
 import { labToasts } from '@/lib/utils/toasts';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUmami } from '@/components/analytics/UmamiProvider';
+import { useHydration } from '@/lib/hooks/useHydration';
 
 interface FavoriteButtonProps {
   type: 'tool' | 'category';
@@ -27,8 +28,9 @@ export function FavoriteButton({
   const { isFavorite, toggleToolFavorite, toggleCategoryFavorite } =
     useToolStore();
   const { trackFavorite, trackEngagement } = useUmami();
+  const isHydrated = useHydration();
 
-  const isFav = isFavorite(type, id);
+  const isFav = isHydrated ? isFavorite(type, id) : false;
 
   const handleToggle = (e: React.MouseEvent) => {
     e.preventDefault();
