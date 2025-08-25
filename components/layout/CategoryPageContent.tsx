@@ -9,6 +9,10 @@ import {
 import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
 import { SearchBar } from '@/components/SearchBar';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
+import {
+  useToolLabel,
+  DEFAULT_TOOL_LABELS,
+} from '@/lib/services/toolLabelService';
 
 interface CategoryPageContentProps {
   categoryId: string;
@@ -24,9 +28,23 @@ export default function CategoryPageContent({
   }
 
   const tools = getToolsByCategory(category.id);
-  const popularTools = tools.filter((tool) => tool.isPopular);
-  const newTools = tools.filter((tool) => tool.isNew);
-  const otherTools = tools.filter((tool) => !tool.isPopular && !tool.isNew);
+
+  // Helper function to get tool label
+  const getToolLabelForTool = (toolId: string) => {
+    return DEFAULT_TOOL_LABELS[toolId];
+  };
+
+  // Filter tools by their labels
+  const newTools = tools.filter(
+    (tool) => getToolLabelForTool(tool.id) === 'new'
+  );
+  const popularTools = tools.filter(
+    (tool) => getToolLabelForTool(tool.id) === 'popular'
+  );
+  const otherTools = tools.filter((tool) => {
+    const label = getToolLabelForTool(tool.id);
+    return !label || label === 'coming-soon';
+  });
 
   const categoryColorClass = getCategoryColorClass(category.id);
 
@@ -85,25 +103,6 @@ export default function CategoryPageContent({
 
       {/* Tools Grid */}
       <section className="container mx-auto max-w-7xl px-6 pb-20">
-        {/* Popular Tools */}
-        {popularTools.length > 0 && (
-          <section className="mb-16">
-            <div className="mb-8 flex items-center justify-between">
-              <h2 className="text-2xl font-bold">Popular Tools</h2>
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
-                  🔥 Most Used
-                </span>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {popularTools.map((tool) => (
-                <ToolCardWrapper key={tool.id} tool={tool} />
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* New Tools */}
         {newTools.length > 0 && (
           <section className="mb-16">
@@ -117,6 +116,25 @@ export default function CategoryPageContent({
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {newTools.map((tool) => (
+                <ToolCardWrapper key={tool.id} tool={tool} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Popular Tools */}
+        {popularTools.length > 0 && (
+          <section className="mb-16">
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="text-2xl font-bold">Popular Tools</h2>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+                  🔥 Most Used
+                </span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {popularTools.map((tool) => (
                 <ToolCardWrapper key={tool.id} tool={tool} />
               ))}
             </div>
