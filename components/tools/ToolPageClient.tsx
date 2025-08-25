@@ -9,6 +9,7 @@ import { categoryColors } from '@/data/categories';
 import ToolWorkspace from './ToolWorkspace';
 import AdBanner from '@/components/ads/AdBanner';
 import { useFeatureFlag } from '@/hooks/useEdgeConfig';
+import { useUmami } from '@/components/analytics/UmamiProvider';
 import {
   ChevronRight,
   Share2,
@@ -21,6 +22,7 @@ import {
   ArrowRight,
   Star,
 } from 'lucide-react';
+import { FavoriteButton } from '@/components/lab/FavoriteButton';
 
 interface ToolPageClientProps {
   toolSlug: string;
@@ -32,6 +34,7 @@ export default function ToolPageClient({
   searchParams,
 }: ToolPageClientProps) {
   const { theme } = useTheme();
+  const { trackEngagement, trackToolUse } = useUmami();
   const [isAdDismissed, setIsAdDismissed] = useState(false);
   const [usageCount, setUsageCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -53,6 +56,15 @@ export default function ToolPageClient({
     // Simulate usage count
     setUsageCount(Math.floor(Math.random() * 5000) + 1000);
 
+    // Track tool page view
+    if (toolSlug) {
+      trackEngagement('tool-page-viewed', {
+        tool: toolSlug,
+        has_initial_input: !!initialInput,
+        is_mobile: window.innerWidth < 768,
+      });
+    }
+
     // Check ad dismiss state
     const dismissed = localStorage.getItem('ad-dismissed');
     if (dismissed) {
@@ -64,7 +76,7 @@ export default function ToolPageClient({
     }
 
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [toolSlug, initialInput, trackEngagement]);
 
   const tool = tools.find((t) => t.slug === toolSlug);
 
@@ -75,22 +87,46 @@ export default function ToolPageClient({
   const handleDismissAd = () => {
     setIsAdDismissed(true);
     localStorage.setItem('ad-dismissed', new Date().toISOString());
+    trackEngagement('ad-dismissed', {
+      tool: toolSlug,
+      ad_type: 'banner',
+    });
   };
 
   const handleShare = async () => {
-    if (navigator.share) {
+    const hasNativeShare =
+      typeof navigator !== 'undefined' && 'share' in navigator;
+
+    trackEngagement('tool-share-clicked', {
+      tool: toolSlug,
+      method: hasNativeShare ? 'native' : 'clipboard',
+    });
+
+    if (hasNativeShare && navigator.share) {
       try {
         await navigator.share({
           title: `${tool.name} - OctoTools`,
           text: tool.description,
           url: window.location.href,
         });
+        trackEngagement('tool-share-completed', {
+          tool: toolSlug,
+          method: 'native',
+        });
       } catch (err) {
         console.log('Share cancelled');
+        trackEngagement('tool-share-cancelled', {
+          tool: toolSlug,
+          method: 'native',
+        });
       }
     } else {
       // Fallback - copy to clipboard
       navigator.clipboard.writeText(window.location.href);
+      trackEngagement('tool-share-completed', {
+        tool: toolSlug,
+        method: 'clipboard',
+      });
       // Show toast notification
     }
   };
@@ -158,9 +194,18 @@ export default function ToolPageClient({
                     style={{ color: categoryColor }}
                   />
                 </div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-                  {tool.name}
-                </h1>
+                <div className="flex items-center gap-4">
+                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+                    {tool.name}
+                  </h1>
+                  <FavoriteButton
+                    type="tool"
+                    id={tool.slug}
+                    name={tool.name}
+                    size="lg"
+                    showLabel={false}
+                  />
+                </div>
                 <span
                   className="rounded-full px-3 py-1 text-xs font-medium capitalize"
                   style={{

@@ -1,7 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import { Coffee, Twitter, Heart, Github } from 'lucide-react';
+import { useUmami } from '@/components/analytics/UmamiProvider';
 
 export function Footer() {
+  const { trackConversion, trackSocial, trackEngagement } = useUmami();
   return (
     <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 py-8">
@@ -18,15 +22,27 @@ export function Footer() {
                 If you find ToolsLab helpful, consider supporting our research.
                 Your support keeps the laboratory running!
               </p>
-              <a
-                href="https://buymeacoffee.com/toolslab"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-6 py-2.5 text-sm font-medium text-white shadow-lg transition-all hover:scale-105 hover:from-yellow-600 hover:to-orange-600"
-              >
-                <Coffee className="h-4 w-4" />
-                Buy Me a Coffee
-              </a>
+              <div className="flex flex-col items-center gap-2">
+                <a
+                  href="https://buymeacoffee.com/toolslab"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackConversion('donation', 'footer-widget')}
+                  className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-6 py-2.5 text-sm font-medium text-white shadow-lg transition-all hover:scale-105 hover:from-yellow-600 hover:to-orange-600"
+                >
+                  <Coffee className="h-4 w-4" />
+                  Buy Me a Coffee
+                </a>
+                <Link
+                  href="/about"
+                  onClick={() =>
+                    trackEngagement('why-donate-clicked', { from: 'footer' })
+                  }
+                  className="text-xs text-muted-foreground underline underline-offset-2 transition-colors hover:text-foreground"
+                >
+                  Why donate?
+                </Link>
+              </div>
               <p className="mt-3 text-xs text-muted-foreground">
                 Every contribution fuels our research! ⚗️ Thank you! 🧪
               </p>
@@ -40,15 +56,24 @@ export function Footer() {
           <div>
             <h3 className="mb-3 font-semibold">About ToolsLab</h3>
             <p className="mb-4 text-sm text-muted-foreground">
-              A digital laboratory of precision-engineered developer tools
-              designed to accelerate your development experiments.
+              No BS developer tools built by developers, for developers. Fast,
+              private, and completely free.
             </p>
+            <div className="mb-4">
+              <Link
+                href="/about"
+                className="text-sm font-medium text-violet-600 transition-colors hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300"
+              >
+                Learn about our mission →
+              </Link>
+            </div>
             {/* Social Links */}
             <div className="flex gap-3">
               <a
                 href="https://x.com/tools_lab"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackSocial('twitter', 'footer-about')}
                 className="text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="X (Twitter)"
               >
@@ -58,6 +83,7 @@ export function Footer() {
                 href="https://github.com/hellotoolslab/toolslab"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackSocial('github', 'footer-about')}
                 className="text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="GitHub"
               >

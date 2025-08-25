@@ -5,6 +5,7 @@ import { ToolCard } from '@/components/tools/ToolCard';
 // import { CategoryCard } from '@/components/tools/CategoryCard';
 import { SimpleHero } from '@/components/layout/SimpleHero';
 import { FeaturesSection } from '@/components/layout/FeaturesSection';
+// import { ToastDemo } from '@/components/lab/ToastDemo';
 
 export const metadata: Metadata = {
   title: 'ToolsLab - Your Developer Tools Laboratory',
@@ -192,7 +193,7 @@ export default function HomePage() {
             Ready to boost your productivity?
           </h2>
           <p className="mb-8 text-xl opacity-90">
-            Join thousands of developers who trust OctoTools for their daily
+            Join thousands of developers who trust ToolsLab for their daily
             tasks.
           </p>
           <div className="mx-auto flex max-w-lg flex-col justify-center gap-4 sm:flex-row">
@@ -211,6 +212,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Toast Demo - Commentato per produzione */}
+      {/* <ToastDemo /> */}
     </main>
   );
 }
