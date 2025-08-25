@@ -55,10 +55,10 @@ export function HeroSection() {
             <div className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs backdrop-blur-sm sm:gap-2 sm:px-4 sm:py-2 sm:text-sm">
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">
-                Trusted by 50k+ developers worldwide
+                Trusted by developers worldwide
               </span>
               <span className="sm:hidden">
-                Trusted by 50k+ researchers worldwide
+                Trusted by researchers worldwide
               </span>
             </div>
           </div>

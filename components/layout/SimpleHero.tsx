@@ -26,7 +26,7 @@ export function SimpleHero() {
           <div className="mb-6 flex items-center justify-center gap-2">
             <div className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
               <Sparkles className="h-4 w-4" />
-              <span>Trusted by 50k+ researchers worldwide</span>
+              <span>Trusted by researchers worldwide</span>
             </div>
           </div>
 
