@@ -18,6 +18,8 @@ import { cn } from '@/lib/utils';
 import { categories as CATEGORIES, tools as TOOLS_CONFIG } from '@/lib/tools';
 import { labToasts } from '@/lib/utils/toasts';
 import { useUmami } from '@/components/analytics/UmamiProvider';
+import { useToolLabel } from '@/lib/services/toolLabelService';
+import { useToolLabels } from '@/lib/hooks/useToolLabels';
 
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;
@@ -99,6 +101,11 @@ function LabToolCard({
   lastUsed?: number;
 }) {
   const { toggleToolFavorite } = useToolStore();
+  const toolLabel = useToolLabel(tool.id);
+  const { getToolLabelInfo, getLabelComponent } = useToolLabels();
+  const labelInfo = getToolLabelInfo(toolLabel);
+
+  const isComingSoon = toolLabel === 'coming-soon';
 
   const handleRemove = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -106,53 +113,108 @@ function LabToolCard({
     toggleToolFavorite(tool.id || tool.slug);
   };
 
-  return (
-    <div className="group relative rounded-lg bg-gray-50 p-4 transition-all hover:shadow-md dark:bg-gray-800">
-      <Link href={tool.route || `/tools/${tool.id}`} className="block">
-        <div className="mb-3 flex items-start gap-3">
-          <div className="text-2xl">{tool.icon}</div>
-          <div className="min-w-0 flex-1">
-            <h4 className="truncate font-medium transition-colors group-hover:text-violet-600 dark:group-hover:text-violet-400">
-              {tool.name}
-            </h4>
-            <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
-              {tool.description}
-            </p>
-          </div>
-        </div>
-
-        {lastUsed && (
-          <div className="mb-3 flex items-center gap-1 text-xs text-gray-500">
-            <Clock className="h-3 w-3" />
-            Last used: {formatTimeAgo(lastUsed)}
-          </div>
-        )}
-
-        <div className="flex items-center gap-2">
-          <div className="flex flex-1 items-center gap-2">
-            <ExternalLink className="h-4 w-4 text-gray-400" />
-            <span className="text-sm text-gray-600 dark:text-gray-400">
-              Open Tool
-            </span>
-          </div>
-
-          {showRemove && (
-            <button
-              onClick={handleRemove}
-              className="rounded p-1.5 text-gray-400 opacity-0 transition-all hover:bg-red-50 hover:text-red-500 group-hover:opacity-100 dark:hover:bg-red-950/30"
-              title="Remove from Lab"
-            >
-              <Trash2 className="h-4 w-4" />
-            </button>
+  const CardContent = ({ children }: { children: React.ReactNode }) => {
+    if (isComingSoon) {
+      return (
+        <div
+          className={cn(
+            'group relative cursor-not-allowed rounded-lg p-4 opacity-75 transition-all',
+            'bg-gray-50 dark:bg-gray-800'
           )}
+        >
+          {children}
         </div>
-      </Link>
+      );
+    }
 
-      {/* In Lab badge */}
-      <div className="absolute right-2 top-2 rounded-full bg-amber-100 px-2 py-1 text-xs text-amber-600 dark:bg-amber-950/30 dark:text-amber-400">
-        In Lab
+    return (
+      <div className="group relative rounded-lg bg-gray-50 p-4 transition-all hover:shadow-md dark:bg-gray-800">
+        <Link href={tool.route || `/tools/${tool.id}`} className="block">
+          {children}
+        </Link>
       </div>
-    </div>
+    );
+  };
+
+  return (
+    <CardContent>
+      <div className="mb-3 flex items-start gap-3">
+        <div className="text-2xl">{tool.icon}</div>
+        <div className="min-w-0 flex-1">
+          <h4
+            className={cn(
+              'truncate font-medium transition-colors',
+              isComingSoon
+                ? 'text-gray-500 dark:text-gray-500'
+                : 'group-hover:text-violet-600 dark:group-hover:text-violet-400'
+            )}
+          >
+            {tool.name}
+          </h4>
+          <p
+            className={cn(
+              'line-clamp-2 text-sm',
+              isComingSoon
+                ? 'text-gray-500 dark:text-gray-500'
+                : 'text-gray-600 dark:text-gray-400'
+            )}
+          >
+            {isComingSoon
+              ? 'This tool is coming soon. Stay tuned for updates!'
+              : tool.description}
+          </p>
+        </div>
+      </div>
+
+      {lastUsed && !isComingSoon && (
+        <div className="mb-3 flex items-center gap-1 text-xs text-gray-500">
+          <Clock className="h-3 w-3" />
+          Last used: {formatTimeAgo(lastUsed)}
+        </div>
+      )}
+
+      <div className="flex items-center gap-2">
+        <div className="flex flex-1 items-center gap-2">
+          <ExternalLink
+            className={cn(
+              'h-4 w-4',
+              isComingSoon ? 'text-gray-400' : 'text-gray-400'
+            )}
+          />
+          <span
+            className={cn(
+              'text-sm',
+              isComingSoon
+                ? 'text-gray-500 dark:text-gray-500'
+                : 'text-gray-600 dark:text-gray-400'
+            )}
+          >
+            {isComingSoon ? 'Coming Soon' : 'Open Tool'}
+          </span>
+        </div>
+
+        {showRemove && (
+          <button
+            onClick={handleRemove}
+            className="rounded p-1.5 text-gray-400 opacity-0 transition-all hover:bg-red-50 hover:text-red-500 group-hover:opacity-100 dark:hover:bg-red-950/30"
+            title="Remove from Lab"
+          >
+            <Trash2 className="h-4 w-4" />
+          </button>
+        )}
+      </div>
+
+      {/* Label - Show Coming Soon label or In Lab badge */}
+      {isComingSoon ? (
+        <div className="absolute right-2 top-2">
+          {getLabelComponent(toolLabel, 'xs')}
+        </div>
+      ) : (
+        <div className="absolute right-2 top-2 rounded-full bg-amber-100 px-2 py-1 text-xs text-amber-600 dark:bg-amber-950/30 dark:text-amber-400">
+          In Lab
+        </div>
+      )}
+    </CardContent>
   );
 }
 

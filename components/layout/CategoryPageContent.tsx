@@ -9,10 +9,8 @@ import {
 import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
 import { SearchBar } from '@/components/SearchBar';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
-import {
-  useToolLabel,
-  DEFAULT_TOOL_LABELS,
-} from '@/lib/services/toolLabelService';
+import { useToolLabel } from '@/lib/services/toolLabelService';
+import { getToolById } from '@/lib/tools';
 
 interface CategoryPageContentProps {
   categoryId: string;
@@ -31,7 +29,8 @@ export default function CategoryPageContent({
 
   // Helper function to get tool label
   const getToolLabelForTool = (toolId: string) => {
-    return DEFAULT_TOOL_LABELS[toolId];
+    const tool = getToolById(toolId);
+    return tool?.label || '';
   };
 
   // Filter tools by their labels
@@ -141,31 +140,14 @@ export default function CategoryPageContent({
           </section>
         )}
 
-        {/* Other Tools */}
+        {/* All Tools */}
         {otherTools.length > 0 && (
           <section className="mb-16">
             <div className="mb-8 flex items-center justify-between">
-              <h2 className="text-2xl font-bold">Other Tools</h2>
+              <h2 className="text-2xl font-bold">All Tools</h2>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {otherTools.map((tool) => (
-                <ToolCardWrapper key={tool.id} tool={tool} />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* All Tools Section (fallback if no categorization) */}
-        {popularTools.length === 0 && newTools.length === 0 && (
-          <section>
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold">All Tools</h2>
-              <p className="text-gray-600 dark:text-gray-400">
-                Complete collection of {category.name.toLowerCase()} tools.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {tools.map((tool) => (
                 <ToolCardWrapper key={tool.id} tool={tool} />
               ))}
             </div>
