@@ -51,30 +51,43 @@ export function HeroSection() {
 
       <div className="container-main">
         <div className="hero-content">
-          <div className="mb-6 flex items-center justify-center gap-2">
-            <div className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
-              <Sparkles className="h-4 w-4" />
-              <span>Trusted by 50k+ developers worldwide</span>
+          <div className="mb-4 flex items-center justify-center gap-2 sm:mb-6">
+            <div className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs backdrop-blur-sm sm:gap-2 sm:px-4 sm:py-2 sm:text-sm">
+              <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">
+                Trusted by 50k+ developers worldwide
+              </span>
+              <span className="sm:hidden">
+                Trusted by 50k+ researchers worldwide
+              </span>
             </div>
           </div>
 
-          <h1 className="hero-title">
-            Developer Tools That{' '}
+          <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+            <span className="block sm:inline">Your Developer</span>{' '}
+            <span className="block sm:inline">Tools </span>
             <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-              Actually Work
+              Laboratory
             </span>
           </h1>
 
-          <p className="hero-subtitle">
-            No signup. No limits. No BS. Just powerful tools that solve real
-            problems.
+          <p className="hero-subtitle mx-auto max-w-xs text-base sm:max-w-md sm:text-lg md:max-w-2xl md:text-xl lg:text-2xl">
+            Experiment, Transform, Deploy.
+            <span className="hidden sm:inline">
+              {' '}
+              Precision-engineered tools for your development workflow.
+            </span>
+            <span className="sm:hidden">
+              {' '}
+              Precision-engineered tools for your development workflow.
+            </span>
           </p>
 
           {/* Hero Search */}
           <div className="hero-search">
             <form onSubmit={handleSearch} className="relative">
               <div className="relative">
-                <Search className="absolute left-6 top-1/2 h-6 w-6 -translate-y-1/2 transform text-gray-400" />
+                <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400 sm:left-6 sm:h-6 sm:w-6" />
                 <input
                   type="search"
                   value={searchQuery}
@@ -84,14 +97,17 @@ export function HeroSection() {
                     setTimeout(() => setIsSearchFocused(false), 200)
                   }
                   placeholder={`Try "${placeholders[currentPlaceholder]}"`}
-                  className="h-16 w-full rounded-2xl border border-white/20 bg-white/10 pl-16 pr-6 text-lg text-white placeholder-white/70 backdrop-blur-md transition-all duration-200 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/30"
+                  className="h-12 w-full rounded-xl border border-white/20 bg-white/10 pl-10 pr-20 text-sm text-white placeholder-white/70 backdrop-blur-md transition-all duration-200 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/30 sm:h-14 sm:rounded-2xl sm:pl-16 sm:pr-28 sm:text-base md:h-16 md:text-lg"
                 />
 
                 {/* Search button */}
-                <div className="absolute right-3 top-1/2 flex -translate-y-1/2 transform cursor-pointer items-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-blue-600 transition-colors hover:bg-gray-100">
-                  Search
-                  <ArrowRight className="h-4 w-4" />
-                </div>
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 flex -translate-y-1/2 transform cursor-pointer items-center gap-1 rounded-lg bg-white px-3 py-1.5 text-xs font-medium text-blue-600 transition-colors hover:bg-gray-100 sm:right-3 sm:gap-2 sm:rounded-xl sm:px-4 sm:py-2 sm:text-sm md:px-6 md:py-3 md:text-base"
+                >
+                  <span className="hidden sm:inline">Search</span>
+                  <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                </button>
               </div>
 
               {/* Search Results Dropdown */}
@@ -140,15 +156,18 @@ export function HeroSection() {
             </form>
 
             {/* Quick suggestions */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <span className="text-sm text-white/70">Popular:</span>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
+              <span className="text-xs text-white/70 sm:text-sm">Popular:</span>
               {['JSON', 'Base64', 'UUID', 'Hash'].map((term) => (
-                <div
+                <button
                   key={term}
-                  className="cursor-pointer rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm transition-all duration-200 hover:scale-105 hover:bg-white/20"
+                  onClick={() =>
+                    handleResultClick(`/tools/${term.toLowerCase()}-formatter`)
+                  }
+                  className="cursor-pointer rounded-lg border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-white backdrop-blur-sm transition-all duration-200 hover:scale-105 hover:bg-white/20 sm:px-4 sm:py-2 sm:text-sm"
                 >
                   {term}
-                </div>
+                </button>
               ))}
             </div>
           </div>
