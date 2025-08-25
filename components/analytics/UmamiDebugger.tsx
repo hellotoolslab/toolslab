@@ -81,29 +81,81 @@ export function UmamiDebugger() {
 
     const originalLog = console.log;
     const originalGroup = console.group;
+    const originalGroupEnd = console.groupEnd;
+    let currentEvent: EventLog | null = null;
+    let captureData = false;
 
     // Intercept console.group calls for Umami events
     console.group = (...args: any[]) => {
       const message = args[0];
       if (typeof message === 'string' && message.includes('📊 Umami Event:')) {
         const eventName = message.replace('📊 Umami Event: ', '');
+        captureData = true;
 
-        // Capture the event (we'll get the data in the next console.log calls)
-        const newEvent: EventLog = {
+        currentEvent = {
           id: Date.now().toString(),
           timestamp: new Date(),
           event: eventName,
-          data: null, // Will be populated by subsequent logs
+          data: {},
         };
 
-        setEvents((prev) => [newEvent, ...prev.slice(0, 49)]); // Keep last 50 events
+        setEvents((prev) => [currentEvent!, ...prev.slice(0, 49)]);
       }
       originalGroup(...args);
+    };
+
+    // Intercept console.log calls to capture event data
+    console.log = (...args: any[]) => {
+      if (captureData && currentEvent && currentEvent.id && args.length >= 2) {
+        const label = args[0];
+        const value = args[1];
+        const eventId = currentEvent.id;
+
+        // Build data object from all console.log calls
+        if (typeof label === 'string' && eventId) {
+          let key = '';
+          if (label === '📅 Time:') key = 'timestamp';
+          else if (label === '📍 Event:') key = 'event_name';
+          else if (label === '📋 Data:') key = 'metadata';
+          else if (label === '🌍 URL:') key = 'url';
+          else if (label === '👤 User Agent:') key = 'user_agent';
+
+          if (key) {
+            setEvents((prev) =>
+              prev.map((event) => {
+                if (!event || !event.id || event.id !== eventId) return event;
+                return {
+                  ...event,
+                  data: { ...(event.data || {}), [key]: value },
+                };
+              })
+            );
+
+            // Update local reference if still exists
+            if (currentEvent && currentEvent.data !== null) {
+              currentEvent.data = {
+                ...(currentEvent.data || {}),
+                [key]: value,
+              };
+            }
+          }
+        }
+      }
+
+      originalLog(...args);
+    };
+
+    // Reset when group ends
+    console.groupEnd = () => {
+      captureData = false;
+      currentEvent = null;
+      originalGroupEnd();
     };
 
     return () => {
       console.log = originalLog;
       console.group = originalGroup;
+      console.groupEnd = originalGroupEnd;
     };
   }, [isRecording]);
 
@@ -262,26 +314,30 @@ export function UmamiDebugger() {
                 </div>
               ) : (
                 <div className="space-y-3">
-                  {events.map((event) => (
-                    <div
-                      key={event.id}
-                      className="rounded-lg border-l-4 border-purple-500 bg-gray-50 p-3 dark:bg-gray-800"
-                    >
-                      <div className="mb-2 flex items-start justify-between">
-                        <span className="font-medium text-purple-600 dark:text-purple-400">
-                          {event.event}
-                        </span>
-                        <span className="text-xs text-gray-500">
-                          {event.timestamp.toLocaleTimeString()}
-                        </span>
+                  {events
+                    .filter((event) => event && event.id)
+                    .map((event) => (
+                      <div
+                        key={event.id}
+                        className="rounded-lg border-l-4 border-purple-500 bg-gray-50 p-3 dark:bg-gray-800"
+                      >
+                        <div className="mb-2 flex items-start justify-between">
+                          <span className="font-medium text-purple-600 dark:text-purple-400">
+                            {event.event || 'Unknown Event'}
+                          </span>
+                          <span className="text-xs text-gray-500">
+                            {event.timestamp
+                              ? event.timestamp.toLocaleTimeString()
+                              : 'No time'}
+                          </span>
+                        </div>
+                        {event.data && (
+                          <pre className="overflow-x-auto rounded bg-gray-100 p-2 text-xs dark:bg-gray-900">
+                            {JSON.stringify(event.data, null, 2)}
+                          </pre>
+                        )}
                       </div>
-                      {event.data && (
-                        <pre className="overflow-x-auto rounded bg-gray-100 p-2 text-xs dark:bg-gray-900">
-                          {JSON.stringify(event.data, null, 2)}
-                        </pre>
-                      )}
-                    </div>
-                  ))}
+                    ))}
                 </div>
               )}
             </div>
