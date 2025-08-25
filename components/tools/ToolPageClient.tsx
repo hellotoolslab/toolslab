@@ -459,12 +459,6 @@ export default function ToolPageClient({
                     </span>
                     <span>Bookmark this page for quick access</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 text-blue-600 dark:text-blue-400">
-                      •
-                    </span>
-                    <span>Try our API for automation needs</span>
-                  </li>
                 </ul>
               </div>
             </div>
