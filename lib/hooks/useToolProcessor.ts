@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { TIMING, ERRORS } from '@/lib/constants/tools';
 
 export interface UseToolProcessorOptions {
   onSuccess?: () => void;
@@ -46,7 +47,7 @@ export function useToolProcessor<T = string, R = string>(
         return result;
       } catch (err) {
         const error =
-          err instanceof Error ? err : new Error('Processing failed');
+          err instanceof Error ? err : new Error(ERRORS.PROCESSING_FAILED);
         const errorMessage = error.message;
 
         setError(errorMessage);
@@ -70,7 +71,7 @@ export function useToolProcessor<T = string, R = string>(
         return result;
       } catch (err) {
         const error =
-          err instanceof Error ? err : new Error('Processing failed');
+          err instanceof Error ? err : new Error(ERRORS.PROCESSING_FAILED);
         const errorMessage = error.message;
 
         setError(errorMessage);
@@ -107,7 +108,7 @@ export function useToolProcessor<T = string, R = string>(
  */
 export function useToolProcessorWithRetry<T = string, R = string>(
   maxRetries: number = 3,
-  retryDelayMs: number = 1000
+  retryDelayMs: number = TIMING.RETRY_DELAY_BASE
 ) {
   const [retryCount, setRetryCount] = useState(0);
   const processor = useToolProcessor<T, R>();

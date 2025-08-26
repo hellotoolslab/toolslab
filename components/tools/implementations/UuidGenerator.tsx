@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Copy, Check, RefreshCw, Download, Zap, Hash } from 'lucide-react';
 import { useMultiCopy } from '@/lib/hooks/useCopy';
+import { useDownload } from '@/lib/hooks/useDownload';
 import { BaseToolProps, UUIDVersion } from '@/lib/types/tools';
 
 interface UuidGeneratorProps extends BaseToolProps {}
@@ -14,8 +15,9 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
   const [uppercase, setUppercase] = useState(false);
   const [hyphens, setHyphens] = useState(true);
 
-  // Use unified copy hook
+  // Use unified hooks
   const { copy, isCopied } = useMultiCopy<number | string>();
+  const { downloadText } = useDownload();
 
   const generateUUID = () => {
     const newUuids = [];
@@ -43,16 +45,18 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
     await copy(uuids.join('\n'), 'all');
   };
 
-  const handleDownload = () => {
-    const blob = new Blob([uuids.join('\n')], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `uuids-${Date.now()}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const handleDownload = async () => {
+    if (uuids.length === 0) return;
+
+    try {
+      await downloadText(uuids.join('\n'), {
+        filename: 'uuids.txt',
+        mimeType: 'text/plain',
+        timestamp: true,
+      });
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
   };
 
   return (
@@ -98,7 +102,7 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
               </label>
               <select
                 value={version}
-                onChange={(e) => setVersion(e.target.value)}
+                onChange={(e) => setVersion(e.target.value as UUIDVersion)}
                 className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
               >
                 <option value="v4">Version 4 (Random)</option>

@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
+import { useDownload } from '@/lib/hooks/useDownload';
 import { BaseToolProps, JsonValue, JsonObject } from '@/lib/types/tools';
 
 interface JsonFormatterProps extends BaseToolProps {}
@@ -33,6 +34,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     string,
     string
   >();
+  const { downloadJSON, downloadText } = useDownload();
 
   const formatJson = () => {
     if (!input.trim()) {
@@ -93,16 +95,23 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     await copy(output);
   };
 
-  const handleDownload = () => {
-    const blob = new Blob([output], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'formatted.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const handleDownload = async () => {
+    if (!output) return;
+
+    try {
+      // Try to download as JSON if valid, otherwise as text
+      try {
+        const parsed = JSON.parse(output);
+        await downloadJSON(parsed, 'formatted.json');
+      } catch {
+        await downloadText(output, {
+          filename: 'output.txt',
+          mimeType: 'text/plain',
+        });
+      }
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
   };
 
   const renderJsonTree = (data: JsonValue, depth = 0): JSX.Element => {

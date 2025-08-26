@@ -411,7 +411,7 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
               </label>
               <select
                 value={algorithm}
-                onChange={(e) => setAlgorithm(e.target.value)}
+                onChange={(e) => setAlgorithm(e.target.value as HashAlgorithm)}
                 className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
               >
                 {algorithms.map((algo) => (

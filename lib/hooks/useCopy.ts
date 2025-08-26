@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { TIMING, SUCCESS, ERRORS } from '@/lib/constants/tools';
 
 export interface UseCopyOptions {
   timeout?: number;
@@ -19,7 +20,7 @@ export interface UseCopyReturn {
  * Eliminates duplicate copy logic in HashGenerator, UuidGenerator, etc.
  */
 export function useCopy(options: UseCopyOptions = {}): UseCopyReturn {
-  const { timeout = 2000, onSuccess, onError } = options;
+  const { timeout = TIMING.COPY_TIMEOUT, onSuccess, onError } = options;
   const [copied, setCopied] = useState(false);
 
   const copy = useCallback(
@@ -35,7 +36,8 @@ export function useCopy(options: UseCopyOptions = {}): UseCopyReturn {
         setTimeout(() => setCopied(false), timeout);
         return true;
       } catch (err) {
-        const error = err instanceof Error ? err : new Error('Copy failed');
+        const error =
+          err instanceof Error ? err : new Error(ERRORS.COPY_FAILED);
         onError?.(error);
         console.error('Failed to copy:', error);
         return false;
@@ -56,7 +58,7 @@ export function useCopy(options: UseCopyOptions = {}): UseCopyReturn {
  * Used in tools like HashGenerator that copy multiple values
  */
 export function useMultiCopy<T = string>(options: UseCopyOptions = {}) {
-  const { timeout = 2000, onSuccess, onError } = options;
+  const { timeout = TIMING.COPY_TIMEOUT, onSuccess, onError } = options;
   const [copiedItems, setCopiedItems] = useState<Set<T>>(new Set());
 
   const copy = useCallback(
@@ -79,7 +81,8 @@ export function useMultiCopy<T = string>(options: UseCopyOptions = {}) {
 
         return true;
       } catch (err) {
-        const error = err instanceof Error ? err : new Error('Copy failed');
+        const error =
+          err instanceof Error ? err : new Error(ERRORS.COPY_FAILED);
         onError?.(error);
         console.error('Failed to copy:', error);
         return false;
