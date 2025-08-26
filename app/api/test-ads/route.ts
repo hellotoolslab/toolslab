@@ -5,6 +5,9 @@
 import { NextResponse } from 'next/server';
 import { getCompleteConfig } from '@/lib/edge-config/client';
 
+// Disable static generation for this route
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const config = await getCompleteConfig();
 

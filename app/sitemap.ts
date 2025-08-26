@@ -4,15 +4,17 @@ import { ToolDiscovery } from '@/lib/seo/discovery';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://toolslab.dev';
-  const discovery = new ToolDiscovery();
 
   console.log('Generating sitemap...');
 
   try {
-    // Auto-discover all tools
-    const tools = await discovery.discoverAllTools();
+    // Use static data only during build to avoid Edge Config dynamic server usage
+    const discovery = new ToolDiscovery();
+
+    // Get static data directly without Edge Config calls during build
+    const tools = await discovery.getStaticTools();
     const staticPages = await discovery.discoverStaticPages();
-    const categories = await discovery.discoverCategories();
+    const categories = await discovery.getStaticCategories();
 
     // Homepage (highest priority)
     const routes: MetadataRoute.Sitemap = [
