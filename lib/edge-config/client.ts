@@ -16,8 +16,10 @@ import {
   MAX_CACHE_SIZE,
 } from './defaults';
 
-// Edge Config client instance
-const edgeConfig = createClient(process.env.EDGE_CONFIG);
+// Edge Config client instance - only create if connection string exists
+const edgeConfig = process.env.EDGE_CONFIG
+  ? createClient(process.env.EDGE_CONFIG)
+  : null;
 
 // In-memory cache for development and fallback scenarios
 const cache = new Map<string, CacheEntry<any>>();
@@ -163,7 +165,7 @@ export async function getEdgeConfig<T = EdgeConfigSchema>(
     }
 
     // Check if Edge Config is configured
-    if (!process.env.EDGE_CONFIG) {
+    if (!process.env.EDGE_CONFIG || !edgeConfig) {
       const error = createError(
         'auth',
         'EDGE_CONFIG environment variable is not configured'
