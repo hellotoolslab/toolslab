@@ -32,9 +32,9 @@ const DEFAULT_TOOLS = {
       keywords: ['json', 'formatter', 'validator', 'beautify', 'minify'],
     },
   },
-  'base64-encoder': {
-    id: 'base64-encoder',
-    slug: 'base64-encoder',
+  'base64-encode': {
+    id: 'base64-encode',
+    slug: 'base64-encode',
     name: 'Base64 Encoder/Decoder',
     description:
       'Encode and decode Base64 strings with support for files and images',

@@ -77,12 +77,12 @@ export const tools: Tool[] = [
     name: 'Base64 Encoder/Decoder',
     description: 'Encode and decode Base64 strings with file support',
     icon: '🔐',
-    route: '/tools/base64',
+    route: '/tools/base64-encode',
     categories: ['encoding'],
     keywords: ['base64', 'encode', 'decode', 'encryption', 'security'],
     isPopular: true,
     searchVolume: 9200,
-    label: 'coming-soon',
+    label: 'new',
   },
   {
     id: 'url-encode',
@@ -106,7 +106,7 @@ export const tools: Tool[] = [
     keywords: ['hash', 'md5', 'sha1', 'sha256', 'checksum'],
     isPopular: true,
     searchVolume: 6500,
-    label: 'coming-soon',
+    label: 'new',
   },
   {
     id: 'jwt-decoder',

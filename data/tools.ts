@@ -140,21 +140,14 @@ export const tools: Tool[] = [
   },
   {
     id: '2',
-    slug: 'base64-encoder',
-    name: 'Base64 Encoder',
-    description: 'Encode text or files to Base64 format',
+    slug: 'base64-encode',
+    name: 'Base64 Encoder/Decoder',
+    description:
+      'Encode and decode Base64 strings with auto-detection and file support',
     category: 'converters',
     icon: Lock,
     popular: true,
-  },
-  {
-    id: '3',
-    slug: 'base64-decoder',
-    name: 'Base64 Decoder',
-    description: 'Decode Base64 strings back to original text',
-    category: 'converters',
-    icon: Unlock,
-    popular: true,
+    featured: true,
   },
   {
     id: '4',

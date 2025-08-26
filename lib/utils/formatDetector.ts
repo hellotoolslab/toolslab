@@ -78,13 +78,13 @@ export function detectFormat(input: string): FormatDetectionResult {
       try {
         JSON.parse(decoded);
         metadata.decodedType = 'json';
-        chainSuggestions.push('base64-decoder -> json-formatter');
+        chainSuggestions.push('base64-encode -> json-formatter');
       } catch {}
 
       // Check if decoded content is JWT
       if (decoded.match(/^eyJ[\w-]+\.eyJ[\w-]+\.[\w-]+$/)) {
         metadata.decodedType = 'jwt';
-        chainSuggestions.push('base64-decoder -> jwt-decoder');
+        chainSuggestions.push('base64-encode -> jwt-decoder');
       }
 
       // Increase confidence for unicode content
@@ -100,7 +100,7 @@ export function detectFormat(input: string): FormatDetectionResult {
     return {
       type: 'base64',
       confidence: confidence,
-      suggestedTools: ['base64-encoder', 'url-encoder', 'jwt-decoder'],
+      suggestedTools: ['base64-encode', 'url-encoder', 'jwt-decoder'],
       description: 'Base64 encoded data detected',
       metadata: Object.keys(metadata).length > 0 ? metadata : undefined,
       chainSuggestions:

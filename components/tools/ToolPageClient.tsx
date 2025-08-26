@@ -161,14 +161,26 @@ export default function ToolPageClient({
   };
 
   // Get related tools from same category (excluding coming-soon tools)
-  const relatedTools = tools
-    .filter(
+  const getRelatedTools = () => {
+    let filteredTools = tools.filter(
       (t) =>
         t.categories.includes(tool.categories[0]) &&
         t.id !== tool.id &&
         t.label !== 'coming-soon'
-    )
-    .slice(0, 4);
+    );
+
+    // Special case: Add JSON Formatter to Base64 related tools
+    if (toolSlug === 'base64-encode') {
+      const jsonFormatter = tools.find((t) => t.id === 'json-formatter');
+      if (jsonFormatter && !filteredTools.includes(jsonFormatter)) {
+        filteredTools.unshift(jsonFormatter); // Add JSON Formatter at the beginning
+      }
+    }
+
+    return filteredTools.slice(0, 4);
+  };
+
+  const relatedTools = getRelatedTools();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
