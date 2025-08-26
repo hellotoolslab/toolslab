@@ -59,7 +59,7 @@ export default function ToolWorkspace({
         setInput(data);
       },
       onChainStepAdded: (step) => {
-        console.log('Chain step added:', step);
+        // Chain step added successfully
       },
     });
 

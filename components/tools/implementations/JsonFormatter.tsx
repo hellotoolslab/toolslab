@@ -14,82 +14,83 @@ import {
   Eye,
   Code,
 } from 'lucide-react';
+import { useCopy } from '@/lib/hooks/useCopy';
+import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
+import { BaseToolProps, JsonValue, JsonObject } from '@/lib/types/tools';
 
-interface JsonFormatterProps {
-  categoryColor: string;
-}
+interface JsonFormatterProps extends BaseToolProps {}
 
 export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
-  const [error, setError] = useState<string | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
   const [viewMode, setViewMode] = useState<'tree' | 'formatted'>('formatted');
   const [indentSize, setIndentSize] = useState(2);
   const [sortKeys, setSortKeys] = useState(false);
 
-  const formatJson = () => {
-    setIsProcessing(true);
-    setError(null);
+  // Use unified hooks
+  const { copied, copy } = useCopy();
+  const { isProcessing, error, processSync } = useToolProcessor<
+    string,
+    string
+  >();
 
-    setTimeout(() => {
-      try {
-        const parsed = JSON.parse(input);
+  const formatJson = () => {
+    if (!input.trim()) {
+      setOutput('');
+      return;
+    }
+
+    try {
+      const result = processSync(input, (inputText) => {
+        const parsed = JSON.parse(inputText);
 
         // Sort keys if enabled
-        const processObject = (obj: any): any => {
+        const processObject = (obj: JsonValue): JsonValue => {
           if (!sortKeys || typeof obj !== 'object' || obj === null) return obj;
 
           if (Array.isArray(obj)) {
             return obj.map(processObject);
           }
 
-          const sorted: any = {};
-          Object.keys(obj)
+          const sorted: JsonObject = {};
+          Object.keys(obj as JsonObject)
             .sort()
             .forEach((key) => {
-              sorted[key] = processObject(obj[key]);
+              sorted[key] = processObject((obj as JsonObject)[key]);
             });
           return sorted;
         };
 
         const processed = sortKeys ? processObject(parsed) : parsed;
-        const formatted = JSON.stringify(processed, null, indentSize);
-        setOutput(formatted);
-      } catch (err) {
-        setError('Invalid JSON: ' + (err as Error).message);
-      } finally {
-        setIsProcessing(false);
-      }
-    }, 100);
+        return JSON.stringify(processed, null, indentSize);
+      });
+
+      setOutput(result);
+    } catch (err) {
+      // Error is handled by useToolProcessor
+    }
   };
 
   const minifyJson = () => {
-    setIsProcessing(true);
-    setError(null);
+    if (!input.trim()) {
+      setOutput('');
+      return;
+    }
 
-    setTimeout(() => {
-      try {
-        const parsed = JSON.parse(input);
-        const minified = JSON.stringify(parsed);
-        setOutput(minified);
-      } catch (err) {
-        setError('Invalid JSON: ' + (err as Error).message);
-      } finally {
-        setIsProcessing(false);
-      }
-    }, 100);
+    try {
+      const result = processSync(input, (inputText) => {
+        const parsed = JSON.parse(inputText);
+        return JSON.stringify(parsed);
+      });
+
+      setOutput(result);
+    } catch (err) {
+      // Error is handled by useToolProcessor
+    }
   };
 
   const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(output);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
+    await copy(output);
   };
 
   const handleDownload = () => {
@@ -104,7 +105,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     URL.revokeObjectURL(url);
   };
 
-  const renderJsonTree = (data: any, depth = 0): JSX.Element => {
+  const renderJsonTree = (data: JsonValue, depth = 0): JSX.Element => {
     if (data === null) return <span className="text-gray-500">null</span>;
     if (typeof data === 'boolean')
       return (
@@ -283,6 +284,13 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
           </button>
         </div>
 
+        {/* Error Display */}
+        {error && (
+          <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-950/30">
+            <p className="text-red-600 dark:text-red-400">{error}</p>
+          </div>
+        )}
+
         {/* Output Section */}
         {output && !error && (
           <div className="animate-slideIn space-y-2">
@@ -295,7 +303,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                   onClick={handleCopy}
                   className="flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
-                  {isCopied ? (
+                  {copied ? (
                     <>
                       <Check className="h-4 w-4 text-green-500" />
                       <span className="text-sm text-green-500">Copied!</span>
