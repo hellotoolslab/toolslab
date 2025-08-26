@@ -97,7 +97,7 @@ describe('Tool Chaining Integration', () => {
 
       store.addToHistory({
         id: '2',
-        tool: 'base64-encoder',
+        tool: 'base64-encode',
         input: 'test',
         output: 'dGVzdA==',
         timestamp: Date.now() + 1000,
@@ -106,7 +106,7 @@ describe('Tool Chaining Integration', () => {
       const history = useToolStore.getState().history;
       expect(history).toHaveLength(2);
       expect(history[0].tool).toBe('json-formatter');
-      expect(history[1].tool).toBe('base64-encoder');
+      expect(history[1].tool).toBe('base64-encode');
     });
 
     it('should pass output of one tool as input to next', () => {
@@ -173,7 +173,7 @@ describe('Tool Chaining Integration', () => {
       // Simulate workspace with multiple tools
       const workspace = [
         { tool: 'json-formatter', position: { x: 0, y: 0 } },
-        { tool: 'base64-encoder', position: { x: 300, y: 0 } },
+        { tool: 'base64-encode', position: { x: 300, y: 0 } },
         { tool: 'jwt-decoder', position: { x: 600, y: 0 } },
       ];
 
@@ -189,7 +189,7 @@ describe('Tool Chaining Integration', () => {
 
       const connections = [
         { from: 'json-formatter', to: 'jwt-decoder', dataPath: 'token' },
-        { from: 'jwt-decoder', to: 'base64-encoder', dataPath: 'payload' },
+        { from: 'jwt-decoder', to: 'base64-encode', dataPath: 'payload' },
       ];
 
       store.setChainedData({ connections });

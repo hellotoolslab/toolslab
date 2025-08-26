@@ -29,7 +29,7 @@ describe('Format Detector', () => {
       const result = detectFormat(TEST_BASE64.encoded);
       expect(result.type).toBe('base64');
       expect(result.confidence).toBeGreaterThan(0.7);
-      expect(result.suggestedTools).toContain('base64-encoder');
+      expect(result.suggestedTools).toContain('base64-encode');
     });
 
     it('should detect Base64 with unicode', () => {
@@ -180,9 +180,7 @@ describe('Format Detector', () => {
       const base64JWT = Buffer.from(TEST_JWT.valid).toString('base64');
       const result = detectFormat(base64JWT);
       expect(result.chainSuggestions).toBeDefined();
-      expect(result.chainSuggestions).toContain(
-        'base64-decoder -> jwt-decoder'
-      );
+      expect(result.chainSuggestions).toContain('base64-encode -> jwt-decoder');
     });
   });
 
