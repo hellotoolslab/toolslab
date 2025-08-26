@@ -487,6 +487,24 @@ export class ToolDiscovery {
     return Array.from(this.toolsCache.values());
   }
 
+  // Get static tools only (for build-time)
+  async getStaticTools(): Promise<ToolInfo[]> {
+    return this.scanStaticTools();
+  }
+
+  // Get static categories only (for build-time)
+  getStaticCategories(): string[] {
+    const categories = new Set<string>();
+
+    staticTools.forEach((tool) => {
+      if (tool.category) {
+        categories.add(tool.category);
+      }
+    });
+
+    return Array.from(categories);
+  }
+
   // Get single tool by slug
   async getTool(slug: string): Promise<ToolInfo | null> {
     const tools = await this.getTools();

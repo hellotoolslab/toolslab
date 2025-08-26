@@ -1,11 +1,15 @@
 // app/[key].txt/route.ts
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+
+// Disable static generation for this route
+export const dynamic = 'force-dynamic';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ key: string }> }
 ) {
-  const { key } = await params;
+  const resolvedParams = await params;
+  const { key } = resolvedParams;
 
   // Return IndexNow key if it matches
   if (key === process.env.INDEXNOW_API_KEY && process.env.INDEXNOW_API_KEY) {
