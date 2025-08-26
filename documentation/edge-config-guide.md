@@ -1,8 +1,8 @@
-# 🚀 OctoTools Edge Config - Guida Completa
+# 🧪 ToolsLab Edge Config - Guida Completa
 
 ## 📋 Panoramica
 
-Questa guida ti mostra come utilizzare **Vercel Edge Config** per gestire dinamicamente i tool di OctoTools senza rideploy. Con Edge Config puoi:
+Questa guida ti mostra come utilizzare **Vercel Edge Config** per gestire dinamicamente i tool di ToolsLab senza rideploy. Con Edge Config puoi:
 
 - ✅ **Abilitare/disabilitare tool** in tempo reale
 - 🎯 **Controllare feature flags** (ads, maintenance mode, Pro)
@@ -407,7 +407,7 @@ X-Processed-At: 2024-08-21T15:30:25Z
 
 ```bash
 # Check headers in produzione
-curl -I https://octotools.org/tools/json-formatter
+curl -I https://toolslab.dev/tools/json-formatter
 
 # Dovrebbe includere:
 # X-Edge-Config-Status: loaded

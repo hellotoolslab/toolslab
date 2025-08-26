@@ -4,6 +4,8 @@ import { Suspense } from 'react';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { UmamiProvider } from '@/components/analytics/UmamiProvider';
+import { UmamiDebugger } from '@/components/analytics/UmamiDebugger';
+import { ToastProvider } from '@/components/providers/ToastProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -47,6 +49,17 @@ export const metadata: Metadata = {
     description:
       'Professional developer tools crafted with scientific precision. All tools work offline and deliver laboratory-grade accuracy.',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/manifest.json',
   robots: {
     index: true,
     follow: true,
@@ -77,17 +90,17 @@ export default function RootLayout({
           'min-h-screen bg-background font-sans antialiased'
         )}
       >
-        <Suspense fallback={null}>
-          <UmamiProvider>
-            <ThemeProvider>
-              <div className="relative flex min-h-screen flex-col">
-                <Header />
-                <main className="flex-1">{children}</main>
-                <Footer />
-              </div>
-            </ThemeProvider>
-          </UmamiProvider>
-        </Suspense>
+        <UmamiProvider>
+          <ThemeProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+            <ToastProvider />
+            <UmamiDebugger />
+          </ThemeProvider>
+        </UmamiProvider>
         <SpeedInsights />
       </body>
     </html>

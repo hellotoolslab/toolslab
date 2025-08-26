@@ -3,24 +3,28 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { Tool } from '@/types/tool';
-import { tools } from '@/data/tools';
-import { categoryColors } from '@/data/categories';
+import {
+  tools,
+  getToolById,
+  categories,
+  getCategoryColorClass,
+} from '@/lib/tools';
 import ToolWorkspace from './ToolWorkspace';
 import AdBanner from '@/components/ads/AdBanner';
 import { useFeatureFlag } from '@/hooks/useEdgeConfig';
+import { useUmami } from '@/components/analytics/UmamiProvider';
 import {
   ChevronRight,
   Share2,
-  Clock,
-  TrendingUp,
   X,
   Info,
   BookOpen,
   HelpCircle,
   ArrowRight,
-  Star,
 } from 'lucide-react';
+import { FavoriteButton } from '@/components/lab/FavoriteButton';
+import { useToolLabel } from '@/lib/services/toolLabelService';
+import { useToolLabels } from '@/lib/hooks/useToolLabels';
 
 interface ToolPageClientProps {
   toolSlug: string;
@@ -32,10 +36,16 @@ export default function ToolPageClient({
   searchParams,
 }: ToolPageClientProps) {
   const { theme } = useTheme();
+  const { trackEngagement, trackToolUse } = useUmami();
   const [isAdDismissed, setIsAdDismissed] = useState(false);
   const [usageCount, setUsageCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const adsEnabled = useFeatureFlag('adsEnabled');
+
+  // Tool label system
+  const toolLabel = useToolLabel(toolSlug);
+  const { getToolLabelInfo, getLabelComponent } = useToolLabels();
+  const labelInfo = getToolLabelInfo(toolLabel);
 
   // Extract initial input from search params
   const initialInput = searchParams?.input
@@ -53,6 +63,15 @@ export default function ToolPageClient({
     // Simulate usage count
     setUsageCount(Math.floor(Math.random() * 5000) + 1000);
 
+    // Track tool page view
+    if (toolSlug) {
+      trackEngagement('tool-page-viewed', {
+        tool: toolSlug,
+        has_initial_input: !!initialInput,
+        is_mobile: window.innerWidth < 768,
+      });
+    }
+
     // Check ad dismiss state
     const dismissed = localStorage.getItem('ad-dismissed');
     if (dismissed) {
@@ -64,44 +83,92 @@ export default function ToolPageClient({
     }
 
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [toolSlug, initialInput, trackEngagement]);
 
-  const tool = tools.find((t) => t.slug === toolSlug);
+  const tool = getToolById(toolSlug);
 
   if (!tool) {
     return <div>Tool not found</div>;
   }
 
+  // Get primary category information
+  const primaryCategory = categories.find(
+    (cat) => cat.id === tool.categories[0]
+  );
+  const categoryId = tool.categories[0];
+
+  // Get category color using the same system as ToolCard
+  const getCategoryColor = (category: string) => {
+    const colors = {
+      data: '#0EA5E9',
+      encoding: '#10B981',
+      text: '#8B5CF6',
+      generators: '#F97316',
+      web: '#EC4899',
+      dev: '#F59E0B',
+      formatters: '#6366F1',
+    };
+    return colors[category as keyof typeof colors] || '#3B82F6';
+  };
+
+  const categoryColor = getCategoryColor(categoryId);
+
   const handleDismissAd = () => {
     setIsAdDismissed(true);
     localStorage.setItem('ad-dismissed', new Date().toISOString());
+    trackEngagement('ad-dismissed', {
+      tool: toolSlug,
+      ad_type: 'banner',
+    });
   };
 
   const handleShare = async () => {
-    if (navigator.share) {
+    const hasNativeShare =
+      typeof navigator !== 'undefined' && 'share' in navigator;
+
+    trackEngagement('tool-share-clicked', {
+      tool: toolSlug,
+      method: hasNativeShare ? 'native' : 'clipboard',
+    });
+
+    if (hasNativeShare && navigator.share) {
       try {
         await navigator.share({
           title: `${tool.name} - OctoTools`,
           text: tool.description,
           url: window.location.href,
         });
+        trackEngagement('tool-share-completed', {
+          tool: toolSlug,
+          method: 'native',
+        });
       } catch (err) {
         console.log('Share cancelled');
+        trackEngagement('tool-share-cancelled', {
+          tool: toolSlug,
+          method: 'native',
+        });
       }
     } else {
       // Fallback - copy to clipboard
       navigator.clipboard.writeText(window.location.href);
+      trackEngagement('tool-share-completed', {
+        tool: toolSlug,
+        method: 'clipboard',
+      });
       // Show toast notification
     }
   };
 
-  // Get related tools from same category
+  // Get related tools from same category (excluding coming-soon tools)
   const relatedTools = tools
-    .filter((t) => t.category === tool.category && t.slug !== tool.slug)
+    .filter(
+      (t) =>
+        t.categories.includes(tool.categories[0]) &&
+        t.id !== tool.id &&
+        t.label !== 'coming-soon'
+    )
     .slice(0, 4);
-
-  // Get color for category
-  const categoryColor = categoryColors[tool.category] || categoryColors.default;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
@@ -121,9 +188,9 @@ export default function ToolPageClient({
         </div>
       )}
 
-      <div className="mx-auto max-w-7xl px-4 py-8">
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:py-8">
         {/* Breadcrumb */}
-        <nav className="mb-6 flex items-center space-x-2 text-sm">
+        <nav className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:mb-6 sm:text-sm">
           <Link
             href="/"
             className="text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -132,11 +199,11 @@ export default function ToolPageClient({
           </Link>
           <ChevronRight className="h-4 w-4 text-gray-400" />
           <Link
-            href={`/category/${tool.category}`}
+            href={`/category/${categoryId}`}
             className="capitalize text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             style={{ color: categoryColor }}
           >
-            {tool.category}
+            {primaryCategory?.name || categoryId}
           </Link>
           <ChevronRight className="h-4 w-4 text-gray-400" />
           <span className="font-medium text-gray-900 dark:text-white">
@@ -145,22 +212,33 @@ export default function ToolPageClient({
         </nav>
 
         {/* Tool Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <div className="mb-4 flex items-start justify-between">
             <div className="flex-1">
-              <div className="mb-2 flex items-center gap-3">
+              <div className="mb-2 flex flex-wrap items-center gap-2 sm:gap-3">
                 <div
-                  className="rounded-xl p-3"
+                  className="rounded-xl p-2 sm:p-3"
                   style={{ backgroundColor: `${categoryColor}20` }}
                 >
-                  <tool.icon
-                    className="h-8 w-8"
+                  <span
+                    className="flex h-6 w-6 items-center justify-center text-2xl sm:h-8 sm:w-8 sm:text-3xl"
                     style={{ color: categoryColor }}
+                  >
+                    {tool.icon}
+                  </span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
+                    {tool.name}
+                  </h1>
+                  <FavoriteButton
+                    type="tool"
+                    id={tool.id}
+                    name={tool.name}
+                    size="lg"
+                    showLabel={false}
                   />
                 </div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-                  {tool.name}
-                </h1>
                 <span
                   className="rounded-full px-3 py-1 text-xs font-medium capitalize"
                   style={{
@@ -168,39 +246,18 @@ export default function ToolPageClient({
                     color: categoryColor,
                   }}
                 >
-                  {tool.category}
+                  {primaryCategory?.name || categoryId}
                 </span>
-                {usageCount > 2000 && (
-                  <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                    Popular
-                  </span>
+                {labelInfo.hasLabel && (
+                  <div>{getLabelComponent(toolLabel, 'sm')}</div>
                 )}
               </div>
-              <p className="mb-4 text-lg text-gray-600 dark:text-gray-400">
+              <p className="mb-4 text-sm text-gray-600 dark:text-gray-400 sm:text-lg">
                 {tool.description}
               </p>
 
-              {/* Tool Stats Bar */}
-              <div className="flex flex-wrap items-center gap-4 text-sm">
-                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                  <TrendingUp className="h-4 w-4" />
-                  <span>Used {usageCount.toLocaleString()} times today</span>
-                </div>
-                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                  <Clock className="h-4 w-4" />
-                  <span>Saves ~5 min per use</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`h-4 w-4 ${i < 4 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
-                    />
-                  ))}
-                  <span className="ml-1 text-gray-500 dark:text-gray-400">
-                    4.8
-                  </span>
-                </div>
+              {/* Share Button */}
+              <div className="flex flex-wrap items-center gap-2 text-xs sm:gap-4 sm:text-sm">
                 <button
                   onClick={handleShare}
                   className="flex items-center gap-1 rounded-lg border border-gray-300 px-3 py-1 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800"
@@ -218,13 +275,13 @@ export default function ToolPageClient({
           {/* Tool Workspace */}
           <div className="lg:col-span-2">
             <ToolWorkspace
-              tool={tool}
+              tool={{ ...tool, slug: tool.id, category: categoryId } as any}
               categoryColor={categoryColor}
               initialInput={initialInput}
             />
 
             {/* How to Use Section */}
-            <div className="mt-12 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:mt-12 sm:p-6">
               <div className="mb-4 flex items-center gap-2">
                 <BookOpen
                   className="h-5 w-5"
@@ -283,7 +340,7 @@ export default function ToolPageClient({
             </div>
 
             {/* FAQ Section */}
-            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
               <div className="mb-4 flex items-center gap-2">
                 <HelpCircle
                   className="h-5 w-5"
@@ -345,18 +402,20 @@ export default function ToolPageClient({
                 <div className="space-y-3">
                   {relatedTools.map((relatedTool) => (
                     <Link
-                      key={relatedTool.slug}
-                      href={`/tools/${relatedTool.slug}`}
+                      key={relatedTool.id}
+                      href={`/tools/${relatedTool.id}`}
                       className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                       <div
                         className="rounded-lg p-2"
                         style={{ backgroundColor: `${categoryColor}20` }}
                       >
-                        <relatedTool.icon
-                          className="h-5 w-5"
+                        <span
+                          className="flex h-5 w-5 items-center justify-center text-lg"
                           style={{ color: categoryColor }}
-                        />
+                        >
+                          {relatedTool.icon}
+                        </span>
                       </div>
                       <div className="flex-1">
                         <p className="text-sm font-medium text-gray-900 dark:text-white">
@@ -403,12 +462,6 @@ export default function ToolPageClient({
                     </span>
                     <span>Bookmark this page for quick access</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 text-blue-600 dark:text-blue-400">
-                      •
-                    </span>
-                    <span>Try our API for automation needs</span>
-                  </li>
                 </ul>
               </div>
             </div>
@@ -417,25 +470,27 @@ export default function ToolPageClient({
 
         {/* Mobile Related Tools */}
         {isMobile && (
-          <div className="mt-12">
-            <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+          <div className="mt-8 sm:mt-12">
+            <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
               Related Tools
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {relatedTools.map((relatedTool) => (
                 <Link
-                  key={relatedTool.slug}
-                  href={`/tools/${relatedTool.slug}`}
+                  key={relatedTool.id}
+                  href={`/tools/${relatedTool.id}`}
                   className="rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
                 >
                   <div
                     className="mb-2 inline-block rounded-lg p-2"
                     style={{ backgroundColor: `${categoryColor}20` }}
                   >
-                    <relatedTool.icon
-                      className="h-5 w-5"
+                    <span
+                      className="flex h-5 w-5 items-center justify-center text-lg"
                       style={{ color: categoryColor }}
-                    />
+                    >
+                      {relatedTool.icon}
+                    </span>
                   </div>
                   <p className="text-sm font-medium text-gray-900 dark:text-white">
                     {relatedTool.name}

@@ -1,30 +1,90 @@
-// components/analytics/UmamiProvider.tsx
 'use client';
 
-import { useEffect } from 'react';
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useEffect,
+  Suspense,
+} from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-// Umami tracking functions
-declare global {
-  interface Window {
-    umami?: {
-      track: (event: string, data?: any) => void;
-      identify: (data: any) => void;
-    };
-  }
+interface UmamiWindow extends Window {
+  umami?: {
+    track: (event: string, data?: Record<string, any>) => void;
+    identify: (data: any) => void;
+  };
 }
 
-// Custom event tracking functions
+interface UmamiContextType {
+  track: (event: string, data?: Record<string, any>) => void;
+  trackToolUse: (
+    tool: string,
+    action: string,
+    metadata?: Record<string, any>
+  ) => void;
+  trackFavorite: (
+    type: 'tool' | 'category',
+    id: string,
+    isFavorited: boolean
+  ) => void;
+  trackSocial: (platform: 'twitter' | 'github', from?: string) => void;
+  trackConversion: (type: 'donation' | 'pro-signup', from?: string) => void;
+  trackError: (
+    tool: string,
+    error: string,
+    severity?: 'low' | 'medium' | 'high'
+  ) => void;
+  trackPerformance: (tool: string, action: string, duration: number) => void;
+  trackEngagement: (action: string, metadata?: Record<string, any>) => void;
+}
+
+const UmamiContext = createContext<UmamiContextType | null>(null);
+
+// Legacy functions for backward compatibility
 export const trackEvent = (
   eventName: string,
   eventData?: Record<string, any>
 ) => {
-  if (typeof window !== 'undefined' && window.umami) {
-    window.umami.track(eventName, eventData);
+  // ONLY send data to Umami in production environment
+  if (
+    process.env.NODE_ENV === 'production' &&
+    typeof window !== 'undefined' &&
+    (window as UmamiWindow).umami
+  ) {
+    (window as UmamiWindow).umami!.track(eventName, eventData);
+  }
+
+  // Always log in development OR if UMAMI_DEBUG is enabled (for testing)
+  if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true'
+  ) {
+    const isProductionMode = process.env.NODE_ENV === 'production';
+
+    console.group(`📊 Umami Event: ${eventName}`);
+    console.log('📅 Time:', new Date().toISOString());
+    console.log('📍 Event:', eventName);
+    console.log('📋 Data:', eventData || 'No data');
+    console.log(
+      '🌍 URL:',
+      typeof window !== 'undefined' ? window.location.href : 'SSR'
+    );
+    console.log(
+      '👤 User Agent:',
+      typeof navigator !== 'undefined'
+        ? navigator.userAgent.substring(0, 50) + '...'
+        : 'SSR'
+    );
+    console.log(
+      isProductionMode
+        ? '✅ PRODUCTION: Data sent to Umami'
+        : '🚨 DEVELOPMENT: Data NOT sent to Umami (localhost only)'
+    );
+    console.groupEnd();
   }
 };
 
-// Tool-specific tracking
 export const trackToolUsage = (
   toolName: string,
   action: string,
@@ -36,7 +96,6 @@ export const trackToolUsage = (
   });
 };
 
-// Conversion tracking
 export const trackConversion = (
   type: 'donation' | 'pro_signup' | 'tool_chain',
   value?: number
@@ -48,16 +107,14 @@ export const trackConversion = (
   });
 };
 
-// Error tracking
 export const trackError = (tool: string, error: string) => {
   trackEvent('error', {
     tool,
-    error: error.substring(0, 100), // Limit error message length
+    error: error.substring(0, 100),
     timestamp: Date.now(),
   });
 };
 
-// Performance tracking
 export const trackPerformance = (
   tool: string,
   action: string,
@@ -71,21 +128,18 @@ export const trackPerformance = (
   });
 };
 
-interface UmamiProviderProps {
-  children: React.ReactNode;
-}
-
-export function UmamiProvider({ children }: UmamiProviderProps) {
+function UmamiProviderInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // Load Umami script ONLY in production
   useEffect(() => {
-    // Only load in production
+    // Don't load Umami script in development
     if (process.env.NODE_ENV !== 'production') {
+      console.log('🚨 Umami script NOT loaded in development mode');
       return;
     }
 
-    // Load Umami script
     if (
       typeof window !== 'undefined' &&
       !document.getElementById('umami-script')
@@ -96,6 +150,7 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
         'https://cloud.umami.is/script.js';
 
       if (!websiteId) {
+        console.warn('⚠️ Umami website ID not configured');
         return;
       }
 
@@ -132,15 +187,9 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
 
   // Track route changes
   useEffect(() => {
-    // Only track in production
-    if (process.env.NODE_ENV !== 'production') {
-      return;
-    }
-
-    // Wait a bit for script to load and track page view
     const timer = setTimeout(() => {
-      if (typeof window !== 'undefined' && window.umami) {
-        // Umami automatically tracks pageviews, but we can add custom data
+      if (typeof window !== 'undefined' && (window as UmamiWindow).umami) {
+        // Track tool page views
         if (pathname.startsWith('/tools/')) {
           const toolName = pathname.split('/')[2];
           trackEvent('tool-view', {
@@ -155,21 +204,133 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
     return () => clearTimeout(timer);
   }, [pathname, searchParams]);
 
-  return <>{children}</>;
+  // Context provider methods
+  const track = useCallback((event: string, data?: Record<string, any>) => {
+    trackEvent(event, data);
+  }, []);
+
+  const trackToolUse = useCallback(
+    (tool: string, action: string, metadata?: Record<string, any>) => {
+      trackEvent('tool-used', {
+        tool,
+        action,
+        timestamp: Date.now(),
+        ...metadata,
+      });
+    },
+    []
+  );
+
+  const trackFavorite = useCallback(
+    (type: 'tool' | 'category', id: string, isFavorited: boolean) => {
+      trackEvent(isFavorited ? `${type}-favorited` : `${type}-unfavorited`, {
+        [`${type}_id`]: id,
+        timestamp: Date.now(),
+      });
+    },
+    []
+  );
+
+  const trackSocial = useCallback(
+    (platform: 'twitter' | 'github', from?: string) => {
+      trackEvent(`social-${platform}-clicked`, {
+        from: from || 'unknown',
+        timestamp: Date.now(),
+      });
+    },
+    []
+  );
+
+  const trackConversionNew = useCallback(
+    (type: 'donation' | 'pro-signup', from?: string) => {
+      trackEvent(`conversion-${type}`, {
+        from: from || 'unknown',
+        timestamp: Date.now(),
+      });
+    },
+    []
+  );
+
+  const trackErrorNew = useCallback(
+    (
+      tool: string,
+      error: string,
+      severity: 'low' | 'medium' | 'high' = 'low'
+    ) => {
+      trackEvent('tool-error', {
+        tool,
+        error,
+        severity,
+        timestamp: Date.now(),
+      });
+    },
+    []
+  );
+
+  const trackPerformanceNew = useCallback(
+    (tool: string, action: string, duration: number) => {
+      trackEvent('tool-performance', {
+        tool,
+        action,
+        duration_ms: duration,
+        timestamp: Date.now(),
+      });
+    },
+    []
+  );
+
+  const trackEngagement = useCallback(
+    (action: string, metadata?: Record<string, any>) => {
+      trackEvent(`engagement-${action}`, {
+        timestamp: Date.now(),
+        ...metadata,
+      });
+    },
+    []
+  );
+
+  return (
+    <UmamiContext.Provider
+      value={{
+        track,
+        trackToolUse,
+        trackFavorite,
+        trackSocial,
+        trackConversion: trackConversionNew,
+        trackError: trackErrorNew,
+        trackPerformance: trackPerformanceNew,
+        trackEngagement,
+      }}
+    >
+      {children}
+    </UmamiContext.Provider>
+  );
+}
+
+// Wrapper with Suspense boundary for SSG compatibility
+export function UmamiProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<div>{children}</div>}>
+      <UmamiProviderInner>{children}</UmamiProviderInner>
+    </Suspense>
+  );
 }
 
 // Custom hook for using Umami in components
-import { useCallback } from 'react';
-
 export function useUmami() {
+  const context = useContext(UmamiContext);
+
+  // Legacy methods for backward compatibility - always define hooks
   const logEvent = useCallback(
     (
       eventName: string,
       eventData?: Record<string, string | number | boolean>
     ) => {
-      trackEvent(eventName, eventData);
+      if (context) {
+        context.track(eventName, eventData);
+      }
     },
-    []
+    [context]
   );
 
   const logToolAction = useCallback(
@@ -179,39 +340,61 @@ export function useUmami() {
       success: boolean,
       metadata?: Record<string, any>
     ) => {
-      trackToolUsage(tool, action, {
-        success,
-        ...metadata,
-      });
+      if (context) {
+        context.trackToolUse(tool, action, {
+          success,
+          ...metadata,
+        });
+      }
     },
-    []
+    [context]
   );
 
   const logTiming = useCallback(
     (category: string, variable: string, time: number) => {
-      trackEvent('timing', {
-        category,
-        variable,
-        time,
-      });
+      if (context) {
+        context.track('timing', {
+          category,
+          variable,
+          time,
+        });
+      }
     },
-    []
+    [context]
   );
 
   const logUserLevel = useCallback((level: string) => {
-    if (window.umami) {
-      window.umami.identify({ userLevel: level });
+    if (typeof window !== 'undefined' && (window as UmamiWindow).umami) {
+      (window as UmamiWindow).umami!.identify({ userLevel: level });
     }
   }, []);
 
+  if (!context) {
+    // Return no-op functions if context not available
+    return {
+      track: () => {},
+      trackToolUse: () => {},
+      trackFavorite: () => {},
+      trackSocial: () => {},
+      trackConversion: () => {},
+      trackError: () => {},
+      trackPerformance: () => {},
+      trackEngagement: () => {},
+      // Legacy methods for backward compatibility
+      logEvent,
+      logToolAction,
+      logTiming,
+      logUserLevel,
+    };
+  }
+
   return {
+    ...context,
+    // Legacy methods for backward compatibility
     logEvent,
     logToolAction,
     logTiming,
     logUserLevel,
-    trackConversion,
-    trackError,
-    trackPerformance,
   };
 }
 

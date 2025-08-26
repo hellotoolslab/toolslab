@@ -213,15 +213,19 @@
 
 /* === LAYOUTS === */
 .container-main {
-  @apply container max-w-7xl mx-auto px-6 lg:px-8;
+  @apply container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .container {
-  @apply max-w-7xl mx-auto px-6 lg:px-8;
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .hero-section {
-  @apply relative py-20 lg:py-32;
+  @apply relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
@@ -236,19 +240,19 @@
 }
 
 .hero-content {
-  @apply relative z-10 text-center text-white;
+  @apply relative z-10 text-center text-white px-4;
 }
 
 .hero-title {
-  @apply text-4xl lg:text-6xl font-bold mb-6 leading-tight;
+  @apply font-bold mb-4 sm:mb-6 leading-tight;
 }
 
 .hero-subtitle {
-  @apply text-xl lg:text-2xl mb-8 opacity-90;
+  @apply mb-6 sm:mb-8 opacity-90;
 }
 
 .hero-search {
-  @apply max-w-2xl mx-auto;
+  @apply max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto;
 }
 
 /* === GRID LAYOUTS === */
@@ -435,10 +439,59 @@
   }
   
   .hero-title {
-    @apply text-3xl;
+    @apply text-2xl;
   }
   
   .hero-subtitle {
-    @apply text-lg;
+    @apply text-sm;
+  }
+  
+  /* Mobile-specific padding adjustments */
+  .container-main {
+    @apply px-4;
+  }
+  
+  .tool-header {
+    @apply p-4;
+  }
+  
+  .tool-panel {
+    @apply p-4;
+  }
+  
+  .tool-content {
+    @apply p-4;
+  }
+  
+  /* Reduce font sizes on mobile */
+  .tool-title {
+    @apply text-2xl;
+  }
+  
+  .tool-description {
+    @apply text-sm;
+  }
+  
+  /* Adjust button sizes */
+  .btn {
+    @apply px-3 py-2 text-sm;
+  }
+  
+  .btn-sm {
+    @apply px-2 py-1 text-xs;
+  }
+  
+  /* Adjust input/textarea sizes */
+  .textarea {
+    @apply text-sm;
+  }
+  
+  /* Reduce spacing */
+  .space-y-6 {
+    @apply space-y-4;
+  }
+  
+  .space-y-8 {
+    @apply space-y-6;
   }
 }

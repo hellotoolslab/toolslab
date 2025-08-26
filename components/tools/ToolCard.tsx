@@ -1,16 +1,20 @@
+import React from 'react';
 import Link from 'next/link';
 import { Tool } from '@/lib/tools';
 import { cn } from '@/lib/utils';
-import { TrendingUp, Sparkles, Clock, Users } from 'lucide-react';
+import { FavoriteButton } from '@/components/lab/FavoriteButton';
+import { useToolLabels } from '@/lib/hooks/useToolLabels';
+import { ToolLabel } from '@/lib/edge-config/types';
 
 const getCategoryColor = (category: string) => {
   const colors = {
     data: '#0EA5E9',
-    encoding: '#10B981', 
+    encoding: '#10B981',
     text: '#8B5CF6',
     generators: '#F97316',
     web: '#EC4899',
-    dev: '#F59E0B'
+    dev: '#F59E0B',
+    formatters: '#6366F1',
   };
   return colors[category as keyof typeof colors] || '#3B82F6';
 };
@@ -19,112 +23,167 @@ interface ToolCardProps {
   tool: Tool;
   className?: string;
   showStats?: boolean;
+  toolLabel?: ToolLabel;
 }
 
-export function ToolCard({ tool, className, showStats = false }: ToolCardProps) {
-  return (
-    <Link href={tool.route} className="group block">
-      <div
-        className={cn(
-          'relative overflow-hidden bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] p-6',
-          className
-        )}
-      >
-        {/* Category color border top */}
-        <div 
-          className="absolute top-0 left-0 right-0 h-1 opacity-80"
-          style={{ 
-            background: `linear-gradient(90deg, ${getCategoryColor(tool.categoryColor)}, transparent)`
-          }} 
-        />
-        
-        {/* Badges */}
-        <div className="absolute top-4 right-4 flex gap-2">
-          {tool.isPopular && (
-            <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">
-              <TrendingUp className="w-3 h-3" />
-              Popular
-            </div>
-          )}
-          {tool.isNew && (
-            <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
-              <Sparkles className="w-3 h-3" />
-              New
-            </div>
-          )}
-        </div>
+export function ToolCard({
+  tool,
+  className,
+  showStats = false,
+  toolLabel,
+}: ToolCardProps) {
+  const { getToolLabelInfo, getLabelComponent } = useToolLabels();
+  const labelInfo = getToolLabelInfo(toolLabel);
 
-        <div>
-          {/* Icon and Title */}
-          <div className="flex items-start space-x-4 mb-4">
-            <div 
-              className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-2xl border-2 transition-all duration-200"
-              style={{ 
-                backgroundColor: `${getCategoryColor(tool.categoryColor)}20`,
-                borderColor: `${getCategoryColor(tool.categoryColor)}40`
-              }}
-            >
-              <span className="text-2xl" aria-hidden="true">
-                {tool.icon}
-              </span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-lg mb-2 text-gray-900 dark:text-gray-100 group-hover:opacity-80 transition-all duration-200">
-                {tool.name}
-              </h3>
-              <div 
-                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border"
-                style={{
-                  backgroundColor: `${getCategoryColor(tool.categoryColor)}20`,
-                  color: getCategoryColor(tool.categoryColor),
-                  borderColor: `${getCategoryColor(tool.categoryColor)}40`
-                }}
-              >
-                {tool.category}
-              </div>
-            </div>
-          </div>
-
-          {/* Description */}
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 leading-relaxed">
-            {tool.description}
-          </p>
-
-          {/* Keywords */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {tool.keywords.slice(0, 3).map((keyword) => (
-              <span
-                key={keyword}
-                className="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:text-gray-400"
-              >
-                {keyword}
-              </span>
-            ))}
-            {tool.keywords.length > 3 && (
-              <span className="text-xs text-gray-400 flex items-center">
-                +{tool.keywords.length - 3} more
-              </span>
+  const CardWrapper = ({ children }: { children: React.ReactNode }) => {
+    if (!labelInfo.isClickable) {
+      return (
+        <div className="group block h-full cursor-not-allowed">
+          <div
+            className={cn(
+              'relative flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all duration-200',
+              'border-gray-300 bg-gray-50 opacity-60 dark:border-gray-700 dark:bg-gray-800',
+              className
             )}
+          >
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <Link href={tool.route} className="group block h-full">
+        <div
+          className={cn(
+            'relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg dark:border-gray-800 dark:bg-gray-900',
+            className
+          )}
+        >
+          {children}
+        </div>
+      </Link>
+    );
+  };
+
+  return (
+    <CardWrapper>
+      {/* Category color border top */}
+      <div
+        className="absolute left-0 right-0 top-0 h-1 opacity-80"
+        style={{
+          background: `linear-gradient(90deg, ${getCategoryColor(tool.categories[0])}, transparent)`,
+        }}
+      />
+
+      {/* Header Section - Fixed Height */}
+      <div className="relative flex-shrink-0 p-6 pb-4">
+        {/* Favorite Button */}
+        <div className="absolute right-4 top-4 z-20">
+          <FavoriteButton
+            type="tool"
+            id={tool.id}
+            name={tool.name}
+            size="sm"
+            className="z-30"
+          />
+        </div>
+
+        {/* Icon and Label */}
+        <div className="flex items-start gap-2">
+          <div
+            className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border-2 text-2xl transition-all duration-200"
+            style={{
+              backgroundColor: `${getCategoryColor(tool.categories[0])}20`,
+              borderColor: `${getCategoryColor(tool.categories[0])}40`,
+            }}
+          >
+            <span className="text-3xl" aria-hidden="true">
+              {typeof tool.icon === 'string' ? tool.icon : '📄'}
+            </span>
           </div>
 
-          {/* Stats */}
-          {showStats && (
-            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 pt-3 border-t border-gray-200 dark:border-gray-700">
-              <div className="flex items-center gap-1">
-                <Users className="w-3 h-3" />
-                <span>{(tool.searchVolume / 100).toFixed(1)}k uses</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                <span>Updated today</span>
-              </div>
+          {/* Label - Adjusted positioning */}
+          {labelInfo.hasLabel && (
+            <div className="mt-0.5 flex-shrink-0">
+              {getLabelComponent(toolLabel, 'xs')}
             </div>
           )}
         </div>
-
-        {/* Hover effect overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
       </div>
-    </Link>
+
+      {/* Content Section - Flexible Height */}
+      <div className="flex flex-1 flex-col px-6 pb-6">
+        {/* Title and Category */}
+        <div className="mb-4">
+          <h3
+            className={cn(
+              'mb-2 text-lg font-bold leading-tight',
+              labelInfo.isComingSoon
+                ? 'text-gray-500 dark:text-gray-400'
+                : 'text-gray-900 dark:text-gray-100'
+            )}
+          >
+            {tool.name}
+          </h3>
+          <div
+            className={cn(
+              'inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium',
+              labelInfo.isComingSoon && 'opacity-60'
+            )}
+            style={{
+              backgroundColor: `${getCategoryColor(tool.categories[0])}15`,
+              color: getCategoryColor(tool.categories[0]),
+              borderColor: `${getCategoryColor(tool.categories[0])}30`,
+            }}
+          >
+            {tool.categories[0]}
+          </div>
+        </div>
+
+        {/* Description - Fixed height */}
+        <p
+          className={cn(
+            'mb-4 line-clamp-3 flex-1 text-sm leading-relaxed',
+            labelInfo.isComingSoon
+              ? 'text-gray-500 dark:text-gray-500'
+              : 'text-gray-600 dark:text-gray-400'
+          )}
+        >
+          {labelInfo.isComingSoon
+            ? 'This tool is coming soon. Stay tuned for updates!'
+            : tool.description}
+        </p>
+
+        {/* Keywords - Bottom section */}
+        {tool.keywords && tool.keywords.length > 0 && (
+          <div className="mt-auto">
+            <div className="flex flex-wrap gap-1.5">
+              {tool.keywords.slice(0, 4).map((keyword) => (
+                <span
+                  key={keyword}
+                  className={cn(
+                    'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium transition-colors',
+                    labelInfo.isComingSoon
+                      ? 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-500'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                  )}
+                >
+                  {keyword}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Hover effect overlay - only for clickable cards */}
+      {labelInfo.isClickable && (
+        <div
+          className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-200 group-hover:opacity-5"
+          style={{ backgroundColor: getCategoryColor(tool.categories[0]) }}
+        />
+      )}
+    </CardWrapper>
   );
 }

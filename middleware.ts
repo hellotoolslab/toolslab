@@ -14,6 +14,10 @@ const EXCLUDED_PATHS = [
   '/_next',
   '/api/_',
   '/favicon.ico',
+  '/icon.svg',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/apple-touch-icon.png',
   '/robots.txt',
   '/sitemap.xml',
 ];
@@ -36,6 +40,15 @@ export async function middleware(request: NextRequest) {
 
   // Skip processing for excluded paths
   if (!shouldProcessPath(pathname)) {
+    return NextResponse.next();
+  }
+
+  // Temporary: skip all SVG files
+  if (
+    pathname.endsWith('.svg') ||
+    pathname.endsWith('.png') ||
+    pathname.endsWith('.ico')
+  ) {
     return NextResponse.next();
   }
 
@@ -234,7 +247,8 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - icon files (all favicon variants)
      */
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|.*\\.ico|.*\\.png|.*\\.svg|robots\\.txt|sitemap\\.xml).*)',
   ],
 };

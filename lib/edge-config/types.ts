@@ -3,6 +3,8 @@
  * Defines the complete schema for tool configuration management
  */
 
+export type ToolLabel = 'popular' | 'new' | 'coming-soon';
+
 export interface ToolFlags {
   /** Show "NEW" badge on tool card */
   isNew?: boolean;
@@ -16,6 +18,10 @@ export interface ToolFlags {
   isTrending?: boolean;
   /** Tool is temporarily under maintenance */
   isMaintenance?: boolean;
+  /** Show "COMING SOON" badge - tool not yet available */
+  isComingSoon?: boolean;
+  /** Primary label to display (only one per tool) */
+  label?: ToolLabel;
 }
 
 export interface ToolMetadata {
