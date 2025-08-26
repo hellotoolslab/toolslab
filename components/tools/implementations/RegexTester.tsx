@@ -447,15 +447,13 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
               {result && result.isValid && (
                 <div className="flex items-center gap-1">
                   {result.matches.length > 0 ? (
-                    <CheckCircle2
-                      className="h-4 w-4 text-green-500"
-                      title={`${result.matches.length} matches found`}
-                    />
+                    <div title={`${result.matches.length} matches found`}>
+                      <CheckCircle2 className="h-4 w-4 text-green-500" />
+                    </div>
                   ) : (
-                    <XCircle
-                      className="h-4 w-4 text-red-500"
-                      title="No matches found"
-                    />
+                    <div title="No matches found">
+                      <XCircle className="h-4 w-4 text-red-500" />
+                    </div>
                   )}
                 </div>
               )}
