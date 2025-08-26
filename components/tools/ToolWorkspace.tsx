@@ -133,16 +133,6 @@ export default function ToolWorkspace({
             throw new Error('Invalid JSON format');
           }
           break;
-        case 'base64-encoder':
-          result = btoa(input);
-          break;
-        case 'base64-decoder':
-          try {
-            result = atob(input);
-          } catch {
-            throw new Error('Invalid Base64 string');
-          }
-          break;
         case 'uuid-generator':
           result = crypto.randomUUID();
           break;
@@ -225,14 +215,8 @@ export default function ToolWorkspace({
     switch (tool.slug) {
       case 'json-formatter':
         return <JsonFormatter categoryColor={categoryColor} />;
-      case 'base64-encoder':
-      case 'base64-decoder':
-        return (
-          <Base64Tool
-            mode={tool.slug.includes('encoder') ? 'encode' : 'decode'}
-            categoryColor={categoryColor}
-          />
-        );
+      case 'base64-encode':
+        return <Base64Tool categoryColor={categoryColor} />;
       case 'uuid-generator':
         return <UuidGenerator categoryColor={categoryColor} />;
       case 'hash-generator':
@@ -249,8 +233,7 @@ export default function ToolWorkspace({
   // If tool has specific implementation, use it
   const hasImplementation = [
     'json-formatter',
-    'base64-encoder',
-    'base64-decoder',
+    'base64-encode',
     'uuid-generator',
     'hash-generator',
     'password-generator',

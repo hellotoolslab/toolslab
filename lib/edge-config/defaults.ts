@@ -90,9 +90,9 @@ export const DEFAULT_TOOLS: Record<string, ToolConfig> = {
       keywords: ['json', 'formatter', 'validator', 'beautify', 'minify'],
     },
   },
-  'base64-encoder': {
-    id: 'base64-encoder',
-    slug: 'base64-encoder',
+  'base64-encode': {
+    id: 'base64-encode',
+    slug: 'base64-encode',
     name: 'Base64 Encoder/Decoder',
     description:
       'Encode and decode Base64 strings with support for files and images',
@@ -267,7 +267,7 @@ export const DEFAULT_EDGE_CONFIG: EdgeConfigSchema = {
  */
 export const CORE_TOOL_SLUGS = [
   'json-formatter',
-  'base64-encoder',
+  'base64-encode',
   'url-encoder',
   'jwt-decoder',
   'uuid-generator',
