@@ -44,7 +44,11 @@
       "Bash(find:*)",
       "Bash(grep:*)",
       "Bash(npx tsc:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(npm run seo:discover:*)",
+      "Bash(npm run seo:generate-key:*)",
+      "Bash(npm run seo:monitor:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": [],
