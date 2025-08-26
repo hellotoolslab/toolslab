@@ -28,7 +28,6 @@
     "seo:monitor": "tsx scripts/seo-monitor.ts",
     "seo:generate-key": "tsx scripts/generate-indexnow-key.ts",
     "seo:full": "npm run seo:discover && npm run seo:submit && npm run seo:monitor",
-    "postbuild": "npm run seo:monitor -- --quick",
     "pre-commit": "lint-staged",
     "prepare": "husky",
     "edge-config:dev": "node scripts/dev-edge-config.js",
