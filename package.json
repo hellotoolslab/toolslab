@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "dev:ads": "NEXT_PUBLIC_ENABLE_ADS=true next dev",
-    "build": "next build && npm run seo:submit",
-    "build:prod": "NEXT_PUBLIC_ENABLE_ADS=true next build && npm run seo:submit",
+    "build": "next build",
+    "build:prod": "NEXT_PUBLIC_ENABLE_ADS=true next build",
     "build:check": "next build --no-lint",
     "start": "next start",
     "lint": "next lint",
