@@ -143,7 +143,7 @@ export default function ToolPageClient({
           method: 'native',
         });
       } catch (err) {
-        console.log('Share cancelled');
+        // Share cancelled by user
         trackEngagement('tool-share-cancelled', {
           tool: toolSlug,
           method: 'native',

@@ -17,6 +17,8 @@ import {
   Link,
   History,
 } from 'lucide-react';
+import { useCopy } from '@/lib/hooks/useCopy';
+import { useDownload } from '@/lib/hooks/useDownload';
 import JsonFormatter from './implementations/JsonFormatter';
 import Base64Tool from './implementations/Base64Tool';
 import UuidGenerator from './implementations/UuidGenerator';
@@ -40,7 +42,8 @@ export default function ToolWorkspace({
   const [input, setInput] = useState(initialInput || '');
   const [output, setOutput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
+  const { copied, copy } = useCopy();
+  const { downloadText } = useDownload();
   const [processingTime, setProcessingTime] = useState<number | null>(null);
   const [showOptions, setShowOptions] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -59,7 +62,7 @@ export default function ToolWorkspace({
         setInput(data);
       },
       onChainStepAdded: (step) => {
-        console.log('Chain step added:', step);
+        // Chain step added successfully
       },
     });
 
@@ -168,25 +171,21 @@ export default function ToolWorkspace({
   };
 
   const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(output);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
+    if (!output) return;
+    await copy(output);
   };
 
-  const handleDownload = () => {
-    const blob = new Blob([output], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${tool.slug}-output.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const handleDownload = async () => {
+    if (!output) return;
+
+    try {
+      await downloadText(output, {
+        filename: `${tool.slug}-output.txt`,
+        mimeType: 'text/plain',
+      });
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
   };
 
   const handleClear = () => {
@@ -412,7 +411,7 @@ export default function ToolWorkspace({
                   className="group flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                   title="Cmd/Ctrl + Shift + C"
                 >
-                  {isCopied ? (
+                  {copied ? (
                     <>
                       <Check className="h-4 w-4 text-green-500" />
                       <span className="text-sm text-green-500">Copied!</span>

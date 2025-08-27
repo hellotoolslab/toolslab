@@ -18,12 +18,12 @@ import {
 import {
   processBase64Input,
   processFile,
-  downloadAsFile,
-  downloadBase64AsBinary,
   getFileExtensionFromMimeType,
   Base64Options,
   FileProcessResult,
 } from '@/lib/tools/base64';
+import { useCopy } from '@/lib/hooks/useCopy';
+import { useDownload } from '@/lib/hooks/useDownload';
 
 interface Base64ToolProps {
   categoryColor: string;
@@ -34,7 +34,8 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
   const [output, setOutput] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
+  const { copied, copy } = useCopy();
+  const { downloadText, downloadBase64AsBinary } = useDownload();
   const [fileInfo, setFileInfo] = useState<FileProcessResult | null>(null);
   const [operation, setOperation] = useState<'auto' | 'encode' | 'decode'>(
     'auto'
@@ -139,30 +140,35 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
   };
 
   const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(output);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
+    if (!output) return;
+    await copy(output);
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     if (!output) return;
 
-    const effectiveOp = getEffectiveOperation();
-    if (effectiveOp === 'decode' && mimeType && !isDataURL) {
-      // Download as binary file
-      const extension = getFileExtensionFromMimeType(mimeType);
-      const filename = `decoded.${extension}`;
-      downloadBase64AsBinary(output, filename, mimeType);
-    } else if (effectiveOp === 'decode' && output.length < 1000000) {
-      // Download decoded text
-      downloadAsFile(output, 'decoded.txt', 'text/plain');
-    } else {
-      // Download Base64 text
-      downloadAsFile(output, 'encoded.txt', 'text/plain');
+    try {
+      const effectiveOp = getEffectiveOperation();
+      if (effectiveOp === 'decode' && mimeType && !isDataURL) {
+        // Download as binary file
+        const extension = getFileExtensionFromMimeType(mimeType);
+        const filename = `decoded.${extension}`;
+        await downloadBase64AsBinary(output, filename, mimeType);
+      } else if (effectiveOp === 'decode' && output.length < 1000000) {
+        // Download decoded text
+        await downloadText(output, {
+          filename: 'decoded.txt',
+          mimeType: 'text/plain',
+        });
+      } else {
+        // Download Base64 text
+        await downloadText(output, {
+          filename: 'encoded.txt',
+          mimeType: 'text/plain',
+        });
+      }
+    } catch (error) {
+      console.error('Download failed:', error);
     }
   };
 
@@ -494,7 +500,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                   onClick={handleCopy}
                   className="flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
-                  {isCopied ? (
+                  {copied ? (
                     <>
                       <Check className="h-4 w-4 text-green-500" />
                       <span className="text-sm text-green-500">Copied!</span>
