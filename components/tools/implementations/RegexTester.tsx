@@ -19,6 +19,7 @@ import {
   CheckCircle2,
   XCircle,
 } from 'lucide-react';
+import { useDownload } from '@/lib/hooks/useDownload';
 
 interface RegexMatch {
   match: string;
@@ -120,6 +121,7 @@ const FLAG_OPTIONS = [
 ];
 
 export default function RegexTester({ categoryColor }: RegexTesterProps) {
+  const { downloadJSON } = useDownload();
   const [pattern, setPattern] = useState('\\b\\w+@\\w+\\.\\w+\\b');
   const [testString, setTestString] = useState(
     'Contact us at info@example.com or support@company.co.uk'
@@ -236,12 +238,12 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
   );
 
   // Debounce function
-  function debounce<T extends (...args: any[]) => any>(
+  function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(
     func: T,
     wait: number
   ): T {
     let timeout: NodeJS.Timeout;
-    return ((...args: any[]) => {
+    return ((...args: Parameters<T>) => {
       clearTimeout(timeout);
       timeout = setTimeout(() => func(...args), wait);
     }) as T;
@@ -292,7 +294,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
     handleCopy(shareUrl);
   };
 
-  const exportMatches = () => {
+  const exportMatches = async () => {
     if (!result || result.matches.length === 0) return;
 
     const data = {
@@ -310,17 +312,11 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
       executionTime: result.executionTime,
     };
 
-    const blob = new Blob([JSON.stringify(data, null, 2)], {
-      type: 'application/json',
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'regex-matches.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    try {
+      await downloadJSON(data, 'regex-matches.json');
+    } catch (error) {
+      console.error('Export failed:', error);
+    }
   };
 
   const escapeHtml = (text: string) => {
@@ -548,7 +544,9 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
             ].map(({ key, label, icon: Icon }) => (
               <button
                 key={key}
-                onClick={() => setViewMode(key as any)}
+                onClick={() =>
+                  setViewMode(key as 'matches' | 'replace' | 'explain')
+                }
                 className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all ${
                   viewMode === key
                     ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-600 dark:text-white'

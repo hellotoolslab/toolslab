@@ -11,10 +11,10 @@ import {
   Zap,
 } from 'lucide-react';
 import { useUmami } from '@/components/analytics/UmamiProvider';
+import { useCopy } from '@/lib/hooks/useCopy';
+import { BaseToolProps } from '@/lib/types/tools';
 
-interface PasswordGeneratorProps {
-  categoryColor: string;
-}
+interface PasswordGeneratorProps extends BaseToolProps {}
 
 export default function PasswordGenerator({
   categoryColor,
