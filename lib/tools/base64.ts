@@ -353,61 +353,8 @@ export function processBase64Input(
   }
 }
 
-/**
- * Downloads content as file
- */
-export function downloadAsFile(
-  content: string,
-  filename: string,
-  mimeType: string = 'text/plain'
-): void {
-  const blob = new Blob([content], { type: mimeType });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
-  URL.revokeObjectURL(url);
-}
-
-/**
- * Downloads Base64 as binary file
- */
-export function downloadBase64AsBinary(
-  base64: string,
-  filename: string,
-  mimeType: string = 'application/octet-stream'
-): void {
-  try {
-    const binaryString = atob(base64.replace(/\s/g, ''));
-    const bytes = new Uint8Array(binaryString.length);
-
-    for (let i = 0; i < binaryString.length; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-
-    const blob = new Blob([bytes], { type: mimeType });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    URL.revokeObjectURL(url);
-  } catch (error) {
-    throw new Error(
-      'Failed to download binary file: ' +
-        (error instanceof Error ? error.message : 'Unknown error')
-    );
-  }
-}
+// Note: Download functions have been moved to @/lib/hooks/useDownload
+// for unified handling across all tools
 
 /**
  * Gets appropriate file extension from MIME type
