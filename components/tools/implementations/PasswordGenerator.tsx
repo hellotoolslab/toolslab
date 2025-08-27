@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   Copy,
   Check,
@@ -39,17 +39,7 @@ export default function PasswordGenerator({
   const symbolChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
   const similarChars = 'il1Lo0O';
 
-  useEffect(() => {
-    generatePassword();
-  }, []);
-
-  useEffect(() => {
-    if (password) {
-      calculateStrength();
-    }
-  }, [password]);
-
-  const generatePassword = () => {
+  const generatePassword = useCallback(() => {
     const startTime = Date.now();
 
     let chars = '';
@@ -163,9 +153,19 @@ export default function PasswordGenerator({
 
     // Add to history
     setPasswordHistory((prev) => [finalPassword, ...prev.slice(0, 9)]);
-  };
+  }, [
+    length,
+    includeUppercase,
+    includeLowercase,
+    includeNumbers,
+    includeSymbols,
+    excludeSimilar,
+    includePronounceable,
+    trackToolUse,
+    strength,
+  ]);
 
-  const calculateStrength = () => {
+  const calculateStrength = useCallback(() => {
     let score = 0;
 
     // Length score
@@ -180,7 +180,17 @@ export default function PasswordGenerator({
     if (/[^a-zA-Z0-9]/.test(password)) score += 10;
 
     setStrength(Math.min(100, score));
-  };
+  }, [password]);
+
+  useEffect(() => {
+    generatePassword();
+  }, [generatePassword]);
+
+  useEffect(() => {
+    if (password) {
+      calculateStrength();
+    }
+  }, [password, calculateStrength]);
 
   const getStrengthColor = () => {
     if (strength < 30) return '#ef4444';
