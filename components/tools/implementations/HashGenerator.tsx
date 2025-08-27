@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Copy, Check, Shield, Hash } from 'lucide-react';
 import { useMultiCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
@@ -32,14 +32,6 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
     'MD5',
     'CRC32',
   ];
-
-  useEffect(() => {
-    if (input) {
-      generateHashes();
-    } else {
-      setHashes({});
-    }
-  }, [input, salt]);
 
   const md5 = (input: string): string => {
     const rotateLeft = (n: number, s: number): number => {
@@ -269,7 +261,7 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
     return ((crc ^ -1) >>> 0).toString(16).padStart(8, '0');
   };
 
-  const generateHashes = async () => {
+  const generateHashes = useCallback(async () => {
     if (!input) {
       setHashes({});
       return;
@@ -342,7 +334,15 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
     } catch (err) {
       // Error is handled by useToolProcessor
     }
-  };
+  }, [input, salt, algorithms, algorithm]);
+
+  useEffect(() => {
+    if (input) {
+      generateHashes();
+    } else {
+      setHashes({});
+    }
+  }, [input, salt, generateHashes]);
 
   const handleCopy = async (hash: string, algo: string) => {
     await copy(hash, algo);

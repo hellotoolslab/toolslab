@@ -6,6 +6,9 @@
 // Base props that every tool component receives
 export interface BaseToolProps {
   categoryColor: string;
+  initialInput?: string;
+  onInputChange?: (input: string) => void;
+  onOutputChange?: (output: string) => void;
 }
 
 // Common tool state pattern
