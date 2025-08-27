@@ -7,7 +7,6 @@ interface ToolPageProps {
   params: {
     tool: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateMetadata({
@@ -45,12 +44,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ToolPage({ params, searchParams }: ToolPageProps) {
+export default function ToolPage({ params }: ToolPageProps) {
   const tool = getToolById(params.tool);
 
   if (!tool) {
     notFound();
   }
 
-  return <ToolPageClient toolSlug={params.tool} searchParams={searchParams} />;
+  return <ToolPageClient toolSlug={params.tool} />;
 }

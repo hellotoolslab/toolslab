@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Tool } from '@/types/tool';
 import {
   Copy,
@@ -19,12 +19,7 @@ import {
 } from 'lucide-react';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
-import JsonFormatter from './implementations/JsonFormatter';
-import Base64Tool from './implementations/Base64Tool';
-import UuidGenerator from './implementations/UuidGenerator';
-import HashGenerator from './implementations/HashGenerator';
-import PasswordGenerator from './implementations/PasswordGenerator';
-import RegexTester from './implementations/RegexTester';
+import LazyToolLoader, { isLazyLoadingSupported } from './LazyToolLoader';
 import ToolChainSuggestions from './ToolChainSuggestions';
 import { useToolChaining } from '@/lib/hooks/useToolChaining';
 
@@ -77,45 +72,7 @@ export default function ToolWorkspace({
   }, [tool.slug, initialInput, chainedData]);
 
   // Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-      const isCtrlCmd = isMac ? event.metaKey : event.ctrlKey;
-
-      // Cmd/Ctrl + Enter - Process
-      if (isCtrlCmd && event.key === 'Enter') {
-        event.preventDefault();
-        if (input.trim() && !isProcessing) {
-          handleProcess();
-        }
-      }
-
-      // Cmd/Ctrl + Shift + C - Copy output
-      if (isCtrlCmd && event.shiftKey && event.key === 'C') {
-        event.preventDefault();
-        if (output) {
-          handleCopy();
-        }
-      }
-
-      // Cmd/Ctrl + Shift + V - Paste to input
-      if (isCtrlCmd && event.shiftKey && event.key === 'V') {
-        event.preventDefault();
-        handlePaste();
-      }
-
-      // Cmd/Ctrl + Shift + R - Clear/Reset
-      if (isCtrlCmd && event.shiftKey && event.key === 'R') {
-        event.preventDefault();
-        handleClear();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [input, output, isProcessing]);
-
-  const handleProcess = async () => {
+  const handleProcess = useCallback(async () => {
     setIsProcessing(true);
     setProcessing(true);
     setError(null);
@@ -168,12 +125,51 @@ export default function ToolWorkspace({
       setIsProcessing(false);
       setProcessing(false);
     }
-  };
+  }, [input, tool.slug]);
 
-  const handleCopy = async () => {
+  const handleCopy = useCallback(async () => {
     if (!output) return;
     await copy(output);
-  };
+  }, [output, copy]);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const isCtrlCmd = isMac ? event.metaKey : event.ctrlKey;
+
+      // Cmd/Ctrl + Enter - Process
+      if (isCtrlCmd && event.key === 'Enter') {
+        event.preventDefault();
+        if (input.trim() && !isProcessing) {
+          handleProcess();
+        }
+      }
+
+      // Cmd/Ctrl + Shift + C - Copy output
+      if (isCtrlCmd && event.shiftKey && event.key === 'C') {
+        event.preventDefault();
+        if (output) {
+          handleCopy();
+        }
+      }
+
+      // Cmd/Ctrl + Shift + V - Paste to input
+      if (isCtrlCmd && event.shiftKey && event.key === 'V') {
+        event.preventDefault();
+        handlePaste();
+      }
+
+      // Cmd/Ctrl + Shift + R - Clear/Reset
+      if (isCtrlCmd && event.shiftKey && event.key === 'R') {
+        event.preventDefault();
+        handleClear();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [input, output, isProcessing, handleCopy, handleProcess]);
 
   const handleDownload = async () => {
     if (!output) return;
@@ -209,38 +205,17 @@ export default function ToolWorkspace({
     }
   };
 
-  // Render tool-specific implementation if available
-  const renderToolImplementation = () => {
-    switch (tool.slug) {
-      case 'json-formatter':
-        return <JsonFormatter categoryColor={categoryColor} />;
-      case 'base64-encode':
-        return <Base64Tool categoryColor={categoryColor} />;
-      case 'uuid-generator':
-        return <UuidGenerator categoryColor={categoryColor} />;
-      case 'hash-generator':
-        return <HashGenerator categoryColor={categoryColor} />;
-      case 'password-generator':
-        return <PasswordGenerator categoryColor={categoryColor} />;
-      case 'regex-tester':
-        return <RegexTester categoryColor={categoryColor} />;
-      default:
-        return null;
-    }
-  };
-
-  // If tool has specific implementation, use it
-  const hasImplementation = [
-    'json-formatter',
-    'base64-encode',
-    'uuid-generator',
-    'hash-generator',
-    'password-generator',
-    'regex-tester',
-  ].includes(tool.slug);
-
-  if (hasImplementation) {
-    return renderToolImplementation();
+  // Check if tool supports lazy loading and render with LazyToolLoader
+  if (isLazyLoadingSupported(tool.slug)) {
+    return (
+      <LazyToolLoader
+        toolId={tool.slug}
+        categoryColor={categoryColor}
+        initialInput={initialInput}
+        onInputChange={setInput}
+        onOutputChange={setOutput}
+      />
+    );
   }
 
   // Default generic tool workspace
