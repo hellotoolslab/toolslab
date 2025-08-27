@@ -56,9 +56,10 @@ export default function TermsPage() {
               </h2>
             </div>
             <p className="text-indigo-800 dark:text-indigo-200">
-              <strong>ToolsLab è gratuito, per sempre.</strong> Usa i nostri
-              tool responsabilmente, non fare cose illegali, e ricorda che non
-              offriamo garanzie. Siamo developer che aiutano altri developer.
+              <strong>ToolsLab is free, forever.</strong> Use our tools
+              responsibly, don&apos;t do illegal stuff, and remember we
+              don&apos;t offer warranties. We&apos;re developers helping other
+              developers.
             </p>
           </div>
         </div>
@@ -71,8 +72,8 @@ export default function TermsPage() {
             {/* Last Updated */}
             <div className="mb-8 border-b border-gray-200 pb-6 dark:border-gray-700">
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                <strong>Ultimo aggiornamento:</strong>{' '}
-                {new Date().toLocaleDateString('it-IT', {
+                <strong>Last updated:</strong>{' '}
+                {new Date().toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
@@ -85,43 +86,40 @@ export default function TermsPage() {
               <div className="mb-6 flex items-center gap-3">
                 <Heart className="h-6 w-6 text-red-600 dark:text-red-400" />
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  Servizio 100% Gratuito
+                  100% Free Service
                 </h2>
               </div>
 
               <div className="space-y-4 text-gray-700 dark:text-gray-300">
                 <p>
                   <strong>
-                    ToolsLab è e rimarrà sempre completamente gratuito:
+                    ToolsLab is and will always remain completely free:
                   </strong>
                 </p>
                 <ul className="list-disc space-y-2 pl-6">
                   <li>
-                    ✅ <strong>Nessun costo:</strong> Tutti i tool sono
-                    gratuiti, per sempre
+                    ✅ <strong>No cost:</strong> All tools are free, forever
                   </li>
                   <li>
-                    ✅ <strong>Nessun account richiesto:</strong> Mai, per
-                    nessun motivo
+                    ✅ <strong>No account required:</strong> Never, for any
+                    reason
                   </li>
                   <li>
-                    ✅ <strong>Nessun freemium:</strong> Non esistono versioni
-                    &ldquo;Pro&rdquo; o premium
+                    ✅ <strong>No freemium:</strong> No &ldquo;Pro&rdquo; or
+                    premium versions exist
                   </li>
                   <li>
-                    ✅ <strong>Nessun limite artificiale:</strong> Usa i tool
-                    quanto vuoi
+                    ✅ <strong>No artificial limits:</strong> Use the tools as
+                    much as you want
                   </li>
                   <li>
-                    ✅ <strong>Open source:</strong> Il codice è disponibile su
-                    GitHub
+                    ✅ <strong>Open source:</strong> Code is available on GitHub
                   </li>
                 </ul>
                 <div className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
                   <p className="text-red-800 dark:text-red-200">
-                    <strong>💝 La nostra promessa:</strong> ToolsLab nasce dalla
-                    passione di developer per developer. Non diventerà mai a
-                    pagamento.
+                    <strong>💝 Our promise:</strong> ToolsLab was born from
+                    developer passion for developers. It will never become paid.
                   </p>
                 </div>
               </div>
@@ -132,91 +130,44 @@ export default function TermsPage() {
               <div className="mb-6 flex items-center gap-3">
                 <AlertTriangle className="h-6 w-6 text-orange-600 dark:text-orange-400" />
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  Limitazione di Garanzie
+                  Limitation of Warranties
                 </h2>
               </div>
 
               <div className="space-y-4 text-gray-700 dark:text-gray-300">
                 <div className="rounded-lg border border-orange-200 bg-orange-50 p-6 dark:border-orange-800 dark:bg-orange-900/20">
                   <p className="mb-4 font-semibold text-orange-800 dark:text-orange-200">
-                    ⚠️ DISCLAIMER IMPORTANTE
+                    ⚠️ IMPORTANT DISCLAIMER
                   </p>
                   <p className="text-orange-700 dark:text-orange-300">
-                    I tool di ToolsLab sono forniti{' '}
-                    <strong>&ldquo;AS IS&rdquo; (così come sono)</strong>, senza
-                    garanzie di alcun tipo.
+                    ToolsLab tools are provided{' '}
+                    <strong>&ldquo;AS IS&rdquo;</strong>, without warranties of
+                    any kind.
                   </p>
                 </div>
-                <p>Questo significa:</p>
+                <p>This means:</p>
                 <ul className="list-disc space-y-2 pl-6">
                   <li>
-                    🔧 <strong>Funzionamento:</strong> Non garantiamo che i tool
-                    siano sempre perfetti
+                    🔧 <strong>Functionality:</strong> We don&apos;t guarantee
+                    tools are always perfect
                   </li>
                   <li>
-                    📊 <strong>Accuratezza:</strong> Verifica sempre i
-                    risultati, specialmente per usi critici
+                    📊 <strong>Accuracy:</strong> Always verify results,
+                    especially for critical use
                   </li>
                   <li>
-                    🐛 <strong>Bug:</strong> Potrebbero esserci errori o
-                    comportamenti imprevisti
+                    🐛 <strong>Bugs:</strong> There might be errors or
+                    unexpected behavior
                   </li>
                   <li>
-                    💾 <strong>Perdita dati:</strong> I dati processati
-                    potrebbero andare persi
+                    💾 <strong>Data loss:</strong> Processed data might be lost
                   </li>
                   <li>
-                    🔒 <strong>Sicurezza:</strong> Non inserire dati sensibili
-                    (anche se restano locali)
+                    🔒 <strong>Security:</strong> Don&apos;t input sensitive
+                    data (even though it stays local)
                   </li>
                 </ul>
               </div>
-            </section>
-
-            {/* Contact */}
-            <section className="rounded-lg bg-gray-50 p-6 dark:bg-gray-700">
-              <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-                Domande sui Termini?
-              </h2>
-              <p className="mb-4 text-gray-700 dark:text-gray-300">
-                Se hai dubbi o domande su questi termini di servizio:
-              </p>
-              <div className="space-y-2">
-                <p className="text-gray-700 dark:text-gray-300">
-                  📧 Email:{' '}
-                  <a
-                    href="mailto:legal@toolslab.dev"
-                    className="text-blue-600 hover:underline dark:text-blue-400"
-                  >
-                    legal@toolslab.dev
-                  </a>
-                </p>
-                <p className="text-gray-700 dark:text-gray-300">
-                  🐙 GitHub:{' '}
-                  <a
-                    href="https://github.com/toolslab/issues"
-                    className="text-blue-600 hover:underline dark:text-blue-400"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Apri una issue
-                  </a>
-                </p>
-                <p className="text-gray-700 dark:text-gray-300">
-                  💬 Community:{' '}
-                  <a
-                    href="https://github.com/toolslab/discussions"
-                    className="text-blue-600 hover:underline dark:text-blue-400"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub Discussions
-                  </a>
-                </p>
-              </div>
-              <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-                Siamo developer come te, parliamo la stessa lingua! 🤓
-              </p>
             </section>
           </div>
         </div>
