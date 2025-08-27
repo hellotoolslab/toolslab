@@ -48,7 +48,10 @@
       "Bash(npm run seo:discover:*)",
       "Bash(npm run seo:generate-key:*)",
       "Bash(npm run seo:monitor:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(/g)",
+      "Bash(s/'/\\&rsquo;/g' app/privacy/page.tsx app/terms/page.tsx)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": [],
