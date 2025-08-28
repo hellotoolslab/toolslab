@@ -36,11 +36,17 @@ export function VPNNotification() {
     }
 
     // Only check VPN if not dismissed and VPN mode is enabled
+    // In production, rely more on middleware detection to reduce API calls
     if (
       process.env.NEXT_PUBLIC_VPN_MODE_ENABLED === 'true' &&
-      !isDismissedStored
+      !isDismissedStored &&
+      (process.env.NODE_ENV === 'development' ||
+        !sessionStorage.getItem('vpn-checked'))
     ) {
       checkVPNStatus();
+      if (process.env.NODE_ENV !== 'development') {
+        sessionStorage.setItem('vpn-checked', 'true');
+      }
     } else {
       setIsLoading(false);
     }
