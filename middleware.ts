@@ -163,7 +163,7 @@ function applyStrictSecurityHeaders(response: NextResponse) {
   // Strict CSP for regular users (but still permissive for corporate proxies)
   response.headers.set(
     'Content-Security-Policy',
-    "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com; frame-src 'none';"
+    "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com va.vercel-scripts.com; frame-src 'none';"
   );
 
   // Additional security headers (but not HSTS)
