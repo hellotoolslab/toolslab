@@ -3,10 +3,9 @@ const nextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
 
-  // Optimize images - allow all Vercel domains
+  // Optimize images
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: ['toolslab.dev', 'www.toolslab.dev', 'vercel.app'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -79,23 +78,9 @@ const nextConfig = {
     ];
   },
 
-  // Redirects for common patterns and wrong domains
+  // Redirects for common patterns
   async redirects() {
     return [
-      // Redirect from wrong domains to toolslab.dev (ONLY IN PRODUCTION)
-      // Skip localhost and development environments
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            // Only redirect Vercel domains, NOT localhost or dev environments
-            value: '.*\\.vercel\\.app|.*vercel-infra\\.com',
-          },
-        ],
-        destination: 'https://toolslab.dev/:path*',
-        permanent: false,
-      },
       {
         source: '/tools',
         destination: '/',
@@ -159,8 +144,8 @@ const nextConfig = {
   // Output configuration for static export
   output: 'standalone',
 
-  // Disable compression to avoid proxy interference
-  compress: false,
+  // Compress output
+  compress: true,
 
   // Generate sitemap
   async rewrites() {
