@@ -3,9 +3,10 @@ const nextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
 
-  // Optimize images
+  // Optimize images - allow all Vercel domains
   images: {
     formats: ['image/avif', 'image/webp'],
+    domains: ['toolslab.dev', 'www.toolslab.dev', 'vercel.app'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -14,24 +15,17 @@ const nextConfig = {
     ],
   },
 
-  // Configure headers for security and performance
-  // Note: These are base headers. VPN-specific headers are handled in middleware.ts
+  // Configure headers for VPN compatibility
+  // IMPORTANT: HSTS is COMPLETELY REMOVED for corporate VPN access
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
+          // Basic security headers that work with VPNs
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN', // Less restrictive for VPN compatibility
+            value: 'SAMEORIGIN',
           },
           {
             key: 'X-Content-Type-Options',
@@ -42,12 +36,26 @@ const nextConfig = {
             value: 'origin-when-cross-origin',
           },
           {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=0', // Disabled HSTS for VPN compatibility - handled in middleware
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          // Anti-HSTS headers to clear browser cache
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
           },
           {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+          // VPN compatibility indicator
+          {
             key: 'X-VPN-Compatible',
-            value: 'true', // Custom header to indicate VPN support
+            value: 'true',
           },
         ],
       },
@@ -71,9 +79,23 @@ const nextConfig = {
     ];
   },
 
-  // Redirects for common patterns
+  // Redirects for common patterns and wrong domains
   async redirects() {
     return [
+      // Redirect from wrong domains to toolslab.dev (ONLY IN PRODUCTION)
+      // Skip localhost and development environments
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            // Only redirect Vercel domains, NOT localhost or dev environments
+            value: '.*\\.vercel\\.app|.*vercel-infra\\.com',
+          },
+        ],
+        destination: 'https://toolslab.dev/:path*',
+        permanent: false,
+      },
       {
         source: '/tools',
         destination: '/',
@@ -137,8 +159,8 @@ const nextConfig = {
   // Output configuration for static export
   output: 'standalone',
 
-  // Compress output
-  compress: true,
+  // Disable compression to avoid proxy interference
+  compress: false,
 
   // Generate sitemap
   async rewrites() {

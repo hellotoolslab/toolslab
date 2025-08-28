@@ -103,60 +103,102 @@ function detectCorporateVPN(headers: {
 }
 
 /**
- * Apply VPN-compatible headers (less restrictive for corporate networks)
+ * Apply VPN-compatible headers (completely HSTS-free for corporate networks)
  */
 function applyVPNCompatibleHeaders(response: NextResponse) {
+  // CRITICAL: Completely remove HSTS headers
+  response.headers.delete('Strict-Transport-Security');
+
+  // Anti-HSTS headers to clear browser cache
+  response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+  response.headers.set('Pragma', 'no-cache');
+  response.headers.set('Expires', '0');
+
   // More permissive frame options for corporate intranets
   response.headers.set('X-Frame-Options', 'SAMEORIGIN');
 
-  // Remove HSTS to prevent certificate issues with corporate proxies
-  response.headers.delete('Strict-Transport-Security');
-
   // Add VPN mode indicator for client-side detection
   response.headers.set('X-VPN-Mode', 'true');
+  response.headers.set('X-VPN-Compatible', 'true');
 
-  // Less restrictive CSP for corporate environments
+  // Completely permissive CSP for corporate environments with proxy interference
   response.headers.set(
     'Content-Security-Policy',
-    "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; img-src 'self' data: blob: *; connect-src 'self' *;"
+    "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: *; img-src 'self' data: blob: *; connect-src 'self' *; frame-src *; object-src *; media-src *; font-src *;"
   );
 
   // Allow corporate proxy modification
   response.headers.set('X-Permitted-Cross-Domain-Policies', 'master-only');
 
+  // Disable other security headers that might conflict with corporate proxies
+  response.headers.delete('Cross-Origin-Embedder-Policy');
+  response.headers.delete('Cross-Origin-Resource-Policy');
+
+  // Add corporate proxy friendly headers
+  response.headers.set('X-Corporate-Proxy-Compatible', 'true');
+  response.headers.set('Access-Control-Allow-Credentials', 'true');
+
   // Debug header for development
   if (process.env.NODE_ENV === 'development') {
     response.headers.set('X-Debug-VPN', 'corporate-network-detected');
+    response.headers.set('X-Debug-HSTS-Removed', 'true');
   }
 }
 
 /**
- * Apply strict security headers for regular users
+ * Apply security headers for regular users (HSTS-free for corporate compatibility)
  */
 function applyStrictSecurityHeaders(response: NextResponse) {
   // Strict frame protection
   response.headers.set('X-Frame-Options', 'DENY');
 
-  // Enable HSTS for regular HTTPS connections
-  response.headers.set(
-    'Strict-Transport-Security',
-    'max-age=31536000; includeSubDomains; preload'
-  );
+  // CRITICAL: NO HSTS - Completely removed for corporate VPN compatibility
+  response.headers.delete('Strict-Transport-Security');
 
-  // Strict CSP for regular users
+  // Anti-HSTS headers to ensure browser cache is cleared
+  response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+  response.headers.set('Pragma', 'no-cache');
+  response.headers.set('Expires', '0');
+
+  // Strict CSP for regular users (but still permissive for corporate proxies)
   response.headers.set(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com; frame-src 'none';"
+    "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com va.vercel-scripts.com; frame-src 'none';"
   );
 
-  // Additional security headers
+  // Additional security headers (but not HSTS)
   response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
   response.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
   response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+
+  // Indicate that this is HSTS-free mode
+  response.headers.set('X-HSTS-Free-Mode', 'true');
 }
 
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
+  const hostname = request.headers.get('host') || '';
+
+  // IMPORTANT: Allow localhost and development environments
+  const isLocalhost =
+    hostname.includes('localhost') ||
+    hostname.includes('127.0.0.1') ||
+    hostname.includes('0.0.0.0') ||
+    hostname.startsWith('192.168.') ||
+    hostname.startsWith('10.') ||
+    hostname.includes('.local');
+
+  // Only redirect wrong production domains, NOT localhost
+  if (
+    !isLocalhost &&
+    (hostname.includes('no-sni.vercel-infra.com') ||
+      hostname.includes('vercel-infra.com') ||
+      hostname.includes('vercel.app'))
+  ) {
+    return NextResponse.redirect(
+      'https://toolslab.dev' + request.nextUrl.pathname
+    );
+  }
 
   // Skip processing for excluded paths
   if (!shouldProcessPath(pathname)) {
@@ -191,6 +233,10 @@ export async function middleware(request: NextRequest) {
     }
 
     const response = NextResponse.next();
+
+    // Aggiungi header per forzare certificato corretto
+    response.headers.set('X-Forwarded-Host', 'toolslab.dev');
+    response.headers.set('X-Forwarded-Proto', 'https');
 
     // VPN Detection and Security Header Management
     const forwardedFor = request.headers.get('x-forwarded-for');
