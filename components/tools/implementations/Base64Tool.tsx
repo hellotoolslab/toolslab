@@ -56,16 +56,6 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
 
-  // Auto-process when input changes and operation is auto
-  useEffect(() => {
-    if (input.trim() && operation === 'auto') {
-      const timer = setTimeout(() => {
-        handleProcess();
-      }, 500); // Debounce
-      return () => clearTimeout(timer);
-    }
-  }, [input, operation]);
-
   const handleProcess = useCallback(async () => {
     if (!input.trim()) {
       setOutput('');
@@ -99,6 +89,16 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
       setIsProcessing(false);
     }
   }, [input, options, operation]);
+
+  // Auto-process when input changes and operation is auto
+  useEffect(() => {
+    if (input.trim() && operation === 'auto') {
+      const timer = setTimeout(() => {
+        handleProcess();
+      }, 500); // Debounce
+      return () => clearTimeout(timer);
+    }
+  }, [input, operation, handleProcess]);
 
   const handleFileUpload = async (file: File) => {
     setIsProcessing(true);

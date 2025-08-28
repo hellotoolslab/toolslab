@@ -51,7 +51,15 @@
       "Bash(cat:*)",
       "Bash(/g)",
       "Bash(s/'/\\&rsquo;/g' app/privacy/page.tsx app/terms/page.tsx)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(npm run analyze:*)",
+      "Bash(npx next build:*)",
+      "Bash(npx webpack-bundle-analyzer:*)",
+      "Read(//const calculateStrength = useCallback/**)",
+      "Read(//const calculateStrength = useCallback/**)",
+      "Bash(npm run test:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npm test:*)"
     ],
     "deny": [],
     "ask": [],

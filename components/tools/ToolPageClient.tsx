@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import {
   tools,
@@ -28,13 +29,10 @@ import { useToolLabels } from '@/lib/hooks/useToolLabels';
 
 interface ToolPageClientProps {
   toolSlug: string;
-  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export default function ToolPageClient({
-  toolSlug,
-  searchParams,
-}: ToolPageClientProps) {
+export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
+  const searchParams = useSearchParams();
   const { theme } = useTheme();
   const { trackEngagement, trackToolUse } = useUmami();
   const [isAdDismissed, setIsAdDismissed] = useState(false);
@@ -48,11 +46,7 @@ export default function ToolPageClient({
   const labelInfo = getToolLabelInfo(toolLabel);
 
   // Extract initial input from search params
-  const initialInput = searchParams?.input
-    ? Array.isArray(searchParams.input)
-      ? searchParams.input[0]
-      : searchParams.input
-    : undefined;
+  const initialInput = searchParams?.get('input') || undefined;
 
   useEffect(() => {
     // Check if mobile

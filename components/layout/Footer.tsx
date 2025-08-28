@@ -114,7 +114,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/category/data-conversion"
+                  href="/category/data"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Data Conversion
@@ -122,7 +122,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/category/encoding-security"
+                  href="/category/encoding"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Encoding & Security
