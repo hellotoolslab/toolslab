@@ -177,6 +177,28 @@ function applyStrictSecurityHeaders(response: NextResponse) {
 
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
+  const hostname = request.headers.get('host') || '';
+
+  // IMPORTANT: Allow localhost and development environments
+  const isLocalhost =
+    hostname.includes('localhost') ||
+    hostname.includes('127.0.0.1') ||
+    hostname.includes('0.0.0.0') ||
+    hostname.startsWith('192.168.') ||
+    hostname.startsWith('10.') ||
+    hostname.includes('.local');
+
+  // Only redirect wrong production domains, NOT localhost
+  if (
+    !isLocalhost &&
+    (hostname.includes('no-sni.vercel-infra.com') ||
+      hostname.includes('vercel-infra.com') ||
+      hostname.includes('vercel.app'))
+  ) {
+    return NextResponse.redirect(
+      'https://toolslab.dev' + request.nextUrl.pathname
+    );
+  }
 
   // Skip processing for excluded paths
   if (!shouldProcessPath(pathname)) {
@@ -211,6 +233,10 @@ export async function middleware(request: NextRequest) {
     }
 
     const response = NextResponse.next();
+
+    // Aggiungi header per forzare certificato corretto
+    response.headers.set('X-Forwarded-Host', 'toolslab.dev');
+    response.headers.set('X-Forwarded-Proto', 'https');
 
     // VPN Detection and Security Header Management
     const forwardedFor = request.headers.get('x-forwarded-for');
