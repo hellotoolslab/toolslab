@@ -1,6 +1,6 @@
 /**
- * Next.js Middleware for Edge Config Integration
- * Handles A/B testing, feature flags, and request routing
+ * Next.js Middleware for Edge Config Integration and VPN Compatibility
+ * Handles A/B testing, feature flags, request routing, and VPN detection
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -33,6 +33,126 @@ function shouldProcessPath(pathname: string): boolean {
     const regex = new RegExp(path.replace(':path*', '.*'));
     return regex.test(pathname);
   });
+}
+
+/**
+ * Enhanced VPN detection using multiple indicators
+ */
+function detectCorporateVPN(headers: {
+  forwardedFor: string | null;
+  realIP: string | null;
+  userAgent: string;
+  cfConnectingIP: string | null;
+  xOriginalForwardedFor: string | null;
+}): boolean {
+  const {
+    forwardedFor,
+    realIP,
+    userAgent,
+    cfConnectingIP,
+    xOriginalForwardedFor,
+  } = headers;
+
+  // Check for private IP ranges (RFC 1918)
+  const privateIPRanges = [
+    /^10\./, // 10.0.0.0/8
+    /^172\.(1[6-9]|2\d|3[01])\./, // 172.16.0.0/12
+    /^192\.168\./, // 192.168.0.0/16
+    /^169\.254\./, // Link-local
+    /^127\./, // Localhost
+  ];
+
+  // Common corporate VPN indicators in User-Agent
+  const vpnIndicators = [
+    /forticlient/i,
+    /cisco/i,
+    /checkpoint/i,
+    /palo alto/i,
+    /corporate[_\s]proxy/i,
+    /company[_\s]firewall/i,
+    /enterprise[_\s]gateway/i,
+    /websense/i,
+    /bluecoat/i,
+    /mcafee[_\s]web[_\s]gateway/i,
+    /zscaler/i,
+    /netskope/i,
+  ];
+
+  // Check all IP sources for private ranges
+  const allIPs = [forwardedFor, realIP, cfConnectingIP, xOriginalForwardedFor]
+    .filter(Boolean)
+    .join(',');
+
+  const hasPrivateIP = privateIPRanges.some((pattern) => pattern.test(allIPs));
+
+  // Check for VPN software indicators
+  const hasVPNIndicator = vpnIndicators.some((pattern) =>
+    pattern.test(userAgent)
+  );
+
+  // Additional indicators
+  const hasMultipleForwardedIPs = (forwardedFor?.split(',').length || 0) > 1;
+  const hasXOriginalForwarded = Boolean(xOriginalForwardedFor);
+
+  // VPN detection logic (more permissive to catch corporate networks)
+  return (
+    hasPrivateIP ||
+    hasVPNIndicator ||
+    (hasMultipleForwardedIPs && hasXOriginalForwarded)
+  );
+}
+
+/**
+ * Apply VPN-compatible headers (less restrictive for corporate networks)
+ */
+function applyVPNCompatibleHeaders(response: NextResponse) {
+  // More permissive frame options for corporate intranets
+  response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+
+  // Remove HSTS to prevent certificate issues with corporate proxies
+  response.headers.delete('Strict-Transport-Security');
+
+  // Add VPN mode indicator for client-side detection
+  response.headers.set('X-VPN-Mode', 'true');
+
+  // Less restrictive CSP for corporate environments
+  response.headers.set(
+    'Content-Security-Policy',
+    "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; img-src 'self' data: blob: *; connect-src 'self' *;"
+  );
+
+  // Allow corporate proxy modification
+  response.headers.set('X-Permitted-Cross-Domain-Policies', 'master-only');
+
+  // Debug header for development
+  if (process.env.NODE_ENV === 'development') {
+    response.headers.set('X-Debug-VPN', 'corporate-network-detected');
+  }
+}
+
+/**
+ * Apply strict security headers for regular users
+ */
+function applyStrictSecurityHeaders(response: NextResponse) {
+  // Strict frame protection
+  response.headers.set('X-Frame-Options', 'DENY');
+
+  // Enable HSTS for regular HTTPS connections
+  response.headers.set(
+    'Strict-Transport-Security',
+    'max-age=31536000; includeSubDomains; preload'
+  );
+
+  // Strict CSP for regular users
+  response.headers.set(
+    'Content-Security-Policy',
+    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com; frame-src 'none';"
+  );
+
+  // Additional security headers
+  response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
+  response.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
+  response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
 }
 
 export async function middleware(request: NextRequest) {
@@ -72,12 +192,52 @@ export async function middleware(request: NextRequest) {
 
     const response = NextResponse.next();
 
+    // VPN Detection and Security Header Management
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    const realIP = request.headers.get('x-real-ip');
+    const userAgent = request.headers.get('user-agent') || '';
+    const cfConnectingIP = request.headers.get('cf-connecting-ip');
+    const xOriginalForwardedFor = request.headers.get(
+      'x-original-forwarded-for'
+    );
+
+    const isCorpVPN = detectCorporateVPN({
+      forwardedFor,
+      realIP,
+      userAgent,
+      cfConnectingIP,
+      xOriginalForwardedFor,
+    });
+
+    // Apply appropriate security headers based on VPN detection
+    if (isCorpVPN) {
+      applyVPNCompatibleHeaders(response);
+
+      // Log VPN detection for monitoring (only in development)
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔒 Corporate VPN detected:', {
+          forwardedFor,
+          realIP,
+          userAgent: userAgent.substring(0, 100),
+          timestamp: new Date().toISOString(),
+          url: request.url,
+        });
+      }
+    } else {
+      applyStrictSecurityHeaders(response);
+    }
+
     // Add performance headers
     response.headers.set(
       'X-Edge-Config-Status',
       config ? 'loaded' : 'fallback'
     );
     response.headers.set('X-Processed-At', new Date().toISOString());
+
+    // Add common security headers for all users
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
+    response.headers.set('X-DNS-Prefetch-Control', 'on');
 
     // Handle coming soon mode
     if (config?.features?.comingSoon && pathname !== '/coming-soon') {

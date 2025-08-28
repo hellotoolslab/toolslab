@@ -2,7 +2,7 @@
 const nextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
-  
+
   // Optimize images
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -13,8 +13,9 @@ const nextConfig = {
       },
     ],
   },
-  
+
   // Configure headers for security and performance
+  // Note: These are base headers. VPN-specific headers are handled in middleware.ts
   async headers() {
     return [
       {
@@ -22,24 +23,32 @@ const nextConfig = {
         headers: [
           {
             key: 'X-DNS-Prefetch-Control',
-            value: 'on'
+            value: 'on',
           },
           {
             key: 'X-XSS-Protection',
-            value: '1; mode=block'
+            value: '1; mode=block',
           },
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
+            value: 'SAMEORIGIN', // Less restrictive for VPN compatibility
           },
           {
             key: 'X-Content-Type-Options',
-            value: 'nosniff'
+            value: 'nosniff',
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin'
-          }
+            value: 'origin-when-cross-origin',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=0', // Disabled HSTS for VPN compatibility - handled in middleware
+          },
+          {
+            key: 'X-VPN-Compatible',
+            value: 'true', // Custom header to indicate VPN support
+          },
         ],
       },
       {
@@ -61,7 +70,7 @@ const nextConfig = {
       },
     ];
   },
-  
+
   // Redirects for common patterns
   async redirects() {
     return [
@@ -88,7 +97,7 @@ const nextConfig = {
       },
     ];
   },
-  
+
   // Configure webpack for Web Workers
   webpack: (config, { isServer }) => {
     if (!isServer) {
@@ -99,7 +108,7 @@ const nextConfig = {
         tls: false,
       };
     }
-    
+
     // Add worker-loader for Web Workers
     config.module.rules.push({
       test: /\.worker\.(js|ts)$/,
@@ -111,10 +120,10 @@ const nextConfig = {
         },
       },
     });
-    
+
     return config;
   },
-  
+
   // Experimental features for better performance
   experimental: {
     // Optimize CSS
@@ -124,13 +133,13 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
-  
+
   // Output configuration for static export
   output: 'standalone',
-  
+
   // Compress output
   compress: true,
-  
+
   // Generate sitemap
   async rewrites() {
     return [
