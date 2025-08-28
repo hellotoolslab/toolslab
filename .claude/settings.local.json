@@ -56,7 +56,10 @@
       "Bash(npx next build:*)",
       "Bash(npx webpack-bundle-analyzer:*)",
       "Read(//const calculateStrength = useCallback/**)",
-      "Read(//const calculateStrength = useCallback/**)"
+      "Read(//const calculateStrength = useCallback/**)",
+      "Bash(npm run test:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npm test:*)"
     ],
     "deny": [],
     "ask": [],

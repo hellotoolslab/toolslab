@@ -18,6 +18,7 @@ import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { BaseToolProps, JsonValue, JsonObject } from '@/lib/types/tools';
+import { formatJSON, minifyJSON } from '@/lib/tools/json';
 
 interface JsonFormatterProps extends BaseToolProps {}
 
@@ -44,7 +45,14 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
 
     try {
       const result = processSync(input, (inputText) => {
-        const parsed = JSON.parse(inputText);
+        // Use the robust formatJSON function that handles Python-style syntax
+        const formatResult = formatJSON(inputText);
+
+        if (!formatResult.success) {
+          throw new Error(formatResult.error || 'Failed to parse JSON');
+        }
+
+        const parsed = JSON.parse(formatResult.result || '{}');
 
         // Sort keys if enabled
         const processObject = (obj: JsonValue): JsonValue => {
@@ -81,8 +89,14 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
 
     try {
       const result = processSync(input, (inputText) => {
-        const parsed = JSON.parse(inputText);
-        return JSON.stringify(parsed);
+        // Use the robust minifyJSON function that handles Python-style syntax
+        const minifyResult = minifyJSON(inputText);
+
+        if (!minifyResult.success) {
+          throw new Error(minifyResult.error || 'Failed to parse JSON');
+        }
+
+        return minifyResult.result || '';
       });
 
       setOutput(result);
@@ -346,7 +360,17 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                 className="h-48 w-full overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm dark:bg-gray-900"
                 style={{ borderColor: `${categoryColor}30` }}
               >
-                {renderJsonTree(JSON.parse(output))}
+                {(() => {
+                  try {
+                    return renderJsonTree(JSON.parse(output));
+                  } catch {
+                    return (
+                      <div className="text-red-500">
+                        Error rendering tree view. Please use formatted view.
+                      </div>
+                    );
+                  }
+                })()}
               </div>
             )}
           </div>
