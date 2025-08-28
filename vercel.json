@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "alias": ["toolslab.dev", "www.toolslab.dev"],
   "headers": [
     {
       "source": "/(.*)",
@@ -8,10 +7,6 @@
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
         },
         {
           "key": "Referrer-Policy",
@@ -44,24 +39,15 @@
       ]
     }
   ],
-  "regions": ["iad1"],
   "functions": {
-    "app/**/*.tsx": {
-      "maxDuration": 30
+    "app/**": {
+      "maxDuration": 10
     }
   },
-  "buildCommand": "next build",
-  "outputDirectory": ".next",
-  "framework": "nextjs",
-  "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/$1"
     }
   ],
   "redirects": [
@@ -85,6 +71,5 @@
       "destination": "/tools/base64",
       "permanent": true
     }
-  ],
-  "crons": []
+  ]
 }

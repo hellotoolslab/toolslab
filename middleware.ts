@@ -163,7 +163,7 @@ function applyStrictSecurityHeaders(response: NextResponse) {
   // Strict CSP for regular users (but still permissive for corporate proxies)
   response.headers.set(
     'Content-Security-Policy',
-    "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com va.vercel-scripts.com; frame-src 'none';"
+    "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com; frame-src 'none';"
   );
 
   // Additional security headers (but not HSTS)
@@ -177,28 +177,6 @@ function applyStrictSecurityHeaders(response: NextResponse) {
 
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
-  const hostname = request.headers.get('host') || '';
-
-  // IMPORTANT: Allow localhost and development environments
-  const isLocalhost =
-    hostname.includes('localhost') ||
-    hostname.includes('127.0.0.1') ||
-    hostname.includes('0.0.0.0') ||
-    hostname.startsWith('192.168.') ||
-    hostname.startsWith('10.') ||
-    hostname.includes('.local');
-
-  // Only redirect wrong production domains, NOT localhost
-  if (
-    !isLocalhost &&
-    (hostname.includes('no-sni.vercel-infra.com') ||
-      hostname.includes('vercel-infra.com') ||
-      hostname.includes('vercel.app'))
-  ) {
-    return NextResponse.redirect(
-      'https://toolslab.dev' + request.nextUrl.pathname
-    );
-  }
 
   // Skip processing for excluded paths
   if (!shouldProcessPath(pathname)) {
@@ -233,10 +211,6 @@ export async function middleware(request: NextRequest) {
     }
 
     const response = NextResponse.next();
-
-    // Aggiungi header per forzare certificato corretto
-    response.headers.set('X-Forwarded-Host', 'toolslab.dev');
-    response.headers.set('X-Forwarded-Proto', 'https');
 
     // VPN Detection and Security Header Management
     const forwardedFor = request.headers.get('x-forwarded-for');

@@ -8,6 +8,8 @@ import { UmamiDebugger } from '@/components/analytics/UmamiDebugger';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { VPNNotification } from '@/components/VPNNotification';
+import { VPNProvider, VPNDebugInfo } from '@/components/providers/VPNProvider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { cn } from '@/lib/utils';
 
@@ -115,13 +117,30 @@ export default function RootLayout({
       >
         <UmamiProvider>
           <ThemeProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            <ToastProvider />
-            <UmamiDebugger />
+            <VPNProvider
+              enableAutoCheck={
+                process.env.NODE_ENV === 'development' ||
+                process.env.NEXT_PUBLIC_VPN_AUTO_CHECK_PRODUCTION === 'true'
+              }
+              checkInterval={
+                process.env.NODE_ENV === 'development' ? 300000 : 3600000
+              }
+              enableHealthCheck={
+                process.env.NODE_ENV === 'development' ||
+                process.env.NEXT_PUBLIC_VPN_AUTO_CHECK_PRODUCTION === 'true'
+              }
+              showDebugInfo={process.env.NODE_ENV === 'development'}
+            >
+              <div className="relative flex min-h-screen flex-col">
+                <VPNNotification />
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
+              <ToastProvider />
+              <UmamiDebugger />
+              <VPNDebugInfo />
+            </VPNProvider>
           </ThemeProvider>
         </UmamiProvider>
         <SpeedInsights />
