@@ -1,0 +1,75 @@
+{
+  "version": 2,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "origin-when-cross-origin"
+        },
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
+        },
+        {
+          "key": "X-Corporate-VPN-Compatible",
+          "value": "true"
+        },
+        {
+          "key": "X-HSTS-Policy",
+          "value": "disabled"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "app/**": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/tools",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/json",
+      "destination": "/tools/json-formatter",
+      "permanent": true
+    },
+    {
+      "source": "/jwt",
+      "destination": "/tools/jwt-decoder",
+      "permanent": true
+    },
+    {
+      "source": "/base64",
+      "destination": "/tools/base64",
+      "permanent": true
+    }
+  ]
+}
