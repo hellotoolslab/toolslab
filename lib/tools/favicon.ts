@@ -41,8 +41,8 @@ export interface FaviconPackage {
 export const FAVICON_SIZES: FaviconSize[] = [
   {
     name: 'ICO Multi-size',
-    width: 32,
-    height: 32,
+    width: 48,
+    height: 48,
     format: 'ico',
     description: 'Classic favicon for browsers (contains 16x16, 32x32, 48x48)',
     filename: 'favicon.ico',
