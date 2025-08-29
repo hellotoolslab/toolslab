@@ -185,3 +185,10 @@ temp/
 # Supabase
 .branches
 .temp
+
+# Internal documentation and development files
+CLAUDE.md
+CLAUDE-*.md
+docs/
+documentation/
+README-*.md
