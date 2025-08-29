@@ -268,43 +268,6 @@ export function withVPN<P extends object>(
   };
 }
 
-/**
- * Development helper component - shows VPN status
- */
-export function VPNDebugInfo() {
-  const vpn = useVPN();
-
-  if (process.env.NODE_ENV !== 'development' || !vpn.isVPNModeEnabled) {
-    return null;
-  }
-
-  return (
-    <div className="fixed bottom-4 right-4 z-50 max-w-xs rounded-lg bg-gray-900 p-3 text-xs text-white shadow-lg">
-      <div className="mb-2 font-bold">🔒 VPN Debug Info</div>
-      <div>Mode: {vpn.isVPN ? '✅ VPN' : '❌ Direct'}</div>
-      <div>Type: {vpn.connectionType}</div>
-      <div>Confidence: {vpn.confidence}</div>
-      <div>Health: {vpn.healthStatus.status}</div>
-      <div>HSTS: {vpn.isHSTSDisabled ? '❌ Disabled' : '✅ Enabled'}</div>
-      <div>Corporate: {vpn.isCorporateNetwork ? '✅ Yes' : '❌ No'}</div>
-      {vpn.indicators.length > 0 && (
-        <div className="mt-2">
-          <div className="font-semibold">Indicators:</div>
-          {vpn.indicators.slice(0, 3).map((indicator, i) => (
-            <div key={i} className="text-xs opacity-80">
-              • {indicator}
-            </div>
-          ))}
-        </div>
-      )}
-      <button
-        onClick={vpn.resetNotification}
-        className="mt-2 rounded bg-blue-600 px-2 py-1 text-xs hover:bg-blue-700"
-      >
-        Reset Notification
-      </button>
-    </div>
-  );
-}
+// VPN Debug component removed - VPN compatibility issues resolved
 
 export default VPNProvider;

@@ -138,11 +138,7 @@ function applyVPNCompatibleHeaders(response: NextResponse) {
   response.headers.set('X-Corporate-Proxy-Compatible', 'true');
   response.headers.set('Access-Control-Allow-Credentials', 'true');
 
-  // Debug header for development
-  if (process.env.NODE_ENV === 'development') {
-    response.headers.set('X-Debug-VPN', 'corporate-network-detected');
-    response.headers.set('X-Debug-HSTS-Removed', 'true');
-  }
+  // Debug headers removed - VPN compatibility issues resolved
 }
 
 /**

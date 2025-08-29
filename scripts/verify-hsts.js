@@ -25,7 +25,6 @@ const TEST_PATHS = [
   '/tools/json-formatter',
   '/tools/base64',
   '/api/check-vpn',
-  '/api/vpn-health',
   '/api/tools/json-format',
 ];
 

@@ -38,6 +38,7 @@ const toolComponents = {
     () => import('./implementations/PasswordGenerator')
   ),
   'regex-tester': lazy(() => import('./implementations/RegexTester')),
+  'favicon-generator': lazy(() => import('./implementations/FaviconGenerator')),
   // Add more as needed
 } as const;
 
