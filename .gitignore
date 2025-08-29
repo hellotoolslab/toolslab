@@ -21,7 +21,6 @@
 /build
 
 # Misc
-.DS_Store
 *.pem
 
 # Debug
@@ -40,7 +39,6 @@ yarn-error.log*
 .vercel
 
 # TypeScript
-*.tsbuildinfo
 next-env.d.ts
 
 # IDE and Editor files
@@ -185,3 +183,51 @@ temp/
 # Supabase
 .branches
 .temp
+
+# Internal documentation and development files
+CLAUDE.md
+CLAUDE-*.md
+docs/
+documentation/
+README-*.md
+
+# Environment example files (contain sensitive IDs/structure)
+.env.example
+.env.local.example
+.env*.example
+
+# Vercel deployment files (contain project IDs)
+.vercel/
+
+# Claude Code local settings
+.claude/settings.local.json
+.claude/local/
+
+# API Keys and validation files
+*.key
+public/**/[a-z0-9]*.txt
+bn*.txt
+
+# Backup and temporary files
+*.backup
+*.bak
+*.tmp
+*~
+.#*
+
+# Security and secrets
+secrets/
+private/
+*.secret
+auth.json
+
+# Local development overrides
+*.local.js
+*.local.ts
+dev-config/
+local-config/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
