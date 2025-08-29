@@ -192,3 +192,8 @@ CLAUDE-*.md
 docs/
 documentation/
 README-*.md
+
+# Environment example files (contain sensitive IDs/structure)
+.env.example
+.env.local.example
+.env*.example
