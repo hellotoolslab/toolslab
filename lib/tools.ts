@@ -218,6 +218,27 @@ export const tools: Tool[] = [
     searchVolume: 4500,
     label: 'coming-soon',
   },
+  {
+    id: 'favicon-generator',
+    name: 'Favicon Generator',
+    description:
+      'Generate complete favicon packages with all sizes and formats',
+    icon: '🖥️',
+    route: '/tools/favicon-generator',
+    categories: ['web', 'image'],
+    keywords: [
+      'favicon',
+      'icon',
+      'apple-touch-icon',
+      'android-chrome',
+      'website-icon',
+      'ico',
+      'png',
+    ],
+    isNew: true,
+    searchVolume: 3200,
+    label: 'new',
+  },
 
   // Dev Utilities
   {

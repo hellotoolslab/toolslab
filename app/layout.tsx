@@ -9,7 +9,7 @@ import { ToastProvider } from '@/components/providers/ToastProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { VPNNotification } from '@/components/VPNNotification';
-import { VPNProvider, VPNDebugInfo } from '@/components/providers/VPNProvider';
+import { VPNProvider } from '@/components/providers/VPNProvider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { cn } from '@/lib/utils';
 
@@ -139,7 +139,6 @@ export default function RootLayout({
               </div>
               <ToastProvider />
               <UmamiDebugger />
-              <VPNDebugInfo />
             </VPNProvider>
           </ThemeProvider>
         </UmamiProvider>
