@@ -263,6 +263,29 @@ export const tools: Tool[] = [
     searchVolume: 4200,
     label: 'coming-soon',
   },
+  {
+    id: 'crontab-builder',
+    name: 'Crontab Expression Builder',
+    description:
+      'Parse, build, and validate cron expressions with visual builder, presets, and next execution times',
+    icon: '⏰',
+    route: '/tools/crontab-builder',
+    categories: ['dev'],
+    keywords: [
+      'crontab',
+      'cron',
+      'scheduler',
+      'unix',
+      'linux',
+      'automation',
+      'parser',
+      'builder',
+      'expression',
+    ],
+    isPopular: true,
+    searchVolume: 5500,
+    label: 'new',
+  },
 ];
 
 // Group tools by category

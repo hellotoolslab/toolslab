@@ -1,7 +1,7 @@
 // app/api/og/route.tsx
 import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
-import { tools as staticTools } from '@/data/tools';
+import { tools as staticTools } from '@/lib/tools';
 
 export const runtime = 'edge';
 
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
 
     if (toolSlug) {
       // Tool-specific OG image
-      const tool = staticTools.find((t) => t.slug === toolSlug);
+      const tool = staticTools.find((t) => t.id === toolSlug);
       title = tool?.name || formatName(toolSlug);
       subtitle = tool?.description || `Free Online ${title} Tool`;
       description = 'No Signup • Works Offline • Completely Free';
@@ -39,12 +39,12 @@ export async function GET(request: NextRequest) {
       };
 
       bgGradient =
-        categoryGradients[tool?.category || ''] ||
+        categoryGradients[tool?.categories[0] || ''] ||
         'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
     } else if (categorySlug) {
       // Category-specific OG image
-      const categoryTools = staticTools.filter(
-        (t) => t.category === categorySlug
+      const categoryTools = staticTools.filter((t) =>
+        t.categories.includes(categorySlug)
       );
 
       title = `${formatName(categorySlug)} Tools`;

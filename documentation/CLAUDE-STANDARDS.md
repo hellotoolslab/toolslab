@@ -19,12 +19,42 @@ npm update
 
 #### Creazione di nuovi tool
 
-1. Usa sempre il template standard in `templates/tool-template.tsx`
+**⚠️ IMPORTANTE**: Usa SOLO il sistema in `/lib/tools.ts` per gestire tools e categories.
+
+**Workflow completo:**
+1. **Registra il tool** in `/lib/tools.ts` con tutti i metadati richiesti
 2. Crea prima i test in `__tests__/unit/tools/[tool-name].test.ts`
 3. Implementa la logica in `lib/tools/[tool-name].ts`
-4. Crea il componente UI in `components/tools/[ToolName].tsx`
-5. Aggiungi la route in `app/tools/[tool-name]/page.tsx`
+4. Crea il componente UI in `components/tools/implementations/[ToolName].tsx`
+5. Aggiungi la route in `app/tools/[tool-slug]/page.tsx`
 6. **La sitemap viene aggiornata automaticamente** - il sistema scannerizza `app/tools/` e aggiunge i nuovi tool alla sitemap
+
+**📋 Template per aggiungere un tool in `/lib/tools.ts`:**
+```typescript
+{
+  id: 'tool-slug',
+  name: 'Tool Name',
+  description: 'Descrizione breve e chiara del tool',
+  icon: '📋', // Emoji icon
+  route: '/tools/tool-slug',
+  categories: ['dev'], // Array di categorie esistenti
+  keywords: ['keyword1', 'keyword2', 'tool', 'specific', 'terms'],
+  isPopular: true, // se è un tool popolare
+  searchVolume: 5500, // volume di ricerca stimato
+  label: 'new', // 'new' | 'popular' | 'coming-soon' | ''
+},
+```
+
+**📚 Categorie disponibili:**
+- `data`: Data & Conversion 
+- `encoding`: Encoding & Security
+- `text`: Text & Format
+- `generators`: Generators
+- `web`: Web & Design
+- `dev`: Dev Utilities
+- `formatters`: Formatters
+
+**⛔ NON creare file in `/data/tools.ts` o `/data/categories.ts` - sono stati eliminati!**
 
 #### Standard di codice
 
@@ -190,7 +220,7 @@ Il sistema gestisce automaticamente la generazione della sitemap per tutti i too
 - **Aggiorna** la sitemap ad ogni build automaticamente
 
 #### 📊 Sorgenti Sitemap (in ordine di priorità)
-1. **Static Data** (`data/tools.ts`) - source of truth per metadati
+1. **Static Data** (`lib/tools.ts`) - **FONTE UFFICIALE** per tutti i tool e categorie
 2. **Filesystem** (`app/tools/*/page.tsx`) - verifica esistenza dei tool
 3. **Edge Config** (`lib/edge-config/`) - configurazione dinamica  
 4. **Dynamic Routes** (se presenti route `[tool]`)
@@ -212,8 +242,8 @@ mkdir app/tools/nuovo-tool
 # 2. Aggiungi page.tsx con metadati SEO
 # Il sistema scannerizzerà automaticamente e aggiungerà alla sitemap
 
-# 3. (Opzionale) Aggiungi metadati completi in data/tools.ts
-# per controllo fine su priorità, categoria, featured status
+# 3. OBBLIGATORIO: Aggiungi il tool al registro ufficiale in lib/tools.ts
+# con tutti i metadati: priorità, categoria, featured status, searchVolume, keywords
 ```
 
 #### 🔍 Verifica Sitemap

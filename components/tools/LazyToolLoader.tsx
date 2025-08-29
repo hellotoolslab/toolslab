@@ -39,6 +39,7 @@ const toolComponents = {
   ),
   'regex-tester': lazy(() => import('./implementations/RegexTester')),
   'favicon-generator': lazy(() => import('./implementations/FaviconGenerator')),
+  'crontab-builder': lazy(() => import('./implementations/CrontabBuilder')),
   // Add more as needed
 } as const;
 
