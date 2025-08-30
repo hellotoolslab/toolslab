@@ -28,7 +28,7 @@ interface UmamiContextType {
     id: string,
     isFavorited: boolean
   ) => void;
-  trackSocial: (platform: 'twitter' | 'github', from?: string) => void;
+  trackSocial: (platform: 'twitter' | 'github' | 'x', from?: string) => void;
   trackConversion: (type: 'donation' | 'pro-signup', from?: string) => void;
   trackError: (
     tool: string,
@@ -232,7 +232,7 @@ function UmamiProviderInner({ children }: { children: React.ReactNode }) {
   );
 
   const trackSocial = useCallback(
-    (platform: 'twitter' | 'github', from?: string) => {
+    (platform: 'twitter' | 'github' | 'x', from?: string) => {
       trackEvent(`social-${platform}-clicked`, {
         from: from || 'unknown',
         timestamp: Date.now(),
