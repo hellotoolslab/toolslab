@@ -59,6 +59,15 @@ export default function CategoriesPage() {
               for easy browsing
             </p>
 
+            <div className="mb-8">
+              <Link
+                href="/tools"
+                className="inline-flex items-center rounded-lg bg-gradient-to-r from-violet-600 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+              >
+                Browse All {totalTools} Tools
+              </Link>
+            </div>
+
             <div className="mb-8 flex items-center justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">
               <span className="flex items-center gap-2">
                 <Zap className="h-4 w-4 text-yellow-500" />

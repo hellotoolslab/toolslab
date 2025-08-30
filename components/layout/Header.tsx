@@ -88,7 +88,12 @@ export function Header() {
 
             {/* Categories dropdown */}
             <div className="group relative">
-              <button className="flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
+              <button
+                className="flex items-center rounded-lg px-2 py-1 text-gray-600 transition-colors duration-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100"
+                aria-expanded="false"
+                aria-haspopup="true"
+                aria-label="Categories menu"
+              >
                 <Grid3X3 className="mr-1 h-4 w-4" />
                 Categories
                 <svg
@@ -96,6 +101,7 @@ export function Header() {
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -107,22 +113,51 @@ export function Header() {
               </button>
 
               {/* Dropdown */}
-              <div className="invisible absolute left-0 top-full z-50 mt-2 w-64 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                <div className="rounded-xl border border-gray-200/40 bg-white/95 p-4 shadow-xl backdrop-blur-md dark:border-gray-800/40 dark:bg-gray-900/95">
+              <div className="invisible absolute left-0 top-full z-50 mt-2 w-64 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                <div
+                  className="rounded-xl border border-gray-200/40 bg-white/95 p-4 shadow-xl backdrop-blur-md dark:border-gray-800/40 dark:bg-gray-900/95"
+                  role="menu"
+                  aria-label="Categories navigation menu"
+                >
                   <div className="grid gap-2">
+                    {/* Hub Link - Browse All Categories */}
+                    <Link
+                      href="/categories"
+                      className="flex items-center rounded-lg p-3 font-medium text-violet-600 transition-colors hover:bg-violet-50 dark:text-violet-400 dark:hover:bg-violet-900/20"
+                      role="menuitem"
+                      aria-label="Browse all categories overview page"
+                    >
+                      <Grid3X3 className="mr-3 h-5 w-5" />
+                      <div>
+                        <div className="text-sm font-semibold">
+                          Browse All Categories
+                        </div>
+                        <div className="text-xs text-violet-500 dark:text-violet-400">
+                          Overview & comparison
+                        </div>
+                      </div>
+                    </Link>
+
+                    {/* Visual Separator */}
+                    <div className="mx-2 my-1 border-t border-gray-200/60 dark:border-gray-700/60" />
+
+                    {/* Individual Category Links */}
                     {categories.map((category) => (
                       <Link
                         key={category.id}
                         href={`/category/${category.id}`}
-                        className="flex items-center rounded-lg p-3 transition-colors hover:bg-white/10"
+                        className="flex items-center rounded-lg p-3 transition-colors hover:bg-white/10 dark:hover:bg-gray-800/50"
+                        role="menuitem"
+                        aria-label={`${category.name} category with ${category.tools.length} tools`}
                       >
                         <span className="mr-3 text-xl">{category.icon}</span>
-                        <div>
+                        <div className="flex-1">
                           <div className="text-sm font-medium">
                             {category.name}
                           </div>
                           <div className="text-xs text-gray-500 dark:text-gray-400">
-                            {category.tools.length} tools
+                            {category.tools.length} tool
+                            {category.tools.length !== 1 ? 's' : ''}
                           </div>
                         </div>
                       </Link>
@@ -265,11 +300,33 @@ export function Header() {
                   Categories
                 </div>
                 <div className="space-y-2">
+                  {/* Hub Link - Browse All Categories */}
+                  <Link
+                    href="/categories"
+                    className="flex items-center space-x-3 rounded-lg p-3 font-medium text-violet-400 transition-colors hover:bg-violet-900/20"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Grid3X3 className="h-5 w-5" />
+                    <div>
+                      <div className="text-sm font-semibold">
+                        Browse All Categories
+                      </div>
+                      <div className="text-xs text-violet-400">
+                        Overview & comparison
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* Visual Separator */}
+                  <div className="mx-3 my-2 border-t border-white/10" />
+
+                  {/* Individual Category Links */}
                   {categories.map((category) => (
                     <Link
                       key={category.id}
                       href={`/category/${category.id}`}
                       className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
                       <span className="text-lg">{category.icon}</span>
                       <div>
@@ -277,7 +334,8 @@ export function Header() {
                           {category.name}
                         </div>
                         <div className="text-xs text-gray-500">
-                          {category.tools.length} tools
+                          {category.tools.length} tool
+                          {category.tools.length !== 1 ? 's' : ''}
                         </div>
                       </div>
                     </Link>

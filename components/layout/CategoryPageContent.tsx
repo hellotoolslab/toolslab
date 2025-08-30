@@ -108,6 +108,13 @@ export default function CategoryPageContent({
               </Link>
               <ChevronRight className="h-3 w-3" />
               <Link
+                href="/tools"
+                className="hover:text-gray-900 dark:hover:text-gray-100"
+              >
+                Tools
+              </Link>
+              <ChevronRight className="h-3 w-3" />
+              <Link
                 href="/categories"
                 className="hover:text-gray-900 dark:hover:text-gray-100"
               >
@@ -318,6 +325,27 @@ export default function CategoryPageContent({
               </div>
             </section>
           )}
+
+          {/* Browse All Tools CTA - Moved to be last after Related Categories */}
+          <section className="mb-8 mt-12 text-center">
+            <div className="rounded-xl border border-gray-200 bg-gradient-to-r from-violet-50 to-purple-50 p-8 dark:border-gray-700 dark:from-violet-900/20 dark:to-purple-900/20">
+              <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+                Need More Tools?
+              </h2>
+              <p className="mb-6 text-gray-600 dark:text-gray-400">
+                Explore our complete collection of{' '}
+                {categories.reduce((sum, cat) => sum + cat.tools.length, 0)}+
+                developer tools across all categories.
+              </p>
+              <Link
+                href="/tools"
+                className="inline-flex items-center rounded-lg bg-gradient-to-r from-violet-600 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+              >
+                Browse All Tools
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
+          </section>
         </section>
       </div>
     </>

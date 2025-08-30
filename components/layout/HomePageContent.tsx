@@ -24,6 +24,14 @@ export default function HomePageContent() {
           <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
             Jump straight into the most popular tools. No setup required.
           </p>
+          <div className="mt-6">
+            <Link
+              href="/tools"
+              className="inline-flex items-center rounded-lg bg-gradient-to-r from-violet-600 to-purple-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            >
+              Browse All {tools.length}+ Tools
+            </Link>
+          </div>
         </div>
 
         <div className="tools-grid">
@@ -43,6 +51,20 @@ export default function HomePageContent() {
               category offers specialized utilities for different development
               needs.
             </p>
+            <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <Link
+                href="/categories"
+                className="inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-blue-700"
+              >
+                View All Categories
+              </Link>
+              <Link
+                href="/tools"
+                className="inline-flex items-center rounded-lg border-2 border-violet-600 px-6 py-3 font-semibold text-violet-600 transition-all hover:scale-105 hover:bg-violet-600 hover:text-white"
+              >
+                Browse All Tools
+              </Link>
+            </div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

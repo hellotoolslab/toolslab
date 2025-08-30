@@ -29,6 +29,7 @@ import {
   Clock,
   ArrowRight,
   CheckCircle2,
+  X,
 } from 'lucide-react';
 
 type SortOption = 'alphabetical' | 'popular' | 'recent' | 'category';
@@ -184,51 +185,130 @@ export default function ToolsHubContent() {
             </span>
           </nav>
 
-          {/* Hero Content */}
-          <div className="mb-8 text-center">
-            <h1 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
+          {/* Hero Content - Compressed */}
+          <div className="mb-6 text-center">
+            <h1 className="mb-3 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
               All Developer Tools - Free Online Utilities
             </h1>
-            <p className="mb-6 text-lg text-gray-700 dark:text-gray-300 sm:text-xl">
+            <p className="mb-4 text-lg text-gray-700 dark:text-gray-300 sm:text-xl">
               Complete collection of professional tools for developers, data
               analysts, and system administrators
             </p>
-            <p className="mx-auto max-w-4xl text-sm leading-relaxed text-gray-600 dark:text-gray-400 sm:text-base">
-              Discover {totalTools}+ free online tools for JSON formatting,
-              Base64 encoding, URL decoding, hash generation, and more. All
-              tools work entirely in your browser with no data transmission to
-              servers. Perfect for development, debugging, and data processing
-              workflows. No registration required, completely privacy-first.
+            {/* Compressed description - 2 lines max */}
+            <p className="mx-auto max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+              {totalTools}+ free browser-based tools for JSON formatting, Base64
+              encoding, hash generation, and more. Zero data transmission, no
+              registration required.
             </p>
           </div>
 
-          {/* Trust Signals & Statistics */}
-          <div className="mb-8 flex flex-wrap items-center justify-center gap-4 text-sm sm:gap-6">
-            <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
-                <Grid3X3 className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-              </span>
-              <span className="font-medium">{totalTools}+ tools available</span>
+          {/* Trust Signals - Compressed */}
+          <div className="mb-4 flex flex-wrap items-center justify-center gap-3 text-xs sm:gap-4 sm:text-sm">
+            <div className="flex items-center gap-1.5">
+              <Grid3X3 className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
+              <span className="font-medium">{totalTools}+ tools</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
-                <Zap className="h-4 w-4 text-green-600 dark:text-green-400" />
-              </span>
-              <span>All free forever</span>
+            <div className="flex items-center gap-1.5">
+              <Zap className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+              <span>Free forever</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/30">
-                <Shield className="h-4 w-4 text-purple-600 dark:text-purple-400" />
-              </span>
+            <div className="flex items-center gap-1.5">
+              <Shield className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
               <span>Privacy-first</span>
             </div>
             {newToolsCount > 0 && (
-              <div className="flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900/30">
-                  <Sparkles className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
-                </span>
-                <span>New tools added weekly</span>
+              <div className="flex items-center gap-1.5">
+                <Sparkles className="h-3.5 w-3.5 text-yellow-600 dark:text-yellow-400" />
+                <span>New tools weekly</span>
               </div>
+            )}
+          </div>
+
+          {/* PRIMARY SEARCH BAR - Moved to top priority position */}
+          <div className="mb-4 px-2 sm:px-0">
+            <div className="relative mx-auto max-w-2xl">
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                placeholder="Search tools... (e.g. 'json', 'encode', 'hash')"
+                className="w-full rounded-xl border-2 border-gray-200 bg-white py-4 pl-12 pr-6 text-base text-gray-900 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400"
+                autoFocus
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Category Filters */}
+          <div className="mb-4 px-2 sm:px-0">
+            <div className="flex flex-wrap justify-center gap-2">
+              <button
+                onClick={() => handleCategorySelect('all')}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  selectedCategory === 'all'
+                    ? 'bg-blue-500 text-white shadow-md'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                }`}
+              >
+                All ({totalTools})
+              </button>
+              {categoryStats.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => handleCategorySelect(category.id)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                    selectedCategory === category.id
+                      ? 'text-white shadow-md'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                  style={
+                    selectedCategory === category.id
+                      ? { backgroundColor: getCategoryColor(category.id) }
+                      : undefined
+                  }
+                >
+                  {category.icon} {category.name} ({category.count})
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Sort Options */}
+          <div className="mb-4 flex flex-col items-center justify-center gap-4 px-2 sm:flex-row sm:px-0">
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Sort by:
+              </span>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as SortOption)}
+                className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+              >
+                <option value="popular">Most Popular</option>
+                <option value="alphabetical">A-Z</option>
+                <option value="recent">Recently Added</option>
+                <option value="category">Category</option>
+              </select>
+            </div>
+
+            {/* Clear Filters */}
+            {(searchQuery ||
+              selectedCategory !== 'all' ||
+              sortBy !== 'popular') && (
+              <button
+                onClick={clearFilters}
+                className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                Clear filters
+              </button>
             )}
           </div>
         </div>
@@ -236,9 +316,9 @@ export default function ToolsHubContent() {
 
       {/* Recently Added Tools */}
       {recentTools.length > 0 && (
-        <section className="py-8">
+        <section className="py-4">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="mb-6 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between">
               <h2 className="flex items-center gap-2 text-xl font-bold sm:text-2xl">
                 <Sparkles className="h-6 w-6 text-green-500" />
                 Recently Added Tools
@@ -258,9 +338,9 @@ export default function ToolsHubContent() {
 
       {/* Most Popular Tools */}
       {popularTools.length > 0 && (
-        <section className="py-8">
+        <section className="py-4">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="mb-6 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between">
               <h2 className="flex items-center gap-2 text-xl font-bold sm:text-2xl">
                 <TrendingUp className="h-6 w-6 text-yellow-500" />
                 Most Popular Tools
@@ -279,90 +359,11 @@ export default function ToolsHubContent() {
       )}
 
       {/* Main Tools Section */}
-      <section className="py-8">
+      <section className="py-4">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-          <h2 className="mb-6 text-xl font-bold sm:text-2xl">
+          <h2 className="mb-4 text-xl font-bold sm:text-2xl">
             All Tools ({filteredAndSortedTools.length})
           </h2>
-
-          {/* Search and Filters */}
-          <div className="mb-8 space-y-4">
-            {/* Search Bar */}
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                placeholder="Search tools... (e.g. 'json', 'encode', 'hash')"
-                className="w-full rounded-lg border border-gray-200 bg-white py-3 pl-10 pr-4 text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
-              />
-            </div>
-
-            {/* Filter Controls */}
-            <div className="flex flex-wrap items-center gap-4">
-              {/* Category Filters */}
-              <div className="flex flex-wrap gap-2">
-                <button
-                  onClick={() => handleCategorySelect('all')}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    selectedCategory === 'all'
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                  }`}
-                >
-                  All ({totalTools})
-                </button>
-                {categoryStats.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => handleCategorySelect(category.id)}
-                    className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                      selectedCategory === category.id
-                        ? 'text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                    }`}
-                    style={
-                      selectedCategory === category.id
-                        ? { backgroundColor: getCategoryColor(category.id) }
-                        : undefined
-                    }
-                  >
-                    {category.icon} {category.name} ({category.count})
-                  </button>
-                ))}
-              </div>
-
-              {/* Sort Options */}
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Sort by:
-                </span>
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as SortOption)}
-                  className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
-                >
-                  <option value="popular">Most Popular</option>
-                  <option value="alphabetical">A-Z</option>
-                  <option value="recent">Recently Added</option>
-                  <option value="category">Category</option>
-                </select>
-              </div>
-
-              {/* Clear Filters */}
-              {(searchQuery ||
-                selectedCategory !== 'all' ||
-                sortBy !== 'popular') && (
-                <button
-                  onClick={clearFilters}
-                  className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                >
-                  Clear filters
-                </button>
-              )}
-            </div>
-          </div>
 
           {/* Tools Grid */}
           {filteredAndSortedTools.length > 0 ? (
