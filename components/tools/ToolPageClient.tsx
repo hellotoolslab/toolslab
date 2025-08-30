@@ -182,8 +182,10 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
       {/* Header Ad Banner */}
-      {!isAdDismissed && adsEnabled && (
-        <div className="relative border-b border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800">
+      {!isAdDismissed && (
+        <div
+          className={`relative border-b border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800 ${adsEnabled ? 'block' : 'hidden'}`}
+        >
           <div className="mx-auto max-w-7xl px-4 py-2">
             <button
               onClick={handleDismissAd}
@@ -322,14 +324,14 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
               </div>
 
               {/* Sidebar Ad */}
-              {adsEnabled && (
-                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                    Advertisement
-                  </span>
-                  <AdBanner type="sidebar" />
-                </div>
-              )}
+              <div
+                className={`rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 ${adsEnabled ? 'block' : 'hidden'}`}
+              >
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  Advertisement
+                </span>
+                <AdBanner type="sidebar" />
+              </div>
             </div>
           )}
         </div>
