@@ -2,7 +2,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { getCompleteConfig } from '@/lib/edge-config/client';
-import { tools as staticTools } from '@/data/tools';
+import { tools as staticTools } from '@/lib/tools';
 
 interface ToolInfo {
   slug: string;
@@ -90,17 +90,17 @@ export class ToolDiscovery {
   private async scanStaticTools(): Promise<ToolInfo[]> {
     try {
       return staticTools.map((tool) => ({
-        slug: tool.slug,
-        path: `/tools/${tool.slug}`,
+        slug: tool.id,
+        path: `/tools/${tool.id}`,
         name: tool.name,
         description: tool.description,
-        category: tool.category,
+        category: tool.categories[0],
         source: 'static-data' as const,
         exists: true, // Assume exists if in static data
-        featured: tool.featured,
-        popular: tool.popular,
-        new: (tool as any).new,
-        priority: tool.featured ? 0.9 : tool.popular ? 0.8 : 0.7,
+        featured: tool.isPopular,
+        popular: tool.isPopular,
+        new: tool.label === 'new',
+        priority: tool.isPopular ? 0.9 : tool.label === 'new' ? 0.85 : 0.7,
       }));
     } catch (error) {
       console.warn('Could not read static tools data:', error);
@@ -254,7 +254,7 @@ export class ToolDiscovery {
             path: `/tools/${slug}`,
             name: tool.name,
             description: tool.description,
-            category: tool.category,
+            category: tool.categories[0],
             searchVolume: tool.searchVolume,
             priority: tool.featured ? 0.9 : tool.popular ? 0.8 : 0.7,
             featured: tool.featured,
@@ -342,7 +342,7 @@ export class ToolDiscovery {
 
     // From static tools data
     staticTools.forEach((tool) => {
-      if (tool.category) categories.add(tool.category);
+      if (tool.categories?.length) categories.add(tool.categories[0]);
     });
 
     // From Edge Config
@@ -357,7 +357,7 @@ export class ToolDiscovery {
       // Also check tools for their categories
       if (configResult.success && configResult.data.tools) {
         Object.values(configResult.data.tools).forEach((tool: any) => {
-          if (tool.category) categories.add(tool.category);
+          if (tool.categories?.length) categories.add(tool.categories[0]);
         });
       }
     } catch (error) {
@@ -497,8 +497,8 @@ export class ToolDiscovery {
     const categories = new Set<string>();
 
     staticTools.forEach((tool) => {
-      if (tool.category) {
-        categories.add(tool.category);
+      if (tool.categories?.length) {
+        categories.add(tool.categories[0]);
       }
     });
 
