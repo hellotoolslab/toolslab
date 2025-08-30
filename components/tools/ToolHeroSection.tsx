@@ -11,6 +11,7 @@ interface ToolHeroSectionProps {
   categoryName?: string;
   favoriteButton?: React.ReactNode;
   categoryBadge?: React.ReactNode;
+  labelBadge?: React.ReactNode;
   className?: string;
 }
 
@@ -21,6 +22,7 @@ export default function ToolHeroSection({
   categoryName,
   favoriteButton,
   categoryBadge,
+  labelBadge,
   className = '',
 }: ToolHeroSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -98,6 +100,7 @@ export default function ToolHeroSection({
           >
             {toolName}
           </h1>
+          {labelBadge && <div className="flex items-center">{labelBadge}</div>}
           {favoriteButton && (
             <div className="flex items-center">{favoriteButton}</div>
           )}

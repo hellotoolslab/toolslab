@@ -247,14 +247,16 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
                 {primaryCategory?.name || categoryId}
               </span>
             }
+            labelBadge={
+              labelInfo.hasLabel
+                ? getLabelComponent(toolLabel, 'xs')
+                : undefined
+            }
             className="relative flex-1"
           />
 
           {/* Share Button - Aligned with header */}
-          <div className="flex items-start gap-2 pt-1">
-            {labelInfo.hasLabel && (
-              <div>{getLabelComponent(toolLabel, 'sm')}</div>
-            )}
+          <div className="flex items-start pt-1">
             <button
               onClick={handleShare}
               className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm transition-colors hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
