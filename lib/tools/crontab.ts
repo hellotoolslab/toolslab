@@ -720,7 +720,7 @@ function generateDescription(fields: CronField[]): string {
       } else if (hourField?.value.includes('-')) {
         const [start, end] = hourField.value.split('-');
         timePart += ` past every hour from ${start} through ${end}`;
-      } else {
+      } else if (hourField) {
         timePart += ` past hour ${hourField.value}`;
       }
     } else if (!timePart.includes('every minute')) {
@@ -963,7 +963,7 @@ function calculateNextExecutions(
     }
 
     console.log(
-      `Search completed. Found ${foundCount} executions in ${Math.min(10000, foundCount < count ? 10000 : 'early exit')} iterations`
+      `Search completed. Found ${foundCount} executions in ${foundCount < count ? 10000 : 'early exit'} iterations`
     );
   } catch (error) {
     console.error('Error calculating next executions:', error);
