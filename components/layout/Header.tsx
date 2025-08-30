@@ -76,10 +76,10 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="ml-8 hidden items-center space-x-8 text-sm font-medium md:flex">
             <Link
-              href="/"
+              href="/tools"
               className={cn(
                 'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/' && 'text-violet-600 dark:text-violet-400'
+                pathname === '/tools' && 'text-violet-600 dark:text-violet-400'
               )}
             >
               <Zap className="mr-1 h-4 w-4" />
@@ -223,7 +223,7 @@ export function Header() {
 
             <nav className="space-y-4">
               <Link
-                href="/"
+                href="/tools"
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
