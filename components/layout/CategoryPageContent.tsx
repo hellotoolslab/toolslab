@@ -119,38 +119,54 @@ export default function CategoryPageContent({
               </span>
             </nav>
 
-            {/* Compact Header with inline icon */}
-            <div className="mb-4 flex items-start gap-4">
+            {/* Header aligned with tool page design */}
+            <div className="mb-2 flex items-center gap-2 sm:gap-3">
+              {/* Compact Icon */}
               <div
-                className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl text-2xl shadow-sm"
+                className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl shadow-sm sm:h-14 sm:w-14"
                 style={{ backgroundColor: `${categoryColor}20` }}
               >
-                <span style={{ color: categoryColor }}>{category.icon}</span>
+                <span className="text-2xl" style={{ color: categoryColor }}>
+                  {category.icon}
+                </span>
               </div>
-              <div className="flex-1">
-                <h1 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
-                  {seoContent.h1Title}
-                </h1>
-                <p className="text-base font-medium text-gray-700 dark:text-gray-300 sm:text-lg">
-                  {seoContent.tagline}
-                </p>
-              </div>
+
+              {/* Title inline */}
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
+                {seoContent.h1Title}
+              </h1>
+
+              {/* Category count badge */}
+              <span
+                className="ml-auto rounded-full px-2.5 py-1 text-xs font-medium capitalize"
+                style={{
+                  backgroundColor: `${categoryColor}15`,
+                  color: categoryColor,
+                }}
+              >
+                {tools.length} tools
+              </span>
             </div>
 
-            {/* Rich SEO Description */}
-            <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400 sm:text-base">
+            {/* Tagline - closely connected to title */}
+            <p className="mb-4 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {seoContent.tagline}
+            </p>
+
+            {/* SEO Description - proper separation */}
+            <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
               {seoContent.description}
             </p>
 
             {/* Benefits Grid - Compact */}
-            <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mb-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
               {seoContent.benefits.slice(0, 3).map((benefit, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <CheckCircle
-                    className="h-4 w-4 flex-shrink-0"
+                    className="h-3.5 w-3.5 flex-shrink-0"
                     style={{ color: categoryColor }}
                   />
-                  <span className="text-xs text-gray-700 dark:text-gray-300 sm:text-sm">
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
                     {benefit}
                   </span>
                 </div>
@@ -159,12 +175,12 @@ export default function CategoryPageContent({
 
             {/* Use Cases - Inline */}
             <div className="mb-4 flex flex-wrap items-center gap-1">
-              <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
                 💡 Perfect for:
               </span>
               {seoContent.useCases.map((useCase, index) => (
                 <span key={index}>
-                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                  <span className="text-xs text-gray-500 dark:text-gray-500">
                     {useCase}
                   </span>
                   {index < seoContent.useCases.length - 1 && (
@@ -174,32 +190,9 @@ export default function CategoryPageContent({
               ))}
             </div>
 
-            {/* Stats and Search Bar Row */}
-            <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center gap-4 text-xs sm:text-sm">
-                <span className="flex items-center gap-1.5">
-                  <span
-                    className="inline-block h-2 w-2 rounded-full"
-                    style={{ backgroundColor: categoryColor }}
-                  />
-                  <span className="font-medium">
-                    {tools.length} tools available
-                  </span>
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Zap className="h-3 w-3 text-green-500" />
-                  <span>All free to use</span>
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Shield className="h-3 w-3 text-blue-500" />
-                  <span>100% private</span>
-                </span>
-              </div>
-
-              {/* Search Bar - Compact */}
-              <div className="w-full sm:w-72">
-                <SearchBar />
-              </div>
+            {/* Search Bar - Simplified */}
+            <div className="mb-5 w-full">
+              <SearchBar />
             </div>
           </div>
         </section>
