@@ -692,7 +692,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Every minute
+                      Every
                     </Button>
                     <Button
                       variant="outline"
@@ -708,7 +708,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Every 5 minutes
+                      Every 5
                     </Button>
                     <Button
                       variant="outline"
@@ -724,7 +724,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      At 0 minutes
+                      At 0
                     </Button>
                   </div>
                 </CardContent>
@@ -769,7 +769,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Every hour
+                      Every
                     </Button>
                     <Button
                       variant="outline"
@@ -785,7 +785,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      At midnight
+                      Midnight
                     </Button>
                     <Button
                       variant="outline"
@@ -801,7 +801,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Business hours
+                      9-17
                     </Button>
                   </div>
                 </CardContent>
@@ -846,7 +846,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Every day
+                      Every
                     </Button>
                     <Button
                       variant="outline"
@@ -862,7 +862,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      First of month
+                      1st
                     </Button>
                     <Button
                       variant="outline"
@@ -878,7 +878,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Mid-month
+                      15th
                     </Button>
                   </div>
                 </CardContent>
@@ -923,7 +923,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Every month
+                      Every
                     </Button>
                     <Button
                       variant="outline"
@@ -939,7 +939,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      January only
+                      January
                     </Button>
                     <Button
                       variant="outline"
@@ -958,7 +958,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Quarterly
+                      Q1,Q2,Q3,Q4
                     </Button>
                   </div>
                 </CardContent>
@@ -1019,7 +1019,7 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Weekdays
+                      Mon-Fri
                     </Button>
                     <Button
                       variant="outline"
@@ -1035,34 +1035,12 @@ export default function CrontabBuilder({
                         isUpdatingFromBuilder.current = false;
                       }}
                     >
-                      Weekends
+                      Sat-Sun
                     </Button>
                   </div>
                 </CardContent>
               </Card>
             </div>
-
-            {/* Generated Expression */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Generated Expression</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center gap-2">
-                  <Input
-                    value={inputExpression}
-                    readOnly
-                    className="bg-gray-50 font-mono"
-                  />
-                  <Button
-                    variant="outline"
-                    onClick={() => handleCopy(inputExpression)}
-                  >
-                    <Copy className="h-4 w-4" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
           </TabsContent>
 
           {/* Presets Tab */}
@@ -1148,7 +1126,7 @@ export default function CrontabBuilder({
                     {favorites.map((favorite) => (
                       <div
                         key={favorite.id}
-                        className="flex items-center justify-between rounded border p-3 hover:bg-gray-50"
+                        className="flex items-center justify-between rounded border p-3 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-100"
                       >
                         <div
                           className="flex-1 cursor-pointer"
@@ -1232,7 +1210,7 @@ export default function CrontabBuilder({
                     {history.slice(0, 20).map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center justify-between rounded border p-3 hover:bg-gray-50"
+                        className="flex items-center justify-between rounded border p-3 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-100"
                       >
                         <div
                           className="flex-1 cursor-pointer"

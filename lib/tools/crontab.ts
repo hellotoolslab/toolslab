@@ -562,6 +562,15 @@ function getOrdinal(num: number): string {
 }
 
 /**
+ * Get day ordinal for date descriptions
+ */
+function getDayOrdinal(day: number): string {
+  const suffixes = ['th', 'st', 'nd', 'rd'];
+  const v = day % 100;
+  return day + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+}
+
+/**
  * Validate the entire cron expression
  */
 function validateExpression(fields: CronField[]): CronValidation {
@@ -636,17 +645,7 @@ function generateDescription(fields: CronField[]): string {
   const monthField = validFields.find((f) => f.type === 'month');
   const weekdayField = validFields.find((f) => f.type === 'weekday');
 
-  // Check for business hour patterns
-  const isBusinessHours =
-    hourField?.value?.includes('9-17') || hourField?.value?.includes('9-18');
-  const isWeekdays =
-    weekdayField?.value === '1-5' || weekdayField?.value?.includes('1-5');
-
-  if (isBusinessHours && isWeekdays) {
-    const minute =
-      minuteField?.value === '0' ? '' : `at minute ${minuteField?.value} `;
-    return `${minute}from 9:00 am to 5:00 pm from monday to friday`;
-  }
+  // Don't use the business hours shortcut - handle all cases with the standard logic below
 
   let description = '';
 
@@ -665,64 +664,149 @@ function generateDescription(fields: CronField[]): string {
     !hourField?.value.includes('-');
 
   if (isEveryMinute && isSpecificHour) {
-    // * 4 * * * = Every minute at 4 AM
+    // * 10 * * * = At every minute past hour 10
     const hourNum = parseInt(hourField!.value);
-    description = `Every minute at ${formatHour(hourNum)}`;
+    description = `At every minute past hour ${hourNum}`;
   } else if (isSpecificMinute && isEveryHour) {
-    // 5 * * * * = At minute 5 of every hour
-    description = `At minute ${minuteField!.value} of every hour`;
+    // 5 * * * * = At minute 5 past every hour
+    description = `At minute ${minuteField!.value} past every hour`;
   } else if (isSpecificMinute && isSpecificHour) {
-    // 5 4 * * * = At 4:05 AM every day
+    // 5 4 * * * = At 04:05
     const hourNum = parseInt(hourField!.value);
     const minNum = parseInt(minuteField!.value);
-    const time = formatTime(hourNum, minNum);
-    description = `At ${time}`;
+    const paddedHour = hourNum.toString().padStart(2, '0');
+    const paddedMin = minNum.toString().padStart(2, '0');
+    description = `At ${paddedHour}:${paddedMin}`;
   } else if (isEveryMinute && isEveryHour) {
-    // * * * * * = Every minute
-    description = 'Every minute';
+    // * * * * * = At every minute
+    description = 'At every minute';
   } else {
-    // Complex patterns
-    description = 'At ';
+    // Complex patterns following crontab.guru style
+    let timePart = '';
 
-    if (minuteField?.value === '0' && hourField?.value !== '*') {
-      description += `${hourField?.description?.replace('at ', '') || 'every hour'}`;
-    } else if (minuteField && hourField) {
-      if (minuteField.value === '*') {
-        description += `every minute`;
-        if (hourField.value !== '*') {
-          description += ` ${hourField.description}`;
-        }
+    // Build minute part
+    if (minuteField?.value === '*') {
+      timePart = 'At every minute';
+    } else if (minuteField?.value.includes('/')) {
+      const [range, step] = minuteField.value.split('/');
+      if (range === '*') {
+        timePart = `At every ${step} minutes`;
       } else {
-        description += `${minuteField.description} past ${hourField.description?.replace('at ', '') || 'every hour'}`;
+        timePart = `At every ${step} minutes from ${range}`;
       }
+    } else if (minuteField?.value.includes(',')) {
+      const minutes = minuteField.value.split(',').join(' and ');
+      timePart = `At minute ${minutes}`;
+    } else if (minuteField?.value.includes('-')) {
+      timePart = `At minute ${minuteField.value}`;
+    } else if (minuteField?.value === '0') {
+      timePart = 'At minute 0';
+    } else {
+      timePart = `At minute ${minuteField?.value}`;
     }
+
+    // Add hour part
+    if (hourField?.value !== '*') {
+      if (hourField?.value.includes('/')) {
+        const [range, step] = hourField.value.split('/');
+        if (range === '*') {
+          timePart += ` past every ${step} hours`;
+        } else {
+          timePart += ` past every ${step} hours from ${range}`;
+        }
+      } else if (hourField?.value.includes(',')) {
+        const hours = hourField.value.split(',').join(' and ');
+        timePart += ` past hour ${hours}`;
+      } else if (hourField?.value.includes('-')) {
+        const [start, end] = hourField.value.split('-');
+        timePart += ` past every hour from ${start} through ${end}`;
+      } else {
+        timePart += ` past hour ${hourField.value}`;
+      }
+    } else if (!timePart.includes('every minute')) {
+      // Only add "past every hour" if it's not already "every minute"
+      timePart += ' past every hour';
+    }
+
+    description = timePart;
   }
 
-  // Date part
+  // Date part - following crontab.guru style
   const dateParts: string[] = [];
 
+  // Handle day of month
   if (dayField && dayField.value !== '*') {
-    dateParts.push(`${dayField.description}`);
+    if (dayField.value.includes(',')) {
+      const days = dayField.value.split(',').join(' and ');
+      dateParts.push(`on day-of-month ${days}`);
+    } else if (dayField.value.includes('/')) {
+      const [range, step] = dayField.value.split('/');
+      if (range === '*') {
+        dateParts.push(`on every ${step}th day-of-month`);
+      } else {
+        dateParts.push(`on every ${step}th day-of-month from ${range}`);
+      }
+    } else if (dayField.value.includes('-')) {
+      dateParts.push(`on day-of-month ${dayField.value}`);
+    } else {
+      dateParts.push(`on day-of-month ${dayField.value}`);
+    }
   }
 
+  // Handle month
   if (monthField && monthField.value !== '*') {
-    dateParts.push(`in ${monthField.description?.replace('at ', '')}`);
+    if (monthField.value.includes(',')) {
+      const months = monthField.value
+        .split(',')
+        .map((m) => getMonthName(parseInt(m)));
+      if (months.length > 2) {
+        const lastMonth = months.pop();
+        dateParts.push(`in ${months.join(', ')}, and ${lastMonth}`);
+      } else {
+        dateParts.push(`in ${months.join(' and ')}`);
+      }
+    } else if (monthField.value.includes('/')) {
+      const [range, step] = monthField.value.split('/');
+      if (range === '*') {
+        dateParts.push(`in every ${step}th month`);
+      } else {
+        dateParts.push(`in every ${step}th month from ${range}`);
+      }
+    } else if (monthField.value.includes('-')) {
+      const [start, end] = monthField.value.split('-');
+      dateParts.push(
+        `in ${getMonthName(parseInt(start))} through ${getMonthName(parseInt(end))}`
+      );
+    } else {
+      dateParts.push(`in ${getMonthName(parseInt(monthField.value))}`);
+    }
   }
 
+  // Handle weekday
   if (weekdayField && weekdayField.value !== '*') {
-    dateParts.push(`${weekdayField.description}`);
+    if (weekdayField.value.includes(',')) {
+      const days = weekdayField.value
+        .split(',')
+        .map((d) => getDayName(parseInt(d)))
+        .join(' and ');
+      dateParts.push(`on ${days}`);
+    } else if (weekdayField.value.includes('-')) {
+      const [start, end] = weekdayField.value.split('-');
+      dateParts.push(
+        `on every day-of-week from ${getDayName(parseInt(start))} through ${getDayName(parseInt(end))}`
+      );
+    } else if (weekdayField.value === '1-5') {
+      dateParts.push(`on every day-of-week from Monday through Friday`);
+    } else if (weekdayField.value === '0,6' || weekdayField.value === '6,0') {
+      dateParts.push(`on Sunday and Saturday`);
+    } else {
+      dateParts.push(`on ${getDayName(parseInt(weekdayField.value))}`);
+    }
   }
 
+  // Add date parts to description
   if (dateParts.length > 0) {
     description += ` ${dateParts.join(' ')}`;
-  } else if (
-    dayField?.value === '*' &&
-    monthField?.value === '*' &&
-    weekdayField?.value === '*'
-  ) {
-    if (!description.toLowerCase().includes('every')) {
-      description += ' every day';
-    }
   }
 
   return description;
