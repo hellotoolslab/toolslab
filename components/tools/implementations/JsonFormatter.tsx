@@ -293,21 +293,6 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
             JSON Formatter & Validator
           </h3>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() =>
-              setViewMode(viewMode === 'tree' ? 'formatted' : 'tree')
-            }
-            className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
-            disabled={!output || error !== null}
-          >
-            {viewMode === 'tree' ? (
-              <Code className="h-4 w-4" />
-            ) : (
-              <Eye className="h-4 w-4" />
-            )}
-          </button>
-        </div>
       </div>
 
       <div className="space-y-6 p-6">
@@ -426,6 +411,25 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                 Output
               </label>
               <div className="flex items-center gap-2">
+                <button
+                  onClick={() =>
+                    setViewMode(viewMode === 'tree' ? 'formatted' : 'tree')
+                  }
+                  className="flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+                  title={`Switch to ${viewMode === 'tree' ? 'formatted' : 'tree'} view`}
+                >
+                  {viewMode === 'tree' ? (
+                    <>
+                      <Code className="h-4 w-4" />
+                      <span className="text-sm">Code</span>
+                    </>
+                  ) : (
+                    <>
+                      <Eye className="h-4 w-4" />
+                      <span className="text-sm">Tree</span>
+                    </>
+                  )}
+                </button>
                 <button
                   onClick={handleCopy}
                   className="flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"

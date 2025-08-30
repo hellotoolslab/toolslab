@@ -33,7 +33,7 @@ const defaultFAQs: FAQItem[] = [
   {
     question: 'How do I report a bug or request a feature?',
     answer:
-      'You can report issues or request features through our GitHub repository or contact form.',
+      'You can report issues or request features on our GitHub repository at https://github.com/hellotoolslab/toolslab or reach out to us on X at https://x.com/tools_lab.',
   },
 ];
 
@@ -105,29 +105,6 @@ export function FAQModal({ categoryColor, toolName }: FAQModalProps) {
                   )}
                 </div>
               ))}
-            </div>
-
-            {/* Additional Help Section */}
-            <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Still have questions? Visit our{' '}
-                <a
-                  href="/contact"
-                  className="font-medium underline"
-                  style={{ color: categoryColor }}
-                >
-                  contact page
-                </a>{' '}
-                or check out our{' '}
-                <a
-                  href="/docs"
-                  className="font-medium underline"
-                  style={{ color: categoryColor }}
-                >
-                  documentation
-                </a>
-                .
-              </p>
             </div>
 
             <Dialog.Close className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100">
