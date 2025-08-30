@@ -198,8 +198,8 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
       )}
 
       <div className="mx-auto max-w-7xl px-4 py-4 sm:py-8">
-        {/* Breadcrumb */}
-        <nav className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:mb-6 sm:text-sm">
+        {/* Breadcrumb - Reduced spacing */}
+        <nav className="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm">
           <Link
             href="/"
             className="text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -220,51 +220,49 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
           </span>
         </nav>
 
-        {/* Tool Hero Section */}
-        <ToolHeroSection
-          toolId={tool.id}
-          toolName={tool.name}
-          categoryColor={categoryColor}
-          categoryName={primaryCategory?.name || categoryId}
-          favoriteButton={
-            <FavoriteButton
-              type="tool"
-              id={tool.id}
-              name={tool.name}
-              size="lg"
-              showLabel={false}
-            />
-          }
-          categoryBadge={
-            <span
-              className="rounded-full px-3 py-1 text-xs font-medium capitalize"
-              style={{
-                backgroundColor: `${categoryColor}20`,
-                color: categoryColor,
-              }}
-            >
-              {primaryCategory?.name || categoryId}
-            </span>
-          }
-          className="relative mb-6 sm:mb-8"
-        />
+        {/* Tool Hero Section - Optimized spacing */}
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <ToolHeroSection
+            toolId={tool.id}
+            toolName={tool.name}
+            categoryColor={categoryColor}
+            categoryName={primaryCategory?.name || categoryId}
+            favoriteButton={
+              <FavoriteButton
+                type="tool"
+                id={tool.id}
+                name={tool.name}
+                size="lg"
+                showLabel={false}
+              />
+            }
+            categoryBadge={
+              <span
+                className="rounded-full px-2.5 py-1 text-xs font-medium capitalize"
+                style={{
+                  backgroundColor: `${categoryColor}15`,
+                  color: categoryColor,
+                }}
+              >
+                {primaryCategory?.name || categoryId}
+              </span>
+            }
+            className="relative flex-1"
+          />
 
-        {/* Tool Header - Share Button Only */}
-        <div className="mb-6 flex items-center justify-between sm:mb-8">
-          <div className="flex items-center gap-2">
+          {/* Share Button - Aligned with header */}
+          <div className="flex items-start gap-2 pt-1">
             {labelInfo.hasLabel && (
               <div>{getLabelComponent(toolLabel, 'sm')}</div>
             )}
+            <button
+              onClick={handleShare}
+              className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm transition-colors hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
+            >
+              <Share2 className="h-4 w-4" />
+              <span className="hidden sm:inline">Share</span>
+            </button>
           </div>
-
-          {/* Share Button */}
-          <button
-            onClick={handleShare}
-            className="flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800"
-          >
-            <Share2 className="h-4 w-4" />
-            <span className="hidden sm:inline">Share</span>
-          </button>
         </div>
 
         {/* Main Content Area */}
