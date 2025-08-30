@@ -550,8 +550,10 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                             )}
                           </button>
                         </div>
-                        <pre className="rounded bg-gray-100 p-2 text-sm dark:bg-gray-900">
-                          <code>{JSON.stringify(result.value, null, 2)}</code>
+                        <pre className="overflow-x-auto whitespace-pre-wrap break-words rounded bg-gray-100 p-2 text-sm dark:bg-gray-900">
+                          <code className="break-all">
+                            {JSON.stringify(result.value, null, 2)}
+                          </code>
                         </pre>
                       </div>
                       <div className="space-y-1">
@@ -576,7 +578,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                             )}
                           </button>
                         </div>
-                        <code className="block rounded bg-gray-100 p-2 text-sm text-purple-600 dark:bg-gray-900 dark:text-purple-400">
+                        <code className="block overflow-x-auto whitespace-pre-wrap break-all rounded bg-gray-100 p-2 text-sm text-purple-600 dark:bg-gray-900 dark:text-purple-400">
                           {result.path}
                         </code>
                       </div>
