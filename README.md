@@ -155,4 +155,4 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 **Built with ❤️ for developers by developers**
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/hellotoolslab/toolslab)
+<!-- [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/hellotoolslab/toolslab) -->
