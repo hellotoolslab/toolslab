@@ -1,4 +1,5 @@
 // lib/tools/crontab.ts
+
 export interface CronField {
   type: 'minute' | 'hour' | 'day' | 'month' | 'weekday' | 'second' | 'year';
   value: string;
@@ -260,9 +261,13 @@ export function parseCronExpression(
     const normalizedExpression = normalizeExpression(expression.trim());
 
     const fields = parseFields(normalizedExpression);
+    console.log('Parsed fields:', fields);
     const validation = validateExpression(fields);
+    console.log('Validation result:', validation);
     const description = generateDescription(fields);
+    console.log('Generated description:', description);
     const nextExecutions = calculateNextExecutions(fields, timezone, 10);
+    console.log('Next executions result:', nextExecutions);
 
     return {
       expression: normalizedExpression,
@@ -643,16 +648,53 @@ function generateDescription(fields: CronField[]): string {
     return `${minute}from 9:00 am to 5:00 pm from monday to friday`;
   }
 
-  let description = 'At ';
+  let description = '';
 
-  // Time part
-  if (minuteField?.value === '0' && hourField?.value !== '*') {
-    description += `${hourField?.description?.replace('at ', '') || 'every hour'}`;
-  } else if (minuteField && hourField) {
-    if (minuteField.value === '*') {
-      description += `every minute`;
-    } else {
-      description += `${minuteField.description} past ${hourField.description?.replace('at ', '') || 'every hour'}`;
+  // Handle time part more accurately
+  const isEveryMinute = minuteField?.value === '*';
+  const isSpecificMinute =
+    minuteField?.value !== '*' &&
+    !minuteField?.value.includes(',') &&
+    !minuteField?.value.includes('/') &&
+    !minuteField?.value.includes('-');
+  const isEveryHour = hourField?.value === '*';
+  const isSpecificHour =
+    hourField?.value !== '*' &&
+    !hourField?.value.includes(',') &&
+    !hourField?.value.includes('/') &&
+    !hourField?.value.includes('-');
+
+  if (isEveryMinute && isSpecificHour) {
+    // * 4 * * * = Every minute at 4 AM
+    const hourNum = parseInt(hourField!.value);
+    description = `Every minute at ${formatHour(hourNum)}`;
+  } else if (isSpecificMinute && isEveryHour) {
+    // 5 * * * * = At minute 5 of every hour
+    description = `At minute ${minuteField!.value} of every hour`;
+  } else if (isSpecificMinute && isSpecificHour) {
+    // 5 4 * * * = At 4:05 AM every day
+    const hourNum = parseInt(hourField!.value);
+    const minNum = parseInt(minuteField!.value);
+    const time = formatTime(hourNum, minNum);
+    description = `At ${time}`;
+  } else if (isEveryMinute && isEveryHour) {
+    // * * * * * = Every minute
+    description = 'Every minute';
+  } else {
+    // Complex patterns
+    description = 'At ';
+
+    if (minuteField?.value === '0' && hourField?.value !== '*') {
+      description += `${hourField?.description?.replace('at ', '') || 'every hour'}`;
+    } else if (minuteField && hourField) {
+      if (minuteField.value === '*') {
+        description += `every minute`;
+        if (hourField.value !== '*') {
+          description += ` ${hourField.description}`;
+        }
+      } else {
+        description += `${minuteField.description} past ${hourField.description?.replace('at ', '') || 'every hour'}`;
+      }
     }
   }
 
@@ -678,10 +720,23 @@ function generateDescription(fields: CronField[]): string {
     monthField?.value === '*' &&
     weekdayField?.value === '*'
   ) {
-    description += ' every day';
+    if (!description.toLowerCase().includes('every')) {
+      description += ' every day';
+    }
   }
 
   return description;
+}
+
+/**
+ * Format time as HH:MM AM/PM
+ */
+function formatTime(hour: number, minute: number): string {
+  const minStr = minute.toString().padStart(2, '0');
+  if (hour === 0) return `12:${minStr} AM`;
+  if (hour === 12) return `12:${minStr} PM`;
+  if (hour < 12) return `${hour}:${minStr} AM`;
+  return `${hour - 12}:${minStr} PM`;
 }
 
 /**
@@ -692,35 +747,219 @@ function calculateNextExecutions(
   timezone: string,
   count: number
 ): NextExecution[] {
+  console.log('calculateNextExecutions called with:', {
+    fields,
+    timezone,
+    count,
+  });
   const executions: NextExecution[] = [];
 
-  // This is a simplified implementation
-  // In a real implementation, you'd use a proper cron parser library
-  // like node-cron or cron-parser for accurate calculations
+  try {
+    // Get field values
+    const minuteField = fields.find((f) => f.type === 'minute');
+    const hourField = fields.find((f) => f.type === 'hour');
+    const dayField = fields.find((f) => f.type === 'day');
+    const monthField = fields.find((f) => f.type === 'month');
+    const weekdayField = fields.find((f) => f.type === 'weekday');
 
-  const now = new Date();
-  const baseDate = new Date(now.getTime());
+    if (
+      !minuteField ||
+      !hourField ||
+      !dayField ||
+      !monthField ||
+      !weekdayField
+    ) {
+      console.log('Missing fields:', {
+        minuteField,
+        hourField,
+        dayField,
+        monthField,
+        weekdayField,
+      });
+      return executions;
+    }
 
-  for (let i = 0; i < count; i++) {
-    // Add increasing intervals as a placeholder
-    const futureDate = new Date(baseDate.getTime() + (i + 1) * 60 * 1000);
-
-    executions.push({
-      date: futureDate,
-      humanReadable: futureDate.toLocaleString('en-US', {
-        timeZone: timezone,
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-      }),
-      relativeTime: getRelativeTime(futureDate),
+    console.log('Field values:', {
+      minute: minuteField.value,
+      hour: hourField.value,
+      day: dayField.value,
+      month: monthField.value,
+      weekday: weekdayField.value,
     });
+
+    // Parse field values to get valid values
+    const minutes = parseFieldValues(minuteField.value, 0, 59);
+    const hours = parseFieldValues(hourField.value, 0, 23);
+    const days = parseFieldValues(dayField.value, 1, 31);
+    const months = parseFieldValues(monthField.value, 1, 12);
+    const weekdays = parseFieldValues(weekdayField.value, 0, 6);
+
+    console.log('Parsed values:', { minutes, hours, days, months, weekdays });
+
+    // Start from current date
+    const now = new Date();
+    let currentDate = new Date(now);
+    let foundCount = 0;
+
+    // Search for next executions (max 10000 iterations to prevent infinite loop)
+    for (let iter = 0; iter < 10000 && foundCount < count; iter++) {
+      // Check if current date matches cron expression
+      const minute = currentDate.getMinutes();
+      const hour = currentDate.getHours();
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth() + 1; // JS months are 0-based
+      const weekday = currentDate.getDay();
+
+      const matchesMinute = minutes.length === 0 || minutes.includes(minute);
+      const matchesHour = hours.length === 0 || hours.includes(hour);
+      const matchesDay = days.length === 0 || days.includes(day);
+      const matchesMonth = months.length === 0 || months.includes(month);
+      const matchesWeekday =
+        weekdays.length === 0 || weekdays.includes(weekday);
+
+      // In cron, day and weekday are OR'ed if both are specified
+      const matchesDayOrWeekday =
+        (dayField.value === '*' && weekdayField.value === '*') ||
+        (dayField.value === '*' && matchesWeekday) ||
+        (weekdayField.value === '*' && matchesDay) ||
+        matchesDay ||
+        matchesWeekday;
+
+      // Log first few iterations for debugging
+      if (iter < 5) {
+        console.log(`Iteration ${iter}:`, {
+          currentDate: currentDate.toISOString(),
+          minute,
+          hour,
+          day,
+          month,
+          weekday,
+          matchesMinute,
+          matchesHour,
+          matchesDay,
+          matchesMonth,
+          matchesWeekday,
+          matchesDayOrWeekday,
+          finalMatch:
+            matchesMinute && matchesHour && matchesMonth && matchesDayOrWeekday,
+        });
+      }
+
+      if (matchesMinute && matchesHour && matchesMonth && matchesDayOrWeekday) {
+        // Found a match
+        console.log('Found match at:', currentDate.toISOString());
+        if (currentDate > now) {
+          executions.push({
+            date: new Date(currentDate),
+            humanReadable: currentDate.toLocaleString('en-US', {
+              timeZone: timezone,
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            }),
+            relativeTime: getRelativeTime(currentDate),
+          });
+          foundCount++;
+          console.log(
+            `Added execution ${foundCount}:`,
+            executions[executions.length - 1]
+          );
+        } else {
+          console.log('Match found but in the past, skipping');
+        }
+      }
+
+      // Move to next minute
+      currentDate.setMinutes(currentDate.getMinutes() + 1);
+      currentDate.setSeconds(0);
+      currentDate.setMilliseconds(0);
+    }
+
+    console.log(
+      `Search completed. Found ${foundCount} executions in ${Math.min(10000, foundCount < count ? 10000 : 'early exit')} iterations`
+    );
+  } catch (error) {
+    console.error('Error calculating next executions:', error);
   }
 
   return executions;
+}
+
+/**
+ * Parse field values to get array of valid values
+ */
+function parseFieldValues(value: string, min: number, max: number): number[] {
+  const values: number[] = [];
+
+  if (value === '*') {
+    // All values - return empty array to indicate "any"
+    return [];
+  }
+
+  // Handle step values (*/5, 2-10/2)
+  if (value.includes('/')) {
+    const [range, stepStr] = value.split('/');
+    const step = parseInt(stepStr);
+    if (isNaN(step) || step <= 0) return values;
+
+    let start = min;
+    let end = max;
+
+    if (range !== '*') {
+      if (range.includes('-')) {
+        const [startStr, endStr] = range.split('-');
+        start = parseInt(startStr);
+        end = parseInt(endStr);
+      } else {
+        start = parseInt(range);
+        end = max;
+      }
+    }
+
+    for (let i = start; i <= end; i += step) {
+      if (i >= min && i <= max) {
+        values.push(i);
+      }
+    }
+    return values;
+  }
+
+  // Handle ranges (1-5)
+  if (value.includes('-')) {
+    const [startStr, endStr] = value.split('-');
+    const start = parseInt(startStr);
+    const end = parseInt(endStr);
+
+    for (let i = start; i <= end; i++) {
+      if (i >= min && i <= max) {
+        values.push(i);
+      }
+    }
+    return values;
+  }
+
+  // Handle lists (1,3,5)
+  if (value.includes(',')) {
+    const parts = value.split(',');
+    for (const part of parts) {
+      const num = parseInt(part.trim());
+      if (!isNaN(num) && num >= min && num <= max) {
+        values.push(num);
+      }
+    }
+    return values;
+  }
+
+  // Single value
+  const num = parseInt(value);
+  if (!isNaN(num) && num >= min && num <= max) {
+    values.push(num);
+  }
+
+  return values;
 }
 
 /**

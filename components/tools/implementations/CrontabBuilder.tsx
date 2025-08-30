@@ -73,6 +73,34 @@ const TIMEZONE_OPTIONS = [
   { value: 'Australia/Sydney', label: 'Sydney' },
 ];
 
+// Get user's timezone for dynamic addition to options
+const getUserTimezone = () => {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch {
+    return 'UTC';
+  }
+};
+
+// Create timezone options with user's timezone at the top if not already present
+const createTimezoneOptions = () => {
+  const userTz = getUserTimezone();
+  const existingOptions = [...TIMEZONE_OPTIONS];
+
+  // Check if user's timezone is already in the list
+  const hasUserTz = existingOptions.some((opt) => opt.value === userTz);
+
+  if (!hasUserTz && userTz !== 'UTC') {
+    // Add user's timezone at the top with a special label
+    existingOptions.unshift({
+      value: userTz,
+      label: `${userTz.replace('_', ' ')} (Your timezone)`,
+    });
+  }
+
+  return existingOptions;
+};
+
 const EXPORT_FORMATS = [
   { value: 'shell', label: 'Shell Script' },
   { value: 'docker', label: 'Docker Compose' },
@@ -92,7 +120,14 @@ export default function CrontabBuilder({
     initialInput || '*/15 0 1,15 * 1-5'
   );
   const [parseResult, setParseResult] = useState<CronParseResult | null>(null);
-  const [selectedTimezone, setSelectedTimezone] = useState('UTC');
+  const [selectedTimezone, setSelectedTimezone] = useState(() => {
+    // Auto-detect user's timezone, fallback to UTC
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    } catch {
+      return 'UTC';
+    }
+  });
   const [activeTab, setActiveTab] = useState('parser');
 
   // Store hooks
@@ -140,18 +175,18 @@ export default function CrontabBuilder({
         toast.error('Failed to parse cron expression');
       }
     },
-    [selectedTimezone]
+    [selectedTimezone, onOutputChange]
   );
 
-  // Update expression when builder fields change
-  const updateFromBuilder = useCallback(() => {
+  // Update expression when builder fields change - don't use useCallback to avoid circular deps
+  const updateFromBuilder = () => {
     if (isUpdatingFromExpression.current) return;
     isUpdatingFromBuilder.current = true;
     const expression = buildCronExpression(builderFields);
     setInputExpression(expression);
     parseExpression(expression);
     isUpdatingFromBuilder.current = false;
-  }, [builderFields]);
+  };
 
   // Handle preset selection
   const handlePresetSelect = (preset: CronPreset) => {
@@ -293,7 +328,7 @@ export default function CrontabBuilder({
     if (!isUpdatingFromBuilder.current) {
       parseExpression(inputExpression);
     }
-  }, [inputExpression, selectedTimezone]);
+  }, [inputExpression, selectedTimezone, parseExpression]);
 
   // Add to history when parsing succeeds
   useEffect(() => {
@@ -308,11 +343,9 @@ export default function CrontabBuilder({
         selectedTimezone
       );
     }
-  }, [parseResult, selectedTimezone]);
+  }, [parseResult, selectedTimezone, inputExpression, addToHistory]);
 
-  useEffect(() => {
-    updateFromBuilder();
-  }, [builderFields]);
+  // Remove the automatic update from builder - only update when fields actually change via user interaction
 
   useEffect(() => {
     if (inputExpression && !isUpdatingFromBuilder.current) {
@@ -407,7 +440,7 @@ export default function CrontabBuilder({
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {TIMEZONE_OPTIONS.map((tz) => (
+                    {createTimezoneOptions().map((tz) => (
                       <SelectItem key={tz.value} value={tz.value}>
                         {tz.label}
                       </SelectItem>
@@ -421,7 +454,7 @@ export default function CrontabBuilder({
                 value={inputExpression}
                 onChange={(e) => handleInputChange(e.target.value)}
                 placeholder="*/15 0 1,15 * 1-5 or @daily"
-                className="border-2 bg-gradient-to-r from-gray-50 to-gray-100 px-4 py-3 font-mono text-base dark:from-gray-900 dark:to-gray-800"
+                className="border-2 bg-gradient-to-r from-gray-50 to-gray-100 px-4 py-3 text-center font-mono text-base dark:from-gray-900 dark:to-gray-800"
                 style={{
                   borderColor:
                     parseResult?.validation.isValid === false
@@ -436,6 +469,20 @@ export default function CrontabBuilder({
                       : `${categoryColor}30`)
                 }
               />
+              {/* Field Labels */}
+              <div className="mt-2 flex justify-between text-xs text-gray-500 dark:text-gray-400">
+                <div className="flex-1 text-center underline">minute</div>
+                <div className="flex-1 text-center underline">hour</div>
+                <div className="flex-1 text-center">
+                  <div className="underline">day</div>
+                  <div className="mt-0.5 text-[10px]">(month)</div>
+                </div>
+                <div className="flex-1 text-center underline">month</div>
+                <div className="flex-1 text-center">
+                  <div className="underline">day</div>
+                  <div className="mt-0.5 text-[10px]">(week)</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -560,75 +607,42 @@ export default function CrontabBuilder({
           <TabsContent value="parser" className="space-y-4">
             {parseResult && parseResult.validation.isValid && (
               <>
-                {/* Field Breakdown */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Field Breakdown</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
-                      {parseResult.fields.map((field, idx) => (
-                        <div key={idx} className="space-y-2">
-                          <Label className="text-sm font-medium capitalize">
-                            {field.type}
-                          </Label>
-                          <div
-                            className={`rounded border p-2 text-center font-mono ${
-                              field.valid
-                                ? 'border-green-200 bg-green-50'
-                                : 'border-red-200 bg-red-50'
-                            }`}
-                          >
-                            <div className="text-lg font-bold">
-                              {field.value}
-                            </div>
-                            <div className="text-xs text-gray-600">
-                              {field.description}
-                            </div>
-                            {field.error && (
-                              <div className="text-xs text-red-600">
-                                {field.error}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-
                 {/* Next Executions */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Calendar className="h-5 w-5" />
-                      Next 10 Executions ({selectedTimezone})
+                      Next Executions ({selectedTimezone})
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      {parseResult.nextExecutions.map((execution, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center justify-between rounded border p-3 hover:bg-gray-50"
-                        >
-                          <div className="space-y-1">
-                            <div className="font-medium">
-                              {execution.humanReadable}
-                            </div>
-                            <div className="text-sm text-gray-600">
-                              {execution.relativeTime}
-                            </div>
-                          </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleCopy(execution.humanReadable)}
+                      {parseResult.nextExecutions
+                        .slice(0, 3)
+                        .map((execution, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-center justify-between rounded border p-3 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-100"
                           >
-                            <Copy className="h-3 w-3" />
-                          </Button>
-                        </div>
-                      ))}
+                            <div className="space-y-1">
+                              <div className="font-medium">
+                                {execution.humanReadable}
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                {execution.relativeTime}
+                              </div>
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() =>
+                                handleCopy(execution.humanReadable)
+                              }
+                            >
+                              <Copy className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        ))}
                     </div>
                   </CardContent>
                 </Card>
@@ -647,12 +661,19 @@ export default function CrontabBuilder({
                 <CardContent className="space-y-3">
                   <Input
                     value={builderFields.minute}
-                    onChange={(e) =>
-                      setBuilderFields((prev) => ({
-                        ...prev,
+                    onChange={(e) => {
+                      const newFields = {
+                        ...builderFields,
                         minute: e.target.value,
-                      }))
-                    }
+                      };
+                      setBuilderFields(newFields);
+                      // Manually trigger update
+                      isUpdatingFromBuilder.current = true;
+                      const expression = buildCronExpression(newFields);
+                      setInputExpression(expression);
+                      parseExpression(expression);
+                      isUpdatingFromBuilder.current = false;
+                    }}
                     placeholder="*"
                     className="font-mono"
                   />
@@ -661,9 +682,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, minute: '*' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, minute: '*' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Every minute
                     </Button>
@@ -671,9 +698,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, minute: '*/5' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, minute: '*/5' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Every 5 minutes
                     </Button>
@@ -681,9 +714,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, minute: '0' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, minute: '0' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       At 0 minutes
                     </Button>
@@ -699,12 +738,19 @@ export default function CrontabBuilder({
                 <CardContent className="space-y-3">
                   <Input
                     value={builderFields.hour}
-                    onChange={(e) =>
-                      setBuilderFields((prev) => ({
-                        ...prev,
+                    onChange={(e) => {
+                      const newFields = {
+                        ...builderFields,
                         hour: e.target.value,
-                      }))
-                    }
+                      };
+                      setBuilderFields(newFields);
+                      // Manually trigger update
+                      isUpdatingFromBuilder.current = true;
+                      const expression = buildCronExpression(newFields);
+                      setInputExpression(expression);
+                      parseExpression(expression);
+                      isUpdatingFromBuilder.current = false;
+                    }}
                     placeholder="*"
                     className="font-mono"
                   />
@@ -713,9 +759,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, hour: '*' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, hour: '*' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Every hour
                     </Button>
@@ -723,9 +775,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, hour: '0' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, hour: '0' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       At midnight
                     </Button>
@@ -733,9 +791,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, hour: '9-17' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, hour: '9-17' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Business hours
                     </Button>
@@ -751,12 +815,19 @@ export default function CrontabBuilder({
                 <CardContent className="space-y-3">
                   <Input
                     value={builderFields.day}
-                    onChange={(e) =>
-                      setBuilderFields((prev) => ({
-                        ...prev,
+                    onChange={(e) => {
+                      const newFields = {
+                        ...builderFields,
                         day: e.target.value,
-                      }))
-                    }
+                      };
+                      setBuilderFields(newFields);
+                      // Manually trigger update
+                      isUpdatingFromBuilder.current = true;
+                      const expression = buildCronExpression(newFields);
+                      setInputExpression(expression);
+                      parseExpression(expression);
+                      isUpdatingFromBuilder.current = false;
+                    }}
                     placeholder="*"
                     className="font-mono"
                   />
@@ -765,9 +836,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, day: '*' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, day: '*' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Every day
                     </Button>
@@ -775,9 +852,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, day: '1' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, day: '1' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       First of month
                     </Button>
@@ -785,9 +868,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, day: '15' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, day: '15' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Mid-month
                     </Button>
@@ -803,12 +892,19 @@ export default function CrontabBuilder({
                 <CardContent className="space-y-3">
                   <Input
                     value={builderFields.month}
-                    onChange={(e) =>
-                      setBuilderFields((prev) => ({
-                        ...prev,
+                    onChange={(e) => {
+                      const newFields = {
+                        ...builderFields,
                         month: e.target.value,
-                      }))
-                    }
+                      };
+                      setBuilderFields(newFields);
+                      // Manually trigger update
+                      isUpdatingFromBuilder.current = true;
+                      const expression = buildCronExpression(newFields);
+                      setInputExpression(expression);
+                      parseExpression(expression);
+                      isUpdatingFromBuilder.current = false;
+                    }}
                     placeholder="*"
                     className="font-mono"
                   />
@@ -817,9 +913,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, month: '*' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, month: '*' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Every month
                     </Button>
@@ -827,9 +929,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, month: '1' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, month: '1' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       January only
                     </Button>
@@ -837,12 +945,18 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({
-                          ...prev,
+                      onClick={() => {
+                        const newFields = {
+                          ...builderFields,
                           month: '3,6,9,12',
-                        }))
-                      }
+                        };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Quarterly
                     </Button>
@@ -858,12 +972,19 @@ export default function CrontabBuilder({
                 <CardContent className="space-y-3">
                   <Input
                     value={builderFields.weekday}
-                    onChange={(e) =>
-                      setBuilderFields((prev) => ({
-                        ...prev,
+                    onChange={(e) => {
+                      const newFields = {
+                        ...builderFields,
                         weekday: e.target.value,
-                      }))
-                    }
+                      };
+                      setBuilderFields(newFields);
+                      // Manually trigger update
+                      isUpdatingFromBuilder.current = true;
+                      const expression = buildCronExpression(newFields);
+                      setInputExpression(expression);
+                      parseExpression(expression);
+                      isUpdatingFromBuilder.current = false;
+                    }}
                     placeholder="*"
                     className="font-mono"
                   />
@@ -872,9 +993,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({ ...prev, weekday: '*' }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, weekday: '*' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Every day
                     </Button>
@@ -882,12 +1009,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({
-                          ...prev,
-                          weekday: '1-5',
-                        }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, weekday: '1-5' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Weekdays
                     </Button>
@@ -895,12 +1025,15 @@ export default function CrontabBuilder({
                       variant="outline"
                       size="sm"
                       className="w-full"
-                      onClick={() =>
-                        setBuilderFields((prev) => ({
-                          ...prev,
-                          weekday: '0,6',
-                        }))
-                      }
+                      onClick={() => {
+                        const newFields = { ...builderFields, weekday: '0,6' };
+                        setBuilderFields(newFields);
+                        isUpdatingFromBuilder.current = true;
+                        const expression = buildCronExpression(newFields);
+                        setInputExpression(expression);
+                        parseExpression(expression);
+                        isUpdatingFromBuilder.current = false;
+                      }}
                     >
                       Weekends
                     </Button>
