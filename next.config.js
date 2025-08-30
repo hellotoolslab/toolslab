@@ -81,11 +81,6 @@ const nextConfig = {
   // Redirects for common patterns
   async redirects() {
     return [
-      {
-        source: '/tools',
-        destination: '/',
-        permanent: true,
-      },
       // Add tool aliases
       {
         source: '/json',
