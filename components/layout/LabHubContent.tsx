@@ -584,6 +584,103 @@ export default function LabHubContent() {
         </section>
 
         <EnhancedEmptyState />
+
+        {/* SEO Content Section - Only show in empty state */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8"
+        >
+          <div className="rounded-2xl bg-gradient-to-br from-purple-50 to-violet-50 py-16 dark:from-purple-950/20 dark:to-violet-950/20">
+            <div className="mx-auto max-w-4xl px-8 text-center">
+              <h2 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+                Why Create a Personal Developer Lab?
+              </h2>
+
+              <div className="prose prose-lg mx-auto max-w-none text-gray-700 dark:text-gray-300">
+                <p className="mb-6">
+                  Your Personal Lab transforms scattered tool usage into an
+                  organized, efficient workflow. By curating your favorite
+                  tools, you eliminate the time spent searching and create
+                  muscle memory for your most common development tasks.
+                </p>
+
+                <div className="grid gap-8 text-left md:grid-cols-2">
+                  <div>
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="rounded-lg bg-purple-100 p-2 dark:bg-purple-900/30">
+                        <Shield className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                        Privacy &amp; Control
+                      </h3>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Everything in your Lab is stored locally using browser
+                      localStorage. No accounts, no tracking, no server-side
+                      storage. Your workflow preferences stay completely private
+                      and under your control.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="rounded-lg bg-purple-100 p-2 dark:bg-purple-900/30">
+                        <Zap className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                        Workflow Optimization
+                      </h3>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Star frequently-used tools like our{' '}
+                      <Link
+                        href="/tools/json-formatter"
+                        className="font-medium text-purple-600 underline hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
+                      >
+                        JSON Formatter
+                      </Link>
+                      ,{' '}
+                      <Link
+                        href="/tools/base64-encode"
+                        className="font-medium text-purple-600 underline hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
+                      >
+                        Base64 Encoder
+                      </Link>
+                      , and{' '}
+                      <Link
+                        href="/tools/hash-generator"
+                        className="font-medium text-purple-600 underline hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
+                      >
+                        security utilities
+                      </Link>{' '}
+                      to build workflows that match your development patterns.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-4">
+                <Link
+                  href="/tools"
+                  className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-6 py-3 font-semibold text-white transition-all hover:scale-105 hover:bg-purple-700"
+                >
+                  <Search className="h-4 w-4" />
+                  Explore All Tools
+                </Link>
+
+                <Link
+                  href="/categories"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-purple-600 px-6 py-3 font-semibold text-purple-600 transition-all hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-950/20"
+                >
+                  <Grid3X3 className="h-4 w-4" />
+                  Browse Categories
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.section>
       </div>
     );
   }
@@ -785,91 +882,6 @@ export default function LabHubContent() {
             </motion.section>
           )}
         </div>
-
-        {/* SEO Content Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mt-16 rounded-2xl bg-gradient-to-br from-purple-50 to-violet-50 py-16 dark:from-purple-950/20 dark:to-violet-950/20"
-        >
-          <div className="mx-auto max-w-4xl px-8 text-center">
-            <h2 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
-              Why Create a Personal Developer Lab?
-            </h2>
-
-            <div className="prose prose-lg mx-auto max-w-none text-gray-700 dark:text-gray-300">
-              <p className="mb-6">
-                Your Personal Lab transforms scattered tool usage into an
-                organized, efficient workflow. By curating your favorite tools,
-                you eliminate the time spent searching and create muscle memory
-                for your most common development tasks.
-              </p>
-
-              <div className="grid gap-8 text-left md:grid-cols-2">
-                <div>
-                  <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-                    Privacy & Control
-                  </h3>
-                  <p>
-                    Everything in your Lab is stored locally using browser
-                    localStorage. No accounts, no tracking, no server-side
-                    storage. Your workflow preferences stay completely private
-                    and under your control.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-                    Workflow Optimization
-                  </h3>
-                  <p>
-                    Star frequently-used tools like our{' '}
-                    <Link
-                      href="/tools/json-formatter"
-                      className="text-purple-600 hover:text-purple-800 dark:text-purple-400"
-                    >
-                      JSON Formatter
-                    </Link>
-                    ,{' '}
-                    <Link
-                      href="/tools/base64-encode"
-                      className="text-purple-600 hover:text-purple-800 dark:text-purple-400"
-                    >
-                      Base64 Encoder
-                    </Link>
-                    , and{' '}
-                    <Link
-                      href="/category/encoding"
-                      className="text-purple-600 hover:text-purple-800 dark:text-purple-400"
-                    >
-                      security utilities
-                    </Link>{' '}
-                    to build workflows that match your development patterns.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/tools"
-                className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-6 py-3 font-semibold text-white transition-all hover:scale-105 hover:bg-purple-700"
-              >
-                <Search className="h-4 w-4" />
-                Explore All Tools
-              </Link>
-
-              <Link
-                href="/categories"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-purple-600 px-6 py-3 font-semibold text-purple-600 transition-all hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-950/20"
-              >
-                <Grid3X3 className="h-4 w-4" />
-                Browse Categories
-              </Link>
-            </div>
-          </div>
-        </motion.section>
       </div>
     </div>
   );
