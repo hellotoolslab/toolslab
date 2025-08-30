@@ -27,6 +27,8 @@ import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { FAQModal } from '@/components/ui/faq-modal';
+import ToolHowToUse from './ToolHowToUse';
+import ToolHeroSection from './ToolHeroSection';
 
 interface ToolPageClientProps {
   toolSlug: string;
@@ -218,63 +220,51 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
           </span>
         </nav>
 
-        {/* Tool Header */}
-        <div className="mb-6 sm:mb-8">
-          <div className="mb-4 flex items-start justify-between">
-            <div className="flex-1">
-              <div className="mb-2 flex flex-wrap items-center gap-2 sm:gap-3">
-                <div
-                  className="rounded-xl p-2 sm:p-3"
-                  style={{ backgroundColor: `${categoryColor}20` }}
-                >
-                  <span
-                    className="flex h-6 w-6 items-center justify-center text-2xl sm:h-8 sm:w-8 sm:text-3xl"
-                    style={{ color: categoryColor }}
-                  >
-                    {tool.icon}
-                  </span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
-                    {tool.name}
-                  </h1>
-                  <FavoriteButton
-                    type="tool"
-                    id={tool.id}
-                    name={tool.name}
-                    size="lg"
-                    showLabel={false}
-                  />
-                </div>
-                <span
-                  className="rounded-full px-3 py-1 text-xs font-medium capitalize"
-                  style={{
-                    backgroundColor: `${categoryColor}20`,
-                    color: categoryColor,
-                  }}
-                >
-                  {primaryCategory?.name || categoryId}
-                </span>
-                {labelInfo.hasLabel && (
-                  <div>{getLabelComponent(toolLabel, 'sm')}</div>
-                )}
-              </div>
-              <p className="mb-4 text-sm text-gray-600 dark:text-gray-400 sm:text-lg">
-                {tool.description}
-              </p>
+        {/* Tool Hero Section */}
+        <ToolHeroSection
+          toolId={tool.id}
+          toolName={tool.name}
+          categoryColor={categoryColor}
+          categoryName={primaryCategory?.name || categoryId}
+          favoriteButton={
+            <FavoriteButton
+              type="tool"
+              id={tool.id}
+              name={tool.name}
+              size="lg"
+              showLabel={false}
+            />
+          }
+          categoryBadge={
+            <span
+              className="rounded-full px-3 py-1 text-xs font-medium capitalize"
+              style={{
+                backgroundColor: `${categoryColor}20`,
+                color: categoryColor,
+              }}
+            >
+              {primaryCategory?.name || categoryId}
+            </span>
+          }
+          className="relative mb-6 sm:mb-8"
+        />
 
-              {/* Share Button */}
-              <div className="flex flex-wrap items-center gap-2 text-xs sm:gap-4 sm:text-sm">
-                <button
-                  onClick={handleShare}
-                  className="flex items-center gap-1 rounded-lg border border-gray-300 px-3 py-1 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800"
-                >
-                  <Share2 className="h-4 w-4" />
-                  <span>Share</span>
-                </button>
-              </div>
-            </div>
+        {/* Tool Header - Share Button Only */}
+        <div className="mb-6 flex items-center justify-between sm:mb-8">
+          <div className="flex items-center gap-2">
+            {labelInfo.hasLabel && (
+              <div>{getLabelComponent(toolLabel, 'sm')}</div>
+            )}
           </div>
+
+          {/* Share Button */}
+          <button
+            onClick={handleShare}
+            className="flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800"
+          >
+            <Share2 className="h-4 w-4" />
+            <span className="hidden sm:inline">Share</span>
+          </button>
         </div>
 
         {/* Main Content Area */}
@@ -288,63 +278,7 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
             />
 
             {/* How to Use Section */}
-            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:mt-12 sm:p-6">
-              <div className="mb-4 flex items-center gap-2">
-                <BookOpen
-                  className="h-5 w-5"
-                  style={{ color: categoryColor }}
-                />
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  How to Use {tool.name}
-                </h2>
-              </div>
-              <ol className="space-y-3">
-                <li className="flex gap-3">
-                  <span
-                    className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-medium text-white"
-                    style={{ backgroundColor: categoryColor }}
-                  >
-                    1
-                  </span>
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Enter or paste your input in the text area above
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span
-                    className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-medium text-white"
-                    style={{ backgroundColor: categoryColor }}
-                  >
-                    2
-                  </span>
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Configure any options or settings as needed
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span
-                    className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-medium text-white"
-                    style={{ backgroundColor: categoryColor }}
-                  >
-                    3
-                  </span>
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Click the process button to generate your result
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span
-                    className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-medium text-white"
-                    style={{ backgroundColor: categoryColor }}
-                  >
-                    4
-                  </span>
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Copy, download, or share your output as needed
-                  </span>
-                </li>
-              </ol>
-            </div>
+            <ToolHowToUse toolId={tool.id} categoryColor={categoryColor} />
           </div>
 
           {/* Sidebar (Desktop Only) */}
@@ -396,30 +330,6 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
                   <AdBanner type="sidebar" />
                 </div>
               )}
-
-              {/* Quick Tips */}
-              <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-purple-50 p-6 dark:border-blue-800 dark:from-blue-900/20 dark:to-purple-900/20">
-                <div className="mb-3 flex items-center gap-2">
-                  <Info className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                  <h3 className="font-semibold text-gray-900 dark:text-white">
-                    Pro Tips
-                  </h3>
-                </div>
-                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 text-blue-600 dark:text-blue-400">
-                      •
-                    </span>
-                    <span>Use keyboard shortcuts for faster workflow</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 text-blue-600 dark:text-blue-400">
-                      •
-                    </span>
-                    <span>Bookmark this page for quick access</span>
-                  </li>
-                </ul>
-              </div>
             </div>
           )}
         </div>
