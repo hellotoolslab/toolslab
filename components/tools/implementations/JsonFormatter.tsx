@@ -454,7 +454,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
 
             {viewMode === 'formatted' ? (
               <pre
-                className="w-full overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 dark:bg-gray-900 dark:text-white"
+                className="min-h-96 w-full resize-y overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 dark:bg-gray-900 dark:text-white"
                 style={{
                   borderColor: formatSuccess ? '#10b981' : `${categoryColor}30`,
                   height: '30rem',
@@ -464,7 +464,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
               </pre>
             ) : (
               <div
-                className="w-full overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm dark:bg-gray-900"
+                className="min-h-96 w-full resize-y overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm dark:bg-gray-900"
                 style={{
                   borderColor: formatSuccess ? '#10b981' : `${categoryColor}30`,
                   height: '30rem',
