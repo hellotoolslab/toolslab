@@ -26,6 +26,7 @@ import {
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
+import { FAQModal } from '@/components/ui/faq-modal';
 
 interface ToolPageClientProps {
   toolSlug: string;
@@ -344,57 +345,6 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
                 </li>
               </ol>
             </div>
-
-            {/* FAQ Section */}
-            <div className="mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
-              <div className="mb-4 flex items-center gap-2">
-                <HelpCircle
-                  className="h-5 w-5"
-                  style={{ color: categoryColor }}
-                />
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Frequently Asked Questions
-                </h2>
-              </div>
-              <div className="space-y-4">
-                <details className="group">
-                  <summary className="flex cursor-pointer list-none items-center justify-between">
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      Is this tool free to use?
-                    </span>
-                    <ChevronRight className="h-4 w-4 transition-transform group-open:rotate-90" />
-                  </summary>
-                  <p className="mt-2 pl-4 text-gray-600 dark:text-gray-400">
-                    Yes, all OctoTools are completely free to use with no limits
-                    or registration required.
-                  </p>
-                </details>
-                <details className="group">
-                  <summary className="flex cursor-pointer list-none items-center justify-between">
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      Is my data secure?
-                    </span>
-                    <ChevronRight className="h-4 w-4 transition-transform group-open:rotate-90" />
-                  </summary>
-                  <p className="mt-2 pl-4 text-gray-600 dark:text-gray-400">
-                    All processing happens locally in your browser. Your data
-                    never leaves your device.
-                  </p>
-                </details>
-                <details className="group">
-                  <summary className="flex cursor-pointer list-none items-center justify-between">
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      Can I use this offline?
-                    </span>
-                    <ChevronRight className="h-4 w-4 transition-transform group-open:rotate-90" />
-                  </summary>
-                  <p className="mt-2 pl-4 text-gray-600 dark:text-gray-400">
-                    Once loaded, most tools work offline as they process data
-                    locally in your browser.
-                  </p>
-                </details>
-              </div>
-            </div>
           </div>
 
           {/* Sidebar (Desktop Only) */}
@@ -509,6 +459,9 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
             </div>
           </div>
         )}
+
+        {/* FAQ Modal */}
+        <FAQModal categoryColor={categoryColor} toolName={tool.name} />
       </div>
     </div>
   );
