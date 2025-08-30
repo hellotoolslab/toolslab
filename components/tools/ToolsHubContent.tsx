@@ -169,33 +169,35 @@ export default function ToolsHubContent() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
       {/* SEO-Optimized Header */}
-      <section className="relative py-8 sm:py-12">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+      <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-500 py-8 sm:py-12">
+        {/* Pattern overlay for visual texture */}
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M0 20h40M20 0v40' stroke='%23ffffff' stroke-width='0.5' stroke-opacity='0.3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
           {/* Breadcrumb */}
-          <nav className="mb-4 flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
-            <Link
-              href="/"
-              className="hover:text-gray-900 dark:hover:text-gray-100"
-            >
+          <nav className="mb-4 flex items-center gap-1 text-sm text-white/80">
+            <Link href="/" className="transition-colors hover:text-white">
               Home
             </Link>
             <ChevronRight className="h-4 w-4" />
-            <span className="font-medium text-gray-900 dark:text-gray-100">
-              All Tools
-            </span>
+            <span className="font-medium text-white">All Tools</span>
           </nav>
 
           {/* Hero Content - Compressed */}
           <div className="mb-6 text-center">
-            <h1 className="mb-3 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
+            <h1 className="mb-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
               All Developer Tools - Free Online Utilities
             </h1>
-            <p className="mb-4 text-lg text-gray-700 dark:text-gray-300 sm:text-xl">
+            <p className="mb-4 text-lg text-white/90 sm:text-xl">
               Complete collection of professional tools for developers, data
               analysts, and system administrators
             </p>
             {/* Compressed description - 2 lines max */}
-            <p className="mx-auto max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+            <p className="mx-auto max-w-3xl text-sm text-white/80">
               {totalTools}+ free browser-based tools for JSON formatting, Base64
               encoding, hash generation, and more. Zero data transmission, no
               registration required.
@@ -203,22 +205,22 @@ export default function ToolsHubContent() {
           </div>
 
           {/* Trust Signals - Compressed */}
-          <div className="mb-4 flex flex-wrap items-center justify-center gap-3 text-xs sm:gap-4 sm:text-sm">
+          <div className="mb-4 flex flex-wrap items-center justify-center gap-3 text-xs text-white/90 sm:gap-4 sm:text-sm">
             <div className="flex items-center gap-1.5">
-              <Grid3X3 className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
+              <Grid3X3 className="h-3.5 w-3.5 text-white" />
               <span className="font-medium">{totalTools}+ tools</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Zap className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+              <Zap className="h-3.5 w-3.5 text-white" />
               <span>Free forever</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Shield className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
+              <Shield className="h-3.5 w-3.5 text-white" />
               <span>Privacy-first</span>
             </div>
             {newToolsCount > 0 && (
               <div className="flex items-center gap-1.5">
-                <Sparkles className="h-3.5 w-3.5 text-yellow-600 dark:text-yellow-400" />
+                <Sparkles className="h-3.5 w-3.5 text-white" />
                 <span>New tools weekly</span>
               </div>
             )}
