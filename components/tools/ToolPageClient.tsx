@@ -11,8 +11,6 @@ import {
   getCategoryColorClass,
 } from '@/lib/tools';
 import ToolWorkspace from './ToolWorkspace';
-import AdBanner from '@/components/ads/AdBanner';
-import { useFeatureFlag } from '@/hooks/useEdgeConfig';
 import { useUmami } from '@/components/analytics/UmamiProvider';
 import {
   ChevronRight,
@@ -38,10 +36,8 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
   const searchParams = useSearchParams();
   const { theme } = useTheme();
   const { trackEngagement, trackToolUse } = useUmami();
-  const [isAdDismissed, setIsAdDismissed] = useState(false);
   const [usageCount, setUsageCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const adsEnabled = useFeatureFlag('adsEnabled');
 
   // Tool label system
   const toolLabel = useToolLabel(toolSlug);
@@ -67,16 +63,6 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
         has_initial_input: !!initialInput,
         is_mobile: window.innerWidth < 768,
       });
-    }
-
-    // Check ad dismiss state
-    const dismissed = localStorage.getItem('ad-dismissed');
-    if (dismissed) {
-      const dismissTime = new Date(dismissed).getTime();
-      const now = new Date().getTime();
-      if (now - dismissTime < 24 * 60 * 60 * 1000) {
-        setIsAdDismissed(true);
-      }
     }
 
     return () => window.removeEventListener('resize', checkMobile);
@@ -109,15 +95,6 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
   };
 
   const categoryColor = getCategoryColor(categoryId);
-
-  const handleDismissAd = () => {
-    setIsAdDismissed(true);
-    localStorage.setItem('ad-dismissed', new Date().toISOString());
-    trackEngagement('ad-dismissed', {
-      tool: toolSlug,
-      ad_type: 'banner',
-    });
-  };
 
   const handleShare = async () => {
     const hasNativeShare =
@@ -181,23 +158,7 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
-      {/* Header Ad Banner */}
-      {!isAdDismissed && (
-        <div
-          className={`relative border-b border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800 ${adsEnabled ? 'block' : 'hidden'}`}
-        >
-          <div className="mx-auto max-w-7xl px-4 py-2">
-            <button
-              onClick={handleDismissAd}
-              className="absolute right-4 top-2 rounded-lg p-1 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700"
-              aria-label="Dismiss ad"
-            >
-              <X className="h-4 w-4" />
-            </button>
-            <AdBanner type="header" />
-          </div>
-        </div>
-      )}
+      {/* Header Ad Banner - Hidden */}
 
       <div className="mx-auto max-w-7xl px-4 py-4 sm:py-8">
         {/* Breadcrumb - Reduced spacing */}
@@ -323,15 +284,7 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
                 </div>
               </div>
 
-              {/* Sidebar Ad */}
-              <div
-                className={`rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 ${adsEnabled ? 'block' : 'hidden'}`}
-              >
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                  Advertisement
-                </span>
-                <AdBanner type="sidebar" />
-              </div>
+              {/* Sidebar Ad - Hidden */}
             </div>
           )}
         </div>
