@@ -37,6 +37,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
   const [hasSearched, setHasSearched] = useState(false);
   const [formatSuccess, setFormatSuccess] = useState(false);
   const [copiedPaths, setCopiedPaths] = useState<Record<number, boolean>>({});
+  const [copiedValues, setCopiedValues] = useState<Record<number, boolean>>({});
   const outputRef = useRef<HTMLDivElement>(null);
 
   // Use unified hooks
@@ -137,6 +138,16 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     }, 2000);
   };
 
+  const handleCopyValue = async (value: any, index: number) => {
+    const valueString =
+      typeof value === 'string' ? value : JSON.stringify(value, null, 2);
+    await navigator.clipboard.writeText(valueString);
+    setCopiedValues({ ...copiedValues, [index]: true });
+    setTimeout(() => {
+      setCopiedValues((prev) => ({ ...prev, [index]: false }));
+    }, 2000);
+  };
+
   const handleDownload = async () => {
     if (!output) return;
 
@@ -159,6 +170,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
   const searchJsonKey = () => {
     setHasSearched(true);
     setCopiedPaths({});
+    setCopiedValues({});
 
     if (!output || !searchKey.trim()) {
       setSearchResults([]);
@@ -517,9 +529,27 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                         </div>
                       )}
                       <div className="space-y-1">
-                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                          Value:
-                        </span>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                            Value:
+                          </span>
+                          <button
+                            onClick={() => handleCopyValue(result.value, index)}
+                            className="flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+                          >
+                            {copiedValues[index] ? (
+                              <>
+                                <Check className="h-3 w-3 text-green-500" />
+                                <span className="text-green-500">Copied!</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="h-3 w-3" />
+                                <span>Copy Value</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
                         <pre className="rounded bg-gray-100 p-2 text-sm dark:bg-gray-900">
                           <code>{JSON.stringify(result.value, null, 2)}</code>
                         </pre>
