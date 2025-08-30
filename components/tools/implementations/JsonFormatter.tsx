@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   Copy,
   Download,
@@ -13,6 +13,8 @@ import {
   Maximize2,
   Eye,
   Code,
+  Search,
+  CheckCircle,
 } from 'lucide-react';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
@@ -28,6 +30,14 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
   const [viewMode, setViewMode] = useState<'tree' | 'formatted'>('formatted');
   const [indentSize, setIndentSize] = useState(2);
   const [sortKeys, setSortKeys] = useState(false);
+  const [searchKey, setSearchKey] = useState('');
+  const [searchResults, setSearchResults] = useState<
+    Array<{ value: any; path: string }>
+  >([]);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [formatSuccess, setFormatSuccess] = useState(false);
+  const [copiedPaths, setCopiedPaths] = useState<Record<number, boolean>>({});
+  const outputRef = useRef<HTMLDivElement>(null);
 
   // Use unified hooks
   const { copied, copy } = useCopy();
@@ -76,6 +86,15 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
       });
 
       setOutput(result);
+      setFormatSuccess(true);
+      setTimeout(() => setFormatSuccess(false), 3000);
+      // Auto-scroll to output
+      setTimeout(() => {
+        outputRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 100);
     } catch (err) {
       // Error is handled by useToolProcessor
     }
@@ -107,6 +126,15 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
 
   const handleCopy = async () => {
     await copy(output);
+    // Don't clear search results when copying output
+  };
+
+  const handleCopyPath = async (path: string, index: number) => {
+    await navigator.clipboard.writeText(path);
+    setCopiedPaths({ ...copiedPaths, [index]: true });
+    setTimeout(() => {
+      setCopiedPaths((prev) => ({ ...prev, [index]: false }));
+    }, 2000);
   };
 
   const handleDownload = async () => {
@@ -125,6 +153,62 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
       }
     } catch (error) {
       console.error('Download failed:', error);
+    }
+  };
+
+  const searchJsonKey = () => {
+    setHasSearched(true);
+    setCopiedPaths({});
+
+    if (!output || !searchKey.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    try {
+      const data = JSON.parse(output);
+      const results: Array<{ value: any; path: string }> = [];
+
+      const findAllKeys = (
+        obj: any,
+        key: string,
+        path: string[] = []
+      ): void => {
+        // Check if current object has the key
+        if (
+          obj &&
+          typeof obj === 'object' &&
+          !Array.isArray(obj) &&
+          key in obj
+        ) {
+          results.push({
+            value: obj[key],
+            path: [...path, `['${key}']`].join(''),
+          });
+        }
+
+        // Recursively search in nested objects
+        if (obj && typeof obj === 'object') {
+          if (Array.isArray(obj)) {
+            for (let i = 0; i < obj.length; i++) {
+              findAllKeys(obj[i], key, [...path, `[${i}]`]);
+            }
+          } else {
+            for (const [k, v] of Object.entries(obj)) {
+              if (k !== key) {
+                // Don't go deeper for the same key we just found
+                findAllKeys(v, key, [...path, `['${k}']`]);
+              }
+            }
+          }
+        }
+      };
+
+      findAllKeys(data, searchKey);
+      setSearchResults(results);
+    } catch (err) {
+      console.error('Search error:', err);
+      setSearchResults([]);
     }
   };
 
@@ -314,9 +398,17 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
           </div>
         )}
 
+        {/* Success Indicator */}
+        {formatSuccess && (
+          <div className="animate-slideIn flex items-center gap-2 rounded-lg bg-green-50 p-3 text-green-700 dark:bg-green-950/30 dark:text-green-400">
+            <CheckCircle className="h-5 w-5" />
+            <span className="font-medium">JSON formatted successfully!</span>
+          </div>
+        )}
+
         {/* Output Section */}
         {output && !error && (
-          <div className="animate-slideIn space-y-2">
+          <div className="animate-slideIn space-y-2" ref={outputRef}>
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Output
@@ -350,15 +442,21 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
 
             {viewMode === 'formatted' ? (
               <pre
-                className="h-48 w-full overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 dark:bg-gray-900 dark:text-white"
-                style={{ borderColor: `${categoryColor}30` }}
+                className="w-full overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 dark:bg-gray-900 dark:text-white"
+                style={{
+                  borderColor: formatSuccess ? '#10b981' : `${categoryColor}30`,
+                  height: '30rem',
+                }}
               >
                 <code className="language-json">{output}</code>
               </pre>
             ) : (
               <div
-                className="h-48 w-full overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm dark:bg-gray-900"
-                style={{ borderColor: `${categoryColor}30` }}
+                className="w-full overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm dark:bg-gray-900"
+                style={{
+                  borderColor: formatSuccess ? '#10b981' : `${categoryColor}30`,
+                  height: '30rem',
+                }}
               >
                 {(() => {
                   try {
@@ -373,6 +471,96 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                 })()}
               </div>
             )}
+
+            {/* JSON Key Search Section */}
+            <div className="mt-6 space-y-4 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900">
+              <div className="flex items-center gap-3">
+                <Search className="h-5 w-5 text-gray-500" />
+                <input
+                  type="text"
+                  placeholder="Search for a key in JSON..."
+                  value={searchKey}
+                  onChange={(e) => {
+                    setSearchKey(e.target.value);
+                    setHasSearched(false);
+                  }}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      searchJsonKey();
+                    }
+                  }}
+                  className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                />
+                <button
+                  onClick={searchJsonKey}
+                  className="rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105"
+                  style={{ backgroundColor: categoryColor }}
+                >
+                  Search
+                </button>
+              </div>
+
+              {searchResults.length > 0 && (
+                <div className="animate-slideIn space-y-3">
+                  <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Found {searchResults.length} occurrence
+                    {searchResults.length > 1 ? 's' : ''}:
+                  </div>
+                  {searchResults.map((result, index) => (
+                    <div
+                      key={index}
+                      className="space-y-2 rounded-lg bg-white p-4 dark:bg-gray-800"
+                    >
+                      {searchResults.length > 1 && (
+                        <div className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                          Occurrence {index + 1}
+                        </div>
+                      )}
+                      <div className="space-y-1">
+                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                          Value:
+                        </span>
+                        <pre className="rounded bg-gray-100 p-2 text-sm dark:bg-gray-900">
+                          <code>{JSON.stringify(result.value, null, 2)}</code>
+                        </pre>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                            Path:
+                          </span>
+                          <button
+                            onClick={() => handleCopyPath(result.path, index)}
+                            className="flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+                          >
+                            {copiedPaths[index] ? (
+                              <>
+                                <Check className="h-3 w-3 text-green-500" />
+                                <span className="text-green-500">Copied!</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="h-3 w-3" />
+                                <span>Copy Path</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                        <code className="block rounded bg-gray-100 p-2 text-sm text-purple-600 dark:bg-gray-900 dark:text-purple-400">
+                          {result.path}
+                        </code>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {hasSearched && searchKey && searchResults.length === 0 && (
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  No key &ldquo;{searchKey}&rdquo; found in the JSON.
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
