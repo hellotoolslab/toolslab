@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { categories } from '@/lib/tools';
 import CategoryPageContent from '@/components/layout/CategoryPageContent';
+import { getCategorySEO } from '@/lib/category-seo';
 
 interface Props {
   params: { category: string };
@@ -15,31 +16,26 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = categories.find((cat) => cat.id === params.category);
+  const seoContent = getCategorySEO(params.category);
 
-  if (!category) {
+  if (!category || !seoContent) {
     return {};
   }
 
   return {
-    title: `${category.name} Tools - Free Online Developer Tools | ToolsLab`,
-    description: `${category.description} Access ${category.tools.length} free ${category.name.toLowerCase()} tools with no signup required.`,
-    keywords: [
-      category.name.toLowerCase(),
-      'developer tools',
-      'free tools',
-      'online tools',
-      ...category.tools.flatMap((tool) => tool.keywords).slice(0, 15),
-    ],
+    title: `${seoContent.h1Title} - Free Online Tools | ToolsLab`,
+    description: seoContent.metaDescription,
+    keywords: seoContent.keywords,
     openGraph: {
-      title: `${category.name} Tools - ToolsLab`,
-      description: category.description,
+      title: `${seoContent.h1Title} - ToolsLab`,
+      description: seoContent.metaDescription,
       type: 'website',
       url: `https://octotools.org/category/${params.category}`,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${category.name} Tools - ToolsLab`,
-      description: category.description,
+      title: `${seoContent.h1Title} - ToolsLab`,
+      description: seoContent.metaDescription,
     },
     alternates: {
       canonical: `https://octotools.org/category/${params.category}`,
