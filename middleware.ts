@@ -124,7 +124,7 @@ function applyVPNCompatibleHeaders(response: NextResponse) {
   // Completely permissive CSP for corporate environments with proxy interference
   response.headers.set(
     'Content-Security-Policy',
-    "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: *; img-src 'self' data: blob: *; connect-src 'self' *; frame-src *; object-src *; media-src *; font-src *;"
+    "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' data: *; img-src 'self' data: blob: *; connect-src 'self' *; frame-src *; object-src *; media-src *; font-src *;"
   );
 
   // Allow corporate proxy modification
@@ -156,11 +156,13 @@ function applyStrictSecurityHeaders(response: NextResponse) {
   response.headers.set('Pragma', 'no-cache');
   response.headers.set('Expires', '0');
 
-  // Strict CSP for regular users (but still permissive for corporate proxies)
-  response.headers.set(
-    'Content-Security-Policy',
-    "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is va.vercel-scripts.com *.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com va.vercel-scripts.com *.vercel-scripts.com; frame-src 'none';"
-  );
+  // CSP for regular users - more permissive in development
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  const cspPolicy = isDevelopment
+    ? "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' data: *; img-src 'self' data: blob: *; connect-src 'self' *; frame-src 'self';"
+    : "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is va.vercel-scripts.com *.vercel-scripts.com; style-src 'self' 'unsafe-inline' data:; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com va.vercel-scripts.com *.vercel-scripts.com; frame-src 'none';";
+
+  response.headers.set('Content-Security-Policy', cspPolicy);
 
   // Additional security headers (but not HSTS)
   response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
