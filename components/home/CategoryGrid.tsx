@@ -61,7 +61,7 @@ export function CategoryGrid() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Link
-                  href={`/categories/${category.id}`}
+                  href={`/category/${category.id}`}
                   className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800"
                 >
                   {/* Background gradient on hover */}
