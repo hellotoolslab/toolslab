@@ -229,8 +229,8 @@ const nextConfig = {
   // PoweredBy header removal for security
   poweredByHeader: false,
 
-  // Use standalone output for smaller serverless functions
-  output: 'standalone',
+  // Standalone output disabled temporarily due to cache issues
+  // output: 'standalone',
 
   // Generate sitemap
   async rewrites() {
