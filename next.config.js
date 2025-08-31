@@ -100,7 +100,7 @@ const nextConfig = {
     ];
   },
 
-  // Configure webpack for Web Workers
+  // Configure webpack for Web Workers and optimization
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -123,8 +123,52 @@ const nextConfig = {
       },
     });
 
+    // Optimize bundle splitting
+    if (!isServer) {
+      config.optimization.splitChunks = {
+        ...config.optimization.splitChunks,
+        chunks: 'all',
+        maxInitialRequests: 20,
+        maxAsyncRequests: 20,
+        cacheGroups: {
+          ...config.optimization.splitChunks.cacheGroups,
+          // Separate framer-motion into its own chunk
+          framerMotion: {
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            name: 'framer-motion',
+            chunks: 'all',
+            priority: 30,
+          },
+          // Separate React into its own chunk
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            chunks: 'all',
+            priority: 20,
+          },
+          // Other vendor dependencies
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+            priority: 10,
+            maxSize: 200000, // 200KB
+          },
+          common: {
+            minChunks: 2,
+            priority: -10,
+            reuseExistingChunk: true,
+            maxSize: 100000, // 100KB
+          },
+        },
+      };
+    }
+
     return config;
   },
+
+  // Transpile packages for better optimization
+  transpilePackages: ['framer-motion'],
 
   // Experimental features for better performance
   experimental: {
@@ -136,11 +180,15 @@ const nextConfig = {
     },
   },
 
-  // Output configuration for static export
-  output: 'standalone',
+  // Reduce bundle size by excluding heavy dependencies from server build
+  serverRuntimeConfig: {},
+  publicRuntimeConfig: {},
 
   // Compress output
   compress: true,
+
+  // PoweredBy header removal for security
+  poweredByHeader: false,
 
   // Generate sitemap
   async rewrites() {
