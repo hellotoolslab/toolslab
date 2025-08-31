@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, lazy, ComponentType } from 'react';
+import React, { Suspense, lazy, ComponentType } from 'react';
 import { BaseToolProps } from '@/lib/types/tools';
 
 // Loading component for tool implementations
@@ -69,9 +69,46 @@ export default function LazyToolLoader({
 
   return (
     <Suspense fallback={<ToolLoadingSkeleton />}>
-      <ToolComponent {...props} />
+      <ErrorBoundary>
+        <ToolComponent {...props} />
+      </ErrorBoundary>
     </Suspense>
   );
+}
+
+// Error Boundary for tool loading
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Tool loading error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex items-center justify-center p-8">
+          <div className="text-center">
+            <p className="text-red-600 dark:text-red-400">
+              Failed to load tool. Please try refreshing the page.
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    return this.state.hasError ? null : this.props.children;
+  }
 }
 
 // Helper to check if a tool supports lazy loading
