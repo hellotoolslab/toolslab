@@ -98,16 +98,22 @@ class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       return (
         <div className="flex items-center justify-center p-8">
-          <div className="text-center">
+          <div className="space-y-4 text-center">
             <p className="text-red-600 dark:text-red-400">
-              Failed to load tool. Please try refreshing the page.
+              Failed to load tool. This might be a temporary issue.
             </p>
+            <button
+              onClick={() => window.location.reload()}
+              className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+            >
+              Refresh Page
+            </button>
           </div>
         </div>
       );
     }
 
-    return this.state.hasError ? null : this.props.children;
+    return this.props.children;
   }
 }
 

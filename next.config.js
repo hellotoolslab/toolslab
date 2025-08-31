@@ -135,58 +135,37 @@ const nextConfig = {
       },
     });
 
-    // Optimize bundle splitting with better stability
+    // Conservative bundle splitting for stability
     if (!isServer) {
       config.optimization.splitChunks = {
         ...config.optimization.splitChunks,
-        chunks: 'all',
-        maxInitialRequests: 10, // Further reduced for smaller initial bundles
-        maxAsyncRequests: 10, // Further reduced for smaller initial bundles
-        minSize: 30000, // Increased to create fewer, larger chunks
-        maxSize: 100000, // Enforce maximum chunk size
+        chunks: 'async', // Only split async chunks to prevent navigation issues
+        maxInitialRequests: 5, // Conservative for stability
+        maxAsyncRequests: 8, // Reasonable async chunk limit
+        minSize: 50000, // Larger chunks for better stability
+        maxSize: 200000, // Larger max size to prevent over-splitting
         cacheGroups: {
-          // Essential framework chunks - small and critical
+          // Keep React and Next.js together for stability
           framework: {
             test: /[\\/]node_modules[\\/](react|react-dom|next)[\\/]/,
             name: 'framework',
             chunks: 'all',
             priority: 40,
             enforce: true,
-            maxSize: 80000,
           },
-          // UI libraries - include in initial bundle to ensure proper hook context
-          framerMotion: {
-            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-            name: 'framer-motion',
-            chunks: 'initial', // Use initial to ensure it's loaded with the main app
-            priority: 30,
-            enforce: true,
-            maxSize: 120000, // Increased size for full library
-          },
-          // Icon libraries - separate and async
-          lucide: {
-            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
-            name: 'lucide-icons',
-            chunks: 'async',
-            priority: 25,
-            enforce: true,
-            maxSize: 40000,
-          },
-          // Utilities and smaller libs
-          lib: {
+          // Keep all other node_modules together
+          vendor: {
             test: /[\\/]node_modules[\\/]/,
-            name: 'lib',
-            chunks: 'all',
+            name: 'vendor',
+            chunks: 'async',
             priority: 20,
             minChunks: 1,
-            maxSize: 80000,
           },
-          // Application code - very small chunks
+          // App code - minimal splitting
           common: {
             minChunks: 2,
             priority: 10,
             reuseExistingChunk: true,
-            maxSize: 60000,
           },
         },
       };
