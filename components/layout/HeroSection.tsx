@@ -98,6 +98,7 @@ export function HeroSection() {
                   }
                   placeholder={`Try "${placeholders[currentPlaceholder]}"`}
                   className="h-12 w-full rounded-xl border border-white/20 bg-white/10 pl-10 pr-20 text-sm text-white placeholder-white/70 backdrop-blur-md transition-all duration-200 focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/30 sm:h-14 sm:rounded-2xl sm:pl-16 sm:pr-28 sm:text-base md:h-16 md:text-lg"
+                  suppressHydrationWarning
                 />
 
                 {/* Search button */}

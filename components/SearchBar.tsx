@@ -132,6 +132,7 @@ export const SearchBar = forwardRef<SearchBarRef, SearchBarProps>(
             }}
             placeholder={placeholder}
             className="w-full rounded-xl border border-gray-300 bg-white py-3 pl-10 pr-10 text-gray-900 placeholder-gray-500 transition-colors duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:ring-blue-400"
+            suppressHydrationWarning
           />
           {query && (
             <button

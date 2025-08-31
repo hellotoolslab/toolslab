@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Copy, Check, Shield, Hash } from 'lucide-react';
 import { useMultiCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
@@ -24,14 +24,10 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
     Record<string, string>
   >();
 
-  const algorithms: HashAlgorithm[] = [
-    'SHA-1',
-    'SHA-256',
-    'SHA-384',
-    'SHA-512',
-    'MD5',
-    'CRC32',
-  ];
+  const algorithms: HashAlgorithm[] = useMemo(
+    () => ['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512', 'MD5', 'CRC32'],
+    []
+  );
 
   const md5 = (input: string): string => {
     const rotateLeft = (n: number, s: number): number => {
@@ -334,7 +330,7 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
     } catch (err) {
       // Error is handled by useToolProcessor
     }
-  }, [input, salt, algorithms, algorithm]);
+  }, [input, salt, algorithms, algorithm, processSync]);
 
   useEffect(() => {
     if (input) {
