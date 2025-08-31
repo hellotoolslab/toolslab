@@ -19,9 +19,20 @@ import {
 } from 'lucide-react';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
-import LazyToolLoader, { isLazyLoadingSupported } from './LazyToolLoader';
-import ToolChainSuggestions from './ToolChainSuggestions';
+import dynamic from 'next/dynamic';
+import { isLazyLoadingSupported } from './LazyToolLoader';
 import { useToolChaining } from '@/lib/hooks/useToolChaining';
+
+// Dynamically import heavy components to prevent chunk loading issues
+const LazyToolLoader = dynamic(() => import('./LazyToolLoader'), {
+  loading: () => <div className="h-32 animate-pulse rounded bg-gray-200"></div>,
+  ssr: false,
+});
+
+const ToolChainSuggestions = dynamic(() => import('./ToolChainSuggestions'), {
+  loading: () => null,
+  ssr: false,
+});
 
 interface ToolWorkspaceProps {
   tool: Tool;

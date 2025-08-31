@@ -64,7 +64,7 @@
   ],
   "functions": {
     "app/**": {
-      "excludeFiles": "node_modules/sharp/**"
+      "excludeFiles": "{node_modules/sharp/**,.next/cache/**,**/.next/cache/**}"
     }
   }
 }
