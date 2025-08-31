@@ -37,7 +37,7 @@
     "seo:generate-key": "tsx scripts/generate-indexnow-key.ts",
     "seo:full": "npm run seo:discover && npm run seo:submit && npm run seo:monitor",
     "pre-commit": "lint-staged",
-    "prepare": "husky",
+    "prepare": "echo 'Skipping husky setup in production'",
     "edge-config:dev": "node scripts/dev-edge-config.js",
     "edge-config:health": "curl -s http://localhost:3001/health | jq",
     "edge-config:populate": "node scripts/populate-edge-config.js",
