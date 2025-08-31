@@ -197,6 +197,14 @@ const nextConfig = {
     optimizeServerReact: true,
     // Reduce serverless function size
     serverMinification: true,
+    // Disable TypeScript build info file to prevent cache issues
+    typedRoutes: false,
+  },
+
+  // TypeScript configuration for cache management
+  typescript: {
+    ignoreBuildErrors: false,
+    tsconfigPath: './tsconfig.json',
   },
 
   // Reduce bundle size by excluding heavy dependencies from server build
