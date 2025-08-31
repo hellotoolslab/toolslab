@@ -39,38 +39,6 @@
       ]
     }
   ],
-  "functions": {
-    "app/tools/[tool]/page.tsx": {
-      "maxDuration": 15
-    },
-    "app/api/tools/**": {
-      "runtime": "edge",
-      "maxDuration": 10
-    },
-    "app/api/edge-config/**": {
-      "runtime": "edge",
-      "maxDuration": 10
-    },
-    "app/api/seo/**": {
-      "runtime": "edge",
-      "maxDuration": 10
-    },
-    "app/api/admin/**": {
-      "maxDuration": 10
-    },
-    "app/api/og/**": {
-      "runtime": "edge",
-      "maxDuration": 10
-    },
-    "app/sitemap.ts": {
-      "runtime": "edge",
-      "maxDuration": 10
-    },
-    "app/robots.ts": {
-      "runtime": "edge",
-      "maxDuration": 5
-    }
-  },
   "rewrites": [
     {
       "source": "/sitemap.xml",
@@ -93,5 +61,10 @@
       "destination": "/tools/base64",
       "permanent": true
     }
-  ]
+  ],
+  "functions": {
+    "app/api/seo/monitor/route.ts": {
+      "maxDuration": 30
+    }
+  }
 }
