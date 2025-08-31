@@ -113,11 +113,10 @@ const nextConfig = {
       // Server-side optimizations for smaller serverless functions
       // Note: usedExports conflicts with Next.js caching, so we use other optimizations
 
-      // Exclude heavy server-side only modules
+      // Exclude only build-time heavy dependencies, not runtime libraries
       config.externals = [
         ...(config.externals || []),
         {
-          'framer-motion': 'commonjs framer-motion',
           '@next/bundle-analyzer': 'commonjs @next/bundle-analyzer',
         },
       ];
@@ -154,14 +153,14 @@ const nextConfig = {
             enforce: true,
             maxSize: 80000,
           },
-          // UI libraries - async only to reduce initial bundle
+          // UI libraries - include in initial bundle to ensure proper hook context
           framerMotion: {
             test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
             name: 'framer-motion',
-            chunks: 'async', // Only async to prevent blocking
+            chunks: 'initial', // Use initial to ensure it's loaded with the main app
             priority: 30,
             enforce: true,
-            maxSize: 50000,
+            maxSize: 120000, // Increased size for full library
           },
           // Icon libraries - separate and async
           lucide: {
@@ -191,7 +190,7 @@ const nextConfig = {
         },
       };
 
-      // Ensure proper module resolution - React aliases removed to prevent conflicts
+      // Let Next.js handle React resolution naturally to avoid conflicts
 
       // Add retry logic for failed chunk loading
       config.output = {
