@@ -40,36 +40,7 @@
     }
   ],
   "functions": {
-    "app/page.tsx": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 10
-    },
-    "app/tools/page.tsx": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 10
-    },
-    "app/category/[category]/page.tsx": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 10
-    },
-    "app/about/page.tsx": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 5
-    },
-    "app/lab/page.tsx": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 10
-    },
-    "app/privacy/page.tsx": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 5
-    },
-    "app/terms/page.tsx": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 5
-    },
     "app/tools/[tool]/page.tsx": {
-      "runtime": "nodejs18.x",
       "maxDuration": 15
     },
     "app/api/tools/**": {
@@ -85,7 +56,6 @@
       "maxDuration": 10
     },
     "app/api/admin/**": {
-      "runtime": "nodejs18.x",
       "maxDuration": 10
     },
     "app/api/og/**": {
