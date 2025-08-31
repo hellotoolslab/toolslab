@@ -3,6 +3,9 @@
 # Next.js cache (causes 250MB limit issues)
 .next/cache/
 **/.next/cache/
+.next/standalone/
+.next/server/
+.next/static/chunks/
 
 # Node modules cache
 node_modules/.cache/
@@ -11,6 +14,14 @@ node_modules/.cache/
 # Sharp binaries (too large for serverless)
 node_modules/sharp/
 **/node_modules/sharp/
+
+# TypeScript cache and build files
+*.tsbuildinfo
+.tsbuildinfo
+tsconfig.tsbuildinfo
+**/.tsbuildinfo
+.tscache/
+.next/cache/.tsbuildinfo
 
 # Development files
 .env.local

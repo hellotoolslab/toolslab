@@ -31,11 +31,18 @@
     },
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    ".next",
+    ".next/**/*",
+    ".vercel",
+    "dist",
+    "out",
+    "build",
+    ".tsbuildinfo",
+    "**/.tsbuildinfo",
+    ".next/cache",
+    ".next/cache/**/*"
+  ]
 }
