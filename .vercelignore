@@ -1,37 +1,40 @@
-# Vercel ignore file - exclude from serverless functions
-
-# Next.js cache (causes 250MB limit issues)
+# Cache e build
+.next/
 .next/cache/
-**/.next/cache/
-.next/standalone/
-.next/server/
-.next/static/chunks/
-
-# Node modules cache
-node_modules/.cache/
-**/node_modules/.cache/
-
-# Sharp binaries (too large for serverless)
-node_modules/sharp/
-**/node_modules/sharp/
-
-# TypeScript cache and build files
 *.tsbuildinfo
 .tsbuildinfo
-tsconfig.tsbuildinfo
-**/.tsbuildinfo
-.tscache/
-.next/cache/.tsbuildinfo
+node_modules/.cache/
+.turbo/
+.cache/
 
-# Development files
+# Development
+.env*.local
 .env.local
-.env.development.local
 
-# Testing files
-**/__tests__/
-**/*.test.*
-**/*.spec.*
+# Git
+.git/
+.gitignore
 
-# Documentation
+# Docs
+README.md
+docs/
 *.md
-!README.md
+
+# IDE
+.vscode/
+.idea/
+
+# Test
+__tests__/
+*.test.ts
+*.test.tsx
+coverage/
+.nyc_output/
+
+# Misc
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

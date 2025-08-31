@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "dev:ads": "NEXT_PUBLIC_ENABLE_ADS=true next dev",
-    "build": "npm run clean-all && next build && npm run clean-cache",
-    "clean-cache": "rm -rf .next/cache .next/standalone/.next/cache || true",
-    "clean-all": "npm run clean-next && npm run clean-ts && npm run clean-node",
-    "clean-next": "rm -rf .next .next/cache .next/standalone out dist build || true",
-    "clean-ts": "rm -rf *.tsbuildinfo .tsbuildinfo tsconfig.tsbuildinfo **/.tsbuildinfo .tscache || true",
-    "clean-node": "rm -rf node_modules/.cache .npm .eslintcache .stylelintcache || true",
-    "clean-vercel": "rm -rf .vercel deployment-cache build-cache || true",
-    "clean-reset": "npm run clean-all && npm run clean-vercel && rm -rf node_modules && npm install",
+    "dev": "rm -rf .next && next dev",
+    "build": "npm run prebuild && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prebuild": "rm -rf .next .vercel/output node_modules/.cache *.tsbuildinfo .tsbuildinfo",
+    "postbuild": "echo 'Build completed successfully'",
+    "clean": "rm -rf .next .vercel node_modules package-lock.json *.tsbuildinfo",
+    "clean:cache": "rm -rf .next/cache node_modules/.cache .cache .turbo",
+    "reinstall": "npm run clean && npm install",
+    "verify": "npm run lint && npm run build",
+    "preinstall": "node scripts/pre-install.js || true",
     "build:prod": "NEXT_PUBLIC_ENABLE_ADS=true next build",
     "build:check": "next build --no-lint",
     "start": "next start",
@@ -136,7 +137,8 @@
     "typescript": "^5.6.3"
   },
   "engines": {
-    "node": ">=18.17.0"
+    "node": ">=18.17.0",
+    "npm": ">=9.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
