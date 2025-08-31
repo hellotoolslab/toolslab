@@ -83,7 +83,7 @@ export function FeaturedTools() {
                   className="group relative block h-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800"
                 >
                   {/* Tool label badge */}
-                  {tool.label && tool.label !== '' && (
+                  {tool.label && (
                     <div className="absolute right-4 top-4">
                       {tool.label === 'new' && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 px-3 py-1 text-xs font-bold text-white">
