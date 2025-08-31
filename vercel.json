@@ -39,11 +39,6 @@
       ]
     }
   ],
-  "functions": {
-    "app/**": {
-      "maxDuration": 10
-    }
-  },
   "rewrites": [
     {
       "source": "/sitemap.xml",
@@ -66,5 +61,10 @@
       "destination": "/tools/base64",
       "permanent": true
     }
-  ]
+  ],
+  "functions": {
+    "app/**": {
+      "excludeFiles": "node_modules/sharp/**"
+    }
+  }
 }

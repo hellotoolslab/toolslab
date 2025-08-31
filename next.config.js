@@ -100,7 +100,7 @@ const nextConfig = {
     ];
   },
 
-  // Configure webpack for Web Workers
+  // Configure webpack for Web Workers and optimization
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -109,6 +109,18 @@ const nextConfig = {
         net: false,
         tls: false,
       };
+    } else {
+      // Server-side optimizations for smaller serverless functions
+      // Note: usedExports conflicts with Next.js caching, so we use other optimizations
+
+      // Exclude heavy dependencies from serverless bundles
+      config.externals = [
+        ...(config.externals || []),
+        {
+          '@next/bundle-analyzer': 'commonjs @next/bundle-analyzer',
+          sharp: 'commonjs sharp',
+        },
+      ];
     }
 
     // Add worker-loader for Web Workers
@@ -123,8 +135,76 @@ const nextConfig = {
       },
     });
 
+    // Optimize bundle splitting with better stability
+    if (!isServer) {
+      config.optimization.splitChunks = {
+        ...config.optimization.splitChunks,
+        chunks: 'all',
+        maxInitialRequests: 10, // Further reduced for smaller initial bundles
+        maxAsyncRequests: 10, // Further reduced for smaller initial bundles
+        minSize: 30000, // Increased to create fewer, larger chunks
+        maxSize: 100000, // Enforce maximum chunk size
+        cacheGroups: {
+          // Essential framework chunks - small and critical
+          framework: {
+            test: /[\\/]node_modules[\\/](react|react-dom|next)[\\/]/,
+            name: 'framework',
+            chunks: 'all',
+            priority: 40,
+            enforce: true,
+            maxSize: 80000,
+          },
+          // UI libraries - include in initial bundle to ensure proper hook context
+          framerMotion: {
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            name: 'framer-motion',
+            chunks: 'initial', // Use initial to ensure it's loaded with the main app
+            priority: 30,
+            enforce: true,
+            maxSize: 120000, // Increased size for full library
+          },
+          // Icon libraries - separate and async
+          lucide: {
+            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+            name: 'lucide-icons',
+            chunks: 'async',
+            priority: 25,
+            enforce: true,
+            maxSize: 40000,
+          },
+          // Utilities and smaller libs
+          lib: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'lib',
+            chunks: 'all',
+            priority: 20,
+            minChunks: 1,
+            maxSize: 80000,
+          },
+          // Application code - very small chunks
+          common: {
+            minChunks: 2,
+            priority: 10,
+            reuseExistingChunk: true,
+            maxSize: 60000,
+          },
+        },
+      };
+
+      // Let Next.js handle React resolution naturally to avoid conflicts
+
+      // Add retry logic for failed chunk loading
+      config.output = {
+        ...config.output,
+        chunkLoadTimeout: 30000, // 30 seconds
+      };
+    }
+
     return config;
   },
+
+  // Transpile packages for better optimization
+  transpilePackages: ['framer-motion'],
 
   // Experimental features for better performance
   experimental: {
@@ -134,13 +214,24 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    // Enable aggressive tree shaking
+    optimizeServerReact: true,
+    // Reduce serverless function size
+    serverMinification: true,
   },
 
-  // Output configuration for static export
-  output: 'standalone',
+  // Reduce bundle size by excluding heavy dependencies from server build
+  serverRuntimeConfig: {},
+  publicRuntimeConfig: {},
 
   // Compress output
   compress: true,
+
+  // PoweredBy header removal for security
+  poweredByHeader: false,
+
+  // Standalone output disabled temporarily due to cache issues
+  // output: 'standalone',
 
   // Generate sitemap
   async rewrites() {

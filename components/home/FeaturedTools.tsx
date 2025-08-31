@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, TrendingUp, Clock, Users } from 'lucide-react';
+import { ArrowRight, TrendingUp, Clock } from 'lucide-react';
 import { tools } from '@/lib/tools';
 
 // Get featured tools (new ones or without label, excluding coming-soon)
@@ -16,37 +15,9 @@ const featuredTools = tools
       tool.label === 'new' || tool.label === '' || tool.label === undefined
     );
   })
-  .slice(0, 6)
-  .map((tool) => ({
-    ...tool,
-    dailyUses: Math.floor(Math.random() * 5000) + 1000,
-  }));
+  .slice(0, 6);
 
 export function FeaturedTools() {
-  const [animatedCounts, setAnimatedCounts] = useState<Record<string, number>>(
-    {}
-  );
-
-  useEffect(() => {
-    // Animate counters
-    featuredTools.forEach((tool) => {
-      let current = 0;
-      const target = tool.dailyUses;
-      const increment = target / 50;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        setAnimatedCounts((prev) => ({
-          ...prev,
-          [tool.id]: Math.floor(current),
-        }));
-      }, 30);
-    });
-  }, []);
-
   return (
     <section className="bg-gray-50 py-16 dark:bg-gray-900 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -83,7 +54,7 @@ export function FeaturedTools() {
                   className="group relative block h-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800"
                 >
                   {/* Tool label badge */}
-                  {tool.label && tool.label !== '' && (
+                  {tool.label && (
                     <div className="absolute right-4 top-4">
                       {tool.label === 'new' && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 px-3 py-1 text-xs font-bold text-white">
@@ -119,13 +90,6 @@ export function FeaturedTools() {
                   {/* Stats */}
                   <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-4 dark:border-gray-700">
                     <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
-                        <Users className="h-4 w-4" />
-                        <span className="font-semibold text-gray-900 dark:text-white">
-                          {animatedCounts[tool.id]?.toLocaleString() || '0'}
-                        </span>
-                        <span>today</span>
-                      </div>
                       <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                         <Clock className="h-4 w-4" />
                         <span>Instant</span>
