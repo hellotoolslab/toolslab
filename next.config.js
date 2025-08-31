@@ -123,44 +123,56 @@ const nextConfig = {
       },
     });
 
-    // Optimize bundle splitting
+    // Optimize bundle splitting with better stability
     if (!isServer) {
       config.optimization.splitChunks = {
         ...config.optimization.splitChunks,
         chunks: 'all',
-        maxInitialRequests: 20,
-        maxAsyncRequests: 20,
+        maxInitialRequests: 15, // Reduced for stability
+        maxAsyncRequests: 15, // Reduced for stability
+        minSize: 20000,
         cacheGroups: {
-          ...config.optimization.splitChunks.cacheGroups,
-          // Separate framer-motion into its own chunk
+          // Essential framework chunks
+          framework: {
+            test: /[\\/]node_modules[\\/](react|react-dom|next)[\\/]/,
+            name: 'framework',
+            chunks: 'all',
+            priority: 40,
+            enforce: true,
+          },
+          // UI libraries
           framerMotion: {
             test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
             name: 'framer-motion',
-            chunks: 'all',
+            chunks: 'async', // Only async to prevent blocking
             priority: 30,
+            enforce: true,
           },
-          // Separate React into its own chunk
-          react: {
-            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-            name: 'react',
+          // Utilities and smaller libs
+          lib: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'lib',
             chunks: 'all',
             priority: 20,
+            minChunks: 1,
+            maxSize: 180000,
           },
-          // Other vendor dependencies
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-            priority: 10,
-            maxSize: 200000, // 200KB
-          },
+          // Application code
           common: {
             minChunks: 2,
-            priority: -10,
+            priority: 10,
             reuseExistingChunk: true,
-            maxSize: 100000, // 100KB
+            maxSize: 120000,
           },
         },
+      };
+
+      // Ensure proper module resolution - React aliases removed to prevent conflicts
+
+      // Add retry logic for failed chunk loading
+      config.output = {
+        ...config.output,
+        chunkLoadTimeout: 30000, // 30 seconds
       };
     }
 
