@@ -16,6 +16,14 @@
 # Next.js
 /.next/
 /out/
+.next/
+.next/cache/
+.next/standalone/
+.next/static/
+.next/server/
+.next/build-manifest.json
+.next/export-manifest.json
+.next/trace
 
 # Production
 /build
@@ -37,6 +45,12 @@ yarn-error.log*
 
 # Vercel
 .vercel
+.vercel/
+.vercel/**/*
+
+# Build and deployment cache
+build-cache/
+deployment-cache/
 
 # TypeScript
 next-env.d.ts
@@ -98,8 +112,14 @@ jspm_packages/
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
-# TypeScript cache
+# TypeScript cache and build files
 *.tsbuildinfo
+.tsbuildinfo
+tsconfig.tsbuildinfo
+**/tsconfig.tsbuildinfo
+.next/cache/.tsbuildinfo
+**/.tsbuildinfo
+.tscache/
 
 # Optional npm cache directory
 .npm
