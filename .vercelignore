@@ -1,0 +1,26 @@
+# Vercel ignore file - exclude from serverless functions
+
+# Next.js cache (causes 250MB limit issues)
+.next/cache/
+**/.next/cache/
+
+# Node modules cache
+node_modules/.cache/
+**/node_modules/.cache/
+
+# Sharp binaries (too large for serverless)
+node_modules/sharp/
+**/node_modules/sharp/
+
+# Development files
+.env.local
+.env.development.local
+
+# Testing files
+**/__tests__/
+**/*.test.*
+**/*.spec.*
+
+# Documentation
+*.md
+!README.md
