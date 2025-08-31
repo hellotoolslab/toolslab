@@ -209,7 +209,7 @@ const nextConfig = {
   // PoweredBy header removal for security
   poweredByHeader: false,
 
-  // Standalone output disabled temporarily due to cache issues
+  // Keep standalone disabled - causes webpack cache inclusion in functions
   // output: 'standalone',
 
   // Generate sitemap

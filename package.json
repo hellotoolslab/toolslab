@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "dev:ads": "NEXT_PUBLIC_ENABLE_ADS=true next dev",
-    "build": "next build",
+    "build": "next build && npm run clean-cache",
+    "clean-cache": "rm -rf .next/cache .next/standalone/.next/cache || true",
     "build:prod": "NEXT_PUBLIC_ENABLE_ADS=true next build",
     "build:check": "next build --no-lint",
     "start": "next start",
