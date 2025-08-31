@@ -111,11 +111,7 @@ const nextConfig = {
       };
     } else {
       // Server-side optimizations for smaller serverless functions
-      config.optimization.usedExports = true;
-      config.optimization.sideEffects = false;
-
-      // Remove unused code more aggressively on server
-      config.optimization.minimize = true;
+      // Note: usedExports conflicts with Next.js caching, so we use other optimizations
 
       // Exclude heavy server-side only modules
       config.externals = [
