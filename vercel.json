@@ -40,8 +40,65 @@
     }
   ],
   "functions": {
-    "app/**": {
+    "app/page.tsx": {
+      "runtime": "nodejs18.x",
       "maxDuration": 10
+    },
+    "app/tools/page.tsx": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 10
+    },
+    "app/category/[category]/page.tsx": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 10
+    },
+    "app/about/page.tsx": {
+      "runtime": "edge",
+      "maxDuration": 5
+    },
+    "app/lab/page.tsx": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 10
+    },
+    "app/privacy/page.tsx": {
+      "runtime": "edge",
+      "maxDuration": 5
+    },
+    "app/terms/page.tsx": {
+      "runtime": "edge",
+      "maxDuration": 5
+    },
+    "app/tools/[tool]/page.tsx": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 15
+    },
+    "app/api/tools/**": {
+      "runtime": "edge",
+      "maxDuration": 10
+    },
+    "app/api/edge-config/**": {
+      "runtime": "edge",
+      "maxDuration": 10
+    },
+    "app/api/seo/**": {
+      "runtime": "edge",
+      "maxDuration": 10
+    },
+    "app/api/admin/**": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 10
+    },
+    "app/api/og/**": {
+      "runtime": "edge",
+      "maxDuration": 10
+    },
+    "app/sitemap.ts": {
+      "runtime": "edge",
+      "maxDuration": 10
+    },
+    "app/robots.ts": {
+      "runtime": "edge",
+      "maxDuration": 5
     }
   },
   "rewrites": [

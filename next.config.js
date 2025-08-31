@@ -109,6 +109,22 @@ const nextConfig = {
         net: false,
         tls: false,
       };
+    } else {
+      // Server-side optimizations for smaller serverless functions
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
+
+      // Remove unused code more aggressively on server
+      config.optimization.minimize = true;
+
+      // Exclude heavy server-side only modules
+      config.externals = [
+        ...(config.externals || []),
+        {
+          'framer-motion': 'commonjs framer-motion',
+          '@next/bundle-analyzer': 'commonjs @next/bundle-analyzer',
+        },
+      ];
     }
 
     // Add worker-loader for Web Workers
@@ -128,25 +144,37 @@ const nextConfig = {
       config.optimization.splitChunks = {
         ...config.optimization.splitChunks,
         chunks: 'all',
-        maxInitialRequests: 15, // Reduced for stability
-        maxAsyncRequests: 15, // Reduced for stability
-        minSize: 20000,
+        maxInitialRequests: 10, // Further reduced for smaller initial bundles
+        maxAsyncRequests: 10, // Further reduced for smaller initial bundles
+        minSize: 30000, // Increased to create fewer, larger chunks
+        maxSize: 100000, // Enforce maximum chunk size
         cacheGroups: {
-          // Essential framework chunks
+          // Essential framework chunks - small and critical
           framework: {
             test: /[\\/]node_modules[\\/](react|react-dom|next)[\\/]/,
             name: 'framework',
             chunks: 'all',
             priority: 40,
             enforce: true,
+            maxSize: 80000,
           },
-          // UI libraries
+          // UI libraries - async only to reduce initial bundle
           framerMotion: {
             test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
             name: 'framer-motion',
             chunks: 'async', // Only async to prevent blocking
             priority: 30,
             enforce: true,
+            maxSize: 50000,
+          },
+          // Icon libraries - separate and async
+          lucide: {
+            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+            name: 'lucide-icons',
+            chunks: 'async',
+            priority: 25,
+            enforce: true,
+            maxSize: 40000,
           },
           // Utilities and smaller libs
           lib: {
@@ -155,14 +183,14 @@ const nextConfig = {
             chunks: 'all',
             priority: 20,
             minChunks: 1,
-            maxSize: 180000,
+            maxSize: 80000,
           },
-          // Application code
+          // Application code - very small chunks
           common: {
             minChunks: 2,
             priority: 10,
             reuseExistingChunk: true,
-            maxSize: 120000,
+            maxSize: 60000,
           },
         },
       };
@@ -190,6 +218,10 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    // Enable aggressive tree shaking
+    optimizeServerReact: true,
+    // Reduce serverless function size
+    serverMinification: true,
   },
 
   // Reduce bundle size by excluding heavy dependencies from server build
@@ -201,6 +233,9 @@ const nextConfig = {
 
   // PoweredBy header removal for security
   poweredByHeader: false,
+
+  // Use standalone output for smaller serverless functions
+  output: 'standalone',
 
   // Generate sitemap
   async rewrites() {
