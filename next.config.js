@@ -113,11 +113,12 @@ const nextConfig = {
       // Server-side optimizations for smaller serverless functions
       // Note: usedExports conflicts with Next.js caching, so we use other optimizations
 
-      // Exclude only build-time heavy dependencies, not runtime libraries
+      // Exclude heavy dependencies from serverless bundles
       config.externals = [
         ...(config.externals || []),
         {
           '@next/bundle-analyzer': 'commonjs @next/bundle-analyzer',
+          sharp: 'commonjs sharp',
         },
       ];
     }
