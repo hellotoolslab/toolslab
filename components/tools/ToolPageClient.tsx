@@ -171,6 +171,13 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
           </Link>
           <ChevronRight className="h-4 w-4 text-gray-400" />
           <Link
+            href="/tools"
+            className="text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          >
+            Tools
+          </Link>
+          <ChevronRight className="h-4 w-4 text-gray-400" />
+          <Link
             href={`/category/${categoryId}`}
             className="capitalize text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             style={{ color: categoryColor }}

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import {
   categories,
   getToolsByCategory,
@@ -8,9 +9,22 @@ import {
 } from '@/lib/tools';
 import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
 import { SearchBar } from '@/components/SearchBar';
-import { FavoriteButton } from '@/components/lab/FavoriteButton';
-import { useToolLabel } from '@/lib/services/toolLabelService';
+import {
+  getCategorySEO,
+  generateCategoryStructuredData,
+} from '@/lib/category-seo';
 import { getToolById } from '@/lib/tools';
+import {
+  ChevronRight,
+  CheckCircle,
+  Sparkles,
+  TrendingUp,
+  Zap,
+  Shield,
+  Clock,
+  ArrowRight,
+} from 'lucide-react';
+import Script from 'next/script';
 
 interface CategoryPageContentProps {
   categoryId: string;
@@ -19,13 +33,16 @@ interface CategoryPageContentProps {
 export default function CategoryPageContent({
   categoryId,
 }: CategoryPageContentProps) {
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const category = categories.find((cat) => cat.id === categoryId);
+  const seoContent = getCategorySEO(categoryId);
 
-  if (!category) {
+  if (!category || !seoContent) {
     return <div>Category not found</div>;
   }
 
   const tools = getToolsByCategory(category.id);
+  const structuredData = generateCategoryStructuredData(seoContent);
 
   // Helper function to get tool label
   const getToolLabelForTool = (toolId: string) => {
@@ -42,118 +59,295 @@ export default function CategoryPageContent({
   );
   const otherTools = tools.filter((tool) => {
     const label = getToolLabelForTool(tool.id);
-    return !label || label === 'coming-soon';
+    return (
+      !label ||
+      (label !== 'new' && label !== 'popular' && label !== 'coming-soon')
+    );
   });
 
   const categoryColorClass = getCategoryColorClass(category.id);
 
+  // Get category color for inline styles
+  const getCategoryColor = () => {
+    const colors: Record<string, string> = {
+      data: '#0EA5E9',
+      encoding: '#10B981',
+      text: '#8B5CF6',
+      generators: '#F97316',
+      web: '#EC4899',
+      dev: '#F59E0B',
+      formatters: '#6366F1',
+    };
+    return colors[categoryId] || '#3B82F6';
+  };
+
+  const categoryColor = getCategoryColor();
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-      {/* Hero Section */}
-      <section className="relative py-20">
-        <div className="container mx-auto max-w-7xl px-6">
-          {/* Breadcrumb */}
-          <nav className="mb-8 flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-            <Link
-              href="/"
-              className="hover:text-gray-900 dark:hover:text-gray-100"
-            >
-              Home
-            </Link>
-            <span>/</span>
-            <span>Categories</span>
-            <span>/</span>
-            <span className="text-gray-900 dark:text-gray-100">
-              {category.name}
-            </span>
-          </nav>
+    <>
+      {/* Structured Data */}
+      <Script
+        id="category-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
 
-          {/* Header */}
-          <div className="text-center">
-            <div
-              className={`mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl text-4xl ${categoryColorClass}`}
-            >
-              {category.icon}
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+        {/* Optimized Hero Section - Reduced spacing by 40% */}
+        <section className="relative py-8 sm:py-10">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+            {/* Breadcrumb - Minimal top margin */}
+            <nav className="mb-3 flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400">
+              <Link
+                href="/"
+                className="hover:text-gray-900 dark:hover:text-gray-100"
+              >
+                Home
+              </Link>
+              <ChevronRight className="h-3 w-3" />
+              <Link
+                href="/tools"
+                className="hover:text-gray-900 dark:hover:text-gray-100"
+              >
+                Tools
+              </Link>
+              <ChevronRight className="h-3 w-3" />
+              <Link
+                href="/categories"
+                className="hover:text-gray-900 dark:hover:text-gray-100"
+              >
+                Categories
+              </Link>
+              <ChevronRight className="h-3 w-3" />
+              <span className="font-medium text-gray-900 dark:text-gray-100">
+                {category.name}
+              </span>
+            </nav>
+
+            {/* Header aligned with tool page design */}
+            <div className="mb-2 flex items-center gap-2 sm:gap-3">
+              {/* Compact Icon */}
+              <div
+                className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl shadow-sm sm:h-14 sm:w-14"
+                style={{ backgroundColor: `${categoryColor}20` }}
+              >
+                <span className="text-2xl" style={{ color: categoryColor }}>
+                  {category.icon}
+                </span>
+              </div>
+
+              {/* Title inline */}
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
+                {seoContent.h1Title}
+              </h1>
+
+              {/* Category count badge */}
+              <span
+                className="ml-auto rounded-full px-2.5 py-1 text-xs font-medium capitalize"
+                style={{
+                  backgroundColor: `${categoryColor}15`,
+                  color: categoryColor,
+                }}
+              >
+                {tools.length} tools
+              </span>
             </div>
-            <h1 className="mb-4 text-4xl font-bold lg:text-5xl">
-              {category.name}
-            </h1>
-            <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-              {category.description}
+
+            {/* Tagline - closely connected to title */}
+            <p className="mb-4 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
+              {seoContent.tagline}
             </p>
-            <div className="mb-8 flex items-center justify-center gap-4 text-sm">
-              <span className="flex items-center gap-2">
-                <span className="inline-block h-2 w-2 rounded-full bg-green-500"></span>
-                {tools.length} tool{tools.length === 1 ? '' : 's'} available
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="inline-block h-2 w-2 rounded-full bg-blue-500"></span>
-                All free to use
-              </span>
+
+            {/* SEO Description - proper separation */}
+            <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              {seoContent.description}
+            </p>
+
+            {/* Benefits Grid - Compact */}
+            <div className="mb-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
+              {seoContent.benefits.slice(0, 3).map((benefit, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <CheckCircle
+                    className="h-3.5 w-3.5 flex-shrink-0"
+                    style={{ color: categoryColor }}
+                  />
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                    {benefit}
+                  </span>
+                </div>
+              ))}
             </div>
 
-            {/* Search Bar */}
-            <div className="mx-auto max-w-md">
+            {/* Use Cases - Inline */}
+            <div className="mb-4 flex flex-wrap items-center gap-1">
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
+                💡 Perfect for:
+              </span>
+              {seoContent.useCases.map((useCase, index) => (
+                <span key={index}>
+                  <span className="text-xs text-gray-500 dark:text-gray-500">
+                    {useCase}
+                  </span>
+                  {index < seoContent.useCases.length - 1 && (
+                    <span className="mx-1 text-gray-400">•</span>
+                  )}
+                </span>
+              ))}
+            </div>
+
+            {/* Search Bar - Simplified */}
+            <div className="mb-5 w-full">
               <SearchBar />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Tools Grid */}
-      <section className="container mx-auto max-w-7xl px-6 pb-20">
-        {/* New Tools */}
-        {newTools.length > 0 && (
-          <section className="mb-16">
-            <div className="mb-8 flex items-center justify-between">
-              <h2 className="text-2xl font-bold">New Tools</h2>
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800 dark:bg-green-900/30 dark:text-green-300">
-                  ✨ Recently Added
+        {/* Tools Grid - Minimal spacing */}
+        <section className="container mx-auto max-w-7xl px-4 pb-12 sm:px-6">
+          {/* New Tools */}
+          {newTools.length > 0 && (
+            <section className="mb-8">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="flex items-center gap-2 text-lg font-bold sm:text-xl">
+                  <Sparkles className="h-5 w-5 text-green-500" />
+                  New Tools
+                </h2>
+                <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                  Recently Added
                 </span>
               </div>
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {newTools.map((tool) => (
-                <ToolCardWrapper key={tool.id} tool={tool} />
-              ))}
-            </div>
-          </section>
-        )}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {newTools.map((tool) => (
+                  <ToolCardWrapper key={tool.id} tool={tool} />
+                ))}
+              </div>
+            </section>
+          )}
 
-        {/* Popular Tools */}
-        {popularTools.length > 0 && (
-          <section className="mb-16">
-            <div className="mb-8 flex items-center justify-between">
-              <h2 className="text-2xl font-bold">Popular Tools</h2>
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
-                  🔥 Most Used
+          {/* Popular Tools */}
+          {popularTools.length > 0 && (
+            <section className="mb-8">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="flex items-center gap-2 text-lg font-bold sm:text-xl">
+                  <TrendingUp className="h-5 w-5 text-yellow-500" />
+                  Popular Tools
+                </h2>
+                <span className="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+                  Most Used
                 </span>
               </div>
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {popularTools.map((tool) => (
-                <ToolCardWrapper key={tool.id} tool={tool} />
-              ))}
-            </div>
-          </section>
-        )}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {popularTools.map((tool) => (
+                  <ToolCardWrapper key={tool.id} tool={tool} />
+                ))}
+              </div>
+            </section>
+          )}
 
-        {/* All Tools */}
-        {otherTools.length > 0 && (
-          <section className="mb-16">
-            <div className="mb-8 flex items-center justify-between">
-              <h2 className="text-2xl font-bold">All Tools</h2>
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {otherTools.map((tool) => (
-                <ToolCardWrapper key={tool.id} tool={tool} />
+          {/* All Other Tools */}
+          {otherTools.length > 0 && (
+            <section className="mb-8">
+              <div className="mb-4">
+                <h2 className="text-lg font-bold sm:text-xl">
+                  More {category.name} Tools
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {otherTools.map((tool) => (
+                  <ToolCardWrapper key={tool.id} tool={tool} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* FAQ Section - SEO Rich */}
+          <section className="mt-12 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+            <h2 className="mb-4 text-xl font-bold">
+              Frequently Asked Questions about {category.name} Tools
+            </h2>
+            <div className="space-y-3">
+              {seoContent.faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="border-b border-gray-100 pb-3 last:border-0 dark:border-gray-700"
+                >
+                  <button
+                    onClick={() =>
+                      setExpandedFaq(expandedFaq === index ? null : index)
+                    }
+                    className="flex w-full items-start justify-between text-left"
+                  >
+                    <h3 className="pr-4 text-sm font-medium text-gray-900 dark:text-white">
+                      {faq.question}
+                    </h3>
+                    <ChevronRight
+                      className={`h-4 w-4 flex-shrink-0 transition-transform ${
+                        expandedFaq === index ? 'rotate-90' : ''
+                      }`}
+                      style={{ color: categoryColor }}
+                    />
+                  </button>
+                  {expandedFaq === index && (
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
           </section>
-        )}
-      </section>
-    </div>
+
+          {/* Related Categories */}
+          {seoContent.relatedCategories.length > 0 && (
+            <section className="mt-8">
+              <h2 className="mb-3 text-lg font-bold">Related Categories</h2>
+              <div className="flex flex-wrap gap-2">
+                {seoContent.relatedCategories.map((relatedId) => {
+                  const relatedCategory = categories.find(
+                    (c) => c.id === relatedId
+                  );
+                  if (!relatedCategory) return null;
+
+                  return (
+                    <Link
+                      key={relatedId}
+                      href={`/category/${relatedId}`}
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
+                    >
+                      <span>{relatedCategory.icon}</span>
+                      <span>{relatedCategory.name}</span>
+                      <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          {/* Browse All Tools CTA - Moved to be last after Related Categories */}
+          <section className="mb-8 mt-12 text-center">
+            <div className="rounded-xl border border-gray-200 bg-gradient-to-r from-violet-50 to-purple-50 p-8 dark:border-gray-700 dark:from-violet-900/20 dark:to-purple-900/20">
+              <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+                Need More Tools?
+              </h2>
+              <p className="mb-6 text-gray-600 dark:text-gray-400">
+                Explore our complete collection of{' '}
+                {categories.reduce((sum, cat) => sum + cat.tools.length, 0)}+
+                developer tools across all categories.
+              </p>
+              <Link
+                href="/tools"
+                className="inline-flex items-center rounded-lg bg-gradient-to-r from-violet-600 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+              >
+                Browse All Tools
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
+          </section>
+        </section>
+      </div>
+    </>
   );
 }

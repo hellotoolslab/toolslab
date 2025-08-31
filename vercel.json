@@ -52,11 +52,6 @@
   ],
   "redirects": [
     {
-      "source": "/tools",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/json",
       "destination": "/tools/json-formatter",
       "permanent": true

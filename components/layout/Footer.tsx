@@ -115,23 +115,15 @@ export function Footer() {
                   href="/tools"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  All Tools
+                  Tools
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/category/data"
+                  href="/categories"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Data Conversion
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/encoding"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Encoding & Security
+                  Categories
                 </Link>
               </li>
             </ul>
@@ -143,7 +135,23 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/category/text-format"
+                  href="/category/data"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Data & Conversion
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/category/encoding"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Encoding & Security
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/category/text"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Text & Format
@@ -151,23 +159,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/category/generators"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Generators
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/web-design"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Web & Design
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/dev-utilities"
+                  href="/category/dev"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Dev Utilities

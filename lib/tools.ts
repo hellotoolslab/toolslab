@@ -82,7 +82,7 @@ export const tools: Tool[] = [
     keywords: ['base64', 'encode', 'decode', 'encryption', 'security'],
     isPopular: true,
     searchVolume: 9200,
-    label: 'new',
+    label: '',
   },
   {
     id: 'url-encode',

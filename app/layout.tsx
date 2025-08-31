@@ -8,8 +8,7 @@ import { UmamiDebugger } from '@/components/analytics/UmamiDebugger';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { VPNNotification } from '@/components/VPNNotification';
-import { VPNProvider } from '@/components/providers/VPNProvider';
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { cn } from '@/lib/utils';
 
@@ -76,15 +75,6 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code',
   },
-  // Anti-HSTS meta tags for corporate VPN compatibility
-  other: {
-    'http-equiv': 'no-cache',
-    'cache-control': 'no-cache, no-store, must-revalidate',
-    pragma: 'no-cache',
-    expires: '0',
-    'corporate-vpn-compatible': 'true',
-    'hsts-policy': 'disabled',
-  },
 };
 
 export default function RootLayout({
@@ -94,21 +84,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Anti-HSTS meta tags for corporate VPN compatibility */}
-        <meta
-          httpEquiv="Cache-Control"
-          content="no-cache, no-store, must-revalidate"
-        />
-        <meta httpEquiv="Pragma" content="no-cache" />
-        <meta httpEquiv="Expires" content="0" />
-        <meta name="corporate-vpn-compatible" content="true" />
-        <meta name="hsts-policy" content="disabled" />
-        <meta name="vpn-friendly" content="true" />
-        {process.env.NEXT_PUBLIC_HSTS_DISABLED === 'true' && (
-          <meta name="hsts-disabled" content="true" />
-        )}
-      </head>
+      <head></head>
       <body
         className={cn(
           inter.className,
@@ -117,29 +93,14 @@ export default function RootLayout({
       >
         <UmamiProvider>
           <ThemeProvider>
-            <VPNProvider
-              enableAutoCheck={
-                process.env.NODE_ENV === 'development' ||
-                process.env.NEXT_PUBLIC_VPN_AUTO_CHECK_PRODUCTION === 'true'
-              }
-              checkInterval={
-                process.env.NODE_ENV === 'development' ? 300000 : 3600000
-              }
-              enableHealthCheck={
-                process.env.NODE_ENV === 'development' ||
-                process.env.NEXT_PUBLIC_VPN_AUTO_CHECK_PRODUCTION === 'true'
-              }
-              showDebugInfo={process.env.NODE_ENV === 'development'}
-            >
-              <div className="relative flex min-h-screen flex-col">
-                <VPNNotification />
-                <Header />
-                <main className="flex-1">{children}</main>
-                <Footer />
-              </div>
-              <ToastProvider />
-              <UmamiDebugger />
-            </VPNProvider>
+            <ScrollToTop />
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+            <ToastProvider />
+            <UmamiDebugger />
           </ThemeProvider>
         </UmamiProvider>
         <SpeedInsights />
