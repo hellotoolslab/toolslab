@@ -58,19 +58,40 @@ import { BaseToolProps } from '@/lib/types/tools';
 interface CrontabBuilderProps extends BaseToolProps {}
 
 const TIMEZONE_OPTIONS = [
-  { value: 'UTC', label: 'UTC' },
-  { value: 'America/New_York', label: 'Eastern Time' },
-  { value: 'America/Chicago', label: 'Central Time' },
-  { value: 'America/Denver', label: 'Mountain Time' },
-  { value: 'America/Los_Angeles', label: 'Pacific Time' },
-  { value: 'Europe/London', label: 'London' },
-  { value: 'Europe/Paris', label: 'Paris' },
-  { value: 'Europe/Berlin', label: 'Berlin' },
-  { value: 'Europe/Rome', label: 'Rome' },
-  { value: 'Asia/Tokyo', label: 'Tokyo' },
-  { value: 'Asia/Shanghai', label: 'Shanghai' },
-  { value: 'Asia/Kolkata', label: 'India' },
-  { value: 'Australia/Sydney', label: 'Sydney' },
+  { value: 'UTC', label: 'UTC (Coordinated Universal Time)' },
+  // USA Timezones
+  { value: 'America/New_York', label: 'US Eastern Time (ET)' },
+  { value: 'America/Chicago', label: 'US Central Time (CT)' },
+  { value: 'America/Denver', label: 'US Mountain Time (MT)' },
+  { value: 'America/Los_Angeles', label: 'US Pacific Time (PT)' },
+  { value: 'America/Phoenix', label: 'US Arizona Time (MST)' },
+  { value: 'America/Anchorage', label: 'US Alaska Time (AKST)' },
+  { value: 'Pacific/Honolulu', label: 'US Hawaii Time (HST)' },
+  // Europe
+  { value: 'Europe/London', label: 'London (GMT/BST)' },
+  { value: 'Europe/Paris', label: 'Paris (CET/CEST)' },
+  { value: 'Europe/Berlin', label: 'Berlin (CET/CEST)' },
+  { value: 'Europe/Rome', label: 'Rome (CET/CEST)' },
+  { value: 'Europe/Madrid', label: 'Madrid (CET/CEST)' },
+  { value: 'Europe/Amsterdam', label: 'Amsterdam (CET/CEST)' },
+  { value: 'Europe/Moscow', label: 'Moscow (MSK)' },
+  // Asia
+  { value: 'Asia/Tokyo', label: 'Tokyo (JST)' },
+  { value: 'Asia/Shanghai', label: 'Shanghai/Beijing (CST)' },
+  { value: 'Asia/Hong_Kong', label: 'Hong Kong (HKT)' },
+  { value: 'Asia/Singapore', label: 'Singapore (SGT)' },
+  { value: 'Asia/Kolkata', label: 'India/Mumbai (IST)' },
+  { value: 'Asia/Dubai', label: 'Dubai (GST)' },
+  // Oceania
+  { value: 'Australia/Sydney', label: 'Sydney (AEDT/AEST)' },
+  { value: 'Australia/Melbourne', label: 'Melbourne (AEDT/AEST)' },
+  { value: 'Pacific/Auckland', label: 'Auckland (NZDT/NZST)' },
+  // Americas (other)
+  { value: 'America/Toronto', label: 'Toronto (ET)' },
+  { value: 'America/Vancouver', label: 'Vancouver (PT)' },
+  { value: 'America/Mexico_City', label: 'Mexico City (CST)' },
+  { value: 'America/Sao_Paulo', label: 'São Paulo (BRT)' },
+  { value: 'America/Buenos_Aires', label: 'Buenos Aires (ART)' },
 ];
 
 // Get user's timezone for dynamic addition to options
@@ -129,6 +150,7 @@ export default function CrontabBuilder({
     }
   });
   const [activeTab, setActiveTab] = useState('parser');
+  const [executionsLimit, setExecutionsLimit] = useState(3);
 
   // Store hooks
   const {
@@ -436,10 +458,10 @@ export default function CrontabBuilder({
                   value={selectedTimezone}
                   onValueChange={setSelectedTimezone}
                 >
-                  <SelectTrigger className="w-40">
+                  <SelectTrigger className="w-64">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="max-h-[400px]">
                     {createTimezoneOptions().map((tz) => (
                       <SelectItem key={tz.value} value={tz.value}>
                         {tz.label}
@@ -610,15 +632,42 @@ export default function CrontabBuilder({
                 {/* Next Executions */}
                 <Card>
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Calendar className="h-5 w-5" />
-                      Next Executions ({selectedTimezone})
-                    </CardTitle>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="flex items-center gap-2">
+                        <Calendar className="h-5 w-5" />
+                        Next Executions ({selectedTimezone})
+                      </CardTitle>
+                      <div className="flex items-center gap-2">
+                        <Label
+                          htmlFor="executions-limit"
+                          className="text-sm font-normal"
+                        >
+                          Show:
+                        </Label>
+                        <Select
+                          value={executionsLimit.toString()}
+                          onValueChange={(value) =>
+                            setExecutionsLimit(parseInt(value))
+                          }
+                        >
+                          <SelectTrigger id="executions-limit" className="w-20">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                              <SelectItem key={num} value={num.toString()}>
+                                {num}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
                       {parseResult.nextExecutions
-                        .slice(0, 3)
+                        .slice(0, executionsLimit)
                         .map((execution, idx) => (
                           <div
                             key={idx}
@@ -643,6 +692,13 @@ export default function CrontabBuilder({
                             </Button>
                           </div>
                         ))}
+                      {parseResult.nextExecutions.length > executionsLimit && (
+                        <div className="py-2 text-center text-sm text-gray-500 dark:text-gray-400">
+                          ... and{' '}
+                          {parseResult.nextExecutions.length - executionsLimit}{' '}
+                          more executions
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -1057,24 +1113,28 @@ export default function CrontabBuilder({
                     {presets.map((preset) => (
                       <div
                         key={preset.expression}
-                        className={`cursor-pointer rounded border p-3 transition-colors hover:bg-gray-50 ${
+                        className={`cursor-pointer rounded-lg border p-4 transition-all hover:bg-gray-50 dark:hover:bg-gray-800 ${
                           selectedPreset === preset.expression
-                            ? 'border-blue-500 bg-blue-50'
-                            : 'border-gray-200'
+                            ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/20'
+                            : 'border-gray-200 dark:border-gray-700'
                         }`}
                         onClick={() => handlePresetSelect(preset)}
                       >
-                        <div className="space-y-2">
-                          <div className="flex items-center justify-between">
-                            <h4 className="font-medium">{preset.name}</h4>
+                        <div className="space-y-3">
+                          <div className="flex flex-col space-y-2">
+                            <div className="flex items-start justify-between gap-2">
+                              <h4 className="font-medium text-gray-900 dark:text-white">
+                                {preset.name}
+                              </h4>
+                            </div>
                             <Badge
-                              variant="outline"
-                              className="font-mono text-xs"
+                              variant="secondary"
+                              className="inline-flex w-fit whitespace-nowrap font-mono text-xs"
                             >
                               {preset.expression}
                             </Badge>
                           </div>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
                             {preset.description}
                           </p>
                         </div>
