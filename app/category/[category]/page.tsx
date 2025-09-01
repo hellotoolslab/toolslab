@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${seoContent.h1Title} - ToolsLab`,
       description: seoContent.metaDescription,
       type: 'website',
-      url: `https://octotools.org/category/${params.category}`,
+      url: `https://toolslab.dev/category/${params.category}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: seoContent.metaDescription,
     },
     alternates: {
-      canonical: `https://octotools.org/category/${params.category}`,
+      canonical: `https://toolslab.dev/category/${params.category}`,
     },
   };
 }
