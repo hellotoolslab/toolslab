@@ -1,8 +1,8 @@
 {
-  "buildCommand": "rm -rf .next .vercel/output node_modules/.cache && npm run build",
+  "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "npm install --force",
+  "installCommand": "npm ci",
   "devCommand": "npm run dev",
   "regions": ["iad1"],
   "env": {
