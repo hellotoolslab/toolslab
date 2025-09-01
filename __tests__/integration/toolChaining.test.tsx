@@ -284,7 +284,7 @@ describe('Tool Chaining Integration', () => {
       });
 
       // Simulate page reload by checking localStorage
-      const persistedState = localStorage.getItem('octotools-store');
+      const persistedState = localStorage.getItem('toolslab-store');
       expect(persistedState).toBeTruthy();
 
       const parsed = JSON.parse(persistedState!);
