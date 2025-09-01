@@ -1,9 +1,11 @@
 import { Metadata } from 'next';
-import { AboutHero } from '@/components/about/AboutHero';
-import { ManifestoSection } from '@/components/about/ManifestoSection';
-import { StorySection } from '@/components/about/StorySection';
-import { CommitmentSection } from '@/components/about/CommitmentSection';
-import { SupportSection } from '@/components/about/SupportSection';
+import {
+  AboutHero,
+  ManifestoSection,
+  StorySection,
+  CommitmentSection,
+  SupportSection,
+} from '@/components/about';
 
 export const metadata: Metadata = {
   title: 'About ToolsLab - No BS Developer Tools | Why We Exist',
