@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description:
       'Complete collection of professional tools for developers, data analysts, and system administrators. 20+ tools, all free and privacy-first.',
     type: 'website',
-    url: 'https://octotools.org/tools',
+    url: 'https://toolslab.dev/tools',
   },
   twitter: {
     card: 'summary_large_image',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       'Free online developer tools for JSON, encoding, generators, and more. All browser-based with zero data transmission.',
   },
   alternates: {
-    canonical: 'https://octotools.org/tools',
+    canonical: 'https://toolslab.dev/tools',
   },
 };
 

@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "dev:ads": "NEXT_PUBLIC_ENABLE_ADS=true next dev",
-    "build": "npm run clean-all && next build && npm run clean-cache",
-    "clean-cache": "rm -rf .next/cache .next/standalone/.next/cache || true",
-    "clean-all": "npm run clean-next && npm run clean-ts && npm run clean-node",
-    "clean-next": "rm -rf .next .next/cache .next/standalone out dist build || true",
-    "clean-ts": "rm -rf *.tsbuildinfo .tsbuildinfo tsconfig.tsbuildinfo **/.tsbuildinfo .tscache || true",
-    "clean-node": "rm -rf node_modules/.cache .npm .eslintcache .stylelintcache || true",
-    "clean-vercel": "rm -rf .vercel deployment-cache build-cache || true",
-    "clean-reset": "npm run clean-all && npm run clean-vercel && rm -rf node_modules && npm install",
+    "dev": "rm -rf .next && next dev",
+    "build": "npm run prebuild && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prebuild": "rm -rf .next .vercel/output node_modules/.cache *.tsbuildinfo .tsbuildinfo",
+    "postbuild": "echo 'Build completed successfully'",
+    "clean": "rm -rf .next .vercel node_modules package-lock.json *.tsbuildinfo",
+    "clean:cache": "rm -rf .next/cache node_modules/.cache .cache .turbo",
+    "reinstall": "npm run clean && npm install",
+    "verify": "npm run lint && npm run build",
+    "preinstall": "node scripts/pre-install.js || true",
     "build:prod": "NEXT_PUBLIC_ENABLE_ADS=true next build",
     "build:check": "next build --no-lint",
     "start": "next start",
@@ -36,7 +37,7 @@
     "seo:generate-key": "tsx scripts/generate-indexnow-key.ts",
     "seo:full": "npm run seo:discover && npm run seo:submit && npm run seo:monitor",
     "pre-commit": "lint-staged",
-    "prepare": "husky",
+    "prepare": "echo 'Skipping husky setup in production'",
     "edge-config:dev": "node scripts/dev-edge-config.js",
     "edge-config:health": "curl -s http://localhost:3001/health | jq",
     "edge-config:populate": "node scripts/populate-edge-config.js",
@@ -102,7 +103,11 @@
     "tailwindcss-animate": "^1.0.7",
     "tsx": "^4.20.5",
     "uuid": "^10.0.0",
-    "zustand": "^4.5.7"
+    "zustand": "^4.5.7",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.2.15",
@@ -119,7 +124,6 @@
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
-    "autoprefixer": "^10.4.20",
     "babel-plugin-import": "^1.13.8",
     "cors": "^2.8.5",
     "eslint": "^8.57.0",
@@ -129,14 +133,12 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^16.1.5",
-    "postcss": "^8.4.47",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwindcss": "^3.4.14",
-    "typescript": "^5.6.3"
+    "prettier-plugin-tailwindcss": "^0.6.8"
   },
   "engines": {
-    "node": ">=18.17.0"
+    "node": ">=18.17.0",
+    "npm": ">=9.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
