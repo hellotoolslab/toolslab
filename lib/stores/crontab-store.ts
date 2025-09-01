@@ -43,7 +43,7 @@ interface CrontabStore {
 
   // Settings
   settings: {
-    defaultTimezone: string;
+    selectedTimezone: string;
     maxHistoryItems: number;
     autoSaveToHistory: boolean;
     showNextExecutions: number;
@@ -170,7 +170,10 @@ export const useCrontabStore = create<CrontabStore>()(
 
       // Settings
       settings: {
-        defaultTimezone: 'UTC',
+        selectedTimezone:
+          typeof window !== 'undefined'
+            ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
+            : 'UTC',
         maxHistoryItems: MAX_HISTORY_ITEMS,
         autoSaveToHistory: true,
         showNextExecutions: 10,
@@ -212,7 +215,7 @@ export const useCrontabStore = create<CrontabStore>()(
         const mostUsedTimezone = Object.entries(timezones).reduce(
           (most, [tz, count]) =>
             count > most.count ? { timezone: tz, count } : most,
-          { timezone: state.settings.defaultTimezone, count: 0 }
+          { timezone: state.settings.selectedTimezone, count: 0 }
         ).timezone;
 
         return {
@@ -238,10 +241,18 @@ export const useCrontabStore = create<CrontabStore>()(
         // Migration logic for future versions
         if (version === 0) {
           // Migrate from v0 to v1
+          const userTimezone =
+            typeof window !== 'undefined'
+              ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
+              : 'UTC';
+
           return {
             ...persistedState,
             settings: {
-              defaultTimezone: 'UTC',
+              selectedTimezone:
+                persistedState.settings?.defaultTimezone ||
+                persistedState.settings?.selectedTimezone ||
+                userTimezone,
               maxHistoryItems: MAX_HISTORY_ITEMS,
               autoSaveToHistory: true,
               showNextExecutions: 10,
