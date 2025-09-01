@@ -38,6 +38,7 @@ import {
   Plus,
   Import,
   FileDown,
+  Search,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import {
@@ -141,16 +142,9 @@ export default function CrontabBuilder({
     initialInput || '*/15 0 1,15 * 1-5'
   );
   const [parseResult, setParseResult] = useState<CronParseResult | null>(null);
-  const [selectedTimezone, setSelectedTimezone] = useState(() => {
-    // Auto-detect user's timezone, fallback to UTC
-    try {
-      return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    } catch {
-      return 'UTC';
-    }
-  });
   const [activeTab, setActiveTab] = useState('parser');
   const [executionsLimit, setExecutionsLimit] = useState(3);
+  const [favoritesSearchQuery, setFavoritesSearchQuery] = useState('');
 
   // Store hooks
   const {
@@ -164,6 +158,16 @@ export default function CrontabBuilder({
     settings,
     updateSettings,
   } = useCrontabStore();
+
+  // Use timezone from store, with fallback to browser timezone
+  const [selectedTimezone, setSelectedTimezone] = useState(() => {
+    return (
+      settings.selectedTimezone ||
+      (typeof window !== 'undefined'
+        ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
+        : 'UTC')
+    );
+  });
 
   // Builder state
   const [builderFields, setBuilderFields] = useState({
@@ -284,11 +288,16 @@ export default function CrontabBuilder({
   const handleAddToFavorites = () => {
     if (!parseResult) return;
 
-    const name = prompt('Enter a name for this favorite:');
-    if (!name) return;
+    const suggestedName =
+      parseResult.description.length > 50
+        ? parseResult.description.substring(0, 50) + '...'
+        : parseResult.description;
+
+    const name = prompt('Enter a name for this favorite:', suggestedName);
+    if (!name || !name.trim()) return;
 
     addToFavorites({
-      name,
+      name: name.trim(),
       expression: parseResult.expression,
       description: parseResult.description,
       category: 'custom',
@@ -366,6 +375,24 @@ export default function CrontabBuilder({
       );
     }
   }, [parseResult, selectedTimezone, inputExpression, addToHistory]);
+
+  // Save timezone to store when it changes
+  useEffect(() => {
+    if (selectedTimezone && selectedTimezone !== settings.selectedTimezone) {
+      updateSettings({ selectedTimezone });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settings.selectedTimezone, updateSettings]);
+
+  // Load saved timezone on mount
+  useEffect(() => {
+    if (
+      settings.selectedTimezone &&
+      settings.selectedTimezone !== selectedTimezone
+    ) {
+      setSelectedTimezone(settings.selectedTimezone);
+    }
+  }, [settings.selectedTimezone]);
 
   // Remove the automatic update from builder - only update when fields actually change via user interaction
 
@@ -1172,7 +1199,20 @@ export default function CrontabBuilder({
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
+                {favorites.length > 0 && (
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                    <Input
+                      type="text"
+                      placeholder="Search favorites by name..."
+                      value={favoritesSearchQuery}
+                      onChange={(e) => setFavoritesSearchQuery(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+                )}
+
                 {favorites.length === 0 ? (
                   <div className="py-8 text-center text-gray-500">
                     <Heart className="mx-auto mb-4 h-12 w-12 opacity-50" />
@@ -1183,56 +1223,79 @@ export default function CrontabBuilder({
                   </div>
                 ) : (
                   <div className="space-y-3">
-                    {favorites.map((favorite) => (
-                      <div
-                        key={favorite.id}
-                        className="flex items-center justify-between rounded border p-3 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-100"
-                      >
+                    {favorites
+                      .filter((favorite) =>
+                        favorite.name
+                          .toLowerCase()
+                          .includes(favoritesSearchQuery.toLowerCase())
+                      )
+                      .map((favorite) => (
                         <div
-                          className="flex-1 cursor-pointer"
-                          onClick={() =>
-                            handleLoadExpression(favorite.expression)
-                          }
+                          key={favorite.id}
+                          className="flex items-center justify-between rounded border p-3 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-100"
                         >
-                          <div className="space-y-1">
-                            <div className="flex items-center gap-2">
-                              <h4 className="font-medium">{favorite.name}</h4>
-                              <Badge
-                                variant="outline"
-                                className="font-mono text-xs"
-                              >
-                                {favorite.expression}
-                              </Badge>
+                          <div
+                            className="flex-1 cursor-pointer"
+                            onClick={() =>
+                              handleLoadExpression(favorite.expression)
+                            }
+                          >
+                            <div className="space-y-1">
+                              <div className="flex items-center gap-2">
+                                <h4 className="font-medium">{favorite.name}</h4>
+                                <Badge
+                                  variant="outline"
+                                  className="font-mono text-xs"
+                                >
+                                  {favorite.expression}
+                                </Badge>
+                              </div>
+                              <p className="text-sm text-gray-600">
+                                {favorite.description}
+                              </p>
+                              {favorite.category && (
+                                <Badge variant="secondary" className="text-xs">
+                                  {favorite.category}
+                                </Badge>
+                              )}
                             </div>
-                            <p className="text-sm text-gray-600">
-                              {favorite.description}
-                            </p>
-                            {favorite.category && (
-                              <Badge variant="secondary" className="text-xs">
-                                {favorite.category}
-                              </Badge>
-                            )}
+                          </div>
+                          <div className="flex gap-1">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleCopy(favorite.expression)}
+                            >
+                              <Copy className="h-3 w-3" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeFromFavorites(favorite.id)}
+                              className="text-red-600 hover:text-red-700"
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
                           </div>
                         </div>
-                        <div className="flex gap-1">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleCopy(favorite.expression)}
-                          >
-                            <Copy className="h-3 w-3" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => removeFromFavorites(favorite.id)}
-                            className="text-red-600 hover:text-red-700"
-                          >
-                            <Trash2 className="h-3 w-3" />
-                          </Button>
+                      ))}
+                    {favorites.length > 0 &&
+                      favorites.filter((favorite) =>
+                        favorite.name
+                          .toLowerCase()
+                          .includes(favoritesSearchQuery.toLowerCase())
+                      ).length === 0 && (
+                        <div className="py-8 text-center text-gray-500">
+                          <Search className="mx-auto mb-4 h-12 w-12 opacity-50" />
+                          <p>
+                            No favorites found matching &quot;
+                            {favoritesSearchQuery}&quot;
+                          </p>
+                          <p className="mt-2 text-sm">
+                            Try searching with different keywords
+                          </p>
                         </div>
-                      </div>
-                    ))}
+                      )}
                   </div>
                 )}
               </CardContent>
@@ -1308,11 +1371,22 @@ export default function CrontabBuilder({
                             variant="ghost"
                             size="sm"
                             onClick={() => {
+                              const suggestedName =
+                                item.description.length > 50
+                                  ? item.description.substring(0, 50) + '...'
+                                  : item.description;
+
+                              const name = prompt(
+                                'Enter a name for this favorite:',
+                                suggestedName
+                              );
+                              if (!name || !name.trim()) return;
+
                               addToFavorites({
-                                name: `History: ${item.expression}`,
+                                name: name.trim(),
                                 expression: item.expression,
                                 description: item.description,
-                                category: 'from-history',
+                                category: 'custom',
                               });
                               toast.success('Added to favorites!');
                             }}

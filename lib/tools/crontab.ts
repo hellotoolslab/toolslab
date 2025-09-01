@@ -346,32 +346,71 @@ function validateFieldValue(value: string, type: CronField['type']): boolean {
 
   if (value.includes(',')) {
     // Handle lists (1,3,5)
-    value
-      .split(',')
-      .forEach((v) => extractNumericValues(v.trim(), type, numericValues));
+    const parts = value.split(',');
+    for (const part of parts) {
+      const trimmed = part.trim();
+      if (!trimmed) return false; // Empty part in list
+
+      // Recursively validate each part of the list
+      if (trimmed.includes('-') || trimmed.includes('/')) {
+        if (!validateFieldValue(trimmed, type)) return false;
+      } else {
+        extractNumericValues(trimmed, type, numericValues);
+      }
+    }
   } else if (value.includes('-')) {
     // Handle ranges (1-5)
-    const [start, end] = value.split('-');
-    extractNumericValues(start.trim(), type, numericValues);
-    extractNumericValues(end.trim(), type, numericValues);
+    const parts = value.split('-');
+    if (parts.length !== 2) return false; // Invalid range format
+
+    const [start, end] = parts;
+    const startTrimmed = start.trim();
+    const endTrimmed = end.trim();
+
+    // Both parts of range must be present and valid
+    if (!startTrimmed || !endTrimmed) return false;
+
+    // Check if it's a valid numeric or named range
+    extractNumericValues(startTrimmed, type, numericValues);
+    extractNumericValues(endTrimmed, type, numericValues);
+
+    // If no numeric values were extracted, it's invalid
+    if (numericValues.length !== 2) return false;
+
+    // Ensure start <= end
+    if (numericValues[0] > numericValues[1]) return false;
   } else if (value.includes('/')) {
     // Handle step values (*/5, 2-10/2)
-    const [range, step] = value.split('/');
-    const stepNum = parseInt(step);
+    const parts = value.split('/');
+    if (parts.length !== 2) return false; // Invalid step format
+
+    const [range, step] = parts;
+    const stepTrimmed = step.trim();
+
+    if (!stepTrimmed) return false; // Empty step value
+    const stepNum = parseInt(stepTrimmed);
     if (isNaN(stepNum) || stepNum <= 0) return false;
 
     if (range === '*') {
       return true;
     } else {
-      extractNumericValues(range.trim(), type, numericValues);
+      // Recursively validate the range part
+      if (!validateFieldValue(range.trim(), type)) return false;
     }
   } else {
     // Single value
+    if (!value.trim()) return false; // Empty value
     extractNumericValues(value, type, numericValues);
+
+    // If no numeric value was extracted, it's invalid (unless it's a special char)
+    if (numericValues.length === 0 && !value.match(/^[LW#]$/)) return false;
   }
 
   // Check if all numeric values are within range
-  return numericValues.every((num) => num >= config.min && num <= config.max);
+  return (
+    numericValues.length === 0 ||
+    numericValues.every((num) => num >= config.min && num <= config.max)
+  );
 }
 
 /**
