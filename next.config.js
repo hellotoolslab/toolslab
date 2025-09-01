@@ -47,6 +47,11 @@ const nextConfig = {
       config.devtool = false;
     }
 
+    // Ensure proper module resolution for Vercel
+    config.resolve = config.resolve || {};
+    config.resolve.alias = config.resolve.alias || {};
+    config.resolve.alias['@'] = require('path').resolve(__dirname);
+
     return config;
   },
 
