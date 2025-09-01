@@ -3,7 +3,7 @@
  * Defines the complete schema for tool configuration management
  */
 
-export type ToolLabel = 'popular' | 'new' | 'coming-soon';
+export type ToolLabel = 'popular' | 'new' | 'coming-soon' | 'test';
 
 export interface ToolFlags {
   /** Show "NEW" badge on tool card */
