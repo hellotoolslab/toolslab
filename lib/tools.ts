@@ -9,7 +9,7 @@ export interface Tool {
   isPopular?: boolean;
   isNew?: boolean;
   searchVolume: number;
-  label?: 'popular' | 'new' | 'coming-soon' | ''; // Tool label for badges
+  label?: 'popular' | 'new' | 'coming-soon' | 'test' | ''; // Tool label for badges
 }
 
 export interface Category {
@@ -284,7 +284,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 5500,
-    label: 'new',
+    label: 'test',
   },
 ];
 

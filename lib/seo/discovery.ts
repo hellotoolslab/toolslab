@@ -443,7 +443,6 @@ export class ToolDiscovery {
       'contact',
       'blog',
       'docs',
-      'api',
     ];
 
     for (const page of commonPages) {

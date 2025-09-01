@@ -41,7 +41,7 @@ export function ToolCard({
         <div className="group block h-full cursor-not-allowed">
           <div
             className={cn(
-              'relative flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all duration-200',
+              'relative flex h-full flex-col rounded-xl border shadow-sm transition-all duration-200',
               'border-gray-300 bg-gray-50 opacity-60 dark:border-gray-700 dark:bg-gray-800',
               className
             )}
@@ -56,7 +56,7 @@ export function ToolCard({
       <Link href={tool.route} className="group block h-full">
         <div
           className={cn(
-            'relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg dark:border-gray-800 dark:bg-gray-900',
+            'relative flex h-full flex-col rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg dark:border-gray-800 dark:bg-gray-900',
             className
           )}
         >
@@ -70,7 +70,7 @@ export function ToolCard({
     <CardWrapper>
       {/* Category color border top */}
       <div
-        className="absolute left-0 right-0 top-0 h-1 opacity-80"
+        className="absolute left-0 right-0 top-0 h-1 rounded-t-xl opacity-80"
         style={{
           background: `linear-gradient(90deg, ${getCategoryColor(tool.categories[0])}, transparent)`,
         }}
@@ -105,7 +105,7 @@ export function ToolCard({
 
           {/* Label - Adjusted positioning */}
           {labelInfo.hasLabel && (
-            <div className="mt-0.5 flex-shrink-0">
+            <div className="relative z-50 mt-0.5 flex-shrink-0">
               {getLabelComponent(toolLabel, 'xs')}
             </div>
           )}
