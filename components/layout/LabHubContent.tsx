@@ -17,6 +17,7 @@ import {
   Heart,
   Shield,
   Zap,
+  Bookmark,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useToolStore } from '@/lib/store/toolStore';
@@ -84,7 +85,7 @@ function CategorySection({ categoryId }: { categoryId: string }) {
           exit={{ height: 0 }}
           className="border-t border-gray-200 dark:border-gray-700"
         >
-          <div className="grid grid-cols-1 gap-4 p-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 lg:grid-cols-3">
             {categoryTools.map((toolSlug) => {
               const tool = TOOLS_CONFIG.find((t) => t.id === toolSlug);
               if (!tool) return null;
@@ -137,7 +138,7 @@ function LabToolCard({
     }
 
     return (
-      <div className="group relative rounded-xl border border-gray-200 bg-white p-5 shadow-md transition-all hover:-translate-y-1 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800">
+      <div className="group relative rounded-xl border border-gray-200 bg-white p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
         <Link href={tool.route || `/tools/${tool.id}`} className="block">
           {children}
         </Link>
@@ -147,22 +148,22 @@ function LabToolCard({
 
   return (
     <CardContent>
-      <div className="mb-4 flex items-start gap-3">
-        <div className="text-2xl">{tool.icon}</div>
+      <div className="mb-3 flex items-start gap-3">
+        <div className="text-xl">{tool.icon}</div>
         <div className="min-w-0 flex-1">
           <h4
             className={cn(
-              'truncate font-semibold transition-colors',
+              'truncate text-base font-semibold transition-colors',
               isComingSoon
                 ? 'text-gray-500 dark:text-gray-500'
-                : 'group-hover:text-purple-600 dark:group-hover:text-purple-400'
+                : 'text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400'
             )}
           >
             {tool.name}
           </h4>
           <p
             className={cn(
-              'line-clamp-2 text-sm leading-relaxed',
+              'mt-1 line-clamp-2 text-xs leading-relaxed',
               isComingSoon
                 ? 'text-gray-500 dark:text-gray-500'
                 : 'text-gray-600 dark:text-gray-400'
@@ -182,25 +183,19 @@ function LabToolCard({
         </div>
       )}
 
-      <div className="flex items-center gap-2">
-        <div className="flex flex-1 items-center gap-2">
-          <ExternalLink
-            className={cn(
-              'h-4 w-4',
-              isComingSoon ? 'text-gray-400' : 'text-gray-400'
-            )}
-          />
-          <span
-            className={cn(
-              'text-sm font-medium',
-              isComingSoon
-                ? 'text-gray-500 dark:text-gray-500'
-                : 'text-gray-600 dark:text-gray-400'
-            )}
-          >
-            {isComingSoon ? 'Coming Soon' : 'Open Tool'}
-          </span>
-        </div>
+      <div className="flex items-center justify-between">
+        {!isComingSoon ? (
+          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 text-xs font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl">
+            <ExternalLink className="h-3 w-3" />
+            <span>Open Tool</span>
+            <ArrowRight className="h-3 w-3" />
+          </div>
+        ) : (
+          <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
+            <Clock className="h-3 w-3" />
+            <span>Coming Soon</span>
+          </div>
+        )}
 
         {showRemove && (
           <button
@@ -219,7 +214,7 @@ function LabToolCard({
           {getLabelComponent(toolLabel, 'xs')}
         </div>
       ) : (
-        <div className="absolute right-3 top-3 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 px-2 py-1 text-xs font-medium text-white shadow-lg">
+        <div className="absolute right-3 top-3 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 px-3 py-1 text-xs font-medium text-white shadow-lg backdrop-blur-sm">
           In Lab
         </div>
       )}
@@ -277,7 +272,7 @@ function EnhancedEmptyState() {
             <motion.div
               className="relative mb-12"
               animate={{
-                rotate: [0, -5, 5, 0],
+                rotate: [0, -3, 3, 0],
               }}
               transition={{
                 duration: 4,
@@ -285,7 +280,11 @@ function EnhancedEmptyState() {
                 ease: 'easeInOut',
               }}
             >
-              <div className="mb-6 text-9xl">🧪</div>
+              <div className="mb-6 flex justify-center">
+                <div className="rounded-full bg-gradient-to-br from-purple-100 to-violet-100 p-8 dark:from-purple-900/30 dark:to-violet-900/30">
+                  🧪
+                </div>
+              </div>
 
               {/* Floating particles */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -341,15 +340,16 @@ function EnhancedEmptyState() {
                 href="/tools"
                 className={cn(
                   'inline-flex items-center gap-2 rounded-full px-8 py-4',
-                  'bg-gradient-to-r from-purple-600 to-violet-600',
+                  'bg-gradient-to-r from-purple-600 to-pink-600',
                   'text-lg font-semibold text-white',
-                  'hover:from-purple-700 hover:to-violet-700',
+                  'hover:from-purple-700 hover:to-pink-700',
                   'transform transition-all hover:scale-105',
                   'shadow-lg hover:shadow-xl'
                 )}
               >
                 <Search className="h-5 w-5" />
                 Explore All Tools
+                <ArrowRight className="h-5 w-5" />
               </Link>
 
               <Link
@@ -506,12 +506,12 @@ export default function LabHubContent() {
           <div className="absolute -right-40 -top-40 h-80 w-80 rounded-full bg-gradient-to-br from-white/20 to-white/5 blur-3xl" />
           <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-gradient-to-br from-white/15 to-white/5 blur-3xl" />
 
-          <div className="relative py-20 lg:py-28">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative py-12 lg:py-16">
+            <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
               <div className="text-center">
                 {/* Breadcrumbs */}
                 <nav
-                  className="mb-8 flex justify-center"
+                  className="mb-6 flex justify-center"
                   aria-label="Breadcrumb"
                 >
                   <ol className="flex items-center space-x-2 text-sm text-white/70">
@@ -531,7 +531,7 @@ export default function LabHubContent() {
                 </nav>
 
                 {/* Hero Icons */}
-                <div className="mb-8 flex items-center justify-center gap-4">
+                <div className="mb-6 flex items-center justify-center gap-4">
                   <span className="animate-pulse text-6xl lg:text-7xl">🧪</span>
                   <div className="h-12 w-px bg-white/30" />
                   <span
@@ -543,12 +543,17 @@ export default function LabHubContent() {
                 </div>
 
                 {/* Main Heading */}
-                <h1 className="mb-6 text-4xl font-bold text-white lg:text-5xl">
+                <h1 className="mb-4 text-3xl font-bold text-white lg:text-4xl">
                   Your Personal{' '}
-                  <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-white to-gray-100 bg-clip-text font-bold text-transparent">
                     Developer Lab
                   </span>
                 </h1>
+
+                {/* Enhanced Subtitle */}
+                <p className="mx-auto mb-6 max-w-2xl text-lg text-white/90 lg:text-xl">
+                  Streamline your workflow with curated tools and instant access
+                </p>
 
                 {/* Enhanced Tagline */}
                 <p className="mx-auto mb-4 max-w-2xl text-xl text-white/90 lg:text-2xl">
@@ -704,11 +709,11 @@ export default function LabHubContent() {
         <div className="absolute -right-40 -top-40 h-80 w-80 rounded-full bg-gradient-to-br from-white/20 to-white/5 blur-3xl" />
         <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-gradient-to-br from-white/15 to-white/5 blur-3xl" />
 
-        <div className="relative py-16 lg:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative py-10 lg:py-12">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
             <div className="text-center">
               {/* Breadcrumbs */}
-              <nav className="mb-6 flex justify-center" aria-label="Breadcrumb">
+              <nav className="mb-4 flex justify-center" aria-label="Breadcrumb">
                 <ol className="flex items-center space-x-2 text-sm text-white/70">
                   <li>
                     <Link
@@ -726,7 +731,7 @@ export default function LabHubContent() {
               </nav>
 
               {/* Hero Icons */}
-              <div className="mb-6 flex items-center justify-center gap-3">
+              <div className="mb-5 flex items-center justify-center gap-3">
                 <span className="animate-pulse text-5xl lg:text-6xl">🧪</span>
                 <div className="h-10 w-px bg-white/30" />
                 <span
@@ -737,43 +742,38 @@ export default function LabHubContent() {
                 </span>
               </div>
 
-              {/* Main Heading */}
-              <h1 className="mb-4 text-3xl font-bold text-white lg:text-4xl">
-                Your Personal{' '}
-                <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                  Developer Lab
-                </span>
-              </h1>
+              {/* Main Heading with integrated stats */}
+              <div className="mb-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                <h1 className="text-2xl font-bold text-white lg:text-3xl">
+                  Your Personal{' '}
+                  <span className="bg-gradient-to-r from-white to-gray-100 bg-clip-text font-bold text-transparent">
+                    Developer Lab
+                  </span>
+                </h1>
 
-              {/* Dynamic Tagline with Stats */}
-              <p className="mx-auto mb-6 max-w-2xl text-lg text-white/90 lg:text-xl">
-                Quick access to your{' '}
-                <span className="font-semibold text-yellow-300">
-                  {favoriteCount}
-                </span>{' '}
-                favorite development tools
+                {/* Integrated Stats Pill Badge */}
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 backdrop-blur-sm">
+                  <Bookmark className="h-4 w-4 text-white/90" />
+                  <span className="text-sm font-semibold text-white">
+                    {favoriteCount} Tools Saved
+                  </span>
+                </div>
+              </div>
+
+              {/* Dynamic Tagline */}
+              <p className="mx-auto mb-4 max-w-2xl text-base text-white/90 lg:text-lg">
+                Streamline your workflow with curated tools and instant access
               </p>
 
-              {/* Stats Bar */}
-              <div className="mx-auto mb-6 flex max-w-md items-center justify-center gap-6 rounded-full bg-white/10 px-6 py-3 backdrop-blur-sm">
-                <div className="text-center">
-                  <div className="text-lg font-bold text-white">
-                    {favoriteCount}
-                  </div>
-                  <div className="text-xs text-white/70">Tools Saved</div>
-                </div>
-                {lastUsedTool && (
-                  <>
-                    <div className="h-8 w-px bg-white/30" />
-                    <div className="text-center">
-                      <div className="max-w-32 truncate text-sm font-semibold text-white">
-                        {lastUsedTool.name}
-                      </div>
-                      <div className="text-xs text-white/70">Last Used</div>
-                    </div>
-                  </>
-                )}
-              </div>
+              {/* Last Used Info */}
+              {lastUsedTool && (
+                <p className="mb-4 text-sm text-white/70">
+                  Last used:{' '}
+                  <span className="font-medium text-white/90">
+                    {lastUsedTool.name}
+                  </span>
+                </p>
+              )}
 
               {/* Quick Actions */}
               <div className="flex flex-wrap items-center justify-center gap-3">
@@ -798,8 +798,8 @@ export default function LabHubContent() {
       </section>
 
       {/* Enhanced Content */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="space-y-12">
+      <div className="mx-auto max-w-7xl px-6 py-8 sm:px-8 lg:px-12">
+        <div className="space-y-10">
           {/* Favorite Categories */}
           {validFavoriteCategories.length > 0 && (
             <motion.section
@@ -836,13 +836,28 @@ export default function LabHubContent() {
                   {standaloneFavoriteTools.length}
                 </span>
               </h2>
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div
+                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
+                style={{
+                  maxWidth: '1200px',
+                  margin: '0 auto',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                }}
+              >
                 {standaloneFavoriteTools.map((toolSlug) => {
                   const tool = TOOLS_CONFIG.find((t) => t.id === toolSlug);
                   if (!tool) return null;
 
                   return (
-                    <LabToolCard key={toolSlug} tool={tool} showRemove={true} />
+                    <motion.div
+                      key={toolSlug}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mx-auto w-full max-w-sm"
+                    >
+                      <LabToolCard tool={tool} showRemove={true} />
+                    </motion.div>
                   );
                 })}
               </div>
@@ -863,7 +878,14 @@ export default function LabHubContent() {
                   {recentTools.length}
                 </span>
               </h2>
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div
+                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
+                style={{
+                  maxWidth: '1200px',
+                  margin: '0 auto',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                }}
+              >
                 {recentTools.map((operation) => {
                   const tool = TOOLS_CONFIG.find(
                     (t) => t.id === operation.tool
@@ -871,16 +893,64 @@ export default function LabHubContent() {
                   if (!tool) return null;
 
                   return (
-                    <LabToolCard
+                    <motion.div
                       key={operation.id}
-                      tool={tool}
-                      lastUsed={operation.timestamp}
-                    />
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                      className="mx-auto w-full max-w-sm"
+                    >
+                      <LabToolCard tool={tool} lastUsed={operation.timestamp} />
+                    </motion.div>
                   );
                 })}
               </div>
             </motion.section>
           )}
+          {/* Discover More Tools Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-16 text-center"
+          >
+            <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-50 to-violet-50 p-8 dark:border-gray-700 dark:from-purple-950/20 dark:to-violet-950/20">
+              <div className="mb-6 flex justify-center">
+                <div className="rounded-full bg-gradient-to-r from-purple-100 to-violet-100 p-3 dark:from-purple-900/30 dark:to-violet-900/30">
+                  <Search className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+                </div>
+              </div>
+
+              <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+                Need More Tools?
+              </h2>
+
+              <p className="mx-auto mb-8 max-w-2xl text-gray-600 dark:text-gray-400">
+                Explore our complete collection of developer tools across all
+                categories. Find the perfect tool for your workflow and add it
+                to your Lab.
+              </p>
+
+              <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+                <Link
+                  href="/tools"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                >
+                  <Search className="h-4 w-4" />
+                  Browse All Tools
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <Link
+                  href="/categories"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-purple-600 px-6 py-3 font-semibold text-purple-600 transition-all hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-950/20"
+                >
+                  <Grid3X3 className="h-4 w-4" />
+                  Browse Categories
+                </Link>
+              </div>
+            </div>
+          </motion.section>
         </div>
       </div>
     </div>

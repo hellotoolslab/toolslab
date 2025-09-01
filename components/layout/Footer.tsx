@@ -1,84 +1,51 @@
 'use client';
 
 import Link from 'next/link';
-import { Coffee, Heart, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { useUmami } from '@/components/analytics/UmamiProvider';
 
 export function Footer() {
   const { trackConversion, trackSocial, trackEngagement } = useUmami();
-  return (
-    <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 py-8">
-        {/* Buy Me a Coffee - Smaller Section */}
-        <div className="mb-8">
-          <div className="rounded-lg border border-yellow-400/20 bg-gradient-to-r from-yellow-400/5 via-orange-400/5 to-yellow-400/5 p-4 text-center">
-            <div className="mx-auto max-w-xl">
-              <div className="mb-3 flex items-center justify-center gap-2">
-                <Coffee className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
-                <h2 className="text-lg font-semibold">Support ToolsLab</h2>
-                <Coffee className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
-              </div>
-              <p className="mb-4 text-sm text-muted-foreground">
-                If you find ToolsLab helpful, consider supporting our research.
-                Your support keeps the laboratory running!
-              </p>
-              <div className="flex flex-col items-center gap-2">
-                <a
-                  href="https://buymeacoffee.com/toolslab"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackConversion('donation', 'footer-widget')}
-                  className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 px-6 py-2.5 text-sm font-medium text-white shadow-lg transition-all hover:scale-105 hover:from-yellow-600 hover:to-orange-600"
-                >
-                  <Coffee className="h-4 w-4" />
-                  Buy Me a Coffee
-                </a>
-                <Link
-                  href="/about"
-                  onClick={() =>
-                    trackEngagement('why-donate-clicked', { from: 'footer' })
-                  }
-                  className="text-xs text-muted-foreground underline underline-offset-2 transition-colors hover:text-foreground"
-                >
-                  Why donate?
-                </Link>
-              </div>
-              <p className="mt-3 text-xs text-muted-foreground">
-                Every contribution fuels our research! ⚗️ Thank you! 🧪
-              </p>
-            </div>
-          </div>
-        </div>
 
-        {/* Footer Content Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          {/* About Section */}
-          <div>
-            <h3 className="mb-3 font-semibold">About ToolsLab</h3>
-            <p className="mb-4 text-sm text-muted-foreground">
+  return (
+    <footer className="border-slate-200/8 border-t bg-gradient-to-b from-slate-900/40 to-slate-900/60 backdrop-blur-[10px] supports-[backdrop-filter]:bg-slate-900/60">
+      <div className="footer-container mx-auto max-w-[1200px] px-6 py-16 sm:px-8 sm:py-14 lg:px-6 lg:py-16">
+        {/* Main Footer Content - 4 Column Grid */}
+        <div className="footer-content mb-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+          {/* Column 1: About */}
+          <div className="footer-column">
+            <h3 className="relative mb-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-200 after:absolute after:bottom-[-8px] after:left-0 after:h-0.5 after:w-6 after:rounded-full after:bg-gradient-to-r after:from-purple-500 after:to-transparent">
+              About ToolsLab
+            </h3>
+            <p className="mb-3 text-sm leading-relaxed text-slate-400">
               No BS developer tools built by developers, for developers. Fast,
               private, and completely free.
             </p>
-            <div className="mb-4">
-              <Link
-                href="/about"
-                className="text-sm font-medium text-violet-600 transition-colors hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300"
-              >
-                Learn about our mission →
-              </Link>
-            </div>
+            <Link
+              href="/about"
+              onClick={() =>
+                trackEngagement('about-mission-clicked', { from: 'footer' })
+              }
+              className="mission-link inline-flex items-center gap-1 text-sm font-medium text-purple-300 transition-all duration-200 hover:gap-2 hover:text-purple-200"
+            >
+              Learn about our mission
+              <span className="arrow transition-transform duration-200 hover:translate-x-1">
+                →
+              </span>
+            </Link>
+
             {/* Social Links */}
-            <div className="flex gap-3">
+            <div className="social-links mt-4 flex gap-3">
               <a
                 href="https://x.com/tools_lab"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackSocial('x', 'footer-about')}
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 hover:text-white"
                 aria-label="X (Twitter)"
               >
                 <svg
-                  className="h-5 w-5"
+                  className="w-4.5 h-4.5"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -90,22 +57,24 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackSocial('github', 'footer-about')}
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-slate-500 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 hover:text-white"
                 aria-label="GitHub"
               >
-                <Github className="h-5 w-5" />
+                <Github className="w-4.5 h-4.5" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="mb-3 font-semibold">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+          {/* Column 2: Quick Links */}
+          <div className="footer-column">
+            <h3 className="relative mb-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-200 after:absolute after:bottom-[-8px] after:left-0 after:h-0.5 after:w-6 after:rounded-full after:bg-gradient-to-r after:from-purple-500 after:to-transparent">
+              Quick Links
+            </h3>
+            <ul className="space-y-1">
               <li>
                 <Link
                   href="/"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Home
                 </Link>
@@ -113,30 +82,48 @@ export function Footer() {
               <li>
                 <Link
                   href="/tools"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Tools
+                  All Tools
                 </Link>
               </li>
               <li>
                 <Link
                   href="/categories"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Categories
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/lab"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
+                >
+                  Your Lab
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
+                >
+                  About
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Categories */}
-          <div>
-            <h3 className="mb-3 font-semibold">Categories</h3>
-            <ul className="space-y-2 text-sm">
+          {/* Column 3: Categories */}
+          <div className="footer-column">
+            <h3 className="relative mb-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-200 after:absolute after:bottom-[-8px] after:left-0 after:h-0.5 after:w-6 after:rounded-full after:bg-gradient-to-r after:from-purple-500 after:to-transparent">
+              Categories
+            </h3>
+            <ul className="space-y-1">
               <li>
                 <Link
                   href="/category/data"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Data & Conversion
                 </Link>
@@ -144,7 +131,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/category/encoding"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Encoding & Security
                 </Link>
@@ -152,15 +139,23 @@ export function Footer() {
               <li>
                 <Link
                   href="/category/text"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Text & Format
                 </Link>
               </li>
               <li>
                 <Link
+                  href="/category/generators"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
+                >
+                  Generators
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/category/dev"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Dev Utilities
                 </Link>
@@ -168,14 +163,16 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Popular Tools */}
-          <div>
-            <h3 className="mb-3 font-semibold">Popular Tools</h3>
-            <ul className="space-y-2 text-sm">
+          {/* Column 4: Popular Tools */}
+          <div className="footer-column">
+            <h3 className="relative mb-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-200 after:absolute after:bottom-[-8px] after:left-0 after:h-0.5 after:w-6 after:rounded-full after:bg-gradient-to-r after:from-purple-500 after:to-transparent">
+              Popular Tools
+            </h3>
+            <ul className="space-y-1">
               <li>
                 <Link
                   href="/tools/json-formatter"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   JSON Formatter
                 </Link>
@@ -183,7 +180,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/tools/regex-tester"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Regex Tester
                 </Link>
@@ -191,43 +188,146 @@ export function Footer() {
               <li>
                 <Link
                   href="/tools/uuid-generator"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   UUID Generator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/tools/base64-encode"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
+                >
+                  Base64 Encoder
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/tools/hash-generator"
+                  className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
+                >
+                  Hash Generator
                 </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-8 border-t pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-sm text-muted-foreground">
-              © 2025 ToolsLab. Crafted with ⚗️ in our digital laboratory.
+        {/* Divider */}
+        <hr className="border-slate-400/8 my-0 border-t border-none" />
+
+        {/* Bottom Section */}
+        <div className="footer-bottom flex flex-col gap-5 pt-7 sm:flex-row sm:items-center sm:justify-between">
+          <div className="footer-copyright">
+            <p className="m-0 text-sm tracking-[0.01em] text-slate-500">
+              © 2025 ToolsLab. Crafted with{' '}
+              <span className="heart-icon inline-block animate-pulse text-purple-400">
+                💜
+              </span>{' '}
+              in our digital laboratory
             </p>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <Link
-                href="/privacy"
-                className="transition-colors hover:text-foreground"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="transition-colors hover:text-foreground"
-              >
-                Terms of Service
-              </Link>
-              <div className="flex items-center gap-1">
-                <span>Made with</span>
-                <Heart className="h-3 w-3 fill-red-500 text-red-500" />
-                <span>for developers</span>
-              </div>
-            </div>
+          </div>
+
+          <div className="footer-links flex flex-wrap items-center gap-5 text-sm">
+            <Link
+              href="/privacy"
+              className="text-slate-500 transition-colors duration-200 hover:text-white"
+              rel="noopener noreferrer"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-slate-500 transition-colors duration-200 hover:text-white"
+              rel="noopener noreferrer"
+            >
+              Terms of Service
+            </Link>
+            <span className="footer-separator hidden text-slate-600 sm:block">
+              •
+            </span>
+            <a
+              href="https://buymeacoffee.com/toolslab"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackConversion('donation', 'footer-support-link')}
+              className="support-link bg-purple-500/8 group relative inline-flex items-center gap-1.5 rounded-lg border border-purple-500/15 px-4 py-2 text-sm font-medium text-purple-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-500/30 hover:bg-purple-500/15 hover:text-purple-200 hover:shadow-lg hover:shadow-purple-500/10"
+              style={
+                {
+                  /* Tooltip styling with CSS-in-JS style object for complex pseudo-elements */
+                }
+              }
+            >
+              <span className="coffee-icon text-base transition-transform duration-200 group-hover:rotate-[-10deg] group-hover:scale-110">
+                ☕
+              </span>
+              <span>Support us</span>
+              <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 transform whitespace-nowrap rounded-md border border-purple-500/30 bg-slate-800 px-3 py-1.5 text-xs text-white opacity-0 transition-all duration-200 group-hover:-translate-y-1 group-hover:opacity-100">
+                Buy us a coffee
+                <span className="absolute left-1/2 top-full -translate-x-1/2 transform border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-800"></span>
+              </span>
+            </a>
           </div>
         </div>
       </div>
+
+      {/* Mobile responsive styles */}
+      <style jsx>{`
+        @media (max-width: 1024px) {
+          .footer-container {
+            padding: 56px 32px 28px;
+          }
+          .footer-content {
+            gap: 40px;
+            margin-bottom: 48px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .footer-container {
+            padding: 48px 20px 24px;
+          }
+          .footer-content {
+            gap: 32px;
+            margin-bottom: 40px;
+          }
+          .footer-bottom {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 24px;
+          }
+          .footer-links {
+            flex-direction: column;
+            gap: 12px;
+          }
+          .footer-separator {
+            display: none !important;
+          }
+          .support-link {
+            width: 100%;
+            justify-content: center;
+            padding: 12px 24px;
+          }
+        }
+
+        @keyframes heartbeat {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          10% {
+            transform: scale(1.1);
+          }
+          20% {
+            transform: scale(1);
+          }
+        }
+
+        .heart-icon {
+          animation: heartbeat 2s ease-in-out infinite;
+        }
+      `}</style>
     </footer>
   );
 }
