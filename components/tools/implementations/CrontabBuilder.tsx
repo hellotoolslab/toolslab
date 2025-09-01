@@ -39,6 +39,7 @@ import {
   Import,
   FileDown,
   Search,
+  Info,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import {
@@ -734,392 +735,624 @@ export default function CrontabBuilder({
           </TabsContent>
 
           {/* Builder Tab */}
-          <TabsContent value="builder" className="space-y-4">
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
+          <TabsContent value="builder" className="space-y-6">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {/* Minute Field */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm">Minute (0-59)</CardTitle>
+              <Card className="overflow-hidden">
+                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                  <div className="space-y-1">
+                    <CardTitle className="text-base font-semibold">
+                      Minute
+                    </CardTitle>
+                    <p className="text-xs text-muted-foreground">
+                      0-59 or special chars
+                    </p>
+                  </div>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <Input
-                    value={builderFields.minute}
-                    onChange={(e) => {
-                      const newFields = {
-                        ...builderFields,
-                        minute: e.target.value,
-                      };
-                      setBuilderFields(newFields);
-                      // Manually trigger update
-                      isUpdatingFromBuilder.current = true;
-                      const expression = buildCronExpression(newFields);
-                      setInputExpression(expression);
-                      parseExpression(expression);
-                      isUpdatingFromBuilder.current = false;
-                    }}
-                    placeholder="*"
-                    className="font-mono"
-                  />
-                  <div className="space-y-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, minute: '*' };
+                <CardContent className="space-y-3 pt-4">
+                  <div className="relative">
+                    <Input
+                      value={builderFields.minute}
+                      onChange={(e) => {
+                        const newFields = {
+                          ...builderFields,
+                          minute: e.target.value,
+                        };
                         setBuilderFields(newFields);
+                        // Manually trigger update
                         isUpdatingFromBuilder.current = true;
                         const expression = buildCronExpression(newFields);
                         setInputExpression(expression);
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                    >
-                      Every
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, minute: '*/5' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      Every 5
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, minute: '0' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      At 0
-                    </Button>
+                      placeholder="Enter value"
+                      className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      Preset
+                    </p>
+                    <div className="grid grid-cols-1 gap-1.5">
+                      <Button
+                        variant={
+                          builderFields.minute === '*' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, minute: '*' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">*</span>
+                        <span>Every minute</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.minute === '*/5' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, minute: '*/5' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">*/5</span>
+                        <span>Every 5 min</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.minute === '*/15'
+                            ? 'default'
+                            : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = {
+                            ...builderFields,
+                            minute: '*/15',
+                          };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">*/15</span>
+                        <span>Every 15 min</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.minute === '0' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, minute: '0' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">0</span>
+                        <span>At :00</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.minute === '30' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, minute: '30' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">30</span>
+                        <span>At :30</span>
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
               {/* Hour Field */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm">Hour (0-23)</CardTitle>
+              <Card className="overflow-hidden">
+                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                  <div className="space-y-1">
+                    <CardTitle className="text-base font-semibold">
+                      Hour
+                    </CardTitle>
+                    <p className="text-xs text-muted-foreground">
+                      0-23 (24h format)
+                    </p>
+                  </div>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <Input
-                    value={builderFields.hour}
-                    onChange={(e) => {
-                      const newFields = {
-                        ...builderFields,
-                        hour: e.target.value,
-                      };
-                      setBuilderFields(newFields);
-                      // Manually trigger update
-                      isUpdatingFromBuilder.current = true;
-                      const expression = buildCronExpression(newFields);
-                      setInputExpression(expression);
-                      parseExpression(expression);
-                      isUpdatingFromBuilder.current = false;
-                    }}
-                    placeholder="*"
-                    className="font-mono"
-                  />
-                  <div className="space-y-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, hour: '*' };
+                <CardContent className="space-y-3 pt-4">
+                  <div className="relative">
+                    <Input
+                      value={builderFields.hour}
+                      onChange={(e) => {
+                        const newFields = {
+                          ...builderFields,
+                          hour: e.target.value,
+                        };
                         setBuilderFields(newFields);
+                        // Manually trigger update
                         isUpdatingFromBuilder.current = true;
                         const expression = buildCronExpression(newFields);
                         setInputExpression(expression);
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                    >
-                      Every
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, hour: '0' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      Midnight
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, hour: '9-17' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      9-17
-                    </Button>
+                      placeholder="Enter value"
+                      className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      Preset
+                    </p>
+                    <div className="grid grid-cols-1 gap-1.5">
+                      <Button
+                        variant={
+                          builderFields.hour === '*' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, hour: '*' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">*</span>
+                        <span>Every hour</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.hour === '0' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, hour: '0' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">0</span>
+                        <span>Midnight</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.hour === '12' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, hour: '12' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">12</span>
+                        <span>Noon</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.hour === '9-17' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, hour: '9-17' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">9-17</span>
+                        <span>Business hrs</span>
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
               {/* Day Field */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm">Day of Month (1-31)</CardTitle>
+              <Card className="overflow-hidden">
+                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                  <div className="space-y-1">
+                    <CardTitle className="text-base font-semibold">
+                      Day of Month
+                    </CardTitle>
+                    <p className="text-xs text-muted-foreground">
+                      1-31 or L for last day
+                    </p>
+                  </div>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <Input
-                    value={builderFields.day}
-                    onChange={(e) => {
-                      const newFields = {
-                        ...builderFields,
-                        day: e.target.value,
-                      };
-                      setBuilderFields(newFields);
-                      // Manually trigger update
-                      isUpdatingFromBuilder.current = true;
-                      const expression = buildCronExpression(newFields);
-                      setInputExpression(expression);
-                      parseExpression(expression);
-                      isUpdatingFromBuilder.current = false;
-                    }}
-                    placeholder="*"
-                    className="font-mono"
-                  />
-                  <div className="space-y-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, day: '*' };
+                <CardContent className="space-y-3 pt-4">
+                  <div className="relative">
+                    <Input
+                      value={builderFields.day}
+                      onChange={(e) => {
+                        const newFields = {
+                          ...builderFields,
+                          day: e.target.value,
+                        };
                         setBuilderFields(newFields);
+                        // Manually trigger update
                         isUpdatingFromBuilder.current = true;
                         const expression = buildCronExpression(newFields);
                         setInputExpression(expression);
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                    >
-                      Every
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, day: '1' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      1st
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, day: '15' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      15th
-                    </Button>
+                      placeholder="Enter value"
+                      className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      Preset
+                    </p>
+                    <div className="grid grid-cols-1 gap-1.5">
+                      <Button
+                        variant={
+                          builderFields.day === '*' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, day: '*' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">*</span>
+                        <span>Every day</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.day === '1' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, day: '1' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">1</span>
+                        <span>1st of month</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.day === '1,15' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, day: '1,15' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">1,15</span>
+                        <span>Bi-monthly</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.day === 'L' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, day: 'L' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">L</span>
+                        <span>Last day</span>
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
               {/* Month Field */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm">Month (1-12)</CardTitle>
+              <Card className="overflow-hidden">
+                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                  <div className="space-y-1">
+                    <CardTitle className="text-base font-semibold">
+                      Month
+                    </CardTitle>
+                    <p className="text-xs text-muted-foreground">
+                      1-12 (Jan-Dec)
+                    </p>
+                  </div>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <Input
-                    value={builderFields.month}
-                    onChange={(e) => {
-                      const newFields = {
-                        ...builderFields,
-                        month: e.target.value,
-                      };
-                      setBuilderFields(newFields);
-                      // Manually trigger update
-                      isUpdatingFromBuilder.current = true;
-                      const expression = buildCronExpression(newFields);
-                      setInputExpression(expression);
-                      parseExpression(expression);
-                      isUpdatingFromBuilder.current = false;
-                    }}
-                    placeholder="*"
-                    className="font-mono"
-                  />
-                  <div className="space-y-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, month: '*' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      Every
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, month: '1' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      January
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
+                <CardContent className="space-y-3 pt-4">
+                  <div className="relative">
+                    <Input
+                      value={builderFields.month}
+                      onChange={(e) => {
                         const newFields = {
                           ...builderFields,
-                          month: '3,6,9,12',
+                          month: e.target.value,
                         };
                         setBuilderFields(newFields);
+                        // Manually trigger update
                         isUpdatingFromBuilder.current = true;
                         const expression = buildCronExpression(newFields);
                         setInputExpression(expression);
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                    >
-                      Q1,Q2,Q3,Q4
-                    </Button>
+                      placeholder="Enter value"
+                      className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      Preset
+                    </p>
+                    <div className="grid grid-cols-1 gap-1.5">
+                      <Button
+                        variant={
+                          builderFields.month === '*' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, month: '*' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">*</span>
+                        <span>Every month</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.month === '1' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, month: '1' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">1</span>
+                        <span>January only</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.month === '6,12' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, month: '6,12' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">6,12</span>
+                        <span>Semi-annual</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.month === '3,6,9,12'
+                            ? 'default'
+                            : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = {
+                            ...builderFields,
+                            month: '3,6,9,12',
+                          };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">3,6,9,12</span>
+                        <span>Quarterly</span>
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
               {/* Weekday Field */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm">Day of Week (0-7)</CardTitle>
+              <Card className="overflow-hidden">
+                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                  <div className="space-y-1">
+                    <CardTitle className="text-base font-semibold">
+                      Day of Week
+                    </CardTitle>
+                    <p className="text-xs text-muted-foreground">
+                      0-7 (Sun-Sat, 7=Sun)
+                    </p>
+                  </div>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <Input
-                    value={builderFields.weekday}
-                    onChange={(e) => {
-                      const newFields = {
-                        ...builderFields,
-                        weekday: e.target.value,
-                      };
-                      setBuilderFields(newFields);
-                      // Manually trigger update
-                      isUpdatingFromBuilder.current = true;
-                      const expression = buildCronExpression(newFields);
-                      setInputExpression(expression);
-                      parseExpression(expression);
-                      isUpdatingFromBuilder.current = false;
-                    }}
-                    placeholder="*"
-                    className="font-mono"
-                  />
-                  <div className="space-y-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, weekday: '*' };
+                <CardContent className="space-y-3 pt-4">
+                  <div className="relative">
+                    <Input
+                      value={builderFields.weekday}
+                      onChange={(e) => {
+                        const newFields = {
+                          ...builderFields,
+                          weekday: e.target.value,
+                        };
                         setBuilderFields(newFields);
+                        // Manually trigger update
                         isUpdatingFromBuilder.current = true;
                         const expression = buildCronExpression(newFields);
                         setInputExpression(expression);
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                    >
-                      Every day
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, weekday: '1-5' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      Mon-Fri
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        const newFields = { ...builderFields, weekday: '0,6' };
-                        setBuilderFields(newFields);
-                        isUpdatingFromBuilder.current = true;
-                        const expression = buildCronExpression(newFields);
-                        setInputExpression(expression);
-                        parseExpression(expression);
-                        isUpdatingFromBuilder.current = false;
-                      }}
-                    >
-                      Sat-Sun
-                    </Button>
+                      placeholder="Enter value"
+                      className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      Preset
+                    </p>
+                    <div className="grid grid-cols-1 gap-1.5">
+                      <Button
+                        variant={
+                          builderFields.weekday === '*' ? 'default' : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = { ...builderFields, weekday: '*' };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">*</span>
+                        <span>Every day</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.weekday === '1-5'
+                            ? 'default'
+                            : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = {
+                            ...builderFields,
+                            weekday: '1-5',
+                          };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">1-5</span>
+                        <span>Mon-Fri</span>
+                      </Button>
+                      <Button
+                        variant={
+                          builderFields.weekday === '0,6'
+                            ? 'default'
+                            : 'outline'
+                        }
+                        size="sm"
+                        className="h-7 w-full justify-start text-xs"
+                        onClick={() => {
+                          const newFields = {
+                            ...builderFields,
+                            weekday: '0,6',
+                          };
+                          setBuilderFields(newFields);
+                          isUpdatingFromBuilder.current = true;
+                          const expression = buildCronExpression(newFields);
+                          setInputExpression(expression);
+                          parseExpression(expression);
+                          isUpdatingFromBuilder.current = false;
+                        }}
+                      >
+                        <span className="mr-2 font-mono">0,6</span>
+                        <span>Weekend</span>
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
