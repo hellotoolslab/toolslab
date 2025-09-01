@@ -57,11 +57,17 @@ export default function CategoryPageContent({
   const popularTools = tools.filter(
     (tool) => getToolLabelForTool(tool.id) === 'popular'
   );
+  const testTools = tools.filter(
+    (tool) => getToolLabelForTool(tool.id) === 'test'
+  );
   const otherTools = tools.filter((tool) => {
     const label = getToolLabelForTool(tool.id);
     return (
       !label ||
-      (label !== 'new' && label !== 'popular' && label !== 'coming-soon')
+      (label !== 'new' &&
+        label !== 'popular' &&
+        label !== 'coming-soon' &&
+        label !== 'test')
     );
   });
 
@@ -240,6 +246,32 @@ export default function CategoryPageContent({
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {popularTools.map((tool) => (
+                  <ToolCardWrapper key={tool.id} tool={tool} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Test Tools */}
+          {testTools.length > 0 && (
+            <section className="mb-8">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="flex items-center gap-2 text-lg font-bold sm:text-xl">
+                  <svg
+                    className="h-5 w-5 text-blue-500"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" />
+                  </svg>
+                  In Testing
+                </h2>
+                <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                  Beta Phase
+                </span>
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {testTools.map((tool) => (
                   <ToolCardWrapper key={tool.id} tool={tool} />
                 ))}
               </div>
