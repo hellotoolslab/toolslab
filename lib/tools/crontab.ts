@@ -831,11 +831,6 @@ function calculateNextExecutions(
   timezone: string,
   count: number
 ): NextExecution[] {
-  console.log('calculateNextExecutions called with:', {
-    fields,
-    timezone,
-    count,
-  });
   const executions: NextExecution[] = [];
 
   try {
@@ -853,23 +848,8 @@ function calculateNextExecutions(
       !monthField ||
       !weekdayField
     ) {
-      console.log('Missing fields:', {
-        minuteField,
-        hourField,
-        dayField,
-        monthField,
-        weekdayField,
-      });
       return executions;
     }
-
-    console.log('Field values:', {
-      minute: minuteField.value,
-      hour: hourField.value,
-      day: dayField.value,
-      month: monthField.value,
-      weekday: weekdayField.value,
-    });
 
     // Parse field values to get valid values
     const minutes = parseFieldValues(minuteField.value, 0, 59);
@@ -878,93 +858,153 @@ function calculateNextExecutions(
     const months = parseFieldValues(monthField.value, 1, 12);
     const weekdays = parseFieldValues(weekdayField.value, 0, 6);
 
-    console.log('Parsed values:', { minutes, hours, days, months, weekdays });
-
-    // Start from current date
+    // Start from current date, round up to next minute
     const now = new Date();
-    let currentDate = new Date(now);
+    let searchDate = new Date(now);
+    searchDate.setSeconds(0);
+    searchDate.setMilliseconds(0);
+    searchDate.setMinutes(searchDate.getMinutes() + 1);
+
     let foundCount = 0;
+    let currentYear = searchDate.getFullYear();
+    let currentMonth = searchDate.getMonth() + 1;
 
-    // Search for next executions (max 10000 iterations to prevent infinite loop)
-    for (let iter = 0; iter < 10000 && foundCount < count; iter++) {
-      // Check if current date matches cron expression
-      const minute = currentDate.getMinutes();
-      const hour = currentDate.getHours();
-      const day = currentDate.getDate();
-      const month = currentDate.getMonth() + 1; // JS months are 0-based
-      const weekday = currentDate.getDay();
+    // Search through years (limit to prevent infinite loops)
+    for (
+      let yearOffset = 0;
+      yearOffset < 4 && foundCount < count;
+      yearOffset++
+    ) {
+      const targetYear = currentYear + yearOffset;
 
-      const matchesMinute = minutes.length === 0 || minutes.includes(minute);
-      const matchesHour = hours.length === 0 || hours.includes(hour);
-      const matchesDay = days.length === 0 || days.includes(day);
-      const matchesMonth = months.length === 0 || months.includes(month);
-      const matchesWeekday =
-        weekdays.length === 0 || weekdays.includes(weekday);
+      // Get months to check for this year
+      let monthsToCheck =
+        months.length > 0 ? months : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-      // In cron, day and weekday are OR'ed if both are specified
-      const matchesDayOrWeekday =
-        (dayField.value === '*' && weekdayField.value === '*') ||
-        (dayField.value === '*' && matchesWeekday) ||
-        (weekdayField.value === '*' && matchesDay) ||
-        matchesDay ||
-        matchesWeekday;
-
-      // Log first few iterations for debugging
-      if (iter < 5) {
-        console.log(`Iteration ${iter}:`, {
-          currentDate: currentDate.toISOString(),
-          minute,
-          hour,
-          day,
-          month,
-          weekday,
-          matchesMinute,
-          matchesHour,
-          matchesDay,
-          matchesMonth,
-          matchesWeekday,
-          matchesDayOrWeekday,
-          finalMatch:
-            matchesMinute && matchesHour && matchesMonth && matchesDayOrWeekday,
-        });
+      // For current year, start from current month
+      if (yearOffset === 0) {
+        monthsToCheck = monthsToCheck.filter((m) => m >= currentMonth);
       }
 
-      if (matchesMinute && matchesHour && matchesMonth && matchesDayOrWeekday) {
-        // Found a match
-        console.log('Found match at:', currentDate.toISOString());
-        if (currentDate > now) {
-          executions.push({
-            date: new Date(currentDate),
-            humanReadable: currentDate.toLocaleString('en-US', {
-              timeZone: timezone,
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-              second: '2-digit',
-            }),
-            relativeTime: getRelativeTime(currentDate),
+      for (const month of monthsToCheck) {
+        if (foundCount >= count) break;
+
+        // Get days to check for this month
+        let daysToCheck: number[] = [];
+
+        if (days.length > 0) {
+          // Specific days specified
+          daysToCheck = days.filter((day) => {
+            // Check if day exists in this month
+            const testDate = new Date(targetYear, month - 1, day);
+            return testDate.getMonth() === month - 1;
           });
-          foundCount++;
-          console.log(
-            `Added execution ${foundCount}:`,
-            executions[executions.length - 1]
-          );
+        } else if (weekdays.length > 0) {
+          // Only weekdays specified, get all days of the month that match
+          const daysInMonth = new Date(targetYear, month, 0).getDate();
+          for (let day = 1; day <= daysInMonth; day++) {
+            const testDate = new Date(targetYear, month - 1, day);
+            if (weekdays.includes(testDate.getDay())) {
+              daysToCheck.push(day);
+            }
+          }
         } else {
-          console.log('Match found but in the past, skipping');
+          // All days (*)
+          const daysInMonth = new Date(targetYear, month, 0).getDate();
+          daysToCheck = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+        }
+
+        // Filter days for current month if we're in it
+        if (yearOffset === 0 && month === currentMonth) {
+          const currentDay = searchDate.getDate();
+          const currentHour = searchDate.getHours();
+          const currentMinute = searchDate.getMinutes();
+
+          daysToCheck = daysToCheck.filter((day) => {
+            if (day > currentDay) return true;
+            if (day < currentDay) return false;
+
+            // Same day, check time
+            const hoursToCheck =
+              hours.length > 0
+                ? hours
+                : Array.from({ length: 24 }, (_, i) => i);
+            return hoursToCheck.some((hour) => {
+              if (hour > currentHour) return true;
+              if (hour < currentHour) return false;
+
+              // Same hour, check minutes
+              const minutesToCheck =
+                minutes.length > 0 ? minutes : [currentMinute];
+              return minutesToCheck.some((minute) => minute >= currentMinute);
+            });
+          });
+        }
+
+        for (const day of daysToCheck) {
+          if (foundCount >= count) break;
+
+          const hoursToCheck = hours.length > 0 ? hours : [0];
+
+          for (const hour of hoursToCheck) {
+            if (foundCount >= count) break;
+
+            const minutesToCheck = minutes.length > 0 ? minutes : [0];
+
+            for (const minute of minutesToCheck) {
+              if (foundCount >= count) break;
+
+              const candidateDate = new Date(
+                targetYear,
+                month - 1,
+                day,
+                hour,
+                minute,
+                0,
+                0
+              );
+
+              // Skip if this date is in the past
+              if (candidateDate <= now) continue;
+
+              // Check if this date matches the cron expression
+              const candidateWeekday = candidateDate.getDay();
+
+              // Handle day/weekday OR logic
+              let matchesDayOrWeekday = true;
+              if (dayField.value !== '*' && weekdayField.value !== '*') {
+                // Both specified - OR logic
+                matchesDayOrWeekday =
+                  days.includes(day) || weekdays.includes(candidateWeekday);
+              } else if (dayField.value !== '*') {
+                // Only day specified
+                matchesDayOrWeekday = days.includes(day);
+              } else if (weekdayField.value !== '*') {
+                // Only weekday specified
+                matchesDayOrWeekday = weekdays.includes(candidateWeekday);
+              }
+
+              if (matchesDayOrWeekday) {
+                executions.push({
+                  date: new Date(candidateDate),
+                  humanReadable: candidateDate.toLocaleString('en-US', {
+                    timeZone: timezone,
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  }),
+                  relativeTime: getRelativeTime(candidateDate),
+                });
+                foundCount++;
+              }
+            }
+          }
         }
       }
-
-      // Move to next minute
-      currentDate.setMinutes(currentDate.getMinutes() + 1);
-      currentDate.setSeconds(0);
-      currentDate.setMilliseconds(0);
     }
-
-    console.log(
-      `Search completed. Found ${foundCount} executions in ${foundCount < count ? 10000 : 'early exit'} iterations`
-    );
   } catch (error) {
     console.error('Error calculating next executions:', error);
   }
