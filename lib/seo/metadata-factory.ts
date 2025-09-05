@@ -105,7 +105,19 @@ export class MetadataFactory {
       (t) => t.category === categorySlug && t.exists
     );
 
-    const title = `${categoryName} Tools - Free Online Developer Tools | ToolsLab`;
+    // Optimize title length to stay under 70 characters
+    const longTitle = `${categoryName} Tools - Free Online Developer Tools | ToolsLab`;
+    const shortTitle = `${categoryName} Tools - Free Online Tools | ToolsLab`;
+    const baseTitle = `${categoryName} Tools - ToolsLab`;
+
+    let title: string;
+    if (longTitle.length <= 70) {
+      title = longTitle;
+    } else if (shortTitle.length <= 70) {
+      title = shortTitle;
+    } else {
+      title = baseTitle;
+    }
     const description = categoryExists
       ? `Explore our collection of ${categoryTools.length} free ${categoryName.toLowerCase()} tools. No signup required, works offline, completely free.`
       : `Free online ${categoryName.toLowerCase()} tools for developers and professionals. Fast, secure, and browser-based.`;
@@ -224,9 +236,26 @@ export class MetadataFactory {
       `${toolName} - Professional Online Tool | ToolsLab`,
     ];
 
+    // Fallback shorter templates for long tool names
+    const shortTemplates = [
+      `${toolName} - Free Tool | ToolsLab`,
+      `${toolName} Online - Free, No Signup | ToolsLab`,
+      `Free ${toolName} - ToolsLab`,
+      `${toolName} - Pro Tool | ToolsLab`,
+    ];
+
     // Use slug hash to consistently pick same title
     const index = this.hashString(slug) % templates.length;
-    return templates[index];
+    const selectedTemplate = templates[index];
+
+    // If title is too long, use shorter version
+    if (selectedTemplate.length > 70) {
+      return shortTemplates[index].length <= 70
+        ? shortTemplates[index]
+        : `${toolName} - ToolsLab`;
+    }
+
+    return selectedTemplate;
   }
 
   private generateKeywords(
