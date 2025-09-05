@@ -29,10 +29,10 @@ import ToolHowToUse from './ToolHowToUse';
 import ToolHeroSection from './ToolHeroSection';
 
 interface ToolPageClientProps {
-  toolSlug: string;
+  toolId: string;
 }
 
-export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
+export default function ToolPageClient({ toolId }: ToolPageClientProps) {
   const searchParams = useSearchParams();
   const { theme } = useTheme();
   const { trackEngagement, trackToolUse } = useUmami();
@@ -40,7 +40,7 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
   const [isMobile, setIsMobile] = useState(false);
 
   // Tool label system
-  const toolLabel = useToolLabel(toolSlug);
+  const toolLabel = useToolLabel(toolId);
   const { getToolLabelInfo, getLabelComponent } = useToolLabels();
   const labelInfo = getToolLabelInfo(toolLabel);
 
@@ -57,18 +57,18 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
     setUsageCount(Math.floor(Math.random() * 5000) + 1000);
 
     // Track tool page view
-    if (toolSlug) {
+    if (toolId) {
       trackEngagement('tool-page-viewed', {
-        tool: toolSlug,
+        tool: toolId,
         has_initial_input: !!initialInput,
         is_mobile: window.innerWidth < 768,
       });
     }
 
     return () => window.removeEventListener('resize', checkMobile);
-  }, [toolSlug, initialInput, trackEngagement]);
+  }, [toolId, initialInput, trackEngagement]);
 
-  const tool = getToolById(toolSlug);
+  const tool = getToolById(toolId);
 
   if (!tool) {
     return <div>Tool not found</div>;
@@ -101,7 +101,7 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
       typeof navigator !== 'undefined' && 'share' in navigator;
 
     trackEngagement('tool-share-clicked', {
-      tool: toolSlug,
+      tool: toolId,
       method: hasNativeShare ? 'native' : 'clipboard',
     });
 
@@ -113,13 +113,13 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
           url: window.location.href,
         });
         trackEngagement('tool-share-completed', {
-          tool: toolSlug,
+          tool: toolId,
           method: 'native',
         });
       } catch (err) {
         // Share cancelled by user
         trackEngagement('tool-share-cancelled', {
-          tool: toolSlug,
+          tool: toolId,
           method: 'native',
         });
       }
@@ -127,7 +127,7 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
       // Fallback - copy to clipboard
       navigator.clipboard.writeText(window.location.href);
       trackEngagement('tool-share-completed', {
-        tool: toolSlug,
+        tool: toolId,
         method: 'clipboard',
       });
       // Show toast notification
@@ -144,7 +144,7 @@ export default function ToolPageClient({ toolSlug }: ToolPageClientProps) {
     );
 
     // Special case: Add JSON Formatter to Base64 related tools
-    if (toolSlug === 'base64-encode') {
+    if (toolId === 'base64-encode') {
       const jsonFormatter = tools.find((t) => t.id === 'json-formatter');
       if (jsonFormatter && !filteredTools.includes(jsonFormatter)) {
         filteredTools.unshift(jsonFormatter); // Add JSON Formatter at the beginning
