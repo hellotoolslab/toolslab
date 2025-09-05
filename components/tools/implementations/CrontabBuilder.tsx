@@ -739,7 +739,7 @@ export default function CrontabBuilder({
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {/* Minute Field */}
               <Card className="overflow-hidden">
-                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                <CardHeader className="dark:to-gray-850 h-[90px] bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
                   <div className="space-y-1">
                     <CardTitle className="text-base font-semibold">
                       Minute
@@ -749,7 +749,7 @@ export default function CrontabBuilder({
                     </p>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-3 pt-4">
+                <CardContent className="flex h-[290px] flex-col space-y-3 pb-4 pt-4">
                   <div className="relative">
                     <Input
                       value={builderFields.minute}
@@ -771,11 +771,11 @@ export default function CrontabBuilder({
                     />
                   </div>
 
-                  <div className="space-y-1.5">
+                  <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                       Preset
                     </p>
-                    <div className="grid grid-cols-1 gap-1.5">
+                    <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
                         variant={
                           builderFields.minute === '*' ? 'default' : 'outline'
@@ -883,7 +883,7 @@ export default function CrontabBuilder({
 
               {/* Hour Field */}
               <Card className="overflow-hidden">
-                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                <CardHeader className="dark:to-gray-850 h-[90px] bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
                   <div className="space-y-1">
                     <CardTitle className="text-base font-semibold">
                       Hour
@@ -893,7 +893,7 @@ export default function CrontabBuilder({
                     </p>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-3 pt-4">
+                <CardContent className="flex h-[290px] flex-col space-y-3 pb-4 pt-4">
                   <div className="relative">
                     <Input
                       value={builderFields.hour}
@@ -915,11 +915,11 @@ export default function CrontabBuilder({
                     />
                   </div>
 
-                  <div className="space-y-1.5">
+                  <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                       Preset
                     </p>
-                    <div className="grid grid-cols-1 gap-1.5">
+                    <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
                         variant={
                           builderFields.hour === '*' ? 'default' : 'outline'
@@ -1003,7 +1003,7 @@ export default function CrontabBuilder({
 
               {/* Day Field */}
               <Card className="overflow-hidden">
-                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                <CardHeader className="dark:to-gray-850 h-[90px] bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
                   <div className="space-y-1">
                     <CardTitle className="text-base font-semibold">
                       Day of Month
@@ -1013,7 +1013,7 @@ export default function CrontabBuilder({
                     </p>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-3 pt-4">
+                <CardContent className="flex h-[290px] flex-col space-y-3 pb-4 pt-4">
                   <div className="relative">
                     <Input
                       value={builderFields.day}
@@ -1035,11 +1035,11 @@ export default function CrontabBuilder({
                     />
                   </div>
 
-                  <div className="space-y-1.5">
+                  <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                       Preset
                     </p>
-                    <div className="grid grid-cols-1 gap-1.5">
+                    <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
                         variant={
                           builderFields.day === '*' ? 'default' : 'outline'
@@ -1123,7 +1123,7 @@ export default function CrontabBuilder({
 
               {/* Month Field */}
               <Card className="overflow-hidden">
-                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                <CardHeader className="dark:to-gray-850 h-[90px] bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
                   <div className="space-y-1">
                     <CardTitle className="text-base font-semibold">
                       Month
@@ -1133,7 +1133,7 @@ export default function CrontabBuilder({
                     </p>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-3 pt-4">
+                <CardContent className="flex h-[290px] flex-col space-y-3 pb-4 pt-4">
                   <div className="relative">
                     <Input
                       value={builderFields.month}
@@ -1155,11 +1155,11 @@ export default function CrontabBuilder({
                     />
                   </div>
 
-                  <div className="space-y-1.5">
+                  <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                       Preset
                     </p>
-                    <div className="grid grid-cols-1 gap-1.5">
+                    <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
                         variant={
                           builderFields.month === '*' ? 'default' : 'outline'
@@ -1248,7 +1248,7 @@ export default function CrontabBuilder({
 
               {/* Weekday Field */}
               <Card className="overflow-hidden">
-                <CardHeader className="dark:to-gray-850 bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
+                <CardHeader className="dark:to-gray-850 h-[90px] bg-gradient-to-b from-gray-50 to-gray-100/50 pb-3 dark:from-gray-800">
                   <div className="space-y-1">
                     <CardTitle className="text-base font-semibold">
                       Day of Week
@@ -1258,7 +1258,7 @@ export default function CrontabBuilder({
                     </p>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-3 pt-4">
+                <CardContent className="flex h-[290px] flex-col space-y-3 pb-4 pt-4">
                   <div className="relative">
                     <Input
                       value={builderFields.weekday}
@@ -1280,11 +1280,11 @@ export default function CrontabBuilder({
                     />
                   </div>
 
-                  <div className="space-y-1.5">
+                  <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                       Preset
                     </p>
-                    <div className="grid grid-cols-1 gap-1.5">
+                    <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
                         variant={
                           builderFields.weekday === '*' ? 'default' : 'outline'

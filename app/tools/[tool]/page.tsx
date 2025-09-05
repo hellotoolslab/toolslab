@@ -17,6 +17,11 @@ export async function generateMetadata({
   if (!tool) {
     return {
       title: 'Tool Not Found - ToolsLab',
+      description: 'The requested tool was not found.',
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
@@ -26,15 +31,70 @@ export async function generateMetadata({
   );
   const categoryName = primaryCategory?.name || 'Tools';
 
+  // Generate comprehensive keywords
+  const keywords = [
+    tool.name.toLowerCase(),
+    ...tool.keywords,
+    'online tool',
+    'free tool',
+    'developer tool',
+    'web tool',
+    categoryName.toLowerCase(),
+    'toolslab',
+  ];
+
+  // Create SEO-optimized description
+  const seoDescription = `${tool.description}. Use our free online ${tool.name.toLowerCase()} tool. No installation required, works in your browser. Fast, secure, and free.`;
+
   return {
-    title: `${tool.name} - Free Online Tool | ToolsLab`,
-    description: tool.description,
-    keywords: `${tool.name}, ${categoryName}, online tool, free tool, web utility`,
+    title: `${tool.name} - Free Online ${categoryName} Tool | ToolsLab`,
+    description: seoDescription,
+    keywords: keywords.join(', '),
+
     openGraph: {
-      title: `${tool.name} - ToolsLab`,
+      title: `${tool.name} - Free Online Tool | ToolsLab`,
       description: tool.description,
       type: 'website',
+      url: `https://toolslab.dev/tools/${params.tool}`,
+      images: [
+        {
+          url: `/tools/${params.tool}/opengraph-image.png`,
+          width: 1200,
+          height: 630,
+          alt: `${tool.name} - ToolsLab`,
+        },
+      ],
+      siteName: 'ToolsLab',
     },
+
+    twitter: {
+      card: 'summary_large_image',
+      title: `${tool.name} - ToolsLab`,
+      description: tool.description,
+      images: [`/tools/${params.tool}/opengraph-image.png`],
+      creator: '@toolslab',
+    },
+
+    alternates: {
+      canonical: `https://toolslab.dev/tools/${params.tool}`,
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+
+    authors: [{ name: 'ToolsLab' }],
+    creator: 'ToolsLab',
+    publisher: 'ToolsLab',
+    category: 'technology',
   };
 }
 
