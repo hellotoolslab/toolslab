@@ -15,52 +15,61 @@ import { cn } from '@/lib/utils';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://toolslab.dev'),
   title: {
-    default: 'ToolsLab - Your Developer Tools Laboratory',
+    default: 'ToolsLab - Laboratory for Developer Tools',
     template: '%s | ToolsLab',
   },
   description:
-    'Professional developer tools crafted with scientific precision. All tools work offline and deliver laboratory-grade accuracy.',
+    'Your Laboratory for Developer Tools - Experiment, Chain, Optimize. Free online tools for developers including JSON formatter, Base64 encoder, JWT decoder, UUID generator and more.',
   keywords: [
     'developer tools',
+    'online tools',
     'json formatter',
     'base64 encoder',
     'url encoder',
     'jwt decoder',
     'uuid generator',
     'hash generator',
-    'timestamp converter',
-    'online tools',
+    'password generator',
+    'regex tester',
+    'crontab builder',
+    'free tools',
     'web tools',
+    'laboratory',
+    'toolslab',
   ],
   authors: [{ name: 'ToolsLab' }],
   creator: 'ToolsLab',
+  publisher: 'ToolsLab',
+
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://toolslab.dev',
-    title: 'ToolsLab - Your Developer Tools Laboratory',
+    title: 'ToolsLab - Laboratory for Developer Tools',
     description:
-      'Professional developer tools crafted with scientific precision. All tools work offline and deliver laboratory-grade accuracy.',
+      'Your Laboratory for Developer Tools - Experiment, Chain, Optimize. Free online tools for developers.',
     siteName: 'ToolsLab',
+    images: [
+      {
+        url: '/opengraph-image.png', // Next.js generates this automatically
+        width: 1200,
+        height: 630,
+        alt: 'ToolsLab - Laboratory for Developer Tools',
+      },
+    ],
   },
+
   twitter: {
     card: 'summary_large_image',
-    title: 'ToolsLab - Your Developer Tools Laboratory',
+    title: 'ToolsLab - Laboratory for Developer Tools',
     description:
-      'Professional developer tools crafted with scientific precision. All tools work offline and deliver laboratory-grade accuracy.',
+      'Your Laboratory for Developer Tools - Free online tools for developers',
+    creator: '@toolslab', // Replace with actual handle if you have one
+    images: ['/opengraph-image.png'],
   },
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: '32x32' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-  },
-  manifest: '/manifest.json',
+
   robots: {
     index: true,
     follow: true,
@@ -72,9 +81,29 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
+
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
+
+  manifest: '/manifest.json',
+
+  verification: {
+    google: 'your-google-verification-code', // Replace with actual verification code
+  },
+
+  alternates: {
+    canonical: 'https://toolslab.dev',
+  },
+
+  category: 'technology',
 };
 
 export default function RootLayout({
