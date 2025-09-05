@@ -405,3 +405,7 @@ export function getCategoryByTool(tool: Tool): Category | undefined {
     category.tools.some((t) => t.id === tool.id)
   );
 }
+
+export function getAllTools(): Tool[] {
+  return tools;
+}

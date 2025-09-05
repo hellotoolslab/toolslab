@@ -52,7 +52,11 @@
     "local:clear": "node scripts/local-config.js clear-all",
     "edge-config:enable:base64": "node scripts/manage-edge-config.js enable base64-encode",
     "edge-config:disable:base64": "node scripts/manage-edge-config.js disable base64-encode",
-    "local:base64:test": "node scripts/local-config.js test-tool base64-encode"
+    "local:base64:test": "node scripts/local-config.js test-tool base64-encode",
+    "indexnow:submit": "node scripts/indexnow-submit.js",
+    "indexnow:bulk": "node scripts/indexnow-bulk.js",
+    "indexnow:stats": "node scripts/indexnow-stats.js",
+    "indexnow:test": "node scripts/indexnow-test.js"
   },
   "dependencies": {
     "@codemirror/lang-css": "^6.3.0",
