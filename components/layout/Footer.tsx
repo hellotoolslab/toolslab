@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Github } from 'lucide-react';
-import { useUmami } from '@/components/analytics/UmamiProvider';
+import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 
 export function Footer() {
   const { trackConversion, trackSocial, trackEngagement } = useUmami();

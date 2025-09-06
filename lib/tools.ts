@@ -120,6 +120,17 @@ export const tools: Tool[] = [
     searchVolume: 5800,
     label: 'coming-soon',
   },
+  {
+    id: 'base64-to-pdf',
+    name: 'Base64 to PDF',
+    description: 'Convert Base64 encoded data to PDF files and download them',
+    icon: '📄',
+    route: '/tools/base64-to-pdf',
+    categories: ['data'],
+    keywords: ['base64', 'pdf', 'convert', 'download', 'decode', 'file'],
+    searchVolume: 3200,
+    label: 'test',
+  },
 
   // Text & Format Tools
   {
@@ -284,7 +295,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 5500,
-    label: 'test',
+    label: '',
   },
 ];
 

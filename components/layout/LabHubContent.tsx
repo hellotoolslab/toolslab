@@ -26,7 +26,7 @@ import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { cn } from '@/lib/utils';
 import { categories as CATEGORIES, tools as TOOLS_CONFIG } from '@/lib/tools';
 import { labToasts } from '@/lib/utils/toasts';
-import { useUmami } from '@/components/analytics/UmamiProvider';
+import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 

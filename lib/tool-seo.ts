@@ -19,6 +19,13 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Free Base64 encoder and decoder for text, images, and files up to 50MB. Perfect for web developers embedding images in HTML/CSS, API data transmission, and email attachments. Drag-and-drop interface with secure browser-based processing. Download decoded files directly or copy encoded strings to clipboard.',
   },
 
+  'base64-to-pdf': {
+    id: 'base64-to-pdf',
+    tagline: 'Convert Base64 data to PDF files instantly',
+    seoDescription:
+      'Convert Base64 encoded data to PDF files with instant download. Perfect for developers working with document APIs, email attachments, and data processing workflows. Secure browser-based conversion with no server uploads. Validate Base64 input, preview PDF metadata, and download converted files directly to your device.',
+  },
+
   'hash-generator': {
     id: 'hash-generator',
     tagline: 'Generate secure MD5, SHA256 and SHA512 hashes',

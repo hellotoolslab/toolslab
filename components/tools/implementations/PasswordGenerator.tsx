@@ -10,7 +10,7 @@ import {
   AlertTriangle,
   Zap,
 } from 'lucide-react';
-import { useUmami } from '@/components/analytics/UmamiProvider';
+import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { BaseToolProps } from '@/lib/types/tools';
 

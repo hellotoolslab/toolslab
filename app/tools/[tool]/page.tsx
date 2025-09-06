@@ -126,5 +126,5 @@ export default function ToolPage({ params }: ToolPageProps) {
     notFound();
   }
 
-  return <ToolPageClient toolSlug={params.tool} />;
+  return <ToolPageClient toolId={params.tool} />;
 }
