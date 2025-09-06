@@ -5,6 +5,7 @@ import { Suspense, lazy } from 'react';
 // Eager load critical above-the-fold components
 import { HeroSection } from '@/components/home/HeroSection';
 import { CategoryGrid } from '@/components/home/CategoryGrid';
+import { PoweredBy } from '@/components/home/PoweredBy';
 
 // Lazy load below-the-fold components for better performance
 const FeaturedTools = lazy(() =>
@@ -58,6 +59,9 @@ export default function HomePageContent() {
       {/* Above the fold - loaded immediately */}
       <HeroSection />
       <CategoryGrid />
+
+      {/* Powered By section - lightweight, loaded immediately */}
+      <PoweredBy />
 
       {/* Below the fold - lazy loaded */}
       <Suspense fallback={<LoadingPlaceholder />}>
