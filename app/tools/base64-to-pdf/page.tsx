@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 
 export const metadata: Metadata = {
@@ -22,6 +23,18 @@ export const metadata: Metadata = {
   },
 };
 
+function LoadingFallback() {
+  return (
+    <div className="flex h-96 items-center justify-center">
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600" />
+    </div>
+  );
+}
+
 export default function Base64ToPdfPage() {
-  return <ToolPageClient toolId="base64-to-pdf" />;
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <ToolPageClient toolId="base64-to-pdf" />
+    </Suspense>
+  );
 }
