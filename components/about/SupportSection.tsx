@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Coffee, Server, Zap, Shield, Heart, ExternalLink } from 'lucide-react';
-import { useUmami } from '@/components/analytics/UmamiProvider';
+import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import Link from 'next/link';
 
 const supportBenefits = [

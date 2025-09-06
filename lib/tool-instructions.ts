@@ -15,6 +15,73 @@ export interface ToolInstruction {
 }
 
 export const toolInstructions: Record<string, ToolInstruction> = {
+  'base64-to-pdf': {
+    id: 'base64-to-pdf',
+    title: 'How to use Base64 to PDF Converter',
+    steps: [
+      {
+        title: 'Paste Base64 encoded data',
+        description:
+          'Copy and paste your Base64 encoded PDF data into the input text area. The data should start with standard Base64 characters (A-Z, a-z, 0-9, +, /).',
+      },
+      {
+        title: 'Validate the Base64 data',
+        description:
+          'The tool automatically validates your Base64 input and checks if it represents valid PDF data by examining the PDF header signature.',
+      },
+      {
+        title: 'Preview PDF information',
+        description:
+          'View the decoded file size and PDF metadata before downloading. This helps verify you have the correct PDF content.',
+      },
+      {
+        title: 'Download the PDF file',
+        description:
+          'Click the "Download PDF" button to convert and save the PDF file to your device with the filename of your choice.',
+      },
+    ],
+    features: [
+      'Real-time Base64 validation and format checking',
+      'PDF header signature verification for valid PDF files',
+      'File size calculation and preview before download',
+      'Automatic PDF metadata extraction when available',
+      'Custom filename support for downloaded files',
+      'Large Base64 data support (up to 50MB decoded)',
+      'Secure client-side processing with no server uploads',
+      'Error handling for corrupted or invalid data',
+    ],
+    useCases: [
+      'Converting PDF attachments from email APIs',
+      'Processing PDF documents from REST API responses',
+      'Recovering PDF files from database BLOB storage',
+      'Converting embedded PDF data in JSON payloads',
+      'Testing PDF generation in web applications',
+      'Extracting PDF files from Base64 encoded strings',
+      'Document processing workflows and automation',
+      'Debugging PDF encoding/decoding issues',
+    ],
+    proTips: [
+      'Ensure your Base64 data starts with "JVBERi0" for valid PDF files',
+      'Remove any data URL prefixes like "data:application/pdf;base64," before pasting',
+      'Use this tool to verify PDF integrity after Base64 encoding/decoding',
+      'Combine with Base64 encoder tool for complete PDF conversion workflows',
+      'Check file size preview to ensure complete data was pasted',
+      'For large PDFs, consider breaking into smaller chunks if browser crashes',
+    ],
+    troubleshooting: [
+      'Invalid Base64 format: Ensure data contains only valid Base64 characters',
+      'Not a PDF file: Verify the decoded data starts with PDF header (%PDF-)',
+      'File too large: Browser memory limits may prevent very large file processing',
+      'Download fails: Try using a different filename or check browser permissions',
+      'Corrupted PDF: Source Base64 data may be incomplete or corrupted',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+V', description: 'Paste Base64 data into input field' },
+      { keys: 'Ctrl+A', description: 'Select all text in input area' },
+      { keys: 'Ctrl+C', description: 'Copy error messages or file info' },
+    ],
+  },
+
   'json-formatter': {
     id: 'json-formatter',
     title: 'How to use JSON Formatter',
