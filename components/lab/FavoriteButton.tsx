@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { useToolStore } from '@/lib/store/toolStore';
 import { labToasts } from '@/lib/utils/toasts';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useUmami } from '@/components/analytics/UmamiProvider';
+import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { useHydration } from '@/lib/hooks/useHydration';
 
 interface FavoriteButtonProps {

@@ -5,6 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getCompleteConfig } from '@/lib/edge-config/client';
+import { BotDetector } from '@/lib/analytics/botDetection';
 
 // Paths that should be processed by middleware
 const PROCESSED_PATHS = ['/tools/:path*', '/api/tools/:path*', '/'];
@@ -188,6 +189,22 @@ export async function middleware(request: NextRequest) {
     pathname.endsWith('.ico')
   ) {
     return NextResponse.next();
+  }
+
+  // Bot Detection for Analytics
+  const userAgent = request.headers.get('user-agent') || '';
+  const referer = request.headers.get('referer') || '';
+  const botDetector = new BotDetector();
+  const botDetection = botDetector.detectBot(userAgent, referer, request.url);
+
+  if (botDetection.isBot) {
+    // Return minimal response for bots to save resources
+    const response = NextResponse.next();
+    response.headers.set('X-Bot-Detected', 'true');
+    response.headers.set('X-Bot-Reason', botDetection.reason || 'unknown');
+    response.headers.set('Cache-Control', 'public, max-age=86400');
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return response;
   }
 
   try {

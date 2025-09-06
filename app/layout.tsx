@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
-import { UmamiProvider } from '@/components/analytics/UmamiProvider';
+import { OptimizedUmamiProvider } from '@/components/analytics/OptimizedUmamiProvider';
 import { UmamiDebugger } from '@/components/analytics/UmamiDebugger';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import { Header } from '@/components/layout/Header';
@@ -123,7 +123,7 @@ export default function RootLayout({
           'min-h-screen bg-background font-sans antialiased'
         )}
       >
-        <UmamiProvider>
+        <OptimizedUmamiProvider>
           <ThemeProvider>
             <ScrollToTop />
             <div className="relative flex min-h-screen flex-col">
@@ -134,7 +134,7 @@ export default function RootLayout({
             <ToastProvider />
             <UmamiDebugger />
           </ThemeProvider>
-        </UmamiProvider>
+        </OptimizedUmamiProvider>
         <SpeedInsights />
       </body>
     </html>

@@ -11,7 +11,7 @@ import {
   getCategoryColorClass,
 } from '@/lib/tools';
 import ToolWorkspace from './ToolWorkspace';
-import { useUmami } from '@/components/analytics/UmamiProvider';
+import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import {
   ChevronRight,
   Share2,
