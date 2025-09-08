@@ -43,10 +43,18 @@ export const tools: Tool[] = [
     icon: '🔄',
     route: '/tools/csv-to-json',
     categories: ['data'],
-    keywords: ['csv', 'json', 'convert', 'data', 'transform'],
+    keywords: [
+      'csv',
+      'json',
+      'convert',
+      'data',
+      'transform',
+      'spreadsheet',
+      'excel',
+    ],
     isPopular: true,
     searchVolume: 7200,
-    label: 'coming-soon',
+    label: 'new',
   },
   {
     id: 'sql-formatter',
@@ -57,7 +65,7 @@ export const tools: Tool[] = [
     categories: ['formatters', 'data', 'text'],
     keywords: ['sql', 'format', 'database', 'query', 'beautify'],
     searchVolume: 6800,
-    label: 'coming-soon',
+    label: 'new',
   },
   {
     id: 'xml-formatter',
@@ -106,7 +114,7 @@ export const tools: Tool[] = [
     keywords: ['hash', 'md5', 'sha1', 'sha256', 'checksum'],
     isPopular: true,
     searchVolume: 6500,
-    label: 'new',
+    label: '',
   },
   {
     id: 'jwt-decoder',
@@ -248,7 +256,7 @@ export const tools: Tool[] = [
     ],
     isNew: true,
     searchVolume: 3200,
-    label: 'new',
+    label: '',
   },
 
   // Dev Utilities

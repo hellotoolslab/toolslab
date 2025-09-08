@@ -41,6 +41,8 @@ const toolComponents = {
   'regex-tester': lazy(() => import('./implementations/RegexTester')),
   'favicon-generator': lazy(() => import('./implementations/FaviconGenerator')),
   'crontab-builder': lazy(() => import('./implementations/CrontabBuilder')),
+  'csv-to-json': lazy(() => import('./implementations/CsvToJsonTool')),
+  'sql-formatter': lazy(() => import('./implementations/SqlFormatter')),
   // Add more as needed
 } as const;
 
