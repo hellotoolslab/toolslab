@@ -781,4 +781,87 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+S', description: 'Download SQL file' },
     ],
   },
+
+  'jwt-decoder': {
+    id: 'jwt-decoder',
+    title: 'How to use JWT Decoder',
+    steps: [
+      {
+        title: 'Input your JWT token',
+        description:
+          'Paste the complete JWT token into the input area. JWT tokens consist of three Base64URL-encoded parts separated by dots: header.payload.signature',
+      },
+      {
+        title: 'Configure decoding options',
+        description:
+          'Enable structure validation to verify the token format, time analysis for expiration checks, and tool suggestions for related processing options.',
+      },
+      {
+        title: 'Review decoded sections',
+        description:
+          'Examine the decoded header (algorithm and token type), payload (claims and user data), and signature information in separate expandable sections.',
+      },
+      {
+        title: 'Analyze security and claims',
+        description:
+          'Check the security analysis for algorithm warnings, review standard and custom claims with descriptions, and validate expiration status.',
+      },
+      {
+        title: 'Export or copy results',
+        description:
+          'Copy individual sections (header, payload, signature) or download the complete decoded token data as a JSON file for further analysis.',
+      },
+    ],
+    features: [
+      'Decode JWT header, payload, and signature sections',
+      'Validate token structure with detailed error reporting',
+      'Analyze standard JWT claims with descriptions (iss, sub, aud, exp, etc.)',
+      'Security assessment for signing algorithms and best practices',
+      'Expiration and time-based claim validation with relative time display',
+      'Support for all JWT algorithms including RS256, HS256, ES256, etc.',
+      'Claims categorization (standard vs custom claims)',
+      'Token metadata analysis (sizes, structure validity)',
+      'Sample JWT tokens for testing and learning',
+      'Real-time decoding with debounced input processing',
+    ],
+    useCases: [
+      'Debug authentication and authorization issues in web applications',
+      'Analyze JWT tokens from OAuth 2.0 and OpenID Connect flows',
+      'Inspect API authentication tokens for troubleshooting',
+      'Validate token expiration and time-based claims',
+      'Extract user information and permissions from bearer tokens',
+      'Audit JWT implementation security and best practices',
+      'Understand token structure for development and testing',
+      'Parse tokens from single sign-on (SSO) systems',
+      'Analyze refresh tokens and access tokens in microservices',
+      'Debug mobile app authentication token issues',
+      'Inspect Firebase, Auth0, or custom JWT implementations',
+      'Validate token signing algorithms and security configurations',
+    ],
+    proTips: [
+      'Look for the "exp" claim to verify token expiration - expired tokens should be rejected',
+      'Check the "alg" field in the header to ensure secure algorithms (avoid "none")',
+      'Standard claims like "iss" (issuer) and "aud" (audience) are critical for security validation',
+      'Use the security analysis to identify potential vulnerabilities in your JWT implementation',
+      'Symmetric algorithms (HS256) require the same key for signing and verification',
+      'Asymmetric algorithms (RS256, ES256) allow public key verification without exposing the private key',
+      'The "iat" (issued at) claim helps track token age and freshness',
+      "Custom claims should follow your application's security requirements and data minimization practices",
+    ],
+    troubleshooting: [
+      'Invalid structure error: Ensure the token has exactly three parts separated by dots',
+      'Base64URL decoding failed: Check for URL-safe encoding (- and _ instead of + and /)',
+      'JSON parsing errors: Verify that header and payload sections contain valid JSON',
+      'Missing required dots: JWT tokens must have two dots separating three sections',
+      'Token appears truncated: Ensure you copied the complete token without line breaks or truncation',
+      'Signature section issues: Empty signatures are valid for unsigned tokens (alg: "none")',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+V', description: 'Paste JWT token' },
+      { keys: 'Ctrl+Enter', description: 'Decode token' },
+      { keys: 'Ctrl+C', description: 'Copy decoded result' },
+      { keys: 'Ctrl+D', description: 'Download JSON file' },
+      { keys: 'Ctrl+F', description: 'Focus search field' },
+    ],
+  },
 };

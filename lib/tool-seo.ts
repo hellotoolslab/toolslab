@@ -83,18 +83,18 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Professional XML formatter with syntax validation, beautification, and minification. Features XPath search, namespace analysis, and structure visualization. Perfect for SOAP, RSS, SVG, and configuration files. Handles large XML documents efficiently with real-time validation and error highlighting. Free, secure browser-based XML processing.',
   },
 
+  'jwt-decoder': {
+    id: 'jwt-decoder',
+    tagline: 'Decode and analyze JWT tokens with security validation instantly',
+    seoDescription:
+      'Professional JWT decoder with claims analysis, security validation, and expiration checking. Decode JSON Web Tokens safely with detailed header, payload, and signature information. Perfect for debugging authentication issues, analyzing token claims, and validating JWT security. Supports all JWT algorithms with real-time security recommendations and time-based claim analysis.',
+  },
+
   'url-encode': {
     id: 'url-encode',
     tagline: 'Encode and decode URLs and query parameters safely',
     seoDescription:
       'URL encode and decode components and query parameters for web development. Handle special characters, spaces, and international text in URLs safely. Perfect for API developers, web forms, and HTTP request handling. Supports percent-encoding standards with real-time conversion and validation.',
-  },
-
-  'jwt-decoder': {
-    id: 'jwt-decoder',
-    tagline: 'Decode and inspect JSON Web Tokens securely',
-    seoDescription:
-      'Decode JWT tokens to inspect headers, payloads, and claims for authentication debugging. Validate token structure and expiration times without compromising security. Perfect for developers working with OAuth, API authentication, and security implementations. All processing happens locally in your browser.',
   },
 
   'timestamp-converter': {
