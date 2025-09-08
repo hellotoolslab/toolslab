@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { useUmami } from '@/components/analytics/UmamiProvider';
 import { cn } from '@/lib/utils';
 
 interface EventLog {
