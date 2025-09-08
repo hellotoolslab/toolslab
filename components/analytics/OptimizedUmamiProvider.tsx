@@ -36,8 +36,12 @@ interface UmamiProviderProps {
 export function OptimizedUmamiProvider({
   children,
   websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
-  scriptUrl = process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL,
-  enabled = process.env.NODE_ENV === 'production',
+  scriptUrl = process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL ||
+    (process.env.NEXT_PUBLIC_UMAMI_HOST
+      ? `${process.env.NEXT_PUBLIC_UMAMI_HOST}/script.js`
+      : undefined),
+  enabled = process.env.NODE_ENV === 'production' ||
+    process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true',
 }: UmamiProviderProps) {
   const botDetector = useRef(new BotDetector());
   const sessionTracker = useRef(new SessionTracker());
@@ -45,7 +49,17 @@ export function OptimizedUmamiProvider({
   const isBot = useRef(false);
 
   useEffect(() => {
-    if (!enabled || !websiteId || !scriptUrl) return;
+    console.debug('Umami Provider - Config:', {
+      enabled,
+      websiteId: websiteId ? 'set' : 'not set',
+      scriptUrl: scriptUrl ? scriptUrl : 'not set',
+      nodeEnv: process.env.NODE_ENV,
+    });
+
+    if (!enabled || !websiteId || !scriptUrl) {
+      console.debug('Umami disabled - missing config');
+      return;
+    }
 
     // Detect if this is a bot
     const detection = botDetector.current.detectBot(
@@ -61,6 +75,7 @@ export function OptimizedUmamiProvider({
       return;
     }
 
+    console.debug('Loading Umami script...');
     // Load Umami script only for real users
     loadUmamiScript();
     // eslint-disable-next-line react-hooks/exhaustive-deps
