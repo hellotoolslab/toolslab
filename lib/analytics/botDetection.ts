@@ -1,16 +1,32 @@
 interface BotDetectionResult {
   isBot: boolean;
+  isSearchEngine: boolean;
   reason?: string;
   confidence: number;
 }
 
 export class BotDetector {
+  // Search engines that should be allowed to index
+  private searchEnginePatterns = [
+    /googlebot|google-inspectiontool/i,
+    /bingbot|msnbot/i,
+    /yahoobot|slurp/i,
+    /duckduckbot/i,
+    /baiduspider/i,
+    /yandexbot/i,
+    /facebookexternalhit/i,
+    /twitterbot/i,
+    /linkedinbot/i,
+    /applebot/i,
+  ];
+
+  // Malicious bots to block
   private botPatterns = [
-    /bot|crawler|spider|scraper|facebook|twitter|discord|slack/i,
-    /googlebot|bingbot|yahoobot|duckduckbot|baiduspider|yandexbot/i,
+    /spider|scraper|crawler/i,
     /lighthouse|pagespeed|gtmetrix|pingdom|uptime/i,
     /headless|phantom|selenium|playwright|puppeteer/i,
     /axios|fetch|curl|wget|python|java|node/i,
+    /discord|slack/i,
   ];
 
   private suspiciousPatterns = [
@@ -26,12 +42,25 @@ export class BotDetector {
   ): BotDetectionResult {
     const ua = userAgent.toLowerCase();
 
-    // Check user agent patterns
+    // First check if it's a search engine (allow indexing)
+    for (const pattern of this.searchEnginePatterns) {
+      if (pattern.test(ua)) {
+        return {
+          isBot: true,
+          isSearchEngine: true,
+          reason: 'Search engine bot detected',
+          confidence: 0.95,
+        };
+      }
+    }
+
+    // Then check for malicious bots
     for (const pattern of this.botPatterns) {
       if (pattern.test(ua)) {
         return {
           isBot: true,
-          reason: 'Bot user agent detected',
+          isSearchEngine: false,
+          reason: 'Malicious bot detected',
           confidence: 0.95,
         };
       }
@@ -41,6 +70,7 @@ export class BotDetector {
     if (this.isHeadlessBrowser(ua)) {
       return {
         isBot: true,
+        isSearchEngine: false,
         reason: 'Headless browser detected',
         confidence: 0.9,
       };
@@ -50,6 +80,7 @@ export class BotDetector {
     if (this.suspiciousPatterns.some((pattern) => pattern.test(url))) {
       return {
         isBot: true,
+        isSearchEngine: false,
         reason: 'Suspicious URL pattern',
         confidence: 0.8,
       };
@@ -59,6 +90,7 @@ export class BotDetector {
     if (this.isMissingBrowserFeatures()) {
       return {
         isBot: true,
+        isSearchEngine: false,
         reason: 'Missing browser features',
         confidence: 0.7,
       };
@@ -66,6 +98,7 @@ export class BotDetector {
 
     return {
       isBot: false,
+      isSearchEngine: false,
       confidence: 0.1,
     };
   }
