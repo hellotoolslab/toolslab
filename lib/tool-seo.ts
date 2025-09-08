@@ -75,6 +75,14 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Create and validate cron expressions using our visual builder with dropdown menus and common presets. Parse existing crontab entries with human-readable descriptions and next execution times. Perfect for system administrators, DevOps engineers, and developers scheduling automated tasks and deployments.',
   },
 
+  'xml-formatter': {
+    id: 'xml-formatter',
+    tagline:
+      'Format, validate and minify XML with XPath search and namespace support',
+    seoDescription:
+      'Professional XML formatter with syntax validation, beautification, and minification. Features XPath search, namespace analysis, and structure visualization. Perfect for SOAP, RSS, SVG, and configuration files. Handles large XML documents efficiently with real-time validation and error highlighting. Free, secure browser-based XML processing.',
+  },
+
   'url-encode': {
     id: 'url-encode',
     tagline: 'Encode and decode URLs and query parameters safely',

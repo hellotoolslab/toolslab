@@ -564,6 +564,77 @@ export const toolInstructions: Record<string, ToolInstruction> = {
     ],
   },
 
+  'xml-formatter': {
+    id: 'xml-formatter',
+    title: 'How to use XML Formatter',
+    steps: [
+      {
+        title: 'Input your XML document',
+        description:
+          'Paste XML data into the input area or upload an XML file. The tool automatically validates syntax and highlights any errors.',
+      },
+      {
+        title: 'Choose processing mode',
+        description:
+          'Select Format to beautify, Minify to compress, or Validate to check syntax. Configure indentation and preservation options.',
+      },
+      {
+        title: 'Search XML elements',
+        description:
+          'Use the search feature to find specific elements, attributes (@name), or XPath expressions (//user/@id) within your document.',
+      },
+      {
+        title: 'View results and metadata',
+        description:
+          'Review formatted output with syntax highlighting, structure statistics, and namespace information. Copy or download the result.',
+      },
+    ],
+    features: [
+      'Format XML with customizable indentation (2 or 4 spaces)',
+      'Minify XML by removing unnecessary whitespace',
+      'Real-time syntax validation with error highlighting',
+      'XPath-style search for elements and attributes',
+      'Namespace detection and analysis',
+      'Structure tree visualization with nesting levels',
+      'Preserve or remove comments and CDATA sections',
+      'Sort attributes alphabetically',
+      'Handle multiple XML encodings (UTF-8, UTF-16, ISO-8859-1)',
+      'Process large XML files with Web Workers',
+    ],
+    useCases: [
+      'Format and validate SOAP web service messages',
+      'Process RSS and Atom feed files',
+      'Clean up Android layout and manifest files',
+      'Format Maven POM and build configuration files',
+      'Validate and beautify SVG graphics',
+      'Process .NET Web.config and App.config files',
+      'Format DocBook and XHTML documents',
+      'Debug XML API responses and requests',
+    ],
+    proTips: [
+      'Use XPath search with // for any depth: //user finds all user elements',
+      'Search attributes with @ prefix: @id finds all id attributes',
+      'Enable "Preserve Comments" to keep documentation in config files',
+      'Sort attributes for consistent formatting across team projects',
+      'Use minify mode to reduce file size for production deployments',
+      'Check namespace declarations when working with SOAP or complex schemas',
+    ],
+    troubleshooting: [
+      'If validation fails, check for unclosed tags or mismatched elements',
+      'Encoding errors: ensure input matches declared encoding in XML declaration',
+      'Large files may need chunked processing - enable Web Worker mode',
+      'Namespace errors often indicate missing xmlns declarations',
+      'CDATA sections must be properly closed with ]]>',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+F', description: 'Focus search field' },
+      { keys: 'Ctrl+Enter', description: 'Format XML' },
+      { keys: 'Ctrl+M', description: 'Minify XML' },
+      { keys: 'Ctrl+C', description: 'Copy formatted result' },
+      { keys: 'Ctrl+D', description: 'Download result' },
+    ],
+  },
+
   'csv-to-json': {
     id: 'csv-to-json',
     title: 'How to use CSV to JSON Converter',
