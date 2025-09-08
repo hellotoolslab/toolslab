@@ -126,7 +126,9 @@ export default function RootLayout({
       >
         <OptimizedUmamiProvider>
           <ThemeProvider>
-            <PageViewTracker />
+            <Suspense fallback={null}>
+              <PageViewTracker />
+            </Suspense>
             <ScrollToTop />
             <div className="relative flex min-h-screen flex-col">
               <Header />
