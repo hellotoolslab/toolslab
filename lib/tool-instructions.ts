@@ -864,4 +864,82 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+F', description: 'Focus search field' },
     ],
   },
+
+  'url-encode': {
+    id: 'url-encode',
+    title: 'How to use URL Encoder/Decoder',
+    steps: [
+      {
+        title: 'Enter URL or text to process',
+        description:
+          'Paste your URL, query parameters, or text containing special characters into the input field. The tool supports full URLs, URL components, or plain text.',
+      },
+      {
+        title: 'Choose processing mode',
+        description:
+          'Select "Auto" for automatic detection (recommended), "Encode" to convert special characters to percent-encoded format (%20 for spaces, %21 for !, etc.), or "Decode" to convert percent-encoded characters back to readable text.',
+      },
+      {
+        title: 'Select encoding type',
+        description:
+          'Choose between "URL Component" (encodes most special characters for path/query use) or "Full URL" (preserves URL structure like ://?# while encoding other characters).',
+      },
+      {
+        title: 'View real-time results',
+        description:
+          'The encoded/decoded result appears instantly as you type. Invalid percent-encoded sequences are highlighted with error messages.',
+      },
+      {
+        title: 'Copy or download results',
+        description:
+          'Use the copy button to copy results to clipboard or download as text file for batch URL processing workflows.',
+      },
+    ],
+    features: [
+      'Automatic mode detection (encode vs decode)',
+      'Real-time URL encoding and decoding',
+      'Support for URL components and full URLs',
+      'International character handling (UTF-8)',
+      'Query parameter parsing and encoding',
+      'Invalid sequence detection and validation',
+      'Batch processing for multiple URLs',
+      'Copy to clipboard functionality',
+      'Download results as text files',
+    ],
+    useCases: [
+      'Preparing URLs with special characters for HTTP requests',
+      'Decoding query parameters from web forms',
+      'Processing URLs with international characters',
+      'Debugging URL-related issues in web applications',
+      'Converting spaces and symbols for safe URL transmission',
+      'Preparing API endpoint URLs with encoded parameters',
+      'Processing log files containing encoded URLs',
+      'Validating URL encoding in web development',
+      'Converting URLs for email or document embedding',
+      'Batch processing URLs from CSV or text files',
+    ],
+    proTips: [
+      'Use "Auto" mode for intelligent encoding/decoding detection - it analyzes your input automatically',
+      'Use "URL Component" encoding for individual query parameters and path segments',
+      'Use "Full URL" encoding to preserve URL structure while encoding special characters',
+      'International characters are automatically converted to UTF-8 percent encoding',
+      'Query parameters can be processed individually for better control',
+      'Invalid percent sequences (like %ZZ) are automatically detected and highlighted',
+      'Use batch mode to process multiple URLs from clipboard or file input',
+    ],
+    troubleshooting: [
+      'Invalid percent encoding: Check for incomplete sequences like % followed by non-hex characters',
+      'Special characters not encoding: Ensure you selected the correct encoding mode',
+      'Query parameters malformed: Use & to separate parameters and = for key-value pairs',
+      'International characters displaying incorrectly: Modern browsers handle UTF-8 automatically',
+      'URL structure broken after encoding: Use "URL Component" for parts, not full URLs',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+V', description: 'Paste URL to encode/decode' },
+      { keys: 'Ctrl+C', description: 'Copy encoded/decoded result' },
+      { keys: 'Ctrl+E', description: 'Toggle encode/decode mode' },
+      { keys: 'Ctrl+Enter', description: 'Process URL' },
+      { keys: 'Ctrl+D', description: 'Download results' },
+    ],
+  },
 };
