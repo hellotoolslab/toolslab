@@ -44,6 +44,7 @@ const toolComponents = {
   'csv-to-json': lazy(() => import('./implementations/CsvToJsonTool')),
   'sql-formatter': lazy(() => import('./implementations/SqlFormatter')),
   'xml-formatter': lazy(() => import('./implementations/XmlFormatter')),
+  'jwt-decoder': lazy(() => import('./implementations/JwtDecoder')),
   // Add more as needed
 } as const;
 
