@@ -45,6 +45,7 @@ const toolComponents = {
   'sql-formatter': lazy(() => import('./implementations/SqlFormatter')),
   'xml-formatter': lazy(() => import('./implementations/XmlFormatter')),
   'jwt-decoder': lazy(() => import('./implementations/JwtDecoder')),
+  'url-encode': lazy(() => import('./implementations/UrlEncoder')),
   // Add more as needed
 } as const;
 

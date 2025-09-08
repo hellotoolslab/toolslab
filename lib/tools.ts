@@ -120,7 +120,7 @@ export const tools: Tool[] = [
     keywords: ['url', 'encode', 'decode', 'percent', 'uri'],
     isPopular: true,
     searchVolume: 7800,
-    label: 'coming-soon',
+    label: 'new',
   },
   {
     id: 'hash-generator',
