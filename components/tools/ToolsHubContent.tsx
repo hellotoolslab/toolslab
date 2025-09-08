@@ -55,7 +55,7 @@ export default function ToolsHubContent() {
 
   // Statistics
   const totalTools = tools.filter(
-    (tool) => tool.label !== 'coming-soon'
+    (tool) => tool.label !== 'coming-soon' && tool.label !== 'new'
   ).length;
   const newToolsCount = tools.filter((tool) => tool.label === 'new').length;
   const popularToolsCount = tools.filter(
@@ -76,6 +76,9 @@ export default function ToolsHubContent() {
       filtered = filtered.filter((tool) =>
         tool.categories.includes(selectedCategory)
       );
+    } else {
+      // For "all" category, exclude "new" tools - they should only appear in specific categories
+      filtered = filtered.filter((tool) => tool.label !== 'new');
     }
 
     // Search filter
