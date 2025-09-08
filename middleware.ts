@@ -203,7 +203,14 @@ export async function middleware(request: NextRequest) {
     response.headers.set('X-Bot-Detected', 'true');
     response.headers.set('X-Bot-Reason', botDetection.reason || 'unknown');
     response.headers.set('Cache-Control', 'public, max-age=86400');
-    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+
+    // Only block indexing for non-search-engine bots
+    if (!botDetection.isSearchEngine) {
+      response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    } else {
+      response.headers.set('X-Search-Engine', 'true');
+    }
+
     return response;
   }
 
