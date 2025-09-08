@@ -61,6 +61,13 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Create professional favicons for websites and web apps from any image. Generate all required sizes (16x16 to 512x512) in ICO, PNG, and SVG formats. Includes Apple Touch Icons, Android Chrome icons, and complete HTML implementation code. Perfect for web developers and designers building professional websites.',
   },
 
+  'csv-to-json': {
+    id: 'csv-to-json',
+    tagline: 'Convert CSV data to JSON format with smart parsing',
+    seoDescription:
+      'Transform CSV files and data into JSON format with automatic header detection and custom delimiter support. Perfect for data migration, API integration, and spreadsheet processing. Handles large files with streaming, preserves data types, and offers multiple output formats. Free, secure browser-based conversion with no file uploads.',
+  },
+
   'crontab-builder': {
     id: 'crontab-builder',
     tagline: 'Build and parse cron expressions with visual interface',
@@ -87,5 +94,12 @@ export const toolSEO: Record<string, ToolSEO> = {
     tagline: 'Convert Unix timestamps to human-readable dates instantly',
     seoDescription:
       'Convert Unix timestamps to readable dates and vice versa with timezone support. Perfect for developers working with databases, APIs, and log files. Handle epoch time, milliseconds, and various date formats with real-time conversion. Essential tool for system integration and data processing.',
+  },
+
+  'sql-formatter': {
+    id: 'sql-formatter',
+    tagline: 'Format and beautify SQL queries with syntax highlighting',
+    seoDescription:
+      'Format and beautify SQL queries with proper indentation, keyword highlighting, and syntax validation. Perfect for database developers, data analysts, and SQL optimization. Supports multiple SQL dialects (MySQL, PostgreSQL, SQLite) with customizable formatting options. Free, secure browser-based SQL formatter with no data uploads.',
   },
 };

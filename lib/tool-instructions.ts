@@ -563,4 +563,151 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+C', description: 'Copy cron expression' },
     ],
   },
+
+  'csv-to-json': {
+    id: 'csv-to-json',
+    title: 'How to use CSV to JSON Converter',
+    steps: [
+      {
+        title: 'Input your CSV data',
+        description:
+          'Paste CSV data directly into the input area or upload a CSV file using the file picker. The tool automatically detects headers and delimiters.',
+      },
+      {
+        title: 'Configure parsing options',
+        description:
+          'Set custom delimiter (comma, semicolon, tab, pipe), choose whether first row contains headers, and select data type detection preferences.',
+      },
+      {
+        title: 'Preview the conversion',
+        description:
+          'Review the parsed JSON structure in real-time. The tool shows row count, column detection, and any parsing warnings.',
+      },
+      {
+        title: 'Choose output format',
+        description:
+          'Select between array of objects (default), nested structure, or compact array format. Customize property names if needed.',
+      },
+      {
+        title: 'Export the JSON',
+        description:
+          'Copy the formatted JSON to clipboard or download as a .json file. Choose between minified or pretty-printed output.',
+      },
+    ],
+    features: [
+      'Automatic delimiter detection (comma, semicolon, tab, pipe)',
+      'Smart header row detection and custom header mapping',
+      'Data type inference (numbers, booleans, dates, nulls)',
+      'Multiple output formats (array, nested, compact)',
+      'Large file support with streaming for performance',
+      'Quote handling for fields with delimiters',
+      'Empty field and null value handling options',
+      'Real-time preview with syntax highlighting',
+    ],
+    useCases: [
+      'Converting spreadsheet exports to JSON for APIs',
+      'Migrating CSV data to NoSQL databases',
+      'Transforming Excel exports for web applications',
+      'Processing data from legacy systems',
+      'Creating JSON fixtures from CSV test data',
+      'Importing CSV data into JavaScript applications',
+      'Converting analytics reports to JSON format',
+      'Preparing data for visualization libraries',
+    ],
+    proTips: [
+      'Enable "Detect Types" to automatically convert numbers and booleans',
+      'Use custom headers when CSV lacks header row or needs renaming',
+      'Choose semicolon delimiter for European CSV formats',
+      'Preview first before converting large files to check formatting',
+      'Use compact format to reduce JSON file size by 30-40%',
+      'Handle dates carefully - consider keeping as strings for compatibility',
+    ],
+    troubleshooting: [
+      'Parsing errors: Check for unclosed quotes or mixed delimiters',
+      'Wrong columns: Verify delimiter setting matches your CSV format',
+      'Missing data: Ensure CSV is properly formatted with consistent columns',
+      'Type issues: Disable type detection if numbers contain leading zeros',
+      'Memory errors: For very large files, consider splitting into chunks',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+V', description: 'Paste CSV data' },
+      { keys: 'Ctrl+A', description: 'Select all JSON output' },
+      { keys: 'Ctrl+C', description: 'Copy JSON to clipboard' },
+      { keys: 'Ctrl+S', description: 'Download JSON file' },
+    ],
+  },
+
+  'sql-formatter': {
+    id: 'sql-formatter',
+    title: 'How to use SQL Formatter',
+    steps: [
+      {
+        title: 'Paste your SQL query',
+        description:
+          'Copy and paste your SQL query or script into the input area. The tool accepts minified, unformatted SQL from any database system.',
+      },
+      {
+        title: 'Select SQL dialect',
+        description:
+          'Choose your database system (MySQL, PostgreSQL, SQLite, SQL Server) for dialect-specific formatting and keyword recognition.',
+      },
+      {
+        title: 'Configure formatting options',
+        description:
+          'Customize indentation size, keyword casing (uppercase/lowercase), and line break preferences to match your coding standards.',
+      },
+      {
+        title: 'Review formatted output',
+        description:
+          'The tool validates SQL syntax and displays formatted query with proper indentation, keyword highlighting, and improved readability.',
+      },
+      {
+        title: 'Copy or download result',
+        description:
+          'Copy the formatted SQL to clipboard for immediate use or download as a .sql file for storage and sharing.',
+      },
+    ],
+    features: [
+      'Multi-dialect support (MySQL, PostgreSQL, SQLite, SQL Server)',
+      'Intelligent keyword recognition and case conversion',
+      'Customizable indentation (2, 4, or tab spacing)',
+      'SQL syntax validation with error highlighting',
+      'Complex query parsing including CTEs, subqueries, and joins',
+      'Comment preservation and formatting',
+      'Large SQL script support up to 5MB',
+      'Export formatted SQL as downloadable file',
+    ],
+    useCases: [
+      'Format messy SQL queries for better readability',
+      'Standardize SQL code style across development teams',
+      'Debug complex queries with proper indentation',
+      'Prepare SQL scripts for documentation and code review',
+      'Convert between different SQL formatting standards',
+      'Clean up auto-generated SQL from query builders',
+      'Format stored procedures and database migration scripts',
+      'Prepare SQL queries for production deployment',
+    ],
+    proTips: [
+      'Use uppercase keywords for better SQL readability and standards',
+      'Choose 4-space indentation for optimal balance of readability and compactness',
+      'Select the correct SQL dialect to ensure proper keyword recognition',
+      'Format large scripts in sections if performance becomes slow',
+      'Preserve original comments - they contain important context',
+      'Use consistent formatting across your entire codebase',
+    ],
+    troubleshooting: [
+      'Syntax errors: Check for missing semicolons, unclosed parentheses, or quotes',
+      'Unrecognized keywords: Verify SQL dialect selection matches your database',
+      'Formatting issues: Ensure SQL is valid before formatting',
+      'Performance slow: Break very large scripts into smaller chunks',
+      'Missing features: Some advanced dialect-specific syntax may need manual formatting',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+V', description: 'Paste SQL query' },
+      { keys: 'Ctrl+Enter', description: 'Format SQL' },
+      { keys: 'Ctrl+A', description: 'Select all formatted output' },
+      { keys: 'Ctrl+C', description: 'Copy formatted SQL' },
+      { keys: 'Ctrl+S', description: 'Download SQL file' },
+    ],
+  },
 };
