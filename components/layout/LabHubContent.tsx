@@ -436,7 +436,10 @@ export default function LabHubContent() {
         categories_count: favoriteCategories.length,
       });
     }
+  }, []); // Empty dependency array - run only once on mount
 
+  // Show welcome toast if first visit with favorites
+  useEffect(() => {
     const { labVisited } = useToolStore.getState();
     if (
       !labVisited &&
@@ -447,7 +450,7 @@ export default function LabHubContent() {
         trackEngagement('lab-welcome-toast-shown');
       }, 1000);
     }
-  }, [setLabVisited, trackEngagement]);
+  }, [favoriteTools.length, favoriteCategories.length, trackEngagement]);
 
   if (!mounted) {
     return (
