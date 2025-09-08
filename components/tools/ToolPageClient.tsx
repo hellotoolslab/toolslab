@@ -66,7 +66,7 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
     }
 
     return () => window.removeEventListener('resize', checkMobile);
-  }, [toolId, initialInput, trackEngagement]);
+  }, [toolId, initialInput]); // Removed trackEngagement from deps
 
   const tool = getToolById(toolId);
 
