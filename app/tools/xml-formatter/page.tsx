@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { getToolById } from '@/lib/tools';
 import { toolSEO } from '@/lib/tool-seo';
@@ -100,5 +101,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function XmlFormatterPage() {
-  return <ToolPageClient toolId={TOOL_ID} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ToolPageClient toolId={TOOL_ID} />
+    </Suspense>
+  );
 }
