@@ -8,6 +8,39 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: [
+      // Block AI training bots
+      {
+        userAgent: [
+          'Amazonbot',
+          'Bytespider',
+          'CCBot',
+          'GPTBot',
+          'Google-Extended',
+          'meta-externalagent',
+        ],
+        disallow: '/',
+      },
+      // Block aggressive crawlers
+      {
+        userAgent: ['AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot'],
+        crawlDelay: 2,
+        disallow: ['/api/', '/admin/'],
+      },
+      // Allow search engines and AI retrieval for user queries
+      {
+        userAgent: ['ClaudeBot', 'Applebot-Extended'],
+        allow: '/',
+        disallow: ['/api/', '/admin/', '/_next/'],
+        crawlDelay: 1,
+      },
+      // SEO tools - allow but with rate limiting
+      {
+        userAgent: ['ScreamingFrogSEOSpider', 'SiteAuditBot'],
+        crawlDelay: 1,
+        allow: '/',
+        disallow: ['/api/', '/admin/'],
+      },
+      // Default rule for all other bots
       {
         userAgent: '*',
         allow: '/',
@@ -21,19 +54,6 @@ export default function robots(): MetadataRoute.Robots {
           '/coming-soon',
           '/need-tools',
         ],
-      },
-      // Specific rules for crawlers that might be aggressive
-      {
-        userAgent: ['AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot'],
-        crawlDelay: 2,
-        disallow: ['/api/', '/admin/'],
-      },
-      // SEO tools - allow but with rate limiting
-      {
-        userAgent: ['ScreamingFrogSEOSpider', 'SiteAuditBot'],
-        crawlDelay: 1,
-        allow: '/',
-        disallow: ['/api/', '/admin/'],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
