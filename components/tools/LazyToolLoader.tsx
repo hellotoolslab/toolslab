@@ -43,6 +43,7 @@ const toolComponents = {
   'crontab-builder': lazy(() => import('./implementations/CrontabBuilder')),
   'csv-to-json': lazy(() => import('./implementations/CsvToJsonTool')),
   'sql-formatter': lazy(() => import('./implementations/SqlFormatter')),
+  'xml-formatter': lazy(() => import('./implementations/XmlFormatter')),
   // Add more as needed
 } as const;
 
