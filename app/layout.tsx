@@ -5,6 +5,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { OptimizedUmamiProvider } from '@/components/analytics/OptimizedUmamiProvider';
 import { UmamiDebugger } from '@/components/analytics/UmamiDebugger';
+import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -125,6 +126,7 @@ export default function RootLayout({
       >
         <OptimizedUmamiProvider>
           <ThemeProvider>
+            <PageViewTracker />
             <ScrollToTop />
             <div className="relative flex min-h-screen flex-col">
               <Header />

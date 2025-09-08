@@ -73,11 +73,17 @@ export function OptimizedUmamiProvider({
     script.src = scriptUrl!;
     script.defer = true;
     script.setAttribute('data-website-id', websiteId!);
-    script.setAttribute('data-auto-track', 'false'); // Manual tracking only
+    script.setAttribute('data-auto-track', 'true'); // Enable auto tracking for pageviews
 
     script.onload = () => {
       scriptLoaded.current = true;
       console.debug('Umami Analytics loaded');
+
+      // Initialize session tracking
+      if (typeof (window as any).umami !== 'undefined') {
+        // Track initial pageview
+        (window as any).umami.track('pageview');
+      }
     };
 
     document.head.appendChild(script);
