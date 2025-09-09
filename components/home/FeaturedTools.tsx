@@ -21,18 +21,17 @@ export function FeaturedTools() {
   return (
     <section className="bg-gray-50 py-16 dark:bg-gray-900 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-              Most Used This Week
-            </h2>
-            <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
-              Join hundreds of developers using these tools daily
-            </p>
-          </div>
+        {/* Centered header */}
+        <div className="text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            Most Used This Week
+          </h2>
+          <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
+            Join hundreds of developers using these tools daily
+          </p>
           <Link
             href="/tools"
-            className="hidden items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 sm:flex"
+            className="mt-4 inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
             View all tools
             <ArrowRight className="h-4 w-4" />

@@ -62,15 +62,16 @@ export default function HomePageContent() {
     <main className="min-h-screen">
       {/* Above the fold - loaded immediately */}
       <HeroSection />
+
+      {/* Most Used This Week - moved before CategoryGrid */}
+      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[300px]" />}>
+        <FeaturedTools />
+      </Suspense>
+
       <CategoryGrid />
 
       {/* Powered By section - lightweight, loaded immediately */}
       <PoweredBy />
-
-      {/* Below the fold - lazy loaded */}
-      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[300px]" />}>
-        <FeaturedTools />
-      </Suspense>
 
       <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[200px]" />}>
         <TrustMetrics />

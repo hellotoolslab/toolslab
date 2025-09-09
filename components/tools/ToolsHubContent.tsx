@@ -147,13 +147,34 @@ export default function ToolsHubContent() {
     ).length,
   }));
 
-  // Recently added and popular tools
-  const recentTools = toolsWithLabels
-    .filter((tool) => tool.label === 'new')
-    .slice(0, 4);
-  const popularTools = toolsWithLabels
-    .filter((tool) => tool.label === 'popular')
-    .slice(0, 4);
+  // Recently added and popular tools - Apply sorting
+  const recentTools = useMemo(() => {
+    let tools = toolsWithLabels.filter((tool) => tool.label === 'new');
+
+    // Apply the same sorting as main tools
+    if (sortBy === 'alphabetical') {
+      tools = [...tools].sort((a, b) => a.name.localeCompare(b.name));
+      // Show all tools when sorting alphabetically
+      return tools;
+    }
+
+    // Only show 4 for other sort options
+    return tools.slice(0, 4);
+  }, [toolsWithLabels, sortBy]);
+
+  const popularTools = useMemo(() => {
+    let tools = toolsWithLabels.filter((tool) => tool.label === 'popular');
+
+    // Apply the same sorting as main tools
+    if (sortBy === 'alphabetical') {
+      tools = [...tools].sort((a, b) => a.name.localeCompare(b.name));
+      // Show all tools when sorting alphabetically
+      return tools;
+    }
+
+    // Only show 4 for other sort options
+    return tools.slice(0, 4);
+  }, [toolsWithLabels, sortBy]);
 
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
