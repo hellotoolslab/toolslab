@@ -5,6 +5,13 @@ export interface ToolSEO {
 }
 
 export const toolSEO: Record<string, ToolSEO> = {
+  'text-diff': {
+    id: 'text-diff',
+    tagline: 'Compare files and code with professional diff visualization',
+    seoDescription:
+      'Professional text comparison tool with syntax highlighting, patch generation, and side-by-side diff views. Compare code files, documents, and text with line-by-line differences, change tracking, and unified diff output. Features Git-style patches, whitespace options, and export to HTML/PDF. Perfect for developers reviewing code changes.',
+  },
+
   'json-formatter': {
     id: 'json-formatter',
     tagline: 'Format, validate and beautify JSON instantly online',

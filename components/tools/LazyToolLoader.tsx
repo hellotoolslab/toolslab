@@ -46,6 +46,7 @@ const toolComponents = {
   'xml-formatter': lazy(() => import('./implementations/XmlFormatter')),
   'jwt-decoder': lazy(() => import('./implementations/JwtDecoder')),
   'url-encode': lazy(() => import('./implementations/UrlEncoder')),
+  'text-diff': lazy(() => import('./implementations/TextDiff')),
   // Add more as needed
 } as const;
 

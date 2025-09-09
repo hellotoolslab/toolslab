@@ -158,8 +158,8 @@ export default function ToolsHubContent() {
       return tools;
     }
 
-    // Only show 4 for other sort options
-    return tools.slice(0, 4);
+    // Only show 8 for other sort options
+    return tools.slice(0, 8);
   }, [toolsWithLabels, sortBy]);
 
   const popularTools = useMemo(() => {
@@ -172,8 +172,8 @@ export default function ToolsHubContent() {
       return tools;
     }
 
-    // Only show 4 for other sort options
-    return tools.slice(0, 4);
+    // Only show 8 for other sort options
+    return tools.slice(0, 8);
   }, [toolsWithLabels, sortBy]);
 
   const handleCategorySelect = (categoryId: string) => {
