@@ -630,7 +630,7 @@ export const sampleXmlData = {
   </channel>
 </rss>`,
 
-  svg: `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  svg: `<svg xmlns="https://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
   <rect x="10" y="10" width="80" height="80" fill="#ff6b6b" rx="5"/>
   <circle cx="50" cy="50" r="30" fill="#4ecdc4" opacity="0.7"/>
   <text x="50" y="55" text-anchor="middle" fill="white" font-size="12">Hello</text>

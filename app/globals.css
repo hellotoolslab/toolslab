@@ -12,6 +12,30 @@
   * {
     box-sizing: border-box;
   }
+
+  /* Prevent CLS by stabilizing layout */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Stabilize font loading */
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: 'kern';
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Prevent layout shift from scrollbars */
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  /* Stabilize loading states */
+  [data-loading="true"] {
+    min-height: 200px;
+  }
   
   :root {
     --background: 0 0% 100%;

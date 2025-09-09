@@ -375,11 +375,11 @@ describe('XML Formatter', () => {
 
     it('should format SVG graphics', () => {
       const svg =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="40" fill="red"/></svg>';
+        '<svg xmlns="https://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="40" fill="red"/></svg>';
       const result = formatXml(svg);
 
       expect(result.success).toBe(true);
-      expect(result.formatted).toContain('xmlns="http://www.w3.org/2000/svg"');
+      expect(result.formatted).toContain('xmlns="https://www.w3.org/2000/svg"');
       expect(result.formatted).toContain('<circle');
     });
 

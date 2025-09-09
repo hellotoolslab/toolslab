@@ -21,6 +21,8 @@ const EXCLUDED_PATHS = [
   '/apple-touch-icon.png',
   '/robots.txt',
   '/sitemap.xml',
+  '/manifest.json',
+  '/manifest.webmanifest',
 ];
 
 function shouldProcessPath(pathname: string): boolean {
