@@ -15,6 +15,85 @@ export interface ToolInstruction {
 }
 
 export const toolInstructions: Record<string, ToolInstruction> = {
+  'text-diff': {
+    id: 'text-diff',
+    title: 'How to use Text Diff Checker',
+    steps: [
+      {
+        title: 'Enter or upload your texts',
+        description:
+          'Paste your text in the left and right editors, or drag and drop files directly into each pane. Supports text files, code files, and documents up to 10MB.',
+      },
+      {
+        title: 'Choose comparison mode',
+        description:
+          'Select between side-by-side, inline, or unified diff views. Toggle options like ignore whitespace, case sensitivity, and syntax highlighting for code files.',
+      },
+      {
+        title: 'Review highlighted differences',
+        description:
+          'Changes are color-coded: green for additions, red for deletions, yellow for modifications. Use keyboard shortcuts (F3/Shift+F3) to navigate between changes.',
+      },
+      {
+        title: 'Export or share results',
+        description:
+          'Generate patch files for Git, export as HTML with highlighting preserved, or copy unified diff to clipboard. Share diff URLs with colleagues using the share button.',
+      },
+      {
+        title: 'Apply advanced options',
+        description:
+          'Configure context lines for unified view, enable word-level or character-level diff, detect file types automatically, or use three-way merge for conflict resolution.',
+      },
+    ],
+    features: [
+      'Side-by-side, inline, and unified diff views',
+      'Syntax highlighting for 20+ programming languages',
+      'Git-style patch generation and application',
+      'Line, word, and character-level diff granularity',
+      'Whitespace and case sensitivity options',
+      'Large file support with Web Worker processing',
+      'File drag & drop with encoding detection',
+      'Export to HTML, PDF, or patch formats',
+      'Synchronized scrolling between panes',
+      'Keyboard shortcuts for efficient navigation',
+    ],
+    useCases: [
+      'Code review and pull request comparison',
+      'Document version tracking and changes',
+      'Git conflict resolution and merging',
+      'Configuration file comparison',
+      'Legal document redlining',
+      'Translation and localization review',
+      'Database schema evolution tracking',
+      'Log file analysis and debugging',
+    ],
+    proTips: [
+      'Use Ctrl+F to search within either pane, with results highlighted in both',
+      'Enable "Show invisibles" to see tabs, spaces, and line endings',
+      'Triple-click to select entire lines for quick copying',
+      'Use the minimap for quick navigation in large files',
+      'Hold Alt while scrolling to scroll only one pane',
+      'Drag the divider between panes to adjust their width',
+    ],
+    troubleshooting: [
+      'Binary files show hexdump comparison instead of text diff',
+      'Large files (>10MB) may take longer to process - be patient',
+      'If syntax highlighting is incorrect, manually select the file type',
+      'Encoding issues? Try re-uploading with UTF-8 encoding',
+      'For three-way merge, ensure all three versions are provided',
+    ],
+    keyboardShortcuts: [
+      { keys: 'F3', description: 'Jump to next change' },
+      { keys: 'Shift+F3', description: 'Jump to previous change' },
+      { keys: 'Ctrl+F', description: 'Find in text' },
+      { keys: 'Ctrl+G', description: 'Go to line number' },
+      { keys: 'Ctrl+S', description: 'Download diff as file' },
+      { keys: 'Ctrl+Shift+C', description: 'Copy diff to clipboard' },
+      { keys: 'Alt+V', description: 'Toggle diff view mode' },
+      { keys: 'Alt+W', description: 'Toggle whitespace visibility' },
+    ],
+  },
+
   'base64-to-pdf': {
     id: 'base64-to-pdf',
     title: 'How to use Base64 to PDF Converter',
