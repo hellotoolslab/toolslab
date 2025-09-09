@@ -81,7 +81,7 @@ export default function ToolHowToUse({
   }
 
   return (
-    <div className="mt-8 space-y-6 sm:mt-12">
+    <div className="mt-8 space-y-6 sm:mt-12" style={{ minHeight: '400px' }}>
       {/* Main Instructions Section */}
       <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
         <div className="mb-6 flex items-center gap-2">
