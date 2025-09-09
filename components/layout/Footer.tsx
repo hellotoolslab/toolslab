@@ -8,8 +8,19 @@ export function Footer() {
   const { trackConversion, trackSocial, trackEngagement } = useUmami();
 
   return (
-    <footer className="border-slate-200/8 border-t bg-gradient-to-b from-slate-900/40 to-slate-900/60 backdrop-blur-[10px] supports-[backdrop-filter]:bg-slate-900/60">
-      <div className="footer-container mx-auto max-w-[1200px] px-6 py-16 sm:px-8 sm:py-14 lg:px-6 lg:py-16">
+    <footer
+      className="border-t border-slate-200/10 bg-slate-900"
+      style={{
+        minHeight: '400px', // CRITICO: altezza minima fissa per prevenire CLS
+        position: 'relative',
+        background: '#0f172a', // Fallback colore solido immediato
+        backgroundImage: 'none', // Rimuovi gradient per ora
+      }}
+    >
+      <div
+        className="footer-container mx-auto max-w-[1200px] px-6 py-16 sm:px-8 lg:px-6"
+        style={{ minHeight: '350px' }}
+      >
         {/* Main Footer Content - 4 Column Grid */}
         <div className="footer-content mb-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           {/* Column 1: About */}
@@ -34,8 +45,11 @@ export function Footer() {
               </span>
             </Link>
 
-            {/* Social Links */}
-            <div className="social-links mt-4 flex gap-3">
+            {/* Social Links - Altezza fissa per prevenire CLS */}
+            <div
+              className="social-links mt-4 flex gap-3"
+              style={{ minHeight: '36px' }}
+            >
               <a
                 href="https://x.com/tools_lab"
                 target="_blank"
@@ -221,10 +235,8 @@ export function Footer() {
           <div className="footer-copyright">
             <p className="m-0 text-sm tracking-[0.01em] text-slate-500">
               © 2025 ToolsLab. Crafted with{' '}
-              <span className="heart-icon inline-block animate-pulse text-purple-400">
-                💜
-              </span>{' '}
-              in our digital laboratory
+              <span className="inline-block text-purple-400">💜</span> in our
+              digital laboratory
             </p>
           </div>
 
@@ -271,63 +283,7 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Mobile responsive styles */}
-      <style jsx>{`
-        @media (max-width: 1024px) {
-          .footer-container {
-            padding: 56px 32px 28px;
-          }
-          .footer-content {
-            gap: 40px;
-            margin-bottom: 48px;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .footer-container {
-            padding: 48px 20px 24px;
-          }
-          .footer-content {
-            gap: 32px;
-            margin-bottom: 40px;
-          }
-          .footer-bottom {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 24px;
-          }
-          .footer-links {
-            flex-direction: column;
-            gap: 12px;
-          }
-          .footer-separator {
-            display: none !important;
-          }
-          .support-link {
-            width: 100%;
-            justify-content: center;
-            padding: 12px 24px;
-          }
-        }
-
-        @keyframes heartbeat {
-          0%,
-          100% {
-            transform: scale(1);
-          }
-          10% {
-            transform: scale(1.1);
-          }
-          20% {
-            transform: scale(1);
-          }
-        }
-
-        .heart-icon {
-          animation: heartbeat 2s ease-in-out infinite;
-        }
-      `}</style>
+      {/* Rimuovi styled-jsx per evitare CLS - usa solo Tailwind */}
     </footer>
   );
 }
