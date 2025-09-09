@@ -13,7 +13,11 @@ import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { cn } from '@/lib/utils';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://toolslab.dev'),
@@ -94,8 +98,6 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
 
-  manifest: '/manifest.json',
-
   verification: {
     google: 'your-google-verification-code', // Replace with actual verification code
     other: {
@@ -117,7 +119,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head></head>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            body { font-family: system-ui, -apple-system, sans-serif; }
+          `,
+          }}
+        />
+      </head>
       <body
         className={cn(
           inter.className,

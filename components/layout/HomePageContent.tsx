@@ -45,9 +45,13 @@ const FooterCTA = lazy(() =>
 );
 
 // Loading placeholder for lazy components
-function LoadingPlaceholder() {
+function LoadingPlaceholder({
+  minHeight = 'min-h-[200px]',
+}: {
+  minHeight?: string;
+}) {
   return (
-    <div className="flex h-96 items-center justify-center">
+    <div className={`flex ${minHeight} items-center justify-center`}>
       <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600" />
     </div>
   );
@@ -64,19 +68,19 @@ export default function HomePageContent() {
       <PoweredBy />
 
       {/* Below the fold - lazy loaded */}
-      <Suspense fallback={<LoadingPlaceholder />}>
+      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[300px]" />}>
         <FeaturedTools />
       </Suspense>
 
-      <Suspense fallback={<LoadingPlaceholder />}>
+      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[200px]" />}>
         <TrustMetrics />
       </Suspense>
 
-      <Suspense fallback={<LoadingPlaceholder />}>
+      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[400px]" />}>
         <WhyToolsLab />
       </Suspense>
 
-      <Suspense fallback={<LoadingPlaceholder />}>
+      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[500px]" />}>
         <InteractiveDemo />
       </Suspense>
 

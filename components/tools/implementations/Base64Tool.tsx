@@ -384,11 +384,15 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                   {fileInfo.mimeType} • {Math.round(fileInfo.size / 1024)}KB
                 </p>
               </div>
-              <img
-                src={fileInfo.dataURL}
-                alt="Preview"
-                className="ml-auto h-12 w-12 rounded border object-cover"
-              />
+              <div className="ml-auto flex h-12 w-12 items-center justify-center rounded border bg-gray-100 dark:bg-gray-800">
+                <img
+                  src={fileInfo.dataURL}
+                  alt="Preview"
+                  className="h-full w-full rounded object-cover"
+                  width="48"
+                  height="48"
+                />
+              </div>
             </div>
           </div>
         )}
@@ -536,14 +540,21 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                     Image Preview
                   </label>
                   <div className="mt-2 rounded-lg border bg-gray-50 p-4 dark:bg-gray-900">
-                    <img
-                      src={`data:${mimeType};base64,${input.includes('base64,') ? input.split('base64,')[1] : input}`}
-                      alt="Decoded image"
-                      className="max-h-64 max-w-full rounded border object-contain"
-                      onError={() =>
-                        setError('Could not display the decoded image')
-                      }
-                    />
+                    <div className="flex min-h-[200px] items-center justify-center">
+                      <img
+                        src={`data:${mimeType};base64,${input.includes('base64,') ? input.split('base64,')[1] : input}`}
+                        alt="Decoded image"
+                        className="max-h-64 max-w-full rounded border object-contain"
+                        style={{ aspectRatio: '16/9' }}
+                        onLoad={(e) => {
+                          const img = e.target as HTMLImageElement;
+                          img.style.aspectRatio = 'auto';
+                        }}
+                        onError={() =>
+                          setError('Could not display the decoded image')
+                        }
+                      />
+                    </div>
                   </div>
                 </div>
               )}

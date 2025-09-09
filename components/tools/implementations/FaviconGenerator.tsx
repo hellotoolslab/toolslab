@@ -546,7 +546,13 @@ Generated with ❤️ by ToolsLab
                     <div className="text-center">
                       <div className="mb-2 rounded border bg-white p-2 dark:bg-gray-900">
                         <div className="flex items-center gap-1 text-xs">
-                          <img src={imagePreview} className="h-4 w-4" alt="" />
+                          <img
+                            src={imagePreview}
+                            className="h-4 w-4"
+                            alt=""
+                            width="16"
+                            height="16"
+                          />
                           <span>ToolsLab</span>
                         </div>
                       </div>
