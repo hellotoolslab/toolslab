@@ -160,7 +160,7 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
       {/* Header Ad Banner - Hidden */}
 
-      <div className="mx-auto max-w-7xl px-4 py-4 sm:py-8">
+      <div className="mx-auto max-w-[1400px] px-4 py-4 sm:py-8">
         {/* Breadcrumb - Reduced spacing */}
         <nav className="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm">
           <Link
@@ -237,10 +237,10 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
           </div>
         </div>
 
-        {/* Main Content Area */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* Tool Workspace */}
-          <div className="lg:col-span-2">
+        {/* Main Content Area - Wider layout */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          {/* Tool Workspace - Much wider on desktop */}
+          <div className="lg:col-span-9">
             <ToolWorkspace
               tool={{ ...tool, slug: tool.id, category: categoryId } as any}
               categoryColor={categoryColor}
@@ -251,9 +251,9 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
             <ToolHowToUse toolId={tool.id} categoryColor={categoryColor} />
           </div>
 
-          {/* Sidebar (Desktop Only) */}
+          {/* Sidebar (Desktop Only) - Narrower */}
           {!isMobile && (
-            <div className="space-y-6">
+            <div className="space-y-6 lg:col-span-3">
               {/* Related Tools */}
               <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
                 <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
