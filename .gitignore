@@ -210,6 +210,8 @@ CLAUDE-*.md
 docs/
 documentation/
 README-*.md
+release_notes/
+released_note/
 
 # Environment example files (contain sensitive IDs/structure)
 .env.example

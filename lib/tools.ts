@@ -162,13 +162,24 @@ export const tools: Tool[] = [
   {
     id: 'text-diff',
     name: 'Text Diff Checker',
-    description: 'Compare two texts and highlight differences',
+    description:
+      'Compare files and code with advanced diff features and syntax highlighting',
     icon: '📝',
     route: '/tools/text-diff',
-    categories: ['text'],
-    keywords: ['diff', 'compare', 'text', 'difference', 'merge'],
+    categories: ['text', 'dev'],
+    keywords: [
+      'diff',
+      'compare',
+      'text',
+      'difference',
+      'merge',
+      'patch',
+      'git',
+      'code',
+      'file',
+    ],
     searchVolume: 5200,
-    label: 'coming-soon',
+    label: 'new',
   },
   {
     id: 'markdown-preview',
