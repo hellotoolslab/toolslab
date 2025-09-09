@@ -20,6 +20,7 @@ import { cn } from '@/lib/utils';
 import { LabLogo } from '@/components/icons/LabLogo';
 import { useToolStore } from '@/lib/store/toolStore';
 import { useHydration } from '@/lib/hooks/useHydration';
+import { GitHubStars } from '@/components/ui/github-stars';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -210,6 +211,9 @@ export function Header() {
               <HelpCircle className="mr-1 h-4 w-4" />
               Need Tools?
             </Link>
+
+            {/* GitHub Stars */}
+            <GitHubStars className="hidden sm:flex" />
 
             {/* Theme Toggle */}
             {mounted && (
