@@ -16,6 +16,8 @@
     "preinstall": "node scripts/pre-install.js || true",
     "build:prod": "NEXT_PUBLIC_ENABLE_ADS=true next build",
     "build:check": "next build --no-lint",
+    "start": "next start",
+    "lint": "next lint",
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
