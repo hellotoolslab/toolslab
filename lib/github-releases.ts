@@ -45,7 +45,7 @@ export interface ReleaseData {
 }
 
 const GITHUB_API_BASE = 'https://api.github.com';
-const REPO_OWNER = 'gianlucaricaldone';
+const REPO_OWNER = 'hellotoolslab';
 const REPO_NAME = 'toolslab';
 
 // Cache releases for 5 minutes

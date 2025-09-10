@@ -36,7 +36,7 @@
       "dialog": true,
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEY3ODdBMzg5NUI5NTA5NjMKUldUTXN6d2VKdnR5aSszVGlRRXZGZi91SHVJeHRMU2VIK1V5c0dIQ0tjZUJmdXRobmNVMU1wNUYK",
       "endpoints": [
-        "https://github.com/gianlucaricaldone/toolslab/releases/latest/download/latest.json"
+        "https://github.com/hellotoolslab/toolslab/releases/latest/download/latest.json"
       ]
     }
   },
