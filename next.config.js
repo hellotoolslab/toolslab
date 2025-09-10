@@ -5,6 +5,9 @@ const nextConfig = {
     optimizeCss: true,
   },
 
+  // Disable static export for now - use dev mode for Tauri
+  // TODO: Configure proper static export for Tauri production builds
+
   // Forza pulizia della directory di build
   cleanDistDir: true,
   distDir: '.next',

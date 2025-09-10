@@ -57,9 +57,10 @@
     "indexnow:test": "node scripts/indexnow-test.js",
     "tauri": "npx tauri",
     "tauri:dev": "npx tauri dev",
+    "build:tauri": "npm run build",
     "tauri:build": "npx tauri build",
     "tauri:build:debug": "npx tauri build --debug",
-    "tauri:build:release": "npm run build && npx tauri build",
+    "tauri:build:release": "npm run build:tauri && npx tauri build",
     "release:patch": "npm version patch && git push origin --tags",
     "release:minor": "npm version minor && git push origin --tags",
     "release:major": "npm version major && git push origin --tags"

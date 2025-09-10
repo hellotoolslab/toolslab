@@ -2,35 +2,28 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "ToolsLab",
   "version": "1.0.0",
-  "identifier": "dev.toolslab.app",
+  "identifier": "dev.toolslab.desktop",
   "build": {
-    "frontendDist": "../out",
-    "devUrl": "http://localhost:3000/lab",
+    "frontendDist": "../.next",
+    "devUrl": "http://localhost:3001",
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build"
   },
   "app": {
     "windows": [
       {
-        "title": "ToolsLab - Developer Tools Suite",
-        "width": 1400,
-        "height": 900,
-        "resizable": true,
-        "fullscreen": false,
-        "center": true,
-        "minWidth": 1024,
-        "minHeight": 600,
-        "url": "/lab",
-        "decorations": true,
-        "transparent": false,
-        "skipTaskbar": false,
-        "fileDropEnabled": true
+        "title": "ToolsLab",
+        "width": 800,
+        "height": 600,
+        "resizable": true
       }
     ],
     "security": {
       "csp": null,
       "dangerousDisableAssetCspModification": false
-    },
+    }
+  },
+  "plugins": {
     "updater": {
       "active": true,
       "dialog": true,
@@ -43,13 +36,7 @@
   "bundle": {
     "active": true,
     "targets": "all",
-    "icon": [
-      "icons/32x32.png",
-      "icons/128x128.png",
-      "icons/128x128@2x.png",
-      "icons/icon.icns",
-      "icons/icon.ico"
-    ],
+    "icon": ["icons/icon.png"],
     "resources": [],
     "copyright": "© 2024 ToolsLab. All rights reserved.",
     "category": "DeveloperTool",
@@ -76,26 +63,10 @@
       "entitlements": null
     },
     "windows": {
-      "certificateThumbprint": null,
       "digestAlgorithm": "sha256",
       "timestampUrl": "http://timestamp.digicert.com",
       "webviewInstallMode": {
         "type": "downloadBootstrapper"
-      },
-      "allowDowngrades": false,
-      "wix": {
-        "language": "en-US",
-        "bannerPath": null,
-        "dialogImagePath": null,
-        "licenseUrl": null
-      },
-      "nsis": {
-        "license": null,
-        "headerImage": null,
-        "sidebarImage": null,
-        "installerIcon": null,
-        "installMode": "perUser",
-        "languages": ["English"]
       }
     }
   }
