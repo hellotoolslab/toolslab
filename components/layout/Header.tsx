@@ -3,17 +3,7 @@
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
-import {
-  Moon,
-  Sun,
-  Menu,
-  X,
-  Zap,
-  Beaker,
-  Grid3X3,
-  Info,
-  HelpCircle,
-} from 'lucide-react';
+import { Moon, Sun, Menu, X, Zap, Beaker, Grid3X3, Info } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { categories } from '@/lib/tools';
 import { cn } from '@/lib/utils';
@@ -199,19 +189,6 @@ export function Header() {
               About
             </Link>
 
-            {/* Need Tools Link */}
-            <Link
-              href="/need-tools"
-              className={cn(
-                'hidden items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 md:flex',
-                pathname === '/need-tools' &&
-                  'text-violet-600 dark:text-violet-400'
-              )}
-            >
-              <HelpCircle className="mr-1 h-4 w-4" />
-              Need Tools?
-            </Link>
-
             {/* GitHub Stars */}
             <GitHubStars className="hidden sm:flex" />
 
@@ -289,14 +266,6 @@ export function Header() {
               >
                 <Info className="h-5 w-5" />
                 <span>About</span>
-              </Link>
-              <Link
-                href="/need-tools"
-                className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <HelpCircle className="h-5 w-5" />
-                <span>Need Tools?</span>
               </Link>
 
               <div className="border-t border-white/10 pt-4">
