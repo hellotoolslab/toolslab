@@ -52,7 +52,6 @@ export default function robots(): MetadataRoute.Robots {
           '/pro/cancel',
           '/maintenance',
           '/coming-soon',
-          '/need-tools',
         ],
       },
     ],
