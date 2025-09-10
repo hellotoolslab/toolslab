@@ -10,6 +10,7 @@ import { ToastProvider } from '@/components/providers/ToastProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
+import { UpdateNotification } from '@/components/UpdateNotification';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { cn } from '@/lib/utils';
 
@@ -151,6 +152,7 @@ export default function RootLayout({
               <main className="flex-1">{children}</main>
               <Footer />
             </div>
+            <UpdateNotification />
             <ToastProvider />
             <UmamiDebugger />
           </ThemeProvider>

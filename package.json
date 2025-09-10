@@ -54,7 +54,14 @@
     "indexnow:submit": "node scripts/indexnow-submit.js",
     "indexnow:bulk": "node scripts/indexnow-bulk.js",
     "indexnow:stats": "node scripts/indexnow-stats.js",
-    "indexnow:test": "node scripts/indexnow-test.js"
+    "indexnow:test": "node scripts/indexnow-test.js",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "tauri:build:debug": "tauri build --debug",
+    "tauri:build:release": "npm run build && tauri build",
+    "release:patch": "npm version patch && git push origin --tags",
+    "release:minor": "npm version minor && git push origin --tags",
+    "release:major": "npm version major && git push origin --tags"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.2",
@@ -86,6 +93,7 @@
     "lucide-react": "^0.451.0",
     "next": "^14.2.32",
     "next-themes": "^0.3.0",
+    "open": "^10.2.0",
     "papaparse": "^5.4.1",
     "plausible-tracker": "^0.3.9",
     "postcss": "^8.5.6",
@@ -106,6 +114,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.2.15",
+    "@tauri-apps/cli": "^2.8.4",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
