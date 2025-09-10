@@ -55,6 +55,7 @@
     "indexnow:bulk": "node scripts/indexnow-bulk.js",
     "indexnow:stats": "node scripts/indexnow-stats.js",
     "indexnow:test": "node scripts/indexnow-test.js",
+    "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
     "tauri:build:debug": "tauri build --debug",
