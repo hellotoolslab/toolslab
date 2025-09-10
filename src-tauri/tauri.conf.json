@@ -34,7 +34,7 @@
     "updater": {
       "active": true,
       "dialog": true,
-      "pubkey": "$TAURI_PUBLIC_KEY",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDNCNjE0Njc0N0M0N0I2MDEKUldRQnRrZDhkRVpoTzE4K2VMS2hzV2p5SEpCRUE3V2tmNXIwa3IzS1RWWi94ZURFNFdvd1JacXcK",
       "endpoints": [
         "https://github.com/hellotoolslab/toolslab/releases/latest/download/latest.json"
       ]
