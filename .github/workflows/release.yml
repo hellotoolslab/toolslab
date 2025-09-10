@@ -124,16 +124,13 @@ jobs:
           targets: ${{ matrix.target }}
 
       - name: Install Tauri CLI
-        run: |
-          if [[ "$RUNNER_OS" == "Windows" ]]; then
-            npm install -g @tauri-apps/cli@^1.5.0
-          else
-            npm install -g @tauri-apps/cli@^1.5.0
-          fi
+        run: cargo install tauri-cli --version "^2.0" --locked
         shell: bash
 
       - name: Verify Tauri installation
-        run: tauri --version
+        run: |
+          tauri --version
+          which tauri
         shell: bash
 
       - name: Rust cache
@@ -158,6 +155,13 @@ jobs:
             libjavascriptcoregtk-4.1-dev \
             libsoup-3.0-dev
 
+      - name: Clean cache if needed
+        run: |
+          cargo clean || true
+          rm -rf node_modules/.cache || true
+        shell: bash
+        continue-on-error: true
+
       - name: Install frontend dependencies
         run: npm ci
 
@@ -167,7 +171,7 @@ jobs:
           cat package.json | jq '.scripts' || echo "No scripts found"
           echo "=== Checking Tauri CLI ==="
           which tauri || echo "Tauri not in PATH"
-          npm run tauri --version || echo "npm run tauri failed"
+          tauri --version || echo "tauri command failed"
         shell: bash
 
       - name: Build frontend
@@ -186,7 +190,7 @@ jobs:
         with:
           releaseId: ${{ needs.create-release.outputs.release_id }}
           args: ${{ matrix.args }}
-          tauriScript: npm run tauri
+          tauriScript: tauri
 
       - name: Validate build artifacts
         run: |
