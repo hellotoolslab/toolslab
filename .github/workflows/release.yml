@@ -200,6 +200,46 @@ jobs:
           args: ${{ matrix.args }}
           tauriScript: tauri
 
+      - name: Rename artifacts to remove version
+        run: |
+          echo "=== Renaming build artifacts to remove version ==="
+
+          # Find and rename files based on platform
+          if [ "${{ matrix.platform }}" = "windows-latest" ]; then
+            # Windows: ToolsLab_0.0.0_x64-setup.exe -> ToolsLab_x64-setup.exe
+            find src-tauri/target/release/bundle -name "*.exe" | while read file; do
+              newname=$(echo "$file" | sed 's/_0\.0\.0_/_/g')
+              if [ "$file" != "$newname" ]; then
+                echo "Renaming: $(basename $file) -> $(basename $newname)"
+                mv "$file" "$newname"
+              fi
+            done
+          elif [ "${{ matrix.platform }}" = "macos-latest" ]; then
+            # macOS: ToolsLab_0.0.0_x64.dmg -> ToolsLab_x64.dmg
+            find src-tauri/target/release/bundle -name "*.dmg" -o -name "*.app.tar.gz" | while read file; do
+              newname=$(echo "$file" | sed 's/_0\.0\.0_/_/g')
+              if [ "$file" != "$newname" ]; then
+                echo "Renaming: $(basename $file) -> $(basename $newname)"
+                mv "$file" "$newname"
+              fi
+            done
+          else
+            # Linux: ToolsLab_0.0.0_amd64.AppImage -> ToolsLab_amd64.AppImage
+            find src-tauri/target/release/bundle -name "*.AppImage" -o -name "*.deb" | while read file; do
+              newname=$(echo "$file" | sed 's/_0\.0\.0_/_/g')
+              if [ "$file" != "$newname" ]; then
+                echo "Renaming: $(basename $file) -> $(basename $newname)"
+                mv "$file" "$newname"
+              fi
+            done
+          fi
+
+          echo "=== Renamed artifacts ==="
+          find src-tauri/target/release/bundle/ -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" | while read file; do
+            echo "  - $(basename $file)"
+          done
+        shell: bash
+
       - name: Validate build artifacts
         run: |
           echo "=== Checking Tauri build output ==="
