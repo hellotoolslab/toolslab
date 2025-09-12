@@ -22,7 +22,7 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     outputs:
-      release_id: ${{ steps.create-release.outputs.result }}
+      release_id: ${{ steps.create-release.outputs.release_id }}
       release_upload_url: ${{ steps.create-release.outputs.upload_url }}
       version: ${{ steps.get_version.outputs.VERSION }}
     steps:
@@ -78,10 +78,9 @@ jobs:
               draft: true,
               prerelease: false
             })
-            return {
-              id: data.id,
-              upload_url: data.upload_url
-            }
+            core.setOutput('release_id', data.id);
+            core.setOutput('upload_url', data.upload_url);
+            return data.id
 
   build-tauri:
     needs: create-release
