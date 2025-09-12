@@ -123,8 +123,8 @@ jobs:
         with:
           targets: ${{ matrix.target }}
 
-      - name: Install Tauri CLI
-        run: cargo install tauri-cli --version "^2.0" --locked
+      - name: Install Tauri CLI via NPM
+        run: npm install -g @tauri-apps/cli@latest
         shell: bash
 
       - name: Verify Tauri installation
