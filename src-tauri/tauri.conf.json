@@ -35,10 +35,10 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all",
+    "targets": ["nsis", "app"],
     "icon": ["icons/icon.png"],
     "resources": [],
-    "copyright": "© 2024 ToolsLab. All rights reserved.",
+    "copyright": "© 2025 ToolsLab. All rights reserved.",
     "category": "DeveloperTool",
     "shortDescription": "Professional developer tools suite",
     "longDescription": "ToolsLab is a comprehensive suite of developer tools including formatters, converters, encoders, and generators. All tools work offline and respect your privacy.",
