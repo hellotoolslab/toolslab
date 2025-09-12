@@ -35,11 +35,7 @@
   },
   "bundle": {
     "active": true,
-    "targets": {
-      "linux": ["deb", "appimage"],
-      "windows": ["nsis", "app"],
-      "macOS": ["dmg", "app"]
-    },
+    "targets": ["nsis", "deb", "appimage", "dmg", "app"],
     "icon": ["icons/icon.png"],
     "resources": [],
     "copyright": "© 2025 ToolsLab. All rights reserved.",
