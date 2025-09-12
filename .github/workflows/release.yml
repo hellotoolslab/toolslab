@@ -62,11 +62,11 @@ jobs:
             - Cross-platform support
 
             ### Downloads
-            - **Windows**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_x64-setup.exe
-            - **macOS Intel**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_x64.dmg
-            - **macOS Apple Silicon**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_aarch64.dmg
-            - **Linux AppImage**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_amd64.AppImage
-            - **Linux Deb**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_amd64.deb
+            - **Windows**: ToolsLab_x64-setup.exe
+            - **macOS Intel**: ToolsLab_x64.dmg
+            - **macOS Apple Silicon**: ToolsLab_aarch64.dmg
+            - **Linux AppImage**: ToolsLab_amd64.AppImage
+            - **Linux Deb**: ToolsLab_amd64.deb
 
             ### Installation
             1. Download the appropriate file for your system
@@ -245,19 +245,19 @@ jobs:
             "platforms": {
               "darwin-x86_64": {
                 "signature": "",
-                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_${{ needs.create-release.outputs.version }}_x64.dmg"
+                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_x64.dmg"
               },
               "darwin-aarch64": {
                 "signature": "",
-                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_${{ needs.create-release.outputs.version }}_aarch64.dmg"
+                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_aarch64.dmg"
               },
               "linux-x86_64": {
                 "signature": "",
-                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_${{ needs.create-release.outputs.version }}_amd64.AppImage"
+                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_amd64.AppImage"
               },
               "windows-x86_64": {
                 "signature": "",
-                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_${{ needs.create-release.outputs.version }}_x64-setup.exe"
+                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_x64-setup.exe"
               }
             }
           }
