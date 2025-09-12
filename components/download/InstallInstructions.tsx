@@ -154,7 +154,7 @@ export function InstallInstructions() {
         <p className="mt-1 text-sm text-blue-800 dark:text-blue-200">
           If you encounter any issues during installation, check our{' '}
           <a
-            href="https://github.com/gianlucaricaldone/toolslab/issues"
+            href="https://github.com/hellotoolslab/toolslab/issues"
             className="underline hover:no-underline"
             target="_blank"
             rel="noopener noreferrer"

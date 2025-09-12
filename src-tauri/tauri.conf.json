@@ -2,56 +2,47 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "ToolsLab",
   "version": "1.0.0",
-  "identifier": "dev.toolslab.app",
+  "identifier": "dev.toolslab.desktop",
   "build": {
-    "frontendDist": "../out",
-    "devUrl": "http://localhost:3000/lab",
+    "frontendDist": "../.next",
+    "devUrl": "http://localhost:3001",
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build"
   },
   "app": {
     "windows": [
       {
-        "title": "ToolsLab - Developer Tools Suite",
-        "width": 1400,
-        "height": 900,
-        "resizable": true,
-        "fullscreen": false,
-        "center": true,
-        "minWidth": 1024,
-        "minHeight": 600,
-        "url": "/lab",
-        "decorations": true,
-        "transparent": false,
-        "skipTaskbar": false,
-        "fileDropEnabled": true
+        "title": "ToolsLab",
+        "width": 800,
+        "height": 600,
+        "resizable": true
       }
     ],
     "security": {
       "csp": null,
       "dangerousDisableAssetCspModification": false
-    },
+    }
+  },
+  "plugins": {
     "updater": {
       "active": true,
       "dialog": true,
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEY3ODdBMzg5NUI5NTA5NjMKUldUTXN6d2VKdnR5aSszVGlRRXZGZi91SHVJeHRMU2VIK1V5c0dIQ0tjZUJmdXRobmNVMU1wNUYK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDNCNjE0Njc0N0M0N0I2MDEKUldRQnRrZDhkRVpoTzE4K2VMS2hzV2p5SEpCRUE3V2tmNXIwa3IzS1RWWi94ZURFNFdvd1JacXcK",
       "endpoints": [
-        "https://github.com/gianlucaricaldone/toolslab/releases/latest/download/latest.json"
+        "https://github.com/hellotoolslab/toolslab/releases/latest/download/latest.json"
       ]
     }
   },
   "bundle": {
     "active": true,
-    "targets": "all",
-    "icon": [
-      "icons/32x32.png",
-      "icons/128x128.png",
-      "icons/128x128@2x.png",
-      "icons/icon.icns",
-      "icons/icon.ico"
-    ],
+    "targets": {
+      "linux": ["deb", "appimage"],
+      "windows": ["nsis", "app"],
+      "macOS": ["dmg", "app"]
+    },
+    "icon": ["icons/icon.png"],
     "resources": [],
-    "copyright": "© 2024 ToolsLab. All rights reserved.",
+    "copyright": "© 2025 ToolsLab. All rights reserved.",
     "category": "DeveloperTool",
     "shortDescription": "Professional developer tools suite",
     "longDescription": "ToolsLab is a comprehensive suite of developer tools including formatters, converters, encoders, and generators. All tools work offline and respect your privacy.",
@@ -76,26 +67,10 @@
       "entitlements": null
     },
     "windows": {
-      "certificateThumbprint": null,
       "digestAlgorithm": "sha256",
       "timestampUrl": "http://timestamp.digicert.com",
       "webviewInstallMode": {
         "type": "downloadBootstrapper"
-      },
-      "allowDowngrades": false,
-      "wix": {
-        "language": "en-US",
-        "bannerPath": null,
-        "dialogImagePath": null,
-        "licenseUrl": null
-      },
-      "nsis": {
-        "license": null,
-        "headerImage": null,
-        "sidebarImage": null,
-        "installerIcon": null,
-        "installMode": "perUser",
-        "languages": ["English"]
       }
     }
   }
