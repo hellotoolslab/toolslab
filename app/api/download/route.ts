@@ -13,7 +13,7 @@ interface DownloadEvent {
 }
 
 // GitHub repository configuration
-const GITHUB_OWNER = 'gianlucaricaldone';
+const GITHUB_OWNER = 'hellotoolslab';
 const GITHUB_REPO = 'toolslab';
 
 export async function GET(request: NextRequest) {
