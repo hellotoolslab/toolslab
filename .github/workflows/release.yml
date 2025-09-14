@@ -193,19 +193,34 @@ jobs:
           echo "=== Building Tauri application ==="
           tauri build ${{ matrix.args }}
 
-          echo "=== Checking built artifacts ==="
-          if [ ! -d "src-tauri/target/release/bundle" ]; then
-            echo "❌ Bundle directory not found"
+          # Determine the correct bundle directory based on the target
+          if [ "${{ matrix.platform }}" = "macos-latest" ]; then
+            # For macOS builds with specific targets
+            if [ "${{ matrix.arch }}" = "aarch64" ]; then
+              BUNDLE_DIR="src-tauri/target/aarch64-apple-darwin/release/bundle"
+            else
+              BUNDLE_DIR="src-tauri/target/x86_64-apple-darwin/release/bundle"
+            fi
+          else
+            # For Linux and Windows (no target specified)
+            BUNDLE_DIR="src-tauri/target/release/bundle"
+          fi
+
+          echo "=== Checking bundle directory: $BUNDLE_DIR ==="
+          if [ ! -d "$BUNDLE_DIR" ]; then
+            echo "❌ Bundle directory not found at $BUNDLE_DIR"
+            echo "=== Searching for bundle directories ==="
+            find src-tauri/target -type d -name "bundle" 2>/dev/null || echo "No bundle directories found"
             exit 1
           fi
 
           echo "=== Original artifacts ==="
-          find src-tauri/target/release/bundle -type f \( -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" \) | while read file; do
+          find "$BUNDLE_DIR" -type f \( -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" \) | while read file; do
             echo "  - $(basename "$file")"
           done
 
           echo "=== Renaming artifacts to remove version ==="
-          find src-tauri/target/release/bundle -name "*_0.0.0_*" -type f 2>/dev/null | while read file; do
+          find "$BUNDLE_DIR" -name "*_0.0.0_*" -type f 2>/dev/null | while read file; do
             if [ -f "$file" ]; then
               newname=$(echo "$file" | sed 's/_0\.0\.0_/_/g')
               if [ "$file" != "$newname" ]; then
@@ -216,7 +231,7 @@ jobs:
           done
 
           # Also rename any files with version pattern like _0.0.0.
-          find src-tauri/target/release/bundle -name "*_0.0.0.*" -type f 2>/dev/null | while read file; do
+          find "$BUNDLE_DIR" -name "*_0.0.0.*" -type f 2>/dev/null | while read file; do
             if [ -f "$file" ]; then
               newname=$(echo "$file" | sed 's/_0\.0\.0\./_./g')
               if [ "$file" != "$newname" ]; then
@@ -227,9 +242,12 @@ jobs:
           done
 
           echo "=== Final artifacts ==="
-          find src-tauri/target/release/bundle -type f \( -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" \) | while read file; do
+          find "$BUNDLE_DIR" -type f \( -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" \) | while read file; do
             echo "  ✅ $(basename "$file")"
           done
+
+          # Export the bundle directory for later steps
+          echo "BUNDLE_DIR=$BUNDLE_DIR" >> $GITHUB_ENV
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -247,9 +265,12 @@ jobs:
             const path = require('path');
             const { execSync } = require('child_process');
 
+            // Get the bundle directory from environment variable
+            const bundleDir = process.env.BUNDLE_DIR || 'src-tauri/target/release/bundle';
+            console.log(`Using bundle directory: ${bundleDir}`);
+
             // Find all artifacts
             const patterns = ['*.dmg', '*.exe', '*.AppImage', '*.deb', '*.app.tar.gz'];
-            const bundleDir = 'src-tauri/target/release/bundle';
 
             let files = [];
             for (const pattern of patterns) {
@@ -286,7 +307,7 @@ jobs:
                     'content-length': fileSize
                   }
                 });
-                console.log(`✓ Uploaded ${fileName}`);
+                console.log(`✔ Uploaded ${fileName}`);
               } catch (error) {
                 console.error(`✗ Failed to upload ${fileName}: ${error.message}`);
                 throw error;
@@ -298,8 +319,14 @@ jobs:
       - name: Validate build artifacts
         run: |
           echo "=== Checking Tauri build output ==="
-          ls -la src-tauri/target/release/bundle/ || echo "No bundle found"
-          find src-tauri/target/release/bundle/ -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" || echo "No artifacts found"
+          if [ -n "$BUNDLE_DIR" ]; then
+            echo "Bundle directory: $BUNDLE_DIR"
+            ls -la "$BUNDLE_DIR/" || echo "No bundle found"
+            find "$BUNDLE_DIR/" -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" || echo "No artifacts found"
+          else
+            echo "BUNDLE_DIR not set, checking default location"
+            ls -la src-tauri/target/release/bundle/ || echo "No bundle found"
+          fi
         shell: bash
 
   publish-release:
