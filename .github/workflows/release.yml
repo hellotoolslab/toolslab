@@ -188,57 +188,54 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://toolslab.dev
           NEXT_PUBLIC_ENABLE_ADS: false
 
-      - name: Build Tauri App
-        uses: tauri-apps/tauri-action@v0
+      - name: Build and Rename Tauri App
+        run: |
+          echo "=== Building Tauri application ==="
+          tauri build ${{ matrix.args }}
+
+          echo "=== Checking built artifacts ==="
+          if [ ! -d "src-tauri/target/release/bundle" ]; then
+            echo "❌ Bundle directory not found"
+            exit 1
+          fi
+
+          echo "=== Original artifacts ==="
+          find src-tauri/target/release/bundle -type f \( -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" \) | while read file; do
+            echo "  - $(basename "$file")"
+          done
+
+          echo "=== Renaming artifacts to remove version ==="
+          find src-tauri/target/release/bundle -name "*_0.0.0_*" -type f 2>/dev/null | while read file; do
+            if [ -f "$file" ]; then
+              newname=$(echo "$file" | sed 's/_0\.0\.0_/_/g')
+              if [ "$file" != "$newname" ]; then
+                echo "Renaming: $(basename "$file") -> $(basename "$newname")"
+                mv "$file" "$newname"
+              fi
+            fi
+          done
+
+          # Also rename any files with version pattern like _0.0.0.
+          find src-tauri/target/release/bundle -name "*_0.0.0.*" -type f 2>/dev/null | while read file; do
+            if [ -f "$file" ]; then
+              newname=$(echo "$file" | sed 's/_0\.0\.0\./_./g')
+              if [ "$file" != "$newname" ]; then
+                echo "Renaming: $(basename "$file") -> $(basename "$newname")"
+                mv "$file" "$newname"
+              fi
+            fi
+          done
+
+          echo "=== Final artifacts ==="
+          find src-tauri/target/release/bundle -type f \( -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" \) | while read file; do
+            echo "  ✅ $(basename "$file")"
+          done
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
           TAURI_PUBLIC_KEY: ${{ secrets.TAURI_PUBLIC_KEY }}
-        with:
-          # Don't pass releaseId to prevent automatic upload
-          args: ${{ matrix.args }}
-          tauriScript: tauri
-
-      - name: Rename artifacts to remove version
-        run: |
-          echo "=== Renaming build artifacts to remove version ==="
-
-          # Find and rename files based on platform
-          if [ "${{ matrix.platform }}" = "windows-latest" ]; then
-            # Windows: ToolsLab_0.0.0_x64-setup.exe -> ToolsLab_x64-setup.exe
-            find src-tauri/target/release/bundle -name "*.exe" | while read file; do
-              newname=$(echo "$file" | sed 's/_0\.0\.0_/_/g')
-              if [ "$file" != "$newname" ]; then
-                echo "Renaming: $(basename $file) -> $(basename $newname)"
-                mv "$file" "$newname"
-              fi
-            done
-          elif [ "${{ matrix.platform }}" = "macos-latest" ]; then
-            # macOS: ToolsLab_0.0.0_x64.dmg -> ToolsLab_x64.dmg
-            find src-tauri/target/release/bundle -name "*.dmg" -o -name "*.app.tar.gz" | while read file; do
-              newname=$(echo "$file" | sed 's/_0\.0\.0_/_/g')
-              if [ "$file" != "$newname" ]; then
-                echo "Renaming: $(basename $file) -> $(basename $newname)"
-                mv "$file" "$newname"
-              fi
-            done
-          else
-            # Linux: ToolsLab_0.0.0_amd64.AppImage -> ToolsLab_amd64.AppImage
-            find src-tauri/target/release/bundle -name "*.AppImage" -o -name "*.deb" | while read file; do
-              newname=$(echo "$file" | sed 's/_0\.0\.0_/_/g')
-              if [ "$file" != "$newname" ]; then
-                echo "Renaming: $(basename $file) -> $(basename $newname)"
-                mv "$file" "$newname"
-              fi
-            done
-          fi
-
-          echo "=== Renamed artifacts ==="
-          find src-tauri/target/release/bundle/ -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" | while read file; do
-            echo "  - $(basename $file)"
-          done
-        shell: bash
 
       - name: Upload Release Assets
         uses: actions/github-script@v7
