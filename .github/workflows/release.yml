@@ -62,11 +62,11 @@ jobs:
             - Cross-platform support
 
             ### Downloads
-            - **Windows**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_x64-setup.exe
-            - **macOS Intel**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_x64.dmg
-            - **macOS Apple Silicon**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_aarch64.dmg
-            - **Linux AppImage**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_amd64.AppImage
-            - **Linux Deb**: ToolsLab_${{ steps.get_version.outputs.VERSION }}_amd64.deb
+            - **Windows**: ToolsLab_x64-setup.exe
+            - **macOS Intel**: ToolsLab_x64.dmg
+            - **macOS Apple Silicon**: ToolsLab_aarch64.dmg
+            - **Linux AppImage**: ToolsLab_amd64.AppImage
+            - **Linux Deb**: ToolsLab_amd64.deb
 
             ### Installation
             1. Download the appropriate file for your system
@@ -188,23 +188,145 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://toolslab.dev
           NEXT_PUBLIC_ENABLE_ADS: false
 
-      - name: Build Tauri App
-        uses: tauri-apps/tauri-action@v0
+      - name: Build and Rename Tauri App
+        run: |
+          echo "=== Building Tauri application ==="
+          tauri build ${{ matrix.args }}
+
+          # Determine the correct bundle directory based on the target
+          if [ "${{ matrix.platform }}" = "macos-latest" ]; then
+            # For macOS builds with specific targets
+            if [ "${{ matrix.arch }}" = "aarch64" ]; then
+              BUNDLE_DIR="src-tauri/target/aarch64-apple-darwin/release/bundle"
+            else
+              BUNDLE_DIR="src-tauri/target/x86_64-apple-darwin/release/bundle"
+            fi
+          else
+            # For Linux and Windows (no target specified)
+            BUNDLE_DIR="src-tauri/target/release/bundle"
+          fi
+
+          echo "=== Checking bundle directory: $BUNDLE_DIR ==="
+          if [ ! -d "$BUNDLE_DIR" ]; then
+            echo "❌ Bundle directory not found at $BUNDLE_DIR"
+            echo "=== Searching for bundle directories ==="
+            find src-tauri/target -type d -name "bundle" 2>/dev/null || echo "No bundle directories found"
+            exit 1
+          fi
+
+          echo "=== Original artifacts ==="
+          find "$BUNDLE_DIR" -type f \( -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" \) | while read file; do
+            echo "  - $(basename "$file")"
+          done
+
+          echo "=== Renaming artifacts to remove version ==="
+          find "$BUNDLE_DIR" -name "*_0.0.0_*" -type f 2>/dev/null | while read file; do
+            if [ -f "$file" ]; then
+              newname=$(echo "$file" | sed 's/_0\.0\.0_/_/g')
+              if [ "$file" != "$newname" ]; then
+                echo "Renaming: $(basename "$file") -> $(basename "$newname")"
+                mv "$file" "$newname"
+              fi
+            fi
+          done
+
+          # Also rename any files with version pattern like _0.0.0.
+          find "$BUNDLE_DIR" -name "*_0.0.0.*" -type f 2>/dev/null | while read file; do
+            if [ -f "$file" ]; then
+              newname=$(echo "$file" | sed 's/_0\.0\.0\./_./g')
+              if [ "$file" != "$newname" ]; then
+                echo "Renaming: $(basename "$file") -> $(basename "$newname")"
+                mv "$file" "$newname"
+              fi
+            fi
+          done
+
+          echo "=== Final artifacts ==="
+          find "$BUNDLE_DIR" -type f \( -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" -o -name "*.app.tar.gz" \) | while read file; do
+            echo "  ✅ $(basename "$file")"
+          done
+
+          # Export the bundle directory for later steps
+          echo "BUNDLE_DIR=$BUNDLE_DIR" >> $GITHUB_ENV
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
           TAURI_PUBLIC_KEY: ${{ secrets.TAURI_PUBLIC_KEY }}
+
+      - name: Upload Release Assets
+        uses: actions/github-script@v7
+        env:
+          RELEASE_ID: ${{ needs.create-release.outputs.release_id }}
         with:
-          releaseId: ${{ needs.create-release.outputs.release_id }}
-          args: ${{ matrix.args }}
-          tauriScript: tauri
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const { execSync } = require('child_process');
+
+            // Get the bundle directory from environment variable
+            const bundleDir = process.env.BUNDLE_DIR || 'src-tauri/target/release/bundle';
+            console.log(`Using bundle directory: ${bundleDir}`);
+
+            // Find all artifacts
+            const patterns = ['*.dmg', '*.exe', '*.AppImage', '*.deb', '*.app.tar.gz'];
+
+            let files = [];
+            for (const pattern of patterns) {
+              try {
+                const result = execSync(`find ${bundleDir} -name "${pattern}"`, { encoding: 'utf8' });
+                const foundFiles = result.trim().split('\n').filter(f => f);
+                files = files.concat(foundFiles);
+              } catch (e) {
+                // Pattern didn't match any files
+              }
+            }
+
+            console.log(`Found ${files.length} artifacts to upload`);
+
+            // Upload each file
+            for (const filePath of files) {
+              if (!filePath) continue;
+              
+              const fileName = path.basename(filePath);
+              const fileData = fs.readFileSync(filePath);
+              const fileSize = fs.statSync(filePath).size;
+              
+              console.log(`Uploading ${fileName} (${Math.round(fileSize / 1024 / 1024)}MB)...`);
+              
+              try {
+                await github.rest.repos.uploadReleaseAsset({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  release_id: parseInt(process.env.RELEASE_ID),
+                  name: fileName,
+                  data: fileData,
+                  headers: {
+                    'content-type': 'application/octet-stream',
+                    'content-length': fileSize
+                  }
+                });
+                console.log(`✔ Uploaded ${fileName}`);
+              } catch (error) {
+                console.error(`✗ Failed to upload ${fileName}: ${error.message}`);
+                throw error;
+              }
+            }
+
+            console.log('All artifacts uploaded successfully!');
 
       - name: Validate build artifacts
         run: |
           echo "=== Checking Tauri build output ==="
-          ls -la src-tauri/target/release/bundle/ || echo "No bundle found"
-          find src-tauri/target/release/bundle/ -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" || echo "No artifacts found"
+          if [ -n "$BUNDLE_DIR" ]; then
+            echo "Bundle directory: $BUNDLE_DIR"
+            ls -la "$BUNDLE_DIR/" || echo "No bundle found"
+            find "$BUNDLE_DIR/" -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" || echo "No artifacts found"
+          else
+            echo "BUNDLE_DIR not set, checking default location"
+            ls -la src-tauri/target/release/bundle/ || echo "No bundle found"
+          fi
         shell: bash
 
   publish-release:
@@ -245,19 +367,19 @@ jobs:
             "platforms": {
               "darwin-x86_64": {
                 "signature": "",
-                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_${{ needs.create-release.outputs.version }}_x64.dmg"
+                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_x64.dmg"
               },
               "darwin-aarch64": {
                 "signature": "",
-                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_${{ needs.create-release.outputs.version }}_aarch64.dmg"
+                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_aarch64.dmg"
               },
               "linux-x86_64": {
                 "signature": "",
-                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_${{ needs.create-release.outputs.version }}_amd64.AppImage"
+                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_amd64.AppImage"
               },
               "windows-x86_64": {
                 "signature": "",
-                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_${{ needs.create-release.outputs.version }}_x64-setup.exe"
+                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ needs.create-release.outputs.version }}/ToolsLab_x64-setup.exe"
               }
             }
           }

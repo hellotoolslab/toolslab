@@ -125,6 +125,16 @@ export default function SqlFormatter({ categoryColor }: SqlFormatterProps) {
       // Show warning if there are validation issues
       if (result.warning) {
         setWarning(result.warning);
+        // Parse the warning JSON and add to validationWarnings
+        try {
+          const warningData = JSON.parse(result.warning);
+          if (warningData.warnings) {
+            setValidationWarnings(warningData.warnings);
+          }
+        } catch (e) {
+          // If parsing fails, just set the warning as text
+          console.error('Failed to parse warning:', e);
+        }
       }
 
       setOutput(result.formatted || '');

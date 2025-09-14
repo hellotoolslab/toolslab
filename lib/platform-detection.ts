@@ -76,32 +76,32 @@ export function getRecommendedDownload(
   displayName: string;
   icon: string;
 } | null {
-  const v = version.replace('v', '');
+  // Version is no longer used in filenames, keeping parameter for compatibility
 
   switch (platform.platform) {
     case 'windows':
       return {
-        filename: `ToolsLab_${v}_x64-setup.exe`,
+        filename: `ToolsLab_x64-setup.exe`,
         displayName: 'Windows Installer (64-bit)',
         icon: '🪟',
       };
     case 'macos':
       if (platform.architecture === 'arm64') {
         return {
-          filename: `ToolsLab_${v}_aarch64.dmg`,
+          filename: `ToolsLab_aarch64.dmg`,
           displayName: 'macOS (Apple Silicon)',
           icon: '🍎',
         };
       } else {
         return {
-          filename: `ToolsLab_${v}_x64.dmg`,
+          filename: `ToolsLab_x64.dmg`,
           displayName: 'macOS (Intel)',
           icon: '🍎',
         };
       }
     case 'linux':
       return {
-        filename: `ToolsLab_${v}_amd64.AppImage`,
+        filename: `ToolsLab_amd64.AppImage`,
         displayName: 'Linux AppImage (64-bit)',
         icon: '🐧',
       };
@@ -117,42 +117,42 @@ export function getAllDownloads(version: string): Array<{
   icon: string;
   size?: string;
 }> {
-  const v = version.replace('v', '');
+  // Version is no longer used in filenames, keeping parameter for compatibility
 
   return [
     {
       platform: 'windows',
-      filename: `ToolsLab_${v}_x64-setup.exe`,
+      filename: `ToolsLab_x64-setup.exe`,
       displayName: 'Windows Installer',
       icon: '🪟',
     },
     {
       platform: 'windows',
-      filename: `ToolsLab_${v}_x64.msi`,
+      filename: `ToolsLab_x64.msi`,
       displayName: 'Windows MSI',
       icon: '🪟',
     },
     {
       platform: 'macos',
-      filename: `ToolsLab_${v}_aarch64.dmg`,
+      filename: `ToolsLab_aarch64.dmg`,
       displayName: 'macOS (Apple Silicon)',
       icon: '🍎',
     },
     {
       platform: 'macos',
-      filename: `ToolsLab_${v}_x64.dmg`,
+      filename: `ToolsLab_x64.dmg`,
       displayName: 'macOS (Intel)',
       icon: '🍎',
     },
     {
       platform: 'linux',
-      filename: `ToolsLab_${v}_amd64.AppImage`,
+      filename: `ToolsLab_amd64.AppImage`,
       displayName: 'Linux AppImage',
       icon: '🐧',
     },
     {
       platform: 'linux',
-      filename: `ToolsLab_${v}_amd64.deb`,
+      filename: `ToolsLab_amd64.deb`,
       displayName: 'Linux Debian/Ubuntu',
       icon: '🐧',
     },
