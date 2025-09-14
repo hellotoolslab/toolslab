@@ -10,6 +10,183 @@ import {
 } from '../../../lib/tools/sql-formatter';
 
 describe('SQL Formatter', () => {
+  describe('Square Brackets and LIKE Pattern Validation', () => {
+    it('should handle square brackets correctly with IN clause', () => {
+      const sql = 'SELECT * FROM users WHERE id IN [1, 2, 3]';
+      const validation = validateSQL(sql);
+
+      // Should NOT report unmatched parentheses for square brackets
+      const parenErrors = validation.errors.filter((e) =>
+        e.message.includes('Unmatched parentheses')
+      );
+      expect(parenErrors.length).toBe(0);
+    });
+
+    it('should handle SQL Server style identifiers with square brackets', () => {
+      const sql =
+        'SELECT [user].[name], [order].[id] FROM [users] [user] JOIN [orders] [order] ON [user].[id] = [order].[user_id]';
+      const validation = validateSQL(sql);
+
+      // Should NOT report unmatched parentheses for square brackets
+      const parenErrors = validation.errors.filter((e) =>
+        e.message.includes('Unmatched parentheses')
+      );
+      expect(parenErrors.length).toBe(0);
+    });
+
+    it('should detect LIKE without string pattern', () => {
+      const sql = 'SELECT * FROM users WHERE name LIKE john';
+      const validation = validateSQL(sql);
+
+      // Should report error for LIKE without proper string
+      const likeErrors = validation.errors.filter((e) =>
+        e.message.includes('LIKE pattern must be')
+      );
+      expect(likeErrors.length).toBe(1);
+    });
+
+    it('should detect NOT LIKE without string pattern', () => {
+      const sql = 'SELECT * FROM users WHERE name NOT LIKE admin';
+      const validation = validateSQL(sql);
+
+      // Should report error for NOT LIKE without proper string
+      const likeErrors = validation.errors.filter((e) =>
+        e.message.includes('LIKE pattern must be')
+      );
+      expect(likeErrors.length).toBe(1);
+    });
+
+    it('should accept LIKE with valid string patterns', () => {
+      const sql1 = "SELECT * FROM users WHERE name LIKE 'john%'";
+      const sql2 = 'SELECT * FROM users WHERE name LIKE "%admin%"';
+      const sql3 = "SELECT * FROM users WHERE name NOT LIKE '_test'";
+
+      const validation1 = validateSQL(sql1);
+      const validation2 = validateSQL(sql2);
+      const validation3 = validateSQL(sql3);
+
+      // Should NOT report errors for valid LIKE patterns
+      expect(
+        validation1.errors.filter((e) => e.message.includes('LIKE pattern'))
+          .length
+      ).toBe(0);
+      expect(
+        validation2.errors.filter((e) => e.message.includes('LIKE pattern'))
+          .length
+      ).toBe(0);
+      expect(
+        validation3.errors.filter((e) => e.message.includes('LIKE pattern'))
+          .length
+      ).toBe(0);
+    });
+
+    it('should accept LIKE with parameters', () => {
+      const sql1 = 'SELECT * FROM users WHERE name LIKE ?';
+      const sql2 = 'SELECT * FROM users WHERE name LIKE :pattern';
+      const sql3 = 'SELECT * FROM users WHERE name LIKE @pattern';
+
+      const validation1 = validateSQL(sql1);
+      const validation2 = validateSQL(sql2);
+      const validation3 = validateSQL(sql3);
+
+      // Should NOT report errors for parameterized LIKE patterns
+      expect(
+        validation1.errors.filter((e) => e.message.includes('LIKE pattern'))
+          .length
+      ).toBe(0);
+      expect(
+        validation2.errors.filter((e) => e.message.includes('LIKE pattern'))
+          .length
+      ).toBe(0);
+      expect(
+        validation3.errors.filter((e) => e.message.includes('LIKE pattern'))
+          .length
+      ).toBe(0);
+    });
+
+    it('should accept LIKE with column references', () => {
+      const sql = 'SELECT * FROM users u1 WHERE u1.name LIKE u2.pattern';
+      const validation = validateSQL(sql);
+
+      // Should NOT report errors for column references in LIKE
+      expect(
+        validation.errors.filter((e) => e.message.includes('LIKE pattern'))
+          .length
+      ).toBe(0);
+    });
+
+    it('should handle mixed brackets and parentheses correctly', () => {
+      const sql =
+        "SELECT * FROM [users] WHERE ([id] IN (1, 2, 3) OR [name] LIKE 'test%')";
+      const validation = validateSQL(sql);
+
+      // Should handle both brackets and parentheses correctly
+      const parenErrors = validation.errors.filter((e) =>
+        e.message.includes('Unmatched parentheses')
+      );
+      expect(parenErrors.length).toBe(0);
+    });
+
+    it('should warn about square brackets with IN in MySQL dialect', () => {
+      const sql = 'SELECT * FROM users WHERE id IN [1, 2, 3]';
+      const options: SqlFormatterOptions = {
+        dialect: 'mysql',
+        indentSize: 2,
+        keywordCase: 'uppercase',
+        linesBetweenQueries: 1,
+        maxLineLength: 80,
+        preserveComments: true,
+      };
+
+      const result = formatSQL(sql, options);
+
+      expect(result.success).toBe(true);
+      expect(result.warning).toBeDefined();
+      expect(result.warning).toContain(
+        'Square brackets are not valid MySQL syntax'
+      );
+      expect(result.warning).toContain('Use parentheses instead');
+    });
+
+    it('should warn about square bracket identifiers in MySQL', () => {
+      const sql = 'SELECT [user].[name] FROM [users]';
+      const options: SqlFormatterOptions = {
+        dialect: 'mysql',
+        indentSize: 2,
+        keywordCase: 'uppercase',
+        linesBetweenQueries: 1,
+        maxLineLength: 80,
+        preserveComments: true,
+      };
+
+      const result = formatSQL(sql, options);
+
+      expect(result.success).toBe(true);
+      expect(result.warning).toBeDefined();
+      expect(result.warning).toContain(
+        'Square brackets for identifiers are SQL Server syntax'
+      );
+      expect(result.warning).toContain('use backticks');
+    });
+
+    it('should NOT warn about square brackets in SQL Server dialect', () => {
+      const sql = 'SELECT * FROM users WHERE id IN [1, 2, 3]';
+      const options: SqlFormatterOptions = {
+        dialect: 'sqlserver',
+        indentSize: 2,
+        keywordCase: 'uppercase',
+        linesBetweenQueries: 1,
+        maxLineLength: 80,
+        preserveComments: true,
+      };
+
+      const result = formatSQL(sql, options);
+
+      expect(result.success).toBe(true);
+      expect(result.warning).toBeUndefined();
+    });
+  });
+
   describe('formatSQL', () => {
     const defaultOptions: SqlFormatterOptions = {
       dialect: 'mysql',

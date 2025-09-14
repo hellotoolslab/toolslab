@@ -248,6 +248,18 @@ export function formatSQL(
       };
     }
 
+    // Check for dialect-specific syntax issues
+    const lines = cleanSql.split('\n');
+    const dialectWarnings = validateDialectSpecificSyntax(
+      lines,
+      options.dialect
+    );
+    if (validation.warnings) {
+      validation.warnings.push(...dialectWarnings);
+    } else {
+      validation.warnings = dialectWarnings;
+    }
+
     // If there are validation errors (non-critical), show them as structured output instead of formatting
     if (!validation.valid && validation.errors.length > 0) {
       const validationResult = {
@@ -304,19 +316,36 @@ export function formatSQL(
     formatted = cleanupFormatting(formatted, options);
 
     // Calculate statistics
-    const lines = formatted.split('\n').length;
+    const lineCount = formatted.split('\n').length;
     const characters = formatted.length;
     const keywords = countKeywords(formatted);
     const statements = countStatements(formatted);
 
-    return {
+    // Include warnings if any
+    const result: SqlFormatterResult = {
       success: true,
       formatted,
-      lines,
+      lines: lineCount,
       characters,
       keywords,
       statements,
     };
+
+    // Add warnings if present
+    if (validation.warnings && validation.warnings.length > 0) {
+      result.warning = JSON.stringify(
+        {
+          warnings: validation.warnings.map((warn) => ({
+            line: warn.line,
+            message: warn.message,
+          })),
+        },
+        null,
+        2
+      );
+    }
+
+    return result;
   } catch (error) {
     return {
       success: false,
@@ -380,6 +409,10 @@ export function validateSQL(sql: string): SqlValidationResult {
   const typoErrors = findTypoErrors(lines);
   errors.push(...typoErrors);
 
+  // Check for LIKE/NOT LIKE pattern issues
+  const likePatternErrors = validateLikePatterns(lines);
+  errors.push(...likePatternErrors);
+
   return {
     valid: errors.length === 0,
     errors,
@@ -434,7 +467,7 @@ function parseSqlStructure(sql: string): ParsedSqlInfo {
 
   // Extract SELECT columns
   const selectColumns: string[] = [];
-  const selectMatch = sql.match(/SELECT\s+(.*?)\s+FROM/is);
+  const selectMatch = sql.match(/SELECT\s+([\s\S]*?)\s+FROM/i);
   if (selectMatch) {
     const selectPart = selectMatch[1];
     selectPart.split(',').forEach((col) => {
@@ -448,7 +481,7 @@ function parseSqlStructure(sql: string): ParsedSqlInfo {
   // Extract GROUP BY columns
   const groupByColumns: string[] = [];
   const groupByMatch = sql.match(
-    /GROUP\s+BY\s+(.*?)(?:\s+HAVING|\s+ORDER|\s+LIMIT|$)/is
+    /GROUP\s+BY\s+([\s\S]*?)(?:\s+HAVING|\s+ORDER|\s+LIMIT|$)/i
   );
   if (groupByMatch) {
     groupByMatch[1].split(',').forEach((col) => {
@@ -458,7 +491,7 @@ function parseSqlStructure(sql: string): ParsedSqlInfo {
 
   // Extract ORDER BY columns
   const orderByColumns: string[] = [];
-  const orderByMatch = sql.match(/ORDER\s+BY\s+(.*?)(?:\s+LIMIT|$)/is);
+  const orderByMatch = sql.match(/ORDER\s+BY\s+([\s\S]*?)(?:\s+LIMIT|$)/i);
   if (orderByMatch) {
     orderByMatch[1].split(',').forEach((col) => {
       const cleanCol = col.trim().replace(/\s+(ASC|DESC)$/i, '');
@@ -485,12 +518,40 @@ function findUnbalancedParentheses(lines: string[]): {
   column: number;
 } {
   let count = 0;
+  let inString = false;
+  let stringChar = '';
+  let inBrackets = false;
+
   for (let i = 0; i < lines.length; i++) {
     for (let j = 0; j < lines[i].length; j++) {
-      if (lines[i][j] === '(') count++;
-      else if (lines[i][j] === ')') {
-        count--;
-        if (count < 0) return { line: i + 1, column: j + 1 };
+      const char = lines[i][j];
+      const prevChar = j > 0 ? lines[i][j - 1] : '';
+
+      // Track string state
+      if ((char === '"' || char === "'") && prevChar !== '\\') {
+        if (!inString) {
+          inString = true;
+          stringChar = char;
+        } else if (char === stringChar) {
+          inString = false;
+          stringChar = '';
+        }
+      }
+
+      if (!inString) {
+        // Handle square brackets
+        if (char === '[') {
+          inBrackets = true;
+        } else if (char === ']') {
+          inBrackets = false;
+        } else if (!inBrackets) {
+          // Only count parentheses when not inside brackets or strings
+          if (char === '(') count++;
+          else if (char === ')') {
+            count--;
+            if (count < 0) return { line: i + 1, column: j + 1 };
+          }
+        }
       }
     }
   }
@@ -1105,6 +1166,7 @@ function hasBalancedParentheses(sql: string): boolean {
   let count = 0;
   let inString = false;
   let stringChar = '';
+  let inBrackets = false;
 
   for (let i = 0; i < sql.length; i++) {
     const char = sql[i];
@@ -1121,12 +1183,20 @@ function hasBalancedParentheses(sql: string): boolean {
     }
 
     if (!inString) {
-      if (char === '(') {
-        count++;
-      } else if (char === ')') {
-        count--;
-        if (count < 0) {
-          return false;
+      // Handle square brackets (common in SQL Server and for identifier quoting)
+      if (char === '[') {
+        inBrackets = true;
+      } else if (char === ']') {
+        inBrackets = false;
+      } else if (!inBrackets) {
+        // Only count parentheses when not inside brackets
+        if (char === '(') {
+          count++;
+        } else if (char === ')') {
+          count--;
+          if (count < 0) {
+            return false;
+          }
         }
       }
     }
@@ -1175,6 +1245,79 @@ function isInQuotes(beforeText: string, word: string): boolean {
 function countKeywords(sql: string): number {
   const words = sql.toUpperCase().split(/\s+/);
   return words.filter((word) => ALL_KEYWORDS.has(word)).length;
+}
+
+function validateLikePatterns(lines: string[]): SqlValidationError[] {
+  const errors: SqlValidationError[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Check for LIKE or NOT LIKE patterns
+    const likePattern = /\b(NOT\s+)?LIKE\b\s*([^'"\s].*?)(?:\s|$|\)|,)/gi;
+    let match;
+
+    while ((match = likePattern.exec(line)) !== null) {
+      const afterLike = match[2];
+
+      // Check if the pattern after LIKE is a valid string or parameter
+      if (
+        afterLike &&
+        !afterLike.startsWith("'") &&
+        !afterLike.startsWith('"') &&
+        !afterLike.startsWith('%') &&
+        !afterLike.startsWith('_') &&
+        !afterLike.startsWith(':') &&
+        !afterLike.startsWith('@') &&
+        !afterLike.startsWith('?') &&
+        !/^[a-zA-Z_][a-zA-Z0-9_]*\.[a-zA-Z_]/.test(afterLike)
+      ) {
+        // It's not a string literal, parameter, or column reference
+        errors.push({
+          line: i + 1,
+          column: match.index + match[0].indexOf(afterLike) + 1,
+          message: `LIKE pattern must be a string literal, parameter, or column reference`,
+        });
+      }
+    }
+  }
+
+  return errors;
+}
+
+function validateDialectSpecificSyntax(
+  lines: string[],
+  dialect: SqlDialect
+): SqlValidationWarning[] {
+  const warnings: SqlValidationWarning[] = [];
+
+  // Check for square brackets with IN clause in MySQL
+  if (dialect === 'mysql') {
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      // Check for IN clause with square brackets
+      const inBracketsPattern = /\bIN\s*\[/gi;
+      if (inBracketsPattern.test(line)) {
+        warnings.push({
+          line: i + 1,
+          message:
+            'Square brackets are not valid MySQL syntax for IN clause. Use parentheses instead: IN (1, 2, 3)',
+        });
+      }
+
+      // Check for square bracket identifiers in MySQL
+      if (/\[[^\]]+\]/.test(line) && !line.includes('JSON')) {
+        warnings.push({
+          line: i + 1,
+          message:
+            'Square brackets for identifiers are SQL Server syntax. In MySQL, use backticks ` for identifiers with special characters',
+        });
+      }
+    }
+  }
+
+  return warnings;
 }
 
 function countStatements(sql: string): number {
