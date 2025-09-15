@@ -15,6 +15,81 @@ export interface ToolInstruction {
 }
 
 export const toolInstructions: Record<string, ToolInstruction> = {
+  'json-validator': {
+    id: 'json-validator',
+    title: 'How to use JSON Validator',
+    steps: [
+      {
+        title: 'Enter or upload JSON data',
+        description:
+          'Paste your JSON in the editor or drag and drop JSON files up to 50MB. The validator supports nested objects, arrays, and all JSON data types with real-time syntax highlighting.',
+      },
+      {
+        title: 'Choose validation level',
+        description:
+          'Select from Basic (syntax only), Structural (object validation), Schema (JSON Schema compliance), or Security (vulnerability detection). Each level provides increasingly detailed analysis.',
+      },
+      {
+        title: 'Add JSON Schema (optional)',
+        description:
+          'Provide a JSON Schema (Draft 7, 2019-09, or 2020-12) in the schema editor to validate data structure, required fields, data types, and constraints. Supports $ref, allOf, oneOf, and conditional schemas.',
+      },
+      {
+        title: 'Review validation results',
+        description:
+          'Examine detailed error reports with line numbers, error types, and fix suggestions. View performance metrics, structural analysis, and security audit results in organized tabs.',
+      },
+      {
+        title: 'Export and share results',
+        description:
+          'Download validation reports as JSON/HTML, copy error summaries to clipboard, or generate developer-friendly code snippets for API testing and documentation.',
+      },
+    ],
+    features: [
+      'Multi-level validation (Basic, Structural, Schema, Security)',
+      'JSON Schema Draft 7, 2019-09, and 2020-12 support',
+      'Real-time syntax highlighting with CodeMirror',
+      'Detailed error reporting with line numbers and fix suggestions',
+      'Performance metrics and validation timing',
+      'Security vulnerability detection and audit',
+      'Large file support up to 50MB with Web Workers',
+      'Export validation results to JSON, HTML, and CSV formats',
+    ],
+    useCases: [
+      'API response validation for REST and GraphQL endpoints',
+      'Configuration file validation for applications',
+      'Data structure verification for databases and imports',
+      'JSON Schema compliance testing for API specifications',
+      'Security auditing of JSON payloads for vulnerabilities',
+      'Development testing and debugging JSON data',
+      'Educational tool for learning JSON and schema validation',
+      'Quality assurance for data migration and transformation',
+    ],
+    proTips: [
+      'Use Web Workers for large files to maintain browser responsiveness',
+      'Enable security validation to detect potential injection attacks',
+      'Combine with API testing to validate endpoint responses',
+      'Use schema $ref to modularize complex validation rules',
+      'Export validation results for automated testing workflows',
+      'Check performance metrics to optimize JSON structure',
+    ],
+    troubleshooting: [
+      'Large files slow? Enable Web Workers in settings for better performance',
+      'Schema validation fails? Verify schema format matches Draft 7/2019-09/2020-12',
+      'Unicode characters display incorrectly? Check file encoding is UTF-8',
+      'Memory issues with huge files? Use streaming validation mode',
+      'False security warnings? Review security validation rules in documentation',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Run validation' },
+      { keys: 'Ctrl+Shift+F', description: 'Format/beautify JSON' },
+      { keys: 'Ctrl+F', description: 'Search in JSON' },
+      { keys: 'Ctrl+/', description: 'Toggle comments (JSON5 mode)' },
+      { keys: 'F8', description: 'Go to next error' },
+      { keys: 'Shift+F8', description: 'Go to previous error' },
+    ],
+  },
+
   'text-diff': {
     id: 'text-diff',
     title: 'How to use Text Diff Checker',

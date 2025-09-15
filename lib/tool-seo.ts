@@ -5,6 +5,13 @@ export interface ToolSEO {
 }
 
 export const toolSEO: Record<string, ToolSEO> = {
+  'json-validator': {
+    id: 'json-validator',
+    tagline: 'Validate JSON with advanced schema support and error detection',
+    seoDescription:
+      'Professional JSON validator with JSON Schema support, real-time error reporting, and security auditing. Validate API responses, configuration files, and data structures with Draft 7/2019-09/2020-12 schema support. Features syntax highlighting, detailed error diagnostics, performance metrics, and security vulnerability detection. Perfect for developers and API testing.',
+  },
+
   'text-diff': {
     id: 'text-diff',
     tagline: 'Compare files and code with professional diff visualization',
