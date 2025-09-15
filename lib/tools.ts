@@ -233,13 +233,28 @@ export const tools: Tool[] = [
   {
     id: 'qr-generator',
     name: 'QR Code Generator',
-    description: 'Generate QR codes for text, URLs, and other data',
+    description:
+      'Generate QR codes with advanced customization, logos, batch processing and developer tools',
     icon: '📱',
     route: '/tools/qr-generator',
-    categories: ['generators'],
-    keywords: ['qr', 'code', 'generate', 'barcode', 'scan'],
-    searchVolume: 6200,
-    label: 'coming-soon',
+    categories: ['generators', 'dev', 'web'],
+    keywords: [
+      'qr',
+      'code',
+      'generate',
+      'barcode',
+      'scan',
+      'wifi',
+      'vcard',
+      'batch',
+      'svg',
+      'logo',
+      'api',
+      'developer',
+    ],
+    isPopular: true,
+    searchVolume: 9800,
+    label: 'new',
   },
 
   // Web & Design Tools

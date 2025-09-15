@@ -47,6 +47,7 @@ const toolComponents = {
   'jwt-decoder': lazy(() => import('./implementations/JwtDecoder')),
   'url-encode': lazy(() => import('./implementations/UrlEncoder')),
   'text-diff': lazy(() => import('./implementations/TextDiff')),
+  'qr-generator': lazy(() => import('./implementations/QRGenerator')),
   // Add more as needed
 } as const;
 

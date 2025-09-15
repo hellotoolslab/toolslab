@@ -1021,4 +1021,95 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+D', description: 'Download results' },
     ],
   },
+
+  'qr-generator': {
+    id: 'qr-generator',
+    title: 'How to use QR Code Generator',
+    steps: [
+      {
+        title: 'Select QR code content type',
+        description:
+          'Choose from URL, WiFi credentials, vCard contact, Email, SMS, Geo location, or plain text. Each type provides specialized input fields for optimal QR code generation.',
+      },
+      {
+        title: 'Enter your content data',
+        description:
+          'Fill in the relevant fields based on your selected type. For URLs, enter the complete web address. For WiFi, provide SSID, password, and security type. For contacts, add name, phone, and email.',
+      },
+      {
+        title: 'Customize appearance and settings',
+        description:
+          'Set QR code size (100x100 to 2000x2000), choose error correction level (L/M/Q/H), adjust margin size, and select foreground/background colors. Upload a logo for branded QR codes.',
+      },
+      {
+        title: 'Generate and preview QR code',
+        description:
+          'Click generate to create your QR code with real-time preview. The tool validates content, optimizes settings, and shows readability score with device compatibility warnings.',
+      },
+      {
+        title: 'Export in multiple formats',
+        description:
+          'Download as PNG, SVG, PDF for printing, or copy as Base64/Data URL for web embedding. Use batch generation for multiple QR codes from CSV/JSON input.',
+      },
+    ],
+    features: [
+      'Multiple content types: URL, WiFi, vCard, Email, SMS, Geo, Crypto addresses',
+      'Advanced customization: Size, colors, error correction, margins, logo embedding',
+      'Multiple export formats: PNG, SVG, PDF, Base64, Data URL',
+      'Batch generation from CSV, JSON, or text lists',
+      'Real-time validation and readability scoring',
+      'API integration preview with cURL commands',
+      'Built-in QR scanner for reverse engineering',
+      'Template system with presets for common use cases',
+      'Size optimization with compression suggestions',
+      'Mobile-responsive preview and testing',
+    ],
+    useCases: [
+      'Generate WiFi QR codes for easy guest network access',
+      'Create vCard QR codes for business card contact sharing',
+      'Generate URL QR codes for marketing campaigns and websites',
+      'Create email and SMS QR codes for direct communication',
+      'Generate geo-location QR codes for event venues and addresses',
+      'Create cryptocurrency payment QR codes with amount specification',
+      'Bulk generate QR codes for inventory management and tracking',
+      'Generate API endpoint QR codes for mobile app integration',
+      'Create authentication QR codes for 2FA and login systems',
+      'Generate social media profile QR codes for easy following',
+      'Create event QR codes with calendar integration (iCal format)',
+      'Generate app store QR codes for mobile app downloads',
+    ],
+    proTips: [
+      'Use higher error correction (H=30%) for printed QR codes that might get damaged',
+      'Keep URLs short - use URL shorteners for better scannability and smaller QR codes',
+      'Test QR codes on different devices and apps before mass distribution',
+      'Use contrast ratios of at least 3:1 between foreground and background colors',
+      'Logo size should not exceed 30% of the QR code area to maintain readability',
+      'For batch generation, use CSV format with headers: type,content,size,filename',
+      'SVG format scales infinitely - perfect for print materials and high-DPI displays',
+      'Use Medium (M=15%) error correction for most digital use cases',
+      'Add margins (quiet zone) of at least 4 modules for reliable scanning',
+      'Test print quality at actual size before mass printing campaigns',
+    ],
+    troubleshooting: [
+      'QR code not scanning: Increase error correction level or reduce logo size',
+      'Low readability score: Improve color contrast or increase QR code size',
+      'Logo placement issues: Center logo and ensure it covers finder patterns',
+      'Batch import failing: Check CSV format with proper headers and encoding',
+      'Large file sizes: Use PNG for photos, SVG for graphics, reduce dimensions if needed',
+      'Mobile scanning issues: Test with multiple QR scanner apps and devices',
+      'Print quality poor: Use vector SVG format or high-DPI PNG (300+ DPI)',
+      'WiFi QR not working: Verify SSID spelling and password accuracy',
+      'URL QR leads nowhere: Test URL accessibility and ensure HTTPS when needed',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+G', description: 'Generate QR code' },
+      { keys: 'Ctrl+C', description: 'Copy QR code as Data URL' },
+      { keys: 'Ctrl+S', description: 'Download QR code' },
+      { keys: 'Ctrl+U', description: 'Switch to URL content type' },
+      { keys: 'Ctrl+W', description: 'Switch to WiFi content type' },
+      { keys: 'Ctrl+T', description: 'Switch to text content type' },
+      { keys: 'Ctrl+B', description: 'Open batch generation mode' },
+      { keys: 'F5', description: 'Regenerate with same settings' },
+    ],
+  },
 };
