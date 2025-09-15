@@ -15,6 +15,81 @@ export interface ToolInstruction {
 }
 
 export const toolInstructions: Record<string, ToolInstruction> = {
+  'json-validator': {
+    id: 'json-validator',
+    title: 'How to use JSON Validator',
+    steps: [
+      {
+        title: 'Enter or upload JSON data',
+        description:
+          'Paste your JSON in the editor or drag and drop JSON files up to 50MB. The validator supports nested objects, arrays, and all JSON data types with real-time syntax highlighting.',
+      },
+      {
+        title: 'Choose validation level',
+        description:
+          'Select from Basic (syntax only), Structural (object validation), Schema (JSON Schema compliance), or Security (vulnerability detection). Each level provides increasingly detailed analysis.',
+      },
+      {
+        title: 'Add JSON Schema (optional)',
+        description:
+          'Provide a JSON Schema (Draft 7, 2019-09, or 2020-12) in the schema editor to validate data structure, required fields, data types, and constraints. Supports $ref, allOf, oneOf, and conditional schemas.',
+      },
+      {
+        title: 'Review validation results',
+        description:
+          'Examine detailed error reports with line numbers, error types, and fix suggestions. View performance metrics, structural analysis, and security audit results in organized tabs.',
+      },
+      {
+        title: 'Export and share results',
+        description:
+          'Download validation reports as JSON/HTML, copy error summaries to clipboard, or generate developer-friendly code snippets for API testing and documentation.',
+      },
+    ],
+    features: [
+      'Multi-level validation (Basic, Structural, Schema, Security)',
+      'JSON Schema Draft 7, 2019-09, and 2020-12 support',
+      'Real-time syntax highlighting with CodeMirror',
+      'Detailed error reporting with line numbers and fix suggestions',
+      'Performance metrics and validation timing',
+      'Security vulnerability detection and audit',
+      'Large file support up to 50MB with Web Workers',
+      'Export validation results to JSON, HTML, and CSV formats',
+    ],
+    useCases: [
+      'API response validation for REST and GraphQL endpoints',
+      'Configuration file validation for applications',
+      'Data structure verification for databases and imports',
+      'JSON Schema compliance testing for API specifications',
+      'Security auditing of JSON payloads for vulnerabilities',
+      'Development testing and debugging JSON data',
+      'Educational tool for learning JSON and schema validation',
+      'Quality assurance for data migration and transformation',
+    ],
+    proTips: [
+      'Use Web Workers for large files to maintain browser responsiveness',
+      'Enable security validation to detect potential injection attacks',
+      'Combine with API testing to validate endpoint responses',
+      'Use schema $ref to modularize complex validation rules',
+      'Export validation results for automated testing workflows',
+      'Check performance metrics to optimize JSON structure',
+    ],
+    troubleshooting: [
+      'Large files slow? Enable Web Workers in settings for better performance',
+      'Schema validation fails? Verify schema format matches Draft 7/2019-09/2020-12',
+      'Unicode characters display incorrectly? Check file encoding is UTF-8',
+      'Memory issues with huge files? Use streaming validation mode',
+      'False security warnings? Review security validation rules in documentation',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Run validation' },
+      { keys: 'Ctrl+Shift+F', description: 'Format/beautify JSON' },
+      { keys: 'Ctrl+F', description: 'Search in JSON' },
+      { keys: 'Ctrl+/', description: 'Toggle comments (JSON5 mode)' },
+      { keys: 'F8', description: 'Go to next error' },
+      { keys: 'Shift+F8', description: 'Go to previous error' },
+    ],
+  },
+
   'text-diff': {
     id: 'text-diff',
     title: 'How to use Text Diff Checker',
@@ -1110,6 +1185,97 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+T', description: 'Switch to text content type' },
       { keys: 'Ctrl+B', description: 'Open batch generation mode' },
       { keys: 'F5', description: 'Regenerate with same settings' },
+    ],
+  },
+
+  'color-picker': {
+    id: 'color-picker',
+    title: 'How to use Color Picker',
+    steps: [
+      {
+        title: 'Select a color using the interface',
+        description:
+          'Use the color wheel for intuitive HSV selection, spectrum bar for linear picking, or click the eyedropper icon to pick colors from anywhere on your screen (in supported browsers). You can also input values directly in any format.',
+      },
+      {
+        title: 'Convert between color formats',
+        description:
+          'Your selected color is automatically converted to HEX, RGB, HSL, HSV, CMYK, and LAB formats. Click any format tab to view and copy values. Use the copy button next to each format for quick clipboard access.',
+      },
+      {
+        title: 'Generate color palettes',
+        description:
+          'Choose a harmony type (complementary, triadic, analogous, split-complementary, tetradic, or monochromatic) to generate a professional color palette. Adjust the base color to see real-time palette updates.',
+      },
+      {
+        title: 'Check contrast and accessibility',
+        description:
+          'Use the contrast checker to verify WCAG AA/AAA compliance for text on backgrounds. The tool shows exact contrast ratios and provides suggestions for accessible alternatives if needed.',
+      },
+      {
+        title: 'Export for development',
+        description:
+          'Generate code for CSS variables, SCSS, Tailwind classes, JavaScript objects, or design system tokens. Export palettes as JSON, Adobe ASE, or image swatches for use in your projects.',
+      },
+    ],
+    features: [
+      'Multiple color format conversion (HEX, RGB, HSL, HSV, CMYK, LAB)',
+      'Interactive color wheel and spectrum bar interfaces',
+      'Eyedropper API for screen color picking',
+      'Professional palette generation with multiple harmony types',
+      'WCAG contrast checker with AA/AAA compliance indicators',
+      'Color blindness simulator (8 types)',
+      'CSS, SCSS, Tailwind, and JavaScript code generation',
+      'Material Design and Bootstrap color mapping',
+      'Gradient generator with multiple stops',
+      'Image color extraction and dominant palette analysis',
+      'Batch color conversion and processing',
+      'Recent colors history and favorite palettes',
+    ],
+    useCases: [
+      'Web developers selecting brand colors for websites',
+      'UI/UX designers creating accessible color schemes',
+      'Frontend developers converting design colors to code',
+      'Accessibility specialists checking contrast ratios',
+      'Brand designers developing color palettes',
+      'Mobile app developers needing platform-specific color codes',
+      'Print designers converting RGB to CMYK',
+      'Theme creators for VS Code, terminals, or applications',
+      'Marketing teams maintaining brand consistency',
+      'Data visualization experts choosing distinguishable colors',
+      'Game developers creating color-based mechanics',
+      'CSS framework users finding Tailwind/Bootstrap equivalents',
+    ],
+    proTips: [
+      'Use keyboard arrows for fine-tuning color values in any input field',
+      'Double-click color swatches to quickly copy HEX values',
+      'Hold Shift while using the color wheel for saturation-only adjustments',
+      'Press spacebar to quickly toggle between HEX/RGB/HSL formats',
+      'Use the temperature slider to make colors warmer or cooler',
+      'Export palettes as CSS custom properties for easy theme switching',
+      'Check contrast with both black and white text for versatility',
+      'Use monochromatic palettes for consistent, professional designs',
+      'Test colors in color blindness simulator before finalizing',
+      'Save project-specific palettes for consistent color usage',
+    ],
+    troubleshooting: [
+      'Eyedropper not working: Check browser compatibility and permissions',
+      'Colors look different in print: Use CMYK values for print design',
+      'Contrast checker shows failure: Try darker shades or increase font size',
+      'Palette colors clash: Use analogous or monochromatic harmonies for subtlety',
+      'Color picker lag: Disable real-time preview for performance on older devices',
+    ],
+    keyboardShortcuts: [
+      { keys: 'C', description: 'Copy current color as HEX' },
+      { keys: 'H', description: 'Switch to HEX format' },
+      { keys: 'R', description: 'Switch to RGB format' },
+      { keys: 'L', description: 'Switch to HSL format' },
+      { keys: 'P', description: 'Generate palette' },
+      { keys: 'E', description: 'Activate eyedropper' },
+      { keys: 'Space', description: 'Toggle format display' },
+      { keys: '↑/↓', description: 'Adjust brightness' },
+      { keys: '←/→', description: 'Adjust hue' },
+      { keys: 'Shift+↑/↓', description: 'Adjust saturation' },
     ],
   },
 };
