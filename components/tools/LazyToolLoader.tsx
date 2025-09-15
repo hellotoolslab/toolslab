@@ -48,6 +48,7 @@ const toolComponents = {
   'url-encode': lazy(() => import('./implementations/UrlEncoder')),
   'text-diff': lazy(() => import('./implementations/TextDiff')),
   'qr-generator': lazy(() => import('./implementations/QRGenerator')),
+  'color-picker': lazy(() => import('./implementations/ColorPicker')),
   // Add more as needed
 } as const;
 

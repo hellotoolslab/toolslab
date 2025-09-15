@@ -125,4 +125,11 @@ export const toolSEO: Record<string, ToolSEO> = {
     seoDescription:
       'Professional QR code generator with logo embedding, WiFi/vCard creation, and batch processing. Features SVG export, API integration, error correction levels, and size optimization. Perfect for developers building authentication systems, contact sharing, and marketing campaigns. Supports URL, email, SMS, geo-location, and crypto addresses with real-time validation.',
   },
+
+  'color-picker': {
+    id: 'color-picker',
+    tagline: 'Pick colors with contrast checker and palette generator',
+    seoDescription:
+      'Professional color picker for developers and designers with HEX, RGB, HSL, HSV, CMYK, and LAB formats. Generate color palettes, check WCAG contrast ratios, simulate color blindness, and export to CSS, Tailwind, Material Design. Features eyedropper API, gradient generator, and design system integration. Free browser-based tool with accessibility compliance checking.',
+  },
 };

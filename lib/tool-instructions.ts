@@ -1112,4 +1112,95 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'F5', description: 'Regenerate with same settings' },
     ],
   },
+
+  'color-picker': {
+    id: 'color-picker',
+    title: 'How to use Color Picker',
+    steps: [
+      {
+        title: 'Select a color using the interface',
+        description:
+          'Use the color wheel for intuitive HSV selection, spectrum bar for linear picking, or click the eyedropper icon to pick colors from anywhere on your screen (in supported browsers). You can also input values directly in any format.',
+      },
+      {
+        title: 'Convert between color formats',
+        description:
+          'Your selected color is automatically converted to HEX, RGB, HSL, HSV, CMYK, and LAB formats. Click any format tab to view and copy values. Use the copy button next to each format for quick clipboard access.',
+      },
+      {
+        title: 'Generate color palettes',
+        description:
+          'Choose a harmony type (complementary, triadic, analogous, split-complementary, tetradic, or monochromatic) to generate a professional color palette. Adjust the base color to see real-time palette updates.',
+      },
+      {
+        title: 'Check contrast and accessibility',
+        description:
+          'Use the contrast checker to verify WCAG AA/AAA compliance for text on backgrounds. The tool shows exact contrast ratios and provides suggestions for accessible alternatives if needed.',
+      },
+      {
+        title: 'Export for development',
+        description:
+          'Generate code for CSS variables, SCSS, Tailwind classes, JavaScript objects, or design system tokens. Export palettes as JSON, Adobe ASE, or image swatches for use in your projects.',
+      },
+    ],
+    features: [
+      'Multiple color format conversion (HEX, RGB, HSL, HSV, CMYK, LAB)',
+      'Interactive color wheel and spectrum bar interfaces',
+      'Eyedropper API for screen color picking',
+      'Professional palette generation with multiple harmony types',
+      'WCAG contrast checker with AA/AAA compliance indicators',
+      'Color blindness simulator (8 types)',
+      'CSS, SCSS, Tailwind, and JavaScript code generation',
+      'Material Design and Bootstrap color mapping',
+      'Gradient generator with multiple stops',
+      'Image color extraction and dominant palette analysis',
+      'Batch color conversion and processing',
+      'Recent colors history and favorite palettes',
+    ],
+    useCases: [
+      'Web developers selecting brand colors for websites',
+      'UI/UX designers creating accessible color schemes',
+      'Frontend developers converting design colors to code',
+      'Accessibility specialists checking contrast ratios',
+      'Brand designers developing color palettes',
+      'Mobile app developers needing platform-specific color codes',
+      'Print designers converting RGB to CMYK',
+      'Theme creators for VS Code, terminals, or applications',
+      'Marketing teams maintaining brand consistency',
+      'Data visualization experts choosing distinguishable colors',
+      'Game developers creating color-based mechanics',
+      'CSS framework users finding Tailwind/Bootstrap equivalents',
+    ],
+    proTips: [
+      'Use keyboard arrows for fine-tuning color values in any input field',
+      'Double-click color swatches to quickly copy HEX values',
+      'Hold Shift while using the color wheel for saturation-only adjustments',
+      'Press spacebar to quickly toggle between HEX/RGB/HSL formats',
+      'Use the temperature slider to make colors warmer or cooler',
+      'Export palettes as CSS custom properties for easy theme switching',
+      'Check contrast with both black and white text for versatility',
+      'Use monochromatic palettes for consistent, professional designs',
+      'Test colors in color blindness simulator before finalizing',
+      'Save project-specific palettes for consistent color usage',
+    ],
+    troubleshooting: [
+      'Eyedropper not working: Check browser compatibility and permissions',
+      'Colors look different in print: Use CMYK values for print design',
+      'Contrast checker shows failure: Try darker shades or increase font size',
+      'Palette colors clash: Use analogous or monochromatic harmonies for subtlety',
+      'Color picker lag: Disable real-time preview for performance on older devices',
+    ],
+    keyboardShortcuts: [
+      { keys: 'C', description: 'Copy current color as HEX' },
+      { keys: 'H', description: 'Switch to HEX format' },
+      { keys: 'R', description: 'Switch to RGB format' },
+      { keys: 'L', description: 'Switch to HSL format' },
+      { keys: 'P', description: 'Generate palette' },
+      { keys: 'E', description: 'Activate eyedropper' },
+      { keys: 'Space', description: 'Toggle format display' },
+      { keys: '↑/↓', description: 'Adjust brightness' },
+      { keys: '←/→', description: 'Adjust hue' },
+      { keys: 'Shift+↑/↓', description: 'Adjust saturation' },
+    ],
+  },
 };
