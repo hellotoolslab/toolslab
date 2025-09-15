@@ -5,6 +5,13 @@ export interface ToolSEO {
 }
 
 export const toolSEO: Record<string, ToolSEO> = {
+  'json-validator': {
+    id: 'json-validator',
+    tagline: 'Validate JSON with advanced schema support and error detection',
+    seoDescription:
+      'Professional JSON validator with JSON Schema support, real-time error reporting, and security auditing. Validate API responses, configuration files, and data structures with Draft 7/2019-09/2020-12 schema support. Features syntax highlighting, detailed error diagnostics, performance metrics, and security vulnerability detection. Perfect for developers and API testing.',
+  },
+
   'text-diff': {
     id: 'text-diff',
     tagline: 'Compare files and code with professional diff visualization',
@@ -124,5 +131,12 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Generate advanced QR codes with logos, batch processing and developer tools',
     seoDescription:
       'Professional QR code generator with logo embedding, WiFi/vCard creation, and batch processing. Features SVG export, API integration, error correction levels, and size optimization. Perfect for developers building authentication systems, contact sharing, and marketing campaigns. Supports URL, email, SMS, geo-location, and crypto addresses with real-time validation.',
+  },
+
+  'color-picker': {
+    id: 'color-picker',
+    tagline: 'Pick colors with contrast checker and palette generator',
+    seoDescription:
+      'Professional color picker for developers and designers with HEX, RGB, HSL, HSV, CMYK, and LAB formats. Generate color palettes, check WCAG contrast ratios, simulate color blindness, and export to CSS, Tailwind, Material Design. Features eyedropper API, gradient generator, and design system integration. Free browser-based tool with accessibility compliance checking.',
   },
 };
