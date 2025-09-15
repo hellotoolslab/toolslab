@@ -133,6 +133,16 @@ export default function PasswordGenerator({
     const finalPassword = passwordArray.join('');
     setPassword(finalPassword);
 
+    // Calculate strength for the generated password
+    let passwordStrength = 0;
+    if (finalPassword.length >= 8) passwordStrength += 20;
+    if (finalPassword.length >= 12) passwordStrength += 20;
+    if (finalPassword.length >= 16) passwordStrength += 20;
+    if (/[a-z]/.test(finalPassword)) passwordStrength += 10;
+    if (/[A-Z]/.test(finalPassword)) passwordStrength += 10;
+    if (/[0-9]/.test(finalPassword)) passwordStrength += 10;
+    if (/[^a-zA-Z0-9]/.test(finalPassword)) passwordStrength += 10;
+
     // Track successful password generation
     const endTime = Date.now();
     trackToolUse('password-generator', 'generate', {
@@ -146,7 +156,7 @@ export default function PasswordGenerator({
         excludeSimilar,
         pronounceable: includePronounceable,
       },
-      strength: strength,
+      strength: Math.min(100, passwordStrength),
       generation_time_ms: endTime - startTime,
       success: true,
     });
@@ -162,7 +172,6 @@ export default function PasswordGenerator({
     excludeSimilar,
     includePronounceable,
     trackToolUse,
-    strength,
   ]);
 
   const calculateStrength = useCallback(() => {
@@ -184,7 +193,7 @@ export default function PasswordGenerator({
 
   useEffect(() => {
     generatePassword();
-  }, [generatePassword]);
+  }, []);
 
   useEffect(() => {
     if (password) {
