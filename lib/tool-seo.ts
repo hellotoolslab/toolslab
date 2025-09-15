@@ -117,4 +117,12 @@ export const toolSEO: Record<string, ToolSEO> = {
     seoDescription:
       'Format and beautify SQL queries with proper indentation, keyword highlighting, and syntax validation. Perfect for database developers, data analysts, and SQL optimization. Supports multiple SQL dialects (MySQL, PostgreSQL, SQLite) with customizable formatting options. Free, secure browser-based SQL formatter with no data uploads.',
   },
+
+  'qr-generator': {
+    id: 'qr-generator',
+    tagline:
+      'Generate advanced QR codes with logos, batch processing and developer tools',
+    seoDescription:
+      'Professional QR code generator with logo embedding, WiFi/vCard creation, and batch processing. Features SVG export, API integration, error correction levels, and size optimization. Perfect for developers building authentication systems, contact sharing, and marketing campaigns. Supports URL, email, SMS, geo-location, and crypto addresses with real-time validation.',
+  },
 };
