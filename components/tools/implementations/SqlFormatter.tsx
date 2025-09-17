@@ -541,11 +541,14 @@ ORDER BY unknown_column;  -- Colonna non definita`;
               <button
                 onClick={handleCopy}
                 className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80"
+                title="Copy formatted SQL"
               >
                 {copied ? (
                   <>
-                    <Check className="h-3.5 w-3.5" />
-                    Copied!
+                    <Check className="h-3.5 w-3.5 text-green-500" />
+                    <span className="text-green-600 dark:text-green-400">
+                      Copied!
+                    </span>
                   </>
                 ) : (
                   <>
@@ -557,6 +560,7 @@ ORDER BY unknown_column;  -- Colonna non definita`;
               <button
                 onClick={handleDownload}
                 className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80"
+                title="Download formatted SQL"
               >
                 <Download className="h-3.5 w-3.5" />
                 Download
