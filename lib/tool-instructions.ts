@@ -1278,4 +1278,92 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Shift+↑/↓', description: 'Adjust saturation' },
     ],
   },
+
+  'gradient-generator': {
+    id: 'gradient-generator',
+    title: 'How to use Gradient Generator',
+    steps: [
+      {
+        title: 'Choose gradient type and direction',
+        description:
+          'Select linear, radial, or conic gradient type. For linear gradients, adjust the angle (0-360°). For radial gradients, set shape, size, and center position. For conic gradients, configure start angle and center point.',
+      },
+      {
+        title: 'Add and customize color stops',
+        description:
+          'Click the + button to add color stops, use the color picker to select colors, and drag the position sliders to control placement (0-100%). You can have up to 10 color stops for complex gradients.',
+      },
+      {
+        title: 'Fine-tune with visual editor',
+        description:
+          'Use the real-time preview to see your gradient changes instantly. Adjust preview size to test how the gradient looks at different dimensions. Click on color stop indicators for quick selection.',
+      },
+      {
+        title: 'Export your gradient',
+        description:
+          'Copy CSS code with browser compatibility prefixes, generate Tailwind CSS classes, or export as SVG. Toggle between simple and compatible CSS formats based on your browser support needs.',
+      },
+      {
+        title: 'Save and organize gradients',
+        description:
+          'Save your favorite gradients to local storage, browse preset collections by category (sunset, ocean, neon, pastel), or generate random gradients with color harmony algorithms.',
+      },
+    ],
+    features: [
+      'Linear, radial, and conic gradient support',
+      'Visual color stop editor with drag and drop',
+      'Real-time preview with resizable canvas',
+      'Up to 10 color stops with alpha transparency',
+      'CSS output with browser compatibility prefixes',
+      'Tailwind CSS class generation (approximation)',
+      'SVG gradient export for graphics',
+      'Preset collections organized by categories',
+      'Random gradient generator with color theory',
+      'Local storage for saving favorite gradients',
+      'Keyboard shortcuts for efficiency',
+      'Color harmony algorithms for pleasing combinations',
+    ],
+    useCases: [
+      'Website background designs and hero sections',
+      'UI component styling for buttons and cards',
+      'Mobile app background gradients',
+      'Social media graphics and banners',
+      'Email template backgrounds',
+      'CSS framework customization',
+      'Brand color palette development',
+      'Creative coding and generative art projects',
+      'Print design color transitions',
+      'Data visualization color schemes',
+      'Game UI and interface design',
+      'Marketing material backgrounds',
+    ],
+    proTips: [
+      'Use 2-3 color stops for clean, professional gradients',
+      'Test gradients at different screen sizes to ensure they work on mobile',
+      'Use analogous colors (next to each other on color wheel) for harmonious gradients',
+      'Save gradients with descriptive names to build a personal library',
+      'Use conic gradients for creating rainbow or circular spectrum effects',
+      'Export SVG format for scalable graphics and icons',
+      'Copy compatible CSS for older browser support',
+      'Use radial gradients for spotlight or fade effects',
+    ],
+    troubleshooting: [
+      'Gradient appears banded: Increase color stops or use closer color values',
+      'Colors look different in production: Check browser color profile settings',
+      'Gradient not visible: Ensure sufficient contrast between stops',
+      'SVG export not working: Conic gradients are not supported in SVG format',
+      'Performance issues: Limit complex gradients on mobile devices',
+      'Browser compatibility: Use vendor prefixes for older browser support',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+C', description: 'Copy CSS code' },
+      { keys: 'Ctrl+R', description: 'Generate random gradient' },
+      { keys: 'Ctrl+S', description: 'Save to favorites' },
+      { keys: '+', description: 'Add color stop' },
+      { keys: '-', description: 'Remove selected color stop' },
+      { keys: 'L', description: 'Switch to linear gradient' },
+      { keys: 'R', description: 'Switch to radial gradient' },
+      { keys: 'C', description: 'Switch to conic gradient' },
+    ],
+  },
 };

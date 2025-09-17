@@ -331,6 +331,35 @@ export const tools: Tool[] = [
     searchVolume: 3200,
     label: '',
   },
+  {
+    id: 'gradient-generator',
+    name: 'Gradient Generator',
+    description:
+      'Create beautiful CSS gradients with visual editor, presets and real-time preview',
+    icon: '🌈',
+    route: '/tools/gradient-generator',
+    categories: ['web', 'generators'],
+    keywords: [
+      'gradient',
+      'css',
+      'linear',
+      'radial',
+      'conic',
+      'color',
+      'background',
+      'design',
+      'web',
+      'ui',
+      'tailwind',
+      'svg',
+      'maker',
+      'tool',
+      'generator',
+    ],
+    isPopular: true,
+    searchVolume: 15000,
+    label: 'new',
+  },
 
   // Dev Utilities
   {
@@ -490,9 +519,17 @@ export function searchTools(query: string): Tool[] {
 }
 
 export function getToolsByCategory(categoryId: string): Tool[] {
-  return tools.filter((tool) => {
-    return tool.categories.includes(categoryId);
-  });
+  return tools
+    .filter((tool) => {
+      return tool.categories.includes(categoryId);
+    })
+    .sort((a, b) => {
+      // First sort by searchVolume (descending), then by name (ascending) for deterministic order
+      if (b.searchVolume !== a.searchVolume) {
+        return b.searchVolume - a.searchVolume;
+      }
+      return a.name.localeCompare(b.name);
+    });
 }
 
 export function getToolById(id: string): Tool | undefined {
