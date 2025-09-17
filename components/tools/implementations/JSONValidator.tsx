@@ -1,6 +1,12 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -56,6 +62,7 @@ export default function JSONValidator({
   const [result, setResult] = useState<ValidationResult | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const [activeTab, setActiveTab] = useState('validator');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Advanced options
   const [maxDepth, setMaxDepth] = useState(50);
@@ -149,14 +156,33 @@ export default function JSONValidator({
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
+    if (!file) return;
+
+    // Check file size (max 50MB)
+    if (file.size > maxFileSize) {
+      alert(`File too large. Maximum size is ${formatBytes(maxFileSize)}`);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
         const content = e.target?.result as string;
         setJsonInput(content);
-      };
-      reader.readAsText(file);
-    }
+        // Clear the input so the same file can be uploaded again
+        event.target.value = '';
+      } catch (error) {
+        console.error('Error reading file:', error);
+        alert('Error reading file. Please try again.');
+      }
+    };
+
+    reader.onerror = () => {
+      console.error('Error reading file');
+      alert('Error reading file. Please try again.');
+    };
+
+    reader.readAsText(file);
   };
 
   const handleExport = (format: 'json' | 'html' | 'csv' | 'text') => {
@@ -245,13 +271,15 @@ export default function JSONValidator({
                     accept=".json,.txt"
                     onChange={handleFileUpload}
                     className="hidden"
-                    id="file-upload"
+                    ref={fileInputRef}
                   />
-                  <label htmlFor="file-upload" className="cursor-pointer">
-                    <Button variant="outline" size="sm">
-                      Upload File
-                    </Button>
-                  </label>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    Upload File
+                  </Button>
                 </div>
               </div>
 
