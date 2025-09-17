@@ -391,11 +391,12 @@ export function validateSQL(sql: string): SqlValidationResult {
     });
   }
 
-  // Check for GROUP BY issues
-  if (parsedInfo.hasGroupBy) {
-    const groupByErrors = validateGroupByClause(lines, parsedInfo);
-    errors.push(...groupByErrors);
-  }
+  // Skip GROUP BY validation - it's too restrictive and depends on database settings
+  // Many databases allow SELECT columns not in GROUP BY (functional dependencies)
+  // if (parsedInfo.hasGroupBy) {
+  //   const groupByErrors = validateGroupByClause(lines, parsedInfo);
+  //   errors.push(...groupByErrors);
+  // }
 
   // Check for undefined columns
   const undefinedColumnErrors = findUndefinedColumns(lines, parsedInfo);
@@ -465,17 +466,97 @@ function parseSqlStructure(sql: string): ParsedSqlInfo {
   // Add CTE names to tables list
   tables.push(...cteNames);
 
-  // Extract SELECT columns
+  // Extract SELECT columns (only actual column references, not IN clause values)
   const selectColumns: string[] = [];
   const selectMatch = sql.match(/SELECT\s+([\s\S]*?)\s+FROM/i);
   if (selectMatch) {
     const selectPart = selectMatch[1];
-    selectPart.split(',').forEach((col) => {
-      const cleanCol = col
-        .trim()
-        .replace(/\s+AS\s+[a-zA-Z_][a-zA-Z0-9_]*$/i, '');
-      selectColumns.push(cleanCol.trim());
-    });
+
+    // First, handle nested parentheses and IN clauses properly
+    let depth = 0;
+    let currentToken = '';
+    let inString = false;
+    let stringChar = '';
+
+    for (let i = 0; i < selectPart.length; i++) {
+      const char = selectPart[i];
+      const prevChar = i > 0 ? selectPart[i - 1] : '';
+
+      // Handle string literals
+      if ((char === '"' || char === "'") && prevChar !== '\\') {
+        if (!inString) {
+          inString = true;
+          stringChar = char;
+        } else if (char === stringChar) {
+          inString = false;
+          stringChar = '';
+        }
+      }
+
+      // Track parentheses depth when not in string
+      if (!inString) {
+        if (char === '(') depth++;
+        else if (char === ')') depth--;
+
+        // When we hit a comma at depth 0, we have a complete column
+        if (char === ',' && depth === 0) {
+          const trimmed = currentToken.trim();
+          // Remove AS alias and check if it's a real column
+          const withoutAlias = trimmed
+            .replace(/\s+AS\s+[a-zA-Z_][a-zA-Z0-9_]*$/i, '')
+            .trim();
+
+          // Only add if it's not a string literal and not empty
+          if (
+            withoutAlias &&
+            !withoutAlias.startsWith("'") &&
+            !withoutAlias.startsWith('"')
+          ) {
+            // Check if this contains an IN clause
+            if (!/\bIN\s*\(/i.test(withoutAlias)) {
+              selectColumns.push(withoutAlias);
+            } else {
+              // Extract just the column part before IN
+              const beforeIn = withoutAlias
+                .replace(/\s+IN\s*\([^)]*\)/gi, '')
+                .trim();
+              if (beforeIn) {
+                selectColumns.push(beforeIn);
+              }
+            }
+          }
+          currentToken = '';
+          continue;
+        }
+      }
+
+      currentToken += char;
+    }
+
+    // Don't forget the last token
+    if (currentToken.trim()) {
+      const trimmed = currentToken.trim();
+      const withoutAlias = trimmed
+        .replace(/\s+AS\s+[a-zA-Z_][a-zA-Z0-9_]*$/i, '')
+        .trim();
+
+      if (
+        withoutAlias &&
+        !withoutAlias.startsWith("'") &&
+        !withoutAlias.startsWith('"')
+      ) {
+        if (!/\bIN\s*\(/i.test(withoutAlias)) {
+          selectColumns.push(withoutAlias);
+        } else {
+          const beforeIn = withoutAlias
+            .replace(/\s+IN\s*\([^)]*\)/gi, '')
+            .trim();
+          if (beforeIn) {
+            selectColumns.push(beforeIn);
+          }
+        }
+      }
+    }
   }
 
   // Extract GROUP BY columns
@@ -610,18 +691,35 @@ function validateGroupByClause(
       // Skip window functions
       if (/\bOVER\s*\(/i.test(col)) return;
 
+      // Skip string literals (values in single quotes)
+      if (/^'[^']*'$/.test(col.trim())) return;
+
+      // Skip columns that are part of IN clause values
+      // This pattern matches columns like 'value' that appear in IN ('val1', 'val2')
+      if (/^'[^']*'/.test(col.trim())) return;
+
+      // Clean the column name for comparison
+      const cleanCol = col.replace(/.*\./, '').trim();
+
+      // Skip if this appears to be a literal value rather than a column
+      if (/^['"]/.test(cleanCol)) return;
+
       // Check if non-aggregate column is in GROUP BY
-      const isInGroupBy = parsedInfo.groupByColumns.some(
-        (groupCol) =>
-          col.includes(groupCol) || groupCol.includes(col.replace(/.*\./, ''))
-      );
+      const isInGroupBy = parsedInfo.groupByColumns.some((groupCol) => {
+        const cleanGroupCol = groupCol.replace(/.*\./, '').trim();
+        return (
+          cleanCol === cleanGroupCol ||
+          col.includes(groupCol) ||
+          groupCol.includes(cleanCol)
+        );
+      });
 
       if (!isInGroupBy) {
         const lineInfo = findColumnInSelect(lines, col);
         errors.push({
           line: lineInfo.line,
           column: lineInfo.column,
-          message: `Column '${col.replace(/.*\./, '')}' must be included in GROUP BY clause`,
+          message: `Column '${cleanCol}' must be included in GROUP BY clause`,
         });
       }
     });
