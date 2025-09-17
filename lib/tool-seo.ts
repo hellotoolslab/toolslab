@@ -19,6 +19,13 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Professional text comparison tool with syntax highlighting, patch generation, and side-by-side diff views. Compare code files, documents, and text with line-by-line differences, change tracking, and unified diff output. Features Git-style patches, whitespace options, and export to HTML/PDF. Perfect for developers reviewing code changes.',
   },
 
+  'gradient-generator': {
+    id: 'gradient-generator',
+    tagline: 'Create stunning CSS gradients with visual editor and presets',
+    seoDescription:
+      'Professional CSS gradient generator with linear, radial, and conic gradients. Create beautiful backgrounds with visual color stop editor, preset collections, and real-time preview. Export to CSS, Tailwind classes, and SVG. Features drag-and-drop interface, color harmony generator, and browser compatibility. Perfect for web designers and developers creating modern UI backgrounds.',
+  },
+
   'json-formatter': {
     id: 'json-formatter',
     tagline: 'Format, validate and beautify JSON instantly online',

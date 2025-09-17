@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 import { categories } from '@/lib/tools';
 import CategoryPageContent from '@/components/layout/CategoryPageContent';
 import { getCategorySEO } from '@/lib/category-seo';
@@ -50,5 +51,11 @@ export default function CategoryPage({ params }: Props) {
     notFound();
   }
 
-  return <CategoryPageContent categoryId={params.category} />;
+  return (
+    <Suspense
+      fallback={<div className="animate-pulse">Loading category...</div>}
+    >
+      <CategoryPageContent categoryId={params.category} />
+    </Suspense>
+  );
 }
