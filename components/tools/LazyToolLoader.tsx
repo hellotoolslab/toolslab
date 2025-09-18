@@ -42,6 +42,7 @@ const toolComponents = {
   'favicon-generator': lazy(() => import('./implementations/FaviconGenerator')),
   'crontab-builder': lazy(() => import('./implementations/CrontabBuilder')),
   'csv-to-json': lazy(() => import('./implementations/CsvToJsonTool')),
+  'json-to-csv': lazy(() => import('./implementations/JsonToCsv')),
   'sql-formatter': lazy(() => import('./implementations/SqlFormatter')),
   'xml-formatter': lazy(() => import('./implementations/XmlFormatter')),
   'jwt-decoder': lazy(() => import('./implementations/JwtDecoder')),
@@ -50,6 +51,7 @@ const toolComponents = {
   'qr-generator': lazy(() => import('./implementations/QRGenerator')),
   'color-picker': lazy(() => import('./implementations/ColorPicker')),
   'json-validator': lazy(() => import('./implementations/JSONValidator')),
+  'list-compare': lazy(() => import('./implementations/ListCompare')),
   'gradient-generator': lazy(
     () => import('./implementations/GradientGenerator')
   ),

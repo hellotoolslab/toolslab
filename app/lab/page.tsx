@@ -31,7 +31,7 @@ export const metadata: Metadata = {
       'Personal toolkit for developers. Star your favorites, build workflows, stay private.',
   },
   robots: {
-    index: false, // Don't index personalized pages
+    index: true,
     follow: true,
   },
   alternates: {

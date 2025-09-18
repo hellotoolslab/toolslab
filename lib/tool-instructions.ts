@@ -1366,4 +1366,177 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'C', description: 'Switch to conic gradient' },
     ],
   },
+
+  'json-to-csv': {
+    id: 'json-to-csv',
+    title: 'How to use JSON to CSV Converter',
+    steps: [
+      {
+        title: 'Input your JSON data',
+        description:
+          'Paste JSON data or upload a JSON file (up to 10MB). Supports JSON arrays of objects, single objects, and nested structures. The converter automatically validates JSON syntax and provides error reporting with line numbers.',
+      },
+      {
+        title: 'Configure conversion options',
+        description:
+          'Choose delimiter (comma, semicolon, tab, pipe), text qualifier (single/double quotes), and line endings (CRLF/LF). Enable auto-flattening for nested objects with customizable separator, configure null value handling, and set default values for missing fields.',
+      },
+      {
+        title: 'Select and organize columns',
+        description:
+          'Auto-detect columns from JSON or manually select which fields to include. Drag and drop to reorder columns, rename column headers with custom mapping, and apply filters to exclude specific rows based on field values.',
+      },
+      {
+        title: 'Preview and validate output',
+        description:
+          'Review the formatted CSV in the interactive preview table with syntax highlighting. Check statistics (rows, columns, empty fields) and verify data transformation accuracy. Scroll through large datasets with virtualized rendering for performance.',
+      },
+      {
+        title: 'Export your CSV data',
+        description:
+          'Download as .csv file with chosen encoding (UTF-8 with/without BOM), copy to clipboard for quick paste into spreadsheets, or generate shareable download link. Compatible with Excel, Google Sheets, and database imports.',
+      },
+    ],
+    features: [
+      'Flexible JSON input with array and single object support',
+      'Automatic nested object flattening with configurable separator',
+      'Custom column selection and drag-and-drop reordering',
+      'Multiple delimiter options (comma, semicolon, tab, pipe)',
+      'Text qualifier configuration for special characters',
+      'Null/undefined value handling with custom placeholders',
+      'Real-time preview with virtualized table rendering',
+      'Large file processing up to 10MB with streaming',
+      'Excel and Google Sheets compatible output formats',
+      'Batch processing for multiple JSON conversions',
+      'UTF-8 encoding with optional BOM for Excel compatibility',
+      'Row filtering based on field conditions',
+    ],
+    useCases: [
+      'Export API response data to Excel for analysis',
+      'Convert JSON logs to tabular format for reporting',
+      'Migrate data between databases and applications',
+      'Prepare datasets for machine learning and data science',
+      'Generate CSV reports from application data',
+      'Transform NoSQL database exports to relational format',
+      'Create backup files in portable CSV format',
+      'Import JSON data into spreadsheet applications',
+      'Convert configuration files for legacy systems',
+      'Process webhook payloads for data warehousing',
+    ],
+    proTips: [
+      'Use dot notation separator for nested objects to maintain hierarchy',
+      'Enable header row for better Excel/Google Sheets compatibility',
+      'Configure UTF-8 BOM for proper character display in Excel',
+      'Use semicolon delimiter for European Excel versions',
+      'Apply filters before conversion to reduce output size',
+      'Preview large files with pagination to verify structure',
+      'Save custom column mappings for repeated conversions',
+      'Use pipe delimiter for data with commas and quotes',
+    ],
+    troubleshooting: [
+      'Special characters display incorrectly? Enable UTF-8 BOM for Excel',
+      'Nested arrays not flattening? Use array index notation in settings',
+      'Large file processing slow? Enable streaming mode for files over 5MB',
+      'Excel showing data in one column? Check delimiter matches regional settings',
+      'Missing columns in output? Verify all JSON objects have consistent structure',
+      'Memory issues with huge datasets? Process in batches of 1000 records',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+V', description: 'Paste JSON data' },
+      { keys: 'Ctrl+Enter', description: 'Convert to CSV' },
+      { keys: 'Ctrl+D', description: 'Download CSV file' },
+      { keys: 'Ctrl+C', description: 'Copy CSV to clipboard' },
+      { keys: 'Ctrl+Z', description: 'Undo last change' },
+      { keys: 'Ctrl+Shift+R', description: 'Reset all options' },
+    ],
+  },
+
+  'list-compare': {
+    id: 'list-compare',
+    title: 'How to use List Compare & Diff Tool',
+    steps: [
+      {
+        title: 'Add your lists',
+        description:
+          'Start with 2 lists and add up to 10 total. Input via textarea, upload files (.txt, .csv, .json), or paste clipboard content. Auto-detect separators (newline, comma, semicolon, tab) or configure manually. Each list can contain up to 100,000 elements.',
+      },
+      {
+        title: 'Configure comparison settings',
+        description:
+          'Choose comparison mode: Set Operations (union, intersection, difference), Sequential Compare (position-based), Smart Compare (ignore case/spaces), Fuzzy Matching (similarity threshold), or Developer Mode (package versions, URLs, code patterns). Configure sorting and transformation options.',
+      },
+      {
+        title: 'Apply pre-processing transforms',
+        description:
+          'Clean and prepare your data with transformations: sort alphabetically/numerically, remove duplicates, filter by length/pattern, convert case, add prefix/suffix, extract patterns with regex, or apply custom JavaScript functions for advanced processing.',
+      },
+      {
+        title: 'Analyze results with visualizations',
+        description:
+          'View results in multiple formats: Venn diagrams for 2-3 lists, tabular view with color-coded differences, unified list with origin badges, matrix view for membership across lists, or detailed statistics with overlap percentages and similarity metrics.',
+      },
+      {
+        title: 'Export in developer formats',
+        description:
+          'Export results in various formats: JavaScript/TypeScript arrays, Python lists, SQL IN clauses, JSON with metadata, CSV with membership columns, Markdown tables, or generate test assertions. Copy to clipboard or download as files.',
+      },
+    ],
+    features: [
+      'Support for 2-10 lists with up to 100k elements each',
+      'Multiple input methods: textarea, file upload, clipboard paste',
+      'Auto-detection of separators and data formats',
+      'Advanced set operations: union, intersection, symmetric difference',
+      'Fuzzy matching with configurable similarity threshold',
+      'Developer-specific comparisons: package versions, URLs, code patterns',
+      'Smart case-insensitive and whitespace-normalized comparison',
+      'Regex pattern matching and wildcard support',
+      'Interactive Venn diagrams and data visualizations',
+      'Pre-processing: sorting, deduplication, filtering, transformations',
+      'Multiple export formats for different programming languages',
+      'Performance optimization with Web Workers for large datasets',
+    ],
+    useCases: [
+      'Compare package.json dependencies between projects',
+      'Analyze git branch file differences for code reviews',
+      'Find missing API endpoints between service versions',
+      'Identify duplicate entries across multiple data sources',
+      'Compare database schema columns and indexes',
+      'Analyze log files for new errors or warnings',
+      'Merge and deduplicate contact lists from different sources',
+      'Compare configuration files across environments',
+      'Find overlap in marketing email lists for campaigns',
+      'Analyze A/B test groups for proper randomization',
+      'Compare file lists for backup verification',
+      'Identify missing translations in localization files',
+    ],
+    proTips: [
+      'Use developer mode for comparing package.json dependencies automatically',
+      'Enable fuzzy matching (85% threshold) for finding similar but not identical items',
+      'Sort lists before comparison to identify sequential patterns',
+      'Use regex filtering to extract specific patterns (emails, URLs, IDs)',
+      'Export as SQL IN clause for database queries with filtered results',
+      'Save frequently used lists as named sets for quick reuse',
+      'Use case-insensitive mode when comparing file names or identifiers',
+      'Enable trim whitespace to handle copy-paste formatting inconsistencies',
+    ],
+    troubleshooting: [
+      'Large lists slow? Enable Web Worker mode in settings for better performance',
+      'Unexpected differences? Check case sensitivity and whitespace handling settings',
+      'File upload fails? Ensure file size is under 10MB and format is supported',
+      'Fuzzy matching too aggressive? Increase similarity threshold to 90-95%',
+      'Results incomplete? Check if auto-detect separator identified format correctly',
+      'Export format issues? Verify special characters are properly escaped for target language',
+      'Memory issues? Process large datasets in smaller chunks or use streaming mode',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Run comparison' },
+      { keys: 'Ctrl+N', description: 'Add new list' },
+      { keys: 'Ctrl+D', description: 'Duplicate current list' },
+      { keys: 'Ctrl+Shift+C', description: 'Copy results to clipboard' },
+      { keys: 'Ctrl+Shift+D', description: 'Download results' },
+      { keys: 'Ctrl+R', description: 'Reset all lists' },
+      { keys: 'Ctrl+S', description: 'Save current configuration' },
+      { keys: 'Ctrl+Z', description: 'Undo last operation' },
+    ],
+  },
 };
