@@ -1539,4 +1539,88 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+Z', description: 'Undo last operation' },
     ],
   },
+
+  'json-to-typescript': {
+    id: 'json-to-typescript',
+    title: 'How to use JSON to TypeScript Converter',
+    steps: [
+      {
+        title: 'Paste or import JSON data',
+        description:
+          'Enter your JSON data directly, upload a .json file, or fetch from a URL endpoint. The tool validates JSON syntax and provides detailed error reporting.',
+      },
+      {
+        title: 'Configure generation options',
+        description:
+          'Customize naming conventions (PascalCase, camelCase), choose between interfaces or type aliases, set array notation preferences, and configure optional property handling.',
+      },
+      {
+        title: 'Customize advanced settings',
+        description:
+          'Enable features like readonly properties, separate type extraction, enum detection, date inference, and custom root interface naming for your specific needs.',
+      },
+      {
+        title: 'Generate and export TypeScript',
+        description:
+          'Review the generated interfaces with syntax highlighting, copy to clipboard, or download as .ts/.d.ts files. Export includes proper interface dependencies and ordering.',
+      },
+      {
+        title: 'Optional schema generation',
+        description:
+          'Generate accompanying Zod schemas, JSON Schema, or validation functions for runtime type checking and API validation.',
+      },
+    ],
+    features: [
+      'Smart type inference with union type detection',
+      'Nested interface extraction and dependency resolution',
+      'Date, UUID, email, and URL pattern recognition',
+      'Optional property handling for null/undefined values',
+      'Enum detection from repeated string values',
+      'Circular reference detection and handling',
+      'Multiple naming convention support',
+      'Readonly and immutable property options',
+      'Zod schema and JSON Schema generation',
+      'Export as TypeScript declarations or implementation files',
+      'Syntax highlighting with error detection',
+      'Batch processing for multiple JSON files',
+    ],
+    useCases: [
+      'Generate types for REST API responses and requests',
+      'Convert configuration objects to typed interfaces',
+      'Create TypeScript definitions for external JSON data',
+      'Generate types for database query results',
+      'Convert GraphQL response shapes to TypeScript',
+      'Create interface definitions for form schemas',
+      'Generate types for JSON-based configuration files',
+      'Convert OpenAPI specification examples to types',
+      'Create mock data generators with proper typing',
+      'Generate validation schemas for runtime type checking',
+    ],
+    proTips: [
+      'Use PascalCase naming for interface names following TypeScript conventions',
+      'Enable readonly properties for immutable data structures like API responses',
+      'Extract nested interfaces separately for better code organization and reusability',
+      'Use union types detection for APIs that return different response formats',
+      'Enable date inference for ISO 8601 timestamp strings in API responses',
+      'Generate Zod schemas alongside interfaces for runtime validation',
+      'Use strict optional handling for APIs with consistent null handling',
+      'Enable enum detection for string values that represent constants',
+    ],
+    troubleshooting: [
+      'Invalid JSON? Check for trailing commas, unquoted keys, or syntax errors',
+      'Missing types? Ensure all required properties are represented in sample JSON',
+      'Wrong type inference? Provide more comprehensive JSON examples with edge cases',
+      'Circular references? Enable reference handling or simplify nested structures',
+      'Performance issues? Process large JSON files in smaller chunks',
+      'Type conflicts? Check for inconsistent property types across nested objects',
+      'Export issues? Verify generated TypeScript compiles without errors',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Generate TypeScript interfaces' },
+      { keys: 'Ctrl+C', description: 'Copy generated TypeScript code' },
+      { keys: 'Ctrl+S', description: 'Download as TypeScript file' },
+      { keys: 'Ctrl+Shift+F', description: 'Format and validate JSON input' },
+      { keys: 'Ctrl+R', description: 'Reset to default settings' },
+    ],
+  },
 };

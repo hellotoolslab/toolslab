@@ -55,6 +55,9 @@ const toolComponents = {
   'gradient-generator': lazy(
     () => import('./implementations/GradientGenerator')
   ),
+  'json-to-typescript': lazy(
+    () => import('./implementations/JsonToTypeScript')
+  ),
   // Add more as needed
 } as const;
 

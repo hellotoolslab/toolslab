@@ -160,4 +160,12 @@ export const toolSEO: Record<string, ToolSEO> = {
     seoDescription:
       'Professional list comparison tool with set operations (union, intersection, difference), fuzzy matching, and developer-friendly output formats. Compare up to 10 lists simultaneously with smart algorithms for package dependencies, git files, API endpoints, and data analysis. Features Venn diagrams, regex matching, duplicate detection, and export to JSON, CSV, SQL. Perfect for developers, data analysts, and system administrators managing lists, arrays, and datasets.',
   },
+
+  'json-to-typescript': {
+    id: 'json-to-typescript',
+    tagline:
+      'Generate TypeScript interfaces from JSON with intelligent type inference',
+    seoDescription:
+      'Advanced JSON to TypeScript converter with smart type inference, optional properties, and nested interface support. Convert API responses, configuration objects, and complex JSON structures to production-ready TypeScript interfaces. Features union types, enum detection, date parsing, custom naming conventions, and immutable options. Includes Zod schema generation, validation code, and mock data generators. Perfect for TypeScript developers building type-safe applications with external APIs.',
+  },
 };
