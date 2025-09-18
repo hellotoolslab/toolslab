@@ -1366,4 +1366,88 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'C', description: 'Switch to conic gradient' },
     ],
   },
+
+  'json-to-csv': {
+    id: 'json-to-csv',
+    title: 'How to use JSON to CSV Converter',
+    steps: [
+      {
+        title: 'Input your JSON data',
+        description:
+          'Paste JSON data or upload a JSON file (up to 10MB). Supports JSON arrays of objects, single objects, and nested structures. The converter automatically validates JSON syntax and provides error reporting with line numbers.',
+      },
+      {
+        title: 'Configure conversion options',
+        description:
+          'Choose delimiter (comma, semicolon, tab, pipe), text qualifier (single/double quotes), and line endings (CRLF/LF). Enable auto-flattening for nested objects with customizable separator, configure null value handling, and set default values for missing fields.',
+      },
+      {
+        title: 'Select and organize columns',
+        description:
+          'Auto-detect columns from JSON or manually select which fields to include. Drag and drop to reorder columns, rename column headers with custom mapping, and apply filters to exclude specific rows based on field values.',
+      },
+      {
+        title: 'Preview and validate output',
+        description:
+          'Review the formatted CSV in the interactive preview table with syntax highlighting. Check statistics (rows, columns, empty fields) and verify data transformation accuracy. Scroll through large datasets with virtualized rendering for performance.',
+      },
+      {
+        title: 'Export your CSV data',
+        description:
+          'Download as .csv file with chosen encoding (UTF-8 with/without BOM), copy to clipboard for quick paste into spreadsheets, or generate shareable download link. Compatible with Excel, Google Sheets, and database imports.',
+      },
+    ],
+    features: [
+      'Flexible JSON input with array and single object support',
+      'Automatic nested object flattening with configurable separator',
+      'Custom column selection and drag-and-drop reordering',
+      'Multiple delimiter options (comma, semicolon, tab, pipe)',
+      'Text qualifier configuration for special characters',
+      'Null/undefined value handling with custom placeholders',
+      'Real-time preview with virtualized table rendering',
+      'Large file processing up to 10MB with streaming',
+      'Excel and Google Sheets compatible output formats',
+      'Batch processing for multiple JSON conversions',
+      'UTF-8 encoding with optional BOM for Excel compatibility',
+      'Row filtering based on field conditions',
+    ],
+    useCases: [
+      'Export API response data to Excel for analysis',
+      'Convert JSON logs to tabular format for reporting',
+      'Migrate data between databases and applications',
+      'Prepare datasets for machine learning and data science',
+      'Generate CSV reports from application data',
+      'Transform NoSQL database exports to relational format',
+      'Create backup files in portable CSV format',
+      'Import JSON data into spreadsheet applications',
+      'Convert configuration files for legacy systems',
+      'Process webhook payloads for data warehousing',
+    ],
+    proTips: [
+      'Use dot notation separator for nested objects to maintain hierarchy',
+      'Enable header row for better Excel/Google Sheets compatibility',
+      'Configure UTF-8 BOM for proper character display in Excel',
+      'Use semicolon delimiter for European Excel versions',
+      'Apply filters before conversion to reduce output size',
+      'Preview large files with pagination to verify structure',
+      'Save custom column mappings for repeated conversions',
+      'Use pipe delimiter for data with commas and quotes',
+    ],
+    troubleshooting: [
+      'Special characters display incorrectly? Enable UTF-8 BOM for Excel',
+      'Nested arrays not flattening? Use array index notation in settings',
+      'Large file processing slow? Enable streaming mode for files over 5MB',
+      'Excel showing data in one column? Check delimiter matches regional settings',
+      'Missing columns in output? Verify all JSON objects have consistent structure',
+      'Memory issues with huge datasets? Process in batches of 1000 records',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+V', description: 'Paste JSON data' },
+      { keys: 'Ctrl+Enter', description: 'Convert to CSV' },
+      { keys: 'Ctrl+D', description: 'Download CSV file' },
+      { keys: 'Ctrl+C', description: 'Copy CSV to clipboard' },
+      { keys: 'Ctrl+Z', description: 'Undo last change' },
+      { keys: 'Ctrl+Shift+R', description: 'Reset all options' },
+    ],
+  },
 };
