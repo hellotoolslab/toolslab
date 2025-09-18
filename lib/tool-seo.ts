@@ -153,4 +153,11 @@ export const toolSEO: Record<string, ToolSEO> = {
     seoDescription:
       'Free JSON to CSV converter with advanced flattening, column mapping, and formatting options. Transform JSON arrays, nested objects, and complex data structures into Excel-compatible CSV files. Features drag-and-drop column ordering, custom delimiters, header configuration, and real-time preview. Perfect for data export, API response conversion, and spreadsheet integration. Secure browser-based processing with no file uploads.',
   },
+
+  'list-compare': {
+    id: 'list-compare',
+    tagline: 'Compare multiple lists with advanced diff and set operations',
+    seoDescription:
+      'Professional list comparison tool with set operations (union, intersection, difference), fuzzy matching, and developer-friendly output formats. Compare up to 10 lists simultaneously with smart algorithms for package dependencies, git files, API endpoints, and data analysis. Features Venn diagrams, regex matching, duplicate detection, and export to JSON, CSV, SQL. Perfect for developers, data analysts, and system administrators managing lists, arrays, and datasets.',
+  },
 };

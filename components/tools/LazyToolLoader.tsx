@@ -51,6 +51,7 @@ const toolComponents = {
   'qr-generator': lazy(() => import('./implementations/QRGenerator')),
   'color-picker': lazy(() => import('./implementations/ColorPicker')),
   'json-validator': lazy(() => import('./implementations/JSONValidator')),
+  'list-compare': lazy(() => import('./implementations/ListCompare')),
   'gradient-generator': lazy(
     () => import('./implementations/GradientGenerator')
   ),

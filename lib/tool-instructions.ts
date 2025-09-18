@@ -1450,4 +1450,93 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+Shift+R', description: 'Reset all options' },
     ],
   },
+
+  'list-compare': {
+    id: 'list-compare',
+    title: 'How to use List Compare & Diff Tool',
+    steps: [
+      {
+        title: 'Add your lists',
+        description:
+          'Start with 2 lists and add up to 10 total. Input via textarea, upload files (.txt, .csv, .json), or paste clipboard content. Auto-detect separators (newline, comma, semicolon, tab) or configure manually. Each list can contain up to 100,000 elements.',
+      },
+      {
+        title: 'Configure comparison settings',
+        description:
+          'Choose comparison mode: Set Operations (union, intersection, difference), Sequential Compare (position-based), Smart Compare (ignore case/spaces), Fuzzy Matching (similarity threshold), or Developer Mode (package versions, URLs, code patterns). Configure sorting and transformation options.',
+      },
+      {
+        title: 'Apply pre-processing transforms',
+        description:
+          'Clean and prepare your data with transformations: sort alphabetically/numerically, remove duplicates, filter by length/pattern, convert case, add prefix/suffix, extract patterns with regex, or apply custom JavaScript functions for advanced processing.',
+      },
+      {
+        title: 'Analyze results with visualizations',
+        description:
+          'View results in multiple formats: Venn diagrams for 2-3 lists, tabular view with color-coded differences, unified list with origin badges, matrix view for membership across lists, or detailed statistics with overlap percentages and similarity metrics.',
+      },
+      {
+        title: 'Export in developer formats',
+        description:
+          'Export results in various formats: JavaScript/TypeScript arrays, Python lists, SQL IN clauses, JSON with metadata, CSV with membership columns, Markdown tables, or generate test assertions. Copy to clipboard or download as files.',
+      },
+    ],
+    features: [
+      'Support for 2-10 lists with up to 100k elements each',
+      'Multiple input methods: textarea, file upload, clipboard paste',
+      'Auto-detection of separators and data formats',
+      'Advanced set operations: union, intersection, symmetric difference',
+      'Fuzzy matching with configurable similarity threshold',
+      'Developer-specific comparisons: package versions, URLs, code patterns',
+      'Smart case-insensitive and whitespace-normalized comparison',
+      'Regex pattern matching and wildcard support',
+      'Interactive Venn diagrams and data visualizations',
+      'Pre-processing: sorting, deduplication, filtering, transformations',
+      'Multiple export formats for different programming languages',
+      'Performance optimization with Web Workers for large datasets',
+    ],
+    useCases: [
+      'Compare package.json dependencies between projects',
+      'Analyze git branch file differences for code reviews',
+      'Find missing API endpoints between service versions',
+      'Identify duplicate entries across multiple data sources',
+      'Compare database schema columns and indexes',
+      'Analyze log files for new errors or warnings',
+      'Merge and deduplicate contact lists from different sources',
+      'Compare configuration files across environments',
+      'Find overlap in marketing email lists for campaigns',
+      'Analyze A/B test groups for proper randomization',
+      'Compare file lists for backup verification',
+      'Identify missing translations in localization files',
+    ],
+    proTips: [
+      'Use developer mode for comparing package.json dependencies automatically',
+      'Enable fuzzy matching (85% threshold) for finding similar but not identical items',
+      'Sort lists before comparison to identify sequential patterns',
+      'Use regex filtering to extract specific patterns (emails, URLs, IDs)',
+      'Export as SQL IN clause for database queries with filtered results',
+      'Save frequently used lists as named sets for quick reuse',
+      'Use case-insensitive mode when comparing file names or identifiers',
+      'Enable trim whitespace to handle copy-paste formatting inconsistencies',
+    ],
+    troubleshooting: [
+      'Large lists slow? Enable Web Worker mode in settings for better performance',
+      'Unexpected differences? Check case sensitivity and whitespace handling settings',
+      'File upload fails? Ensure file size is under 10MB and format is supported',
+      'Fuzzy matching too aggressive? Increase similarity threshold to 90-95%',
+      'Results incomplete? Check if auto-detect separator identified format correctly',
+      'Export format issues? Verify special characters are properly escaped for target language',
+      'Memory issues? Process large datasets in smaller chunks or use streaming mode',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Run comparison' },
+      { keys: 'Ctrl+N', description: 'Add new list' },
+      { keys: 'Ctrl+D', description: 'Duplicate current list' },
+      { keys: 'Ctrl+Shift+C', description: 'Copy results to clipboard' },
+      { keys: 'Ctrl+Shift+D', description: 'Download results' },
+      { keys: 'Ctrl+R', description: 'Reset all lists' },
+      { keys: 'Ctrl+S', description: 'Save current configuration' },
+      { keys: 'Ctrl+Z', description: 'Undo last operation' },
+    ],
+  },
 };
