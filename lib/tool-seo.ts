@@ -146,4 +146,18 @@ export const toolSEO: Record<string, ToolSEO> = {
     seoDescription:
       'Professional color picker for developers and designers with HEX, RGB, HSL, HSV, CMYK, and LAB formats. Generate color palettes, check WCAG contrast ratios, simulate color blindness, and export to CSS, Tailwind, Material Design. Features eyedropper API, gradient generator, and design system integration. Free browser-based tool with accessibility compliance checking.',
   },
+
+  'json-to-csv': {
+    id: 'json-to-csv',
+    tagline: 'Convert JSON to CSV with advanced formatting and column mapping',
+    seoDescription:
+      'Free JSON to CSV converter with advanced flattening, column mapping, and formatting options. Transform JSON arrays, nested objects, and complex data structures into Excel-compatible CSV files. Features drag-and-drop column ordering, custom delimiters, header configuration, and real-time preview. Perfect for data export, API response conversion, and spreadsheet integration. Secure browser-based processing with no file uploads.',
+  },
+
+  'list-compare': {
+    id: 'list-compare',
+    tagline: 'Compare multiple lists with advanced diff and set operations',
+    seoDescription:
+      'Professional list comparison tool with set operations (union, intersection, difference), fuzzy matching, and developer-friendly output formats. Compare up to 10 lists simultaneously with smart algorithms for package dependencies, git files, API endpoints, and data analysis. Features Venn diagrams, regex matching, duplicate detection, and export to JSON, CSV, SQL. Perfect for developers, data analysts, and system administrators managing lists, arrays, and datasets.',
+  },
 };
