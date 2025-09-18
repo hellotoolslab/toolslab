@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 import {
   Copy,
   Download,
@@ -261,10 +262,9 @@ export default function GradientGenerator({
   return (
     <div className="mx-auto w-full max-w-7xl space-y-6">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="editor">Editor</TabsTrigger>
           <TabsTrigger value="presets">Presets</TabsTrigger>
-          <TabsTrigger value="code">Code</TabsTrigger>
           <TabsTrigger value="favorites">Favorites</TabsTrigger>
         </TabsList>
 
@@ -593,24 +593,106 @@ export default function GradientGenerator({
                             : ''
                         }`}
                       >
-                        <div className="flex items-center gap-3">
-                          <div
-                            className="h-8 w-8 cursor-pointer rounded border"
-                            style={{ backgroundColor: stop.color }}
-                            onClick={() => setSelectedStop(stop.id)}
-                          />
-                          <input
-                            type="color"
-                            value={stop.color}
-                            onChange={(e) =>
-                              updateColorStop(stop.id, {
-                                color: e.target.value,
-                              })
-                            }
-                            className="h-8 w-16 cursor-pointer border-0"
-                          />
-                          <div className="flex-1">
-                            <Label className="text-xs">
+                        <div className="space-y-3">
+                          {/* Color Preview and Controls Row */}
+                          <div className="flex items-center gap-3">
+                            <div
+                              className="h-8 w-8 cursor-pointer rounded border"
+                              style={{ backgroundColor: stop.color }}
+                              onClick={() => setSelectedStop(stop.id)}
+                            />
+                            <input
+                              type="color"
+                              value={stop.color}
+                              onChange={(e) =>
+                                updateColorStop(stop.id, {
+                                  color: e.target.value,
+                                })
+                              }
+                              className="h-8 w-16 cursor-pointer border-0"
+                            />
+                            <div className="flex-1">
+                              <Label className="text-xs font-medium">
+                                HEX Color
+                              </Label>
+                              <Input
+                                type="text"
+                                value={stop.color}
+                                onChange={(e) => {
+                                  const hexValue = e.target.value;
+                                  // Validate HEX format
+                                  if (
+                                    /^#[0-9A-Fa-f]{0,6}$/.test(hexValue) ||
+                                    hexValue === ''
+                                  ) {
+                                    updateColorStop(stop.id, {
+                                      color: hexValue,
+                                    });
+                                  }
+                                }}
+                                onBlur={(e) => {
+                                  const hexValue = e.target.value;
+                                  // Auto-complete short HEX values and validate
+                                  if (
+                                    hexValue &&
+                                    !/^#[0-9A-Fa-f]{6}$/.test(hexValue)
+                                  ) {
+                                    if (/^#[0-9A-Fa-f]{3}$/.test(hexValue)) {
+                                      // Convert #RGB to #RRGGBB
+                                      const expanded =
+                                        '#' +
+                                        hexValue[1] +
+                                        hexValue[1] +
+                                        hexValue[2] +
+                                        hexValue[2] +
+                                        hexValue[3] +
+                                        hexValue[3];
+                                      updateColorStop(stop.id, {
+                                        color: expanded,
+                                      });
+                                    } else if (
+                                      !/^#/.test(hexValue) &&
+                                      /^[0-9A-Fa-f]{3,6}$/.test(hexValue)
+                                    ) {
+                                      // Add # prefix if missing
+                                      const withHash = '#' + hexValue;
+                                      if (hexValue.length === 3) {
+                                        const expanded =
+                                          '#' +
+                                          hexValue[0] +
+                                          hexValue[0] +
+                                          hexValue[1] +
+                                          hexValue[1] +
+                                          hexValue[2] +
+                                          hexValue[2];
+                                        updateColorStop(stop.id, {
+                                          color: expanded,
+                                        });
+                                      } else {
+                                        updateColorStop(stop.id, {
+                                          color: withHash,
+                                        });
+                                      }
+                                    }
+                                  }
+                                }}
+                                placeholder="#FF0000"
+                                className="h-8 font-mono text-sm"
+                              />
+                            </div>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => removeColorStop(stop.id)}
+                              disabled={gradientConfig.colorStops.length <= 2}
+                            >
+                              <Minus className="h-4 w-4" />
+                            </Button>
+                          </div>
+
+                          {/* Position Slider Row */}
+                          <div>
+                            <Label className="text-xs font-medium">
                               Position: {stop.position}%
                             </Label>
                             <Slider
@@ -624,14 +706,6 @@ export default function GradientGenerator({
                               className="mt-1"
                             />
                           </div>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => removeColorStop(stop.id)}
-                            disabled={gradientConfig.colorStops.length <= 2}
-                          >
-                            <Minus className="h-4 w-4" />
-                          </Button>
                         </div>
                       </div>
                     ))}
@@ -640,55 +714,8 @@ export default function GradientGenerator({
               </div>
             </Card>
           </div>
-        </TabsContent>
 
-        <TabsContent value="presets" className="space-y-6">
-          {/* Preset Categories */}
-          <Card className="p-6">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-semibold">Gradient Presets</h3>
-              <Select
-                value={selectedPresetCategory}
-                onValueChange={setSelectedPresetCategory}
-              >
-                <SelectTrigger className="w-40">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {presetCategories.map((category) => (
-                    <SelectItem key={category.id} value={category.id}>
-                      {category.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {filteredPresets.map((preset) => (
-                <div
-                  key={preset.id}
-                  className="cursor-pointer rounded-lg border p-4 transition-all hover:shadow-md"
-                  onClick={() => loadPreset(preset)}
-                >
-                  <div
-                    className="mb-3 h-20 rounded border"
-                    style={{
-                      background:
-                        generateGradientCSS(preset.gradient).css || '#f0f0f0',
-                    }}
-                  />
-                  <h4 className="font-medium">{preset.name}</h4>
-                  <Badge variant="secondary" className="mt-1 text-xs">
-                    {preset.category}
-                  </Badge>
-                </div>
-              ))}
-            </div>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="code" className="space-y-6">
+          {/* Generated Code Section */}
           <Card className="p-6">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold">Generated Code</h3>
@@ -766,6 +793,52 @@ ${gradientResult.svg}
                 </AlertDescription>
               </Alert>
             )}
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="presets" className="space-y-6">
+          {/* Preset Categories */}
+          <Card className="p-6">
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-lg font-semibold">Gradient Presets</h3>
+              <Select
+                value={selectedPresetCategory}
+                onValueChange={setSelectedPresetCategory}
+              >
+                <SelectTrigger className="w-40">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {presetCategories.map((category) => (
+                    <SelectItem key={category.id} value={category.id}>
+                      {category.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {filteredPresets.map((preset) => (
+                <div
+                  key={preset.id}
+                  className="cursor-pointer rounded-lg border p-4 transition-all hover:shadow-md"
+                  onClick={() => loadPreset(preset)}
+                >
+                  <div
+                    className="mb-3 h-20 rounded border"
+                    style={{
+                      background:
+                        generateGradientCSS(preset.gradient).css || '#f0f0f0',
+                    }}
+                  />
+                  <h4 className="font-medium">{preset.name}</h4>
+                  <Badge variant="secondary" className="mt-1 text-xs">
+                    {preset.category}
+                  </Badge>
+                </div>
+              ))}
+            </div>
           </Card>
         </TabsContent>
 
@@ -860,14 +933,6 @@ ${gradientResult.svg}
             >
               <Palette className="mr-2 h-4 w-4" />
               Presets
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setActiveTab('code')}
-            >
-              <Code className="mr-2 h-4 w-4" />
-              Code
             </Button>
           </div>
         </div>
