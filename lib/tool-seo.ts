@@ -161,6 +161,13 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Professional list comparison tool with set operations (union, intersection, difference), fuzzy matching, and developer-friendly output formats. Compare up to 10 lists simultaneously with smart algorithms for package dependencies, git files, API endpoints, and data analysis. Features Venn diagrams, regex matching, duplicate detection, and export to JSON, CSV, SQL. Perfect for developers, data analysts, and system administrators managing lists, arrays, and datasets.',
   },
 
+  'curl-to-code': {
+    id: 'curl-to-code',
+    tagline: 'Convert cURL commands to production-ready code in any language',
+    seoDescription:
+      'Free cURL to code converter transforms cURL commands into production-ready code for JavaScript, Python, Go, Java, PHP, Ruby, and 15+ languages. Features automatic error handling, type inference, async/await support, and best practices integration. Perfect for API developers converting documentation examples, debugging network requests, and building SDK clients. Supports all cURL flags, authentication methods, multipart uploads, and generates unit tests. Secure browser-based conversion with no data uploads.',
+  },
+
   'json-to-typescript': {
     id: 'json-to-typescript',
     tagline:

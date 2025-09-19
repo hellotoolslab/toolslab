@@ -10,7 +10,10 @@ require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://toolslab.dev';
 const ADMIN_KEY = process.env.ADMIN_SECRET_KEY;
-const API_URL = `${SITE_URL}/api/indexnow/submit`;
+// Use local API during development if server is running
+const API_BASE =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : SITE_URL;
+const API_URL = `${API_BASE}/api/indexnow/submit`;
 
 async function submitUrl(url, immediate = true) {
   if (!ADMIN_KEY) {
