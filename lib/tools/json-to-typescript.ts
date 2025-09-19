@@ -14,6 +14,7 @@ export interface JsonToTypeScriptOptions {
   // New options for proper handling
   dateHandling: 'string' | 'Date' | 'string-with-comment';
   nullHandling: 'union' | 'optional'; // string | null vs string?
+  optionalHandling: 'loose' | 'strict'; // loose (null | undefined) vs strict (null only)
   exportStyle: 'export' | 'declare' | 'none';
   separateInterfaces: boolean; // If false, inline everything
 
@@ -129,9 +130,9 @@ class InterfaceNameGenerator {
         baseName,
         path,
         currentKey,
+        this.usedNames,
         parentKey,
-        isArrayItem,
-        this.usedNames
+        isArrayItem
       );
     }
 
@@ -182,17 +183,17 @@ class InterfaceNameResolver {
     baseName: string,
     path: string[],
     currentKey: string,
+    usedNames: Set<string>,
     parentKey?: string,
-    isArrayItem: boolean = false,
-    usedNames: Set<string>
+    isArrayItem: boolean = false
   ): string {
     // Strategy 1: Use contextual suffixes based on the path
     const contextualName = this.generateContextualName(
       baseName,
       path,
       currentKey,
-      parentKey,
-      isArrayItem
+      isArrayItem,
+      parentKey
     );
 
     if (contextualName && !usedNames.has(contextualName)) {
@@ -222,8 +223,8 @@ class InterfaceNameResolver {
     baseName: string,
     path: string[],
     currentKey: string,
-    parentKey?: string,
-    isArrayItem: boolean
+    isArrayItem: boolean,
+    parentKey?: string
   ): string | null {
     // For array items, try to use grandparent context
     if (isArrayItem && path.length > 1) {
@@ -303,6 +304,7 @@ export const DEFAULT_OPTIONS: JsonToTypeScriptOptions = {
   arrayNotation: 'array',
   dateHandling: 'string-with-comment',
   nullHandling: 'union',
+  optionalHandling: 'loose',
   exportStyle: 'export',
   separateInterfaces: true,
   extractNestedTypes: true,
@@ -765,7 +767,7 @@ function analyzeArray(
 
     let elementType: string;
     if (elementTypes.size === 1) {
-      elementType = elementTypes.values().next().value;
+      elementType = elementTypes.values().next().value || 'unknown';
     } else {
       // Union type for mixed arrays - wrap in parentheses for clarity
       elementType = `(${Array.from(elementTypes).join(' | ')})`;

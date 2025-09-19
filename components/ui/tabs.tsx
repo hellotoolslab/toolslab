@@ -17,6 +17,7 @@ interface TabsTriggerProps {
   value: string;
   className?: string;
   children: React.ReactNode;
+  disabled?: boolean;
 }
 
 interface TabsContentProps {
@@ -51,7 +52,12 @@ export function TabsList({ className, children }: TabsListProps) {
   );
 }
 
-export function TabsTrigger({ value, className, children }: TabsTriggerProps) {
+export function TabsTrigger({
+  value,
+  className,
+  children,
+  disabled = false,
+}: TabsTriggerProps) {
   const { value: selectedValue, onValueChange } = React.useContext(TabsContext);
 
   return (
@@ -63,7 +69,8 @@ export function TabsTrigger({ value, className, children }: TabsTriggerProps) {
           : 'hover:bg-background/50',
         className
       )}
-      onClick={() => onValueChange(value)}
+      disabled={disabled}
+      onClick={() => !disabled && onValueChange(value)}
     >
       {children}
     </button>
