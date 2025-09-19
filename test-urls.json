@@ -1,9 +1,0 @@
-{
-  "urls": [
-    "https://toolslab.dev/tools/json-formatter",
-    "https://toolslab.dev/tools/base64-encoder",
-    "https://toolslab.dev/tools/jwt-decoder",
-    "https://toolslab.dev/tools/qr-generator",
-    "https://toolslab.dev/tools/markdown-preview"
-  ]
-}

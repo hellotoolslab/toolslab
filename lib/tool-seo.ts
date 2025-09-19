@@ -167,4 +167,12 @@ export const toolSEO: Record<string, ToolSEO> = {
     seoDescription:
       'Free cURL to code converter transforms cURL commands into production-ready code for JavaScript, Python, Go, Java, PHP, Ruby, and 15+ languages. Features automatic error handling, type inference, async/await support, and best practices integration. Perfect for API developers converting documentation examples, debugging network requests, and building SDK clients. Supports all cURL flags, authentication methods, multipart uploads, and generates unit tests. Secure browser-based conversion with no data uploads.',
   },
+
+  'json-to-typescript': {
+    id: 'json-to-typescript',
+    tagline:
+      'Generate TypeScript interfaces from JSON with intelligent type inference',
+    seoDescription:
+      'Advanced JSON to TypeScript converter with smart type inference, optional properties, and nested interface support. Convert API responses, configuration objects, and complex JSON structures to production-ready TypeScript interfaces. Features union types, enum detection, date parsing, custom naming conventions, and immutable options. Includes Zod schema generation, validation code, and mock data generators. Perfect for TypeScript developers building type-safe applications with external APIs.',
+  },
 };
