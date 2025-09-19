@@ -244,18 +244,18 @@ export function NewAboutPage() {
               )
             )}
           </motion.div>
+        </motion.div>
 
-          {/* Scroll indicator */}
-          <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 transform"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <div className="flex flex-col items-center text-white/60">
-              <span className="mb-2 text-sm">Scroll to explore</span>
-              <ArrowRight className="h-4 w-4 rotate-90" />
-            </div>
-          </motion.div>
+        {/* Scroll indicator */}
+        <motion.div
+          className="fixed bottom-8 left-1/2 z-20 -translate-x-1/2 transform"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="flex flex-col items-center text-white/60">
+            <span className="mb-2 text-sm">Scroll to explore</span>
+            <ArrowRight className="h-4 w-4 rotate-90" />
+          </div>
         </motion.div>
       </section>
 
