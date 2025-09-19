@@ -59,6 +59,9 @@ const toolComponents = {
   'json-to-typescript': lazy(
     () => import('./implementations/JsonToTypeScript')
   ),
+  'unix-timestamp-converter': lazy(
+    () => import('./implementations/UnixTimestampConverter')
+  ),
   // Add more as needed
 } as const;
 

@@ -558,6 +558,37 @@ export const tools: Tool[] = [
     searchVolume: 35000,
     label: '',
   },
+  {
+    id: 'unix-timestamp-converter',
+    name: 'Unix Timestamp Converter',
+    description:
+      'Convert between Unix timestamps and human-readable dates with timezone support and batch processing',
+    icon: '⏰',
+    route: '/tools/unix-timestamp-converter',
+    categories: ['data', 'dev'],
+    keywords: [
+      'unix',
+      'timestamp',
+      'epoch',
+      'converter',
+      'date',
+      'time',
+      'timezone',
+      'utc',
+      'milliseconds',
+      'batch',
+      'convert',
+      'unix time',
+      'epoch time',
+      'datetime',
+      'iso',
+      'rfc',
+      'posix',
+    ],
+    isPopular: true,
+    searchVolume: 15000,
+    label: 'new',
+  },
 ];
 
 // Group tools by category

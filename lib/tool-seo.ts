@@ -175,4 +175,11 @@ export const toolSEO: Record<string, ToolSEO> = {
     seoDescription:
       'Advanced JSON to TypeScript converter with smart type inference, optional properties, and nested interface support. Convert API responses, configuration objects, and complex JSON structures to production-ready TypeScript interfaces. Features union types, enum detection, date parsing, custom naming conventions, and immutable options. Includes Zod schema generation, validation code, and mock data generators. Perfect for TypeScript developers building type-safe applications with external APIs.',
   },
+
+  'unix-timestamp-converter': {
+    id: 'unix-timestamp-converter',
+    tagline: 'Convert Unix timestamps to human dates with timezone support',
+    seoDescription:
+      'Professional Unix timestamp converter with timezone support, batch processing, and code generation. Convert epoch time to readable dates and vice versa with real-time validation. Features multiple date formats, relative time calculations, developer code examples, and timezone-aware conversions. Perfect for developers working with APIs, databases, logs, and system integrations. Supports seconds and milliseconds with IANA timezone database.',
+  },
 };

@@ -90,6 +90,7 @@
     "cron-parser": "^5.3.0",
     "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
     "dotenv": "^17.2.1",
     "framer-motion": "^12.23.12",
     "jszip": "^3.10.1",
