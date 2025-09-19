@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { UmamiProvider } from '@/components/analytics/UmamiProvider';
-import { UmamiDebugger } from '@/components/analytics/UmamiDebugger';
 import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import { Header } from '@/components/layout/Header';
@@ -154,7 +153,6 @@ export default function RootLayout({
             </div>
             <UpdateNotification />
             <ToastProvider />
-            <UmamiDebugger />
           </ThemeProvider>
         </UmamiProvider>
         <SpeedInsights />
