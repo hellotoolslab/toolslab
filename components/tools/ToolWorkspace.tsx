@@ -38,12 +38,14 @@ interface ToolWorkspaceProps {
   tool: Tool;
   categoryColor: string;
   initialInput?: string;
+  isLabMode?: boolean;
 }
 
 export default function ToolWorkspace({
   tool,
   categoryColor,
   initialInput,
+  isLabMode = false,
 }: ToolWorkspaceProps) {
   const [input, setInput] = useState(initialInput || '');
   const [output, setOutput] = useState('');
@@ -232,70 +234,72 @@ export default function ToolWorkspace({
   // Default generic tool workspace
   return (
     <div
-      className={`overflow-hidden rounded-xl border border-gray-200 bg-white transition-all dark:border-gray-700 dark:bg-gray-800 ${isFullscreen ? 'fixed inset-4 z-50' : ''}`}
+      className={`flex h-full flex-col overflow-hidden ${isLabMode ? '' : 'rounded-xl border border-gray-200'} bg-white transition-all dark:border-gray-700 dark:bg-gray-800 ${isFullscreen ? 'fixed inset-4 z-50' : ''}`}
     >
       {/* Tool Header Bar */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
-        <div className="flex items-center gap-4">
-          <h3 className="font-semibold text-gray-900 dark:text-white">
-            Workspace
-          </h3>
+      {!isLabMode && (
+        <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+          <div className="flex items-center gap-4">
+            <h3 className="font-semibold text-gray-900 dark:text-white">
+              Workspace
+            </h3>
 
-          {/* Chain Context Indicator */}
-          {chainContext.hasChainData && (
-            <div className="flex items-center gap-2 rounded-lg border border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 px-3 py-1 dark:border-blue-700 dark:from-blue-900/20 dark:to-purple-900/20">
-              <Link className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
-                Chained from{' '}
-                {chainContext.previousSteps.length > 0
-                  ? chainContext.previousSteps[
-                      chainContext.previousSteps.length - 1
-                    ]?.toolName
-                  : 'previous tool'}
-              </span>
-            </div>
-          )}
-
-          {/* Chain Step Indicator */}
-          {chainContext.totalSteps > 0 && (
-            <div className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-1 dark:bg-gray-700">
-              <History className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                Step {chainContext.currentStepIndex + 1} of{' '}
-                {chainContext.totalSteps + 1}
-              </span>
-            </div>
-          )}
-
-          {processingTime !== null && (
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Completed in {processingTime}ms
-            </span>
-          )}
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setShowOptions(!showOptions)}
-            className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
-            aria-label="Options"
-          >
-            <Settings className="h-4 w-4" />
-          </button>
-          <button
-            onClick={() => setIsFullscreen(!isFullscreen)}
-            className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
-            aria-label="Toggle fullscreen"
-          >
-            {isFullscreen ? (
-              <Minimize2 className="h-4 w-4" />
-            ) : (
-              <Maximize2 className="h-4 w-4" />
+            {/* Chain Context Indicator */}
+            {chainContext.hasChainData && (
+              <div className="flex items-center gap-2 rounded-lg border border-blue-200 bg-gradient-to-r from-blue-50 to-purple-50 px-3 py-1 dark:border-blue-700 dark:from-blue-900/20 dark:to-purple-900/20">
+                <Link className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                  Chained from{' '}
+                  {chainContext.previousSteps.length > 0
+                    ? chainContext.previousSteps[
+                        chainContext.previousSteps.length - 1
+                      ]?.toolName
+                    : 'previous tool'}
+                </span>
+              </div>
             )}
-          </button>
-        </div>
-      </div>
 
-      <div className="space-y-6 p-6">
+            {/* Chain Step Indicator */}
+            {chainContext.totalSteps > 0 && (
+              <div className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-1 dark:bg-gray-700">
+                <History className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  Step {chainContext.currentStepIndex + 1} of{' '}
+                  {chainContext.totalSteps + 1}
+                </span>
+              </div>
+            )}
+
+            {processingTime !== null && (
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                Completed in {processingTime}ms
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowOptions(!showOptions)}
+              className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+              aria-label="Options"
+            >
+              <Settings className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setIsFullscreen(!isFullscreen)}
+              className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+              aria-label="Toggle fullscreen"
+            >
+              {isFullscreen ? (
+                <Minimize2 className="h-4 w-4" />
+              ) : (
+                <Maximize2 className="h-4 w-4" />
+              )}
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className="flex-1 space-y-6 overflow-y-auto p-6">
         {/* Input Section */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
