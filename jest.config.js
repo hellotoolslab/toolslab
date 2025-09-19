@@ -9,6 +9,7 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
+    '^yaml$': '<rootDir>/node_modules/yaml/dist/index.js',
   },
   collectCoverageFrom: [
     'lib/**/*.{js,jsx,ts,tsx}',
@@ -32,7 +33,7 @@ const customJestConfig = {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
   transformIgnorePatterns: [
-    '/node_modules/',
+    '/node_modules/(?!yaml)',
     '^.+\\.module\\.(css|sass|scss)$',
   ],
 };

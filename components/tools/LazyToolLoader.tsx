@@ -59,6 +59,9 @@ const toolComponents = {
   'json-to-typescript': lazy(
     () => import('./implementations/JsonToTypeScript')
   ),
+  'yaml-json-converter': lazy(
+    () => import('./implementations/YamlJsonConverter')
+  ),
   // Add more as needed
 } as const;
 

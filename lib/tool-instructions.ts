@@ -1720,4 +1720,87 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+R', description: 'Reset to default settings' },
     ],
   },
+
+  'yaml-json-converter': {
+    id: 'yaml-json-converter',
+    title: 'How to use YAML to JSON Converter',
+    steps: [
+      {
+        title: 'Paste or upload your data',
+        description:
+          'Enter YAML or JSON in the input editor, or drag and drop files (.yaml, .yml, .json). The tool automatically detects the input format and shows the appropriate conversion direction.',
+      },
+      {
+        title: 'Select conversion direction',
+        description:
+          'Choose YAML to JSON or JSON to YAML using the direction toggle. The tool auto-detects format by default, but you can manually override if needed for ambiguous inputs.',
+      },
+      {
+        title: 'Configure conversion options',
+        description:
+          'Adjust settings like date format (ISO/Unix), indentation (2/4 spaces), key sorting (alphabetical/original), and special value handling (NaN, Infinity, null representations).',
+      },
+      {
+        title: 'Handle advanced YAML features',
+        description:
+          'The converter processes anchors/aliases, merge keys, multi-document files, custom tags, and preserves comments (optional). Configure reference expansion and document splitting preferences.',
+      },
+      {
+        title: 'Review and export results',
+        description:
+          'Check validation errors with line numbers, view conversion warnings for data loss, and export as .json/.yaml/.yml files. Generate TypeScript interfaces or JSON Schema from your data.',
+      },
+    ],
+    features: [
+      'Bidirectional conversion between YAML and JSON formats',
+      'Auto-detection of input format with manual override option',
+      'Multi-document YAML support with --- separator',
+      'Anchors and aliases resolution (&anchor, *alias)',
+      'Merge key support (<<: *defaults) for YAML inheritance',
+      'Custom tag handling (!!binary, !!timestamp, etc.)',
+      'Comment preservation option for round-trip conversion',
+      'Date/timestamp conversion (ISO 8601, Unix, string)',
+      'Special number handling (hex, octal, Infinity, NaN)',
+      'Multiline string preservation (|, >, |-, >+)',
+      'TypeScript interface generation from JSON output',
+      'JSON Schema generation for validation',
+      'Real-time syntax validation with error highlighting',
+      'Key ordering control (alphabetical, original, none)',
+    ],
+    useCases: [
+      'Convert Kubernetes manifests to JSON for API processing',
+      'Transform Docker Compose files for container orchestration',
+      'Process CI/CD pipeline configs (GitHub Actions, GitLab CI)',
+      'Convert Swagger/OpenAPI specifications between formats',
+      'Transform Ansible playbooks and inventories',
+      'Process Serverless Framework configurations',
+      'Convert Helm chart values for Kubernetes deployments',
+      'Transform AWS CloudFormation templates',
+      'Process configuration files for various tools and frameworks',
+      'Debug and validate YAML syntax errors',
+    ],
+    proTips: [
+      'Use multi-document support to convert multiple YAML files in one operation',
+      'Enable anchor expansion when converting YAML with complex references to JSON',
+      'Preserve comments by enabling comment mode for documentation-heavy files',
+      'Use TypeScript generation to create type-safe interfaces from API responses',
+      'Configure date format based on your target system requirements',
+      'Enable key sorting for consistent JSON output across conversions',
+    ],
+    troubleshooting: [
+      'Invalid YAML? Check indentation (must use spaces, not tabs), and ensure proper colon spacing',
+      'Anchors not working? Verify anchor names are unique and references use correct syntax',
+      'Data loss warnings? Some YAML features like tags and comments cannot be preserved in JSON',
+      'Large file issues? Files over 10MB may require longer processing time',
+      'Multiline strings corrupted? Check that block scalar indicators (|, >) are properly formatted',
+      "JSON to YAML failing? Ensure JSON is valid and doesn't contain circular references",
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Convert data' },
+      { keys: 'Ctrl+Shift+S', description: 'Swap input/output' },
+      { keys: 'Ctrl+C', description: 'Copy output to clipboard' },
+      { keys: 'Ctrl+D', description: 'Download converted file' },
+      { keys: 'Ctrl+K', description: 'Clear all editors' },
+    ],
+  },
 };
