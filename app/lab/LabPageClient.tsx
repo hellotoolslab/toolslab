@@ -1,7 +1,7 @@
 'use client';
 
-import LabHubContent from '../../components/layout/LabHubContent';
+import NewLabHubContent from '../../components/layout/NewLabHubContent';
 
 export function LabPageClient() {
-  return <LabHubContent />;
+  return <NewLabHubContent />;
 }
