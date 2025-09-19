@@ -152,7 +152,7 @@ export async function POST(request: NextRequest) {
     } catch (error) {
       const message =
         error instanceof z.ZodError
-          ? error.errors
+          ? error.issues
               .map((e) => `${e.path.join('.')}: ${e.message}`)
               .join(', ')
           : 'Invalid request body';
@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           message,
-          errors: error instanceof z.ZodError ? error.errors : undefined,
+          errors: error instanceof z.ZodError ? error.issues : undefined,
         },
         { status: 400 }
       );
