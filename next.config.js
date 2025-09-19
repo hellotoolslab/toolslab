@@ -58,6 +58,23 @@ const nextConfig = {
     return config;
   },
 
+  // Redirects da www a non-www
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.toolslab.dev',
+          },
+        ],
+        destination: 'https://toolslab.dev/:path*',
+        permanent: true, // 301 redirect
+      },
+    ];
+  },
+
   // Headers personalizzati
   async headers() {
     return [
