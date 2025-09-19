@@ -1539,4 +1539,101 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+Z', description: 'Undo last operation' },
     ],
   },
+
+  'curl-to-code': {
+    id: 'curl-to-code',
+    title: 'How to use cURL to Code Converter',
+    steps: [
+      {
+        title: 'Paste your cURL command',
+        description:
+          'Copy and paste your cURL command from browser DevTools, API documentation, or terminal. Supports multi-line commands with backslashes, all cURL flags (-X, -H, -d, -F, -u, etc.), and complex authentication methods. Auto-detects command structure and parameters.',
+      },
+      {
+        title: 'Select target language and framework',
+        description:
+          'Choose from 15+ programming languages and their frameworks: JavaScript (Fetch, Axios, jQuery), Python (requests, httpx, aiohttp), Go, Java, PHP, Ruby, Rust, Swift, Kotlin, C#, and more. Each language offers multiple HTTP client options with specific benefits.',
+      },
+      {
+        title: 'Configure generation options',
+        description:
+          'Customize code output with error handling (try-catch), async/await patterns, environment variables for sensitive data, type inference for responses, retry logic with exponential backoff, logging statements, and comprehensive documentation comments.',
+      },
+      {
+        title: 'Review and enhance generated code',
+        description:
+          'Examine production-ready code with proper error handling, response parsing, status checking, and best practices. Use the type inference panel to see generated interfaces/types. Preview mock responses and test data. Add authentication flows and caching layers as needed.',
+      },
+      {
+        title: 'Export code and tests',
+        description:
+          'Copy code to clipboard with one click, download as properly formatted files with correct extensions, generate unit tests for the HTTP client code, export complete SDK classes for multiple endpoints, or create API documentation from the cURL command.',
+      },
+    ],
+    features: [
+      'Support for ALL cURL flags and options (-X, -H, -d, -F, -u, -b, --data-binary, etc.)',
+      '15+ programming languages with multiple framework options each',
+      'Automatic type inference from JSON payloads and responses',
+      'Error handling with language-specific try-catch patterns',
+      'Async/await code generation where supported',
+      'Environment variable extraction for sensitive data',
+      'Retry logic with configurable exponential backoff',
+      'Authentication support: Basic, Bearer, OAuth2, API Keys',
+      'File upload and multipart/form-data handling',
+      'Cookie and session management code generation',
+      'Proxy configuration and SSL certificate options',
+      'Import from HAR files, Postman collections, and OpenAPI specs',
+      'Batch conversion for multiple cURL commands to SDK',
+      'Unit test generation with mocking frameworks',
+      'Real-time syntax highlighting and validation',
+    ],
+    useCases: [
+      'Convert API documentation cURL examples to client code',
+      'Transform browser DevTools network requests to code',
+      'Migrate from one HTTP client library to another',
+      'Generate SDK clients from API endpoint collections',
+      'Create test suites from recorded HTTP traffic',
+      'Build authentication flows from OAuth2 cURL commands',
+      'Convert Postman collections to native code',
+      'Generate GraphQL client code from cURL queries',
+      'Create webhook handlers from cURL examples',
+      'Build CI/CD pipeline HTTP requests from cURL',
+      'Convert legacy cURL scripts to modern async code',
+      'Generate API integration code for mobile apps',
+    ],
+    proTips: [
+      'Use "Extract to Environment" to automatically move API keys to .env variables',
+      'Enable type inference for TypeScript/Go/Java to get strongly-typed responses',
+      'Select async variants (aiohttp, httpx) for high-performance Python code',
+      'Use the SDK Builder mode to combine multiple cURL commands into one class',
+      'Enable retry logic for production code dealing with flaky APIs',
+      'Export to Postman format for team collaboration and testing',
+      'Use mock response generation for unit testing without real API calls',
+      'Enable verbose logging during development, disable for production',
+      'Choose streaming clients for large file downloads or SSE endpoints',
+      'Use the GraphQL mode for better query/mutation handling',
+    ],
+    troubleshooting: [
+      'Complex cURL not parsing? Check for proper escape characters and quotes',
+      'Authentication failing? Verify header format matches target language requirements',
+      'File uploads not working? Ensure multipart boundary is correctly generated',
+      'Binary data issues? Use base64 encoding for binary payloads',
+      'Timeout errors? Increase timeout values in generation options',
+      'SSL certificate errors? Add certificate verification options for development',
+      'Proxy not working? Check proxy URL format and authentication',
+      'Large payloads truncated? Enable streaming mode for large data transfers',
+      'Cookie handling issues? Verify cookie jar initialization in generated code',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Convert cURL to code' },
+      { keys: 'Ctrl+Shift+F', description: 'Format cURL command' },
+      { keys: 'Ctrl+L', description: 'Change target language' },
+      { keys: 'Ctrl+C', description: 'Copy generated code' },
+      { keys: 'Ctrl+S', description: 'Download as file' },
+      { keys: 'Ctrl+T', description: 'Generate tests' },
+      { keys: 'Ctrl+E', description: 'Extract environment variables' },
+      { keys: 'Ctrl+I', description: 'Import from file' },
+      { keys: 'Alt+Enter', description: 'Convert and copy' },
+    ],
+  },
 };

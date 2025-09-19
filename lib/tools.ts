@@ -82,7 +82,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 25000,
-    label: 'new',
+    label: '',
   },
   {
     id: 'sql-formatter',
@@ -386,7 +386,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 15000,
-    label: 'new',
+    label: '',
   },
 
   // Dev Utilities
@@ -433,7 +433,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 8400,
-    label: 'new',
+    label: '',
   },
   {
     id: 'crontab-builder',
@@ -489,7 +489,40 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 18000,
-    label: 'new',
+    label: '',
+  },
+  {
+    id: 'curl-to-code',
+    name: 'cURL to Code Converter',
+    description:
+      'Convert cURL commands to production-ready code in any programming language with error handling and type safety',
+    icon: '🔄',
+    route: '/tools/curl-to-code',
+    categories: ['dev', 'generators', 'data'],
+    keywords: [
+      'curl to code',
+      'curl converter',
+      'curl to javascript',
+      'curl to python',
+      'http client generator',
+      'api code generator',
+      'curl to axios',
+      'curl to fetch',
+      'curl to golang',
+      'curl to java',
+      'curl to csharp',
+      'curl to php',
+      'curl to ruby',
+      'rest api converter',
+      'http request converter',
+      'postman to code',
+      'har to code',
+      'api client generator',
+      'sdk generator',
+    ],
+    isPopular: true,
+    searchVolume: 45000,
+    label: '',
   },
 ];
 

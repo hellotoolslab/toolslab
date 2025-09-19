@@ -238,7 +238,7 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
         </div>
 
         {/* Main Content Area - Wider layout */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           {/* Tool Workspace - Much wider on desktop */}
           <div className="lg:col-span-9">
             <ToolWorkspace
@@ -253,9 +253,9 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
 
           {/* Sidebar (Desktop Only) - Narrower */}
           {!isMobile && (
-            <div className="space-y-6 lg:col-span-3">
+            <div className="space-y-4 lg:col-span-3">
               {/* Related Tools */}
-              <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+              <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
                 <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
                   Related Tools
                 </h3>
