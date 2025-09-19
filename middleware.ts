@@ -179,6 +179,14 @@ function applyStrictSecurityHeaders(response: NextResponse) {
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
+  // Domain canonicalization: Redirect www.toolslab.dev to toolslab.dev
+  const hostname = request.nextUrl.hostname;
+  if (hostname === 'www.toolslab.dev') {
+    const redirectUrl = new URL(request.nextUrl);
+    redirectUrl.hostname = 'toolslab.dev';
+    return NextResponse.redirect(redirectUrl, 301);
+  }
+
   // Skip processing for excluded paths
   if (!shouldProcessPath(pathname)) {
     return NextResponse.next();
