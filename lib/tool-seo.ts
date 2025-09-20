@@ -175,4 +175,11 @@ export const toolSEO: Record<string, ToolSEO> = {
     seoDescription:
       'Advanced JSON to TypeScript converter with smart type inference, optional properties, and nested interface support. Convert API responses, configuration objects, and complex JSON structures to production-ready TypeScript interfaces. Features union types, enum detection, date parsing, custom naming conventions, and immutable options. Includes Zod schema generation, validation code, and mock data generators. Perfect for TypeScript developers building type-safe applications with external APIs.',
   },
+
+  'css-minifier': {
+    id: 'css-minifier',
+    tagline: 'Minify and optimize CSS files instantly for faster websites',
+    seoDescription:
+      'Professional CSS minifier and beautifier that reduces file size by up to 60% while preserving functionality. Features advanced optimization options including color compression, rule merging, vendor prefix handling, and media query optimization. Process CSS instantly in your browser with complete privacy - no data is sent to servers. Perfect for optimizing stylesheets for production deployment with support for CSS3, CSS4, and modern properties.',
+  },
 };

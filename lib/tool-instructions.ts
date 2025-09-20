@@ -1720,4 +1720,96 @@ export const toolInstructions: Record<string, ToolInstruction> = {
       { keys: 'Ctrl+R', description: 'Reset to default settings' },
     ],
   },
+
+  'css-minifier': {
+    id: 'css-minifier',
+    title: 'How to use CSS Minifier/Beautifier',
+    steps: [
+      {
+        title: 'Paste or upload your CSS code',
+        description:
+          'Enter CSS directly in the editor with syntax highlighting, upload CSS files (up to 10MB), or drag and drop files into the editor. Supports CSS3, CSS4, and modern CSS features including grid, flexbox, custom properties, and container queries.',
+      },
+      {
+        title: 'Choose between minify or beautify mode',
+        description:
+          'Toggle instantly between minification for production (removes unnecessary characters) and beautification for development (adds proper formatting). Each mode has customizable options for fine-tuning the output.',
+      },
+      {
+        title: 'Configure optimization settings',
+        description:
+          'For minification: enable color optimization, unit simplification, rule merging, and vendor prefix handling. For beautification: set indentation type/size, line breaks, bracket positioning, and alignment preferences.',
+      },
+      {
+        title: 'Review statistics and warnings',
+        description:
+          'Check compression ratio, size reduction percentage, and processing metrics. Review warnings for deprecated properties, invalid selectors, or potential compatibility issues. See detailed breakdown of optimizations applied.',
+      },
+      {
+        title: 'Export optimized CSS',
+        description:
+          'Copy to clipboard with one click, download as .css or .min.css file, or generate shareable links. View side-by-side comparison of original vs optimized CSS. Save presets for consistent processing across projects.',
+      },
+    ],
+    features: [
+      'Advanced CSS minification with 60%+ compression rates',
+      'Intelligent beautification with customizable formatting rules',
+      'Color optimization (hex shortening, rgb to named colors)',
+      'Unit optimization (0px to 0, decimal simplification)',
+      'Duplicate rule removal and adjacent rule merging',
+      'Vendor prefix management (add needed, remove obsolete)',
+      'Media query consolidation and optimization',
+      'Keyframe animation optimization',
+      'CSS variable preservation and optimization',
+      'Syntax validation with error line highlighting',
+      'Real-time preview with live updates',
+      'Support for SASS/SCSS syntax (basic)',
+      'Large file processing with Web Workers',
+      'Import from URL or multiple files',
+      'Export with source maps for debugging',
+    ],
+    useCases: [
+      'Optimize production stylesheets for faster page loads',
+      'Format minified CSS for debugging and editing',
+      'Reduce CSS bundle size for web applications',
+      'Clean up legacy CSS with redundant rules',
+      'Prepare CSS for CDN deployment',
+      'Merge multiple CSS files with deduplication',
+      'Convert development CSS to production-ready format',
+      'Analyze CSS for optimization opportunities',
+      'Standardize CSS formatting across team projects',
+      'Validate CSS syntax before deployment',
+      'Optimize CSS for email templates',
+      'Process CSS for AMP pages with strict size limits',
+    ],
+    proTips: [
+      'Use aggressive minification for production, keeping license comments with /*!',
+      'Enable gzip size preview to see actual transfer size after compression',
+      'Preserve custom properties (CSS variables) when minifying modern CSS',
+      'Use media query merging to reduce redundant @media declarations',
+      'Keep source maps in development for easier debugging of minified CSS',
+      'Test minified CSS in target browsers before production deployment',
+      'Use beautify mode with consistent settings for team collaboration',
+      'Enable vendor prefix removal only if you use autoprefixer in build process',
+    ],
+    troubleshooting: [
+      'CSS breaking after minification? Check preserve important comments option',
+      'Colors changing unexpectedly? Disable aggressive color optimization',
+      'Calc() expressions broken? Ensure whitespace preservation in calc values',
+      'Custom properties not working? Enable CSS variable preservation',
+      'Large file processing slow? Enable Web Worker mode for files over 500KB',
+      'Vendor prefixes missing? Configure target browser list in settings',
+      'Formatting inconsistent? Check indentation and line ending settings',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Process CSS (minify/beautify)' },
+      { keys: 'Ctrl+M', description: 'Toggle minify mode' },
+      { keys: 'Ctrl+B', description: 'Toggle beautify mode' },
+      { keys: 'Ctrl+C', description: 'Copy result to clipboard' },
+      { keys: 'Ctrl+S', description: 'Download processed CSS' },
+      { keys: 'Ctrl+Shift+C', description: 'Compare original vs result' },
+      { keys: 'Ctrl+Z', description: 'Undo last change' },
+      { keys: 'F2', description: 'Jump to next CSS error' },
+    ],
+  },
 };

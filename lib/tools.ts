@@ -558,6 +558,34 @@ export const tools: Tool[] = [
     searchVolume: 35000,
     label: '',
   },
+  {
+    id: 'css-minifier',
+    name: 'CSS Minifier/Beautifier',
+    description:
+      'Minify, beautify and optimize CSS code with advanced compression options for production-ready stylesheets',
+    icon: '🎨',
+    route: '/tools/css-minifier',
+    categories: ['formatters', 'dev', 'web'],
+    keywords: [
+      'css minifier',
+      'css beautifier',
+      'css formatter',
+      'css compressor',
+      'minimize css',
+      'css optimization',
+      'reduce css size',
+      'css prettify',
+      'css minify',
+      'compress css',
+      'css optimizer',
+      'css cleaner',
+      'production css',
+      'css tools',
+    ],
+    isPopular: true,
+    searchVolume: 15000,
+    label: '',
+  },
 ];
 
 // Group tools by category
