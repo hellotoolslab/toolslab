@@ -60,6 +60,7 @@ const toolComponents = {
     () => import('./implementations/JsonToTypeScript')
   ),
   'css-minifier': lazy(() => import('./implementations/CSSMinifier')),
+  'js-minifier': lazy(() => import('./implementations/JSMinifier')),
   // Add more as needed
 } as const;
 
