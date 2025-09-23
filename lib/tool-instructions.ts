@@ -1721,6 +1721,195 @@ export const toolInstructions: Record<string, ToolInstruction> = {
     ],
   },
 
+  'css-minifier': {
+    id: 'css-minifier',
+    title: 'How to use CSS Minifier/Beautifier',
+    steps: [
+      {
+        title: 'Paste or upload your CSS code',
+        description:
+          'Enter CSS directly in the editor with syntax highlighting, upload CSS files (up to 10MB), or drag and drop files into the editor. Supports CSS3, CSS4, and modern CSS features including grid, flexbox, custom properties, and container queries.',
+      },
+      {
+        title: 'Choose between minify or beautify mode',
+        description:
+          'Toggle instantly between minification for production (removes unnecessary characters) and beautification for development (adds proper formatting). Each mode has customizable options for fine-tuning the output.',
+      },
+      {
+        title: 'Configure optimization settings',
+        description:
+          'For minification: enable color optimization, unit simplification, rule merging, and vendor prefix handling. For beautification: set indentation type/size, line breaks, bracket positioning, and alignment preferences.',
+      },
+      {
+        title: 'Review statistics and warnings',
+        description:
+          'Check compression ratio, size reduction percentage, and processing metrics. Review warnings for deprecated properties, invalid selectors, or potential compatibility issues. See detailed breakdown of optimizations applied.',
+      },
+      {
+        title: 'Export optimized CSS',
+        description:
+          'Copy to clipboard with one click, download as .css or .min.css file, or generate shareable links. View side-by-side comparison of original vs optimized CSS. Save presets for consistent processing across projects.',
+      },
+    ],
+    features: [
+      'Advanced CSS minification with 60%+ compression rates',
+      'Intelligent beautification with customizable formatting rules',
+      'Color optimization (hex shortening, rgb to named colors)',
+      'Unit optimization (0px to 0, decimal simplification)',
+      'Duplicate rule removal and adjacent rule merging',
+      'Vendor prefix management (add needed, remove obsolete)',
+      'Media query consolidation and optimization',
+      'Keyframe animation optimization',
+      'CSS variable preservation and optimization',
+      'Syntax validation with error line highlighting',
+      'Real-time preview with live updates',
+      'Support for SASS/SCSS syntax (basic)',
+      'Large file processing with Web Workers',
+      'Import from URL or multiple files',
+      'Export with source maps for debugging',
+    ],
+    useCases: [
+      'Optimize production stylesheets for faster page loads',
+      'Format minified CSS for debugging and editing',
+      'Reduce CSS bundle size for web applications',
+      'Clean up legacy CSS with redundant rules',
+      'Prepare CSS for CDN deployment',
+      'Merge multiple CSS files with deduplication',
+      'Convert development CSS to production-ready format',
+      'Analyze CSS for optimization opportunities',
+      'Standardize CSS formatting across team projects',
+      'Validate CSS syntax before deployment',
+      'Optimize CSS for email templates',
+      'Process CSS for AMP pages with strict size limits',
+    ],
+    proTips: [
+      'Use aggressive minification for production, keeping license comments with /*!',
+      'Enable gzip size preview to see actual transfer size after compression',
+      'Preserve custom properties (CSS variables) when minifying modern CSS',
+      'Use media query merging to reduce redundant @media declarations',
+      'Keep source maps in development for easier debugging of minified CSS',
+      'Test minified CSS in target browsers before production deployment',
+      'Use beautify mode with consistent settings for team collaboration',
+      'Enable vendor prefix removal only if you use autoprefixer in build process',
+    ],
+    troubleshooting: [
+      'CSS breaking after minification? Check preserve important comments option',
+      'Colors changing unexpectedly? Disable aggressive color optimization',
+      'Calc() expressions broken? Ensure whitespace preservation in calc values',
+      'Custom properties not working? Enable CSS variable preservation',
+      'Large file processing slow? Enable Web Worker mode for files over 500KB',
+      'Vendor prefixes missing? Configure target browser list in settings',
+      'Formatting inconsistent? Check indentation and line ending settings',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Process CSS (minify/beautify)' },
+      { keys: 'Ctrl+M', description: 'Toggle minify mode' },
+      { keys: 'Ctrl+B', description: 'Toggle beautify mode' },
+      { keys: 'Ctrl+C', description: 'Copy result to clipboard' },
+      { keys: 'Ctrl+S', description: 'Download processed CSS' },
+      { keys: 'Ctrl+Shift+C', description: 'Compare original vs result' },
+      { keys: 'Ctrl+Z', description: 'Undo last change' },
+      { keys: 'F2', description: 'Jump to next CSS error' },
+    ],
+  },
+
+  'js-minifier': {
+    id: 'js-minifier',
+    title: 'How to use JavaScript Minifier/Beautifier',
+    steps: [
+      {
+        title: 'Paste or upload your JavaScript code',
+        description:
+          'Enter JavaScript code directly with ES2024+ syntax support, upload .js/.ts/.mjs files (up to 15MB), or drag and drop files. Supports modern JavaScript features including classes, arrow functions, destructuring, async/await, modules, decorators, and private fields.',
+      },
+      {
+        title: 'Select processing mode and compression level',
+        description:
+          'Choose between minification (removes unnecessary characters) and beautification (adds proper formatting). For minification, select compression levels from Basic (safe) to Aggressive (maximum compression with advanced optimizations).',
+      },
+      {
+        title: 'Configure optimization options',
+        description:
+          'Enable advanced features: variable renaming (mangle), dead code elimination, function inlining, property mangling, string compression, numeric optimization, control flow flattening, and tree shaking simulation for bundle size reduction.',
+      },
+      {
+        title: 'Set source map and debugging options',
+        description:
+          'Generate source maps for debugging minified code, preserve function names for stack traces, maintain original line numbers in comments, and configure development vs production build settings.',
+      },
+      {
+        title: 'Process and export optimized JavaScript',
+        description:
+          'Review compression statistics showing size reduction, processing time, and applied optimizations. Download as .min.js with optional source maps, copy to clipboard, or export as modules with ES6/CommonJS compatibility.',
+      },
+    ],
+    features: [
+      'Advanced JavaScript minification with 70%+ compression rates',
+      'ES2024+ syntax support including modern features and proposals',
+      'Intelligent code beautification with customizable formatting',
+      'Variable and property name mangling for maximum compression',
+      'Dead code elimination and unreachable code removal',
+      'Function inlining and call optimization',
+      'String and numeric literal optimization',
+      'Control flow flattening and code obfuscation',
+      'Source map generation for debugging support',
+      'Tree shaking simulation for bundle analysis',
+      'Syntax validation with detailed error reporting',
+      'Large file processing with Web Workers',
+      'TypeScript support with type stripping',
+      'Module format preservation (ES6, CommonJS, UMD)',
+      'License comment preservation options',
+    ],
+    useCases: [
+      'Optimize production JavaScript bundles for faster loading',
+      'Format minified JavaScript for debugging and code review',
+      'Reduce bundle size for mobile and low-bandwidth applications',
+      'Obfuscate code for intellectual property protection',
+      'Prepare JavaScript libraries for CDN distribution',
+      'Optimize third-party dependencies before bundling',
+      'Analyze bundle composition and identify optimization opportunities',
+      'Convert development code to production-ready format',
+      'Standardize JavaScript formatting across development teams',
+      'Validate JavaScript syntax before deployment',
+      'Process legacy code for modern build pipelines',
+      'Optimize JavaScript for email templates and embedded contexts',
+    ],
+    proTips: [
+      'Use aggressive minification only after thorough testing - it can break dynamic code',
+      'Enable source maps in development for easier debugging of minified code',
+      'Preserve license comments with /*! to maintain attribution in production',
+      'Use variable mangling carefully with libraries that rely on function/property names',
+      'Test minified code in target browsers, especially for advanced ES6+ features',
+      'Combine with gzip compression for maximum size reduction (check preview)',
+      'Use tree shaking simulation to identify unused code before bundling',
+      'Keep original formatting for development builds, minify only for production',
+    ],
+    troubleshooting: [
+      'Code breaking after minification? Disable advanced optimizations like mangling',
+      'Dynamic property access failing? Exclude specific property names from mangling',
+      'eval() or Function() constructor issues? Use basic minification level',
+      'Source maps not working? Ensure proper file paths and hosting configuration',
+      'Large files processing slowly? Enable Web Worker mode for files over 1MB',
+      'TypeScript errors? Use TypeScript-specific processing mode',
+      'Module imports broken? Check module format preservation settings',
+      'Stack traces unclear? Enable function name preservation in production',
+    ],
+    keyboardShortcuts: [
+      {
+        keys: 'Ctrl+Enter',
+        description: 'Process JavaScript (minify/beautify)',
+      },
+      { keys: 'Ctrl+M', description: 'Toggle minify mode' },
+      { keys: 'Ctrl+B', description: 'Toggle beautify mode' },
+      { keys: 'Ctrl+C', description: 'Copy result to clipboard' },
+      { keys: 'Ctrl+S', description: 'Download processed JavaScript' },
+      { keys: 'Ctrl+Shift+S', description: 'Download with source map' },
+      { keys: 'Ctrl+Shift+C', description: 'Compare original vs result' },
+      { keys: 'Ctrl+O', description: 'Toggle advanced optimizations' },
+      { keys: 'F2', description: 'Jump to next JavaScript error' },
+    ],
+  },
+
   'yaml-json-converter': {
     id: 'yaml-json-converter',
     title: 'How to use YAML to JSON Converter',
