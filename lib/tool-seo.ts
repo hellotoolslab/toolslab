@@ -176,6 +176,21 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Advanced JSON to TypeScript converter with smart type inference, optional properties, and nested interface support. Convert API responses, configuration objects, and complex JSON structures to production-ready TypeScript interfaces. Features union types, enum detection, date parsing, custom naming conventions, and immutable options. Includes Zod schema generation, validation code, and mock data generators. Perfect for TypeScript developers building type-safe applications with external APIs.',
   },
 
+  'css-minifier': {
+    id: 'css-minifier',
+    tagline: 'Minify and optimize CSS files instantly for faster websites',
+    seoDescription:
+      'Professional CSS minifier and beautifier that reduces file size by up to 60% while preserving functionality. Features advanced optimization options including color compression, rule merging, vendor prefix handling, and media query optimization. Process CSS instantly in your browser with complete privacy - no data is sent to servers. Perfect for optimizing stylesheets for production deployment with support for CSS3, CSS4, and modern properties.',
+  },
+
+  'js-minifier': {
+    id: 'js-minifier',
+    tagline:
+      'Minify and optimize JavaScript code with ES6+ support and source maps',
+    seoDescription:
+      'Professional JavaScript minifier and beautifier with ES2024+ support, reducing bundle size by up to 70% while maintaining functionality. Features advanced optimizations including dead code elimination, variable renaming, function inlining, and tree shaking simulation. Generate source maps for debugging, apply varying compression levels, and maintain modern JavaScript compatibility. Process code securely in your browser with no server uploads - perfect for production optimization and webpack alternative processing.',
+  },
+
   'unix-timestamp-converter': {
     id: 'unix-timestamp-converter',
     tagline: 'Convert Unix timestamps to human dates with timezone support',

@@ -62,6 +62,8 @@ const toolComponents = {
   'unix-timestamp-converter': lazy(
     () => import('./implementations/UnixTimestampConverter')
   ),
+  'css-minifier': lazy(() => import('./implementations/CSSMinifier')),
+  'js-minifier': lazy(() => import('./implementations/JSMinifier')),
   // Add more as needed
 } as const;
 
