@@ -572,10 +572,15 @@ function parseSqlStructure(sql: string): ParsedSqlInfo {
 
   // Extract ORDER BY columns
   const orderByColumns: string[] = [];
-  const orderByMatch = sql.match(/ORDER\s+BY\s+([\s\S]*?)(?:\s+LIMIT|$)/i);
+  const orderByMatch = sql.match(/ORDER\s+BY\s+([\s\S]*?)(?:\s+LIMIT|;|$)/i);
   if (orderByMatch) {
-    orderByMatch[1].split(',').forEach((col) => {
-      const cleanCol = col.trim().replace(/\s+(ASC|DESC)$/i, '');
+    // Remove any trailing semicolon from the entire ORDER BY clause
+    const orderByClause = orderByMatch[1].replace(/;$/, '').trim();
+    orderByClause.split(',').forEach((col) => {
+      const cleanCol = col
+        .trim()
+        .replace(/\s+(ASC|DESC)$/i, '')
+        .replace(/;$/, ''); // Also remove semicolon from individual columns
       orderByColumns.push(cleanCol.trim());
     });
   }
@@ -773,7 +778,9 @@ function findUndefinedColumns(
 
   // Check ORDER BY columns (only for non-CTE queries)
   parsedInfo.orderByColumns.forEach((col) => {
-    const cleanCol = col.replace(/.*\./, ''); // Remove table prefix
+    // Remove semicolon if present at the end
+    const colWithoutSemicolon = col.replace(/;$/, '').trim();
+    const cleanCol = colWithoutSemicolon.replace(/.*\./, ''); // Remove table prefix
     if (
       !knownColumns.includes(cleanCol) &&
       !parsedInfo.selectColumns.some(
@@ -781,7 +788,7 @@ function findUndefinedColumns(
           selectCol.includes(cleanCol) || selectCol.includes(`AS ${cleanCol}`)
       )
     ) {
-      const lineInfo = findColumnInOrderBy(lines, col);
+      const lineInfo = findColumnInOrderBy(lines, colWithoutSemicolon);
       errors.push({
         line: lineInfo.line,
         column: lineInfo.column,
