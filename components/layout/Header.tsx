@@ -1,9 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
-import { Moon, Sun, Menu, X, Zap, Beaker, Grid3X3, Info } from 'lucide-react';
+import { Menu, X, Zap, Beaker, Grid3X3, Info } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { categories } from '@/lib/tools';
 import { cn } from '@/lib/utils';
@@ -11,19 +10,14 @@ import { LabLogo } from '@/components/icons/LabLogo';
 import { useToolStore } from '@/lib/store/toolStore';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { GitHubStars } from '@/components/ui/github-stars';
+import { ColorSchemeSelector } from '@/components/layout/ColorSchemeSelector';
 
 export function Header() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { getNewFavoritesCount } = useToolStore();
   const isStoreHydrated = useHydration();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Handle scroll effect
   useEffect(() => {
@@ -34,11 +28,6 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Theme toggle with animation
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -167,7 +156,7 @@ export function Header() {
             >
               <Beaker className="mr-1 h-4 w-4" />
               The Lab
-              {mounted && isStoreHydrated && getNewFavoritesCount() > 0 && (
+              {isStoreHydrated && getNewFavoritesCount() > 0 && (
                 <span className="ml-1 rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
                   {getNewFavoritesCount()}
                 </span>
@@ -192,17 +181,8 @@ export function Header() {
             {/* GitHub Stars */}
             <GitHubStars className="hidden sm:flex" />
 
-            {/* Theme Toggle */}
-            {mounted && (
-              <button
-                onClick={toggleTheme}
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 transition-all duration-200 hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700"
-                aria-label="Toggle theme"
-              >
-                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              </button>
-            )}
+            {/* Color Scheme Selector */}
+            <ColorSchemeSelector />
 
             {/* Mobile Menu Toggle */}
             <button
@@ -253,7 +233,7 @@ export function Header() {
               >
                 <Beaker className="h-5 w-5" />
                 <span>The Lab</span>
-                {mounted && isStoreHydrated && getNewFavoritesCount() > 0 && (
+                {isStoreHydrated && getNewFavoritesCount() > 0 && (
                   <span className="ml-auto rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
                     {getNewFavoritesCount()}
                   </span>
