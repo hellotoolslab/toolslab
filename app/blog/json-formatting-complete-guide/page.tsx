@@ -163,14 +163,14 @@ export default function JSONFormattingGuidePage() {
             ]}
           />
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[60px_1fr_250px] lg:gap-4">
             {/* Share Buttons - Left Sidebar */}
-            <aside className="hidden lg:col-span-1 lg:block">
+            <aside className="hidden lg:block">
               <ShareButtons title={articleTitle} url={articleUrl} />
             </aside>
 
             {/* Main Content */}
-            <article className="blog-article blog-content lg:col-span-8">
+            <article className="blog-article blog-content">
               <header className="mb-8">
                 <h1 id="title">
                   JSON Formatting: The Complete Developer Guide
@@ -403,7 +403,7 @@ export default function JSONFormattingGuidePage() {
             </article>
 
             {/* Right Sidebar - Table of Contents */}
-            <aside className="hidden lg:col-span-3 lg:block">
+            <aside className="hidden lg:block">
               <TableOfContents items={tocItems} />
             </aside>
           </div>

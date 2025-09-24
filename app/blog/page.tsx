@@ -40,8 +40,11 @@ export default function BlogPage() {
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
       <div className="mb-12 text-center">
-        <h1 className="mb-4 bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-4xl font-bold text-transparent dark:from-gray-100 dark:to-gray-400 sm:text-5xl">
-          📝 ToolsLab Blog
+        <h1 className="mb-4 text-4xl font-bold sm:text-5xl">
+          <span className="mr-2">📚</span>
+          <span className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent dark:from-gray-100 dark:to-gray-400">
+            ToolsLab Blog
+          </span>
         </h1>
         <p className="mx-auto max-w-2xl text-xl text-gray-600 dark:text-gray-400">
           Developer guides & tutorials

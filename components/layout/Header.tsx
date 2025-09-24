@@ -169,18 +169,6 @@ export function Header() {
             </div>
 
             <Link
-              href="/blog"
-              className={cn(
-                'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname.startsWith('/blog') &&
-                  'text-violet-600 dark:text-violet-400'
-              )}
-            >
-              <BookOpen className="mr-1 h-4 w-4" />
-              Blog
-            </Link>
-
-            <Link
               href="/lab"
               className={cn(
                 'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
@@ -199,6 +187,19 @@ export function Header() {
 
           {/* Right side controls */}
           <div className="ml-auto flex items-center space-x-8 text-sm font-medium">
+            {/* Blog Link */}
+            <Link
+              href="/blog"
+              className={cn(
+                'hidden items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 md:flex',
+                pathname.startsWith('/blog') &&
+                  'text-violet-600 dark:text-violet-400'
+              )}
+            >
+              <BookOpen className="mr-1 h-4 w-4" />
+              Blog
+            </Link>
+
             {/* About Link */}
             <Link
               href="/about"
