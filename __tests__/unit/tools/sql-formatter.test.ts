@@ -623,5 +623,28 @@ describe('SQL Formatter', () => {
       expect(result.success).toBe(true);
       expect(result.formatted).toMatch(/\n/); // Should normalize line endings
     });
+
+    it('should handle ORDER BY with semicolon at the end correctly', () => {
+      const input = `SELECT
+        s.num_ordine,
+        s.num_spedizione,
+        o.brand
+      FROM ordine o
+      JOIN spedizione s USING (num_ordine, brand)
+      ORDER BY s.num_ordine, s.num_spedizione;`;
+
+      const validation = validateSQL(input);
+      expect(validation.valid).toBe(true);
+      expect(validation.errors).toHaveLength(0);
+
+      // Check that semicolon doesn't interfere with column name parsing
+      const errorMessages = validation.errors.map(e => e.message);
+      expect(errorMessages).not.toContain("Column 'num_spedizione;' is not defined");
+
+      const result = formatSQL(input, defaultOptions);
+      expect(result.success).toBe(true);
+      expect(result.formatted).toContain('ORDER BY');
+      expect(result.formatted).toMatch(/num_spedizione\s*;?\s*$/m);
+    });
   });
 });
