@@ -6,8 +6,8 @@ export const mockArticles: BlogArticle[] = [
     title: 'JSON Formatting: The Complete Developer Guide',
     excerpt:
       'Master JSON formatting with our comprehensive guide. Learn syntax rules, best practices, common errors, and advanced techniques for clean, readable JSON.',
-    publishDate: new Date('2025-01-20'),
-    modifiedDate: new Date('2025-01-20'),
+    publishDate: new Date('2025-09-25'),
+    modifiedDate: new Date('2025-09-25'),
     readTime: '12 min read',
     category: 'Guide',
     isPillar: true,

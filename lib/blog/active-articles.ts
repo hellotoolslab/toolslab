@@ -1,8 +1,8 @@
 import { mockArticles } from './mock-articles';
 
 // List of article slugs that have active pages
-export const ACTIVE_ARTICLE_SLUGS = [
-  'json-formatting-complete-guide', // Currently the only active article with a page
+export const ACTIVE_ARTICLE_SLUGS: string[] = [
+  'json-formatting-complete-guide',
 ];
 
 // Filter articles to only include those with active pages
