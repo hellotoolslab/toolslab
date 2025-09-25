@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: `URL Encoder/Decoder - Encode & Decode URLs Safely Online | ToolsLab`,
+    title: `URL Encoder/Decoder - Encode & Decode URLs Safely Online`,
     description: seo.seoDescription,
     keywords: [
       ...tool.keywords,
@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ].join(', '),
 
     openGraph: {
-      title: 'URL Encoder/Decoder - Encode & Decode URLs Safely | ToolsLab',
+      title: 'URL Encoder/Decoder - Encode & Decode URLs Safely',
       description:
         'Professional URL encoder and decoder for web development. Handle special characters, query parameters, and international text in URLs safely. Perfect for API development and web forms.',
       type: 'website',
@@ -66,7 +66,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     twitter: {
       card: 'summary_large_image',
-      title: 'URL Encoder/Decoder - Encode & Decode URLs | ToolsLab',
+      title: 'URL Encoder/Decoder - Encode & Decode URLs',
       description:
         'Professional URL encoder and decoder with support for special characters, query parameters, and international text. Perfect for web developers and API integration.',
       images: ['/tools/url-encode/opengraph-image.png'],
