@@ -22,7 +22,7 @@ export function generateToolSchema(toolId: string) {
         '@type': 'WebApplication',
         '@id': `${toolUrl}#webapp`,
         name: tool.name,
-        description: seo.seoDescription,
+        description: seo.pageDescription,
         url: toolUrl,
         applicationCategory: 'DeveloperApplication',
         applicationSubCategory: categoryName,
@@ -39,7 +39,7 @@ export function generateToolSchema(toolId: string) {
         aggregateRating: {
           '@type': 'AggregateRating',
           ratingValue: '4.8',
-          ratingCount: Math.floor(Math.random() * 500 + 100),
+          ratingCount: generateDeterministicRatingCount(toolId),
           bestRating: '5',
           worstRating: '1',
         },
@@ -62,7 +62,7 @@ export function generateToolSchema(toolId: string) {
         featureList: seo.tagline,
         keywords: tool.keywords.join(', '),
         datePublished: '2024-01-01',
-        dateModified: new Date().toISOString(),
+        dateModified: '2024-12-01T00:00:00.000Z',
         inLanguage: 'en-US',
       },
 
@@ -110,7 +110,7 @@ export function generateToolSchema(toolId: string) {
         '@type': 'SoftwareApplication',
         '@id': `${toolUrl}#software`,
         name: tool.name,
-        description: seo.seoDescription,
+        description: seo.pageDescription,
         url: toolUrl,
         applicationCategory: 'WebApplication',
         operatingSystem: 'Cross-platform',
@@ -129,6 +129,19 @@ export function generateToolSchema(toolId: string) {
       },
     ],
   };
+}
+
+// Generate deterministic rating count based on tool ID to avoid hydration mismatch
+function generateDeterministicRatingCount(toolId: string): number {
+  // Simple hash function to generate consistent pseudo-random number
+  let hash = 0;
+  for (let i = 0; i < toolId.length; i++) {
+    const char = toolId.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  // Generate number between 150-850 based on hash
+  return Math.abs(hash % 700) + 150;
 }
 
 function formatCategoryName(slug: string): string {

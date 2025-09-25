@@ -22,8 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: `JWT Decoder - Decode & Analyze JSON Web Tokens Online | ToolsLab`,
-    description: seo.seoDescription,
+    title: `JWT Decoder - Decode & Analyze JSON Web Tokens Online`,
+    description: seo.metaDescription,
     keywords: [
       ...tool.keywords,
       'jwt decoder',
@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ].join(', '),
 
     openGraph: {
-      title: 'JWT Decoder - Decode & Analyze JSON Web Tokens | ToolsLab',
+      title: 'JWT Decoder - Decode & Analyze JSON Web Tokens',
       description:
         'Professional JWT decoder with claims analysis, security validation, and expiration checking. Decode JSON Web Tokens safely with detailed token information and security recommendations.',
       type: 'website',
@@ -68,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     twitter: {
       card: 'summary_large_image',
-      title: 'JWT Decoder - Decode JSON Web Tokens | ToolsLab',
+      title: 'JWT Decoder - Decode JSON Web Tokens',
       description:
         'Professional JWT decoder with claims analysis, security validation, and expiration checking. Perfect for developers working with authentication tokens.',
       images: ['/tools/jwt-decoder/opengraph-image.png'],
