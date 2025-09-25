@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
+import { generateToolSchema } from '@/lib/tool-schema';
+
+const TOOL_ID = 'text-diff';
 
 export const metadata: Metadata = {
   title: 'Text Diff Checker - Compare Files & Code Online | ToolsLab',
@@ -27,9 +30,19 @@ export const metadata: Metadata = {
 };
 
 export default function TextDiffPage() {
+  const structuredData = generateToolSchema(TOOL_ID);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ToolPageClient toolId="text-diff" />
-    </Suspense>
+    <>
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        <ToolPageClient toolId={TOOL_ID} />
+      </Suspense>
+    </>
   );
 }
