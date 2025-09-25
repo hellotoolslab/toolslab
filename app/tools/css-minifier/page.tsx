@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: `CSS Minifier/Beautifier - Optimize & Format CSS Online | ToolsLab`,
-    description: seo.seoDescription,
+    description: seo.metaDescription,
     keywords: [
       ...tool.keywords,
       'css minifier',

@@ -179,7 +179,9 @@ function LabToolCard({
       {lastUsed && !isComingSoon && (
         <div className="mb-3 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
           <Clock className="h-3 w-3" />
-          Last used: {formatTimeAgo(lastUsed)}
+          <span suppressHydrationWarning>
+            Last used: {formatTimeAgo(lastUsed)}
+          </span>
         </div>
       )}
 
