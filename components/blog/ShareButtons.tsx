@@ -37,29 +37,31 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
   };
 
   return (
-    <div className="sticky top-32 space-y-2">
+    <div className="flex flex-wrap gap-2 sm:gap-3">
       <Button
         variant="outline"
         onClick={shareOnTwitter}
-        className="h-10 w-10 p-2"
+        className="flex items-center gap-2 px-4 py-2"
         title="Share on Twitter"
       >
         <Twitter className="h-4 w-4" />
+        <span className="hidden sm:inline">Twitter</span>
       </Button>
 
       <Button
         variant="outline"
         onClick={shareOnLinkedIn}
-        className="h-10 w-10 p-2"
+        className="flex items-center gap-2 px-4 py-2"
         title="Share on LinkedIn"
       >
         <Linkedin className="h-4 w-4" />
+        <span className="hidden sm:inline">LinkedIn</span>
       </Button>
 
       <Button
         variant="outline"
         onClick={copyLink}
-        className="h-10 w-10 p-2"
+        className="flex items-center gap-2 px-4 py-2"
         title={copied ? 'Copied!' : 'Copy link'}
       >
         {copied ? (
@@ -67,6 +69,9 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
         ) : (
           <Link2 className="h-4 w-4" />
         )}
+        <span className="hidden sm:inline">
+          {copied ? 'Copied!' : 'Copy link'}
+        </span>
       </Button>
     </div>
   );

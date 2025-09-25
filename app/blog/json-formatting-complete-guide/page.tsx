@@ -236,17 +236,6 @@ export default function JsonFormattingGuide() {
                   <time dateTime="2025-09-25">September 25, 2025</time>
                   <span>•</span>
                   <span>12 min read</span>
-                  <span>•</span>
-                  <button className="flex items-center gap-1 transition-colors hover:text-purple-500">
-                    <svg
-                      className="h-4 w-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                    </svg>
-                    Share
-                  </button>
                 </div>
                 <h1 className="mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-5xl font-bold text-transparent lg:text-6xl">
                   JSON Formatting: The Complete Developer Guide
@@ -258,12 +247,27 @@ export default function JsonFormattingGuide() {
                 </p>
               </header>
 
-              {/* Share Buttons */}
-              <div className="mb-8">
-                <ShareButtons
-                  url="https://toolslab.dev/blog/json-formatting-complete-guide"
-                  title="JSON Formatting: The Complete Developer Guide"
-                />
+              {/* Share Buttons and Mobile TOC */}
+              <div className="mb-8 flex flex-col gap-6">
+                {/* Share Buttons */}
+                <div>
+                  <ShareButtons
+                    url="https://toolslab.dev/blog/json-formatting-complete-guide"
+                    title="JSON Formatting: The Complete Developer Guide"
+                  />
+                </div>
+
+                {/* Mobile Table of Contents */}
+                <div className="lg:hidden">
+                  <details className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
+                    <summary className="flex cursor-pointer items-center gap-2 font-semibold text-gray-900 dark:text-white">
+                      <span>📋 Table of Contents</span>
+                    </summary>
+                    <div className="mt-4">
+                      <TableOfContents items={tocItems} />
+                    </div>
+                  </details>
+                </div>
               </div>
 
               {/* Introduction */}
@@ -316,18 +320,6 @@ export default function JsonFormattingGuide() {
                     and key search.
                   </p>
                 </InfoBox>
-
-                {/* Mobile TOC */}
-                <div className="my-8 lg:hidden">
-                  <details className="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
-                    <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
-                      Table of Contents
-                    </summary>
-                    <div className="mt-4">
-                      <TableOfContents items={tocItems} />
-                    </div>
-                  </details>
-                </div>
 
                 {/* What is JSON and Why Formatting Matters */}
                 <h2 id={generateAnchorId('what-is-json')}>
