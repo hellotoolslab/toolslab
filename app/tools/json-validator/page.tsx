@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import ToolPageClient from '@/components/tools/ToolPageClient';
+import { generateToolSchema } from '@/lib/tool-schema';
 
 export const metadata: Metadata = {
   title: 'JSON Validator - Advanced JSON Validation Tool | ToolsLab',
@@ -36,10 +37,22 @@ export const metadata: Metadata = {
   },
 };
 
+const TOOL_ID = 'json-validator';
+
 export default function JSONValidatorPage() {
+  const structuredData = generateToolSchema(TOOL_ID);
+
   return (
-    <Suspense fallback={<div>Loading JSON Validator...</div>}>
-      <ToolPageClient toolId="json-validator" />
-    </Suspense>
+    <>
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      <Suspense fallback={<div>Loading JSON Validator...</div>}>
+        <ToolPageClient toolId={TOOL_ID} />
+      </Suspense>
+    </>
   );
 }
