@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: `JavaScript Minifier/Beautifier - Optimize & Format JS Online | ToolsLab`,
-    description: seo.seoDescription,
+    description: seo.metaDescription,
     keywords: [
       ...tool.keywords,
       'javascript minifier',

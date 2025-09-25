@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: `QR Code Generator - Create QR Codes with Logos & Batch Processing | ToolsLab`,
-    description: seo.seoDescription,
+    description: seo.metaDescription,
     keywords: [
       ...tool.keywords,
       'qr code generator',

@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: `XML Formatter - Format, Validate & Minify XML Online | ToolsLab`,
-    description: seo.seoDescription,
+    description: seo.metaDescription,
     keywords: [
       ...tool.keywords,
       'xml formatter',
