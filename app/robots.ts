@@ -8,51 +8,111 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: [
-      // Block AI training bots
-      {
-        userAgent: [
-          'Amazonbot',
-          'Bytespider',
-          'CCBot',
-          'GPTBot',
-          'Google-Extended',
-          'meta-externalagent',
-        ],
-        disallow: '/',
-      },
-      // Block aggressive crawlers
-      {
-        userAgent: ['AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot'],
-        crawlDelay: 2,
-        disallow: ['/api/', '/admin/'],
-      },
-      // Allow search engines and AI retrieval for user queries
-      {
-        userAgent: ['ClaudeBot', 'Applebot-Extended'],
-        allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/'],
-        crawlDelay: 1,
-      },
-      // SEO tools - allow but with rate limiting
-      {
-        userAgent: ['ScreamingFrogSEOSpider', 'SiteAuditBot'],
-        crawlDelay: 1,
-        allow: '/',
-        disallow: ['/api/', '/admin/'],
-      },
-      // Default rule for all other bots
+      // Default rule for all bots - allow with crawl delay
       {
         userAgent: '*',
         allow: '/',
-        disallow: [
-          '/api/',
-          '/admin/',
-          '/_next/',
-          '/pro/success',
-          '/pro/cancel',
-          '/maintenance',
-          '/coming-soon',
-        ],
+        crawlDelay: 1,
+      },
+      // Protected directories
+      {
+        userAgent: '*',
+        disallow: ['/admin/', '/private/', '/tmp/', '/api/private/'],
+      },
+      // Block AI training bots
+      {
+        userAgent: 'GPTBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'ChatGPT-User',
+        disallow: '/',
+      },
+      {
+        userAgent: 'CCBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'ClaudeBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Claude-Web',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Google-Extended',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Amazonbot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Applebot-Extended',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Bytespider',
+        disallow: '/',
+      },
+      {
+        userAgent: 'meta-externalagent',
+        disallow: '/',
+      },
+      {
+        userAgent: 'FacebookBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'anthropic-ai',
+        disallow: '/',
+      },
+      {
+        userAgent: 'cohere-ai',
+        disallow: '/',
+      },
+      // Block spam and unwanted crawlers
+      {
+        userAgent: 'AhrefsBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'SemrushBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'DotBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'MJ12bot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Megaindex.ru',
+        disallow: '/',
+      },
+      // Explicitly allow legitimate search engines
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
+        crawlDelay: 0,
+      },
+      {
+        userAgent: 'Bingbot',
+        allow: '/',
+        crawlDelay: 1,
+      },
+      {
+        userAgent: 'Slurp',
+        allow: '/',
+        crawlDelay: 1,
+      },
+      {
+        userAgent: 'DuckDuckBot',
+        allow: '/',
+        crawlDelay: 1,
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
