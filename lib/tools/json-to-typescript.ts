@@ -1228,7 +1228,7 @@ export const EXAMPLE_JSON_SAMPLES = {
           email: 'john@example.com',
           isActive: true,
           roles: ['admin', 'user'],
-          createdAt: '2024-01-01T00:00:00Z',
+          createdAt: '2025-09-25T00:00:00Z',
           profile: {
             avatar: 'https://example.com/avatar.jpg',
             settings: {

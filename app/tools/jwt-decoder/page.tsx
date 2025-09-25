@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { getToolById } from '@/lib/tools';
 import { toolSEO } from '@/lib/tool-seo';
-
+import { generateToolSchema } from '@/lib/tool-schema';
 const TOOL_ID = 'jwt-decoder';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: `JWT Decoder - Decode & Analyze JSON Web Tokens Online | ToolsLab`,
+    title: `JWT Decoder - Decode & Analyze JSON Web Tokens Online`,
     description: seo.seoDescription,
     keywords: [
       ...tool.keywords,
@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ].join(', '),
 
     openGraph: {
-      title: 'JWT Decoder - Decode & Analyze JSON Web Tokens | ToolsLab',
+      title: 'JWT Decoder - Decode & Analyze JSON Web Tokens',
       description:
         'Professional JWT decoder with claims analysis, security validation, and expiration checking. Decode JSON Web Tokens safely with detailed token information and security recommendations.',
       type: 'website',
@@ -68,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     twitter: {
       card: 'summary_large_image',
-      title: 'JWT Decoder - Decode JSON Web Tokens | ToolsLab',
+      title: 'JWT Decoder - Decode JSON Web Tokens',
       description:
         'Professional JWT decoder with claims analysis, security validation, and expiration checking. Perfect for developers working with authentication tokens.',
       images: ['/tools/jwt-decoder/opengraph-image.png'],
@@ -107,9 +107,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function JwtDecoderPage() {
+  const structuredData = generateToolSchema(TOOL_ID);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ToolPageClient toolId={TOOL_ID} />
-    </Suspense>
+    <>
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        <ToolPageClient toolId={TOOL_ID} />
+      </Suspense>
+    </>
   );
 }
