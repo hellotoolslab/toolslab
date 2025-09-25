@@ -2,11 +2,13 @@ import { Suspense } from 'react';
 import { Metadata } from 'next';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { generateToolSchema } from '@/lib/tool-schema';
+import { getToolMetaDescription } from '@/lib/tool-seo';
+
+const TOOL_ID = 'json-validator';
 
 export const metadata: Metadata = {
   title: 'JSON Validator - Advanced JSON Validation Tool | ToolsLab',
-  description:
-    'Professional JSON validator with schema support, real-time error reporting, and security auditing. Validate API responses, configuration files, and data structures with comprehensive validation levels.',
+  description: getToolMetaDescription(TOOL_ID),
   keywords: [
     'json validator',
     'json schema',
@@ -21,23 +23,19 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'JSON Validator - Advanced JSON Validation Tool',
-    description:
-      'Professional JSON validator with schema support, real-time error reporting, and security auditing.',
+    description: getToolMetaDescription(TOOL_ID),
     type: 'website',
     url: 'https://toolslab.dev/tools/json-validator',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'JSON Validator - Advanced JSON Validation Tool',
-    description:
-      'Professional JSON validator with schema support, real-time error reporting, and security auditing.',
+    description: getToolMetaDescription(TOOL_ID),
   },
   alternates: {
     canonical: 'https://toolslab.dev/tools/json-validator',
   },
 };
-
-const TOOL_ID = 'json-validator';
 
 export default function JSONValidatorPage() {
   const structuredData = generateToolSchema(TOOL_ID);
