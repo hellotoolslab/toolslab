@@ -119,13 +119,13 @@ export default function ToolHeroSection({
         {seoData.tagline}
       </p>
 
-      {/* SEO Description - proper separation */}
+      {/* Page Description - proper separation */}
       <p
         className={`max-w-4xl text-sm leading-relaxed text-gray-600 transition-all delay-150 duration-300 dark:text-gray-400 sm:text-base ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
         }`}
       >
-        {seoData.seoDescription}
+        {seoData.pageDescription}
       </p>
 
       {/* Subtle Gradient Background */}
