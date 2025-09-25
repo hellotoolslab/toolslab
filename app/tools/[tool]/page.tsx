@@ -47,16 +47,17 @@ export async function generateMetadata({
   // Create SEO-optimized description
   const seoDescription = `${tool.description}. Use our free online ${tool.name.toLowerCase()} tool. No installation required, works in your browser. Fast, secure, and free.`;
 
-  // Optimize title length to stay under 70 characters
-  const baseTitle = `${tool.name} - ToolsLab`;
-  const longTitle = `${tool.name} - Free Online ${categoryName} Tool | ToolsLab`;
-  const shortTitle = `${tool.name} - Free ${categoryName} Tool | ToolsLab`;
+  // Optimize title length to stay under 70 characters (layout template adds "| ToolsLab")
+  const baseTitle = tool.name;
+  const longTitle = `${tool.name} - Free Online ${categoryName} Tool`;
+  const shortTitle = `${tool.name} - Free ${categoryName} Tool`;
 
-  // Choose title based on length
+  // Choose title based on length (accounting for template "| ToolsLab" = 12 chars)
+  const templateSuffix = ' | ToolsLab';
   let finalTitle: string;
-  if (longTitle.length <= 70) {
+  if ((longTitle + templateSuffix).length <= 70) {
     finalTitle = longTitle;
-  } else if (shortTitle.length <= 70) {
+  } else if ((shortTitle + templateSuffix).length <= 70) {
     finalTitle = shortTitle;
   } else {
     finalTitle = baseTitle;
