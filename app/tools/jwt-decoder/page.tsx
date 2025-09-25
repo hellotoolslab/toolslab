@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { getToolById } from '@/lib/tools';
 import { toolSEO } from '@/lib/tool-seo';
-
+import { generateToolSchema } from '@/lib/tool-schema';
 const TOOL_ID = 'jwt-decoder';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -107,9 +107,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function JwtDecoderPage() {
+  const structuredData = generateToolSchema(TOOL_ID);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ToolPageClient toolId={TOOL_ID} />
-    </Suspense>
+    <>
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        <ToolPageClient toolId={TOOL_ID} />
+      </Suspense>
+    </>
   );
 }

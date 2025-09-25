@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { tools, getToolById, categories } from '@/lib/tools';
+import { generateToolSchema } from '@/lib/tool-schema';
 
 interface ToolPageProps {
   params: {
@@ -126,5 +127,17 @@ export default function ToolPage({ params }: ToolPageProps) {
     notFound();
   }
 
-  return <ToolPageClient toolId={params.tool} />;
+  const structuredData = generateToolSchema(params.tool);
+
+  return (
+    <>
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      <ToolPageClient toolId={params.tool} />
+    </>
+  );
 }

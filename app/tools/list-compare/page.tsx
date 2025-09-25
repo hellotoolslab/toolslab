@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
+import { generateToolSchema } from '@/lib/tool-schema';
+
+const TOOL_ID = 'list-compare';
 
 export const metadata: Metadata = {
   title: 'List Compare Tool - Advanced Diff & Set Operations | ToolsLab',
@@ -52,9 +55,19 @@ export const metadata: Metadata = {
 };
 
 export default function ListComparePage() {
+  const structuredData = generateToolSchema(TOOL_ID);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ToolPageClient toolId="list-compare" />
-    </Suspense>
+    <>
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        <ToolPageClient toolId={TOOL_ID} />
+      </Suspense>
+    </>
   );
 }

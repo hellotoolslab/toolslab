@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
+import { generateToolSchema } from '@/lib/tool-schema';
+
+const TOOL_ID = 'json-to-csv';
 
 export const metadata: Metadata = {
   title: 'JSON to CSV Converter - Convert JSON to Excel CSV Format | ToolsLab',
@@ -42,9 +45,19 @@ export const metadata: Metadata = {
 };
 
 export default function JsonToCsvPage() {
+  const structuredData = generateToolSchema(TOOL_ID);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ToolPageClient toolId="json-to-csv" />
-    </Suspense>
+    <>
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        <ToolPageClient toolId={TOOL_ID} />
+      </Suspense>
+    </>
   );
 }

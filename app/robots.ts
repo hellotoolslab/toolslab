@@ -8,54 +8,181 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: [
-      // Block AI training bots
-      {
-        userAgent: [
-          'Amazonbot',
-          'Bytespider',
-          'CCBot',
-          'GPTBot',
-          'Google-Extended',
-          'meta-externalagent',
-        ],
-        disallow: '/',
-      },
-      // Block aggressive crawlers
-      {
-        userAgent: ['AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot'],
-        crawlDelay: 2,
-        disallow: ['/api/', '/admin/'],
-      },
-      // Allow search engines and AI retrieval for user queries
-      {
-        userAgent: ['ClaudeBot', 'Applebot-Extended'],
-        allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/'],
-        crawlDelay: 1,
-      },
-      // SEO tools - allow but with rate limiting
-      {
-        userAgent: ['ScreamingFrogSEOSpider', 'SiteAuditBot'],
-        crawlDelay: 1,
-        allow: '/',
-        disallow: ['/api/', '/admin/'],
-      },
-      // Default rule for all other bots
+      // Default rules - all crawlers
       {
         userAgent: '*',
         allow: '/',
         disallow: [
-          '/api/',
-          '/admin/',
+          '/api/admin/',
+          '/api/private/',
           '/_next/',
-          '/pro/success',
-          '/pro/cancel',
-          '/maintenance',
-          '/coming-soon',
+          '/temp/',
+          '/*.json$',
+          '/*?*utm_',
+          '/*?*ref=',
         ],
+        crawlDelay: 1,
+      },
+      // Search engine crawlers (explicitly allowed)
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
+        disallow: ['/api/admin/'],
+        crawlDelay: 0,
+      },
+      {
+        userAgent: 'Bingbot',
+        allow: '/',
+        disallow: ['/api/admin/'],
+        crawlDelay: 1,
+      },
+      {
+        userAgent: 'DuckDuckBot',
+        allow: '/',
+        disallow: ['/api/admin/'],
+        crawlDelay: 1,
+      },
+      {
+        userAgent: 'Yandex',
+        allow: '/',
+        disallow: ['/api/admin/'],
+        crawlDelay: 2,
+      },
+      // AI training bots (blocked)
+      {
+        userAgent: 'GPTBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'ChatGPT-User',
+        disallow: '/',
+      },
+      {
+        userAgent: 'CCBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'anthropic-ai',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Claude-Web',
+        disallow: '/',
+      },
+      {
+        userAgent: 'ClaudeBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Google-Extended',
+        disallow: '/',
+      },
+      {
+        userAgent: 'GoogleOther',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Amazonbot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'FacebookBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Applebot-Extended',
+        disallow: '/',
+      },
+      {
+        userAgent: 'PerplexityBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Bytespider',
+        disallow: '/',
+      },
+      {
+        userAgent: 'meta-externalagent',
+        disallow: '/',
+      },
+      {
+        userAgent: 'cohere-ai',
+        disallow: '/',
+      },
+      {
+        userAgent: 'omgili',
+        disallow: '/',
+      },
+      {
+        userAgent: 'omgilibot',
+        disallow: '/',
+      },
+      // SEO/Analysis bots (blocked)
+      {
+        userAgent: 'AhrefsBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'SemrushBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'DotBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'MJ12bot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Megaindex.ru',
+        disallow: '/',
+      },
+      {
+        userAgent: 'MauiBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'AlphaBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'SeznamBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'PetalBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'serpstatbot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'SEOkicks',
+        disallow: '/',
+      },
+      {
+        userAgent: 'SeekportBot',
+        disallow: '/',
+      },
+      // Specific paths for tools
+      {
+        userAgent: '*',
+        allow: [
+          '/tools/',
+          '/blog/',
+          '/api/tools/config',
+          '/api/health',
+          '/api/sitemap',
+        ],
+        disallow: ['/api/*'],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: [
+      `${baseUrl}/sitemap.xml`,
+      // `${baseUrl}/sitemap-tools.xml`,
+    ],
     host: baseUrl,
   };
 }
