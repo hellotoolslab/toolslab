@@ -91,7 +91,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
       {/* Fixed positioned TOC */}
       <nav
         className={cn(
-          'fixed top-6 z-40 hidden max-h-[calc(100vh-4rem)] overflow-y-auto lg:block',
+          'fixed top-32 z-40 hidden max-h-[calc(100vh-10rem)] overflow-y-auto lg:block',
           'rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800'
         )}
         style={{
