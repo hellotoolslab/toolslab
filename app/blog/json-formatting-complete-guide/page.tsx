@@ -213,16 +213,12 @@ export default function JsonFormattingGuide() {
         </div>
 
         <div className="flex gap-8 lg:gap-12">
-          {/* Table of Contents - Desktop Sidebar */}
-          <aside className="hidden lg:block lg:w-64 lg:flex-shrink-0">
-            <div className="sticky top-8">
-              <TableOfContents items={tocItems} />
-            </div>
-          </aside>
+          {/* Table of Contents - Floating for desktop */}
+          <TableOfContents items={tocItems} />
 
           {/* Main Content */}
           <article className={`min-w-0 flex-1 ${styles.blogArticle}`}>
-            <div className="mx-auto max-w-4xl">
+            <div className="mx-auto max-w-5xl">
               {/* Article Header */}
               <header className="mb-12">
                 <div
@@ -257,14 +253,30 @@ export default function JsonFormattingGuide() {
                   />
                 </div>
 
-                {/* Mobile Table of Contents */}
+                {/* Mobile Table of Contents - Inline */}
                 <div className="lg:hidden">
                   <details className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
                     <summary className="flex cursor-pointer items-center gap-2 font-semibold text-gray-900 dark:text-white">
                       <span>📋 Table of Contents</span>
                     </summary>
                     <div className="mt-4">
-                      <TableOfContents items={tocItems} />
+                      <nav className="max-h-96 overflow-y-auto">
+                        <ul className="space-y-2 text-sm">
+                          {tocItems.map((item) => (
+                            <li
+                              key={item.id}
+                              className={item.level === 3 ? 'ml-4' : ''}
+                            >
+                              <a
+                                href={`#${item.id}`}
+                                className="block rounded px-2 py-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+                              >
+                                {item.text}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </nav>
                     </div>
                   </details>
                 </div>

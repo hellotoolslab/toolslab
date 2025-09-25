@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TOCItem } from '@/lib/blog/types';
 
@@ -11,9 +10,10 @@ interface TableOfContentsProps {
 
 export function TableOfContents({ items }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>('');
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [tocPosition, setTocPosition] = useState({ left: 0, width: 288 });
 
   useEffect(() => {
+    // Observer for active section tracking
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -34,7 +34,31 @@ export function TableOfContents({ items }: TableOfContentsProps) {
       }
     });
 
+    // Calculate TOC position based on container
+    const updateTocPosition = () => {
+      if (typeof window === 'undefined') return;
+
+      // Find the main container to calculate left position
+      const container = document.querySelector('.max-w-7xl');
+      if (container) {
+        const containerRect = container.getBoundingClientRect();
+        const containerLeft = containerRect.left;
+        const padding = 32; // px-8 = 32px
+
+        setTocPosition({
+          left: Math.max(16, containerLeft + padding),
+          width: window.innerWidth >= 1280 ? 320 : 288,
+        });
+      }
+    };
+
+    updateTocPosition();
+    window.addEventListener('scroll', updateTocPosition);
+    window.addEventListener('resize', updateTocPosition);
+
     return () => {
+      window.removeEventListener('scroll', updateTocPosition);
+      window.removeEventListener('resize', updateTocPosition);
       items.forEach((item) => {
         const element = document.getElementById(item.id);
         if (element) {
@@ -58,72 +82,47 @@ export function TableOfContents({ items }: TableOfContentsProps) {
 
   if (items.length === 0) return null;
 
+  // Always visible on desktop, hidden on mobile, follows scroll
   return (
-    <nav
-      className={cn(
-        'sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto',
-        'rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900',
-        'transition-all duration-300',
-        isCollapsed && 'lg:w-12'
-      )}
-    >
-      <button
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        className="mb-4 flex w-full items-center justify-between text-sm font-semibold text-gray-900 dark:text-gray-100 lg:hidden"
-      >
-        <span>Table of Contents</span>
-        <ChevronRight
-          className={cn(
-            'h-4 w-4 transition-transform',
-            !isCollapsed && 'rotate-90'
-          )}
-        />
-      </button>
+    <>
+      {/* Placeholder for layout */}
+      <div className="hidden lg:block lg:w-72 xl:w-80" />
 
-      <div className="mb-4 hidden items-center justify-between lg:flex">
-        <h3
-          className={cn(
-            'text-sm font-semibold text-gray-900 dark:text-gray-100',
-            isCollapsed && 'hidden'
-          )}
-        >
-          Table of Contents
+      {/* Fixed positioned TOC */}
+      <nav
+        className={cn(
+          'fixed top-6 z-40 hidden max-h-[calc(100vh-4rem)] overflow-y-auto lg:block',
+          'rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800'
+        )}
+        style={{
+          left: `${tocPosition.left}px`,
+          width: `${tocPosition.width}px`,
+        }}
+      >
+        <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
+          📋 Table of Contents
         </h3>
-        <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className="rounded p-1 hover:bg-gray-200 dark:hover:bg-gray-800"
-        >
-          <ChevronRight
-            className={cn(
-              'h-4 w-4 transition-transform',
-              !isCollapsed && 'rotate-180'
-            )}
-          />
-        </button>
-      </div>
-
-      <ul
-        className={cn('space-y-2 text-sm', isCollapsed && 'hidden lg:hidden')}
-      >
-        {items.map((item) => (
-          <li
-            key={item.id}
-            className={cn('transition-all', item.level === 3 && 'ml-4')}
-          >
-            <a
-              href={`#${item.id}`}
-              onClick={(e) => handleClick(e, item.id)}
-              className={cn(
-                'block rounded px-2 py-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100',
-                activeId === item.id &&
-                  'bg-blue-50 font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-400'
-              )}
+        <ul className="space-y-1 text-sm">
+          {items.map((item) => (
+            <li
+              key={item.id}
+              className={cn('transition-all', item.level === 3 && 'ml-4')}
             >
-              {item.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+              <a
+                href={`#${item.id}`}
+                onClick={(e) => handleClick(e, item.id)}
+                className={cn(
+                  'block rounded px-2 py-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100',
+                  activeId === item.id &&
+                    'bg-blue-50 font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-400'
+                )}
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </>
   );
 }
