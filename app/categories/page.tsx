@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 import CategoriesHubContent from '@/components/layout/CategoriesHubContent';
 
 export const metadata: Metadata = {
-  title: 'Developer Tool Categories - Browse by Functionality | ToolsLab',
+  title: 'Developer Tool Categories - Browse by Functionality',
   description:
     'Explore 24+ professional developer tools organized into 6 specialized categories. From data conversion to security utilities, find tools for JSON formatting, Base64 encoding, hash generation, and more.',
   keywords:
     'developer tools categories, JSON formatter, Base64 encoder, hash generator, data conversion tools, security utilities, web development tools, programming utilities',
   openGraph: {
-    title: 'Developer Tool Categories - Browse by Functionality | ToolsLab',
+    title: 'Developer Tool Categories - Browse by Functionality',
     description:
       'Explore 24+ professional developer tools organized into 6 specialized categories. Battle-tested utilities used by thousands of developers worldwide.',
     type: 'website',

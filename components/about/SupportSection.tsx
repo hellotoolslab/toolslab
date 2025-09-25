@@ -204,16 +204,9 @@ export function SupportSection() {
                 <h3 className="mb-2 font-bold">Behind the Scenes</h3>
                 <div className="space-y-1 text-sm">
                   <p>🚀 Coded with: VS Code + Coffee</p>
-                  <p>
-                    ⏰ Development time: {Math.floor(Math.random() * 200 + 100)}{' '}
-                    hours
-                  </p>
-                  <p>
-                    ☕ Coffees consumed: {Math.floor(Math.random() * 50 + 25)}
-                  </p>
-                  <p>
-                    🐛 Bugs squashed: {Math.floor(Math.random() * 100 + 50)}
-                  </p>
+                  <p>⏰ Development time: 247 hours</p>
+                  <p>☕ Coffees consumed: 73</p>
+                  <p>🐛 Bugs squashed: 142</p>
                   <p className="mt-3 font-semibold">
                     Made with ❤️ for developers
                   </p>
