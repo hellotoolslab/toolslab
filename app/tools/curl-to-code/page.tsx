@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 import ToolPageClient from '@/components/tools/ToolPageClient';
+import { generateToolSchema } from '@/lib/tool-schema';
 
 const TOOL_ID = 'curl-to-code';
 
@@ -68,15 +69,25 @@ export const metadata: Metadata = {
 };
 
 export default function CurlToCodePage() {
+  const structuredData = generateToolSchema(TOOL_ID);
+
   return (
-    <Suspense
-      fallback={
-        <div className="flex min-h-[200px] items-center justify-center">
-          Loading...
-        </div>
-      }
-    >
-      <ToolPageClient toolId={TOOL_ID} />
-    </Suspense>
+    <>
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      <Suspense
+        fallback={
+          <div className="flex min-h-[200px] items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
+        <ToolPageClient toolId={TOOL_ID} />
+      </Suspense>
+    </>
   );
 }
