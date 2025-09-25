@@ -11,6 +11,7 @@ import { Footer } from '@/components/layout/Footer';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { UpdateNotification } from '@/components/UpdateNotification';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({
@@ -156,6 +157,7 @@ export default function RootLayout({
           </ThemeProvider>
         </UmamiProvider>
         <SpeedInsights />
+        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   );
