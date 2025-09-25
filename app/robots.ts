@@ -8,18 +8,47 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: [
-      // Default rule for all bots - allow with crawl delay
+      // Default rules - all crawlers
       {
         userAgent: '*',
         allow: '/',
+        disallow: [
+          '/api/admin/',
+          '/api/private/',
+          '/_next/',
+          '/temp/',
+          '/*.json$',
+          '/*?*utm_',
+          '/*?*ref=',
+        ],
         crawlDelay: 1,
       },
-      // Protected directories
+      // Search engine crawlers (explicitly allowed)
       {
-        userAgent: '*',
-        disallow: ['/admin/', '/private/', '/tmp/', '/api/private/'],
+        userAgent: 'Googlebot',
+        allow: '/',
+        disallow: ['/api/admin/'],
+        crawlDelay: 0,
       },
-      // Block AI training bots
+      {
+        userAgent: 'Bingbot',
+        allow: '/',
+        disallow: ['/api/admin/'],
+        crawlDelay: 1,
+      },
+      {
+        userAgent: 'DuckDuckBot',
+        allow: '/',
+        disallow: ['/api/admin/'],
+        crawlDelay: 1,
+      },
+      {
+        userAgent: 'Yandex',
+        allow: '/',
+        disallow: ['/api/admin/'],
+        crawlDelay: 2,
+      },
+      // AI training bots (blocked)
       {
         userAgent: 'GPTBot',
         disallow: '/',
@@ -33,7 +62,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
       {
-        userAgent: 'ClaudeBot',
+        userAgent: 'anthropic-ai',
         disallow: '/',
       },
       {
@@ -41,7 +70,15 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
       {
+        userAgent: 'ClaudeBot',
+        disallow: '/',
+      },
+      {
         userAgent: 'Google-Extended',
+        disallow: '/',
+      },
+      {
+        userAgent: 'GoogleOther',
         disallow: '/',
       },
       {
@@ -49,7 +86,15 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
       {
+        userAgent: 'FacebookBot',
+        disallow: '/',
+      },
+      {
         userAgent: 'Applebot-Extended',
+        disallow: '/',
+      },
+      {
+        userAgent: 'PerplexityBot',
         disallow: '/',
       },
       {
@@ -61,18 +106,18 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
       {
-        userAgent: 'FacebookBot',
-        disallow: '/',
-      },
-      {
-        userAgent: 'anthropic-ai',
-        disallow: '/',
-      },
-      {
         userAgent: 'cohere-ai',
         disallow: '/',
       },
-      // Block spam and unwanted crawlers
+      {
+        userAgent: 'omgili',
+        disallow: '/',
+      },
+      {
+        userAgent: 'omgilibot',
+        disallow: '/',
+      },
+      // SEO/Analysis bots (blocked)
       {
         userAgent: 'AhrefsBot',
         disallow: '/',
@@ -93,29 +138,51 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'Megaindex.ru',
         disallow: '/',
       },
-      // Explicitly allow legitimate search engines
       {
-        userAgent: 'Googlebot',
-        allow: '/',
-        crawlDelay: 0,
+        userAgent: 'MauiBot',
+        disallow: '/',
       },
       {
-        userAgent: 'Bingbot',
-        allow: '/',
-        crawlDelay: 1,
+        userAgent: 'AlphaBot',
+        disallow: '/',
       },
       {
-        userAgent: 'Slurp',
-        allow: '/',
-        crawlDelay: 1,
+        userAgent: 'SeznamBot',
+        disallow: '/',
       },
       {
-        userAgent: 'DuckDuckBot',
-        allow: '/',
-        crawlDelay: 1,
+        userAgent: 'PetalBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'serpstatbot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'SEOkicks',
+        disallow: '/',
+      },
+      {
+        userAgent: 'SeekportBot',
+        disallow: '/',
+      },
+      // Specific paths for tools
+      {
+        userAgent: '*',
+        allow: [
+          '/tools/',
+          '/blog/',
+          '/api/tools/config',
+          '/api/health',
+          '/api/sitemap',
+        ],
+        disallow: ['/api/*'],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: [
+      `${baseUrl}/sitemap.xml`,
+      // `${baseUrl}/sitemap-tools.xml`,
+    ],
     host: baseUrl,
   };
 }
