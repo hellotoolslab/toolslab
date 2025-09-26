@@ -23,25 +23,17 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: `XML Formatter - Format, Validate & Minify XML Online | ToolsLab`,
+    title: `XML Formatter - Format, Validate & Minify XML Online`,
     description: seo.metaDescription,
     keywords: [
-      ...tool.keywords,
-      'xml formatter',
-      'xml validator',
-      'xml beautifier',
-      'xml minifier',
-      'xml parser',
-      'xpath search',
-      'namespace analysis',
-      'soap xml',
-      'rss xml',
-      'svg formatter',
-      'online tool',
-      'free tool',
-      'developer tool',
-      'web tool',
-      'toolslab',
+      ...new Set([
+        ...tool.keywords,
+        'online tool',
+        'free tool',
+        'developer tool',
+        'web tool',
+        'toolslab',
+      ]),
     ].join(', '),
 
     openGraph: {
