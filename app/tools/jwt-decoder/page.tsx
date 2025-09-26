@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: `JWT Decoder - Decode & Analyze JSON Web Tokens Online`,
+    title: `JWT Decoder - Decode & Analyze JSON Web Tokens`,
     description: seo.metaDescription,
     keywords: [
       ...tool.keywords,

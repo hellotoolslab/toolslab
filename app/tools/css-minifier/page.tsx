@@ -23,25 +23,17 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: `CSS Minifier/Beautifier - Optimize & Format CSS Online | ToolsLab`,
+    title: `CSS Minifier/Beautifier - Optimize & Format CSS Online`,
     description: seo.metaDescription,
     keywords: [
-      ...tool.keywords,
-      'css minifier',
-      'css beautifier',
-      'css formatter',
-      'css compressor',
-      'css optimizer',
-      'minimize css',
-      'reduce css size',
-      'css prettify',
-      'production css',
-      'css optimization',
-      'online tool',
-      'free tool',
-      'developer tool',
-      'web tool',
-      'toolslab',
+      ...new Set([
+        ...tool.keywords,
+        'online tool',
+        'free tool',
+        'developer tool',
+        'web tool',
+        'toolslab',
+      ]),
     ].join(', '),
 
     openGraph: {

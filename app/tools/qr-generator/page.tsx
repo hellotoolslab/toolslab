@@ -22,26 +22,17 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: `QR Code Generator - Create QR Codes with Logos & Batch Processing | ToolsLab`,
+    title: `QR Code Generator - Create Custom QR Codes`,
     description: seo.metaDescription,
     keywords: [
-      ...tool.keywords,
-      'qr code generator',
-      'qr code maker',
-      'wifi qr code',
-      'vcard qr code',
-      'qr code with logo',
-      'batch qr codes',
-      'svg qr code',
-      'api qr code',
-      'developer qr tool',
-      'online qr generator',
-      'free qr code',
-      'mobile qr scanner',
-      'crypto qr code',
-      'email qr code',
-      'business card qr',
-      'toolslab',
+      ...new Set([
+        ...tool.keywords,
+        'online tool',
+        'free tool',
+        'developer tool',
+        'web tool',
+        'toolslab',
+      ]),
     ].join(', '),
 
     openGraph: {
