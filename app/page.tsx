@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     canonical: 'https://toolslab.dev',
   },
   other: {
-    'google-site-verification': 'your-google-verification-code',
+    // 'google-site-verification': 'your-google-verification-code',
   },
 };
 

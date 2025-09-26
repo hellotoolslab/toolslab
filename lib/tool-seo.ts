@@ -1,7 +1,7 @@
 export interface ToolSEO {
   id: string;
   tagline: string; // 8-12 words, catchy and memorable
-  metaDescription: string; // 140-160 chars, optimized for search engines
+  metaDescription: string; // 130-150 chars, optimized for search engines
   pageDescription: string; // 30-70 words, detailed for users visiting the page, includes features
 }
 
@@ -262,5 +262,41 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Professional JavaScript minifier with ES2024+ support, reducing bundle size by up to 70%. Dead code elimination included.',
     pageDescription:
       'Professional JavaScript minifier and beautifier with ES2024+ support, reducing bundle size by up to 70% while maintaining functionality. Features advanced optimizations including dead code elimination, variable renaming, function inlining, and tree shaking simulation. Generate source maps for debugging, apply varying compression levels, and maintain modern JavaScript compatibility. Process code securely in your browser with no server uploads - perfect for production optimization and webpack alternative processing.',
+  },
+
+  'jwt-decoder': {
+    id: 'jwt-decoder',
+    tagline: 'Decode and analyze JSON Web Tokens with security validation',
+    metaDescription:
+      'Decode JWT tokens with claims analysis, signature validation, and expiration checking. Debug auth tokens securely.',
+    pageDescription:
+      'Professional JWT decoder with claims analysis, signature validation, and expiration checking. Decode JSON Web Tokens safely with detailed token information including header, payload, and signature analysis. Features security recommendations, algorithm detection, and token expiration warnings. Perfect for developers debugging authentication tokens, OAuth flows, and API security. All processing happens in your browser for complete privacy.',
+  },
+
+  'qr-generator': {
+    id: 'qr-generator',
+    tagline: 'Create QR codes with logos, batch processing and API support',
+    metaDescription:
+      'Generate QR codes with logo embedding, WiFi/vCard creation, and batch processing. Export as PNG, SVG with API support.',
+    pageDescription:
+      'Professional QR code generator with logo embedding, WiFi/vCard creation, batch processing, and developer tools. Generate QR codes for URLs, contacts, WiFi credentials, crypto addresses, and more. Features custom colors, error correction levels, size optimization, and bulk generation up to 1000 codes. Export as PNG, SVG, or integrate with API. Perfect for marketing campaigns, business cards, and event management.',
+  },
+
+  'url-encode': {
+    id: 'url-encode',
+    tagline: 'Encode and decode URLs with query parameter handling',
+    metaDescription:
+      'URL encoder/decoder for safe web addresses. Handle special characters, query parameters, and international text.',
+    pageDescription:
+      'Professional URL encoder and decoder for web development. Handle special characters, query parameters, and international text in URLs safely. Features percent encoding, query string parsing, component extraction, and bulk processing. Perfect for API development, web forms, and handling user input. Supports RFC 3986 standards with complete Unicode compatibility. Process URLs securely in your browser.',
+  },
+
+  'xml-formatter': {
+    id: 'xml-formatter',
+    tagline: 'Format, validate and minify XML with namespace support',
+    metaDescription:
+      'XML formatter with validation, minification, and XPath support. Process SOAP, RSS, SVG with namespace handling.',
+    pageDescription:
+      'Professional XML formatter with validation, minification, and XPath support. Process SOAP, RSS, SVG, and configuration files with proper namespace handling and DTD validation. Features syntax highlighting, tree view, attribute sorting, and CDATA preservation. Convert between XML and JSON, validate against XSD schemas, and test XPath queries. Perfect for developers working with web services, configuration files, and data interchange.',
   },
 };

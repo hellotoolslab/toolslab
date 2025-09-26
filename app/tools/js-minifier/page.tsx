@@ -22,29 +22,17 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: `JavaScript Minifier/Beautifier - Optimize & Format JS Online | ToolsLab`,
+    title: `JavaScript Minifier/Beautifier - Optimize JS`,
     description: seo.metaDescription,
     keywords: [
-      ...tool.keywords,
-      'javascript minifier',
-      'js minifier',
-      'javascript beautifier',
-      'js formatter',
-      'compress javascript',
-      'minify js',
-      'javascript optimizer',
-      'es6 minifier',
-      'webpack optimizer',
-      'production js',
-      'bundle size',
-      'source maps',
-      'obfuscation',
-      'tree shaking',
-      'online tool',
-      'free tool',
-      'developer tool',
-      'web tool',
-      'toolslab',
+      ...new Set([
+        ...tool.keywords,
+        'online tool',
+        'free tool',
+        'developer tool',
+        'web tool',
+        'toolslab',
+      ]),
     ].join(', '),
 
     openGraph: {

@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: `URL Encoder/Decoder - Encode & Decode URLs Safely Online`,
+    title: `URL Encoder/Decoder - Encode & Decode URLs Safely`,
     description: seo.metaDescription,
     keywords: [
       ...tool.keywords,
