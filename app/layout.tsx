@@ -100,7 +100,7 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    google: 'your-google-verification-code', // Replace with actual verification code
+    // google: 'your-google-verification-code', // Replace with actual verification code
     other: {
       'msvalidate.01': 'A915DC41215EC56805DD7990E7B00EE4',
     },
