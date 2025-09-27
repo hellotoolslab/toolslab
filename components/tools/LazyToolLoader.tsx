@@ -61,6 +61,9 @@ const toolComponents = {
   ),
   'css-minifier': lazy(() => import('./implementations/CSSMinifier')),
   'js-minifier': lazy(() => import('./implementations/JSMinifier')),
+  'yaml-json-converter': lazy(
+    () => import('./implementations/YamlJsonConverter')
+  ),
   // Add more as needed
 } as const;
 
