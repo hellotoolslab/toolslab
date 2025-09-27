@@ -248,7 +248,9 @@ export const toolSEO: Record<string, ToolSEO> = {
   'yaml-json-converter': {
     id: 'yaml-json-converter',
     tagline: 'Convert YAML to JSON and back with advanced validation features',
-    seoDescription:
+    metaDescription:
+      'Free YAML to JSON converter with validation, multi-document support, and formatting. Perfect for Kubernetes and DevOps.',
+    pageDescription:
       'Free YAML to JSON converter with bidirectional conversion, multi-document support, and anchor resolution. Convert Kubernetes configs, Docker Compose files, CI/CD pipelines, and Swagger specifications instantly. Features real-time validation, syntax highlighting, type preservation, and comment handling. Supports YAML 1.2 with anchors, aliases, merge keys, and custom tags. Export to TypeScript interfaces and JSON Schema. Perfect for DevOps engineers, developers working with configuration files, and API documentation.',
   },
 
