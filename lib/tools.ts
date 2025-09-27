@@ -651,7 +651,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 30000,
-    label: 'new',
+    label: '',
   },
 ];
 
