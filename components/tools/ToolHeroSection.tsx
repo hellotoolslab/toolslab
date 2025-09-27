@@ -44,13 +44,15 @@ export default function ToolHeroSection({
         >
           <Zap className="h-10 w-10" style={{ color: categoryColor }} />
         </div>
-        <h1
+        <div
           className={`mb-2 text-3xl font-bold text-gray-900 transition-all delay-100 duration-500 dark:text-white sm:text-4xl lg:text-5xl ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}
+          aria-level={1}
+          role="heading"
         >
           {toolName}
-        </h1>
+        </div>
         <p
           className={`mb-4 text-xl text-gray-700 transition-all delay-150 duration-500 dark:text-gray-300 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
@@ -91,15 +93,17 @@ export default function ToolHeroSection({
 
         {/* Title and badges inline */}
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:gap-3">
-          <h1
+          <div
             className={`text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl lg:text-4xl ${
               isVisible
                 ? 'translate-y-0 opacity-100'
                 : 'translate-y-1 opacity-0'
             } transition-all delay-75 duration-300`}
+            aria-level={1}
+            role="heading"
           >
             {toolName}
-          </h1>
+          </div>
           {labelBadge && <div className="flex items-center">{labelBadge}</div>}
           {favoriteButton && (
             <div className="flex items-center">{favoriteButton}</div>
