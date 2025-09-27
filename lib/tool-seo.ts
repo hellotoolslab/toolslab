@@ -1,7 +1,7 @@
 export interface ToolSEO {
   id: string;
   tagline: string; // 8-12 words, catchy and memorable
-  metaDescription: string; // 140-160 chars, optimized for search engines
+  metaDescription: string; // 130-150 chars, optimized for search engines
   pageDescription: string; // 30-70 words, detailed for users visiting the page, includes features
 }
 
@@ -39,7 +39,7 @@ export const toolSEO: Record<string, ToolSEO> = {
     id: 'text-diff',
     tagline: 'Compare files and code with professional diff visualization',
     metaDescription:
-      'Professional text comparison tool with syntax highlighting and side-by-side diff views. Perfect for code reviews.',
+      'Professional text comparison tool with syntax highlighting, patch generation, and side-by-side diff views. Compare code files, documents, and text with line-by-line differences.',
     pageDescription:
       'Professional text comparison tool with syntax highlighting, patch generation, and side-by-side diff views. Compare code files, documents, and text with line-by-line differences, change tracking, and unified diff output. Features Git-style patches, whitespace options, and export to HTML/PDF. Perfect for developers reviewing code changes.',
   },
