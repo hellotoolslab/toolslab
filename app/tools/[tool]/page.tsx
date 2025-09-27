@@ -142,6 +142,8 @@ export default function ToolPage({ params }: ToolPageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}
+      {/* Server-side H1 for SEO crawlers - visually hidden but accessible */}
+      <h1 className="sr-only">{tool.name}</h1>
       <ToolPageClient toolId={params.tool} />
     </>
   );
