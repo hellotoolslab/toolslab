@@ -267,7 +267,9 @@ export const toolSEO: Record<string, ToolSEO> = {
   'unix-timestamp-converter': {
     id: 'unix-timestamp-converter',
     tagline: 'Convert Unix timestamps to human dates with timezone support',
-    seoDescription:
+    metaDescription:
+      'Professional Unix timestamp converter with timezone support, batch processing, and code generation for developers.',
+    pageDescription:
       'Professional Unix timestamp converter with timezone support, batch processing, and code generation. Convert epoch time to readable dates and vice versa with real-time validation. Features multiple date formats, relative time calculations, developer code examples, and timezone-aware conversions. Perfect for developers working with APIs, databases, logs, and system integrations. Supports seconds and milliseconds with IANA timezone database.',
   },
 };

@@ -378,7 +378,11 @@ const UnixTimestampConverter = () => {
       </Card>
 
       {/* Main Content */}
-      <Tabs value={mode} className="w-full">
+      <Tabs
+        value={mode}
+        onValueChange={(v) => setMode(v as 'single' | 'batch')}
+        className="w-full"
+      >
         <TabsContent value="single" className="space-y-6">
           {/* Single Conversion Input */}
           <Card>
@@ -462,7 +466,7 @@ const UnixTimestampConverter = () => {
                         />
                         <Button
                           variant="outline"
-                          size="icon"
+                          size="sm"
                           onClick={() =>
                             handleCopy(result.result || '', 'Primary result')
                           }
@@ -493,7 +497,7 @@ const UnixTimestampConverter = () => {
                                 />
                                 <Button
                                   variant="outline"
-                                  size="icon"
+                                  size="sm"
                                   className="flex-shrink-0"
                                   onClick={() =>
                                     handleCopy(value, `${key} format`)
@@ -529,7 +533,7 @@ const UnixTimestampConverter = () => {
                                 />
                                 <Button
                                   variant="outline"
-                                  size="icon"
+                                  size="sm"
                                   className="flex-shrink-0"
                                   onClick={() =>
                                     handleCopy(value, `${key} relative time`)
@@ -548,7 +552,11 @@ const UnixTimestampConverter = () => {
                     {includeCode && codeExamples && (
                       <div className="space-y-2">
                         <Label>Code Examples</Label>
-                        <Tabs defaultValue="javascript" className="w-full">
+                        <Tabs
+                          value="javascript"
+                          onValueChange={() => {}}
+                          className="w-full"
+                        >
                           <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8">
                             {Object.keys(codeExamples).map((lang) => (
                               <TabsTrigger
@@ -716,7 +724,7 @@ const UnixTimestampConverter = () => {
                                     </span>
                                     <Button
                                       variant="ghost"
-                                      size="icon"
+                                      size="sm"
                                       className="h-6 w-6"
                                       onClick={() =>
                                         handleCopy(

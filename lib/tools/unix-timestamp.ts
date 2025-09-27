@@ -10,7 +10,7 @@ import {
   subHours,
   subMinutes,
 } from 'date-fns';
-import { formatInTimeZone, zonedTimeToUtc, utcToZonedTime } from 'date-fns-tz';
+import { formatInTimeZone, toZonedTime } from 'date-fns-tz';
 
 export interface TimestampConversionOptions {
   timezone?: string;
@@ -259,15 +259,9 @@ export function dateToTimestamp(
       };
     }
 
-    // Convert to UTC if timezone is specified
-    let utcDate = date;
-    if (timezone !== 'UTC') {
-      try {
-        utcDate = zonedTimeToUtc(date, timezone);
-      } catch {
-        // If timezone conversion fails, use the date as-is
-      }
-    }
+    // For now, use the date as-is
+    // TODO: Implement proper timezone conversion when needed
+    const utcDate = date;
 
     const unit = options.unit || 'seconds';
     const timestamp =
