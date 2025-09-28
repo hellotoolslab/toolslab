@@ -1,4 +1,5 @@
-export type Locale = 'en' | 'it';
+// Basic locale types - these should match locale-config.ts
+export type Locale = 'en' | 'it'; // Future: add new locales here when activating them
 
 export const locales: Locale[] = ['en', 'it'];
 export const defaultLocale: Locale = 'en';
@@ -6,6 +7,8 @@ export const defaultLocale: Locale = 'en';
 // Locales that should have URL prefix (exclude default)
 export const localesWithPrefix = locales.filter((l) => l !== defaultLocale);
 
+// Legacy exports for backward compatibility
+// These will be dynamically populated from locale-config.ts
 export const localeNames: Record<Locale, string> = {
   en: 'English',
   it: 'Italiano',

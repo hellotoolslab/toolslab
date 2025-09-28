@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import HomePageContent from '@/components/layout/HomePageContent';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
+import { getPageMetadata, getKeywordsString } from '@/lib/i18n/seo-metadata';
+import { getLocalizedPath } from '@/lib/i18n/helpers';
 
 interface LocalePageProps {
   params: {
@@ -19,18 +21,16 @@ export async function generateMetadata({
   }
 
   const dict = await getDictionary(locale as Locale);
+  const metadata = getPageMetadata('home', locale as Locale);
 
   return {
-    title: `ToolsLab - ${dict.home.hero.title}`,
-    description: dict.seo.defaultDescription,
-    keywords:
-      locale === 'it'
-        ? 'strumenti sviluppatore, formattatore json, codificatore base64, decodificatore jwt, generatore uuid, generatore hash, codificatore url, convertitore timestamp, tester regex, strumenti online, strumenti web, strumenti gratuiti'
-        : 'developer tools, json formatter, base64 encoder, jwt decoder, uuid generator, hash generator, url encoder, timestamp converter, regex tester, online tools, web tools, free tools, browser tools',
+    title: metadata.title,
+    description: metadata.description,
+    keywords: getKeywordsString('home', locale as Locale),
     openGraph: {
-      title: `ToolsLab - ${dict.home.hero.title}`,
-      description: dict.home.hero.description,
-      url: `https://toolslab.dev${locale === 'en' ? '' : `/${locale}`}`,
+      title: metadata.title,
+      description: metadata.description,
+      url: `https://toolslab.dev${getLocalizedPath('/', locale as Locale)}`,
       siteName: 'ToolsLab',
       type: 'website',
       images: [
@@ -44,12 +44,12 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `ToolsLab - ${dict.home.hero.title}`,
-      description: dict.home.hero.description,
+      title: metadata.title,
+      description: metadata.description,
       images: ['https://toolslab.dev/twitter-card.jpg'],
     },
     alternates: {
-      canonical: `https://toolslab.dev${locale === 'en' ? '' : `/${locale}`}`,
+      canonical: `https://toolslab.dev${getLocalizedPath('/', locale as Locale)}`,
       languages: {
         en: 'https://toolslab.dev',
         it: 'https://toolslab.dev/it',

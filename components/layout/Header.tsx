@@ -251,7 +251,7 @@ export function Header() {
 
             <nav className="space-y-4">
               <Link
-                href="/tools"
+                href={createHref('/tools')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -259,7 +259,7 @@ export function Header() {
                 <span>Tools</span>
               </Link>
               <Link
-                href="/lab"
+                href={createHref('/lab')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -272,7 +272,7 @@ export function Header() {
                 )}
               </Link>
               <Link
-                href="/about"
+                href={createHref('/about')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -287,7 +287,7 @@ export function Header() {
                 <div className="space-y-2">
                   {/* Hub Link - Browse All Categories */}
                   <Link
-                    href="/categories"
+                    href={createHref('/categories')}
                     className="flex items-center space-x-3 rounded-lg p-3 font-medium text-violet-400 transition-colors hover:bg-violet-900/20"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -309,7 +309,7 @@ export function Header() {
                   {categories.map((category) => (
                     <Link
                       key={category.id}
-                      href={`/category/${category.id}`}
+                      href={createHref(`/category/${category.id}`)}
                       className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
