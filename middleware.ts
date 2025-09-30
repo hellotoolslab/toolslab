@@ -185,6 +185,28 @@ export async function middleware(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
+  // Handle locale redirection for non-prefixed paths
+  if (
+    !pathnameHasLocale &&
+    !pathname.startsWith('/_next') &&
+    !pathname.startsWith('/api')
+  ) {
+    // Check if this is a path that should be localized
+    const shouldLocalize = ['/tools', '/categories', '/lab', '/about'].some(
+      (path) => pathname === path || pathname.startsWith(`${path}/`)
+    );
+
+    if (shouldLocalize) {
+      // Redirect to default locale (English doesn't need prefix, but others do)
+      const url = request.nextUrl.clone();
+      url.pathname = pathname; // English doesn't need prefix
+      return NextResponse.next(); // Let it go to the default route
+    }
+  }
+
+  // For localized paths, just ensure X-Locale header is set
+  // (this will be handled later in the middleware)
+
   // Domain canonicalization: Redirect www.toolslab.dev to toolslab.dev
   const hostname = request.nextUrl.hostname;
   if (hostname === 'www.toolslab.dev') {

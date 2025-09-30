@@ -5,10 +5,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Copy, Check, Sparkles, Search } from 'lucide-react';
 import Link from 'next/link';
 import { formatJson } from '@/lib/tools/json-formatter';
+import { useLocale } from '@/hooks/useLocale';
 
 const sampleJson = `{"user":{"id":1,"name":"John Doe","email":"john@example.com","roles":["admin","user"],"settings":{"theme":"dark","notifications":true}}}`;
 
 export function InteractiveDemo() {
+  const { createHref } = useLocale();
   const [isFormatted, setIsFormatted] = useState(false);
   const [copied, setCopied] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -312,7 +314,7 @@ export function InteractiveDemo() {
                 features.
               </p>
               <Link
-                href="/tools/json-formatter"
+                href={createHref('/tools/json-formatter')}
                 className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
               >
                 Try Full JSON Formatter

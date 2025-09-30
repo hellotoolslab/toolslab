@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
+import { getPageMetadata, getKeywordsString } from '@/lib/i18n/seo-metadata';
+import { getLocalizedPath } from '@/lib/i18n/helpers';
 import ToolsHubContent from '@/components/tools/ToolsHubContent';
 
 interface LocaleToolsPageProps {
@@ -20,77 +22,58 @@ export async function generateMetadata({
   }
 
   const dict = await getDictionary(locale as Locale);
-
-  const title =
-    locale === 'it'
-      ? 'Tutti gli Strumenti Sviluppatore - Utilità Online Gratuite | ToolsLab'
-      : 'All Developer Tools - Free Online Utilities | ToolsLab';
-
-  const description =
-    locale === 'it'
-      ? 'Scopri 20+ strumenti online gratuiti per formattazione JSON, codifica Base64, decodifica URL, generazione hash e altro. Tutti gli strumenti funzionano interamente nel tuo browser senza trasmissione dati ai server. Perfetti per flussi di lavoro di sviluppo, debug e elaborazione dati.'
-      : 'Discover 20+ free online tools for JSON formatting, Base64 encoding, URL decoding, hash generation, and more. All tools work entirely in your browser with no data transmission to servers. Perfect for development, debugging, and data processing workflows.';
-
-  const keywords =
-    locale === 'it'
-      ? [
-          'strumenti sviluppatore online',
-          'utilità sviluppatore gratuite',
-          'strumenti sviluppo web',
-          'formattatore json',
-          'codificatore base64',
-          'decodificatore url',
-          'generatore hash',
-          'strumenti basati su browser',
-          'strumenti privacy first',
-          'utilità sviluppatore',
-          'strumenti codifica',
-          'utilità programmazione',
-        ]
-      : [
-          'online developer tools',
-          'free developer utilities',
-          'web development tools',
-          'json formatter',
-          'base64 encoder',
-          'url decoder',
-          'hash generator',
-          'browser based tools',
-          'privacy first tools',
-          'developer utilities',
-          'coding tools',
-          'programming utilities',
-        ];
+  const metadata = getPageMetadata('tools', locale as Locale);
 
   return {
-    title,
-    description,
-    keywords,
+    title: metadata.title,
+    description: metadata.description,
+    keywords: getKeywordsString('tools', locale as Locale),
     openGraph: {
-      title,
-      description:
-        locale === 'it'
-          ? 'Collezione completa di strumenti professionali per sviluppatori, analisti dati e amministratori di sistema. 20+ strumenti, tutti gratuiti e privacy-first.'
-          : 'Complete collection of professional tools for developers, data analysts, and system administrators. 20+ tools, all free and privacy-first.',
+      title: metadata.title,
+      description: metadata.description,
       type: 'website',
-      url: `https://toolslab.dev/${locale}/tools`,
+      url: `https://toolslab.dev${getLocalizedPath('/tools', locale as Locale)}`,
+      siteName: 'ToolsLab',
+      images: [
+        {
+          url: 'https://toolslab.dev/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'ToolsLab - Developer Tools Laboratory',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${locale === 'it' ? 'Tutti gli Strumenti Sviluppatore' : 'All Developer Tools'} - ToolsLab`,
-      description:
-        locale === 'it'
-          ? 'Strumenti sviluppatore online gratuiti per JSON, codifica, generatori e altro. Tutti basati su browser senza trasmissione dati.'
-          : 'Free online developer tools for JSON, encoding, generators, and more. All browser-based with zero data transmission.',
+      title: metadata.title,
+      description: metadata.description,
+      images: ['https://toolslab.dev/twitter-card.jpg'],
     },
     alternates: {
-      canonical: `https://toolslab.dev/${locale}/tools`,
+      canonical: `https://toolslab.dev${getLocalizedPath('/tools', locale as Locale)}`,
       languages: {
         en: 'https://toolslab.dev/tools',
         it: 'https://toolslab.dev/it/tools',
       },
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
+}
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({
+    locale,
+  }));
 }
 
 export default async function LocaleToolsPage({
@@ -104,12 +87,10 @@ export default async function LocaleToolsPage({
   const dict = await getDictionary(locale as Locale);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ToolsHubContent />
-    </Suspense>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <Suspense fallback={<div>Loading...</div>}>
+        <ToolsHubContent />
+      </Suspense>
+    </div>
   );
-}
-
-export async function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
 }

@@ -144,10 +144,10 @@ export function FeaturedTools({
         {/* Mobile view all link */}
         <div className="mt-8 text-center sm:hidden">
           <Link
-            href="/tools"
+            href={createHref('/tools')}
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
           >
-            View all tools
+            {dictionary?.common?.nav?.allTools || 'View all tools'}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

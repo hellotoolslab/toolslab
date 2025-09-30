@@ -12,6 +12,7 @@ import { useToolStore } from '@/lib/store/toolStore';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { GitHubStars } from '@/components/ui/github-stars';
 import { useLocale } from '@/hooks/useLocale';
+import { useDictionarySection } from '@/hooks/useDictionary';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export function Header() {
@@ -23,6 +24,7 @@ export function Header() {
   const { getNewFavoritesCount } = useToolStore();
   const isStoreHydrated = useHydration();
   const { locale, createHref } = useLocale();
+  const { data: nav } = useDictionarySection('common');
 
   useEffect(() => {
     setMounted(true);
@@ -81,7 +83,7 @@ export function Header() {
               )}
             >
               <Zap className="mr-1 h-4 w-4" />
-              Tools
+              {nav?.nav?.tools || 'Tools'}
             </Link>
 
             {/* Categories dropdown */}
@@ -93,7 +95,7 @@ export function Header() {
                 aria-label="Categories menu"
               >
                 <Grid3X3 className="mr-1 h-4 w-4" />
-                Categories
+                {nav?.nav?.categories || 'Categories'}
                 <svg
                   className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180"
                   fill="none"
@@ -174,7 +176,7 @@ export function Header() {
               )}
             >
               <Beaker className="mr-1 h-4 w-4" />
-              The Lab
+              {nav?.nav?.lab || 'The Lab'}
               {mounted && isStoreHydrated && getNewFavoritesCount() > 0 && (
                 <span className="ml-1 rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
                   {getNewFavoritesCount()}
@@ -195,7 +197,7 @@ export function Header() {
               )}
             >
               <Info className="mr-1 h-4 w-4" />
-              About
+              {nav?.nav?.about || 'About'}
             </Link>
 
             {/* GitHub Stars */}
@@ -256,7 +258,7 @@ export function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Zap className="h-5 w-5" />
-                <span>Tools</span>
+                <span>{nav?.nav?.tools || 'Tools'}</span>
               </Link>
               <Link
                 href={createHref('/lab')}
@@ -264,7 +266,7 @@ export function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Beaker className="h-5 w-5" />
-                <span>The Lab</span>
+                <span>{nav?.nav?.lab || 'The Lab'}</span>
                 {mounted && isStoreHydrated && getNewFavoritesCount() > 0 && (
                   <span className="ml-auto rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
                     {getNewFavoritesCount()}
@@ -277,12 +279,12 @@ export function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Info className="h-5 w-5" />
-                <span>About</span>
+                <span>{nav?.nav?.about || 'About'}</span>
               </Link>
 
               <div className="border-t border-white/10 pt-4">
                 <div className="mb-3 text-sm font-medium text-gray-400">
-                  Categories
+                  {nav?.nav?.categories || 'Categories'}
                 </div>
                 <div className="space-y-2">
                   {/* Hub Link - Browse All Categories */}
@@ -294,7 +296,7 @@ export function Header() {
                     <Grid3X3 className="h-5 w-5" />
                     <div>
                       <div className="text-sm font-semibold">
-                        Browse All Categories
+                        {nav?.nav?.categories || 'Browse All Categories'}
                       </div>
                       <div className="text-xs text-violet-400">
                         Overview & comparison

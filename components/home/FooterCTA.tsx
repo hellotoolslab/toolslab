@@ -4,10 +4,12 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { tools } from '@/lib/tools';
+import { useLocale } from '@/hooks/useLocale';
 
 const popularTools = tools.filter((tool) => tool.isPopular).slice(0, 8);
 
 export function FooterCTA() {
+  const { createHref } = useLocale();
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 py-8 sm:py-12">
       {/* Background effects */}
@@ -90,7 +92,7 @@ export function FooterCTA() {
               {popularTools.map((tool) => (
                 <Link
                   key={tool.id}
-                  href={tool.route}
+                  href={createHref(tool.route)}
                   className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/20"
                 >
                   <span>{tool.icon}</span>
@@ -109,7 +111,7 @@ export function FooterCTA() {
             className="mt-8"
           >
             <Link
-              href="/tools"
+              href={createHref('/tools')}
               className="hover:shadow-3xl inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-bold text-blue-600 shadow-2xl transition-all hover:-translate-y-1"
             >
               Explore All Tools
