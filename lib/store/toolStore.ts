@@ -158,22 +158,26 @@ const storeLogic: any = (set: any, get: any): ToolStore => ({
 
 // Create store with SSR-safe implementation
 export const useToolStore = create<ToolStore>()(
-  typeof window === 'undefined'
-    ? storeLogic // Server: no persist, avoid localStorage access
-    : persist(storeLogic, {
-        // Client: with persist
-        name: 'toolslab-store',
-        storage: createJSONStorage(() => localStorage),
-        partialize: (state) => ({
-          history: state.history,
-          userLevel: state.userLevel,
-          proUser: state.proUser,
-          favoriteTools: state.favoriteTools,
-          favoriteCategories: state.favoriteCategories,
-          labVisited: state.labVisited,
-          lastLabAccess: state.lastLabAccess,
-          favoritesCountAtLastVisit: state.favoritesCountAtLastVisit,
-        }),
-        skipHydration: true, // CRITICAL: prevents automatic hydration mismatch
-      })
+  persist(storeLogic, {
+    name: 'toolslab-store',
+    storage: createJSONStorage(() =>
+      typeof window !== 'undefined'
+        ? localStorage
+        : {
+            getItem: () => null,
+            setItem: () => {},
+            removeItem: () => {},
+          }
+    ),
+    partialize: (state) => ({
+      history: state.history,
+      userLevel: state.userLevel,
+      proUser: state.proUser,
+      favoriteTools: state.favoriteTools,
+      favoriteCategories: state.favoriteCategories,
+      labVisited: state.labVisited,
+      lastLabAccess: state.lastLabAccess,
+      favoritesCountAtLastVisit: state.favoritesCountAtLastVisit,
+    }),
+  })
 );
