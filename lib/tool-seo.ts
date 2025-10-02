@@ -272,4 +272,13 @@ export const toolSEO: Record<string, ToolSEO> = {
     pageDescription:
       'Professional JavaScript minifier and beautifier with ES2024+ support, reducing bundle size by up to 70% while maintaining functionality. Features advanced optimizations including dead code elimination, variable renaming, function inlining, and tree shaking simulation. Generate source maps for debugging, apply varying compression levels, and maintain modern JavaScript compatibility. Process code securely in your browser with no server uploads - perfect for production optimization and webpack alternative processing.',
   },
+
+  'unix-timestamp-converter': {
+    id: 'unix-timestamp-converter',
+    tagline: 'Convert Unix timestamps to human dates with timezone support',
+    metaDescription:
+      'Professional Unix timestamp converter with timezone support, batch processing, and code generation for developers.',
+    pageDescription:
+      'Professional Unix timestamp converter with timezone support, batch processing, and code generation. Convert epoch time to readable dates and vice versa with real-time validation. Features multiple date formats, relative time calculations, developer code examples, and timezone-aware conversions. Perfect for developers working with APIs, databases, logs, and system integrations. Supports seconds and milliseconds with IANA timezone database.',
+  },
 };
