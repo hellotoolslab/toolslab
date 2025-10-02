@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { HydrationProvider } from '@/components/providers/HydrationProvider';
 import { UmamiProvider } from '@/components/analytics/UmamiProvider';
 import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
@@ -141,21 +142,23 @@ export default function RootLayout({
           'min-h-screen bg-background font-sans antialiased'
         )}
       >
-        <UmamiProvider>
-          <ThemeProvider>
-            <Suspense fallback={null}>
-              <PageViewTracker />
-            </Suspense>
-            <ScrollToTop />
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            <UpdateNotification />
-            <ToastProvider />
-          </ThemeProvider>
-        </UmamiProvider>
+        <HydrationProvider>
+          <UmamiProvider>
+            <ThemeProvider>
+              <Suspense fallback={null}>
+                <PageViewTracker />
+              </Suspense>
+              <ScrollToTop />
+              <div className="relative flex min-h-screen flex-col">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
+              <UpdateNotification />
+              <ToastProvider />
+            </ThemeProvider>
+          </UmamiProvider>
+        </HydrationProvider>
         <SpeedInsights />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

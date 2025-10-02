@@ -1,20 +1,32 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useToolStore } from '@/lib/store/toolStore';
+import { useCrontabStore } from '@/lib/stores/crontab-store';
 
 /**
  * Hook to prevent hydration mismatch with Zustand persist store
- * Returns true only when component is mounted on client
- * This ensures we don't render store-dependent content during SSR
+ * Manually rehydrates stores AFTER React hydration is complete
  */
 export function useHydration() {
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    // Mark as hydrated only after client mount
-    // This prevents hydration mismatches by ensuring
-    // server and initial client render are identical
-    setIsHydrated(true);
+    // Rehydrate stores only after mount (client-side only)
+    const rehydrate = async () => {
+      if (typeof window !== 'undefined') {
+        // Rehydrate toolStore
+        await (useToolStore.persist as any)?.rehydrate();
+
+        // Rehydrate crontabStore
+        await (useCrontabStore.persist as any)?.rehydrate();
+
+        // Mark as hydrated
+        setIsHydrated(true);
+      }
+    };
+
+    rehydrate();
   }, []);
 
   return isHydrated;

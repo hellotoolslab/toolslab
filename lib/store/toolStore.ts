@@ -156,27 +156,21 @@ const storeLogic: any = (set: any, get: any): ToolStore => ({
   },
 });
 
-// Create base store without persistence
-const createStore = () =>
-  create<ToolStore>()(
-    persist(storeLogic, {
-      name: 'toolslab-store',
-      storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({
-        history: state.history,
-        userLevel: state.userLevel,
-        proUser: state.proUser,
-        favoriteTools: state.favoriteTools,
-        favoriteCategories: state.favoriteCategories,
-        labVisited: state.labVisited,
-        lastLabAccess: state.lastLabAccess,
-        favoritesCountAtLastVisit: state.favoritesCountAtLastVisit,
-      }),
-    })
-  );
-
-// Export store - only use persist on client, plain store on server
-export const useToolStore =
-  typeof window === 'undefined'
-    ? create<ToolStore>()(storeLogic)
-    : createStore();
+// Create store with persist middleware
+export const useToolStore = create<ToolStore>()(
+  persist(storeLogic, {
+    name: 'toolslab-store',
+    storage: createJSONStorage(() => localStorage),
+    partialize: (state) => ({
+      history: state.history,
+      userLevel: state.userLevel,
+      proUser: state.proUser,
+      favoriteTools: state.favoriteTools,
+      favoriteCategories: state.favoriteCategories,
+      labVisited: state.labVisited,
+      lastLabAccess: state.lastLabAccess,
+      favoritesCountAtLastVisit: state.favoritesCountAtLastVisit,
+    }),
+    skipHydration: true, // CRITICAL: Skip automatic hydration
+  })
+);
