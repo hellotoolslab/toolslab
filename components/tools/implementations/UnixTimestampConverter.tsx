@@ -240,15 +240,6 @@ const UnixTimestampConverter = () => {
 
   return (
     <div className="mx-auto w-full max-w-6xl space-y-6">
-      {/* Header */}
-      <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold">Unix Timestamp Converter</h1>
-        <p className="text-muted-foreground">
-          Convert between Unix timestamps and human-readable dates with timezone
-          support
-        </p>
-      </div>
-
       {/* Mode Selector */}
       <div className="flex justify-center">
         <Tabs
