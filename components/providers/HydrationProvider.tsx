@@ -18,20 +18,56 @@ export function HydrationProvider({ children }: { children: React.ReactNode }) {
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
+    console.log('[HydrationProvider] useEffect started');
+    console.log('[HydrationProvider] typeof window:', typeof window);
+
     // Only run on client-side
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {
+      console.log('[HydrationProvider] Running on server, skipping');
+      return;
+    }
+
+    console.log('[HydrationProvider] Running on client, starting rehydration');
 
     // Rehydrate all persisted stores
     const rehydrateStores = async () => {
       try {
+        console.log(
+          '[HydrationProvider] toolStore.persist exists?',
+          !!(useToolStore.persist as any)
+        );
+        console.log(
+          '[HydrationProvider] toolStore.persist.rehydrate exists?',
+          !!(useToolStore.persist as any)?.rehydrate
+        );
+
         // Access the persist API and manually trigger rehydration
+        console.log(
+          '[HydrationProvider] Calling toolStore.persist.rehydrate()'
+        );
         await (useToolStore.persist as any)?.rehydrate?.();
+        console.log('[HydrationProvider] toolStore rehydrated');
+
+        console.log(
+          '[HydrationProvider] Calling crontabStore.persist.rehydrate()'
+        );
         await (useCrontabStore.persist as any)?.rehydrate?.();
+        console.log('[HydrationProvider] crontabStore rehydrated');
+
+        // Check store state after rehydration
+        const toolState = useToolStore.getState();
+        console.log('[HydrationProvider] toolStore state after rehydration:', {
+          favoriteTools: toolState.favoriteTools,
+          historyCount: toolState.history.length,
+        });
 
         // Mark stores as hydrated
         setIsHydrated(true);
+        console.log(
+          '[HydrationProvider] Rehydration complete, isHydrated = true'
+        );
       } catch (error) {
-        console.error('Failed to rehydrate stores:', error);
+        console.error('[HydrationProvider] Failed to rehydrate stores:', error);
         // Still mark as hydrated to prevent infinite loading
         setIsHydrated(true);
       }

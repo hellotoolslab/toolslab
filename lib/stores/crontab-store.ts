@@ -225,10 +225,18 @@ const storeLogic: any = (set: any, get: any): CrontabStore => ({
 });
 
 // Create store with persist middleware
+console.log('[crontabStore] Creating store, typeof window:', typeof window);
+
 export const useCrontabStore = create<CrontabStore>()(
   persist(storeLogic, {
     name: 'crontab-storage',
-    storage: createJSONStorage(() => localStorage),
+    storage: createJSONStorage(() => {
+      console.log(
+        '[crontabStore] Storage factory called, typeof window:',
+        typeof window
+      );
+      return localStorage;
+    }),
     version: 1,
     skipHydration: true, // CRITICAL: Skip automatic hydration
     // Only persist certain parts

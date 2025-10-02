@@ -21,9 +21,21 @@ export function Header() {
   const { getNewFavoritesCount } = useToolStore();
   const isStoreHydrated = useHydration();
 
+  console.log(
+    '[Header] Render - mounted:',
+    mounted,
+    'isStoreHydrated:',
+    isStoreHydrated
+  );
+
   useEffect(() => {
+    console.log('[Header] Mounted useEffect');
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    console.log('[Header] Store hydration status changed:', isStoreHydrated);
+  }, [isStoreHydrated]);
 
   // Handle scroll effect
   useEffect(() => {
