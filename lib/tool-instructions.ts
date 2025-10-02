@@ -1910,6 +1910,89 @@ export const toolInstructions: Record<string, ToolInstruction> = {
     ],
   },
 
+  'unix-timestamp-converter': {
+    id: 'unix-timestamp-converter',
+    title: 'How to use Unix Timestamp Converter',
+    steps: [
+      {
+        title: 'Enter timestamp or date',
+        description:
+          'Paste a Unix timestamp (seconds or milliseconds) or a human-readable date string. The tool automatically detects the input format and suggests the appropriate conversion method.',
+      },
+      {
+        title: 'Select timezone and options',
+        description:
+          'Choose your desired timezone from the dropdown (defaults to UTC) and select output format preferences. Enable batch processing for multiple timestamps or relative time calculations.',
+      },
+      {
+        title: 'Choose output format',
+        description:
+          'Select from multiple date formats including ISO 8601, RFC 2822, human-readable, SQL format, or create a custom format pattern using date-fns format strings.',
+      },
+      {
+        title: 'Review conversion results',
+        description:
+          'View the converted results with multiple format options, timezone information, relative time calculations, and code examples in popular programming languages.',
+      },
+      {
+        title: 'Copy or export results',
+        description:
+          'Copy individual results to clipboard, download batch results as CSV/JSON, or copy ready-to-use code snippets for your preferred programming language.',
+      },
+    ],
+    features: [
+      'Bidirectional conversion (timestamp ⟷ date)',
+      'Automatic input format detection',
+      'Timezone support with IANA database',
+      'Batch processing for multiple timestamps',
+      'Custom date format patterns',
+      'Relative time calculations',
+      'Code generation for 8+ languages',
+      'Multiple output formats (ISO, RFC, SQL, etc.)',
+      'Real-time validation and error handling',
+      'Timezone offset display',
+      'Current timestamp generation',
+      'Copy and export functionality',
+    ],
+    useCases: [
+      'Convert database timestamps for API responses',
+      'Debug log files with Unix timestamps',
+      'Analyze server logs and performance metrics',
+      'Convert timestamps for data visualization',
+      'Process CSV files with timestamp columns',
+      'Validate API timestamp responses',
+      'Convert timestamps for different timezone displays',
+      'Generate code for timestamp handling in applications',
+      'Batch process large datasets with timestamps',
+      'Compare timestamps across different systems',
+      'Convert cron job execution times',
+      'Process event logs for system monitoring',
+    ],
+    proTips: [
+      'Use batch mode to process CSV files with timestamp columns',
+      'Enable relative time to see time differences from current moment',
+      'Copy code examples to implement timestamp conversion in your app',
+      'Use custom format patterns for specific date formatting requirements',
+      'Select appropriate timezone when working with global applications',
+      'Generate current timestamp for testing and development',
+    ],
+    troubleshooting: [
+      'Invalid timestamp? Check if value is within valid Unix timestamp range',
+      'Wrong timezone? Verify timezone name matches IANA timezone database',
+      'Unexpected date? Confirm if timestamp is in seconds or milliseconds',
+      'Batch processing errors? Ensure each line contains only one timestamp/date',
+      'Custom format not working? Check date-fns format pattern documentation',
+      'Code examples not accurate? Verify input timestamp and timezone settings',
+    ],
+    keyboardShortcuts: [
+      { keys: 'Ctrl+Enter', description: 'Convert timestamp/date' },
+      { keys: 'Ctrl+C', description: 'Copy primary result' },
+      { keys: 'Ctrl+T', description: 'Insert current timestamp' },
+      { keys: 'Ctrl+R', description: 'Reset all fields' },
+      { keys: 'Ctrl+B', description: 'Toggle batch mode' },
+    ],
+  },
+
   'yaml-json-converter': {
     id: 'yaml-json-converter',
     title: 'How to use YAML to JSON Converter',
