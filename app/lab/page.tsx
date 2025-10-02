@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import { LabPageClient } from './LabPageClient';
 
 export const metadata: Metadata = {
@@ -40,5 +41,24 @@ export const metadata: Metadata = {
 };
 
 export default function LabPage() {
-  return <LabPageClient />;
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+          <div className="mx-auto max-w-7xl px-4 py-8">
+            <div className="animate-pulse space-y-6">
+              <div className="h-10 w-48 rounded bg-gray-200 dark:bg-gray-700"></div>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div className="h-48 rounded-xl bg-gray-200 dark:bg-gray-700"></div>
+                <div className="h-48 rounded-xl bg-gray-200 dark:bg-gray-700"></div>
+                <div className="h-48 rounded-xl bg-gray-200 dark:bg-gray-700"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <LabPageClient />
+    </Suspense>
+  );
 }

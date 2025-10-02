@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useToolStore } from '@/lib/store/toolStore';
-import { useCrontabStore } from '@/lib/stores/crontab-store';
 
 interface ClientWrapperProps {
   children: React.ReactNode;
@@ -13,7 +11,7 @@ interface ClientWrapperProps {
  * ClientWrapper Component
  *
  * Prevents React hydration mismatch errors by ensuring the component
- * only renders on the client-side after hydration is complete.
+ * only renders on the client-side after mount is complete.
  *
  * This is critical for components that use Zustand stores with persist
  * middleware, which access localStorage (not available during SSR).
@@ -22,30 +20,12 @@ export function ClientWrapper({ children, fallback }: ClientWrapperProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Manually rehydrate Zustand stores after mount
-    if (typeof window !== 'undefined') {
-      // Rehydrate toolStore
-      if (
-        'persist' in useToolStore &&
-        typeof (useToolStore as any).persist?.rehydrate === 'function'
-      ) {
-        (useToolStore as any).persist.rehydrate();
-      }
-
-      // Rehydrate crontabStore
-      if (
-        'persist' in useCrontabStore &&
-        typeof (useCrontabStore as any).persist?.rehydrate === 'function'
-      ) {
-        (useCrontabStore as any).persist.rehydrate();
-      }
-    }
-
-    // Mark as client-side ready
+    // Mark as client-side ready after mount
+    // The stores will automatically hydrate from localStorage
     setIsClient(true);
   }, []);
 
-  // During SSR or before hydration, show fallback
+  // During SSR or before mount, show fallback
   if (!isClient) {
     return (
       <>
