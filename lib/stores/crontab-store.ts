@@ -224,54 +224,53 @@ const storeLogic: any = (set: any, get: any): CrontabStore => ({
   },
 });
 
-// Create store with SSR-safe implementation
-export const useCrontabStore = create<CrontabStore>()(
-  persist(storeLogic, {
-    name: 'crontab-storage',
-    storage: createJSONStorage(() =>
-      typeof window !== 'undefined'
-        ? localStorage
-        : {
-            getItem: () => null,
-            setItem: () => {},
-            removeItem: () => {},
-          }
-    ),
-    version: 1,
-    // Only persist certain parts
-    partialize: (state) => ({
-      history: state.history,
-      favorites: state.favorites,
-      settings: state.settings,
-    }),
-    // Handle migrations
-    migrate: (persistedState: any, version: number) => {
-      // Migration logic for future versions
-      if (version === 0) {
-        // Migrate from v0 to v1
-        const userTimezone =
-          typeof window !== 'undefined'
-            ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
-            : 'UTC';
+// Create store with persistence
+const createStore = () =>
+  create<CrontabStore>()(
+    persist(storeLogic, {
+      name: 'crontab-storage',
+      storage: createJSONStorage(() => localStorage),
+      version: 1,
+      // Only persist certain parts
+      partialize: (state) => ({
+        history: state.history,
+        favorites: state.favorites,
+        settings: state.settings,
+      }),
+      // Handle migrations
+      migrate: (persistedState: any, version: number) => {
+        // Migration logic for future versions
+        if (version === 0) {
+          // Migrate from v0 to v1
+          const userTimezone =
+            typeof window !== 'undefined'
+              ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
+              : 'UTC';
 
-        return {
-          ...persistedState,
-          settings: {
-            selectedTimezone:
-              persistedState.settings?.defaultTimezone ||
-              persistedState.settings?.selectedTimezone ||
-              userTimezone,
-            maxHistoryItems: MAX_HISTORY_ITEMS,
-            autoSaveToHistory: true,
-            showNextExecutions: 10,
-            ...persistedState.settings,
-          },
-        };
-      }
-      return persistedState;
-    },
-  })
-);
+          return {
+            ...persistedState,
+            settings: {
+              selectedTimezone:
+                persistedState.settings?.defaultTimezone ||
+                persistedState.settings?.selectedTimezone ||
+                userTimezone,
+              maxHistoryItems: MAX_HISTORY_ITEMS,
+              autoSaveToHistory: true,
+              showNextExecutions: 10,
+              ...persistedState.settings,
+            },
+          };
+        }
+        return persistedState;
+      },
+    })
+  );
+
+// Export store - only use persist on client, plain store on server
+export const useCrontabStore =
+  typeof window === 'undefined'
+    ? create<CrontabStore>()(storeLogic)
+    : createStore();
 
 /**
  * Analyze cron expression to determine its pattern type
