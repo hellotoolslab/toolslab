@@ -224,9 +224,7 @@ const storeLogic: any = (set: any, get: any): CrontabStore => ({
   },
 });
 
-// Create store with persist middleware - now safe since components are client-only
-console.log('[crontabStore] Creating store, typeof window:', typeof window);
-
+// Create store with persist middleware - safe with client-only components
 export const useCrontabStore = create<CrontabStore>()(
   persist(storeLogic, {
     name: 'crontab-storage',

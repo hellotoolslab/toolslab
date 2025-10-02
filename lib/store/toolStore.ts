@@ -156,9 +156,7 @@ const storeLogic: any = (set: any, get: any): ToolStore => ({
   },
 });
 
-// Create store with persist middleware - now safe since Header/Footer are client-only
-console.log('[toolStore] Creating store, typeof window:', typeof window);
-
+// Create store with persist middleware - safe with client-only Header/Footer
 export const useToolStore = create<ToolStore>()(
   persist(storeLogic, {
     name: 'toolslab-store',
@@ -173,26 +171,5 @@ export const useToolStore = create<ToolStore>()(
       lastLabAccess: state.lastLabAccess,
       favoritesCountAtLastVisit: state.favoritesCountAtLastVisit,
     }),
-    onRehydrateStorage: () => {
-      console.log('[toolStore] onRehydrateStorage: Starting hydration');
-      return (state, error) => {
-        if (error) {
-          console.error(
-            '[toolStore] onRehydrateStorage: Hydration error',
-            error
-          );
-        } else {
-          console.log('[toolStore] onRehydrateStorage: Hydration complete', {
-            favoriteTools: state?.favoriteTools,
-            historyCount: state?.history?.length,
-          });
-        }
-      };
-    },
   })
-);
-
-console.log(
-  '[toolStore] Store created, persist exists?',
-  !!(useToolStore.persist as any)
 );
