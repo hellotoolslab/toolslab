@@ -19,20 +19,11 @@ import {
 } from 'lucide-react';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
-import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import { isLazyLoadingSupported } from './LazyToolLoader';
 import { useToolChaining } from '@/lib/hooks/useToolChaining';
-
-// Dynamically import heavy components to prevent chunk loading issues
-const LazyToolLoader = dynamic(() => import('./LazyToolLoader'), {
-  loading: () => <div className="h-32 animate-pulse rounded bg-gray-200"></div>,
-  ssr: false,
-});
-
-const ToolChainSuggestions = dynamic(() => import('./ToolChainSuggestions'), {
-  loading: () => null,
-  ssr: false,
-});
+import LazyToolLoader from './LazyToolLoader';
+import ToolChainSuggestions from './ToolChainSuggestions';
 
 interface ToolWorkspaceProps {
   tool: Tool;
@@ -451,7 +442,9 @@ export default function ToolWorkspace({
       </div>
 
       {/* Tool Chain Suggestions */}
-      <ToolChainSuggestions />
+      <Suspense fallback={null}>
+        <ToolChainSuggestions />
+      </Suspense>
     </div>
   );
 }

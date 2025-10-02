@@ -224,49 +224,45 @@ const storeLogic: any = (set: any, get: any): CrontabStore => ({
   },
 });
 
-// Create store with SSR-safe implementation
+// Create store with persist middleware - safe with client-only components
 export const useCrontabStore = create<CrontabStore>()(
-  typeof window === 'undefined'
-    ? storeLogic // Server: no persist, avoid localStorage access
-    : persist(storeLogic, {
-        // Client: with persist
-        name: 'crontab-storage',
-        storage: createJSONStorage(() => localStorage),
-        version: 1,
-        // Only persist certain parts
-        partialize: (state) => ({
-          history: state.history,
-          favorites: state.favorites,
-          settings: state.settings,
-        }),
-        skipHydration: true, // CRITICAL: prevents automatic hydration mismatch
-        // Handle migrations
-        migrate: (persistedState: any, version: number) => {
-          // Migration logic for future versions
-          if (version === 0) {
-            // Migrate from v0 to v1
-            const userTimezone =
-              typeof window !== 'undefined'
-                ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
-                : 'UTC';
+  persist(storeLogic, {
+    name: 'crontab-storage',
+    storage: createJSONStorage(() => localStorage),
+    version: 1,
+    // Only persist certain parts
+    partialize: (state) => ({
+      history: state.history,
+      favorites: state.favorites,
+      settings: state.settings,
+    }),
+    // Handle migrations
+    migrate: (persistedState: any, version: number) => {
+      // Migration logic for future versions
+      if (version === 0) {
+        // Migrate from v0 to v1
+        const userTimezone =
+          typeof window !== 'undefined'
+            ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
+            : 'UTC';
 
-            return {
-              ...persistedState,
-              settings: {
-                selectedTimezone:
-                  persistedState.settings?.defaultTimezone ||
-                  persistedState.settings?.selectedTimezone ||
-                  userTimezone,
-                maxHistoryItems: MAX_HISTORY_ITEMS,
-                autoSaveToHistory: true,
-                showNextExecutions: 10,
-                ...persistedState.settings,
-              },
-            };
-          }
-          return persistedState;
-        },
-      })
+        return {
+          ...persistedState,
+          settings: {
+            selectedTimezone:
+              persistedState.settings?.defaultTimezone ||
+              persistedState.settings?.selectedTimezone ||
+              userTimezone,
+            maxHistoryItems: MAX_HISTORY_ITEMS,
+            autoSaveToHistory: true,
+            showNextExecutions: 10,
+            ...persistedState.settings,
+          },
+        };
+      }
+      return persistedState;
+    },
+  })
 );
 
 /**

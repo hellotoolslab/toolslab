@@ -6,8 +6,29 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { UmamiProvider } from '@/components/analytics/UmamiProvider';
 import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import dynamic from 'next/dynamic';
+
+// Disable SSR for components that use stores to prevent hydration mismatch
+const Header = dynamic(
+  () =>
+    import('@/components/layout/Header').then((mod) => ({
+      default: mod.Header,
+    })),
+  {
+    ssr: false,
+    loading: () => <div className="h-16" />, // Placeholder height
+  }
+);
+
+const Footer = dynamic(
+  () =>
+    import('@/components/layout/Footer').then((mod) => ({
+      default: mod.Footer,
+    })),
+  {
+    ssr: false,
+  }
+);
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { UpdateNotification } from '@/components/UpdateNotification';
 import { SpeedInsights } from '@vercel/speed-insights/next';
