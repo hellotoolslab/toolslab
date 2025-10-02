@@ -36,22 +36,47 @@ export function HydrationProvider({ children }: { children: React.ReactNode }) {
           '[HydrationProvider] toolStore.persist exists?',
           !!(useToolStore.persist as any)
         );
-        console.log(
-          '[HydrationProvider] toolStore.persist.rehydrate exists?',
-          !!(useToolStore.persist as any)?.rehydrate
-        );
 
-        // Access the persist API and manually trigger rehydration
+        // STEP 1: Replace mock storage with real localStorage
+        console.log('[HydrationProvider] Replacing storage with localStorage');
+        const toolStorePersist = useToolStore.persist as any;
+        const crontabStorePersist = useCrontabStore.persist as any;
+
+        // Access the internal options and replace storage
+        if (toolStorePersist?.setOptions) {
+          console.log('[HydrationProvider] Setting toolStore real storage');
+          toolStorePersist.setOptions({
+            storage: {
+              getItem: (name: string) => {
+                console.log('[HydrationProvider] Real storage.getItem:', name);
+                return localStorage.getItem(name);
+              },
+              setItem: (name: string, value: string) => {
+                console.log('[HydrationProvider] Real storage.setItem:', name);
+                localStorage.setItem(name, value);
+              },
+              removeItem: (name: string) => {
+                console.log(
+                  '[HydrationProvider] Real storage.removeItem:',
+                  name
+                );
+                localStorage.removeItem(name);
+              },
+            },
+          });
+        }
+
+        // STEP 2: Now trigger rehydration with real storage
         console.log(
           '[HydrationProvider] Calling toolStore.persist.rehydrate()'
         );
-        await (useToolStore.persist as any)?.rehydrate?.();
+        await toolStorePersist?.rehydrate?.();
         console.log('[HydrationProvider] toolStore rehydrated');
 
         console.log(
           '[HydrationProvider] Calling crontabStore.persist.rehydrate()'
         );
-        await (useCrontabStore.persist as any)?.rehydrate?.();
+        await crontabStorePersist?.rehydrate?.();
         console.log('[HydrationProvider] crontabStore rehydrated');
 
         // Check store state after rehydration

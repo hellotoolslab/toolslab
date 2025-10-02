@@ -224,7 +224,21 @@ const storeLogic: any = (set: any, get: any): CrontabStore => ({
   },
 });
 
-// Create store with persist middleware
+// Mock storage that returns null (for SSR and initial client render)
+const mockStorage = {
+  getItem: () => {
+    console.log('[crontabStore] mockStorage.getItem called');
+    return null;
+  },
+  setItem: () => {
+    console.log('[crontabStore] mockStorage.setItem called');
+  },
+  removeItem: () => {
+    console.log('[crontabStore] mockStorage.removeItem called');
+  },
+};
+
+// Create store with persist middleware using ONLY mock storage initially
 console.log('[crontabStore] Creating store, typeof window:', typeof window);
 
 export const useCrontabStore = create<CrontabStore>()(
@@ -232,10 +246,9 @@ export const useCrontabStore = create<CrontabStore>()(
     name: 'crontab-storage',
     storage: createJSONStorage(() => {
       console.log(
-        '[crontabStore] Storage factory called, typeof window:',
-        typeof window
+        '[crontabStore] Storage factory called, returning mockStorage'
       );
-      return localStorage;
+      return mockStorage as any;
     }),
     version: 1,
     skipHydration: true, // CRITICAL: Skip automatic hydration

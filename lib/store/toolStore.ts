@@ -156,18 +156,29 @@ const storeLogic: any = (set: any, get: any): ToolStore => ({
   },
 });
 
-// Create store with persist middleware
+// Mock storage that returns null (for SSR and initial client render)
+const mockStorage = {
+  getItem: () => {
+    console.log('[toolStore] mockStorage.getItem called');
+    return null;
+  },
+  setItem: () => {
+    console.log('[toolStore] mockStorage.setItem called');
+  },
+  removeItem: () => {
+    console.log('[toolStore] mockStorage.removeItem called');
+  },
+};
+
+// Create store with persist middleware using ONLY mock storage initially
 console.log('[toolStore] Creating store, typeof window:', typeof window);
 
 export const useToolStore = create<ToolStore>()(
   persist(storeLogic, {
     name: 'toolslab-store',
     storage: createJSONStorage(() => {
-      console.log(
-        '[toolStore] Storage factory called, typeof window:',
-        typeof window
-      );
-      return localStorage;
+      console.log('[toolStore] Storage factory called, returning mockStorage');
+      return mockStorage as any;
     }),
     partialize: (state) => ({
       history: state.history,
