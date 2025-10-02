@@ -1,45 +1,51 @@
-import { create } from 'zustand'
-import { detectFormat, getSuggestedToolsForOutput, FormatDetectionResult } from '@/lib/utils/formatDetector'
+'use client';
+
+import { create } from 'zustand';
+import {
+  detectFormat,
+  getSuggestedToolsForOutput,
+  FormatDetectionResult,
+} from '@/lib/utils/formatDetector';
 
 export interface ChainStep {
-  id: string
-  toolSlug: string
-  toolName: string
-  input: string
-  output: string
-  timestamp: number
-  formatDetection?: FormatDetectionResult
+  id: string;
+  toolSlug: string;
+  toolName: string;
+  input: string;
+  output: string;
+  timestamp: number;
+  formatDetection?: FormatDetectionResult;
 }
 
 export interface ToolChainState {
   // Current chain data
-  chainedData: string | null
-  currentChain: ChainStep[]
-  chainId: string | null
-  
+  chainedData: string | null;
+  currentChain: ChainStep[];
+  chainId: string | null;
+
   // Suggestions
-  suggestedTools: string[]
-  lastProcessedOutput: string | null
-  lastDetection: FormatDetectionResult | null
-  
+  suggestedTools: string[];
+  lastProcessedOutput: string | null;
+  lastDetection: FormatDetectionResult | null;
+
   // Chain history
-  savedChains: ChainStep[][]
-  
+  savedChains: ChainStep[][];
+
   // UI state
-  showSuggestions: boolean
-  isProcessing: boolean
-  
+  showSuggestions: boolean;
+  isProcessing: boolean;
+
   // Actions
-  setChainedData: (data: string | null) => void
-  addToChain: (step: ChainStep) => void
-  startNewChain: () => void
-  updateSuggestions: (output: string, currentTool: string) => void
-  setSuggestionsVisible: (visible: boolean) => void
-  saveCurrentChain: () => void
-  loadChain: (chainIndex: number) => void
-  clearChain: () => void
-  setProcessing: (processing: boolean) => void
-  generateChainUrl: (targetTool: string) => string
+  setChainedData: (data: string | null) => void;
+  addToChain: (step: ChainStep) => void;
+  startNewChain: () => void;
+  updateSuggestions: (output: string, currentTool: string) => void;
+  setSuggestionsVisible: (visible: boolean) => void;
+  saveCurrentChain: () => void;
+  loadChain: (chainIndex: number) => void;
+  clearChain: () => void;
+  setProcessing: (processing: boolean) => void;
+  generateChainUrl: (targetTool: string) => string;
 }
 
 export const useToolChainStore = create<ToolChainState>((set, get) => ({
@@ -56,19 +62,19 @@ export const useToolChainStore = create<ToolChainState>((set, get) => ({
 
   // Actions
   setChainedData: (data) => {
-    set({ chainedData: data })
+    set({ chainedData: data });
   },
 
   addToChain: (step) => {
     set((state) => ({
       currentChain: [...state.currentChain, step],
       lastProcessedOutput: step.output,
-      chainId: state.chainId || generateChainId()
-    }))
-    
+      chainId: state.chainId || generateChainId(),
+    }));
+
     // Auto-update suggestions based on output
-    const { updateSuggestions } = get()
-    updateSuggestions(step.output, step.toolSlug)
+    const { updateSuggestions } = get();
+    updateSuggestions(step.output, step.toolSlug);
   },
 
   startNewChain: () => {
@@ -79,50 +85,50 @@ export const useToolChainStore = create<ToolChainState>((set, get) => ({
       suggestedTools: [],
       lastProcessedOutput: null,
       lastDetection: null,
-      showSuggestions: false
-    })
+      showSuggestions: false,
+    });
   },
 
   updateSuggestions: (output, currentTool) => {
-    const detection = detectFormat(output)
-    const suggestions = getSuggestedToolsForOutput(detection.type, currentTool)
-    
+    const detection = detectFormat(output);
+    const suggestions = getSuggestedToolsForOutput(detection.type, currentTool);
+
     set({
       suggestedTools: suggestions,
       lastDetection: detection,
-      showSuggestions: suggestions.length > 0 && output.length > 0
-    })
+      showSuggestions: suggestions.length > 0 && output.length > 0,
+    });
   },
 
   setSuggestionsVisible: (visible) => {
-    set({ showSuggestions: visible })
+    set({ showSuggestions: visible });
   },
 
   saveCurrentChain: () => {
-    const { currentChain, savedChains } = get()
+    const { currentChain, savedChains } = get();
     if (currentChain.length > 0) {
       set({
-        savedChains: [...savedChains, [...currentChain]]
-      })
+        savedChains: [...savedChains, [...currentChain]],
+      });
     }
   },
 
   loadChain: (chainIndex) => {
-    const { savedChains } = get()
+    const { savedChains } = get();
     if (chainIndex >= 0 && chainIndex < savedChains.length) {
-      const chain = savedChains[chainIndex]
-      const lastStep = chain[chain.length - 1]
-      
+      const chain = savedChains[chainIndex];
+      const lastStep = chain[chain.length - 1];
+
       set({
         currentChain: chain,
         chainedData: lastStep?.output || null,
         lastProcessedOutput: lastStep?.output || null,
-        chainId: generateChainId()
-      })
-      
+        chainId: generateChainId(),
+      });
+
       if (lastStep) {
-        const { updateSuggestions } = get()
-        updateSuggestions(lastStep.output, lastStep.toolSlug)
+        const { updateSuggestions } = get();
+        updateSuggestions(lastStep.output, lastStep.toolSlug);
       }
     }
   },
@@ -135,64 +141,64 @@ export const useToolChainStore = create<ToolChainState>((set, get) => ({
       suggestedTools: [],
       lastProcessedOutput: null,
       lastDetection: null,
-      showSuggestions: false
-    })
+      showSuggestions: false,
+    });
   },
 
   setProcessing: (processing) => {
-    set({ isProcessing: processing })
+    set({ isProcessing: processing });
   },
 
   generateChainUrl: (targetTool) => {
-    const { chainedData, chainId } = get()
-    if (!chainedData) return `/tools/${targetTool}`
-    
+    const { chainedData, chainId } = get();
+    if (!chainedData) return `/tools/${targetTool}`;
+
     const params = new URLSearchParams({
       input: chainedData,
-      ...(chainId && { chainId })
-    })
-    
-    return `/tools/${targetTool}?${params.toString()}`
-  }
-}))
+      ...(chainId && { chainId }),
+    });
+
+    return `/tools/${targetTool}?${params.toString()}`;
+  },
+}));
 
 function generateChainId(): string {
-  return `chain_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`
+  return `chain_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 }
 
 // Keyboard shortcut handlers
 export const useKeyboardShortcuts = () => {
-  const store = useToolChainStore()
-  
+  const store = useToolChainStore();
+
   return {
     handleKeyDown: (event: KeyboardEvent) => {
-      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0
-      const isCtrlCmd = isMac ? event.metaKey : event.ctrlKey
-      
+      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const isCtrlCmd = isMac ? event.metaKey : event.ctrlKey;
+
       // Cmd/Ctrl + K - Toggle suggestions
       if (isCtrlCmd && event.key === 'k') {
-        event.preventDefault()
-        store.setSuggestionsVisible(!store.showSuggestions)
+        event.preventDefault();
+        store.setSuggestionsVisible(!store.showSuggestions);
       }
-      
+
       // Cmd/Ctrl + Shift + C - Copy last output
       if (isCtrlCmd && event.shiftKey && event.key === 'C') {
-        event.preventDefault()
+        event.preventDefault();
         if (store.lastProcessedOutput) {
-          navigator.clipboard.writeText(store.lastProcessedOutput)
+          navigator.clipboard.writeText(store.lastProcessedOutput);
         }
       }
-      
+
       // Cmd/Ctrl + Shift + N - Start new chain
       if (isCtrlCmd && event.shiftKey && event.key === 'N') {
-        event.preventDefault()
-        store.startNewChain()
+        event.preventDefault();
+        store.startNewChain();
       }
-      
+
       // Escape - Hide suggestions
       if (event.key === 'Escape') {
-        store.setSuggestionsVisible(false)
+        store.setSuggestionsVisible(false);
       }
-    }
-  }
-}
+    },
+  };
+};
