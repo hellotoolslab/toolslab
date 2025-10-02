@@ -8,6 +8,7 @@ import { tools, getToolById } from '@/lib/tools';
 import { cn } from '@/lib/utils';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
+import { useHydration } from '@/lib/hooks/useHydration';
 
 interface LabSidebarProps {
   selectedToolId: string | null;
@@ -21,11 +22,14 @@ export function LabSidebar({
   onShowOverview,
 }: LabSidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const isHydrated = useHydration();
   const { favoriteTools } = useToolStore();
 
-  const favoriteToolsData = favoriteTools
-    .map((toolId) => getToolById(toolId))
-    .filter((tool): tool is NonNullable<typeof tool> => Boolean(tool));
+  const favoriteToolsData = isHydrated
+    ? favoriteTools
+        .map((toolId) => getToolById(toolId))
+        .filter((tool): tool is NonNullable<typeof tool> => Boolean(tool))
+    : [];
 
   return (
     <motion.div

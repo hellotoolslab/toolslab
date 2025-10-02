@@ -29,6 +29,7 @@ import { labToasts } from '@/lib/utils/toasts';
 import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
+import { useHydration } from '@/lib/hooks/useHydration';
 
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;
@@ -411,6 +412,7 @@ function EnhancedEmptyState() {
 
 export default function LabHubContent() {
   const { trackEngagement } = useUmami();
+  const isHydrated = useHydration();
   const {
     favoriteTools,
     favoriteCategories,
@@ -423,6 +425,8 @@ export default function LabHubContent() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    if (!isHydrated) return; // Wait for hydration before accessing store
+
     setMounted(true);
     setLabVisited();
 
@@ -438,7 +442,7 @@ export default function LabHubContent() {
         categories_count: favoriteCategories.length,
       });
     }
-  }, []); // Empty dependency array - run only once on mount
+  }, [isHydrated]); // Re-run when hydration completes
 
   // Show welcome toast if first visit with favorites
   useEffect(() => {
