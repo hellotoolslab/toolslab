@@ -224,34 +224,14 @@ const storeLogic: any = (set: any, get: any): CrontabStore => ({
   },
 });
 
-// Mock storage that returns null (for SSR and initial client render)
-const mockStorage = {
-  getItem: () => {
-    console.log('[crontabStore] mockStorage.getItem called');
-    return null;
-  },
-  setItem: () => {
-    console.log('[crontabStore] mockStorage.setItem called');
-  },
-  removeItem: () => {
-    console.log('[crontabStore] mockStorage.removeItem called');
-  },
-};
-
-// Create store with persist middleware using ONLY mock storage initially
+// Create store with persist middleware - now safe since components are client-only
 console.log('[crontabStore] Creating store, typeof window:', typeof window);
 
 export const useCrontabStore = create<CrontabStore>()(
   persist(storeLogic, {
     name: 'crontab-storage',
-    storage: createJSONStorage(() => {
-      console.log(
-        '[crontabStore] Storage factory called, returning mockStorage'
-      );
-      return mockStorage as any;
-    }),
+    storage: createJSONStorage(() => localStorage),
     version: 1,
-    skipHydration: true, // CRITICAL: Skip automatic hydration
     // Only persist certain parts
     partialize: (state) => ({
       history: state.history,

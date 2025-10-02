@@ -156,30 +156,13 @@ const storeLogic: any = (set: any, get: any): ToolStore => ({
   },
 });
 
-// Mock storage that returns null (for SSR and initial client render)
-const mockStorage = {
-  getItem: () => {
-    console.log('[toolStore] mockStorage.getItem called');
-    return null;
-  },
-  setItem: () => {
-    console.log('[toolStore] mockStorage.setItem called');
-  },
-  removeItem: () => {
-    console.log('[toolStore] mockStorage.removeItem called');
-  },
-};
-
-// Create store with persist middleware using ONLY mock storage initially
+// Create store with persist middleware - now safe since Header/Footer are client-only
 console.log('[toolStore] Creating store, typeof window:', typeof window);
 
 export const useToolStore = create<ToolStore>()(
   persist(storeLogic, {
     name: 'toolslab-store',
-    storage: createJSONStorage(() => {
-      console.log('[toolStore] Storage factory called, returning mockStorage');
-      return mockStorage as any;
-    }),
+    storage: createJSONStorage(() => localStorage),
     partialize: (state) => ({
       history: state.history,
       userLevel: state.userLevel,
@@ -190,7 +173,6 @@ export const useToolStore = create<ToolStore>()(
       lastLabAccess: state.lastLabAccess,
       favoritesCountAtLastVisit: state.favoritesCountAtLastVisit,
     }),
-    skipHydration: true, // CRITICAL: Skip automatic hydration
     onRehydrateStorage: () => {
       console.log('[toolStore] onRehydrateStorage: Starting hydration');
       return (state, error) => {
