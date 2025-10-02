@@ -1,6 +1,8 @@
+'use client';
+
 // lib/stores/crontab-store.ts
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 export interface CrontabHistoryItem {
   id: string;
@@ -67,203 +69,200 @@ interface CrontabStore {
 const MAX_HISTORY_ITEMS = 50;
 const MAX_FAVORITES = 100;
 
+// Store logic separated for SSR and client-side reuse
+const storeLogic: any = (set: any, get: any): CrontabStore => ({
+  // History
+  history: [],
+
+  addToHistory: (expression: string, description: string, timezone: string) => {
+    const state = get() as CrontabStore;
+    if (!state.settings.autoSaveToHistory) return;
+
+    // Don't add duplicates from recent history
+    const recent = state.history.slice(0, 5);
+    if (
+      recent.some(
+        (item) => item.expression === expression && item.timezone === timezone
+      )
+    ) {
+      return;
+    }
+
+    const newItem: CrontabHistoryItem = {
+      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      expression,
+      description,
+      timezone,
+      timestamp: Date.now(),
+    };
+
+    set((state: CrontabStore) => ({
+      history: [newItem, ...state.history].slice(
+        0,
+        state.settings.maxHistoryItems
+      ),
+    }));
+  },
+
+  clearHistory: () => set({ history: [] }),
+
+  removeFromHistory: (id: string) => {
+    set((state: CrontabStore) => ({
+      history: state.history.filter((item) => item.id !== id),
+    }));
+  },
+
+  // Favorites
+  favorites: [],
+
+  addToFavorites: (
+    favorite: Omit<CrontabFavorite, 'id' | 'createdAt' | 'updatedAt'>
+  ) => {
+    const state = get() as CrontabStore;
+
+    // Check if we've reached the limit
+    if (state.favorites.length >= MAX_FAVORITES) {
+      console.warn(`Maximum number of favorites (${MAX_FAVORITES}) reached`);
+      return;
+    }
+
+    // Check for duplicates
+    if (state.favorites.some((f) => f.expression === favorite.expression)) {
+      console.warn('Expression already exists in favorites');
+      return;
+    }
+
+    const newFavorite: CrontabFavorite = {
+      ...favorite,
+      id: `fav-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+
+    set((state: CrontabStore) => ({
+      favorites: [...state.favorites, newFavorite],
+    }));
+  },
+
+  removeFromFavorites: (id: string) => {
+    set((state: CrontabStore) => ({
+      favorites: state.favorites.filter((fav) => fav.id !== id),
+    }));
+  },
+
+  updateFavorite: (id: string, updates: Partial<CrontabFavorite>) => {
+    set((state: CrontabStore) => ({
+      favorites: state.favorites.map((fav) =>
+        fav.id === id ? { ...fav, ...updates, updatedAt: Date.now() } : fav
+      ),
+    }));
+  },
+
+  getFavoritesByCategory: (category?: string) => {
+    const state = get() as CrontabStore;
+    if (!category) return state.favorites;
+    return state.favorites.filter((fav) => fav.category === category);
+  },
+
+  // Settings
+  settings: {
+    selectedTimezone:
+      typeof window !== 'undefined'
+        ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
+        : 'UTC',
+    maxHistoryItems: MAX_HISTORY_ITEMS,
+    autoSaveToHistory: true,
+    showNextExecutions: 10,
+  },
+
+  updateSettings: (updates: Partial<CrontabStore['settings']>) => {
+    set((state: CrontabStore) => ({
+      settings: { ...state.settings, ...updates },
+    }));
+  },
+
+  // UI State
+  selectedExpression: null,
+  setSelectedExpression: (expression: string | null) =>
+    set({ selectedExpression: expression }),
+
+  // Analytics
+  getUsageStats: () => {
+    const state = get() as CrontabStore;
+
+    // Count pattern frequencies
+    const patterns: Record<string, number> = {};
+    [...state.history, ...state.favorites].forEach((item) => {
+      const pattern = analyzePattern(item.expression);
+      patterns[pattern] = (patterns[pattern] || 0) + 1;
+    });
+
+    const commonPatterns = Object.entries(patterns)
+      .map(([pattern, count]) => ({ pattern, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
+
+    // Find most used timezone
+    const timezones: Record<string, number> = {};
+    state.history.forEach((item) => {
+      timezones[item.timezone] = (timezones[item.timezone] || 0) + 1;
+    });
+
+    const mostUsedTimezone = Object.entries(timezones).reduce(
+      (most, [tz, count]) =>
+        count > most.count ? { timezone: tz, count } : most,
+      { timezone: state.settings.selectedTimezone, count: 0 }
+    ).timezone;
+
+    return {
+      totalExpressions: state.history.length + state.favorites.length,
+      favoriteCount: state.favorites.length,
+      historyCount: state.history.length,
+      mostUsedTimezone,
+      commonPatterns,
+    };
+  },
+});
+
+// Create store with persist middleware - safe with client-only components
 export const useCrontabStore = create<CrontabStore>()(
-  persist(
-    (set, get) => ({
-      // History
-      history: [],
-
-      addToHistory: (
-        expression: string,
-        description: string,
-        timezone: string
-      ) => {
-        const state = get();
-        if (!state.settings.autoSaveToHistory) return;
-
-        // Don't add duplicates from recent history
-        const recent = state.history.slice(0, 5);
-        if (
-          recent.some(
-            (item) =>
-              item.expression === expression && item.timezone === timezone
-          )
-        ) {
-          return;
-        }
-
-        const newItem: CrontabHistoryItem = {
-          id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          expression,
-          description,
-          timezone,
-          timestamp: Date.now(),
-        };
-
-        set((state) => ({
-          history: [newItem, ...state.history].slice(
-            0,
-            state.settings.maxHistoryItems
-          ),
-        }));
-      },
-
-      clearHistory: () => set({ history: [] }),
-
-      removeFromHistory: (id: string) => {
-        set((state) => ({
-          history: state.history.filter((item) => item.id !== id),
-        }));
-      },
-
-      // Favorites
-      favorites: [],
-
-      addToFavorites: (favorite) => {
-        const state = get();
-
-        // Check if we've reached the limit
-        if (state.favorites.length >= MAX_FAVORITES) {
-          console.warn(
-            `Maximum number of favorites (${MAX_FAVORITES}) reached`
-          );
-          return;
-        }
-
-        // Check for duplicates
-        if (state.favorites.some((f) => f.expression === favorite.expression)) {
-          console.warn('Expression already exists in favorites');
-          return;
-        }
-
-        const newFavorite: CrontabFavorite = {
-          ...favorite,
-          id: `fav-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          createdAt: Date.now(),
-          updatedAt: Date.now(),
-        };
-
-        set((state) => ({
-          favorites: [...state.favorites, newFavorite],
-        }));
-      },
-
-      removeFromFavorites: (id: string) => {
-        set((state) => ({
-          favorites: state.favorites.filter((fav) => fav.id !== id),
-        }));
-      },
-
-      updateFavorite: (id: string, updates) => {
-        set((state) => ({
-          favorites: state.favorites.map((fav) =>
-            fav.id === id ? { ...fav, ...updates, updatedAt: Date.now() } : fav
-          ),
-        }));
-      },
-
-      getFavoritesByCategory: (category) => {
-        const state = get();
-        if (!category) return state.favorites;
-        return state.favorites.filter((fav) => fav.category === category);
-      },
-
-      // Settings
-      settings: {
-        selectedTimezone:
+  persist(storeLogic, {
+    name: 'crontab-storage',
+    storage: createJSONStorage(() => localStorage),
+    version: 1,
+    // Only persist certain parts
+    partialize: (state) => ({
+      history: state.history,
+      favorites: state.favorites,
+      settings: state.settings,
+    }),
+    // Handle migrations
+    migrate: (persistedState: any, version: number) => {
+      // Migration logic for future versions
+      if (version === 0) {
+        // Migrate from v0 to v1
+        const userTimezone =
           typeof window !== 'undefined'
             ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
-            : 'UTC',
-        maxHistoryItems: MAX_HISTORY_ITEMS,
-        autoSaveToHistory: true,
-        showNextExecutions: 10,
-      },
-
-      updateSettings: (updates) => {
-        set((state) => ({
-          settings: { ...state.settings, ...updates },
-        }));
-      },
-
-      // UI State
-      selectedExpression: null,
-      setSelectedExpression: (expression) =>
-        set({ selectedExpression: expression }),
-
-      // Analytics
-      getUsageStats: () => {
-        const state = get();
-
-        // Count pattern frequencies
-        const patterns: Record<string, number> = {};
-        [...state.history, ...state.favorites].forEach((item) => {
-          const pattern = analyzePattern(item.expression);
-          patterns[pattern] = (patterns[pattern] || 0) + 1;
-        });
-
-        const commonPatterns = Object.entries(patterns)
-          .map(([pattern, count]) => ({ pattern, count }))
-          .sort((a, b) => b.count - a.count)
-          .slice(0, 5);
-
-        // Find most used timezone
-        const timezones: Record<string, number> = {};
-        state.history.forEach((item) => {
-          timezones[item.timezone] = (timezones[item.timezone] || 0) + 1;
-        });
-
-        const mostUsedTimezone = Object.entries(timezones).reduce(
-          (most, [tz, count]) =>
-            count > most.count ? { timezone: tz, count } : most,
-          { timezone: state.settings.selectedTimezone, count: 0 }
-        ).timezone;
+            : 'UTC';
 
         return {
-          totalExpressions: state.history.length + state.favorites.length,
-          favoriteCount: state.favorites.length,
-          historyCount: state.history.length,
-          mostUsedTimezone,
-          commonPatterns,
+          ...persistedState,
+          settings: {
+            selectedTimezone:
+              persistedState.settings?.defaultTimezone ||
+              persistedState.settings?.selectedTimezone ||
+              userTimezone,
+            maxHistoryItems: MAX_HISTORY_ITEMS,
+            autoSaveToHistory: true,
+            showNextExecutions: 10,
+            ...persistedState.settings,
+          },
         };
-      },
-    }),
-    {
-      name: 'crontab-storage',
-      version: 1,
-      // Only persist certain parts
-      partialize: (state) => ({
-        history: state.history,
-        favorites: state.favorites,
-        settings: state.settings,
-      }),
-      // Handle migrations
-      migrate: (persistedState: any, version: number) => {
-        // Migration logic for future versions
-        if (version === 0) {
-          // Migrate from v0 to v1
-          const userTimezone =
-            typeof window !== 'undefined'
-              ? Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
-              : 'UTC';
-
-          return {
-            ...persistedState,
-            settings: {
-              selectedTimezone:
-                persistedState.settings?.defaultTimezone ||
-                persistedState.settings?.selectedTimezone ||
-                userTimezone,
-              maxHistoryItems: MAX_HISTORY_ITEMS,
-              autoSaveToHistory: true,
-              showNextExecutions: 10,
-              ...persistedState.settings,
-            },
-          };
-        }
-        return persistedState;
-      },
-    }
-  )
+      }
+      return persistedState;
+    },
+  })
 );
 
 /**

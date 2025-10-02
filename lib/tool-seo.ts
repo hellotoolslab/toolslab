@@ -245,6 +245,15 @@ export const toolSEO: Record<string, ToolSEO> = {
       'Advanced JSON to TypeScript converter with smart type inference, optional properties, and nested interface support. Convert API responses, configuration objects, and complex JSON structures to production-ready TypeScript interfaces. Features union types, enum detection, date parsing, custom naming conventions, and immutable options. Includes Zod schema generation, validation code, and mock data generators. Perfect for TypeScript developers building type-safe applications with external APIs.',
   },
 
+  'yaml-json-converter': {
+    id: 'yaml-json-converter',
+    tagline: 'Convert YAML to JSON and back with advanced validation features',
+    metaDescription:
+      'Free YAML to JSON converter with validation, multi-document support, and formatting. Perfect for Kubernetes and DevOps.',
+    pageDescription:
+      'Free YAML to JSON converter with bidirectional conversion, multi-document support, and anchor resolution. Convert Kubernetes configs, Docker Compose files, CI/CD pipelines, and Swagger specifications instantly. Features real-time validation, syntax highlighting, type preservation, and comment handling. Supports YAML 1.2 with anchors, aliases, merge keys, and custom tags. Export to TypeScript interfaces and JSON Schema. Perfect for DevOps engineers, developers working with configuration files, and API documentation.',
+  },
+
   'css-minifier': {
     id: 'css-minifier',
     tagline: 'Minify and optimize CSS files instantly for faster websites',

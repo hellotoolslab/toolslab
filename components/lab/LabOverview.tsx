@@ -8,6 +8,7 @@ import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { cn } from '@/lib/utils';
+import { useHydration } from '@/lib/hooks/useHydration';
 
 interface LabOverviewProps {
   onToolSelect: (toolId: string) => void;
@@ -26,13 +27,16 @@ function formatTimeAgo(timestamp: number): string {
 }
 
 export function LabOverview({ onToolSelect }: LabOverviewProps) {
+  const isHydrated = useHydration();
   const { favoriteTools, getRecentTools } = useToolStore();
 
-  const favoriteToolsData = favoriteTools
-    .map((toolId) => getToolById(toolId))
-    .filter((tool): tool is NonNullable<typeof tool> => Boolean(tool));
+  const favoriteToolsData = isHydrated
+    ? favoriteTools
+        .map((toolId) => getToolById(toolId))
+        .filter((tool): tool is NonNullable<typeof tool> => Boolean(tool))
+    : [];
 
-  const recentTools = getRecentTools(6);
+  const recentTools = isHydrated ? getRecentTools(6) : [];
 
   return (
     <motion.div

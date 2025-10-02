@@ -56,6 +56,7 @@ import {
   importFavorites,
 } from '@/lib/stores/crontab-store';
 import { BaseToolProps } from '@/lib/types/tools';
+import { useHydration } from '@/lib/hooks/useHydration';
 
 interface CrontabBuilderProps extends BaseToolProps {}
 
@@ -133,12 +134,13 @@ const EXPORT_FORMATS = [
   { value: 'nodejs', label: 'Node.js (node-cron)' },
 ];
 
-export default function CrontabBuilder({
+function CrontabBuilderContent({
   categoryColor,
   initialInput,
   onInputChange,
   onOutputChange,
 }: CrontabBuilderProps) {
+  const isHydrated = useHydration();
   const [inputExpression, setInputExpression] = useState(
     initialInput || '*/15 0 1,15 * 1-5'
   );
@@ -159,6 +161,10 @@ export default function CrontabBuilder({
     settings,
     updateSettings,
   } = useCrontabStore();
+
+  // Safe access to store data after hydration
+  const safeHistory = isHydrated ? history : [];
+  const safeFavorites = isHydrated ? favorites : [];
 
   // Use timezone from store, with fallback to browser timezone
   const [selectedTimezone, setSelectedTimezone] = useState(() => {
@@ -641,11 +647,11 @@ export default function CrontabBuilder({
             </TabsTrigger>
             <TabsTrigger value="favorites" className="flex items-center gap-2">
               <Heart className="h-4 w-4" />
-              Favorites ({favorites.length})
+              Favorites ({safeFavorites.length})
             </TabsTrigger>
             <TabsTrigger value="history" className="flex items-center gap-2">
               <History className="h-4 w-4" />
-              History ({history.length})
+              History ({safeHistory.length})
             </TabsTrigger>
             <TabsTrigger value="export" className="flex items-center gap-2">
               <Download className="h-4 w-4" />
@@ -1433,7 +1439,7 @@ export default function CrontabBuilder({
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                {favorites.length > 0 && (
+                {safeFavorites.length > 0 && (
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                     <Input
@@ -1446,7 +1452,7 @@ export default function CrontabBuilder({
                   </div>
                 )}
 
-                {favorites.length === 0 ? (
+                {safeFavorites.length === 0 ? (
                   <div className="py-8 text-center text-gray-500">
                     <Heart className="mx-auto mb-4 h-12 w-12 opacity-50" />
                     <p>No favorite expressions yet.</p>
@@ -1512,8 +1518,8 @@ export default function CrontabBuilder({
                           </div>
                         </div>
                       ))}
-                    {favorites.length > 0 &&
-                      favorites.filter((favorite) =>
+                    {safeFavorites.length > 0 &&
+                      safeFavorites.filter((favorite) =>
                         favorite.name
                           .toLowerCase()
                           .includes(favoritesSearchQuery.toLowerCase())
@@ -1545,7 +1551,7 @@ export default function CrontabBuilder({
                     variant="outline"
                     size="sm"
                     onClick={clearHistory}
-                    disabled={history.length === 0}
+                    disabled={safeHistory.length === 0}
                   >
                     <Trash2 className="mr-2 h-4 w-4" />
                     Clear All
@@ -1553,7 +1559,7 @@ export default function CrontabBuilder({
                 </div>
               </CardHeader>
               <CardContent>
-                {history.length === 0 ? (
+                {safeHistory.length === 0 ? (
                   <div className="py-8 text-center text-gray-500">
                     <History className="mx-auto mb-4 h-12 w-12 opacity-50" />
                     <p>No history yet.</p>
@@ -1563,7 +1569,7 @@ export default function CrontabBuilder({
                   </div>
                 ) : (
                   <div className="space-y-3">
-                    {history.slice(0, 20).map((item) => (
+                    {safeHistory.slice(0, 20).map((item) => (
                       <div
                         key={item.id}
                         className="flex items-center justify-between rounded border p-3 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-100"
@@ -1637,9 +1643,9 @@ export default function CrontabBuilder({
                         </div>
                       </div>
                     ))}
-                    {history.length > 20 && (
+                    {safeHistory.length > 20 && (
                       <div className="py-2 text-center text-sm text-gray-500">
-                        Showing latest 20 entries out of {history.length}
+                        Showing latest 20 entries out of {safeHistory.length}
                       </div>
                     )}
                   </div>
@@ -1703,4 +1709,8 @@ export default function CrontabBuilder({
       </div>
     </div>
   );
+}
+
+export default function CrontabBuilder(props: CrontabBuilderProps) {
+  return <CrontabBuilderContent {...props} />;
 }
