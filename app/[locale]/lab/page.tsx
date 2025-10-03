@@ -18,7 +18,8 @@ export async function generateMetadata({
     return {};
   }
 
-  const dict = await getDictionary(locale as Locale);
+  const labSections = ['common', 'lab'];
+  const dict = await getDictionary(locale as Locale, labSections);
 
   const title =
     locale === 'it'
@@ -100,7 +101,9 @@ export default async function LocaleLabPage({
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
+  // Load only sections needed for lab page
+  const labSections = ['common', 'lab'];
+  const dict = await getDictionary(locale as Locale, labSections);
 
   return <LocaleLabPageClient locale={locale as Locale} dictionary={dict} />;
 }

@@ -11,6 +11,8 @@ import { LabToolViewer } from '@/components/lab/LabToolViewer';
 import { LabOverview } from '@/components/lab/LabOverview';
 import { type Locale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
+import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 // Import della vista vuota esistente
 import LabHubContent from '../../../components/layout/LabHubContent';
@@ -20,11 +22,9 @@ interface LocaleLabPageClientProps {
   dictionary: Dictionary;
 }
 
-export function LocaleLabPageClient({
-  locale,
-  dictionary,
-}: LocaleLabPageClientProps) {
+function LabPageContent({ locale }: { locale: Locale }) {
   const { trackEngagement } = useUmami();
+  const { data: t } = useDictionarySectionContext('lab');
   const {
     favoriteTools,
     favoriteCategories,
@@ -77,15 +77,6 @@ export function LocaleLabPageClient({
     trackEngagement,
     locale,
   ]);
-
-  // Localized texts
-  const text = {
-    title: locale === 'it' ? 'Il Mio Lab' : 'My Developer Lab',
-    subtitle:
-      locale === 'it'
-        ? 'Il tuo toolkit personalizzato per la massima produttività'
-        : 'Your personalized toolkit for maximum productivity',
-  };
 
   if (!mounted) {
     return (
@@ -143,9 +134,12 @@ export function LocaleLabPageClient({
             transition={{ duration: 0.6 }}
           >
             <h1 className="mb-2 text-2xl font-bold text-white md:text-3xl">
-              {text.title}
+              {t?.header?.title || 'My Developer Lab'}
             </h1>
-            <p className="text-sm text-purple-100">{text.subtitle}</p>
+            <p className="text-sm text-purple-100">
+              {t?.header?.subtitle ||
+                'Your personalized toolkit for maximum productivity'}
+            </p>
           </motion.div>
         </div>
       </div>
@@ -179,5 +173,22 @@ export function LocaleLabPageClient({
       <WelcomePopup />
       <HelpButton />
     </div>
+  );
+}
+
+export function LocaleLabPageClient({
+  locale,
+  dictionary,
+}: LocaleLabPageClientProps) {
+  const labSections = ['common', 'lab'];
+
+  return (
+    <DictionaryProvider
+      locale={locale}
+      sections={labSections}
+      initialDictionary={dictionary}
+    >
+      <LabPageContent locale={locale} />
+    </DictionaryProvider>
   );
 }

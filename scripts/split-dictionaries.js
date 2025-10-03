@@ -24,6 +24,7 @@ const SECTION_MAPPING = {
   categories: ['categories'],
   footer: ['footer'],
   seo: ['seo'],
+  lab: ['lab'],
 };
 
 /**

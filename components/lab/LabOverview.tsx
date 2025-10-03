@@ -9,26 +9,38 @@ import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { cn } from '@/lib/utils';
 import { useHydration } from '@/lib/hooks/useHydration';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 interface LabOverviewProps {
   onToolSelect: (toolId: string) => void;
 }
 
-function formatTimeAgo(timestamp: number): string {
+function formatTimeAgo(timestamp: number, t: any): string {
   const diff = Date.now() - timestamp;
   const minutes = Math.floor(diff / 60000);
   const hours = Math.floor(diff / 3600000);
   const days = Math.floor(diff / 86400000);
 
-  if (minutes < 1) return 'Just now';
-  if (minutes < 60) return `${minutes}m ago`;
-  if (hours < 24) return `${hours}h ago`;
-  return `${days}d ago`;
+  if (minutes < 1) return t?.lab?.overview?.justNow || 'Just now';
+  if (minutes < 60)
+    return (
+      t?.lab?.overview?.minutesAgo?.replace('{minutes}', String(minutes)) ||
+      `${minutes}m ago`
+    );
+  if (hours < 24)
+    return (
+      t?.lab?.overview?.hoursAgo?.replace('{hours}', String(hours)) ||
+      `${hours}h ago`
+    );
+  return (
+    t?.lab?.overview?.daysAgo?.replace('{days}', String(days)) || `${days}d ago`
+  );
 }
 
 export function LabOverview({ onToolSelect }: LabOverviewProps) {
   const isHydrated = useHydration();
   const { favoriteTools, getRecentTools } = useToolStore();
+  const { data: t } = useDictionarySectionContext('lab');
 
   const favoriteToolsData = isHydrated
     ? favoriteTools
@@ -49,7 +61,7 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
         {/* Favorite Tools Grid */}
         <div>
           <h2 className="mb-6 text-xl font-semibold text-gray-900 dark:text-white">
-            Favorite Tools
+            {t?.overview?.favoriteTools || 'Favorite Tools'}
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {favoriteToolsData.map((tool, index) => (
@@ -67,7 +79,7 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
         {recentTools.length > 0 && (
           <div>
             <h2 className="mb-6 text-xl font-semibold text-gray-900 dark:text-white">
-              Recently Used
+              {t?.overview?.recentlyUsed || 'Recently Used'}
             </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {recentTools.slice(0, 6).map((recentTool, index) => {
@@ -87,7 +99,8 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
                           {tool.name}
                         </h3>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                          Used {formatTimeAgo(recentTool.timestamp)}
+                          {t?.overview?.used || 'Used'}{' '}
+                          {formatTimeAgo(recentTool.timestamp, t)}
                         </p>
                       </div>
                       <FavoriteButton type="tool" id={tool.id} />
