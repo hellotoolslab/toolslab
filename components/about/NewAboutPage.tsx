@@ -156,7 +156,7 @@ export function NewAboutPage() {
   const heroRef = useRef(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Hero Section */}
       <section
         ref={heroRef}
@@ -368,7 +368,7 @@ export function NewAboutPage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
             <motion.div
-              className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm md:p-12"
+              className="relative overflow-hidden rounded-3xl border border-white/20 bg-slate-800/80 p-8 backdrop-blur-sm md:p-12"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -466,7 +466,7 @@ export function NewAboutPage() {
                 className="group"
               >
                 <motion.div
-                  className="relative h-full rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-white/20"
+                  className="relative h-full rounded-2xl border border-white/20 bg-slate-800/80 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:border-white/30"
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
                   {/* Icon with brand gradient */}

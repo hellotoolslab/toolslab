@@ -160,6 +160,38 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       ],
     },
   },
+  about: {
+    titles: {
+      en: 'About ToolsLab - The Story of Your Developer Toolbox',
+      it: 'Chi Siamo - La Storia del Tuo Toolbox per Sviluppatori',
+    },
+    descriptions: {
+      en: 'Discover how ToolsLab evolved from a personal project to a trusted toolkit for thousands of developers worldwide. Free forever, no strings attached.',
+      it: 'Scopri come ToolsLab si è evoluto da un progetto personale a un toolkit affidabile per migliaia di sviluppatori in tutto il mondo. Gratuito per sempre, senza vincoli.',
+    },
+    keywords: {
+      en: [
+        'about toolslab',
+        'developer tools story',
+        'free developer tools',
+        'privacy first tools',
+        'independent developer',
+        'toolslab mission',
+        'developer productivity',
+        'swiss army knife for developers',
+      ],
+      it: [
+        'chi siamo toolslab',
+        'storia strumenti sviluppatore',
+        'strumenti sviluppatore gratuiti',
+        'strumenti privacy first',
+        'sviluppatore indipendente',
+        'missione toolslab',
+        'produttività sviluppatore',
+        'coltellino svizzero per sviluppatori',
+      ],
+    },
+  },
 } as const;
 
 /**
