@@ -18,6 +18,7 @@ import Link from 'next/link';
 import { useToolStore } from '@/lib/store/toolStore';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { useHydration } from '@/lib/hooks/useHydration';
 
 interface ToolLayoutProps {
   tool: Tool;
@@ -25,6 +26,7 @@ interface ToolLayoutProps {
 }
 
 export function ToolLayout({ tool, children }: ToolLayoutProps) {
+  const isHydrated = useHydration();
   const { history, addToHistory, getUserLevel } = useToolStore();
   const [recentUses, setRecentUses] = useState<number>(0);
   const [userLevel, setUserLevel] = useState<
@@ -34,10 +36,11 @@ export function ToolLayout({ tool, children }: ToolLayoutProps) {
   const category = getCategoryByTool(tool);
 
   useEffect(() => {
+    if (!isHydrated) return; // Wait for hydration
     const toolHistory = history.filter((h) => h.tool === tool.id);
     setRecentUses(toolHistory.length);
     setUserLevel(getUserLevel());
-  }, [history, tool.id, getUserLevel]);
+  }, [isHydrated, history, tool.id, getUserLevel]);
 
   const handleToolUse = (input: string, output: string) => {
     addToHistory({

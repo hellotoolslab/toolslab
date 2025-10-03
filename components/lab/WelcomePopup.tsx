@@ -5,6 +5,7 @@ import { X, HelpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useToolStore } from '@/lib/store/toolStore';
+import { useHydration } from '@/lib/hooks/useHydration';
 
 interface WelcomePopupProps {
   isOpen?: boolean;
@@ -17,16 +18,18 @@ export function WelcomePopup({
   onClose,
   triggeredByHelp = false,
 }: WelcomePopupProps) {
+  const isHydrated = useHydration();
   const { labVisited, setLabVisited } = useToolStore();
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    if (!isHydrated) return; // Wait for hydration
     if (controlledIsOpen !== undefined) {
       setIsOpen(controlledIsOpen);
     } else if (!labVisited && !triggeredByHelp) {
       setIsOpen(true);
     }
-  }, [controlledIsOpen, labVisited, triggeredByHelp]);
+  }, [isHydrated, controlledIsOpen, labVisited, triggeredByHelp]);
 
   const handleClose = () => {
     setIsOpen(false);

@@ -9,7 +9,6 @@ import { categories } from '@/lib/tools';
 import { cn } from '@/lib/utils';
 import { LabLogo } from '@/components/icons/LabLogo';
 import { useToolStore } from '@/lib/store/toolStore';
-import { useHydration } from '@/lib/hooks/useHydration';
 import { GitHubStars } from '@/components/ui/github-stars';
 import { useLocale } from '@/hooks/useLocale';
 import { useDictionarySection } from '@/hooks/useDictionary';
@@ -22,9 +21,6 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { getNewFavoritesCount } = useToolStore();
-  const isStoreHydrated = useHydration();
-  const { locale, createHref } = useLocale();
-  const { data: nav } = useDictionarySection('common');
 
   useEffect(() => {
     setMounted(true);
@@ -176,8 +172,8 @@ export function Header() {
               )}
             >
               <Beaker className="mr-1 h-4 w-4" />
-              {nav?.nav?.lab || 'The Lab'}
-              {mounted && isStoreHydrated && getNewFavoritesCount() > 0 && (
+              The Lab
+              {mounted && getNewFavoritesCount() > 0 && (
                 <span className="ml-1 rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
                   {getNewFavoritesCount()}
                 </span>
@@ -266,8 +262,8 @@ export function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Beaker className="h-5 w-5" />
-                <span>{nav?.nav?.lab || 'The Lab'}</span>
-                {mounted && isStoreHydrated && getNewFavoritesCount() > 0 && (
+                <span>The Lab</span>
+                {mounted && getNewFavoritesCount() > 0 && (
                   <span className="ml-auto rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
                     {getNewFavoritesCount()}
                   </span>

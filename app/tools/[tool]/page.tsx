@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { tools, getToolById, categories } from '@/lib/tools';
 import { generateToolSchema } from '@/lib/tool-schema';
@@ -142,7 +143,22 @@ export default function ToolPage({ params }: ToolPageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}
-      <ToolPageClient toolId={params.tool} />
+      {/* Server-side H1 for SEO crawlers - visually hidden but accessible */}
+      <h1 className="sr-only">{tool.name}</h1>
+      <Suspense
+        fallback={
+          <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+            <div className="mx-auto max-w-[1400px] px-4 py-8">
+              <div className="animate-pulse space-y-6">
+                <div className="h-8 w-64 rounded bg-gray-200 dark:bg-gray-700"></div>
+                <div className="h-96 rounded-xl bg-gray-200 dark:bg-gray-700"></div>
+              </div>
+            </div>
+          </div>
+        }
+      >
+        <ToolPageClient toolId={params.tool} />
+      </Suspense>
     </>
   );
 }

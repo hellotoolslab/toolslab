@@ -9,12 +9,14 @@ import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { LabSidebar } from '@/components/lab/LabSidebar';
 import { LabToolViewer } from '@/components/lab/LabToolViewer';
 import { LabOverview } from '@/components/lab/LabOverview';
+import { useHydration } from '@/lib/hooks/useHydration';
 
 // Import della vista vuota esistente
 import LabHubContent from './LabHubContent';
 
 export default function NewLabHubContent() {
   const { trackEngagement } = useUmami();
+  const isHydrated = useHydration();
   const {
     favoriteTools,
     favoriteCategories,
@@ -32,6 +34,8 @@ export default function NewLabHubContent() {
   }, []);
 
   useEffect(() => {
+    if (!isHydrated) return; // Wait for hydration before accessing store
+
     setLabVisited();
 
     const { favoriteTools, favoriteCategories } = useToolStore.getState();
@@ -46,7 +50,7 @@ export default function NewLabHubContent() {
         categories_count: favoriteCategories.length,
       });
     }
-  }, []); // Run only once on mount
+  }, [isHydrated]); // Re-run when hydration completes
 
   // Show welcome toast if first visit with favorites
   useEffect(() => {
