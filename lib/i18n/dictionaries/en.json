@@ -618,12 +618,22 @@
     }
   },
   "footer": {
+    "aboutToolsLab": "About ToolsLab",
+    "aboutDescription": "No BS developer tools built by developers, for developers. Fast, private, and completely free.",
+    "learnMission": "Learn about our mission",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "allTools": "All Tools",
+    "categories": "Categories",
+    "yourLab": "Your Lab",
     "about": "About",
+    "popularTools": "Popular Tools",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "contact": "Contact",
-    "copyright": "© 2024 ToolsLab. All rights reserved.",
-    "madeWith": "Made with ❤️ by developers, for developers"
+    "support": "Support us",
+    "buyMeCoffee": "Buy us a coffee",
+    "copyright": "© 2025 ToolsLab. Crafted with",
+    "craftedIn": "in our digital laboratory"
   },
   "seo": {
     "suffix": " | ToolsLab",
