@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useDictionarySection } from '@/hooks/useDictionary';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 interface MetricConfig {
   key: 'dailyOperations' | 'privacyFocused' | 'processingTime' | 'activeUsers';
@@ -82,7 +82,7 @@ function AnimatedCounter({
 }
 
 export function TrustMetrics() {
-  const { data: t } = useDictionarySection('home');
+  const { data: t } = useDictionarySectionContext('home');
   const trustMetrics = t?.trustMetrics;
 
   return (

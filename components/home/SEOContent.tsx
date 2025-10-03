@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useDictionarySection } from '@/hooks/useDictionary';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,12 +41,9 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export function SEOContent() {
-  const { data: t } = useDictionarySection('home');
+  const { data: t } = useDictionarySectionContext('home');
   const seoContent = t?.seoContent;
   const faqs = seoContent?.faq || [];
-
-  // Debug - rimuovi dopo test
-  console.log('SEOContent features:', seoContent?.features);
 
   return (
     <section className="py-16 sm:py-20">

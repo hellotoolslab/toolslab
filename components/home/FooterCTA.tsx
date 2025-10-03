@@ -5,14 +5,14 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { tools } from '@/lib/tools';
 import { useLocale } from '@/hooks/useLocale';
-import { useDictionarySection } from '@/hooks/useDictionary';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import { useState, useEffect } from 'react';
 
 const popularTools = tools.filter((tool) => tool.isPopular).slice(0, 8);
 
 export function FooterCTA() {
   const { createHref } = useLocale();
-  const { data: t } = useDictionarySection('home');
+  const { data: t } = useDictionarySectionContext('home');
   const cta = t?.footerCTA;
 
   // Generate particles only on client to avoid hydration mismatch

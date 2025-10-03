@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Code, Database, Lock, Globe, Zap } from 'lucide-react';
 import { tools } from '@/lib/tools';
-import { useDictionarySection } from '@/hooks/useDictionary';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import { useLocale } from '@/hooks/useLocale';
 
 const useCaseTabsConfig = [
@@ -67,7 +67,7 @@ const useCaseTabsConfig = [
 ];
 
 export function ToolDiscovery() {
-  const { data: t } = useDictionarySection('home');
+  const { data: t } = useDictionarySectionContext('home');
   const discovery = t?.toolDiscovery;
   const { createHref } = useLocale();
   const [activeTab, setActiveTab] = useState('apiDev');

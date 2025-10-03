@@ -2,7 +2,7 @@
 
 import { Github, Zap, BarChart3, CloudCog, Globe } from 'lucide-react';
 import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
-import { useDictionarySection } from '@/hooks/useDictionary';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 interface PoweredByServiceConfig {
   id: 'github' | 'vercel' | 'umami' | 'cloudflare' | 'porkbun';
@@ -109,7 +109,7 @@ function PoweredByCard({
 }
 
 export function PoweredBy() {
-  const { data: t } = useDictionarySection('home');
+  const { data: t } = useDictionarySectionContext('home');
   const poweredBy = t?.poweredBy;
 
   return (

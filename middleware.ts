@@ -6,7 +6,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCompleteConfig } from '@/lib/edge-config/client';
 import { BotDetector } from '@/lib/analytics/botDetection';
-import { localesWithPrefix } from '@/lib/i18n/config';
+import {
+  localesWithPrefix,
+  defaultLocale,
+  type Locale,
+} from '@/lib/i18n/config';
+import {
+  detectSectionFromPathname,
+  generateDictionaryPreloadHeaders,
+  shouldPreloadDictionary,
+} from '@/lib/i18n/section-detector';
 
 // Paths that should be processed by middleware
 const PROCESSED_PATHS = ['/tools/:path*', '/api/tools/:path*', '/'];
@@ -270,16 +279,73 @@ export async function middleware(request: NextRequest) {
 
     const response = NextResponse.next();
 
-    // Add locale information to headers for components to use
+    // Detect current locale
+    let currentLocale: Locale = defaultLocale;
     if (pathnameHasLocale) {
-      const locale = localesWithPrefix.find(
+      const detectedLocale = localesWithPrefix.find(
         (locale) =>
           pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
       );
-      if (locale) {
-        response.headers.set('X-Locale', locale);
+      if (detectedLocale) {
+        currentLocale = detectedLocale as Locale;
+        response.headers.set('X-Locale', detectedLocale);
       }
     }
+
+    // Dictionary Preload Strategy
+    if (shouldPreloadDictionary(pathname)) {
+      // Detect which dictionary sections this page needs
+      const sections = detectSectionFromPathname(pathname);
+
+      // Generate preload headers for dictionary chunks
+      const preloadHeaders = generateDictionaryPreloadHeaders(
+        currentLocale,
+        sections
+      );
+
+      // Add Link header for early hints / preload
+      response.headers.set('Link', preloadHeaders);
+
+      // Add metadata headers for debugging
+      if (process.env.NODE_ENV === 'development') {
+        response.headers.set('X-Dictionary-Sections', sections.join(','));
+        response.headers.set('X-Dictionary-Locale', currentLocale);
+      }
+    }
+
+    // Persistent language preference cookie
+    const preferredLocaleCookie = request.cookies.get('preferred-locale');
+
+    // If user visits a localized page, save their preference
+    if (pathnameHasLocale && currentLocale !== defaultLocale) {
+      if (
+        !preferredLocaleCookie ||
+        preferredLocaleCookie.value !== currentLocale
+      ) {
+        response.cookies.set('preferred-locale', currentLocale, {
+          maxAge: 365 * 24 * 60 * 60, // 1 year
+          path: '/',
+          sameSite: 'lax',
+          httpOnly: false, // Allow client-side reading for language switcher
+        });
+      }
+    }
+
+    // If user has preference but visits default locale, suggest redirect (optional)
+    // This is commented out to avoid aggressive redirects, but available if needed
+    /*
+    if (
+      !pathnameHasLocale &&
+      preferredLocaleCookie &&
+      preferredLocaleCookie.value !== defaultLocale &&
+      !pathname.startsWith('/api')
+    ) {
+      const preferredLocale = preferredLocaleCookie.value;
+      const redirectUrl = new URL(request.url);
+      redirectUrl.pathname = `/${preferredLocale}${pathname}`;
+      return NextResponse.redirect(redirectUrl, 307); // Temporary redirect
+    }
+    */
 
     // VPN Detection and Security Header Management
     const forwardedFor = request.headers.get('x-forwarded-for');

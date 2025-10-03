@@ -6,15 +6,15 @@ import { ArrowRight, Copy, Check, Sparkles, Search } from 'lucide-react';
 import Link from 'next/link';
 import { formatJson } from '@/lib/tools/json-formatter';
 import { useLocale } from '@/hooks/useLocale';
-import { useDictionarySection } from '@/hooks/useDictionary';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 const sampleJson = `{"user":{"id":1,"name":"John Doe","email":"john@example.com","roles":["admin","user"],"settings":{"theme":"dark","notifications":true}}}`;
 
 export function InteractiveDemo() {
   const { createHref } = useLocale();
-  const { data: t } = useDictionarySection('home');
+  const { data: t } = useDictionarySectionContext('home');
   const demo = t?.interactiveDemo;
-  const { data: commonT } = useDictionarySection('common');
+  const { data: commonT } = useDictionarySectionContext('common');
 
   const [isFormatted, setIsFormatted] = useState(false);
   const [copied, setCopied] = useState(false);
