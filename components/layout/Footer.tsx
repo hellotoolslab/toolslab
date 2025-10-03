@@ -3,9 +3,11 @@
 import Link from 'next/link';
 import { Github } from 'lucide-react';
 import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { useLocale } from '@/hooks/useLocale';
 
 export function Footer() {
   const { trackConversion, trackSocial, trackEngagement } = useUmami();
+  const { createHref } = useLocale();
 
   return (
     <footer
@@ -33,7 +35,7 @@ export function Footer() {
               private, and completely free.
             </p>
             <Link
-              href="/about"
+              href={createHref('/about')}
               onClick={() =>
                 trackEngagement('about-mission-clicked', { from: 'footer' })
               }
@@ -87,7 +89,7 @@ export function Footer() {
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/"
+                  href={createHref('/')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Home
@@ -95,7 +97,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/tools"
+                  href={createHref('/tools')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   All Tools
@@ -103,7 +105,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/categories"
+                  href={createHref('/categories')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Categories
@@ -111,7 +113,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/lab"
+                  href={createHref('/lab')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Your Lab
@@ -119,7 +121,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href={createHref('/about')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   About
@@ -136,7 +138,7 @@ export function Footer() {
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/category/data"
+                  href={createHref('/category/data')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Data & Conversion
@@ -144,7 +146,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/category/encoding"
+                  href={createHref('/category/encoding')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Encoding & Security
@@ -152,7 +154,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/category/text"
+                  href={createHref('/category/text')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Text & Format
@@ -160,7 +162,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/category/generators"
+                  href={createHref('/category/generators')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Generators
@@ -168,7 +170,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/category/dev"
+                  href={createHref('/category/dev')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Dev Utilities
@@ -185,7 +187,7 @@ export function Footer() {
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/tools/json-formatter"
+                  href={createHref('/tools/json-formatter')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   JSON Formatter
@@ -193,7 +195,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/tools/regex-tester"
+                  href={createHref('/tools/regex-tester')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Regex Tester
@@ -201,7 +203,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/tools/uuid-generator"
+                  href={createHref('/tools/uuid-generator')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   UUID Generator
@@ -209,7 +211,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/tools/base64-encode"
+                  href={createHref('/tools/base64-encode')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Base64 Encoder
@@ -217,7 +219,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/tools/hash-generator"
+                  href={createHref('/tools/hash-generator')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
                   Hash Generator
@@ -242,14 +244,14 @@ export function Footer() {
 
           <div className="footer-links flex flex-wrap items-center gap-5 text-sm">
             <Link
-              href="/privacy"
+              href={createHref('/privacy')}
               className="text-slate-500 transition-colors duration-200 hover:text-white"
               rel="noopener noreferrer"
             >
               Privacy Policy
             </Link>
             <Link
-              href="/terms"
+              href={createHref('/terms')}
               className="text-slate-500 transition-colors duration-200 hover:text-white"
               rel="noopener noreferrer"
             >

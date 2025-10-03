@@ -1,0 +1,504 @@
+{
+  "common": {
+    "nav": {
+      "tools": "Tools",
+      "blog": "Blog",
+      "about": "About",
+      "categories": "Categories",
+      "lab": "The Lab",
+      "allTools": "All Tools",
+      "viewAllTools": "View all tools"
+    },
+    "actions": {
+      "copy": "Copy",
+      "download": "Download",
+      "clear": "Clear",
+      "process": "Process",
+      "upload": "Upload File",
+      "paste": "Paste",
+      "reset": "Reset",
+      "share": "Share",
+      "save": "Save",
+      "load": "Load",
+      "export": "Export",
+      "import": "Import",
+      "format": "Format",
+      "validate": "Validate",
+      "minify": "Minify",
+      "beautify": "Beautify",
+      "encode": "Encode",
+      "decode": "Decode",
+      "encrypt": "Encrypt",
+      "decrypt": "Decrypt",
+      "generate": "Generate",
+      "convert": "Convert",
+      "analyze": "Analyze",
+      "compare": "Compare"
+    },
+    "messages": {
+      "success": "Success!",
+      "error": "An error occurred",
+      "copied": "Copied to clipboard",
+      "processing": "Processing...",
+      "noData": "No data to process",
+      "invalid": "Invalid input",
+      "valid": "Valid",
+      "loading": "Loading...",
+      "saved": "Saved successfully",
+      "deleted": "Deleted successfully",
+      "updated": "Updated successfully",
+      "created": "Created successfully",
+      "failed": "Operation failed",
+      "warning": "Warning",
+      "info": "Information"
+    },
+    "labels": {
+      "input": "Input",
+      "output": "Output",
+      "options": "Options",
+      "settings": "Settings",
+      "result": "Result",
+      "preview": "Preview",
+      "source": "Source",
+      "target": "Target",
+      "from": "From",
+      "to": "To",
+      "file": "File",
+      "text": "Text",
+      "code": "Code",
+      "data": "Data",
+      "format": "Format",
+      "type": "Type",
+      "mode": "Mode",
+      "language": "Language",
+      "charset": "Charset",
+      "encoding": "Encoding",
+      "tool": "tool",
+      "tools": "tools"
+    },
+    "units": {
+      "bytes": "bytes",
+      "kb": "KB",
+      "mb": "MB",
+      "gb": "GB",
+      "ms": "ms",
+      "seconds": "seconds",
+      "minutes": "minutes",
+      "hours": "hours",
+      "days": "days",
+      "characters": "characters",
+      "words": "words",
+      "lines": "lines"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Free Developer Tools for Everyone",
+      "subtitle": "Professional tools that work in your browser",
+      "description": "Format JSON, encode Base64, generate UUIDs, and more. All tools are free, secure, and require no installation."
+    },
+    "features": {
+      "title": "Why Choose ToolsLab",
+      "fast": {
+        "title": "Lightning Fast",
+        "description": "All processing happens locally in your browser. No server round-trips mean instant results."
+      },
+      "secure": {
+        "title": "100% Secure",
+        "description": "Your data never leaves your browser. No uploads, no storage, complete privacy."
+      },
+      "free": {
+        "title": "Forever Free",
+        "description": "All tools are completely free. No premium tiers, no hidden costs, no sign-ups required."
+      }
+    },
+    "categories": {
+      "title": "Browse by Category",
+      "viewAll": "View all"
+    },
+    "popular": {
+      "title": "Popular Tools",
+      "subtitle": "Most used tools by developers"
+    },
+    "whyToolsLab": {
+      "title": "Why Choose ToolsLab?",
+      "subtitle": "Six reasons developers love our platform",
+      "footer": "Built with ❤️ by developers who understand your needs",
+      "benefits": {
+        "instantProcessing": {
+          "title": "Instant Processing",
+          "description": "Everything runs in your browser. No server delays, no waiting."
+        },
+        "zeroDataStorage": {
+          "title": "Zero Data Storage",
+          "description": "Your data never leaves your device. Complete privacy guaranteed."
+        },
+        "chainTools": {
+          "title": "Chain Tools Together",
+          "description": "Smart workflow automation. Connect tools for complex operations."
+        },
+        "darkMode": {
+          "title": "Dark Mode",
+          "description": "Easy on your eyes during late coding sessions."
+        },
+        "worksEverywhere": {
+          "title": "Works Everywhere",
+          "description": "Desktop, tablet, mobile ready. Code from anywhere."
+        },
+        "noSignup": {
+          "title": "No Signup Required",
+          "description": "Start using tools immediately. No barriers, just productivity."
+        }
+      }
+    }
+  },
+  "tools": {
+    "json-formatter": {
+      "title": "JSON Formatter",
+      "description": "Format, validate and beautify JSON data with syntax highlighting",
+      "placeholder": "Paste your JSON here...",
+      "instructions": "Paste or type your JSON data to format and validate it",
+      "features": [
+        "Syntax highlighting",
+        "Error detection",
+        "Pretty printing",
+        "Minification"
+      ],
+      "meta": {
+        "title": "JSON Formatter - Free Online Tool | ToolsLab",
+        "description": "Format, validate and beautify JSON data with syntax highlighting. Free online JSON formatter with no registration required. Works instantly in your browser."
+      },
+      "labels": {
+        "indentSize": "Indent Size",
+        "sortKeys": "Sort Keys",
+        "validateOnly": "Validate Only"
+      },
+      "messages": {
+        "validJson": "Valid JSON",
+        "invalidJson": "Invalid JSON",
+        "formatted": "JSON formatted successfully"
+      },
+      "options": {
+        "compact": "Compact",
+        "expanded": "Expanded"
+      }
+    },
+    "base64-encode": {
+      "title": "Base64 Encoder",
+      "description": "Encode text or files to Base64 format",
+      "placeholder": "Enter text to encode...",
+      "instructions": "Enter text or upload a file to encode to Base64",
+      "meta": {
+        "title": "Base64 Encoder - Free Online Tool | ToolsLab",
+        "description": "Encode text or files to Base64 format instantly. Free online Base64 encoder with file support. No registration required."
+      }
+    },
+    "base64-decode": {
+      "title": "Base64 Decoder",
+      "description": "Decode Base64 strings to text or binary data",
+      "placeholder": "Enter Base64 string to decode...",
+      "instructions": "Paste your Base64 encoded string to decode it",
+      "meta": {
+        "title": "Base64 Decoder - Free Online Tool | ToolsLab",
+        "description": "Decode Base64 strings to text or download as files. Free online Base64 decoder. Works instantly in your browser."
+      }
+    },
+    "jwt-decoder": {
+      "title": "JWT Decoder",
+      "description": "Decode and validate JSON Web Tokens",
+      "placeholder": "Paste your JWT token here...",
+      "instructions": "Paste your JWT token to decode and inspect its contents",
+      "meta": {
+        "title": "JWT Decoder - Free Online Tool | ToolsLab",
+        "description": "Decode and validate JSON Web Tokens (JWT) online. Inspect header, payload, and signature. Free JWT decoder tool."
+      }
+    },
+    "uuid-generator": {
+      "title": "UUID Generator",
+      "description": "Generate random UUIDs (v1, v4, v5)",
+      "instructions": "Select UUID version and generate unique identifiers",
+      "meta": {
+        "title": "UUID Generator - Free Online Tool | ToolsLab",
+        "description": "Generate random UUIDs online. Support for v1, v4, and v5 UUID versions. Free UUID generator with bulk generation."
+      }
+    },
+    "hash-generator": {
+      "title": "Hash Generator",
+      "description": "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes",
+      "placeholder": "Enter text to hash...",
+      "instructions": "Enter text to generate various hash formats",
+      "meta": {
+        "title": "Hash Generator - Free Online Tool | ToolsLab",
+        "description": "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes online. Free hash generator for text and files."
+      }
+    },
+    "css-minifier": {
+      "title": "CSS Minifier",
+      "description": "Minify and compress CSS code",
+      "placeholder": "Paste your CSS code here...",
+      "instructions": "Paste your CSS code to minify and optimize it",
+      "meta": {
+        "title": "CSS Minifier - Free Online Tool | ToolsLab",
+        "description": "Minify and compress CSS code online. Reduce file size and improve loading speed. Free CSS minifier tool."
+      }
+    },
+    "javascript-minifier": {
+      "title": "JavaScript Minifier",
+      "description": "Minify and compress JavaScript code",
+      "placeholder": "Paste your JavaScript code here...",
+      "instructions": "Paste your JavaScript code to minify it",
+      "meta": {
+        "title": "JavaScript Minifier - Free Online Tool | ToolsLab",
+        "description": "Minify and compress JavaScript code online. Reduce file size for faster loading. Free JS minifier tool."
+      }
+    },
+    "html-minifier": {
+      "title": "HTML Minifier",
+      "description": "Minify and compress HTML code",
+      "placeholder": "Paste your HTML code here...",
+      "instructions": "Paste your HTML code to minify and optimize it",
+      "meta": {
+        "title": "HTML Minifier - Free Online Tool | ToolsLab",
+        "description": "Minify and compress HTML code online. Optimize for faster page loading. Free HTML minifier tool."
+      }
+    },
+    "sql-formatter": {
+      "title": "SQL Formatter",
+      "description": "Format and beautify SQL queries",
+      "placeholder": "Paste your SQL query here...",
+      "instructions": "Paste your SQL query to format and beautify it",
+      "meta": {
+        "title": "SQL Formatter - Free Online Tool | ToolsLab",
+        "description": "Format and beautify SQL queries online. Support for multiple SQL dialects. Free SQL formatter tool."
+      }
+    },
+    "url-encoder": {
+      "title": "URL Encoder",
+      "description": "Encode text for safe URL usage",
+      "placeholder": "Enter text to URL encode...",
+      "instructions": "Enter text to encode for URL parameters",
+      "meta": {
+        "title": "URL Encoder - Free Online Tool | ToolsLab",
+        "description": "Encode text for safe URL usage. Convert special characters to URL-safe format. Free URL encoder tool."
+      }
+    },
+    "url-decoder": {
+      "title": "URL Decoder",
+      "description": "Decode URL-encoded text",
+      "placeholder": "Enter URL-encoded text...",
+      "instructions": "Paste URL-encoded text to decode it",
+      "meta": {
+        "title": "URL Decoder - Free Online Tool | ToolsLab",
+        "description": "Decode URL-encoded text online. Convert URL parameters back to readable text. Free URL decoder tool."
+      }
+    },
+    "color-converter": {
+      "title": "Color Converter",
+      "description": "Convert between HEX, RGB, HSL color formats",
+      "placeholder": "Enter color value...",
+      "instructions": "Enter a color in any format to convert it",
+      "meta": {
+        "title": "Color Converter - Free Online Tool | ToolsLab",
+        "description": "Convert between HEX, RGB, HSL, and HSV color formats. Free online color converter with preview."
+      }
+    },
+    "markdown-to-html": {
+      "title": "Markdown to HTML",
+      "description": "Convert Markdown to HTML with preview",
+      "placeholder": "Enter Markdown text...",
+      "instructions": "Enter Markdown text to convert to HTML",
+      "meta": {
+        "title": "Markdown to HTML Converter - Free Online Tool | ToolsLab",
+        "description": "Convert Markdown to HTML online with live preview. Support for GFM and syntax highlighting. Free Markdown converter."
+      }
+    },
+    "csv-to-json": {
+      "title": "CSV to JSON",
+      "description": "Convert CSV files to JSON format",
+      "placeholder": "Paste CSV data or upload file...",
+      "instructions": "Paste CSV data or upload a file to convert to JSON",
+      "meta": {
+        "title": "CSV to JSON Converter - Free Online Tool | ToolsLab",
+        "description": "Convert CSV files to JSON format online. Support for custom delimiters and headers. Free CSV to JSON converter."
+      }
+    },
+    "json-to-csv": {
+      "title": "JSON to CSV",
+      "description": "Convert JSON data to CSV format",
+      "placeholder": "Paste JSON data...",
+      "instructions": "Paste JSON data to convert to CSV format",
+      "meta": {
+        "title": "JSON to CSV Converter - Free Online Tool | ToolsLab",
+        "description": "Convert JSON data to CSV format online. Flatten nested objects and arrays. Free JSON to CSV converter."
+      }
+    },
+    "xml-to-json": {
+      "title": "XML to JSON",
+      "description": "Convert XML to JSON format",
+      "placeholder": "Paste XML data...",
+      "instructions": "Paste XML data to convert to JSON",
+      "meta": {
+        "title": "XML to JSON Converter - Free Online Tool | ToolsLab",
+        "description": "Convert XML to JSON format online. Preserve attributes and namespaces. Free XML to JSON converter."
+      }
+    },
+    "yaml-to-json": {
+      "title": "YAML to JSON",
+      "description": "Convert YAML to JSON format",
+      "placeholder": "Paste YAML data...",
+      "instructions": "Paste YAML data to convert to JSON",
+      "meta": {
+        "title": "YAML to JSON Converter - Free Online Tool | ToolsLab",
+        "description": "Convert YAML to JSON format online. Support for multi-document YAML. Free YAML to JSON converter."
+      }
+    },
+    "json-to-yaml": {
+      "title": "JSON to YAML",
+      "description": "Convert JSON to YAML format",
+      "placeholder": "Paste JSON data...",
+      "instructions": "Paste JSON data to convert to YAML",
+      "meta": {
+        "title": "JSON to YAML Converter - Free Online Tool | ToolsLab",
+        "description": "Convert JSON to YAML format online. Clean and readable YAML output. Free JSON to YAML converter."
+      }
+    },
+    "regex-tester": {
+      "title": "Regex Tester",
+      "description": "Test and debug regular expressions",
+      "placeholder": "Enter your regex pattern...",
+      "instructions": "Enter a regex pattern and test string to debug",
+      "meta": {
+        "title": "Regex Tester - Free Online Tool | ToolsLab",
+        "description": "Test and debug regular expressions online. Support for multiple regex flags. Free regex tester with match highlighting."
+      }
+    },
+    "lorem-ipsum": {
+      "title": "Lorem Ipsum Generator",
+      "description": "Generate placeholder text for designs",
+      "instructions": "Configure and generate Lorem Ipsum text",
+      "meta": {
+        "title": "Lorem Ipsum Generator - Free Online Tool | ToolsLab",
+        "description": "Generate Lorem Ipsum placeholder text online. Customize paragraphs, words, and format. Free Lorem Ipsum generator."
+      }
+    },
+    "password-generator": {
+      "title": "Password Generator",
+      "description": "Generate secure random passwords",
+      "instructions": "Configure password requirements and generate",
+      "meta": {
+        "title": "Password Generator - Free Online Tool | ToolsLab",
+        "description": "Generate secure random passwords online. Customize length and character types. Free password generator."
+      }
+    },
+    "unix-timestamp": {
+      "title": "Unix Timestamp Converter",
+      "description": "Convert between Unix timestamp and date",
+      "placeholder": "Enter timestamp or select date...",
+      "instructions": "Convert between Unix timestamps and human-readable dates",
+      "meta": {
+        "title": "Unix Timestamp Converter - Free Online Tool | ToolsLab",
+        "description": "Convert between Unix timestamp and date online. Support for milliseconds and timezones. Free timestamp converter."
+      }
+    },
+    "qr-generator": {
+      "title": "QR Code Generator",
+      "description": "Generate QR codes for text, URLs, and more",
+      "placeholder": "Enter text or URL...",
+      "instructions": "Enter content to generate a QR code",
+      "meta": {
+        "title": "QR Code Generator - Free Online Tool | ToolsLab",
+        "description": "Generate QR codes online for text, URLs, WiFi, and more. Customize size and download as image. Free QR generator."
+      }
+    },
+    "image-converter": {
+      "title": "Image Converter",
+      "description": "Convert images between different formats",
+      "instructions": "Upload an image to convert to another format",
+      "meta": {
+        "title": "Image Converter - Free Online Tool | ToolsLab",
+        "description": "Convert images between JPG, PNG, WebP, and more. Batch conversion support. Free online image converter."
+      }
+    },
+    "text-case-converter": {
+      "title": "Text Case Converter",
+      "description": "Convert text between different cases",
+      "placeholder": "Enter text to convert...",
+      "instructions": "Enter text and select target case format",
+      "meta": {
+        "title": "Text Case Converter - Free Online Tool | ToolsLab",
+        "description": "Convert text between uppercase, lowercase, title case, and more. Free online text case converter."
+      }
+    },
+    "diff-checker": {
+      "title": "Diff Checker",
+      "description": "Compare two texts and find differences",
+      "instructions": "Paste two texts to compare and find differences",
+      "meta": {
+        "title": "Diff Checker - Free Online Tool | ToolsLab",
+        "description": "Compare two texts and find differences online. Line-by-line comparison with highlighting. Free diff checker."
+      }
+    },
+    "html-escape": {
+      "title": "HTML Escape",
+      "description": "Escape HTML special characters",
+      "placeholder": "Enter HTML to escape...",
+      "instructions": "Enter HTML code to escape special characters",
+      "meta": {
+        "title": "HTML Escape - Free Online Tool | ToolsLab",
+        "description": "Escape HTML special characters online. Convert HTML entities for safe display. Free HTML escape tool."
+      }
+    },
+    "html-unescape": {
+      "title": "HTML Unescape",
+      "description": "Unescape HTML entities to text",
+      "placeholder": "Enter escaped HTML...",
+      "instructions": "Enter escaped HTML to convert back to text",
+      "meta": {
+        "title": "HTML Unescape - Free Online Tool | ToolsLab",
+        "description": "Unescape HTML entities to text online. Convert HTML entities back to characters. Free HTML unescape tool."
+      }
+    }
+  },
+  "categories": {
+    "data": {
+      "name": "Data & Conversion",
+      "description": "Tools for data transformation and format conversion"
+    },
+    "encoding": {
+      "name": "Encoding & Security",
+      "description": "Encoding, encryption, and security tools"
+    },
+    "text": {
+      "name": "Text & Format",
+      "description": "Text manipulation and formatting tools"
+    },
+    "generators": {
+      "name": "Generators",
+      "description": "Generate various types of data and content"
+    },
+    "web": {
+      "name": "Web & Design",
+      "description": "Web development and design tools"
+    },
+    "dev": {
+      "name": "Dev Utilities",
+      "description": "Developer utilities and helpers"
+    },
+    "formatters": {
+      "name": "Formatters",
+      "description": "Code and data formatting tools"
+    }
+  },
+  "footer": {
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact",
+    "copyright": "© 2024 ToolsLab. All rights reserved.",
+    "madeWith": "Made with ❤️ by developers, for developers"
+  },
+  "seo": {
+    "suffix": " | ToolsLab",
+    "defaultDescription": "Free online developer tools for JSON formatting, Base64 encoding, UUID generation, and more. All tools work in your browser with no registration required."
+  }
+}

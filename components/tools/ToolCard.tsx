@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { ToolLabel } from '@/lib/edge-config/types';
+import { useLocale } from '@/hooks/useLocale';
 
 const getCategoryColor = (category: string) => {
   const colors = {
@@ -34,6 +35,7 @@ export function ToolCard({
 }: ToolCardProps) {
   const { getToolLabelInfo, getLabelComponent } = useToolLabels();
   const labelInfo = getToolLabelInfo(toolLabel);
+  const { createHref } = useLocale();
 
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
     if (!labelInfo.isClickable) {
@@ -53,7 +55,7 @@ export function ToolCard({
     }
 
     return (
-      <Link href={tool.route} className="group block h-full">
+      <Link href={createHref(tool.route)} className="group block h-full">
         <div
           className={cn(
             'relative flex h-full flex-col rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg dark:border-gray-800 dark:bg-gray-900',

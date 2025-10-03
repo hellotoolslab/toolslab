@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, TrendingUp, Clock } from 'lucide-react';
 import { tools } from '@/lib/tools';
+import { type Locale, defaultLocale } from '@/lib/i18n/config';
+import { type Dictionary } from '@/lib/i18n/get-dictionary';
+import { useLocale } from '@/hooks/useLocale';
 
 // Get featured tools (new ones or without label, excluding coming-soon)
 const featuredTools = tools
@@ -17,23 +20,34 @@ const featuredTools = tools
   })
   .slice(0, 6);
 
-export function FeaturedTools() {
+interface FeaturedToolsProps {
+  locale?: Locale;
+  dictionary?: Dictionary;
+}
+
+export function FeaturedTools({
+  locale = defaultLocale,
+  dictionary,
+}: FeaturedToolsProps) {
+  const { createHref } = useLocale();
+
   return (
     <section className="bg-gray-50 py-16 dark:bg-gray-900 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Centered header */}
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Most Used This Week
+            {dictionary?.home?.popular?.title || 'Most Used This Week'}
           </h2>
           <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
-            Join hundreds of developers using these tools daily
+            {dictionary?.home?.popular?.subtitle ||
+              'Join hundreds of developers using these tools daily'}
           </p>
           <Link
-            href="/tools"
+            href={createHref('/tools')}
             className="mt-4 inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
-            View all tools
+            {dictionary?.common?.nav?.allTools || 'View all tools'}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -49,7 +63,7 @@ export function FeaturedTools() {
                 whileHover={{ y: -5 }}
               >
                 <Link
-                  href={tool.route}
+                  href={createHref(tool.route)}
                   className="group relative block h-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800"
                 >
                   {/* Tool label badge */}
@@ -78,10 +92,17 @@ export function FeaturedTools() {
                     {/* Tool info */}
                     <div className="flex-1">
                       <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-                        {tool.name}
+                        {dictionary?.tools?.[tool.id]?.title || tool.name}
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {tool.description.split(' ').slice(0, 10).join(' ')}...
+                        {(
+                          dictionary?.tools?.[tool.id]?.description ||
+                          tool.description
+                        )
+                          .split(' ')
+                          .slice(0, 10)
+                          .join(' ')}
+                        ...
                       </p>
                     </div>
                   </div>
@@ -123,10 +144,10 @@ export function FeaturedTools() {
         {/* Mobile view all link */}
         <div className="mt-8 text-center sm:hidden">
           <Link
-            href="/tools"
+            href={createHref('/tools')}
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
           >
-            View all tools
+            {dictionary?.common?.nav?.allTools || 'View all tools'}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

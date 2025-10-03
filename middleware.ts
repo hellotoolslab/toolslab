@@ -6,6 +6,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCompleteConfig } from '@/lib/edge-config/client';
 import { BotDetector } from '@/lib/analytics/botDetection';
+import { localesWithPrefix } from '@/lib/i18n/config';
 
 // Paths that should be processed by middleware
 const PROCESSED_PATHS = ['/tools/:path*', '/api/tools/:path*', '/'];
@@ -179,6 +180,33 @@ function applyStrictSecurityHeaders(response: NextResponse) {
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
+  // Check if pathname has a locale prefix
+  const pathnameHasLocale = localesWithPrefix.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  // Handle locale redirection for non-prefixed paths
+  if (
+    !pathnameHasLocale &&
+    !pathname.startsWith('/_next') &&
+    !pathname.startsWith('/api')
+  ) {
+    // Check if this is a path that should be localized
+    const shouldLocalize = ['/tools', '/categories', '/lab', '/about'].some(
+      (path) => pathname === path || pathname.startsWith(`${path}/`)
+    );
+
+    if (shouldLocalize) {
+      // Redirect to default locale (English doesn't need prefix, but others do)
+      const url = request.nextUrl.clone();
+      url.pathname = pathname; // English doesn't need prefix
+      return NextResponse.next(); // Let it go to the default route
+    }
+  }
+
+  // For localized paths, just ensure X-Locale header is set
+  // (this will be handled later in the middleware)
+
   // Domain canonicalization: Redirect www.toolslab.dev to toolslab.dev
   const hostname = request.nextUrl.hostname;
   if (hostname === 'www.toolslab.dev') {
@@ -187,8 +215,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(redirectUrl, 301);
   }
 
-  // Skip processing for excluded paths
-  if (!shouldProcessPath(pathname)) {
+  // Skip processing for excluded paths (but allow locale paths)
+  if (!shouldProcessPath(pathname) && !pathnameHasLocale) {
     return NextResponse.next();
   }
 
@@ -241,6 +269,17 @@ export async function middleware(request: NextRequest) {
     }
 
     const response = NextResponse.next();
+
+    // Add locale information to headers for components to use
+    if (pathnameHasLocale) {
+      const locale = localesWithPrefix.find(
+        (locale) =>
+          pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+      );
+      if (locale) {
+        response.headers.set('X-Locale', locale);
+      }
+    }
 
     // VPN Detection and Security Header Management
     const forwardedFor = request.headers.get('x-forwarded-for');

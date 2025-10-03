@@ -10,6 +10,9 @@ import { cn } from '@/lib/utils';
 import { LabLogo } from '@/components/icons/LabLogo';
 import { useToolStore } from '@/lib/store/toolStore';
 import { GitHubStars } from '@/components/ui/github-stars';
+import { useLocale } from '@/hooks/useLocale';
+import { useDictionarySection } from '@/hooks/useDictionary';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -54,7 +57,10 @@ export function Header() {
         <div className="container mx-auto flex h-16 max-w-7xl items-center px-6">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <Link href="/" className="flex items-center space-x-3">
+            <Link
+              href={createHref('/')}
+              className="flex items-center space-x-3"
+            >
               <LabLogo className="h-8 w-8 text-violet-600" animated />
               <span className="hidden bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-xl font-bold text-transparent sm:inline-block">
                 ToolsLab
@@ -65,14 +71,15 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="ml-8 hidden items-center space-x-8 text-sm font-medium md:flex">
             <Link
-              href="/tools"
+              href={createHref('/tools')}
               className={cn(
                 'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/tools' && 'text-violet-600 dark:text-violet-400'
+                pathname === createHref('/tools') &&
+                  'text-violet-600 dark:text-violet-400'
               )}
             >
               <Zap className="mr-1 h-4 w-4" />
-              Tools
+              {nav?.nav?.tools || 'Tools'}
             </Link>
 
             {/* Categories dropdown */}
@@ -84,7 +91,7 @@ export function Header() {
                 aria-label="Categories menu"
               >
                 <Grid3X3 className="mr-1 h-4 w-4" />
-                Categories
+                {nav?.nav?.categories || 'Categories'}
                 <svg
                   className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180"
                   fill="none"
@@ -111,7 +118,7 @@ export function Header() {
                   <div className="grid gap-2">
                     {/* Hub Link - Browse All Categories */}
                     <Link
-                      href="/categories"
+                      href={createHref('/categories')}
                       className="flex items-center rounded-lg p-3 font-medium text-violet-600 transition-colors hover:bg-violet-50 dark:text-violet-400 dark:hover:bg-violet-900/20"
                       role="menuitem"
                       aria-label="Browse all categories overview page"
@@ -134,7 +141,7 @@ export function Header() {
                     {categories.map((category) => (
                       <Link
                         key={category.id}
-                        href={`/category/${category.id}`}
+                        href={createHref(`/category/${category.id}`)}
                         className="flex items-center rounded-lg p-3 transition-colors hover:bg-white/10 dark:hover:bg-gray-800/50"
                         role="menuitem"
                         aria-label={`${category.name} category with ${category.tools.length} tools`}
@@ -157,10 +164,11 @@ export function Header() {
             </div>
 
             <Link
-              href="/lab"
+              href={createHref('/lab')}
               className={cn(
                 'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
-                pathname === '/lab' && 'text-violet-600 dark:text-violet-400'
+                pathname === createHref('/lab') &&
+                  'text-violet-600 dark:text-violet-400'
               )}
             >
               <Beaker className="mr-1 h-4 w-4" />
@@ -177,18 +185,22 @@ export function Header() {
           <div className="ml-auto flex items-center space-x-8 text-sm font-medium">
             {/* About Link */}
             <Link
-              href="/about"
+              href={createHref('/about')}
               className={cn(
                 'hidden items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 md:flex',
-                pathname === '/about' && 'text-violet-600 dark:text-violet-400'
+                pathname === createHref('/about') &&
+                  'text-violet-600 dark:text-violet-400'
               )}
             >
               <Info className="mr-1 h-4 w-4" />
-              About
+              {nav?.nav?.about || 'About'}
             </Link>
 
             {/* GitHub Stars */}
             <GitHubStars className="hidden sm:flex" />
+
+            {/* Language Switcher */}
+            <LanguageSwitcher currentLocale={locale} />
 
             {/* Theme Toggle */}
             {mounted && (
@@ -237,15 +249,15 @@ export function Header() {
 
             <nav className="space-y-4">
               <Link
-                href="/tools"
+                href={createHref('/tools')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Zap className="h-5 w-5" />
-                <span>Tools</span>
+                <span>{nav?.nav?.tools || 'Tools'}</span>
               </Link>
               <Link
-                href="/lab"
+                href={createHref('/lab')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -258,29 +270,29 @@ export function Header() {
                 )}
               </Link>
               <Link
-                href="/about"
+                href={createHref('/about')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Info className="h-5 w-5" />
-                <span>About</span>
+                <span>{nav?.nav?.about || 'About'}</span>
               </Link>
 
               <div className="border-t border-white/10 pt-4">
                 <div className="mb-3 text-sm font-medium text-gray-400">
-                  Categories
+                  {nav?.nav?.categories || 'Categories'}
                 </div>
                 <div className="space-y-2">
                   {/* Hub Link - Browse All Categories */}
                   <Link
-                    href="/categories"
+                    href={createHref('/categories')}
                     className="flex items-center space-x-3 rounded-lg p-3 font-medium text-violet-400 transition-colors hover:bg-violet-900/20"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Grid3X3 className="h-5 w-5" />
                     <div>
                       <div className="text-sm font-semibold">
-                        Browse All Categories
+                        {nav?.nav?.categories || 'Browse All Categories'}
                       </div>
                       <div className="text-xs text-violet-400">
                         Overview & comparison
@@ -295,7 +307,7 @@ export function Header() {
                   {categories.map((category) => (
                     <Link
                       key={category.id}
-                      href={`/category/${category.id}`}
+                      href={createHref(`/category/${category.id}`)}
                       className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
