@@ -31,6 +31,7 @@ const DictionaryContext = createContext<DictionaryContextValue | null>(null);
 interface DictionaryProviderProps {
   children: ReactNode;
   locale: Locale;
+  sections?: string[]; // Which sections to load (e.g., ['common', 'home', 'footer'])
   initialDictionary?: Dictionary; // For SSR hydration
 }
 
@@ -52,6 +53,7 @@ interface DictionaryProviderProps {
 export function DictionaryProvider({
   children,
   locale,
+  sections,
   initialDictionary,
 }: DictionaryProviderProps) {
   const [dictionary, setDictionary] = useState<Dictionary | null>(
@@ -73,7 +75,9 @@ export function DictionaryProvider({
       try {
         setLoading(true);
         setError(null);
-        const dict = await getClientDictionary(locale);
+
+        // Load specific sections or full dictionary
+        const dict = await getClientDictionary(locale, sections);
 
         if (isMounted) {
           setDictionary(dict);
@@ -97,7 +101,7 @@ export function DictionaryProvider({
     return () => {
       isMounted = false;
     };
-  }, [locale, initialDictionary]);
+  }, [locale, sections, initialDictionary]);
 
   const value: DictionaryContextValue = {
     dictionary,

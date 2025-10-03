@@ -682,7 +682,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 15000,
-    label: 'new',
+    label: '',
   },
 ];
 

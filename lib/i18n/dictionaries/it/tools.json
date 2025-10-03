@@ -1,0 +1,309 @@
+{
+  "tools": {
+    "json-formatter": {
+      "title": "Formattatore JSON",
+      "description": "Formatta, valida e abbellisce dati JSON con evidenziazione della sintassi",
+      "placeholder": "Incolla qui il tuo JSON...",
+      "instructions": "Incolla o digita i tuoi dati JSON per formattarli e validarli",
+      "features": [
+        "Evidenziazione sintassi",
+        "Rilevamento errori",
+        "Stampa formattata",
+        "Minimizzazione"
+      ],
+      "meta": {
+        "title": "Formattatore JSON - Strumento Online Gratuito | ToolsLab",
+        "description": "Formatta, valida e abbellisce dati JSON con evidenziazione della sintassi. Formattatore JSON online gratuito senza registrazione. Funziona istantaneamente nel browser."
+      },
+      "labels": {
+        "indentSize": "Dimensione rientro",
+        "sortKeys": "Ordina chiavi",
+        "validateOnly": "Solo validazione"
+      },
+      "messages": {
+        "validJson": "JSON valido",
+        "invalidJson": "JSON non valido",
+        "formatted": "JSON formattato con successo"
+      },
+      "options": {
+        "compact": "Compatto",
+        "expanded": "Espanso"
+      }
+    },
+    "base64-encode": {
+      "title": "Codificatore Base64",
+      "description": "Codifica testo o file in formato Base64",
+      "placeholder": "Inserisci il testo da codificare...",
+      "instructions": "Inserisci testo o carica un file da codificare in Base64",
+      "meta": {
+        "title": "Codificatore Base64 - Strumento Online Gratuito | ToolsLab",
+        "description": "Codifica testo o file in formato Base64 istantaneamente. Codificatore Base64 online gratuito con supporto file. Nessuna registrazione richiesta."
+      }
+    },
+    "base64-decode": {
+      "title": "Decodificatore Base64",
+      "description": "Decodifica stringhe Base64 in testo o dati binari",
+      "placeholder": "Inserisci la stringa Base64 da decodificare...",
+      "instructions": "Incolla la tua stringa codificata in Base64 per decodificarla",
+      "meta": {
+        "title": "Decodificatore Base64 - Strumento Online Gratuito | ToolsLab",
+        "description": "Decodifica stringhe Base64 in testo o scarica come file. Decodificatore Base64 online gratuito. Funziona istantaneamente nel browser."
+      }
+    },
+    "jwt-decoder": {
+      "title": "Decodificatore JWT",
+      "description": "Decodifica e valida JSON Web Token",
+      "placeholder": "Incolla qui il tuo token JWT...",
+      "instructions": "Incolla il tuo token JWT per decodificare e ispezionare il suo contenuto",
+      "meta": {
+        "title": "Decodificatore JWT - Strumento Online Gratuito | ToolsLab",
+        "description": "Decodifica e valida JSON Web Token (JWT) online. Ispeziona header, payload e firma. Strumento decodificatore JWT gratuito."
+      }
+    },
+    "uuid-generator": {
+      "title": "Generatore UUID",
+      "description": "Genera UUID casuali (v1, v4, v5)",
+      "instructions": "Seleziona la versione UUID e genera identificatori univoci",
+      "meta": {
+        "title": "Generatore UUID - Strumento Online Gratuito | ToolsLab",
+        "description": "Genera UUID casuali online. Supporto per versioni UUID v1, v4 e v5. Generatore UUID gratuito con generazione in blocco."
+      }
+    },
+    "hash-generator": {
+      "title": "Generatore Hash",
+      "description": "Genera hash MD5, SHA-1, SHA-256 e SHA-512",
+      "placeholder": "Inserisci il testo da hashare...",
+      "instructions": "Inserisci il testo per generare vari formati hash",
+      "meta": {
+        "title": "Generatore Hash - Strumento Online Gratuito | ToolsLab",
+        "description": "Genera hash MD5, SHA-1, SHA-256 e SHA-512 online. Generatore hash gratuito per testo e file."
+      }
+    },
+    "css-minifier": {
+      "title": "Minimizzatore CSS",
+      "description": "Minimizza e comprimi codice CSS",
+      "placeholder": "Incolla qui il tuo codice CSS...",
+      "instructions": "Incolla il tuo codice CSS per minimizzarlo e ottimizzarlo",
+      "meta": {
+        "title": "Minimizzatore CSS - Strumento Online Gratuito | ToolsLab",
+        "description": "Minimizza e comprimi codice CSS online. Riduci le dimensioni del file e migliora la velocità di caricamento. Strumento minimizzatore CSS gratuito."
+      }
+    },
+    "javascript-minifier": {
+      "title": "Minimizzatore JavaScript",
+      "description": "Minimizza e comprimi codice JavaScript",
+      "placeholder": "Incolla qui il tuo codice JavaScript...",
+      "instructions": "Incolla il tuo codice JavaScript per minimizzarlo",
+      "meta": {
+        "title": "Minimizzatore JavaScript - Strumento Online Gratuito | ToolsLab",
+        "description": "Minimizza e comprimi codice JavaScript online. Riduci le dimensioni del file per un caricamento più veloce. Strumento minimizzatore JS gratuito."
+      }
+    },
+    "html-minifier": {
+      "title": "Minimizzatore HTML",
+      "description": "Minimizza e comprimi codice HTML",
+      "placeholder": "Incolla qui il tuo codice HTML...",
+      "instructions": "Incolla il tuo codice HTML per minimizzarlo e ottimizzarlo",
+      "meta": {
+        "title": "Minimizzatore HTML - Strumento Online Gratuito | ToolsLab",
+        "description": "Minimizza e comprimi codice HTML online. Ottimizza per un caricamento più veloce della pagina. Strumento minimizzatore HTML gratuito."
+      }
+    },
+    "sql-formatter": {
+      "title": "Formattatore SQL",
+      "description": "Formatta e abbellisce query SQL",
+      "placeholder": "Incolla qui la tua query SQL...",
+      "instructions": "Incolla la tua query SQL per formattarla e abbellirla",
+      "meta": {
+        "title": "Formattatore SQL - Strumento Online Gratuito | ToolsLab",
+        "description": "Formatta e abbellisce query SQL online. Supporto per più dialetti SQL. Strumento formattatore SQL gratuito."
+      }
+    },
+    "url-encoder": {
+      "title": "Codificatore URL",
+      "description": "Codifica testo per uso sicuro in URL",
+      "placeholder": "Inserisci il testo da codificare per URL...",
+      "instructions": "Inserisci il testo da codificare per i parametri URL",
+      "meta": {
+        "title": "Codificatore URL - Strumento Online Gratuito | ToolsLab",
+        "description": "Codifica testo per uso sicuro in URL. Converti caratteri speciali in formato URL-safe. Strumento codificatore URL gratuito."
+      }
+    },
+    "url-decoder": {
+      "title": "Decodificatore URL",
+      "description": "Decodifica testo codificato URL",
+      "placeholder": "Inserisci il testo codificato URL...",
+      "instructions": "Incolla il testo codificato URL per decodificarlo",
+      "meta": {
+        "title": "Decodificatore URL - Strumento Online Gratuito | ToolsLab",
+        "description": "Decodifica testo codificato URL online. Converti parametri URL in testo leggibile. Strumento decodificatore URL gratuito."
+      }
+    },
+    "color-converter": {
+      "title": "Convertitore Colori",
+      "description": "Converti tra formati colore HEX, RGB, HSL",
+      "placeholder": "Inserisci un valore colore...",
+      "instructions": "Inserisci un colore in qualsiasi formato per convertirlo",
+      "meta": {
+        "title": "Convertitore Colori - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti tra formati colore HEX, RGB, HSL e HSV. Convertitore colori online gratuito con anteprima."
+      }
+    },
+    "markdown-to-html": {
+      "title": "Markdown in HTML",
+      "description": "Converti Markdown in HTML con anteprima",
+      "placeholder": "Inserisci testo Markdown...",
+      "instructions": "Inserisci testo Markdown da convertire in HTML",
+      "meta": {
+        "title": "Convertitore Markdown in HTML - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti Markdown in HTML online con anteprima live. Supporto per GFM ed evidenziazione sintassi. Convertitore Markdown gratuito."
+      }
+    },
+    "csv-to-json": {
+      "title": "CSV in JSON",
+      "description": "Converti file CSV in formato JSON",
+      "placeholder": "Incolla dati CSV o carica file...",
+      "instructions": "Incolla dati CSV o carica un file da convertire in JSON",
+      "meta": {
+        "title": "Convertitore CSV in JSON - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti file CSV in formato JSON online. Supporto per delimitatori personalizzati e intestazioni. Convertitore CSV in JSON gratuito."
+      }
+    },
+    "json-to-csv": {
+      "title": "JSON in CSV",
+      "description": "Converti dati JSON in formato CSV",
+      "placeholder": "Incolla dati JSON...",
+      "instructions": "Incolla dati JSON da convertire in formato CSV",
+      "meta": {
+        "title": "Convertitore JSON in CSV - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti dati JSON in formato CSV online. Appiattisci oggetti e array nidificati. Convertitore JSON in CSV gratuito."
+      }
+    },
+    "xml-to-json": {
+      "title": "XML in JSON",
+      "description": "Converti XML in formato JSON",
+      "placeholder": "Incolla dati XML...",
+      "instructions": "Incolla dati XML da convertire in JSON",
+      "meta": {
+        "title": "Convertitore XML in JSON - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti XML in formato JSON online. Preserva attributi e namespace. Convertitore XML in JSON gratuito."
+      }
+    },
+    "yaml-to-json": {
+      "title": "YAML in JSON",
+      "description": "Converti YAML in formato JSON",
+      "placeholder": "Incolla dati YAML...",
+      "instructions": "Incolla dati YAML da convertire in JSON",
+      "meta": {
+        "title": "Convertitore YAML in JSON - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti YAML in formato JSON online. Supporto per YAML multi-documento. Convertitore YAML in JSON gratuito."
+      }
+    },
+    "json-to-yaml": {
+      "title": "JSON in YAML",
+      "description": "Converti JSON in formato YAML",
+      "placeholder": "Incolla dati JSON...",
+      "instructions": "Incolla dati JSON da convertire in YAML",
+      "meta": {
+        "title": "Convertitore JSON in YAML - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti JSON in formato YAML online. Output YAML pulito e leggibile. Convertitore JSON in YAML gratuito."
+      }
+    },
+    "regex-tester": {
+      "title": "Tester Regex",
+      "description": "Testa e debugga espressioni regolari",
+      "placeholder": "Inserisci il tuo pattern regex...",
+      "instructions": "Inserisci un pattern regex e una stringa di test per il debug",
+      "meta": {
+        "title": "Tester Regex - Strumento Online Gratuito | ToolsLab",
+        "description": "Testa e debugga espressioni regolari online. Supporto per più flag regex. Tester regex gratuito con evidenziazione delle corrispondenze."
+      }
+    },
+    "lorem-ipsum": {
+      "title": "Generatore Lorem Ipsum",
+      "description": "Genera testo placeholder per design",
+      "instructions": "Configura e genera testo Lorem Ipsum",
+      "meta": {
+        "title": "Generatore Lorem Ipsum - Strumento Online Gratuito | ToolsLab",
+        "description": "Genera testo placeholder Lorem Ipsum online. Personalizza paragrafi, parole e formato. Generatore Lorem Ipsum gratuito."
+      }
+    },
+    "password-generator": {
+      "title": "Generatore Password",
+      "description": "Genera password casuali sicure",
+      "instructions": "Configura i requisiti password e genera",
+      "meta": {
+        "title": "Generatore Password - Strumento Online Gratuito | ToolsLab",
+        "description": "Genera password casuali sicure online. Personalizza lunghezza e tipi di caratteri. Generatore password gratuito."
+      }
+    },
+    "unix-timestamp": {
+      "title": "Convertitore Unix Timestamp",
+      "description": "Converti tra Unix timestamp e data",
+      "placeholder": "Inserisci timestamp o seleziona data...",
+      "instructions": "Converti tra Unix timestamp e date leggibili",
+      "meta": {
+        "title": "Convertitore Unix Timestamp - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti tra Unix timestamp e data online. Supporto per millisecondi e fusi orari. Convertitore timestamp gratuito."
+      }
+    },
+    "qr-generator": {
+      "title": "Generatore QR Code",
+      "description": "Genera codici QR per testo, URL e altro",
+      "placeholder": "Inserisci testo o URL...",
+      "instructions": "Inserisci il contenuto per generare un codice QR",
+      "meta": {
+        "title": "Generatore QR Code - Strumento Online Gratuito | ToolsLab",
+        "description": "Genera codici QR online per testo, URL, WiFi e altro. Personalizza le dimensioni e scarica come immagine. Generatore QR gratuito."
+      }
+    },
+    "image-converter": {
+      "title": "Convertitore Immagini",
+      "description": "Converti immagini tra diversi formati",
+      "instructions": "Carica un'immagine da convertire in un altro formato",
+      "meta": {
+        "title": "Convertitore Immagini - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti immagini tra JPG, PNG, WebP e altro. Supporto conversione batch. Convertitore immagini online gratuito."
+      }
+    },
+    "text-case-converter": {
+      "title": "Convertitore Maiuscole/Minuscole",
+      "description": "Converti testo tra diversi casi",
+      "placeholder": "Inserisci il testo da convertire...",
+      "instructions": "Inserisci il testo e seleziona il formato caso target",
+      "meta": {
+        "title": "Convertitore Maiuscole/Minuscole - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti testo tra maiuscole, minuscole, title case e altro. Convertitore maiuscole/minuscole online gratuito."
+      }
+    },
+    "diff-checker": {
+      "title": "Comparatore Differenze",
+      "description": "Confronta due testi e trova le differenze",
+      "instructions": "Incolla due testi per confrontarli e trovare le differenze",
+      "meta": {
+        "title": "Comparatore Differenze - Strumento Online Gratuito | ToolsLab",
+        "description": "Confronta due testi e trova le differenze online. Confronto riga per riga con evidenziazione. Comparatore differenze gratuito."
+      }
+    },
+    "html-escape": {
+      "title": "Escape HTML",
+      "description": "Escapa caratteri speciali HTML",
+      "placeholder": "Inserisci HTML da escapare...",
+      "instructions": "Inserisci codice HTML per escapare caratteri speciali",
+      "meta": {
+        "title": "Escape HTML - Strumento Online Gratuito | ToolsLab",
+        "description": "Escapa caratteri speciali HTML online. Converti entità HTML per visualizzazione sicura. Strumento escape HTML gratuito."
+      }
+    },
+    "html-unescape": {
+      "title": "Unescape HTML",
+      "description": "Converti entità HTML in testo",
+      "placeholder": "Inserisci HTML escapato...",
+      "instructions": "Inserisci HTML escapato per convertirlo in testo",
+      "meta": {
+        "title": "Unescape HTML - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti entità HTML in testo online. Riconverti entità HTML in caratteri. Strumento unescape HTML gratuito."
+      }
+    }
+  }
+}

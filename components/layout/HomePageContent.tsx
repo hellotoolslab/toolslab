@@ -69,8 +69,15 @@ export default function HomePageContent({
   locale = 'en',
   dictionary,
 }: HomePageContentProps) {
+  // Specify sections needed for homepage
+  const homeSections = ['common', 'home', 'footer'];
+
   return (
-    <DictionaryProvider locale={locale} initialDictionary={dictionary}>
+    <DictionaryProvider
+      locale={locale}
+      sections={homeSections}
+      initialDictionary={dictionary}
+    >
       <main className="min-h-screen">
         {/* Above the fold - loaded immediately */}
         <HeroSection locale={locale} dictionary={dictionary} />
