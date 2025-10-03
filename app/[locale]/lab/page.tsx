@@ -22,7 +22,7 @@ export async function generateMetadata({
 
   const title =
     locale === 'it'
-      ? 'Il Mio Lab Sviluppatore - Collezione Strumenti Personale | ToolsLab'
+      ? 'Il Mio Lab - Collezione Strumenti Personale | ToolsLab'
       : 'My Developer Lab - Personal Tool Collection | ToolsLab';
 
   const description =
@@ -72,7 +72,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${locale === 'it' ? 'Il Mio Lab Sviluppatore' : 'My Developer Lab'} - ToolsLab`,
+      title: `${locale === 'it' ? 'Il Mio Lab' : 'My Developer Lab'} - ToolsLab`,
       description:
         locale === 'it'
           ? 'Toolkit personale per sviluppatori. Segna i tuoi preferiti, crea flussi di lavoro, mantieni la privacy.'

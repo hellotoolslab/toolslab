@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { LabLogo } from '@/components/icons/LabLogo';
 import { useToolStore } from '@/lib/store/toolStore';
 import { GitHubStars } from '@/components/ui/github-stars';
-import { useLocale } from '@/hooks/useLocale';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import { useDictionarySection } from '@/hooks/useDictionary';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
@@ -21,6 +21,8 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { getNewFavoritesCount } = useToolStore();
+  const { locale, createHref } = useLocalizedRouter();
+  const { data: common } = useDictionarySection('common');
 
   useEffect(() => {
     setMounted(true);
@@ -79,7 +81,7 @@ export function Header() {
               )}
             >
               <Zap className="mr-1 h-4 w-4" />
-              {nav?.nav?.tools || 'Tools'}
+              {common?.nav?.tools || 'Tools'}
             </Link>
 
             {/* Categories dropdown */}
@@ -91,7 +93,7 @@ export function Header() {
                 aria-label="Categories menu"
               >
                 <Grid3X3 className="mr-1 h-4 w-4" />
-                {nav?.nav?.categories || 'Categories'}
+                {common?.nav?.categories || 'Categories'}
                 <svg
                   className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180"
                   fill="none"
@@ -193,7 +195,7 @@ export function Header() {
               )}
             >
               <Info className="mr-1 h-4 w-4" />
-              {nav?.nav?.about || 'About'}
+              {common?.nav?.about || 'About'}
             </Link>
 
             {/* GitHub Stars */}
@@ -254,7 +256,7 @@ export function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Zap className="h-5 w-5" />
-                <span>{nav?.nav?.tools || 'Tools'}</span>
+                <span>{common?.nav?.tools || 'Tools'}</span>
               </Link>
               <Link
                 href={createHref('/lab')}
@@ -275,12 +277,12 @@ export function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Info className="h-5 w-5" />
-                <span>{nav?.nav?.about || 'About'}</span>
+                <span>{common?.nav?.about || 'About'}</span>
               </Link>
 
               <div className="border-t border-white/10 pt-4">
                 <div className="mb-3 text-sm font-medium text-gray-400">
-                  {nav?.nav?.categories || 'Categories'}
+                  {common?.nav?.categories || 'Categories'}
                 </div>
                 <div className="space-y-2">
                   {/* Hub Link - Browse All Categories */}
@@ -292,7 +294,7 @@ export function Header() {
                     <Grid3X3 className="h-5 w-5" />
                     <div>
                       <div className="text-sm font-semibold">
-                        {nav?.nav?.categories || 'Browse All Categories'}
+                        {common?.nav?.categories || 'Browse All Categories'}
                       </div>
                       <div className="text-xs text-violet-400">
                         Overview & comparison

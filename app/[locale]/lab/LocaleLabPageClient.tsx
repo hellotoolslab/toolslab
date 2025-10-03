@@ -80,7 +80,7 @@ export function LocaleLabPageClient({
 
   // Localized texts
   const text = {
-    title: locale === 'it' ? 'Il Mio Lab Sviluppatore' : 'My Developer Lab',
+    title: locale === 'it' ? 'Il Mio Lab' : 'My Developer Lab',
     subtitle:
       locale === 'it'
         ? 'Il tuo toolkit personalizzato per la massima produttività'

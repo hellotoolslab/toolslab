@@ -131,6 +131,8 @@ export const metadata: Metadata = {
     canonical: 'https://toolslab.dev',
   },
 
+  manifest: '/manifest.webmanifest',
+
   category: 'technology',
 };
 

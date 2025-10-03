@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import Link from 'next/link';
 import {
   tools,
@@ -36,7 +37,7 @@ type SortOption = 'alphabetical' | 'popular' | 'recent' | 'category';
 
 export default function ToolsHubContent() {
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const { replace } = useLocalizedRouter();
 
   // URL-based state management
   const [searchQuery, setSearchQuery] = useState('');
@@ -136,8 +137,8 @@ export default function ToolsHubContent() {
     if (sortBy !== 'popular') params.set('sort', sortBy);
 
     const newUrl = `/tools${params.toString() ? `?${params.toString()}` : ''}`;
-    router.replace(newUrl, { scroll: false });
-  }, [searchQuery, selectedCategory, sortBy, router]);
+    replace(newUrl);
+  }, [searchQuery, selectedCategory, sortBy, replace]);
 
   // Get category stats
   const categoryStats = categories.map((category) => ({
