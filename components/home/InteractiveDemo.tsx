@@ -6,11 +6,16 @@ import { ArrowRight, Copy, Check, Sparkles, Search } from 'lucide-react';
 import Link from 'next/link';
 import { formatJson } from '@/lib/tools/json-formatter';
 import { useLocale } from '@/hooks/useLocale';
+import { useDictionarySection } from '@/hooks/useDictionary';
 
 const sampleJson = `{"user":{"id":1,"name":"John Doe","email":"john@example.com","roles":["admin","user"],"settings":{"theme":"dark","notifications":true}}}`;
 
 export function InteractiveDemo() {
   const { createHref } = useLocale();
+  const { data: t } = useDictionarySection('home');
+  const demo = t?.interactiveDemo;
+  const { data: commonT } = useDictionarySection('common');
+
   const [isFormatted, setIsFormatted] = useState(false);
   const [copied, setCopied] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -110,10 +115,10 @@ export function InteractiveDemo() {
             </span>
           </div>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            See It In Action
+            {demo?.title || 'See It In Action'}
           </h2>
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-            Try our JSON formatter right here, right now
+            {demo?.subtitle || 'Try our JSON formatter right here, right now'}
           </p>
         </div>
 
@@ -131,12 +136,12 @@ export function InteractiveDemo() {
                   {copied ? (
                     <>
                       <Check className="h-4 w-4 text-green-500" />
-                      Copied!
+                      {commonT?.messages?.copied || 'Copied!'}
                     </>
                   ) : (
                     <>
                       <Copy className="h-4 w-4" />
-                      Copy
+                      {demo?.copyButton || 'Copy'}
                     </>
                   )}
                 </button>
@@ -193,7 +198,7 @@ export function InteractiveDemo() {
                     className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:shadow-xl"
                   >
                     <Sparkles className="h-5 w-5" />
-                    Format JSON
+                    {demo?.formatButton || 'Format JSON'}
                   </motion.button>
                 </div>
               )}
@@ -293,11 +298,12 @@ export function InteractiveDemo() {
                   </div>
                   <div>
                     <p className="font-medium text-green-900 dark:text-green-100">
-                      JSON formatted successfully!
+                      {demo?.validationSuccess ||
+                        'JSON formatted successfully!'}
                     </p>
                     <p className="text-sm text-green-700 dark:text-green-300">
-                      Your JSON is now properly formatted and readable. Try the
-                      key search feature below!
+                      {demo?.features?.prettyPrint ||
+                        'Your JSON is now properly formatted and readable'}
                     </p>
                   </div>
                 </div>
@@ -309,15 +315,14 @@ export function InteractiveDemo() {
           <div className="border-t border-gray-200 bg-gray-50 px-6 py-4 dark:border-gray-700 dark:bg-gray-900">
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Like what you see? Try the full-featured JSON formatter with
-                syntax highlighting, validation, key search, and more advanced
-                features.
+                {demo?.features?.title ||
+                  'Like what you see? Try the full-featured JSON formatter'}
               </p>
               <Link
                 href={createHref('/tools/json-formatter')}
                 className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
               >
-                Try Full JSON Formatter
+                {demo?.sampleButton || 'Try Full JSON Formatter'}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

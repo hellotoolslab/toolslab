@@ -150,6 +150,134 @@
           "description": "Start using tools immediately. No barriers, just productivity."
         }
       }
+    },
+    "trustMetrics": {
+      "dailyOperations": "Daily Operations",
+      "privacyFocused": "Privacy Focused",
+      "processingTime": "Processing Time",
+      "activeUsers": "Active Users"
+    },
+    "poweredBy": {
+      "title": "Powered By",
+      "subtitle": "Built with industry-leading tools and services",
+      "github": {
+        "name": "GitHub",
+        "description": "Code Repository"
+      },
+      "vercel": {
+        "name": "Vercel",
+        "description": "Hosting & Deploy"
+      },
+      "umami": {
+        "name": "Umami",
+        "description": "Privacy Analytics"
+      },
+      "cloudflare": {
+        "name": "Cloudflare",
+        "description": "CDN & Security"
+      },
+      "porkbun": {
+        "name": "Porkbun",
+        "description": "Domain Registry"
+      }
+    },
+    "interactiveDemo": {
+      "title": "Try Our JSON Formatter",
+      "subtitle": "Interactive demo - format JSON in real-time",
+      "action": "Format JSON",
+      "searchPlaceholder": "Search by key...",
+      "searchButton": "Search",
+      "copyButton": "Copy",
+      "copied": "Copied!",
+      "viewTool": "View Full Tool"
+    },
+    "toolDiscovery": {
+      "title": "Discover Tools by Use Case",
+      "subtitle": "Find the right tool for your specific workflow",
+      "tabs": {
+        "api": {
+          "label": "API Development",
+          "description": "Tools for API testing and development"
+        },
+        "data": {
+          "label": "Data Processing",
+          "description": "Transform and process your data"
+        },
+        "web": {
+          "label": "Web Development",
+          "description": "Essential web dev utilities"
+        },
+        "security": {
+          "label": "Security",
+          "description": "Security and encryption tools"
+        },
+        "productivity": {
+          "label": "Productivity",
+          "description": "Boost your productivity"
+        }
+      },
+      "viewTool": "View Tool",
+      "exploreAll": "Explore all tools"
+    },
+    "seoContent": {
+      "title": "Frequently Asked Questions",
+      "mainTitle": "The Complete Developer Toolbox You've Been Looking For",
+      "intro": "ToolsLab brings together 50+ essential developer tools in one fast, privacy-focused platform. Whether you need to format JSON, decode Base64, generate UUIDs, or validate JWTs, we've got you covered. Our tools are designed to save you time and streamline your development workflow.",
+      "builtForDevs": {
+        "title": "Built for Developers, by Developers",
+        "description": "Every tool is optimized for speed and accuracy. No ads cluttering your workspace, no tracking cookies following you around, no mandatory signups blocking your access. Just pure functionality that respects your privacy and time. We understand the frustration of bloated tool sites, so we built something better."
+      },
+      "ctaBox": {
+        "title": "Ready to supercharge your development workflow?",
+        "description": "Join hundreds of developers who use ToolsLab daily. No signup required, just pick a tool and start coding smarter."
+      },
+      "features": {
+        "lightningFast": {
+          "title": "🚀 Lightning Fast",
+          "description": "All tools run directly in your browser. No server round-trips, no waiting for responses. Process megabytes of data in milliseconds."
+        },
+        "private": {
+          "title": "🔒 100% Private",
+          "description": "Your data never leaves your browser. No cloud storage, no analytics tracking, no data mining. Complete privacy guaranteed."
+        },
+        "toolChaining": {
+          "title": "🔗 Tool Chaining",
+          "description": "Connect tools together for complex workflows. Format JSON, then encode to Base64, then generate a hash - all in one seamless flow."
+        },
+        "worksEverywhere": {
+          "title": "📱 Works Everywhere",
+          "description": "Responsive design that works perfectly on desktop, tablet, and mobile. Use ToolsLab wherever you code."
+        }
+      },
+      "faqs": {
+        "different": {
+          "question": "What makes ToolsLab different from other developer tool sites?",
+          "answer": "Unlike other tool sites, ToolsLab processes everything locally in your browser using WebAssembly and Web Workers. This means zero data storage, instant processing, and complete privacy. We also offer unique features like tool chaining for complex workflows and a clean, ad-free interface."
+        },
+        "free": {
+          "question": "Is ToolsLab really free? What's the catch?",
+          "answer": "Yes, ToolsLab is completely free with no hidden costs. We believe in providing value to the developer community. The platform may be supported through ethical, non-intrusive ads in the future and optional donations. There are no premium tiers, no signup walls, and no feature limitations."
+        },
+        "privacy": {
+          "question": "How does ToolsLab ensure my data privacy?",
+          "answer": "All processing happens directly in your browser using client-side JavaScript. Your data never leaves your device or touches our servers. We don't use tracking cookies, we don't store your inputs, and we're fully GDPR compliant. You can even use ToolsLab offline once the page loads."
+        },
+        "commercial": {
+          "question": "Can I use ToolsLab for commercial projects?",
+          "answer": "Yes, you can use ToolsLab for commercial projects, but we ethically encourage using it primarily for personal and educational purposes. ToolsLab was built as a free community resource for developers. While there are no licensing restrictions, supporting the project through donations is appreciated if you find significant commercial value."
+        },
+        "browsers": {
+          "question": "What browsers and devices does ToolsLab support?",
+          "answer": "ToolsLab works on all modern browsers including Chrome, Firefox, Safari, and Edge. Our responsive design ensures a great experience on desktop, tablet, and mobile devices. We recommend using the latest browser version for optimal performance."
+        }
+      }
+    },
+    "footerCTA": {
+      "title": "Start Using ToolsLab Now",
+      "subtitle": "Join thousands of developers who trust ToolsLab",
+      "description": "Free, fast, and secure developer tools. No signup required.",
+      "button": "Explore All Tools",
+      "quickAccess": "Quick Access"
     }
   },
   "tools": {

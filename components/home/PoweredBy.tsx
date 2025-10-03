@@ -2,47 +2,42 @@
 
 import { Github, Zap, BarChart3, CloudCog, Globe } from 'lucide-react';
 import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { useDictionarySection } from '@/hooks/useDictionary';
 
-interface PoweredByService {
-  name: string;
-  description: string;
+interface PoweredByServiceConfig {
+  id: 'github' | 'vercel' | 'umami' | 'cloudflare' | 'porkbun';
   icon: React.ReactNode;
   url: string;
   color: string;
 }
 
-const poweredByServices: PoweredByService[] = [
+const servicesConfig: PoweredByServiceConfig[] = [
   {
-    name: 'GitHub',
-    description: 'Code Repository',
+    id: 'github',
     icon: <Github className="h-8 w-8" />,
     url: 'https://github.com',
     color: '#181717',
   },
   {
-    name: 'Vercel',
-    description: 'Hosting & Deploy',
+    id: 'vercel',
     icon: <Zap className="h-8 w-8" />,
     url: 'https://vercel.com',
     color: '#000000',
   },
   {
-    name: 'Umami',
-    description: 'Privacy Analytics',
+    id: 'umami',
     icon: <BarChart3 className="h-8 w-8" />,
     url: 'https://umami.is',
     color: '#FF6B35',
   },
   {
-    name: 'Cloudflare',
-    description: 'CDN & Security',
+    id: 'cloudflare',
     icon: <CloudCog className="h-8 w-8" />,
     url: 'https://cloudflare.com',
     color: '#F38020',
   },
   {
-    name: 'Porkbun',
-    description: 'Domain Registry',
+    id: 'porkbun',
     icon: <Globe className="h-8 w-8" />,
     url: 'https://porkbun.com',
     color: '#FF6B9D',
@@ -50,15 +45,22 @@ const poweredByServices: PoweredByService[] = [
 ];
 
 interface PoweredByCardProps {
-  service: PoweredByService;
+  service: PoweredByServiceConfig;
+  name: string;
+  description: string;
   index: number;
 }
 
-function PoweredByCard({ service, index }: PoweredByCardProps) {
+function PoweredByCard({
+  service,
+  name,
+  description,
+  index,
+}: PoweredByCardProps) {
   const { trackSocial } = useUmami();
 
   const handleClick = () => {
-    trackSocial(service.name.toLowerCase(), 'powered-by-section');
+    trackSocial(service.id, 'powered-by-section');
   };
 
   return (
@@ -95,10 +97,10 @@ function PoweredByCard({ service, index }: PoweredByCardProps) {
 
         <div className="text-center">
           <div className="mb-1 font-semibold text-gray-900 transition-colors duration-300 group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-300">
-            {service.name}
+            {name}
           </div>
           <div className="text-xs text-gray-600 transition-colors duration-300 group-hover:text-gray-700 dark:text-slate-400 dark:group-hover:text-slate-300">
-            {service.description}
+            {description}
           </div>
         </div>
       </div>
@@ -107,6 +109,9 @@ function PoweredByCard({ service, index }: PoweredByCardProps) {
 }
 
 export function PoweredBy() {
+  const { data: t } = useDictionarySection('home');
+  const poweredBy = t?.poweredBy;
+
   return (
     <section className="relative bg-gradient-to-br from-gray-50 to-white py-20 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Gradient divider line */}
@@ -124,17 +129,27 @@ export function PoweredBy() {
       <div className="container relative mx-auto max-w-7xl px-6">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Powered By
+            {poweredBy?.title || 'Powered By'}
           </h2>
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-            Built with industry-leading tools and services
+            {poweredBy?.subtitle ||
+              'Built with industry-leading tools and services'}
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
-          {poweredByServices.map((service, index) => (
-            <PoweredByCard key={service.name} service={service} index={index} />
-          ))}
+          {servicesConfig.map((service, index) => {
+            const serviceData = poweredBy?.services?.[service.id];
+            return (
+              <PoweredByCard
+                key={service.id}
+                service={service}
+                name={serviceData?.name || service.id}
+                description={serviceData?.description || ''}
+                index={index}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
