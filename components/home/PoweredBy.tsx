@@ -67,7 +67,7 @@ function PoweredByCard({ service, index }: PoweredByCardProps) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className="group relative overflow-hidden rounded-2xl border border-slate-800/50 bg-slate-900/50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-700/70 hover:bg-slate-900/70 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-slate-950"
+      className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-violet-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 dark:border-slate-800/50 dark:bg-slate-900/50 dark:hover:border-slate-700/70 dark:hover:bg-slate-900/70"
     >
       {/* Subtle gradient overlay on hover */}
       <div
@@ -79,25 +79,25 @@ function PoweredByCard({ service, index }: PoweredByCardProps) {
 
       <div className="relative z-10 flex flex-col items-center space-y-4">
         <div
-          className="text-slate-500 transition-all duration-300 group-hover:scale-110"
+          className="text-gray-500 transition-all duration-300 group-hover:scale-110 dark:text-slate-500"
           style={{
-            color: 'rgb(100, 116, 139)', // slate-500
+            color: undefined,
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = service.color;
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = 'rgb(100, 116, 139)';
+            e.currentTarget.style.color = '';
           }}
         >
           {service.icon}
         </div>
 
         <div className="text-center">
-          <div className="mb-1 font-semibold text-white transition-colors duration-300 group-hover:text-violet-300">
+          <div className="mb-1 font-semibold text-gray-900 transition-colors duration-300 group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-300">
             {service.name}
           </div>
-          <div className="text-xs text-slate-400 transition-colors duration-300 group-hover:text-slate-300">
+          <div className="text-xs text-gray-600 transition-colors duration-300 group-hover:text-gray-700 dark:text-slate-400 dark:group-hover:text-slate-300">
             {service.description}
           </div>
         </div>
@@ -108,16 +108,13 @@ function PoweredByCard({ service, index }: PoweredByCardProps) {
 
 export function PoweredBy() {
   return (
-    <section className="relative bg-slate-950 py-20">
-      {/* Gradient fade from light section */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent dark:from-gray-900"></div>
-
+    <section className="relative bg-gradient-to-br from-gray-50 to-white py-20 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       {/* Gradient divider line */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent"></div>
 
       {/* Subtle dot pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
         style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, rgb(148 163 184) 1px, transparent 0)`,
           backgroundSize: '32px 32px',
