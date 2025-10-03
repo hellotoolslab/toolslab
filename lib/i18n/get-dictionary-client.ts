@@ -2,38 +2,24 @@
 
 import type { Locale } from './config';
 import type { Dictionary } from './types';
-
-// Client-side dictionary cache (full dictionaries)
-const dictionaries = new Map<Locale, Dictionary>();
-
-// Section cache (per-locale per-sections combination)
-const sectionCache = new Map<string, Dictionary>();
+import {
+  BaseDictionaryLoader,
+  validateSections,
+} from './base-dictionary-loader';
 
 /**
- * Client-side dictionary loader for client components
- * Uses API route to fetch dictionaries (full or specific sections)
- *
- * @param locale - The locale to load
- * @param sections - Optional array of sections to load (e.g., ['common', 'home'])
+ * Client-side dictionary loader implementation
+ * Fetches dictionaries from API route
  */
-export const getClientDictionary = async (
-  locale: Locale,
-  sections?: string[]
-): Promise<Dictionary> => {
-  // Generate cache key
-  const cacheKey = sections ? `${locale}:${sections.sort().join(',')}` : locale;
+class ClientDictionaryLoader extends BaseDictionaryLoader {
+  protected async loadFromSource(
+    locale: Locale,
+    sections?: string[]
+  ): Promise<Dictionary> {
+    if (!validateSections(sections)) {
+      throw new Error(`Invalid sections: ${sections?.join(',')}`);
+    }
 
-  // Check section-specific cache first
-  if (sections && sectionCache.has(cacheKey)) {
-    return sectionCache.get(cacheKey)!;
-  }
-
-  // Check full dictionary cache
-  if (!sections && dictionaries.has(locale)) {
-    return dictionaries.get(locale)!;
-  }
-
-  try {
     // Build fetch URL with sections parameter
     const url = sections
       ? `/api/dictionary/${locale}?sections=${sections.join(',')}`
@@ -47,16 +33,26 @@ export const getClientDictionary = async (
       );
     }
 
-    const dictionary = await response.json();
+    return response.json();
+  }
+}
 
-    // Cache appropriately
-    if (sections) {
-      sectionCache.set(cacheKey, dictionary);
-    } else {
-      dictionaries.set(locale, dictionary);
-    }
+// Singleton instance
+const clientLoader = new ClientDictionaryLoader();
 
-    return dictionary;
+/**
+ * Client-side dictionary loader for client components
+ * Uses API route to fetch dictionaries with caching
+ *
+ * @param locale - The locale to load
+ * @param sections - Optional array of sections to load (e.g., ['common', 'home'])
+ */
+export const getClientDictionary = async (
+  locale: Locale,
+  sections?: string[]
+): Promise<Dictionary> => {
+  try {
+    return await clientLoader.load(locale, sections);
   } catch (error) {
     console.error(
       `Failed to load client dictionary for locale: ${locale}, sections: ${sections?.join(',') || 'all'}`,
