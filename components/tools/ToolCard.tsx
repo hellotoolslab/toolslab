@@ -52,7 +52,7 @@ export function ToolCard({
 
   // Coming soon message
   const comingSoonMessage =
-    dictionary?.common?.messages?.comingSoon ||
+    (dictionary?.common?.messages as any)?.comingSoon ||
     'This tool is coming soon. Stay tuned for updates!';
 
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {

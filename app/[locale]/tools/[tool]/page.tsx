@@ -139,19 +139,16 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
   }
 
   const dict = await getDictionary(locale as Locale);
-  const toolSchema = generateToolSchema(toolId);
+  const toolSchema = await generateToolSchema(toolId);
 
-  // Extract tool-specific translations
-  // For now, use tool-seo.ts as source (will be moved to dictionaries later)
-  const { toolSEO } = await import('@/lib/tool-seo');
-  const seoData = toolSEO[toolId];
+  // Extract tool-specific translations from granular JSON files
   const toolData = dict.tools?.[toolId] as any;
 
   const toolTranslations = {
     title: toolData?.title || tool.name,
     description: toolData?.description || tool.description,
-    tagline: toolData?.tagline || seoData?.tagline,
-    pageDescription: toolData?.pageDescription || seoData?.pageDescription,
+    tagline: toolData?.tagline,
+    pageDescription: toolData?.pageDescription,
     placeholder: toolData?.placeholder,
     instructions: toolData?.instructions,
   };

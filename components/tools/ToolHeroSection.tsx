@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { Sparkles, Zap } from 'lucide-react';
-import { toolSEO, ToolSEO } from '@/lib/tool-seo';
 
 interface ToolHeroSectionProps {
   toolId: string;
@@ -32,18 +31,17 @@ export default function ToolHeroSection({
   className = '',
 }: ToolHeroSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const seoData = toolSEO[toolId];
 
-  // Use provided translations first, fallback to toolSEO
-  const tagline = toolTagline || seoData?.tagline || toolDescription;
-  const pageDescription = toolPageDescription || seoData?.pageDescription;
+  // Use provided translations (from JSON granular files)
+  const tagline = toolTagline || toolDescription;
+  const pageDescription = toolPageDescription;
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   // Fallback for tools without SEO data
-  if (!seoData) {
+  if (!toolTagline && !toolPageDescription) {
     return (
       <div className={`mb-8 text-center ${className}`}>
         <div

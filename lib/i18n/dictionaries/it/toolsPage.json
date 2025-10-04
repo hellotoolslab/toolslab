@@ -1,0 +1,83 @@
+{
+  "breadcrumb": {
+    "home": "Home",
+    "allTools": "Tutti gli Strumenti"
+  },
+  "header": {
+    "title": "Tutti gli Strumenti per Sviluppatori - Tools Online Gratuiti",
+    "subtitle": "Collezione completa di strumenti professionali per sviluppatori, data analyst e amministratori di sistema",
+    "description": "strumenti gratuiti basati su browser per formattazione JSON, codifica Base64, generazione hash e altro. Nessuna trasmissione dati, nessuna registrazione richiesta."
+  },
+  "trust": {
+    "tools": "strumenti",
+    "freeForever": "Gratis per sempre",
+    "privacyFirst": "Privacy prima di tutto"
+  },
+  "search": {
+    "placeholder": "Cerca strumenti... (es. 'json', 'codifica', 'hash')"
+  },
+  "filters": {
+    "all": "Tutti",
+    "sortBy": "Ordina per:",
+    "mostPopular": "Più Popolari",
+    "alphabetical": "A-Z",
+    "recentlyAdded": "Aggiunti di Recente",
+    "category": "Categoria",
+    "clearFilters": "Cancella filtri"
+  },
+  "sections": {
+    "recentlyAdded": "Strumenti Aggiunti di Recente",
+    "newTools": "nuovi strumenti",
+    "mostPopular": "Strumenti Più Popolari",
+    "trendingTools": "strumenti di tendenza",
+    "allTools": "Tutti gli Strumenti"
+  },
+  "empty": {
+    "title": "Nessuno strumento trovato",
+    "description": "Prova a modificare i criteri di ricerca o filtro.",
+    "clearAll": "Cancella tutti i filtri"
+  },
+  "seo": {
+    "whyChoose": {
+      "title": "Perché Scegliere gli Strumenti ToolsLab?",
+      "benefits": [
+        "Privacy completa - tutta l'elaborazione avviene nel tuo browser",
+        "Nessuna registrazione o account richiesto",
+        "Strumenti di livello professionale usati da sviluppatori in tutto il mondo",
+        "Elaborazione in tempo reale con risultati istantanei",
+        "Design responsivo ottimizzato per mobile",
+        "Aggiornamenti regolari con nuovi strumenti e funzionalità"
+      ]
+    },
+    "workflows": {
+      "title": "Flussi di Lavoro Comuni per Sviluppatori",
+      "api": {
+        "title": "Sviluppo e Test API",
+        "tools": [
+          "Formattatore JSON",
+          "Decodificatore JWT",
+          "Codificatore URL",
+          "Generatore di Hash"
+        ]
+      },
+      "data": {
+        "title": "Migrazione Dati ed ETL",
+        "tools": [
+          "CSV a JSON",
+          "Codificatore Base64",
+          "Formattatore SQL",
+          "Generatore UUID"
+        ]
+      },
+      "security": {
+        "title": "Sicurezza e Autenticazione",
+        "tools": [
+          "Decodificatore JWT",
+          "Generatore di Hash",
+          "Generatore di Password",
+          "Strumenti Base64"
+        ]
+      }
+    }
+  }
+}

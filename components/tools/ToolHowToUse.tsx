@@ -7,7 +7,16 @@ import {
   Keyboard,
   Target,
 } from 'lucide-react';
-import { toolInstructions, ToolInstruction } from '@/lib/tool-instructions';
+
+export interface ToolInstruction {
+  title: string;
+  steps: Array<{ title: string; description: string }>;
+  features?: string[];
+  useCases?: string[];
+  proTips?: string[];
+  troubleshooting?: string[];
+  keyboardShortcuts?: Array<{ keys: string; description: string }>;
+}
 
 interface ToolHowToUseProps {
   toolId: string;
@@ -31,8 +40,13 @@ export default function ToolHowToUse({
   instructions: translatedInstructions,
   labels,
 }: ToolHowToUseProps) {
-  // Use translated instructions if available, otherwise fallback to English
-  const instruction = translatedInstructions || toolInstructions[toolId];
+  // Use translated instructions if available AND it's a valid object
+  const instruction =
+    translatedInstructions &&
+    typeof translatedInstructions === 'object' &&
+    'steps' in translatedInstructions
+      ? translatedInstructions
+      : undefined;
 
   // Use translated labels if available, otherwise fallback to English
   const sectionLabels = {

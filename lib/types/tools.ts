@@ -9,6 +9,8 @@ export interface BaseToolProps {
   initialInput?: string;
   onInputChange?: (input: string) => void;
   onOutputChange?: (output: string) => void;
+  locale?: string;
+  dictionary?: any;
 }
 
 // Common tool state pattern

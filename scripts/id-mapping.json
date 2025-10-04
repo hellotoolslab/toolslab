@@ -1,0 +1,24 @@
+{
+  "comment": "Mapping from old IDs (used in IT/FR/ES dictionaries) to new standardized IDs (from tools.ts registry)",
+  "mapping": {
+    "base64-encode": "base64-encode",
+    "base64-decode": "base64-encode",
+    "url-encode": "url-encode",
+    "url-decoder": "url-encode",
+    "url-encoder": "url-encode",
+    "qr-generator": "qr-generator",
+    "qr-code-generator": "qr-generator",
+    "html-escape": "html-entities-encoder",
+    "html-unescape": "html-entities-decoder",
+    "diff-checker": "text-diff",
+    "unix-timestamp": "unix-timestamp-converter",
+    "yaml-json-converter": "yaml-json-converter",
+    "xml-formatter": "xml-formatter",
+    "list-compare": "list-compare",
+    "list-comparator": "list-compare",
+    "markdown-preview": "markdown-preview",
+    "markdown-previewer": "markdown-preview",
+    "js-minifier": "js-minifier",
+    "javascript-minifier": "js-minifier"
+  }
+}

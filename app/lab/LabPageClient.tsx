@@ -21,7 +21,7 @@ export function LabPageClient({
       sections={labSections}
       initialDictionary={dictionary}
     >
-      <NewLabHubContent locale={locale} dictionary={dictionary} />
+      <NewLabHubContent />
     </DictionaryProvider>
   );
 }

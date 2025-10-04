@@ -1,0 +1,85 @@
+{
+  "title": "Minificador JavaScript",
+  "description": "Minifica y comprime código JavaScript",
+  "placeholder": "Pega tu código JavaScript aquí...",
+  "instructions": {
+    "title": "Cómo usar Minificador JavaScript",
+    "steps": [
+      {
+        "title": "Pega tu código JavaScript",
+        "description": "Copia y pega tu código JavaScript en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
+      },
+      {
+        "title": "Configura las opciones (si disponible)",
+        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
+      },
+      {
+        "title": "Examina la salida",
+        "description": "La herramienta minificará y optimizará tu entrada y mostrará el resultado con formato y validación apropiados."
+      },
+      {
+        "title": "Copia o descarga el resultado",
+        "description": "Copia el JavaScript formateado al portapapeles para uso inmediato o descárgalo como archivo."
+      }
+    ],
+    "features": [
+      "Procesamiento en tiempo real con resultados instantáneos",
+      "Sin límite de tamaño para procesamiento basado en navegador",
+      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
+      "Sin carga de datos ni almacenamiento en servidor",
+      "Copiar al portapapeles con un clic",
+      "Descargar resultados como archivo",
+      "Validación de sintaxis y resaltado de errores",
+      "Funciona sin conexión después de la carga inicial"
+    ],
+    "useCases": [
+      "Limpiar y formatear código desordenado para mejor legibilidad",
+      "Estandarizar el estilo de código en equipos de desarrollo",
+      "Depurar estructuras complejas con indentación apropiada",
+      "Preparar código para documentación y revisiones de código",
+      "Convertir entre diferentes estándares de formato",
+      "Validar sintaxis antes del despliegue",
+      "Procesar datos de fuentes externas o APIs",
+      "Generar código listo para producción"
+    ],
+    "proTips": [
+      "Usa atajos de teclado para un flujo de trabajo más rápido",
+      "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
+      "Valida tu entrada antes del procesamiento para detectar errores temprano",
+      "Guarda las configuraciones frecuentes como predeterminadas",
+      "Usa la función de descarga para archivar archivos procesados",
+      "Verifica cuidadosamente la salida antes de usar en producción"
+    ],
+    "troubleshooting": [
+      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
+      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
+      "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
+      "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
+      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Procesar/Formatear"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar archivo"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Minificador JavaScript - Herramienta Online Gratuita | ToolsLab",
+    "description": "Minifica y comprime código JavaScript en línea. Reduce el tamaño del archivo para carga más rápida. Herramienta minificadora JS gratuita."
+  },
+  "tagline": "Minify and optimize JavaScript code with ES6+ support and source maps",
+  "pageDescription": "Professional JavaScript minifier and beautifier with ES2024+ support, reducing bundle size by up to 70% while maintaining functionality. Features advanced optimizations including dead code elimination, variable renaming, function inlining, and tree shaking simulation. Generate source maps for debugging, apply varying compression levels, and maintain modern JavaScript compatibility. Process code securely in your browser with no server uploads - perfect for production optimization and webpack alternative processing."
+}

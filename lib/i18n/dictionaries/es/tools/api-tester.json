@@ -1,0 +1,85 @@
+{
+  "title": "Probador API",
+  "description": "Prueba endpoints API con soporte para varios métodos HTTP y encabezados",
+  "placeholder": "Ingresa la URL de la API...",
+  "meta": {
+    "title": "Probador API - Herramienta Online Gratuita | ToolsLab",
+    "description": "Prueba API REST en línea. Envía solicitudes HTTP con encabezados personalizados. Probador API gratuito."
+  },
+  "tagline": "Prueba API REST con encabezados personalizados y constructor de solicitudes",
+  "pageDescription": "Herramienta profesional de prueba API para desarrolladores. Envía solicitudes HTTP con encabezados, métodos y datos body personalizados. Prueba endpoints RESTful, depura respuestas API y valida flujos de autenticación. Soporta métodos GET, POST, PUT, DELETE, PATCH con visualización de respuestas en tiempo real.",
+  "instructions": {
+    "title": "Cómo usar Probador API",
+    "steps": [
+      {
+        "title": "Ingresa la URL de la API",
+        "description": "Ingresa la URL del endpoint API que deseas probar. La herramienta acepta todos los métodos HTTP estándar."
+      },
+      {
+        "title": "Configura las opciones (si disponible)",
+        "description": "Ajusta el método HTTP, los encabezados personalizados u otros parámetros para satisfacer tus necesidades de prueba."
+      },
+      {
+        "title": "Examina la respuesta",
+        "description": "La herramienta probará tu solicitud y mostrará la respuesta con formato y validación apropiados."
+      },
+      {
+        "title": "Copia o descarga el resultado",
+        "description": "Copia la respuesta al portapapeles para uso inmediato o descárgala como archivo."
+      }
+    ],
+    "features": [
+      "Procesamiento en tiempo real con resultados instantáneos",
+      "Sin límite de tamaño para procesamiento basado en navegador",
+      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
+      "Sin carga de datos ni almacenamiento en servidor",
+      "Copiar al portapapeles con un clic",
+      "Descargar resultados como archivo",
+      "Validación de sintaxis y resaltado de errores",
+      "Funciona sin conexión después de la carga inicial"
+    ],
+    "useCases": [
+      "Probar endpoints API REST rápidamente",
+      "Depurar respuestas API e identificar errores",
+      "Validar flujos de autenticación y tokens",
+      "Probar diferentes métodos HTTP en el mismo endpoint",
+      "Analizar encabezados de respuesta HTTP",
+      "Verificar tiempos de respuesta de API",
+      "Probar API con encabezados personalizados",
+      "Validar formatos de respuesta JSON/XML"
+    ],
+    "proTips": [
+      "Usa atajos de teclado para un flujo de trabajo más rápido",
+      "Guarda solicitudes frecuentes para reutilizarlas",
+      "Verifica los encabezados de respuesta para diagnosticar problemas",
+      "Usa variables de entorno para tokens",
+      "Prueba con diferentes payloads para validar robustez",
+      "Verifica cuidadosamente la respuesta antes de usar en producción"
+    ],
+    "troubleshooting": [
+      "Errores CORS: verifica la configuración del servidor API",
+      "Fallo de solicitud: asegúrate de que la URL sea válida",
+      "Rendimiento lento: verifica tu conexión de red",
+      "Errores de autenticación: valida tus tokens y encabezados",
+      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Enviar solicitud"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar archivo"
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "title": "QR Code Generator",
+  "description": "Generate QR codes for text, URLs, and more",
+  "placeholder": "Enter text or URL...",
+  "instructions": {
+    "title": "How to use QR Code Generator",
+    "steps": [
+      {
+        "title": "Paste your content",
+        "description": "Copy and paste your content into the input area. The tool accepts any format and will process it immediately."
+      },
+      {
+        "title": "Configure options (if available)",
+        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+      },
+      {
+        "title": "Review the output",
+        "description": "The tool will generate your input and display the result with proper formatting and validation."
+      },
+      {
+        "title": "Copy or download result",
+        "description": "Copy the generated output to your clipboard for immediate use or download it as a file for storage and sharing."
+      }
+    ],
+    "features": [
+      "Real-time processing with instant results",
+      "No file size limits for browser-based processing",
+      "Completely secure - all processing happens in your browser",
+      "No data uploads or server storage",
+      "Copy to clipboard with one click",
+      "Download results as file",
+      "Syntax validation and error highlighting",
+      "Works offline after initial page load"
+    ],
+    "useCases": [
+      "Clean up and format messy code for better readability",
+      "Standardize code style across development teams",
+      "Debug complex structures with proper indentation",
+      "Prepare code for documentation and code reviews",
+      "Convert between different formatting standards",
+      "Validate syntax before deployment",
+      "Process data from external sources or APIs",
+      "Generate production-ready code from development versions"
+    ],
+    "proTips": [
+      "Use keyboard shortcuts for faster workflow",
+      "Process large files in smaller chunks if performance slows",
+      "Validate your input before processing to catch errors early",
+      "Save frequently used settings as defaults in your browser",
+      "Use the download feature for archiving processed files",
+      "Check the output carefully before using in production"
+    ],
+    "troubleshooting": [
+      "Syntax errors: Check for missing brackets, quotes, or semicolons",
+      "Processing fails: Ensure your input format is valid",
+      "Slow performance: Try processing smaller chunks of data",
+      "Missing features: Some advanced syntax may require manual formatting",
+      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste input"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Process/Format"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy result"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Download file"
+      }
+    ]
+  },
+  "meta": {
+    "title": "QR Code Generator - Free Online Tool | ToolsLab",
+    "description": "Generate QR codes online for text, URLs, WiFi, and more. Customize size and download as image. Free QR generator."
+  },
+  "tagline": "Generate advanced QR codes with logos, batch processing and developer tools",
+  "pageDescription": "Professional QR code generator with logo embedding, WiFi/vCard creation, and batch processing. Features SVG export, API integration, error correction levels, and size optimization. Perfect for developers building authentication systems, contact sharing, and marketing campaigns. Supports URL, email, SMS, geo-location, and crypto addresses with real-time validation."
+}
