@@ -1,6 +1,7 @@
 // app/sitemap.ts
 import { MetadataRoute } from 'next';
 import { ToolDiscovery } from '@/lib/seo/discovery';
+import { locales, defaultLocale } from '@/lib/i18n/config';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://toolslab.dev';
@@ -16,18 +17,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const staticPages = await discovery.discoverStaticPages();
     const categories = await discovery.getStaticCategories();
 
-    // Homepage (highest priority)
-    const routes: MetadataRoute.Sitemap = [
-      {
-        url: baseUrl,
+    const routes: MetadataRoute.Sitemap = [];
+
+    // Homepage (highest priority) - for all locales
+    locales.forEach((locale) => {
+      const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+      routes.push({
+        url: `${baseUrl}${localePrefix}`,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1.0,
-      },
-    ];
+      });
+    });
 
-    // Tool pages (high priority, ordered by search volume/popularity)
-    const toolRoutes = tools
+    // Tool pages (high priority, ordered by search volume/popularity) - for all locales
+    const toolRoutes: MetadataRoute.Sitemap = [];
+    tools
       .filter((tool) => tool.exists) // Only include existing tools
       .sort((a, b) => {
         // Sort by priority: featured > popular > searchVolume > name
@@ -39,57 +44,78 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           return b.searchVolume - a.searchVolume;
         return a.name?.localeCompare(b.name || '') || 0;
       })
-      .map((tool, index) => ({
-        url: `${baseUrl}${tool.path}`,
-        lastModified: tool.lastModified || new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: Math.max(
-          tool.featured
-            ? 0.9
-            : tool.popular
-              ? 0.8
-              : tool.new
-                ? 0.85
-                : 0.7 - index * 0.005, // Gradual priority decrease
-          0.5
-        ),
-      }));
+      .forEach((tool, index) => {
+        locales.forEach((locale) => {
+          const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+          toolRoutes.push({
+            url: `${baseUrl}${localePrefix}${tool.path}`,
+            lastModified: tool.lastModified || new Date(),
+            changeFrequency: 'weekly' as const,
+            priority: Math.max(
+              tool.featured
+                ? 0.9
+                : tool.popular
+                  ? 0.8
+                  : tool.new
+                    ? 0.85
+                    : 0.7 - index * 0.005, // Gradual priority decrease
+              0.5
+            ),
+          });
+        });
+      });
 
-    // Category pages
-    const categoryRoutes = categories.map((cat) => ({
-      url: `${baseUrl}/category/${cat}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }));
+    // Category pages - for all locales
+    const categoryRoutes: MetadataRoute.Sitemap = [];
+    categories.forEach((cat) => {
+      locales.forEach((locale) => {
+        const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+        categoryRoutes.push({
+          url: `${baseUrl}${localePrefix}/category/${cat}`,
+          lastModified: new Date(),
+          changeFrequency: 'weekly' as const,
+          priority: 0.7,
+        });
+      });
+    });
 
-    // Static pages
-    const staticRoutes = staticPages.map((page) => ({
-      url: `${baseUrl}${page}`,
-      lastModified: new Date(),
-      changeFrequency: (page === '/blog'
-        ? 'daily'
-        : page === '/about'
-          ? 'monthly'
-          : 'yearly') as 'daily' | 'monthly' | 'yearly',
-      priority: page === '/about' ? 0.8 : 0.6,
-    }));
+    // Static pages - for all locales
+    const staticRoutes: MetadataRoute.Sitemap = [];
+    staticPages.forEach((page) => {
+      locales.forEach((locale) => {
+        const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+        staticRoutes.push({
+          url: `${baseUrl}${localePrefix}${page}`,
+          lastModified: new Date(),
+          changeFrequency: (page === '/blog'
+            ? 'daily'
+            : page === '/about'
+              ? 'monthly'
+              : 'yearly') as 'daily' | 'monthly' | 'yearly',
+          priority: page === '/about' ? 0.8 : 0.6,
+        });
+      });
+    });
 
-    // Additional important pages
-    const additionalPages = [
-      {
-        url: `${baseUrl}/tools`,
-        lastModified: new Date(),
-        changeFrequency: 'daily' as const,
-        priority: 0.9,
-      },
-      {
-        url: `${baseUrl}/categories`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-      },
-    ];
+    // Additional important pages - for all locales
+    const additionalPages: MetadataRoute.Sitemap = [];
+    locales.forEach((locale) => {
+      const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+      additionalPages.push(
+        {
+          url: `${baseUrl}${localePrefix}/tools`,
+          lastModified: new Date(),
+          changeFrequency: 'daily' as const,
+          priority: 0.9,
+        },
+        {
+          url: `${baseUrl}${localePrefix}/categories`,
+          lastModified: new Date(),
+          changeFrequency: 'weekly' as const,
+          priority: 0.8,
+        }
+      );
+    });
 
     const totalRoutes = [
       ...routes,

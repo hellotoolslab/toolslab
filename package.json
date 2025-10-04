@@ -34,6 +34,7 @@
     "seo:monitor": "tsx scripts/seo-monitor.ts",
     "seo:generate-key": "tsx scripts/generate-indexnow-key.ts",
     "seo:full": "npm run seo:discover && npm run seo:submit && npm run seo:monitor",
+    "sitemap:validate": "tsx scripts/validate-sitemap.ts",
     "test:og-images": "tsx scripts/test-og-images.ts",
     "test:og-images:prod": "tsx scripts/test-og-images.ts --base-url https://toolslab.dev",
     "pre-commit": "lint-staged",

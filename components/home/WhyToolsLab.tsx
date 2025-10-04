@@ -2,69 +2,84 @@
 
 import { motion } from 'framer-motion';
 import { Zap, Shield, Link, Moon, Smartphone, Rocket } from 'lucide-react';
+import { type Locale } from '@/lib/i18n/config';
+import { type Dictionary } from '@/lib/i18n/get-dictionary';
 
-const benefits = [
+const benefitKeys = [
   {
+    key: 'instantProcessing',
     icon: Zap,
-    title: 'Instant Processing',
-    description:
-      'Everything runs in your browser. No server delays, no waiting.',
     color: 'from-yellow-400 to-orange-500',
   },
   {
+    key: 'zeroDataStorage',
     icon: Shield,
-    title: 'Zero Data Storage',
-    description:
-      'Your data never leaves your device. Complete privacy guaranteed.',
     color: 'from-green-400 to-emerald-500',
   },
   {
+    key: 'chainTools',
     icon: Link,
-    title: 'Chain Tools Together',
-    description:
-      'Smart workflow automation. Connect tools for complex operations.',
     color: 'from-blue-400 to-indigo-500',
   },
   {
+    key: 'darkMode',
     icon: Moon,
-    title: 'Dark Mode',
-    description: 'Easy on your eyes during late coding sessions.',
     color: 'from-purple-400 to-pink-500',
   },
   {
+    key: 'worksEverywhere',
     icon: Smartphone,
-    title: 'Works Everywhere',
-    description: 'Desktop, tablet, mobile ready. Code from anywhere.',
     color: 'from-cyan-400 to-blue-500',
   },
   {
+    key: 'noSignup',
     icon: Rocket,
-    title: 'No Signup Required',
-    description:
-      'Start using tools immediately. No barriers, just productivity.',
     color: 'from-red-400 to-orange-500',
   },
 ];
 
-export function WhyToolsLab() {
+interface WhyToolsLabProps {
+  locale?: Locale;
+  dictionary?: Dictionary;
+}
+
+export function WhyToolsLab({ locale, dictionary }: WhyToolsLabProps) {
+  // Fallback texts for when dictionary is not available
+  const defaultTexts = {
+    title: 'Why Choose ToolsLab?',
+    subtitle: 'Six reasons developers love our platform',
+    footer: 'Built with ❤️ by developers who understand your needs',
+  };
+
+  const texts = {
+    title: dictionary?.home?.whyToolsLab?.title || defaultTexts.title,
+    subtitle: dictionary?.home?.whyToolsLab?.subtitle || defaultTexts.subtitle,
+    footer: dictionary?.home?.whyToolsLab?.footer || defaultTexts.footer,
+  };
+
   return (
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Why Choose ToolsLab?
+            {texts.title}
           </h2>
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-            Six reasons developers love our platform
+            {texts.subtitle}
           </p>
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((benefit, index) => {
+          {benefitKeys.map((benefit, index) => {
             const Icon = benefit.icon;
+            const benefitData =
+              dictionary?.home?.whyToolsLab?.benefits?.[
+                benefit.key as keyof typeof dictionary.home.whyToolsLab.benefits
+              ];
+
             return (
               <motion.div
-                key={benefit.title}
+                key={benefit.key}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -87,10 +102,10 @@ export function WhyToolsLab() {
 
                     {/* Content */}
                     <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                      {benefit.title}
+                      {benefitData?.title || benefit.key}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      {benefit.description}
+                      {benefitData?.description || ''}
                     </p>
 
                     {/* Decorative element */}
@@ -105,7 +120,7 @@ export function WhyToolsLab() {
         {/* Additional trust message */}
         <div className="mt-12 text-center">
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            Built with ❤️ by developers who understand your needs
+            {texts.footer}
           </p>
         </div>
       </div>

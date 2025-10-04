@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
+import { useDictionary } from '@/hooks/useDictionary';
 import Link from 'next/link';
 import {
   tools,
@@ -34,9 +36,126 @@ import {
 
 type SortOption = 'alphabetical' | 'popular' | 'recent' | 'category';
 
-export default function ToolsHubContent() {
+interface ToolsHubContentProps {
+  locale?: string;
+  dictionary?: any;
+}
+
+export default function ToolsHubContent({
+  locale,
+  dictionary: propDictionary,
+}: ToolsHubContentProps = {}) {
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const { replace, createHref } = useLocalizedRouter();
+  const { dictionary: hookDictionary, loading } = useDictionary();
+
+  // Use provided dictionary or fall back to hook
+  const dictionary = propDictionary || hookDictionary;
+
+  // Detect if Italian
+  const isItalian = locale === 'it';
+
+  // Translations with fallbacks
+  const t = dictionary?.toolsPage || {
+    breadcrumb: {
+      home: isItalian ? 'Home' : 'Home',
+      allTools: isItalian ? 'Tutti gli Strumenti' : 'All Tools',
+    },
+    header: {
+      title: isItalian
+        ? 'Tutti gli Strumenti per Sviluppatori - Tools Online Gratuiti'
+        : 'All Developer Tools - Free Online Utilities',
+      subtitle: isItalian
+        ? 'Collezione completa di strumenti professionali per sviluppatori, data analyst e amministratori di sistema'
+        : 'Complete collection of professional tools for developers, data analysts, and system administrators',
+      description: isItalian
+        ? 'strumenti gratuiti basati su browser per formattazione JSON, codifica Base64, generazione hash e altro. Nessuna trasmissione dati, nessuna registrazione richiesta.'
+        : 'free browser-based tools for JSON formatting, Base64 encoding, hash generation, and more. Zero data transmission, no registration required.',
+    },
+    trust: {
+      tools: isItalian ? 'strumenti' : 'tools',
+      freeForever: isItalian ? 'Gratis per sempre' : 'Free forever',
+      privacyFirst: isItalian ? 'Privacy prima di tutto' : 'Privacy-first',
+    },
+    search: { placeholder: "Search tools... (e.g. 'json', 'encode', 'hash')" },
+    filters: {
+      all: 'All',
+      sortBy: 'Sort by:',
+      mostPopular: 'Most Popular',
+      alphabetical: 'A-Z',
+      recentlyAdded: 'Recently Added',
+      category: 'Category',
+      clearFilters: 'Clear filters',
+    },
+    sections: {
+      recentlyAdded: 'Recently Added Tools',
+      newTools: 'new tools',
+      mostPopular: 'Most Popular Tools',
+      trendingTools: 'trending tools',
+      allTools: 'All Tools',
+    },
+    empty: {
+      title: 'No tools found',
+      description: 'Try adjusting your search or filter criteria.',
+      clearAll: 'Clear all filters',
+    },
+    seo: {
+      whyChoose: {
+        title: isItalian
+          ? 'Perché Scegliere gli Strumenti ToolsLab?'
+          : 'Why Choose ToolsLab Tools?',
+        benefits: isItalian
+          ? [
+              "Privacy completa - tutta l'elaborazione avviene nel tuo browser",
+              'Nessuna registrazione o account richiesto',
+              'Strumenti di livello professionale usati da sviluppatori in tutto il mondo',
+              'Elaborazione in tempo reale con risultati istantanei',
+              'Design responsivo ottimizzato per mobile',
+              'Aggiornamenti regolari con nuovi strumenti e funzionalità',
+            ]
+          : [
+              'Complete privacy - all processing happens in your browser',
+              'No registration or account required',
+              'Professional-grade tools used by developers worldwide',
+              'Real-time processing with instant results',
+              'Mobile-friendly responsive design',
+              'Regular updates with new tools and features',
+            ],
+      },
+      workflows: {
+        title: isItalian
+          ? 'Flussi di Lavoro Comuni per Sviluppatori'
+          : 'Common Developer Workflows',
+        api: {
+          title: 'API Development & Testing',
+          tools: [
+            'JSON Formatter',
+            'JWT Decoder',
+            'URL Encoder',
+            'Hash Generator',
+          ],
+        },
+        data: {
+          title: 'Data Migration & ETL',
+          tools: [
+            'CSV to JSON',
+            'Base64 Encoder',
+            'SQL Formatter',
+            'UUID Generator',
+          ],
+        },
+        security: {
+          title: 'Security & Authentication',
+          tools: [
+            'JWT Decoder',
+            'Hash Generator',
+            'Password Generator',
+            'Base64 Tools',
+          ],
+        },
+      },
+    },
+  };
 
   // URL-based state management
   const [searchQuery, setSearchQuery] = useState('');
@@ -136,8 +255,8 @@ export default function ToolsHubContent() {
     if (sortBy !== 'popular') params.set('sort', sortBy);
 
     const newUrl = `/tools${params.toString() ? `?${params.toString()}` : ''}`;
-    router.replace(newUrl, { scroll: false });
-  }, [searchQuery, selectedCategory, sortBy, router]);
+    replace(newUrl);
+  }, [searchQuery, selectedCategory, sortBy, replace]);
 
   // Get category stats
   const categoryStats = categories.map((category) => ({
@@ -204,27 +323,29 @@ export default function ToolsHubContent() {
         <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
           {/* Breadcrumb */}
           <nav className="mb-4 flex items-center gap-1 text-sm text-white/80">
-            <Link href="/" className="transition-colors hover:text-white">
-              Home
+            <Link
+              href={createHref('/')}
+              className="transition-colors hover:text-white"
+            >
+              {t.breadcrumb.home}
             </Link>
             <ChevronRight className="h-4 w-4" />
-            <span className="font-medium text-white">All Tools</span>
+            <span className="font-medium text-white">
+              {t.breadcrumb.allTools}
+            </span>
           </nav>
 
           {/* Hero Content - Compressed */}
           <div className="mb-6 text-center">
             <h1 className="mb-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-              All Developer Tools - Free Online Utilities
+              {t.header.title}
             </h1>
             <p className="mb-4 text-lg text-white/90 sm:text-xl">
-              Complete collection of professional tools for developers, data
-              analysts, and system administrators
+              {t.header.subtitle}
             </p>
             {/* Compressed description - 2 lines max */}
             <p className="mx-auto max-w-3xl text-sm text-white/80">
-              {totalTools}+ free browser-based tools for JSON formatting, Base64
-              encoding, hash generation, and more. Zero data transmission, no
-              registration required.
+              {totalTools}+ {t.header.description}
             </p>
           </div>
 
@@ -232,20 +353,22 @@ export default function ToolsHubContent() {
           <div className="mb-4 flex flex-wrap items-center justify-center gap-3 text-xs text-white/90 sm:gap-4 sm:text-sm">
             <div className="flex items-center gap-1.5">
               <Grid3X3 className="h-3.5 w-3.5 text-white" />
-              <span className="font-medium">{totalTools}+ tools</span>
+              <span className="font-medium">
+                {totalTools}+ {t.trust.tools}
+              </span>
             </div>
             <div className="flex items-center gap-1.5">
               <Zap className="h-3.5 w-3.5 text-white" />
-              <span>Free forever</span>
+              <span>{t.trust.freeForever}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Shield className="h-3.5 w-3.5 text-white" />
-              <span>Privacy-first</span>
+              <span>{t.trust.privacyFirst}</span>
             </div>
             {newToolsCount > 0 && (
               <div className="flex items-center gap-1.5">
                 <Sparkles className="h-3.5 w-3.5 text-white" />
-                <span>New tools weekly</span>
+                <span>{t.trust.newToolsWeekly}</span>
               </div>
             )}
           </div>
@@ -258,7 +381,7 @@ export default function ToolsHubContent() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
-                placeholder="Search tools... (e.g. 'json', 'encode', 'hash')"
+                placeholder={t.search.placeholder}
                 className="w-full rounded-xl border-2 border-gray-200 bg-white py-4 pl-12 pr-6 text-base text-gray-900 shadow-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400"
                 autoFocus
               />
@@ -284,7 +407,7 @@ export default function ToolsHubContent() {
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
               >
-                All ({totalTools})
+                {t.filters.all} ({totalTools})
               </button>
               {categoryStats.map((category) => (
                 <button
@@ -311,17 +434,17 @@ export default function ToolsHubContent() {
           <div className="mb-4 flex flex-col items-center justify-center gap-4 px-2 sm:flex-row sm:px-0">
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Sort by:
+                {t.filters.sortBy}
               </span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
                 className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
               >
-                <option value="popular">Most Popular</option>
-                <option value="alphabetical">A-Z</option>
-                <option value="recent">Recently Added</option>
-                <option value="category">Category</option>
+                <option value="popular">{t.filters.mostPopular}</option>
+                <option value="alphabetical">{t.filters.alphabetical}</option>
+                <option value="recent">{t.filters.recentlyAdded}</option>
+                <option value="category">{t.filters.category}</option>
               </select>
             </div>
 
@@ -333,7 +456,7 @@ export default function ToolsHubContent() {
                 onClick={clearFilters}
                 className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400"
               >
-                Clear filters
+                {t.filters.clearFilters}
               </button>
             )}
           </div>
@@ -347,10 +470,10 @@ export default function ToolsHubContent() {
             <div className="mb-4 flex items-center justify-between">
               <h2 className="flex items-center gap-2 text-xl font-bold sm:text-2xl">
                 <Sparkles className="h-6 w-6 text-green-500" />
-                Recently Added Tools
+                {t.sections.recentlyAdded}
               </h2>
               <span className="text-sm text-gray-500">
-                {recentTools.length} new tools
+                {recentTools.length} {t.sections.newTools}
               </span>
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -369,10 +492,10 @@ export default function ToolsHubContent() {
             <div className="mb-4 flex items-center justify-between">
               <h2 className="flex items-center gap-2 text-xl font-bold sm:text-2xl">
                 <TrendingUp className="h-6 w-6 text-yellow-500" />
-                Most Popular Tools
+                {t.sections.mostPopular}
               </h2>
               <span className="text-sm text-gray-500">
-                {popularTools.length} trending tools
+                {popularTools.length} {t.sections.trendingTools}
               </span>
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -388,7 +511,7 @@ export default function ToolsHubContent() {
       <section className="py-4">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
           <h2 className="mb-4 text-xl font-bold sm:text-2xl">
-            All Tools ({filteredAndSortedTools.length})
+            {t.sections.allTools} ({filteredAndSortedTools.length})
           </h2>
 
           {/* Tools Grid */}
@@ -402,16 +525,16 @@ export default function ToolsHubContent() {
             <div className="py-12 text-center">
               <Search className="mx-auto mb-4 h-12 w-12 text-gray-400" />
               <h3 className="mb-2 text-lg font-medium text-gray-900 dark:text-white">
-                No tools found
+                {t.empty.title}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Try adjusting your search or filter criteria.
+                {t.empty.description}
               </p>
               <button
                 onClick={clearFilters}
                 className="mt-4 text-blue-600 hover:text-blue-700 dark:text-blue-400"
               >
-                Clear all filters
+                {t.empty.clearAll}
               </button>
             </div>
           )}
@@ -425,60 +548,40 @@ export default function ToolsHubContent() {
             {/* Why Choose ToolsLab */}
             <div>
               <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                Why Choose ToolsLab Tools?
+                {t.seo.whyChoose.title}
               </h2>
               <ul className="space-y-3">
-                {[
-                  'Complete privacy - all processing happens in your browser',
-                  'No registration or account required',
-                  'Professional-grade tools used by developers worldwide',
-                  'Real-time processing with instant results',
-                  'Mobile-friendly responsive design',
-                  'Regular updates with new tools and features',
-                ].map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
-                    <span className="text-gray-600 dark:text-gray-400">
-                      {benefit}
-                    </span>
-                  </li>
-                ))}
+                {t.seo.whyChoose.benefits.map(
+                  (benefit: string, index: number) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
+                      <span className="text-gray-600 dark:text-gray-400">
+                        {benefit}
+                      </span>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
 
             {/* Common Workflows */}
             <div>
               <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                Common Developer Workflows
+                {t.seo.workflows.title}
               </h2>
               <div className="space-y-4">
                 {[
                   {
-                    title: 'API Development & Testing',
-                    tools: [
-                      'JSON Formatter',
-                      'JWT Decoder',
-                      'URL Encoder',
-                      'Hash Generator',
-                    ],
+                    title: t.seo.workflows.api.title,
+                    tools: t.seo.workflows.api.tools,
                   },
                   {
-                    title: 'Data Migration & ETL',
-                    tools: [
-                      'CSV to JSON',
-                      'Base64 Encoder',
-                      'SQL Formatter',
-                      'UUID Generator',
-                    ],
+                    title: t.seo.workflows.data.title,
+                    tools: t.seo.workflows.data.tools,
                   },
                   {
-                    title: 'Security & Authentication',
-                    tools: [
-                      'JWT Decoder',
-                      'Hash Generator',
-                      'Password Generator',
-                      'Base64 Tools',
-                    ],
+                    title: t.seo.workflows.security.title,
+                    tools: t.seo.workflows.security.tools,
                   },
                 ].map((workflow, index) => (
                   <div
@@ -489,7 +592,7 @@ export default function ToolsHubContent() {
                       {workflow.title}
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {workflow.tools.map((toolName) => (
+                      {workflow.tools.map((toolName: string) => (
                         <span
                           key={toolName}
                           className="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"

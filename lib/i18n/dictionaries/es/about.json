@@ -1,0 +1,138 @@
+{
+  "about": {
+    "hero": {
+      "title": "Acerca de ToolsLab",
+      "subtitle": "Tu Caja de Herramientas de Desarrollo, Reimaginada",
+      "badges": {
+        "free": "100% Gratis",
+        "privacy": "Privacidad Primero",
+        "noRegistration": "Sin Registro"
+      },
+      "scrollIndicator": "Desplázate para explorar"
+    },
+    "stats": {
+      "title": "Confiado por Desarrolladores",
+      "subtitle": "Números que cuentan nuestra historia",
+      "tools": {
+        "value": "25+",
+        "label": "Herramientas de Desarrollo",
+        "description": "Y creciendo diariamente"
+      },
+      "users": {
+        "value": "1000+",
+        "label": "Usuarios Diarios",
+        "description": "Desarrolladores en todo el mundo"
+      },
+      "loadTime": {
+        "value": "<1s",
+        "label": "Tiempo de Carga",
+        "description": "Increíblemente rápido"
+      },
+      "dataCollected": {
+        "value": "0",
+        "label": "Datos Recopilados",
+        "description": "Privacidad completa"
+      }
+    },
+    "timeline": {
+      "title": "El Viaje",
+      "subtitle": "De frustración personal a recurso comunitario",
+      "steps": [
+        {
+          "title": "El Problema",
+          "year": "Principios de 2025",
+          "description": "Docenas de pestañas del navegador para conversiones simples. JSON aquí, Base64 allá, UUID en otro lugar. Cada herramienta en sitios diferentes, la mayoría llenos de anuncios, algunos detrás de muros de pago."
+        },
+        {
+          "title": "La Idea",
+          "year": "Principios de 2025",
+          "description": "¿Y si todas mis herramientas esenciales de desarrollo vivieran en un solo lugar? Interfaz limpia, sin registro, increíblemente rápido. Construí mi navaja suiza personal para el desarrollo."
+        },
+        {
+          "title": "La Construcción",
+          "year": "Julio 2025",
+          "description": "Noches y fines de semana programando. Comencé con el formateador JSON, agregué el codificador Base64, generador UUID. Cada herramienta más rápida y limpia que las alternativas dispersas."
+        },
+        {
+          "title": "El Lanzamiento",
+          "year": "Agosto 2025",
+          "description": "Compartí con mi equipo. Les encantó. Me di cuenta de que esto podría ayudar a miles de desarrolladores. Lo hice público, gratis para siempre, sin condiciones."
+        },
+        {
+          "title": "El Crecimiento",
+          "year": "Hoy",
+          "description": "De proyecto personal a caja de herramientas confiable para desarrolladores en todo el mundo. Colección creciente de herramientas, todas manteniendo el mismo principio: simplemente funcionan."
+        },
+        {
+          "title": "El Futuro",
+          "year": "2025+",
+          "description": "Más herramientas, mejor rendimiento, características impulsadas por la comunidad. Siempre gratis, siempre privado, siempre enfocado en la productividad del desarrollador."
+        }
+      ]
+    },
+    "features": {
+      "title": "¿Por Qué Elegir ToolsLab?",
+      "subtitle": "Construido pensando en los desarrolladores, optimizado para tu flujo de trabajo",
+      "items": [
+        {
+          "title": "Increíblemente Rápido",
+          "description": "Todo el procesamiento ocurre en tu navegador. Sin demoras del servidor, sin esperas. Las herramientas se cargan instantáneamente y funcionan a la velocidad del pensamiento."
+        },
+        {
+          "title": "Privacidad Primero",
+          "description": "Tus datos nunca salen de tu dispositivo. Sin seguimiento, sin análisis, sin recopilación de datos. Privacidad completa garantizada."
+        },
+        {
+          "title": "Siempre Gratis",
+          "description": "Sin planes premium, sin muros de pago, sin costos ocultos. Herramientas de calidad accesibles para cada desarrollador, independientemente del presupuesto."
+        },
+        {
+          "title": "Sin Registro",
+          "description": "Comienza a usar herramientas inmediatamente. Sin cuentas, sin correos de verificación, sin fricción entre tú y la productividad."
+        },
+        {
+          "title": "Modo Oscuro",
+          "description": "Fácil para tus ojos durante esas sesiones de codificación nocturnas. Hermosa interfaz que se adapta a tu preferencia."
+        },
+        {
+          "title": "Listo para Móvil",
+          "description": "Funciona perfectamente en cualquier dispositivo. La misma gran experiencia ya sea en escritorio, tableta o teléfono."
+        }
+      ]
+    },
+    "story": {
+      "quote": "Hola, soy el desarrollador detrás de ToolsLab. Como tú, estaba cansado de hacer malabares con docenas de pestañas del navegador para conversiones y generaciones simples. Cada herramienta en un sitio diferente, la mayoría llenos de anuncios, algunos detrás de muros de pago.\n\nAsí que construí ToolsLab - mi navaja suiza personal para el desarrollo. Lo que comenzó como un proyecto local rápidamente se volvió invaluable para mi equipo, y ahora estoy emocionado de compartirlo con desarrolladores en todo el mundo.\n\nSin trucos, sin ventas adicionales. Solo herramientas que funcionan, construidas por un desarrollador que las usa todos los días.",
+      "author": "— Creador de ToolsLab",
+      "badges": {
+        "developer": "Desarrollador Full Stack",
+        "enthusiast": "Entusiasta del Código Abierto"
+      }
+    },
+    "social": {
+      "title": "Conectar y Apoyar",
+      "subtitle": "Únete a la comunidad, contribuye o muestra tu apreciación",
+      "links": [
+        {
+          "label": "Seguir en X",
+          "description": "Actualizaciones y detrás de escena"
+        },
+        {
+          "label": "Estrella en GitHub",
+          "description": "Contribuir y feedback"
+        },
+        {
+          "label": "Cómprame un café",
+          "description": "Apoya el proyecto"
+        }
+      ]
+    },
+    "cta": {
+      "title": "¿Listo para Aumentar Tu Productividad?",
+      "subtitle": "Únete a miles de desarrolladores que han hecho de ToolsLab su caja de herramientas favorita. Sin registro, sin costos, solo productividad pura.",
+      "buttons": {
+        "exploreTools": "Explorar Herramientas",
+        "support": "Apoyar el Proyecto"
+      }
+    }
+  }
+}

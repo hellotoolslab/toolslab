@@ -36,7 +36,7 @@ export function FeatureCard({
       className="group h-full"
     >
       <motion.div
-        className="relative h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20"
+        className="relative h-full rounded-2xl border border-white/20 bg-slate-800/80 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/30"
         whileHover={{
           scale: 1.05,
           y: -8,
@@ -97,7 +97,7 @@ export function FeatureCard({
 
           {/* Description */}
           <motion.p
-            className="text-sm leading-relaxed text-gray-300"
+            className="text-sm leading-relaxed text-gray-200"
             initial={{ opacity: 0.8 }}
             whileHover={{ opacity: 1 }}
             transition={{ duration: 0.2 }}

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { LabPageClient } from './LabPageClient';
+import { getDictionary } from '@/lib/i18n/get-dictionary';
 
 export const metadata: Metadata = {
   title: 'My Developer Lab - Personal Tool Collection | ToolsLab',
@@ -40,7 +41,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LabPage() {
+export default async function LabPage() {
+  // Load dictionary for English (default locale)
+  const labSections = ['common', 'lab'];
+  const dict = await getDictionary('en', labSections);
+
   return (
     <Suspense
       fallback={
@@ -58,7 +63,7 @@ export default function LabPage() {
         </div>
       }
     >
-      <LabPageClient />
+      <LabPageClient locale="en" dictionary={dict} />
     </Suspense>
   );
 }

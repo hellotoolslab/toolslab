@@ -7,6 +7,9 @@ import { toolSEO, ToolSEO } from '@/lib/tool-seo';
 interface ToolHeroSectionProps {
   toolId: string;
   toolName: string;
+  toolDescription?: string;
+  toolTagline?: string;
+  toolPageDescription?: string;
   categoryColor: string;
   categoryName?: string;
   favoriteButton?: React.ReactNode;
@@ -18,6 +21,9 @@ interface ToolHeroSectionProps {
 export default function ToolHeroSection({
   toolId,
   toolName,
+  toolDescription,
+  toolTagline,
+  toolPageDescription,
   categoryColor,
   categoryName,
   favoriteButton,
@@ -27,6 +33,10 @@ export default function ToolHeroSection({
 }: ToolHeroSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
   const seoData = toolSEO[toolId];
+
+  // Use provided translations first, fallback to toolSEO
+  const tagline = toolTagline || seoData?.tagline || toolDescription;
+  const pageDescription = toolPageDescription || seoData?.pageDescription;
 
   useEffect(() => {
     setIsVisible(true);
@@ -114,23 +124,25 @@ export default function ToolHeroSection({
         </div>
       </div>
 
-      {/* Tagline - closely connected to title */}
+      {/* Tagline/Description - use translated version if available */}
       <p
         className={`mb-4 text-base text-gray-700 transition-all delay-100 duration-300 dark:text-gray-300 sm:text-lg ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
         }`}
       >
-        {seoData.tagline}
+        {tagline}
       </p>
 
-      {/* Page Description - proper separation */}
-      <p
-        className={`max-w-4xl text-sm leading-relaxed text-gray-600 transition-all delay-150 duration-300 dark:text-gray-400 sm:text-base ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
-        }`}
-      >
-        {seoData.pageDescription}
-      </p>
+      {/* Page Description - always show if available */}
+      {pageDescription && (
+        <p
+          className={`max-w-4xl text-sm leading-relaxed text-gray-600 transition-all delay-150 duration-300 dark:text-gray-400 sm:text-base ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
+          }`}
+        >
+          {pageDescription}
+        </p>
+      )}
 
       {/* Subtle Gradient Background */}
       <div
