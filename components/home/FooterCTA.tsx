@@ -140,7 +140,7 @@ export function FooterCTA() {
               href={createHref('/tools')}
               className="hover:shadow-3xl inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-bold text-blue-600 shadow-2xl transition-all hover:-translate-y-1"
             >
-              {cta?.primaryButton || 'Explore All Tools'}
+              {cta?.button || 'Explore All Tools'}
               <ArrowRight className="h-5 w-5" />
             </Link>
           </motion.div>

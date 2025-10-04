@@ -139,13 +139,16 @@ export function PoweredBy() {
 
         <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
           {servicesConfig.map((service, index) => {
-            const serviceData = poweredBy?.services?.[service.id];
+            const serviceData =
+              poweredBy?.[service.id as keyof typeof poweredBy];
+            const isObject =
+              typeof serviceData === 'object' && serviceData !== null;
             return (
               <PoweredByCard
                 key={service.id}
                 service={service}
-                name={serviceData?.name || service.id}
-                description={serviceData?.description || ''}
+                name={isObject ? serviceData.name : service.id}
+                description={isObject ? serviceData.description : ''}
                 index={index}
               />
             );

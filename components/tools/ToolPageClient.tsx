@@ -30,9 +30,24 @@ import ToolHeroSection from './ToolHeroSection';
 
 interface ToolPageClientProps {
   toolId: string;
+  locale?: string;
+  dictionary?: any;
+  toolTranslations?: {
+    title?: string;
+    description?: string;
+    tagline?: string;
+    pageDescription?: string;
+    placeholder?: string;
+    instructions?: string;
+  };
 }
 
-export default function ToolPageClient({ toolId }: ToolPageClientProps) {
+export default function ToolPageClient({
+  toolId,
+  locale,
+  dictionary,
+  toolTranslations,
+}: ToolPageClientProps) {
   const searchParams = useSearchParams();
   const { theme } = useTheme();
   const { trackEngagement, trackToolUse } = useUmami();
@@ -74,10 +89,25 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
     return <div>Tool not found</div>;
   }
 
+  // Get translations
+  const isItalian = locale === 'it';
+  const commonDict = dictionary?.common || {};
+
+  const t = {
+    share: isItalian ? 'Condividi' : 'Share',
+    relatedTools: isItalian ? 'Strumenti Correlati' : 'Related Tools',
+    home: isItalian ? 'Home' : 'Home',
+    allTools: isItalian ? 'Tutti gli Strumenti' : 'All Tools',
+    toolName: toolTranslations?.title || tool.name,
+    toolDescription: toolTranslations?.description || tool.description,
+  };
+
   // Get primary category information
   const primaryCategory = categories.find(
     (cat) => cat.id === tool.categories[0]
   );
+  const categoryDict = dictionary?.categories?.[primaryCategory?.id || 'dev'];
+  const categoryName = categoryDict?.name || primaryCategory?.name || 'Tools';
   const categoryId = tool.categories[0];
 
   // Get category color using the same system as ToolCard
@@ -194,9 +224,12 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
         <div className="mb-5 flex items-start justify-between gap-4">
           <ToolHeroSection
             toolId={tool.id}
-            toolName={tool.name}
+            toolName={t.toolName}
+            toolDescription={t.toolDescription}
+            toolTagline={toolTranslations?.tagline}
+            toolPageDescription={toolTranslations?.pageDescription}
             categoryColor={categoryColor}
-            categoryName={primaryCategory?.name || categoryId}
+            categoryName={categoryName}
             favoriteButton={
               <FavoriteButton
                 type="tool"
@@ -232,7 +265,7 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
               className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm transition-colors hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
             >
               <Share2 className="h-4 w-4" />
-              <span className="hidden sm:inline">Share</span>
+              <span className="hidden sm:inline">{t.share}</span>
             </button>
           </div>
         </div>
@@ -245,10 +278,17 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
               tool={{ ...tool, slug: tool.id, category: categoryId } as any}
               categoryColor={categoryColor}
               initialInput={initialInput}
+              locale={locale}
+              dictionary={dictionary}
             />
 
             {/* How to Use Section */}
-            <ToolHowToUse toolId={tool.id} categoryColor={categoryColor} />
+            <ToolHowToUse
+              toolId={tool.id}
+              categoryColor={categoryColor}
+              locale={locale}
+              dictionary={dictionary}
+            />
           </div>
 
           {/* Sidebar (Desktop Only) - Narrower */}
@@ -257,7 +297,7 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
               {/* Related Tools */}
               <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
                 <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
-                  Related Tools
+                  {t.relatedTools}
                 </h3>
                 <div className="space-y-3">
                   {relatedTools.map((relatedTool) => (
@@ -300,7 +340,7 @@ export default function ToolPageClient({ toolId }: ToolPageClientProps) {
         {isMobile && (
           <div className="mt-8 sm:mt-12">
             <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
-              Related Tools
+              {t.relatedTools}
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {relatedTools.map((relatedTool) => (

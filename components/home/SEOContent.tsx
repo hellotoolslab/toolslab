@@ -43,7 +43,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 export function SEOContent() {
   const { data: t } = useDictionarySectionContext('home');
   const seoContent = t?.seoContent;
-  const faqs = seoContent?.faq || [];
+  const rawFaqs = seoContent?.faqs || [];
+  const faqs = Array.isArray(rawFaqs) ? rawFaqs : [];
 
   return (
     <section className="py-16 sm:py-20">

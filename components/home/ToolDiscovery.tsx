@@ -114,10 +114,10 @@ export function ToolDiscovery() {
                 >
                   <Icon className="h-4 w-4" />
                   <span className="hidden sm:inline">
-                    {tabData?.title || tab.id}
+                    {tabData?.label || tab.id}
                   </span>
                   <span className="sm:hidden">
-                    {tabData?.title?.split(' ')[0] || tab.id}
+                    {tabData?.label?.split(' ')[0] || tab.id}
                   </span>
                   {activeTab === tab.id && (
                     <motion.div

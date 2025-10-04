@@ -141,11 +141,26 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
   const dict = await getDictionary(locale as Locale);
   const toolSchema = generateToolSchema(toolId);
 
+  // Extract tool-specific translations
+  // For now, use tool-seo.ts as source (will be moved to dictionaries later)
+  const { toolSEO } = await import('@/lib/tool-seo');
+  const seoData = toolSEO[toolId];
+  const toolData = dict.tools?.[toolId] as any;
+
+  const toolTranslations = {
+    title: toolData?.title || tool.name,
+    description: toolData?.description || tool.description,
+    tagline: toolData?.tagline || seoData?.tagline,
+    pageDescription: toolData?.pageDescription || seoData?.pageDescription,
+    placeholder: toolData?.placeholder,
+    instructions: toolData?.instructions,
+  };
+
   // Generate localized schema
   const localizedSchema = {
     ...toolSchema,
-    name: dict.tools[toolId]?.title || tool.name,
-    description: dict.tools[toolId]?.description || tool.description,
+    name: toolTranslations.title,
+    description: toolTranslations.description,
     url: `https://toolslab.dev/${locale}/tools/${toolId}`,
     inLanguage: locale === 'it' ? 'it-IT' : 'en-US',
   };
@@ -156,7 +171,12 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localizedSchema) }}
       />
-      <ToolPageClient toolId={toolId} />
+      <ToolPageClient
+        toolId={toolId}
+        locale={locale as Locale}
+        dictionary={dict}
+        toolTranslations={toolTranslations}
+      />
     </>
   );
 }

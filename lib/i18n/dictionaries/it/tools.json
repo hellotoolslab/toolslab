@@ -3,6 +3,8 @@
     "json-formatter": {
       "title": "JSON Formatter",
       "description": "Formatta, valida e abbellisce dati JSON con evidenziazione della sintassi",
+      "tagline": "Formatta, valida e abbellisci JSON istantaneamente online",
+      "pageDescription": "Formatta e valida dati JSON con il nostro formatter JSON online gratuito. Debug di JSON malformato, abbellimento di codice minimizzato e validazione della sintassi con rilevamento errori in tempo reale. Perfetto per sviluppatori che lavorano con API, file di configurazione ed elaborazione dati. Cerca chiavi, personalizza l'indentazione ed elabora file di grandi dimensioni in modo sicuro nel tuo browser.",
       "placeholder": "Incolla qui il tuo JSON...",
       "instructions": "Incolla o digita i tuoi dati JSON per formattarli e validarli",
       "features": [
@@ -33,6 +35,8 @@
     "base64-encode": {
       "title": "Codificatore Base64",
       "description": "Codifica testo o file in formato Base64",
+      "tagline": "Codifica e decodifica file e testo Base64 istantaneamente",
+      "pageDescription": "Codificatore e decodificatore Base64 gratuito per testo, immagini e file fino a 50MB. Perfetto per sviluppatori web che incorporano immagini in HTML/CSS, trasmissione dati API e allegati email. Interfaccia drag-and-drop con elaborazione sicura basata su browser. Scarica file decodificati direttamente o copia stringhe codificate negli appunti.",
       "placeholder": "Inserisci il testo da codificare...",
       "instructions": "Inserisci testo o carica un file da codificare in Base64",
       "meta": {
@@ -53,6 +57,8 @@
     "jwt-decoder": {
       "title": "Decodificatore JWT",
       "description": "Decodifica e valida JSON Web Token",
+      "tagline": "Decodifica e analizza token JWT con validazione sicurezza istantaneamente",
+      "pageDescription": "Decodificatore JWT professionale con analisi claims, validazione sicurezza e controllo scadenza. Decodifica JSON Web Token in modo sicuro con informazioni dettagliate su header, payload e firma. Perfetto per debug problemi autenticazione, analisi claims token e validazione sicurezza JWT. Supporta tutti gli algoritmi JWT con raccomandazioni sicurezza in tempo reale e analisi claims temporali.",
       "placeholder": "Incolla qui il tuo token JWT...",
       "instructions": "Incolla il tuo token JWT per decodificare e ispezionare il suo contenuto",
       "meta": {
@@ -67,7 +73,9 @@
       "meta": {
         "title": "Generatore UUID - Strumento Online Gratuito | ToolsLab",
         "description": "Genera UUID casuali online. Supporto per versioni UUID v1, v4 e v5. Generatore UUID gratuito con generazione in blocco."
-      }
+      },
+      "tagline": "Genera UUID e GUID univoci istantaneamente online",
+      "pageDescription": "Genera identificatori UUID v1 e v4 per database, API e applicazioni. Crea UUID singoli o generazione massiva fino a 1000 con formattazione personalizzabile. Perfetto per sviluppatori che costruiscono sistemi distribuiti, schemi database e sistemi identificazione univoca. Gratuito, sicuro e generazione basata su browser."
     },
     "hash-generator": {
       "title": "Generatore Hash",
@@ -77,7 +85,9 @@
       "meta": {
         "title": "Generatore Hash - Strumento Online Gratuito | ToolsLab",
         "description": "Genera hash MD5, SHA-1, SHA-256 e SHA-512 online. Generatore hash gratuito per testo e file."
-      }
+      },
+      "tagline": "Genera hash sicuri MD5, SHA256 e SHA512",
+      "pageDescription": "Genera valori hash crittografici usando algoritmi MD5, SHA-1, SHA-256 e SHA-512. Perfetto per hashing password, verifica integrità file e audit sicurezza. Generazione hash in tempo reale con copia con un clic. Tutta l'elaborazione avviene localmente nel tuo browser per massima sicurezza e privacy."
     },
     "css-minifier": {
       "title": "Minimizzatore CSS",
@@ -87,7 +97,9 @@
       "meta": {
         "title": "Minimizzatore CSS - Strumento Online Gratuito | ToolsLab",
         "description": "Minimizza e comprimi codice CSS online. Riduci le dimensioni del file e migliora la velocità di caricamento. Strumento minimizzatore CSS gratuito."
-      }
+      },
+      "tagline": "Minimizza e ottimizza file CSS istantaneamente per siti più veloci",
+      "pageDescription": "Minimizzatore e beautifier CSS professionale che riduce dimensioni file fino al 60% preservando funzionalità. Funzionalità opzioni ottimizzazione avanzate inclusa compressione colore, unione regole, gestione prefissi vendor e ottimizzazione media query. Elabora CSS istantaneamente nel tuo browser con completa privacy - nessun dato inviato a server. Perfetto per ottimizzare stylesheet per deployment produzione con supporto CSS3, CSS4 e proprietà moderne."
     },
     "javascript-minifier": {
       "title": "Minimizzatore JavaScript",
@@ -117,7 +129,9 @@
       "meta": {
         "title": "SQL Formatter - Strumento Online Gratuito | ToolsLab",
         "description": "Formatta e abbellisce query SQL online. Supporto per più dialetti SQL. Strumento SQL Formatter gratuito."
-      }
+      },
+      "tagline": "Formatta e abbellisci query SQL con evidenziazione sintassi",
+      "pageDescription": "Formatta e abbellisci query SQL con indentazione corretta, evidenziazione keyword e validazione sintassi. Perfetto per sviluppatori database, data analyst e ottimizzazione SQL. Supporta dialetti SQL multipli (MySQL, PostgreSQL, SQLite) con opzioni formattazione personalizzabili. Formatter SQL gratuito e sicuro basato su browser senza caricamento dati."
     },
     "url-encoder": {
       "title": "Codificatore URL",
@@ -167,7 +181,9 @@
       "meta": {
         "title": "Convertitore CSV in JSON - Strumento Online Gratuito | ToolsLab",
         "description": "Converti file CSV in formato JSON online. Supporto per delimitatori personalizzati e intestazioni. Convertitore CSV in JSON gratuito."
-      }
+      },
+      "tagline": "Converti dati CSV in formato JSON con parsing intelligente",
+      "pageDescription": "Trasforma file CSV in formato JSON con rilevamento automatico intestazioni e supporto delimitatori personalizzati. Perfetto per migrazione dati, integrazione API ed elaborazione fogli di calcolo. Gestisce file grandi con streaming, preserva tipi dati e offre formati output multipli. Conversione gratuita e sicura basata su browser senza caricamento file."
     },
     "json-to-csv": {
       "title": "JSON in CSV",
@@ -177,7 +193,9 @@
       "meta": {
         "title": "Convertitore JSON in CSV - Strumento Online Gratuito | ToolsLab",
         "description": "Converti dati JSON in formato CSV online. Appiattisci oggetti e array nidificati. Convertitore JSON in CSV gratuito."
-      }
+      },
+      "tagline": "Converti JSON in CSV con formattazione avanzata e mappatura colonne",
+      "pageDescription": "Convertitore JSON in CSV gratuito con appiattimento avanzato, mappatura colonne e opzioni formattazione. Trasforma array JSON, oggetti nidificati e strutture dati complesse in file CSV compatibili Excel. Funzionalità ordinamento colonne drag-and-drop, delimitatori personalizzati, configurazione intestazioni e anteprima in tempo reale. Perfetto per export dati, conversione risposte API e integrazione fogli di calcolo. Elaborazione sicura basata su browser senza caricamento file."
     },
     "xml-to-json": {
       "title": "XML in JSON",
@@ -217,7 +235,9 @@
       "meta": {
         "title": "Tester Regex - Strumento Online Gratuito | ToolsLab",
         "description": "Testa e debugga espressioni regolari online. Supporto per più flag regex. Tester regex gratuito con evidenziazione delle corrispondenze."
-      }
+      },
+      "tagline": "Testa e debugga espressioni regolari con matching live",
+      "pageDescription": "Testa espressioni regolari con matching ed evidenziazione in tempo reale. Debug pattern regex con feedback live, dettagli gruppi cattura e posizioni match. Perfetto per sviluppatori che validano indirizzi email, parsing dati e costruzione applicazioni elaborazione testo. Supporta flag global, case-insensitive e multiline."
     },
     "lorem-ipsum": {
       "title": "Generatore Lorem Ipsum",
@@ -235,7 +255,9 @@
       "meta": {
         "title": "Generatore Password - Strumento Online Gratuito | ToolsLab",
         "description": "Genera password casuali sicure online. Personalizza lunghezza e tipi di caratteri. Generatore password gratuito."
-      }
+      },
+      "tagline": "Crea password ultra-sicure con opzioni personalizzate istantaneamente",
+      "pageDescription": "Genera password forti e sicure con lunghezza personalizzabile (4-128 caratteri) e set di caratteri. Configura maiuscole, minuscole, numeri e simboli con opzioni per escludere caratteri ambigui. Perfetto per creare password account, chiavi API e token autenticazione sicuri. Indicatore forza in tempo reale incluso."
     },
     "unix-timestamp": {
       "title": "Convertitore Unix Timestamp",
@@ -255,7 +277,9 @@
       "meta": {
         "title": "Generatore QR Code - Strumento Online Gratuito | ToolsLab",
         "description": "Genera codici QR online per testo, URL, WiFi e altro. Personalizza le dimensioni e scarica come immagine. Generatore QR gratuito."
-      }
+      },
+      "tagline": "Genera QR code avanzati con loghi, elaborazione batch e strumenti sviluppatore",
+      "pageDescription": "Generatore QR code professionale con incorporazione logo, creazione WiFi/vCard ed elaborazione batch. Funzionalità export SVG, integrazione API, livelli correzione errori e ottimizzazione dimensioni. Perfetto per sviluppatori che costruiscono sistemi autenticazione, condivisione contatti e campagne marketing. Supporta URL, email, SMS, geo-localizzazione e indirizzi crypto con validazione in tempo reale."
     },
     "image-converter": {
       "title": "Convertitore Immagini",
@@ -311,7 +335,9 @@
       "meta": {
         "title": "Text Diff Checker - Strumento Online Gratuito | ToolsLab",
         "description": "Confronta testo e file online con evidenziazione delle differenze. Strumento diff gratuito per sviluppatori."
-      }
+      },
+      "tagline": "Confronta file e codice con visualizzazione diff professionale",
+      "pageDescription": "Strumento confronto testo professionale con evidenziazione sintassi, generazione patch e viste diff affiancate. Confronta file codice, documenti e testo con differenze riga per riga, tracciamento modifiche e output diff unificato. Funzionalità patch stile Git, opzioni whitespace ed export HTML/PDF. Perfetto per sviluppatori che revisionano modifiche codice."
     },
     "unix-timestamp-converter": {
       "title": "Convertitore Unix Timestamp",
@@ -319,7 +345,9 @@
       "meta": {
         "title": "Convertitore Unix Timestamp - Strumento Online Gratuito | ToolsLab",
         "description": "Converti timestamp Unix in date leggibili online. Supporto fuso orario e batch. Convertitore epoch gratuito."
-      }
+      },
+      "tagline": "Converti Unix timestamp in date leggibili con supporto timezone",
+      "pageDescription": "Convertitore Unix timestamp professionale con supporto timezone, elaborazione batch e generazione codice. Converti epoch time in date leggibili e viceversa con validazione in tempo reale. Funzionalità formati data multipli, calcoli tempo relativo, esempi codice sviluppatore e conversioni timezone-aware. Perfetto per sviluppatori che lavorano con API, database, log e integrazioni sistema. Supporta secondi e millisecondi con database timezone IANA."
     },
     "url-encode": {
       "title": "Codificatore/Decodificatore URL",
@@ -327,7 +355,9 @@
       "meta": {
         "title": "Codificatore/Decodificatore URL - Strumento Online Gratuito | ToolsLab",
         "description": "Codifica e decodifica URL online. Converti componenti URL e parametri query. Strumento URL encode gratuito."
-      }
+      },
+      "tagline": "Codifica e decodifica URL e parametri query in sicurezza",
+      "pageDescription": "Codifica e decodifica componenti URL e parametri query per sviluppo web. Gestisci caratteri speciali, spazi e testo internazionale in URL in sicurezza. Perfetto per sviluppatori API, form web e gestione richieste HTTP. Supporta standard percent-encoding con conversione e validazione in tempo reale."
     },
     "xml-formatter": {
       "title": "XML Formatter",
@@ -335,7 +365,9 @@
       "meta": {
         "title": "XML Formatter - Strumento Online Gratuito | ToolsLab",
         "description": "Formatta e valida XML online. Minimizza documenti XML con supporto XPath. XML Formatter gratuito."
-      }
+      },
+      "tagline": "Formatta, valida e minimizza XML con ricerca XPath e supporto namespace",
+      "pageDescription": "Formatter XML professionale con validazione sintassi, abbellimento e minimizzazione. Funzionalità ricerca XPath, analisi namespace e visualizzazione struttura. Perfetto per SOAP, RSS, SVG e file configurazione. Gestisce documenti XML grandi in modo efficiente con validazione in tempo reale ed evidenziazione errori. Elaborazione XML gratuita e sicura basata su browser."
     },
     "yaml-json-converter": {
       "title": "Convertitore YAML/JSON",
@@ -343,7 +375,9 @@
       "meta": {
         "title": "Convertitore YAML/JSON - Strumento Online Gratuito | ToolsLab",
         "description": "Converti YAML in JSON e viceversa online. Convertitore bidirezionale YAML/JSON gratuito."
-      }
+      },
+      "tagline": "Converti YAML in JSON e viceversa con funzionalità validazione avanzate",
+      "pageDescription": "Convertitore YAML in JSON gratuito con conversione bidirezionale, supporto multi-documento e risoluzione anchor. Converti config Kubernetes, file Docker Compose, pipeline CI/CD e specifiche Swagger istantaneamente. Funzionalità validazione in tempo reale, evidenziazione sintassi, preservazione tipi e gestione commenti. Supporta YAML 1.2 con anchor, alias, chiavi merge e tag personalizzati. Export interfacce TypeScript e JSON Schema. Perfetto per DevOps engineer, sviluppatori che lavorano con file configurazione e documentazione API."
     },
     "crontab-builder": {
       "title": "Costruttore Espressioni Crontab",
@@ -351,7 +385,9 @@
       "meta": {
         "title": "Costruttore Crontab - Strumento Online Gratuito | ToolsLab",
         "description": "Costruisci e valida espressioni cron online. Genera crontab con costruttore visuale. Strumento cron gratuito."
-      }
+      },
+      "tagline": "Costruisci e analizza espressioni cron con interfaccia visuale",
+      "pageDescription": "Crea e valida espressioni cron usando il nostro builder visuale con menu dropdown e preset comuni. Analizza entry crontab esistenti con descrizioni leggibili e prossimi tempi esecuzione. Perfetto per amministratori sistema, DevOps engineer e sviluppatori che schedulano task automatizzati e deployment."
     },
     "api-tester": {
       "title": "Tester API",
@@ -367,7 +403,9 @@
       "meta": {
         "title": "Validatore JSON - Strumento Online Gratuito | ToolsLab",
         "description": "Valida JSON online. Controlla sintassi e struttura JSON. Validatore JSON gratuito."
-      }
+      },
+      "tagline": "Valida JSON con supporto schema avanzato e rilevamento errori",
+      "pageDescription": "Validatore JSON avanzato con supporto JSON Schema, reporting errori in tempo reale e audit sicurezza. Valida risposte API, file configurazione e strutture dati con supporto schema Draft 7/2019-09/2020-12. Funzionalità evidenziazione sintassi, diagnostica errori dettagliata, metriche performance e rilevamento vulnerabilità sicurezza. Perfetto per sviluppatori e test API."
     },
     "json-to-typescript": {
       "title": "JSON a TypeScript",
@@ -375,7 +413,9 @@
       "meta": {
         "title": "JSON a TypeScript - Strumento Online Gratuito | ToolsLab",
         "description": "Genera interfacce TypeScript da JSON online. Convertitore JSON to TypeScript gratuito."
-      }
+      },
+      "tagline": "Genera interfacce TypeScript da JSON con inferenza tipi intelligente",
+      "pageDescription": "Convertitore JSON a TypeScript avanzato con inferenza tipi intelligente, proprietà opzionali e supporto interfacce nidificate. Converti risposte API, oggetti configurazione e strutture JSON complesse in interfacce TypeScript production-ready. Funzionalità tipi union, rilevamento enum, parsing date, convenzioni naming personalizzate e opzioni immutabili. Include generazione schema Zod, codice validazione e generatori dati mock. Perfetto per sviluppatori TypeScript che costruiscono applicazioni type-safe con API esterne."
     },
     "list-compare": {
       "title": "Confronto Liste",
@@ -383,7 +423,9 @@
       "meta": {
         "title": "Confronto Liste - Strumento Online Gratuito | ToolsLab",
         "description": "Confronta liste online. Trova differenze, intersezioni e unioni. Strumento confronto liste gratuito."
-      }
+      },
+      "tagline": "Confronta liste multiple con diff avanzato e operazioni set",
+      "pageDescription": "Strumento confronto liste professionale con operazioni set (unione, intersezione, differenza), matching fuzzy e formati output developer-friendly. Confronta fino a 10 liste simultaneamente con algoritmi intelligenti per dipendenze pacchetti, file git, endpoint API e analisi dati. Funzionalità diagrammi Venn, matching regex, rilevamento duplicati ed export JSON, CSV, SQL. Perfetto per sviluppatori, data analyst e amministratori sistema che gestiscono liste, array e dataset."
     },
     "markdown-preview": {
       "title": "Anteprima Markdown",
@@ -399,7 +441,9 @@
       "meta": {
         "title": "Color Picker - Strumento Online Gratuito | ToolsLab",
         "description": "Seleziona colori online. Converti tra HEX, RGB, HSL. Color picker gratuito."
-      }
+      },
+      "tagline": "Scegli colori con controllo contrasto e generatore palette",
+      "pageDescription": "Color picker professionale per sviluppatori e designer con formati HEX, RGB, HSL, HSV, CMYK e LAB. Genera palette colori, controlla rapporti contrasto WCAG, simula daltonismo ed export CSS, Tailwind, Material Design. Funzionalità API eyedropper, generatore gradienti e integrazione design system. Strumento gratuito basato su browser con controllo conformità accessibilità."
     },
     "gradient-generator": {
       "title": "Generatore Gradienti",
@@ -407,7 +451,9 @@
       "meta": {
         "title": "Generatore Gradienti CSS - Strumento Online Gratuito | ToolsLab",
         "description": "Crea gradienti CSS online. Genera codice gradiente personalizzato. Generatore gradiente gratuito."
-      }
+      },
+      "tagline": "Crea gradienti CSS stupendi con editor visuale e preset",
+      "pageDescription": "Generatore gradienti CSS professionale con gradienti lineari, radiali e conici. Crea sfondi bellissimi con editor visuale color stop, collezioni preset e anteprima in tempo reale. Export CSS, classi Tailwind e SVG. Funzionalità interfaccia drag-and-drop, generatore armonie colore e compatibilità browser. Perfetto per web designer e sviluppatori che creano sfondi UI moderni."
     },
     "favicon-generator": {
       "title": "Generatore Favicon",
@@ -415,7 +461,9 @@
       "meta": {
         "title": "Generatore Favicon - Strumento Online Gratuito | ToolsLab",
         "description": "Crea favicon online. Genera favicon in più formati. Generatore favicon gratuito."
-      }
+      },
+      "tagline": "Genera pacchetti favicon completi per tutti i dispositivi",
+      "pageDescription": "Crea favicon professionali da qualsiasi immagine. Genera tutte le dimensioni richieste (16x16 a 512x512) in formati ICO, PNG e SVG. Include Apple Touch Icons, icone Android Chrome e codice implementazione HTML completo. Perfetto per sviluppatori web e designer che costruiscono siti professionali."
     },
     "image-optimizer": {
       "title": "Ottimizzatore Immagini",
@@ -431,7 +479,9 @@
       "meta": {
         "title": "Base64 a PDF - Strumento Online Gratuito | ToolsLab",
         "description": "Converti Base64 in PDF online. Decodifica Base64 e salva come PDF. Convertitore gratuito."
-      }
+      },
+      "tagline": "Converti dati Base64 in file PDF istantaneamente",
+      "pageDescription": "Converti dati codificati Base64 in file PDF con download istantaneo. Perfetto per sviluppatori che lavorano con API documenti, allegati email e workflow elaborazione dati. Conversione sicura basata su browser senza caricamenti server. Valida input Base64, visualizza metadata PDF e scarica file convertiti direttamente sul tuo dispositivo."
     },
     "curl-to-code": {
       "title": "cURL a Codice",
@@ -439,7 +489,9 @@
       "meta": {
         "title": "cURL a Codice - Strumento Online Gratuito | ToolsLab",
         "description": "Converti cURL in codice online. Genera snippet da comandi curl. Convertitore cURL gratuito."
-      }
+      },
+      "tagline": "Converti comandi cURL in codice production-ready in qualsiasi linguaggio",
+      "pageDescription": "Convertitore cURL in codice gratuito trasforma comandi cURL in codice production-ready per JavaScript, Python, Go, Java, PHP, Ruby e oltre 15 linguaggi. Funzionalità gestione automatica errori, inferenza tipi, supporto async/await e integrazione best practices. Perfetto per sviluppatori API che convertono esempi documentazione, debug richieste network e costruzione client SDK. Supporta tutti i flag cURL, metodi autenticazione, upload multipart e genera unit test. Conversione sicura basata su browser senza caricamento dati."
     },
     "js-minifier": {
       "title": "Minimizzatore JavaScript",
@@ -447,7 +499,9 @@
       "meta": {
         "title": "Minimizzatore JavaScript - Strumento Online Gratuito | ToolsLab",
         "description": "Minimizza JavaScript online. Comprimi codice JS. Minimizzatore JS gratuito."
-      }
+      },
+      "tagline": "Minimizza e ottimizza codice JavaScript con supporto ES6+ e source map",
+      "pageDescription": "Minimizzatore e beautifier JavaScript professionale con supporto ES2024+, riduce dimensione bundle fino al 70% mantenendo funzionalità. Funzionalità ottimizzazioni avanzate inclusa eliminazione codice morto, ridenominazione variabili, inlining funzioni e simulazione tree shaking. Genera source map per debugging, applica livelli compressione variabili e mantieni compatibilità JavaScript moderno. Elabora codice in sicurezza nel tuo browser senza caricamenti server - perfetto per ottimizzazione produzione ed elaborazione alternativa webpack."
     }
   }
 }

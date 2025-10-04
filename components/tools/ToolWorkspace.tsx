@@ -30,6 +30,8 @@ interface ToolWorkspaceProps {
   categoryColor: string;
   initialInput?: string;
   isLabMode?: boolean;
+  locale?: string;
+  dictionary?: any;
 }
 
 export default function ToolWorkspace({
@@ -37,6 +39,8 @@ export default function ToolWorkspace({
   categoryColor,
   initialInput,
   isLabMode = false,
+  locale,
+  dictionary,
 }: ToolWorkspaceProps) {
   const [input, setInput] = useState(initialInput || '');
   const [output, setOutput] = useState('');
@@ -49,6 +53,24 @@ export default function ToolWorkspace({
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const outputRef = useRef<HTMLTextAreaElement>(null);
+
+  // Get translations
+  const isItalian = locale === 'it';
+  const toolDict = dictionary?.tools?.[tool.slug] || {};
+  const commonDict = dictionary?.common?.actions || {};
+
+  const t = {
+    input: isItalian ? 'Input' : 'Input',
+    output: isItalian ? 'Output' : 'Output',
+    clear: commonDict?.clear || (isItalian ? 'Cancella' : 'Clear'),
+    copy: commonDict?.copy || (isItalian ? 'Copia' : 'Copy'),
+    copied: isItalian ? 'Copiato!' : 'Copied!',
+    download: commonDict?.download || (isItalian ? 'Scarica' : 'Download'),
+    placeholder:
+      toolDict?.placeholder ||
+      (isItalian ? 'Inserisci il testo qui...' : 'Enter text here...'),
+    processing: isItalian ? 'Elaborazione...' : 'Processing...',
+  };
 
   // Tool-specific options
   const [toolOptions, setToolOptions] = useState<any>({});
@@ -218,6 +240,8 @@ export default function ToolWorkspace({
         initialInput={initialInput}
         onInputChange={setInput}
         onOutputChange={setOutput}
+        locale={locale}
+        dictionary={dictionary}
       />
     );
   }

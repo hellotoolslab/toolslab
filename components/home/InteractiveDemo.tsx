@@ -198,7 +198,7 @@ export function InteractiveDemo() {
                     className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:shadow-xl"
                   >
                     <Sparkles className="h-5 w-5" />
-                    {demo?.formatButton || 'Format JSON'}
+                    {demo?.action || 'Format JSON'}
                   </motion.button>
                 </div>
               )}
@@ -298,12 +298,10 @@ export function InteractiveDemo() {
                   </div>
                   <div>
                     <p className="font-medium text-green-900 dark:text-green-100">
-                      {demo?.validationSuccess ||
-                        'JSON formatted successfully!'}
+                      JSON formatted successfully!
                     </p>
                     <p className="text-sm text-green-700 dark:text-green-300">
-                      {demo?.features?.prettyPrint ||
-                        'Your JSON is now properly formatted and readable'}
+                      Your JSON is now properly formatted and readable
                     </p>
                   </div>
                 </div>
@@ -315,14 +313,13 @@ export function InteractiveDemo() {
           <div className="border-t border-gray-200 bg-gray-50 px-6 py-4 dark:border-gray-700 dark:bg-gray-900">
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                {demo?.features?.title ||
-                  'Like what you see? Try the full-featured JSON formatter'}
+                Like what you see? Try the full-featured JSON formatter
               </p>
               <Link
                 href={createHref('/tools/json-formatter')}
                 className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
               >
-                {demo?.sampleButton || 'Try Full JSON Formatter'}
+                {demo?.viewTool || 'Try Full JSON Formatter'}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
