@@ -1,7 +1,7 @@
 {
   "tools": {
     "json-formatter": {
-      "title": "Formattatore JSON",
+      "title": "JSON Formatter",
       "description": "Formatta, valida e abbellisce dati JSON con evidenziazione della sintassi",
       "placeholder": "Incolla qui il tuo JSON...",
       "instructions": "Incolla o digita i tuoi dati JSON per formattarli e validarli",
@@ -12,8 +12,8 @@
         "Minimizzazione"
       ],
       "meta": {
-        "title": "Formattatore JSON - Strumento Online Gratuito | ToolsLab",
-        "description": "Formatta, valida e abbellisce dati JSON con evidenziazione della sintassi. Formattatore JSON online gratuito senza registrazione. Funziona istantaneamente nel browser."
+        "title": "JSON Formatter - Strumento Online Gratuito | ToolsLab",
+        "description": "Formatta, valida e abbellisce dati JSON con evidenziazione della sintassi. JSON Formatter online gratuito senza registrazione. Funziona istantaneamente nel browser."
       },
       "labels": {
         "indentSize": "Dimensione rientro",
@@ -110,13 +110,13 @@
       }
     },
     "sql-formatter": {
-      "title": "Formattatore SQL",
+      "title": "SQL Formatter",
       "description": "Formatta e abbellisce query SQL",
       "placeholder": "Incolla qui la tua query SQL...",
       "instructions": "Incolla la tua query SQL per formattarla e abbellirla",
       "meta": {
-        "title": "Formattatore SQL - Strumento Online Gratuito | ToolsLab",
-        "description": "Formatta e abbellisce query SQL online. Supporto per più dialetti SQL. Strumento formattatore SQL gratuito."
+        "title": "SQL Formatter - Strumento Online Gratuito | ToolsLab",
+        "description": "Formatta e abbellisce query SQL online. Supporto per più dialetti SQL. Strumento SQL Formatter gratuito."
       }
     },
     "url-encoder": {
@@ -330,11 +330,11 @@
       }
     },
     "xml-formatter": {
-      "title": "Formattatore XML",
+      "title": "XML Formatter",
       "description": "Formatta, valida e minimizza documenti XML con evidenziazione sintassi e supporto XPath",
       "meta": {
-        "title": "Formattatore XML - Strumento Online Gratuito | ToolsLab",
-        "description": "Formatta e valida XML online. Minimizza documenti XML con supporto XPath. Formattatore XML gratuito."
+        "title": "XML Formatter - Strumento Online Gratuito | ToolsLab",
+        "description": "Formatta e valida XML online. Minimizza documenti XML con supporto XPath. XML Formatter gratuito."
       }
     },
     "yaml-json-converter": {

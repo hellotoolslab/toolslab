@@ -42,7 +42,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       ],
       it: [
         'strumenti sviluppatore',
-        'formattatore json',
+        'formatter json',
         'codificatore base64',
         'decodificatore jwt',
         'generatore uuid',
@@ -59,7 +59,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
   tools: {
     titles: {
       en: 'All Developer Tools - Free Online Utilities | ToolsLab',
-      it: 'Tutti gli Strumenti Sviluppatore - Utilità Online Gratuite | ToolsLab',
+      it: 'Tutti gli Strumenti Sviluppatore - Tools Online Gratuiti | ToolsLab',
     },
     descriptions: {
       en: 'Discover 20+ free online tools for JSON formatting, Base64 encoding, URL decoding, hash generation, and more. All tools work entirely in your browser with no data transmission to servers. Perfect for development, debugging, and data processing workflows.',
@@ -84,7 +84,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'strumenti sviluppatore online',
         'utilità sviluppatore gratuite',
         'strumenti sviluppo web',
-        'formattatore json',
+        'json formatter',
         'codificatore base64',
         'decodificatore url',
         'generatore hash',

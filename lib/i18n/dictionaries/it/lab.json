@@ -59,7 +59,7 @@
       "privacyControlTitle": "Privacy e Controllo",
       "privacyControlDescription": "Tutto nel tuo Lab è memorizzato localmente utilizzando il localStorage del browser. Nessun account, nessun tracciamento, nessuna archiviazione lato server. Le tue preferenze di flusso di lavoro rimangono completamente private e sotto il tuo controllo.",
       "workflowOptimizationTitle": "Ottimizzazione del Flusso di Lavoro",
-      "workflowOptimizationDescription": "Contrassegna con la stella gli strumenti usati frequentemente come il nostro Formattatore JSON, Encoder Base64 e utilità di sicurezza per costruire flussi di lavoro che corrispondono ai tuoi pattern di sviluppo.",
+      "workflowOptimizationDescription": "Contrassegna con la stella gli strumenti usati frequentemente come il nostro JSON formatter, Encoder Base64 e utilità di sicurezza per costruire flussi di lavoro che corrispondono ai tuoi pattern di sviluppo.",
       "needMoreTools": "Hai Bisogno di Altri Strumenti?",
       "needMoreToolsDescription": "Esplora la nostra collezione completa di strumenti per sviluppatori in tutte le categorie. Trova lo strumento perfetto per il tuo flusso di lavoro e aggiungilo al tuo Lab.",
       "browseAllTools": "Sfoglia Tutti gli Strumenti"

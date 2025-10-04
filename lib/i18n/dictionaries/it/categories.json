@@ -25,7 +25,7 @@
       "description": "Utilità e helper per sviluppatori"
     },
     "formatters": {
-      "name": "Formattatori",
+      "name": "Formatters",
       "description": "Strumenti per formattazione codice e dati"
     }
   }

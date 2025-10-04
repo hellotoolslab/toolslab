@@ -92,7 +92,7 @@
       }
     },
     "interactiveDemo": {
-      "title": "Prova il Formattatore JSON in Azione",
+      "title": "Prova il JSON Formatter in Azione",
       "subtitle": "Interattivo e intuitivo, proprio come tutti i nostri strumenti",
       "placeholder": "Incolla qui il tuo JSON...",
       "sampleButton": "Prova con JSON di esempio",

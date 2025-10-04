@@ -28,7 +28,7 @@ export async function generateMetadata({
 
   const description =
     locale === 'it'
-      ? 'Crea il tuo toolkit personale per sviluppatori con i preferiti contrassegnati con stella. Accedi a formattatori JSON, codificatori Base64, generatori hash e altro in uno spazio di lavoro privato. Nessun account richiesto - salvato localmente.'
+      ? 'Crea il tuo toolkit personale per sviluppatori con i preferiti contrassegnati con stella. Accedi a JSON formatter, codificatori Base64, generatori hash e altro in uno spazio di lavoro privato. Nessun account richiesto - salvato localmente.'
       : 'Create your personal developer toolkit with starred favorites. Access JSON formatters, Base64 encoders, hash generators and more in one private workspace. No account required - stored locally.';
 
   const keywords =
@@ -38,7 +38,7 @@ export async function generateMetadata({
           'collezione strumenti preferiti',
           'spazio lavoro sviluppatore',
           'strumenti preferiti',
-          'formattatore JSON preferiti',
+          'JSON formatter preferiti',
           'codificatore Base64 segnalibro',
           'collezione generatore hash',
           'spazio lavoro strumenti privato',

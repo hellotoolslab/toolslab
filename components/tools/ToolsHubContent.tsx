@@ -36,26 +36,46 @@ import {
 
 type SortOption = 'alphabetical' | 'popular' | 'recent' | 'category';
 
-export default function ToolsHubContent() {
+interface ToolsHubContentProps {
+  locale?: string;
+  dictionary?: any;
+}
+
+export default function ToolsHubContent({
+  locale,
+  dictionary: propDictionary,
+}: ToolsHubContentProps = {}) {
   const searchParams = useSearchParams();
   const { replace, createHref } = useLocalizedRouter();
-  const { dictionary, loading } = useDictionary();
+  const { dictionary: hookDictionary, loading } = useDictionary();
+
+  // Use provided dictionary or fall back to hook
+  const dictionary = propDictionary || hookDictionary;
+
+  // Detect if Italian
+  const isItalian = locale === 'it';
 
   // Translations with fallbacks
   const t = dictionary?.toolsPage || {
-    breadcrumb: { home: 'Home', allTools: 'All Tools' },
+    breadcrumb: {
+      home: isItalian ? 'Home' : 'Home',
+      allTools: isItalian ? 'Tutti gli Strumenti' : 'All Tools',
+    },
     header: {
-      title: 'All Developer Tools - Free Online Utilities',
-      subtitle:
-        'Complete collection of professional tools for developers, data analysts, and system administrators',
-      description:
-        'free browser-based tools for JSON formatting, Base64 encoding, hash generation, and more. Zero data transmission, no registration required.',
+      title: isItalian
+        ? 'Tutti gli Strumenti per Sviluppatori - Tools Online Gratuiti'
+        : 'All Developer Tools - Free Online Utilities',
+      subtitle: isItalian
+        ? 'Collezione completa di strumenti professionali per sviluppatori, data analyst e amministratori di sistema'
+        : 'Complete collection of professional tools for developers, data analysts, and system administrators',
+      description: isItalian
+        ? 'strumenti gratuiti basati su browser per formattazione JSON, codifica Base64, generazione hash e altro. Nessuna trasmissione dati, nessuna registrazione richiesta.'
+        : 'free browser-based tools for JSON formatting, Base64 encoding, hash generation, and more. Zero data transmission, no registration required.',
     },
     trust: {
-      tools: 'tools',
-      freeForever: 'Free forever',
-      privacyFirst: 'Privacy-first',
-      newToolsWeekly: 'New tools weekly',
+      tools: isItalian ? 'strumenti' : 'tools',
+      freeForever: isItalian ? 'Gratis per sempre' : 'Free forever',
+      privacyFirst: isItalian ? 'Privacy prima di tutto' : 'Privacy-first',
     },
     search: { placeholder: "Search tools... (e.g. 'json', 'encode', 'hash')" },
     filters: {
@@ -81,18 +101,31 @@ export default function ToolsHubContent() {
     },
     seo: {
       whyChoose: {
-        title: 'Why Choose ToolsLab Tools?',
-        benefits: [
-          'Complete privacy - all processing happens in your browser',
-          'No registration or account required',
-          'Professional-grade tools used by developers worldwide',
-          'Real-time processing with instant results',
-          'Mobile-friendly responsive design',
-          'Regular updates with new tools and features',
-        ],
+        title: isItalian
+          ? 'Perché Scegliere gli Strumenti ToolsLab?'
+          : 'Why Choose ToolsLab Tools?',
+        benefits: isItalian
+          ? [
+              "Privacy completa - tutta l'elaborazione avviene nel tuo browser",
+              'Nessuna registrazione o account richiesto',
+              'Strumenti di livello professionale usati da sviluppatori in tutto il mondo',
+              'Elaborazione in tempo reale con risultati istantanei',
+              'Design responsivo ottimizzato per mobile',
+              'Aggiornamenti regolari con nuovi strumenti e funzionalità',
+            ]
+          : [
+              'Complete privacy - all processing happens in your browser',
+              'No registration or account required',
+              'Professional-grade tools used by developers worldwide',
+              'Real-time processing with instant results',
+              'Mobile-friendly responsive design',
+              'Regular updates with new tools and features',
+            ],
       },
       workflows: {
-        title: 'Common Developer Workflows',
+        title: isItalian
+          ? 'Flussi di Lavoro Comuni per Sviluppatori'
+          : 'Common Developer Workflows',
         api: {
           title: 'API Development & Testing',
           tools: [
@@ -518,14 +551,16 @@ export default function ToolsHubContent() {
                 {t.seo.whyChoose.title}
               </h2>
               <ul className="space-y-3">
-                {t.seo.whyChoose.benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
-                    <span className="text-gray-600 dark:text-gray-400">
-                      {benefit}
-                    </span>
-                  </li>
-                ))}
+                {t.seo.whyChoose.benefits.map(
+                  (benefit: string, index: number) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
+                      <span className="text-gray-600 dark:text-gray-400">
+                        {benefit}
+                      </span>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
 
@@ -557,7 +592,7 @@ export default function ToolsHubContent() {
                       {workflow.title}
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {workflow.tools.map((toolName) => (
+                      {workflow.tools.map((toolName: string) => (
                         <span
                           key={toolName}
                           className="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
