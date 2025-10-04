@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import {
   tools,
   getToolById,
@@ -51,6 +52,7 @@ export default function ToolPageClient({
   const searchParams = useSearchParams();
   const { theme } = useTheme();
   const { trackEngagement, trackToolUse } = useUmami();
+  const { createHref } = useLocalizedRouter();
   const [usageCount, setUsageCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -312,7 +314,7 @@ export default function ToolPageClient({
                   {relatedTools.map((relatedTool) => (
                     <Link
                       key={relatedTool.id}
-                      href={`/tools/${relatedTool.id}`}
+                      href={createHref(`/tools/${relatedTool.id}`)}
                       className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                       <div
@@ -355,7 +357,7 @@ export default function ToolPageClient({
               {relatedTools.map((relatedTool) => (
                 <Link
                   key={relatedTool.id}
-                  href={`/tools/${relatedTool.id}`}
+                  href={createHref(`/tools/${relatedTool.id}`)}
                   className="rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
                 >
                   <div

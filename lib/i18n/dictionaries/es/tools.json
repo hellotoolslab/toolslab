@@ -28,7 +28,9 @@
       "options": {
         "compact": "Compacto",
         "expanded": "Expandido"
-      }
+      },
+      "tagline": "Format, validate and beautify JSON instantly online",
+      "pageDescription": "Format and validate JSON data with our free online JSON formatter. Debug malformed JSON, beautify minified code, and validate syntax with real-time error detection. Perfect for developers working with APIs, config files, and data processing. Search keys, customize indentation, and process large files securely in your browser."
     },
     "base64-encode": {
       "title": "Codificador Base64",
@@ -38,7 +40,9 @@
       "meta": {
         "title": "Codificador Base64 - Herramienta Online Gratuita | ToolsLab",
         "description": "Codifica texto o archivos al formato Base64 instantáneamente. Codificador Base64 online gratuito con soporte de archivos. No se requiere registro."
-      }
+      },
+      "tagline": "Encode and decode Base64 files and text instantly",
+      "pageDescription": "Free Base64 encoder and decoder for text, images, and files up to 50MB. Perfect for web developers embedding images in HTML/CSS, API data transmission, and email attachments. Drag-and-drop interface with secure browser-based processing. Download decoded files directly or copy encoded strings to clipboard."
     },
     "base64-decode": {
       "title": "Decodificador Base64",
@@ -58,7 +62,9 @@
       "meta": {
         "title": "Decodificador JWT - Herramienta Online Gratuita | ToolsLab",
         "description": "Decodifica y valida JSON Web Tokens (JWT) en línea. Inspecciona encabezado, carga útil y firma. Herramienta decodificadora JWT gratuita."
-      }
+      },
+      "tagline": "Decode and analyze JWT tokens with security validation instantly",
+      "pageDescription": "Professional JWT decoder with claims analysis, security validation, and expiration checking. Decode JSON Web Tokens safely with detailed header, payload, and signature information. Perfect for debugging authentication issues, analyzing token claims, and validating JWT security. Supports all JWT algorithms with real-time security recommendations and time-based claim analysis."
     },
     "uuid-generator": {
       "title": "Generador UUID",
@@ -67,7 +73,9 @@
       "meta": {
         "title": "Generador UUID - Herramienta Online Gratuita | ToolsLab",
         "description": "Genera UUIDs aleatorios en línea. Soporte para versiones UUID v1, v4 y v5. Generador UUID gratuito con generación masiva."
-      }
+      },
+      "tagline": "Generate unique UUIDs and GUIDs instantly online",
+      "pageDescription": "Generate UUID v1 and v4 identifiers for databases, APIs, and applications. Create single UUIDs or bulk generate up to 1000 with customizable formatting. Perfect for developers building distributed systems, database schemas, and unique identification systems. Free, secure, and browser-based generation."
     },
     "hash-generator": {
       "title": "Generador de Hash",
@@ -77,7 +85,9 @@
       "meta": {
         "title": "Generador de Hash - Herramienta Online Gratuita | ToolsLab",
         "description": "Genera hashes MD5, SHA-1, SHA-256 y SHA-512 en línea. Generador de hash gratuito para texto y archivos."
-      }
+      },
+      "tagline": "Generate secure MD5, SHA256 and SHA512 hashes",
+      "pageDescription": "Generate cryptographic hash values using MD5, SHA-1, SHA-256, and SHA-512 algorithms. Perfect for password hashing, file integrity verification, and security auditing. Real-time hash generation with one-click copying. All processing happens locally in your browser for maximum security and privacy."
     },
     "css-minifier": {
       "title": "Minificador CSS",
@@ -87,7 +97,9 @@
       "meta": {
         "title": "Minificador CSS - Herramienta Online Gratuita | ToolsLab",
         "description": "Minifica y comprime código CSS en línea. Reduce el tamaño del archivo y mejora la velocidad de carga. Herramienta minificadora CSS gratuita."
-      }
+      },
+      "tagline": "Minify and optimize CSS files instantly for faster websites",
+      "pageDescription": "Professional CSS minifier and beautifier that reduces file size by up to 60% while preserving functionality. Features advanced optimization options including color compression, rule merging, vendor prefix handling, and media query optimization. Process CSS instantly in your browser with complete privacy - no data is sent to servers. Perfect for optimizing stylesheets for production deployment with support for CSS3, CSS4, and modern properties."
     },
     "javascript-minifier": {
       "title": "Minificador JavaScript",
@@ -113,7 +125,90 @@
       "title": "Formateador SQL",
       "description": "Formatea y embellece consultas SQL",
       "placeholder": "Pega tu consulta SQL aquí...",
-      "instructions": "Pega tu consulta SQL para formatear y embellecer",
+      "instructions": {
+        "title": "Cómo usar el Formateador SQL",
+        "steps": [
+          {
+            "title": "Pega tu consulta SQL",
+            "description": "Copia y pega tu consulta o script SQL en el área de entrada. La herramienta acepta SQL minificado y sin formato de cualquier sistema de base de datos."
+          },
+          {
+            "title": "Selecciona el dialecto SQL",
+            "description": "Elige tu sistema de base de datos (MySQL, PostgreSQL, SQLite, SQL Server) para formateo específico del dialecto y reconocimiento de palabras clave."
+          },
+          {
+            "title": "Configura las opciones de formato",
+            "description": "Personaliza el tamaño de sangría, el uso de mayúsculas/minúsculas de palabras clave y las preferencias de salto de línea para adaptarse a tus estándares de codificación."
+          },
+          {
+            "title": "Revisa la salida formateada",
+            "description": "La herramienta valida la sintaxis SQL y muestra la consulta formateada con sangría adecuada, resaltado de palabras clave y legibilidad mejorada."
+          },
+          {
+            "title": "Copia o descarga el resultado",
+            "description": "Copia el SQL formateado al portapapeles para uso inmediato o descárgalo como archivo .sql para almacenamiento y compartir."
+          }
+        ],
+        "features": [
+          "Soporte multi-dialecto (MySQL, PostgreSQL, SQLite, SQL Server)",
+          "Reconocimiento inteligente de palabras clave y conversión de mayúsculas/minúsculas",
+          "Sangría personalizable (2, 4 espacios o tabulación)",
+          "Validación de sintaxis SQL con resaltado de errores",
+          "Análisis de consultas complejas incluyendo CTE, subconsultas y joins",
+          "Preservación y formato de comentarios",
+          "Soporte para scripts SQL grandes hasta 5MB",
+          "Exportación de SQL formateado como archivo descargable"
+        ],
+        "useCases": [
+          "Formatear consultas SQL desordenadas para mejor legibilidad",
+          "Estandarizar el estilo de código SQL en equipos de desarrollo",
+          "Depurar consultas complejas con sangría adecuada",
+          "Preparar scripts SQL para documentación y revisión de código",
+          "Convertir entre diferentes estándares de formato SQL",
+          "Limpiar SQL auto-generado de constructores de consultas",
+          "Formatear procedimientos almacenados y scripts de migración de base de datos",
+          "Preparar consultas SQL para despliegue en producción"
+        ],
+        "proTips": [
+          "Usa palabras clave en mayúsculas para mejor legibilidad y estándares SQL",
+          "Elige sangría de 4 espacios para un equilibrio óptimo entre legibilidad y compacidad",
+          "Selecciona el dialecto SQL correcto para garantizar el reconocimiento adecuado de palabras clave",
+          "Formatea scripts grandes en secciones si el rendimiento se vuelve lento",
+          "Preserva los comentarios originales - contienen contexto importante",
+          "Usa formato consistente en toda tu base de código"
+        ],
+        "troubleshooting": [
+          "Errores de sintaxis: Verifica punto y coma faltantes, paréntesis o comillas sin cerrar",
+          "Palabras clave no reconocidas: Verifica que la selección del dialecto SQL coincida con tu base de datos",
+          "Problemas de formato: Asegúrate de que el SQL sea válido antes de formatear",
+          "Rendimiento lento: Divide scripts muy grandes en fragmentos más pequeños",
+          "Funciones faltantes: Algunas sintaxis avanzadas específicas del dialecto pueden requerir formato manual"
+        ],
+        "keyboardShortcuts": [
+          {
+            "keys": "Ctrl+V",
+            "description": "Pegar consulta SQL"
+          },
+          {
+            "keys": "Ctrl+Enter",
+            "description": "Formatear SQL"
+          },
+          {
+            "keys": "Ctrl+A",
+            "description": "Seleccionar toda la salida formateada"
+          },
+          {
+            "keys": "Ctrl+C",
+            "description": "Copiar SQL formateado"
+          },
+          {
+            "keys": "Ctrl+S",
+            "description": "Descargar archivo SQL"
+          }
+        ]
+      },
+      "tagline": "Formatea y embellece consultas SQL con resaltado de sintaxis",
+      "pageDescription": "Formatea y embellece consultas SQL con sangría adecuada, resaltado de palabras clave y validación de sintaxis. Perfecto para desarrolladores de bases de datos, analistas de datos y optimización SQL. Soporta múltiples dialectos SQL (MySQL, PostgreSQL, SQLite) con opciones de formato personalizables. Formateador SQL gratuito y seguro basado en navegador sin carga de datos.",
       "meta": {
         "title": "Formateador SQL - Herramienta Online Gratuita | ToolsLab",
         "description": "Formatea y embellece consultas SQL en línea. Soporte para múltiples dialectos SQL. Herramienta formateadora SQL gratuita."
@@ -167,7 +262,9 @@
       "meta": {
         "title": "Convertidor CSV a JSON - Herramienta Online Gratuita | ToolsLab",
         "description": "Convierte archivos CSV al formato JSON en línea. Soporte para delimitadores personalizados y encabezados. Convertidor CSV a JSON gratuito."
-      }
+      },
+      "tagline": "Convert CSV data to JSON format with smart parsing",
+      "pageDescription": "Transform CSV files and data into JSON format with automatic header detection and custom delimiter support. Perfect for data migration, API integration, and spreadsheet processing. Handles large files with streaming, preserves data types, and offers multiple output formats. Free, secure browser-based conversion with no file uploads."
     },
     "json-to-csv": {
       "title": "JSON a CSV",
@@ -177,7 +274,9 @@
       "meta": {
         "title": "Convertidor JSON a CSV - Herramienta Online Gratuita | ToolsLab",
         "description": "Convierte datos JSON al formato CSV en línea. Aplana objetos y arrays anidados. Convertidor JSON a CSV gratuito."
-      }
+      },
+      "tagline": "Convert JSON to CSV with advanced formatting and column mapping",
+      "pageDescription": "Free JSON to CSV converter with advanced flattening, column mapping, and formatting options. Transform JSON arrays, nested objects, and complex data structures into Excel-compatible CSV files. Features drag-and-drop column ordering, custom delimiters, header configuration, and real-time preview. Perfect for data export, API response conversion, and spreadsheet integration. Secure browser-based processing with no file uploads."
     },
     "xml-to-json": {
       "title": "XML a JSON",
@@ -217,7 +316,9 @@
       "meta": {
         "title": "Probador de Regex - Herramienta Online Gratuita | ToolsLab",
         "description": "Prueba y depura expresiones regulares en línea. Soporte para múltiples banderas regex. Probador regex gratuito con resaltado de coincidencias."
-      }
+      },
+      "tagline": "Test and debug regular expressions with live matching",
+      "pageDescription": "Test regular expressions with real-time matching and highlighting. Debug regex patterns with live feedback, capture group details, and match positions. Perfect for developers validating email addresses, parsing data, and building text processing applications. Supports global, case-insensitive, and multiline flags."
     },
     "lorem-ipsum": {
       "title": "Generador Lorem Ipsum",
@@ -235,7 +336,9 @@
       "meta": {
         "title": "Generador de Contraseñas - Herramienta Online Gratuita | ToolsLab",
         "description": "Genera contraseñas aleatorias seguras en línea. Personaliza longitud y tipos de caracteres. Generador de contraseñas gratuito."
-      }
+      },
+      "tagline": "Create ultra-secure passwords with custom options instantly",
+      "pageDescription": "Generate strong, secure passwords with customizable length (4-128 characters) and character sets. Configure uppercase, lowercase, numbers, and symbols with options to exclude ambiguous characters. Perfect for creating account passwords, API keys, and secure authentication tokens. Real-time strength indicator included."
     },
     "unix-timestamp": {
       "title": "Convertidor de Timestamp Unix",
@@ -255,7 +358,9 @@
       "meta": {
         "title": "Generador de Código QR - Herramienta Online Gratuita | ToolsLab",
         "description": "Genera códigos QR en línea para texto, URLs, WiFi y más. Personaliza tamaño y descarga como imagen. Generador QR gratuito."
-      }
+      },
+      "tagline": "Generate advanced QR codes with logos, batch processing and developer tools",
+      "pageDescription": "Professional QR code generator with logo embedding, WiFi/vCard creation, and batch processing. Features SVG export, API integration, error correction levels, and size optimization. Perfect for developers building authentication systems, contact sharing, and marketing campaigns. Supports URL, email, SMS, geo-location, and crypto addresses with real-time validation."
     },
     "image-converter": {
       "title": "Convertidor de Imágenes",

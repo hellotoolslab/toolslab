@@ -31,8 +31,13 @@ export default function ToolHowToUse({
   instructions: translatedInstructions,
   labels,
 }: ToolHowToUseProps) {
-  // Use translated instructions if available, otherwise fallback to English
-  const instruction = translatedInstructions || toolInstructions[toolId];
+  // Use translated instructions if available AND it's a valid object, otherwise fallback to English
+  const instruction =
+    translatedInstructions &&
+    typeof translatedInstructions === 'object' &&
+    'steps' in translatedInstructions
+      ? translatedInstructions
+      : toolInstructions[toolId];
 
   // Use translated labels if available, otherwise fallback to English
   const sectionLabels = {

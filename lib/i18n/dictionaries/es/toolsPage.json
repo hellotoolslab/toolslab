@@ -1,0 +1,83 @@
+{
+  "breadcrumb": {
+    "home": "Inicio",
+    "allTools": "Todas las Herramientas"
+  },
+  "header": {
+    "title": "Todas las Herramientas para Desarrolladores - Utilidades Online Gratuitas",
+    "subtitle": "Colección completa de herramientas profesionales para desarrolladores, analistas de datos y administradores de sistemas",
+    "description": "herramientas gratuitas basadas en navegador para formateo JSON, codificación Base64, generación hash y más. Sin transmisión de datos, sin registro requerido."
+  },
+  "trust": {
+    "tools": "herramientas",
+    "freeForever": "Gratis para siempre",
+    "privacyFirst": "Privacidad primero"
+  },
+  "search": {
+    "placeholder": "Buscar herramientas... (ej. 'json', 'codificar', 'hash')"
+  },
+  "filters": {
+    "all": "Todas",
+    "sortBy": "Ordenar por:",
+    "mostPopular": "Más Populares",
+    "alphabetical": "A-Z",
+    "recentlyAdded": "Añadidas Recientemente",
+    "category": "Categoría",
+    "clearFilters": "Limpiar filtros"
+  },
+  "sections": {
+    "recentlyAdded": "Herramientas Añadidas Recientemente",
+    "newTools": "nuevas herramientas",
+    "mostPopular": "Herramientas Más Populares",
+    "trendingTools": "herramientas en tendencia",
+    "allTools": "Todas las Herramientas"
+  },
+  "empty": {
+    "title": "No se encontraron herramientas",
+    "description": "Intenta ajustar tus criterios de búsqueda o filtro.",
+    "clearAll": "Limpiar todos los filtros"
+  },
+  "seo": {
+    "whyChoose": {
+      "title": "¿Por Qué Elegir las Herramientas de ToolsLab?",
+      "benefits": [
+        "Privacidad completa - todo el procesamiento ocurre en tu navegador",
+        "No se requiere registro o cuenta",
+        "Herramientas de grado profesional usadas por desarrolladores en todo el mundo",
+        "Procesamiento en tiempo real con resultados instantáneos",
+        "Diseño responsivo optimizado para móviles",
+        "Actualizaciones regulares con nuevas herramientas y funciones"
+      ]
+    },
+    "workflows": {
+      "title": "Flujos de Trabajo Comunes para Desarrolladores",
+      "api": {
+        "title": "Desarrollo y Prueba de API",
+        "tools": [
+          "Formateador JSON",
+          "Decodificador JWT",
+          "Codificador URL",
+          "Generador de Hash"
+        ]
+      },
+      "data": {
+        "title": "Migración de Datos y ETL",
+        "tools": [
+          "CSV a JSON",
+          "Codificador Base64",
+          "Formateador SQL",
+          "Generador UUID"
+        ]
+      },
+      "security": {
+        "title": "Seguridad y Autenticación",
+        "tools": [
+          "Decodificador JWT",
+          "Generador de Hash",
+          "Generador de Contraseñas",
+          "Herramientas Base64"
+        ]
+      }
+    }
+  }
+}

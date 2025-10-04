@@ -318,7 +318,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
           </motion.div>
 
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {featuresData.map((feature, index) => (
+            {featuresData.map((feature: any, index: number) => (
               <FeatureCard
                 key={feature.title}
                 icon={feature.icon}
@@ -421,7 +421,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
           </motion.div>
 
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3">
-            {socialLinks.map((link, index) => (
+            {socialLinks.map((link: any, index: number) => (
               <motion.div
                 key={link.href}
                 initial={{ opacity: 0, y: 30 }}
