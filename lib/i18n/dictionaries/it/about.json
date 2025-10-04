@@ -1,0 +1,138 @@
+{
+  "about": {
+    "hero": {
+      "title": "Chi Siamo",
+      "subtitle": "La Tua Cassetta degli Attrezzi da Sviluppatore, Reinventata",
+      "badges": {
+        "free": "100% Gratuito",
+        "privacy": "Privacy al Primo Posto",
+        "noRegistration": "Senza Registrazione"
+      },
+      "scrollIndicator": "Scorri per esplorare"
+    },
+    "stats": {
+      "title": "Scelto dagli Sviluppatori",
+      "subtitle": "I numeri che raccontano la nostra storia",
+      "tools": {
+        "value": "25+",
+        "label": "Strumenti per Sviluppatori",
+        "description": "In costante crescita"
+      },
+      "users": {
+        "value": "1000+",
+        "label": "Utenti Giornalieri",
+        "description": "Sviluppatori in tutto il mondo"
+      },
+      "loadTime": {
+        "value": "<1s",
+        "label": "Tempo di Caricamento",
+        "description": "Veloce come un fulmine"
+      },
+      "dataCollected": {
+        "value": "0",
+        "label": "Dati Raccolti",
+        "description": "Privacy completa"
+      }
+    },
+    "timeline": {
+      "title": "Il Percorso",
+      "subtitle": "Dalla frustrazione personale alla risorsa per la comunità",
+      "steps": [
+        {
+          "title": "Il Problema",
+          "year": "Inizio 2025",
+          "description": "Decine di schede del browser per semplici conversioni. JSON qui, Base64 là, UUID da qualche altra parte. Ogni strumento su siti diversi, la maggior parte intasati di pubblicità, alcuni dietro paywall."
+        },
+        {
+          "title": "L'Idea",
+          "year": "Inizio 2025",
+          "description": "E se tutti i miei strumenti essenziali fossero in un unico posto? Interfaccia pulita, senza registrazione, velocissimo. Ho costruito il mio coltellino svizzero personale per lo sviluppo."
+        },
+        {
+          "title": "Lo Sviluppo",
+          "year": "Luglio 2025",
+          "description": "Notti e weekend a programmare. Iniziato con il formattatore JSON, aggiunto codificatore Base64, generatore UUID. Ogni strumento più veloce e pulito delle alternative sparse."
+        },
+        {
+          "title": "Il Lancio",
+          "year": "Agosto 2025",
+          "description": "Condiviso con il mio team. È piaciuto molto. Ho capito che poteva aiutare migliaia di sviluppatori. L'ho reso pubblico, gratuito per sempre, senza condizioni."
+        },
+        {
+          "title": "La Crescita",
+          "year": "Oggi",
+          "description": "Da progetto personale a toolkit affidabile per sviluppatori in tutto il mondo. Collezione in crescita di strumenti, tutti con lo stesso principio: funzionare e basta."
+        },
+        {
+          "title": "Il Futuro",
+          "year": "2025+",
+          "description": "Più strumenti, migliori prestazioni, funzionalità guidate dalla comunità. Sempre gratuito, sempre privato, sempre focalizzato sulla produttività degli sviluppatori."
+        }
+      ]
+    },
+    "features": {
+      "title": "Perché Scegliere ToolsLab?",
+      "subtitle": "Costruito pensando agli sviluppatori, ottimizzato per il tuo flusso di lavoro",
+      "items": [
+        {
+          "title": "Veloce come un Fulmine",
+          "description": "Tutta l'elaborazione avviene nel tuo browser. Nessun ritardo del server, nessuna attesa. Gli strumenti si caricano istantaneamente e funzionano alla velocità del pensiero."
+        },
+        {
+          "title": "Privacy al Primo Posto",
+          "description": "I tuoi dati non lasciano mai il tuo dispositivo. Nessun tracciamento, nessuna analytics, nessuna raccolta dati. Privacy completa garantita."
+        },
+        {
+          "title": "Sempre Gratuito",
+          "description": "Nessun piano premium, nessun paywall, nessun costo nascosto. Strumenti di qualità accessibili a ogni sviluppatore, indipendentemente dal budget."
+        },
+        {
+          "title": "Senza Registrazione",
+          "description": "Inizia a usare gli strumenti immediatamente. Nessun account, nessuna email di verifica, nessun attrito tra te e la produttività."
+        },
+        {
+          "title": "Modalità Scura",
+          "description": "Facile sugli occhi durante quelle lunghe sessioni di programmazione notturne. Interfaccia bellissima che si adatta alle tue preferenze."
+        },
+        {
+          "title": "Pronto per Mobile",
+          "description": "Funziona perfettamente su qualsiasi dispositivo. Stessa ottima esperienza sia su desktop, tablet o telefono."
+        }
+      ]
+    },
+    "story": {
+      "quote": "Ciao, sono RG, lo sviluppatore dietro ToolsLab. Come te, ero stanco di destreggiarmi tra dozzine di schede del browser per semplici conversioni e generazioni. Ogni strumento su un sito diverso, la maggior parte pieni di pubblicità, alcuni dietro paywall.\n\nCosì ho costruito ToolsLab - il mio coltellino svizzero personale per lo sviluppo. Quello che è iniziato come un progetto locale è diventato rapidamente prezioso per il mio team, e ora sono entusiasta di condividerlo con sviluppatori in tutto il mondo.\n\nNessuna fregatura, nessuna vendita aggressiva. Solo strumenti che funzionano, costruiti da uno sviluppatore che li usa ogni singolo giorno.",
+      "author": "— RG",
+      "badges": {
+        "developer": "Sviluppatore Full Stack",
+        "enthusiast": "Appassionato di Open Source"
+      }
+    },
+    "social": {
+      "title": "Connettiti e Supporta",
+      "subtitle": "Unisciti alla comunità, contribuisci o mostra il tuo apprezzamento",
+      "links": [
+        {
+          "label": "Seguici su X",
+          "description": "Aggiornamenti e dietro le quinte"
+        },
+        {
+          "label": "Stella su GitHub",
+          "description": "Contribuisci e dai feedback"
+        },
+        {
+          "label": "Offrimi un caffè",
+          "description": "Supporta il progetto"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Pronto a Potenziare la Tua Produttività?",
+      "subtitle": "Unisciti a migliaia di sviluppatori che hanno fatto di ToolsLab il loro toolkit preferito. Nessuna registrazione, nessun costo, solo pura produttività.",
+      "buttons": {
+        "exploreTools": "Esplora gli Strumenti",
+        "support": "Supporta il Progetto"
+      }
+    }
+  }
+}

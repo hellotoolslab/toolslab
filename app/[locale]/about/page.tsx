@@ -97,7 +97,7 @@ export default async function LocaleAboutPage({
         </div>
       }
     >
-      <NewAboutPage />
+      <NewAboutPage locale={locale} dictionary={dict} />
     </Suspense>
   );
 }

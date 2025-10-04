@@ -7,6 +7,7 @@ import { UmamiProvider } from '@/components/analytics/UmamiProvider';
 import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import dynamic from 'next/dynamic';
+import { headers } from 'next/headers';
 
 // Disable SSR for components that use stores to prevent hydration mismatch
 const Header = dynamic(
@@ -136,13 +137,27 @@ export const metadata: Metadata = {
   category: 'technology',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Detect locale from request URL
+  // In Next.js 14 App Router, we need to use headers to get the pathname
+  const headersList = await headers();
+
+  // Try to get locale from custom header first
+  let locale = headersList.get('x-locale');
+
+  // Fallback: detect from referer or other headers
+  if (!locale) {
+    const referer = headersList.get('referer') || '';
+    const url = headersList.get('x-invoke-path') || referer;
+    locale = url.includes('/it/') || url.startsWith('/it') ? 'it' : 'en';
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale || 'en'} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

@@ -32,124 +32,83 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useRef } from 'react';
 
-const timelineSteps = [
-  {
-    icon: Lightbulb,
-    title: 'The Problem',
-    year: 'Early 2025',
-    description:
-      'Dozens of browser tabs for simple conversions. JSON here, Base64 there, UUID somewhere else. Each tool on different sites, most cluttered with ads, some behind paywalls.',
-  },
-  {
-    icon: Code2,
-    title: 'The Idea',
-    year: 'Early 2025',
-    description:
-      'What if all my essential dev tools lived in one place? Clean interface, no registration, lightning fast. Built my personal Swiss Army knife for development.',
-  },
-  {
-    icon: Rocket,
-    title: 'The Build',
-    year: 'July 2025',
-    description:
-      'Nights and weekends coding. Started with JSON formatter, added Base64 encoder, UUID generator. Each tool faster and cleaner than scattered alternatives.',
-  },
-  {
-    icon: Users,
-    title: 'The Launch',
-    year: 'August 2025',
-    description:
-      'Shared with my team. They loved it. Realized this could help thousands of developers. Made it public, free forever, no strings attached.',
-  },
-  {
-    icon: Globe,
-    title: 'The Growth',
-    year: 'Today',
-    description:
-      'From personal project to trusted toolkit for developers worldwide. Growing collection of tools, all maintaining the same principle: just work.',
-  },
-  {
-    icon: Star,
-    title: 'The Future',
-    year: '2025+',
-    description:
-      'More tools, better performance, community-driven features. Always free, always private, always focused on developer productivity.',
-  },
+interface NewAboutPageProps {
+  locale?: string;
+  dictionary?: any;
+}
+
+// Default English timeline steps icons
+const timelineIcons = [Lightbulb, Code2, Rocket, Users, Globe, Star];
+
+// Default English feature icons and gradients
+const featureConfig = [
+  { icon: Zap, gradient: 'from-yellow-500 to-orange-600' },
+  { icon: Shield, gradient: 'from-green-500 to-emerald-600' },
+  { icon: Heart, gradient: 'from-red-500 to-pink-600' },
+  { icon: MousePointer, gradient: 'from-blue-500 to-cyan-600' },
+  { icon: Moon, gradient: 'from-purple-500 to-indigo-600' },
+  { icon: Smartphone, gradient: 'from-teal-500 to-green-600' },
 ];
 
-const features = [
-  {
-    icon: Zap,
-    title: 'Lightning Fast',
-    description:
-      'All processing happens in your browser. No server delays, no waiting. Tools load instantly and work at the speed of thought.',
-    gradient: 'from-yellow-500 to-orange-600',
-  },
-  {
-    icon: Shield,
-    title: 'Privacy First',
-    description:
-      'Your data never leaves your device. No tracking, no analytics, no data collection. Complete privacy guaranteed.',
-    gradient: 'from-green-500 to-emerald-600',
-  },
-  {
-    icon: Heart,
-    title: 'Always Free',
-    description:
-      'No premium plans, no paywalls, no hidden costs. Quality tools accessible to every developer, regardless of budget.',
-    gradient: 'from-red-500 to-pink-600',
-  },
-  {
-    icon: MousePointer,
-    title: 'No Sign Up',
-    description:
-      'Start using tools immediately. No accounts, no verification emails, no friction between you and productivity.',
-    gradient: 'from-blue-500 to-cyan-600',
-  },
-  {
-    icon: Moon,
-    title: 'Dark Mode',
-    description:
-      'Easy on your eyes during those late coding sessions. Beautiful interface that adapts to your preference.',
-    gradient: 'from-purple-500 to-indigo-600',
-  },
-  {
-    icon: Smartphone,
-    title: 'Mobile Ready',
-    description:
-      "Works perfectly on any device. Same great experience whether you're on desktop, tablet, or phone.",
-    gradient: 'from-teal-500 to-green-600',
-  },
-];
-
-const socialLinks = [
+// Social links configuration
+const socialLinksConfig = [
   {
     icon: Twitter,
     href: 'https://x.com/tools_lab',
-    label: 'Follow on X',
-    description: 'Updates & behind the scenes',
     gradient: 'from-blue-400 to-blue-600',
     hoverColor: 'hover:bg-blue-500',
   },
   {
     icon: Github,
     href: 'https://github.com/hellotoolslab/toolslab',
-    label: 'Star on GitHub',
-    description: 'Contribute & feedback',
     gradient: 'from-gray-600 to-gray-800',
     hoverColor: 'hover:bg-gray-700',
   },
   {
     icon: Coffee,
     href: 'https://buymeacoffee.com/toolslab',
-    label: 'Buy me a coffee',
-    description: 'Support the project',
     gradient: 'from-yellow-500 to-orange-600',
     hoverColor: 'hover:bg-orange-500',
   },
 ];
 
-export function NewAboutPage() {
+export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
+  // Get translations with English fallbacks
+  const t = dictionary?.about || {};
+  const hero = t.hero || {};
+  const stats = t.stats || {};
+  const timeline = t.timeline || {};
+  const features = t.features || {};
+  const story = t.story || {};
+  const social = t.social || {};
+  const cta = t.cta || {};
+
+  // Build timeline steps from translations
+  const timelineSteps = (timeline.steps || []).map(
+    (step: any, index: number) => ({
+      icon: timelineIcons[index] || Lightbulb,
+      title: step.title,
+      year: step.year,
+      description: step.description,
+    })
+  );
+
+  // Build features from translations
+  const featuresData = (features.items || []).map(
+    (item: any, index: number) => ({
+      icon: featureConfig[index]?.icon || Zap,
+      title: item.title,
+      description: item.description,
+      gradient: featureConfig[index]?.gradient || 'from-blue-500 to-cyan-600',
+    })
+  );
+
+  // Build social links from translations
+  const socialLinks = (social.links || []).map((link: any, index: number) => ({
+    ...socialLinksConfig[index],
+    label: link.label,
+    description: link.description,
+  }));
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
@@ -206,13 +165,13 @@ export function NewAboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            About ToolsLab
+            {hero.title || 'About ToolsLab'}
           </motion.h1>
 
           {/* Typewriter subtitle */}
           <div className="mb-8 h-8 text-xl text-gray-300 md:text-2xl">
             <TypewriterText
-              text="Your Developer Toolbox, Reimagined"
+              text={hero.subtitle || 'Your Developer Toolbox, Reimagined'}
               delay={1500}
               className="font-light"
             />
@@ -225,24 +184,26 @@ export function NewAboutPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 3, staggerChildren: 0.1 }}
           >
-            {['100% Free', 'Privacy First', 'No Registration'].map(
-              (text, index) => (
-                <motion.div
-                  key={text}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: 3 + index * 0.2 }}
+            {[
+              hero.badges?.free || '100% Free',
+              hero.badges?.privacy || 'Privacy First',
+              hero.badges?.noRegistration || 'No Registration',
+            ].map((text, index) => (
+              <motion.div
+                key={text}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: 3 + index * 0.2 }}
+              >
+                <Badge
+                  variant="outline"
+                  className="border-white/20 bg-white/5 px-4 py-2 text-sm text-white/90 backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
                 >
-                  <Badge
-                    variant="outline"
-                    className="border-white/20 bg-white/5 px-4 py-2 text-sm text-white/90 backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
-                  >
-                    <Heart className="mr-1 h-3 w-3" />
-                    {text}
-                  </Badge>
-                </motion.div>
-              )
-            )}
+                  <Heart className="mr-1 h-3 w-3" />
+                  {text}
+                </Badge>
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
 
@@ -253,7 +214,9 @@ export function NewAboutPage() {
           transition={{ duration: 2, repeat: Infinity }}
         >
           <div className="flex flex-col items-center text-white/60">
-            <span className="mb-2 text-sm">Scroll to explore</span>
+            <span className="mb-2 text-sm">
+              {hero.scrollIndicator || 'Scroll to explore'}
+            </span>
             <ArrowRight className="h-4 w-4 rotate-90" />
           </div>
         </motion.div>
@@ -269,40 +232,44 @@ export function NewAboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
-              Trusted by Developers
+              {stats.title || 'Trusted by Developers'}
             </h2>
-            <p className="text-xl text-gray-300">Numbers that tell our story</p>
+            <p className="text-xl text-gray-300">
+              {stats.subtitle || 'Numbers that tell our story'}
+            </p>
           </motion.div>
 
           <div className="mx-auto grid max-w-4xl grid-cols-2 gap-6 md:grid-cols-4">
             <AnimatedStatsCard
               icon={Code2}
-              value="25+"
-              label="Developer Tools"
-              description="And growing daily"
+              value={stats.tools?.value || '25+'}
+              label={stats.tools?.label || 'Developer Tools'}
+              description={stats.tools?.description || 'And growing daily'}
               delay={0}
               isNumber={true}
             />
             <AnimatedStatsCard
               icon={Users}
-              value="1000+"
-              label="Daily Users"
-              description="Worldwide developers"
+              value={stats.users?.value || '1000+'}
+              label={stats.users?.label || 'Daily Users'}
+              description={stats.users?.description || 'Worldwide developers'}
               delay={0.1}
               isNumber={true}
             />
             <AnimatedStatsCard
               icon={Zap}
-              value="<1s"
-              label="Load Time"
-              description="Lightning fast"
+              value={stats.loadTime?.value || '<1s'}
+              label={stats.loadTime?.label || 'Load Time'}
+              description={stats.loadTime?.description || 'Lightning fast'}
               delay={0.2}
             />
             <AnimatedStatsCard
               icon={Shield}
-              value="0"
-              label="Data Collected"
-              description="Complete privacy"
+              value={stats.dataCollected?.value || '0'}
+              label={stats.dataCollected?.label || 'Data Collected'}
+              description={
+                stats.dataCollected?.description || 'Complete privacy'
+              }
               delay={0.3}
               isNumber={true}
             />
@@ -320,10 +287,11 @@ export function NewAboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
-              The Journey
+              {timeline.title || 'The Journey'}
             </h2>
             <p className="mx-auto max-w-2xl text-xl text-gray-300">
-              From personal frustration to community resource
+              {timeline.subtitle ||
+                'From personal frustration to community resource'}
             </p>
           </motion.div>
 
@@ -341,15 +309,16 @@ export function NewAboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
-              Why Choose ToolsLab?
+              {features.title || 'Why Choose ToolsLab?'}
             </h2>
             <p className="mx-auto max-w-2xl text-xl text-gray-300">
-              Built with developers in mind, optimized for your workflow
+              {features.subtitle ||
+                'Built with developers in mind, optimized for your workflow'}
             </p>
           </motion.div>
 
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
+            {featuresData.map((feature, index) => (
               <FeatureCard
                 key={feature.title}
                 icon={feature.icon}
@@ -399,21 +368,12 @@ export function NewAboutPage() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
+                    style={{ whiteSpace: 'pre-line' }}
                   >
-                    &ldquo;Hi, I&rsquo;m the developer behind ToolsLab. Like
-                    you, I was tired of juggling dozens of browser tabs for
-                    simple conversions and generations. Every tool on a
-                    different site, most filled with ads, some behind paywalls.
-                    <br />
-                    <br />
-                    So I built ToolsLab - my personal Swiss Army knife for
-                    development. What started as a local project quickly became
-                    invaluable to my team, and now I&rsquo;m thrilled to share
-                    it with developers worldwide.
-                    <br />
-                    <br />
-                    No catches, no upsells. Just tools that work, built by a
-                    developer who uses them every single day.&rdquo;
+                    &ldquo;
+                    {story.quote ||
+                      "Hi, I'm the developer behind ToolsLab. Like you, I was tired of juggling dozens of browser tabs for simple conversions and generations. Every tool on a different site, most filled with ads, some behind paywalls.\n\nSo I built ToolsLab - my personal Swiss Army knife for development. What started as a local project quickly became invaluable to my team, and now I'm thrilled to share it with developers worldwide.\n\nNo catches, no upsells. Just tools that work, built by a developer who uses them every single day."}
+                    &rdquo;
                   </motion.p>
 
                   <motion.footer
@@ -424,11 +384,15 @@ export function NewAboutPage() {
                     transition={{ delay: 0.4 }}
                   >
                     <div className="mb-2 text-lg font-semibold text-white">
-                      — ToolsLab Creator
+                      {story.author || '— ToolsLab Creator'}
                     </div>
                     <div className="flex justify-center gap-2">
-                      <Badge variant="secondary">Full Stack Developer</Badge>
-                      <Badge variant="secondary">Open Source Enthusiast</Badge>
+                      <Badge variant="secondary">
+                        {story.badges?.developer || 'Full Stack Developer'}
+                      </Badge>
+                      <Badge variant="secondary">
+                        {story.badges?.enthusiast || 'Open Source Enthusiast'}
+                      </Badge>
                     </div>
                   </motion.footer>
                 </blockquote>
@@ -448,10 +412,11 @@ export function NewAboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
-              Connect & Support
+              {social.title || 'Connect & Support'}
             </h2>
             <p className="text-xl text-gray-300">
-              Join the community, contribute, or show your appreciation
+              {social.subtitle ||
+                'Join the community, contribute, or show your appreciation'}
             </p>
           </motion.div>
 
@@ -525,21 +490,21 @@ export function NewAboutPage() {
             </motion.div>
 
             <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
-              Ready to Boost Your Productivity?
+              {cta.title || 'Ready to Boost Your Productivity?'}
             </h2>
 
             <p className="mb-8 text-xl text-purple-100">
-              Join thousands of developers who&rsquo;ve made ToolsLab their
-              go-to toolkit. No registration, no costs, just pure productivity.
+              {cta.subtitle ||
+                "Join thousands of developers who've made ToolsLab their go-to toolkit. No registration, no costs, just pure productivity."}
             </p>
 
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a
-                href="/tools"
+                href={locale === 'it' ? '/it/tools' : '/tools'}
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-white px-8 font-medium text-purple-600 shadow-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-xl"
               >
                 <Rocket className="h-5 w-5" />
-                Explore Tools
+                {cta.buttons?.exploreTools || 'Explore Tools'}
               </a>
 
               <a
@@ -549,7 +514,7 @@ export function NewAboutPage() {
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-white px-8 font-medium text-white transition-all duration-300 hover:bg-white hover:text-purple-600"
               >
                 <Coffee className="h-5 w-5" />
-                Support the Project
+                {cta.buttons?.support || 'Support the Project'}
               </a>
             </div>
           </motion.div>

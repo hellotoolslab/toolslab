@@ -288,9 +288,14 @@ export async function middleware(request: NextRequest) {
       );
       if (detectedLocale) {
         currentLocale = detectedLocale as Locale;
-        response.headers.set('X-Locale', detectedLocale);
       }
     }
+
+    // Always set X-Locale header (even for default locale)
+    response.headers.set('X-Locale', currentLocale);
+
+    // Also set pathname for debugging
+    response.headers.set('X-Pathname', pathname);
 
     // Dictionary Preload Strategy
     if (shouldPreloadDictionary(pathname)) {
