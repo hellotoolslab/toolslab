@@ -123,18 +123,33 @@ export default function CategoriesHubContentSimple({
 
             {/* Main Heading */}
             <h1 className="mb-4 text-3xl font-bold text-white lg:text-4xl">
-              {text.title}
+              {locale === 'it' ? (
+                <>
+                  Esplora le{' '}
+                  <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Categorie
+                  </span>{' '}
+                  di Strumenti
+                </>
+              ) : (
+                <>
+                  Explore Tool{' '}
+                  <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Categories
+                  </span>
+                </>
+              )}
             </h1>
 
             {/* Simplified Header Description */}
-            <div className="mx-auto mb-5 max-w-3xl">
+            <div className="mx-auto mb-8 max-w-3xl">
               <p className="text-lg text-white/90 lg:text-xl">
                 {text.subtitle}
               </p>
             </div>
 
             {/* Search Bar */}
-            <div className="mx-auto mb-5 max-w-2xl">
+            <div className="mx-auto mb-6 max-w-2xl">
               <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
                   <Search className="h-5 w-5 text-gray-500" />
@@ -163,7 +178,201 @@ export default function CategoriesHubContentSimple({
                 </p>
               )}
             </div>
+
+            {/* Action Buttons */}
+            <div className="mb-6 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href={createHref('/tools')}
+                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-semibold text-white transition-all hover:scale-105 hover:bg-blue-700"
+              >
+                {locale === 'it' ? 'Sfoglia Tutti i' : 'Browse All'}{' '}
+                {totalTools} {locale === 'it' ? 'Strumenti' : 'Tools'}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href={createHref('/?popular=true')}
+                className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
+              >
+                {locale === 'it' ? 'Strumenti Popolari' : 'Popular Tools'}
+              </Link>
+            </div>
+
+            {/* Feature Badges */}
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/90">
+              <div className="flex items-center gap-2">
+                <span>⚡</span>
+                <span>
+                  {locale === 'it' ? 'Velocissimo' : 'Lightning fast'}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>🔒</span>
+                <span>
+                  {locale === 'it' ? 'Privacy garantita' : 'Privacy first'}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>❤️</span>
+                <span>{locale === 'it' ? 'Sempre gratis' : 'Always free'}</span>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Info Section */}
+      <section className="border-y border-gray-800 bg-gray-900 py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-base leading-relaxed text-gray-300">
+            {locale === 'it' ? (
+              <>
+                Che tu stia{' '}
+                <Link
+                  href={createHref('/tools/json-formatter')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  formattando dati JSON
+                </Link>
+                ,{' '}
+                <Link
+                  href={createHref('/tools/base64-encode')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  codificando stringhe Base64
+                </Link>
+                , o{' '}
+                <Link
+                  href={createHref('/tools/hash-generator')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  generando hash sicuri
+                </Link>
+                , il nostro approccio categorizzato ti aiuta a trovare lo
+                strumento giusto istantaneamente. Ogni categoria contiene
+                utilità testate sul campo usate da migliaia di sviluppatori in
+                tutto il mondo, dalla{' '}
+                <strong className="text-white">conversione dati</strong> e{' '}
+                <strong className="text-white">operazioni di sicurezza</strong>{' '}
+                all&apos;
+                <strong className="text-white">
+                  elaborazione testi
+                </strong> e{' '}
+                <strong className="text-white">generazione codice</strong>.
+                Risparmia tempo navigando tra gli strumenti che si completano a
+                vicenda all&apos;interno di raggruppamenti logici progettati per
+                scenari di sviluppo reali.
+              </>
+            ) : locale === 'es' ? (
+              <>
+                Ya sea que estés{' '}
+                <Link
+                  href={createHref('/tools/json-formatter')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  formateando datos JSON
+                </Link>
+                ,{' '}
+                <Link
+                  href={createHref('/tools/base64-encode')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  codificando cadenas Base64
+                </Link>
+                , o{' '}
+                <Link
+                  href={createHref('/tools/hash-generator')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  generando hashes seguros
+                </Link>
+                , nuestro enfoque categorizado te ayuda a encontrar la
+                herramienta correcta al instante. Cada categoría contiene
+                utilidades probadas en batalla utilizadas por miles de
+                desarrolladores en todo el mundo, desde{' '}
+                <strong className="text-white">conversión de datos</strong> y{' '}
+                <strong className="text-white">operaciones de seguridad</strong>{' '}
+                hasta{' '}
+                <strong className="text-white">procesamiento de texto</strong> y{' '}
+                <strong className="text-white">generación de código</strong>.
+                Ahorra tiempo navegando por flujos de trabajo complejos
+                explorando herramientas que se complementan entre sí dentro de
+                agrupaciones lógicas diseñadas para escenarios de desarrollo del
+                mundo real.
+              </>
+            ) : locale === 'fr' ? (
+              <>
+                Que vous soyez en train de{' '}
+                <Link
+                  href={createHref('/tools/json-formatter')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  formater des données JSON
+                </Link>
+                ,{' '}
+                <Link
+                  href={createHref('/tools/base64-encode')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  encoder des chaînes Base64
+                </Link>
+                , ou{' '}
+                <Link
+                  href={createHref('/tools/hash-generator')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  générer des hachages sécurisés
+                </Link>
+                , notre approche catégorisée vous aide à trouver le bon outil
+                instantanément. Chaque catégorie contient des utilitaires
+                éprouvés utilisés par des milliers de développeurs dans le monde
+                entier, de la{' '}
+                <strong className="text-white">conversion de données</strong> et
+                des{' '}
+                <strong className="text-white">opérations de sécurité</strong>{' '}
+                au <strong className="text-white">traitement de texte</strong>{' '}
+                et à la{' '}
+                <strong className="text-white">génération de code</strong>.
+                Gagnez du temps en naviguant dans des flux de travail complexes
+                en parcourant des outils qui se complètent mutuellement au sein
+                de groupements logiques conçus pour des scénarios de
+                développement réels.
+              </>
+            ) : (
+              <>
+                Whether you&apos;re{' '}
+                <Link
+                  href={createHref('/tools/json-formatter')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  formatting JSON data
+                </Link>
+                ,{' '}
+                <Link
+                  href={createHref('/tools/base64-encode')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  encoding Base64 strings
+                </Link>
+                , or{' '}
+                <Link
+                  href={createHref('/tools/hash-generator')}
+                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
+                >
+                  generating secure hashes
+                </Link>
+                , our categorized approach helps you find the right tool
+                instantly. Each category contains battle-tested utilities used
+                by thousands of developers worldwide, from{' '}
+                <strong className="text-white">data conversion</strong> and{' '}
+                <strong className="text-white">security operations</strong> to{' '}
+                <strong className="text-white">text processing</strong> and{' '}
+                <strong className="text-white">code generation</strong>. Save
+                time navigating complex workflows by browsing tools that
+                complement each other within logical groupings designed for
+                real-world development scenarios.
+              </>
+            )}
+          </p>
         </div>
       </section>
 
