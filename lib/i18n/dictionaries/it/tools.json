@@ -304,6 +304,150 @@
         "title": "Unescape HTML - Strumento Online Gratuito | ToolsLab",
         "description": "Converti entità HTML in testo online. Riconverti entità HTML in caratteri. Strumento unescape HTML gratuito."
       }
+    },
+    "text-diff": {
+      "title": "Text Diff Checker",
+      "description": "Confronta file e codice con funzionalità avanzate di diff ed evidenziazione della sintassi",
+      "meta": {
+        "title": "Text Diff Checker - Strumento Online Gratuito | ToolsLab",
+        "description": "Confronta testo e file online con evidenziazione delle differenze. Strumento diff gratuito per sviluppatori."
+      }
+    },
+    "unix-timestamp-converter": {
+      "title": "Convertitore Unix Timestamp",
+      "description": "Converti tra timestamp Unix e date leggibili con supporto fuso orario ed elaborazione batch",
+      "meta": {
+        "title": "Convertitore Unix Timestamp - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti timestamp Unix in date leggibili online. Supporto fuso orario e batch. Convertitore epoch gratuito."
+      }
+    },
+    "url-encode": {
+      "title": "Codificatore/Decodificatore URL",
+      "description": "Codifica e decodifica componenti URL e parametri query",
+      "meta": {
+        "title": "Codificatore/Decodificatore URL - Strumento Online Gratuito | ToolsLab",
+        "description": "Codifica e decodifica URL online. Converti componenti URL e parametri query. Strumento URL encode gratuito."
+      }
+    },
+    "xml-formatter": {
+      "title": "Formattatore XML",
+      "description": "Formatta, valida e minimizza documenti XML con evidenziazione sintassi e supporto XPath",
+      "meta": {
+        "title": "Formattatore XML - Strumento Online Gratuito | ToolsLab",
+        "description": "Formatta e valida XML online. Minimizza documenti XML con supporto XPath. Formattatore XML gratuito."
+      }
+    },
+    "yaml-json-converter": {
+      "title": "Convertitore YAML/JSON",
+      "description": "Converti tra formati YAML e JSON in entrambe le direzioni",
+      "meta": {
+        "title": "Convertitore YAML/JSON - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti YAML in JSON e viceversa online. Convertitore bidirezionale YAML/JSON gratuito."
+      }
+    },
+    "crontab-builder": {
+      "title": "Costruttore Espressioni Crontab",
+      "description": "Analizza, costruisci e valida espressioni cron con costruttore visuale, preset e prossime esecuzioni",
+      "meta": {
+        "title": "Costruttore Crontab - Strumento Online Gratuito | ToolsLab",
+        "description": "Costruisci e valida espressioni cron online. Genera crontab con costruttore visuale. Strumento cron gratuito."
+      }
+    },
+    "api-tester": {
+      "title": "Tester API",
+      "description": "Testa endpoint API con supporto per vari metodi HTTP e headers",
+      "meta": {
+        "title": "Tester API - Strumento Online Gratuito | ToolsLab",
+        "description": "Testa API REST online. Invia richieste HTTP con headers personalizzati. API tester gratuito."
+      }
+    },
+    "json-validator": {
+      "title": "Validatore JSON",
+      "description": "Valida sintassi e struttura JSON",
+      "meta": {
+        "title": "Validatore JSON - Strumento Online Gratuito | ToolsLab",
+        "description": "Valida JSON online. Controlla sintassi e struttura JSON. Validatore JSON gratuito."
+      }
+    },
+    "json-to-typescript": {
+      "title": "JSON a TypeScript",
+      "description": "Converti JSON in interfacce TypeScript",
+      "meta": {
+        "title": "JSON a TypeScript - Strumento Online Gratuito | ToolsLab",
+        "description": "Genera interfacce TypeScript da JSON online. Convertitore JSON to TypeScript gratuito."
+      }
+    },
+    "list-compare": {
+      "title": "Confronto Liste",
+      "description": "Confronta due liste per trovare differenze, intersezioni e unioni",
+      "meta": {
+        "title": "Confronto Liste - Strumento Online Gratuito | ToolsLab",
+        "description": "Confronta liste online. Trova differenze, intersezioni e unioni. Strumento confronto liste gratuito."
+      }
+    },
+    "markdown-preview": {
+      "title": "Anteprima Markdown",
+      "description": "Visualizza anteprima live di markdown con evidenziazione sintassi",
+      "meta": {
+        "title": "Anteprima Markdown - Strumento Online Gratuito | ToolsLab",
+        "description": "Anteprima markdown in tempo reale online. Editor markdown con preview live. Strumento markdown gratuito."
+      }
+    },
+    "color-picker": {
+      "title": "Color Picker",
+      "description": "Scegli e converti colori tra formati HEX, RGB, HSL",
+      "meta": {
+        "title": "Color Picker - Strumento Online Gratuito | ToolsLab",
+        "description": "Seleziona colori online. Converti tra HEX, RGB, HSL. Color picker gratuito."
+      }
+    },
+    "gradient-generator": {
+      "title": "Generatore Gradienti",
+      "description": "Genera gradienti CSS personalizzati",
+      "meta": {
+        "title": "Generatore Gradienti CSS - Strumento Online Gratuito | ToolsLab",
+        "description": "Crea gradienti CSS online. Genera codice gradiente personalizzato. Generatore gradiente gratuito."
+      }
+    },
+    "favicon-generator": {
+      "title": "Generatore Favicon",
+      "description": "Genera favicon per siti web in vari formati",
+      "meta": {
+        "title": "Generatore Favicon - Strumento Online Gratuito | ToolsLab",
+        "description": "Crea favicon online. Genera favicon in più formati. Generatore favicon gratuito."
+      }
+    },
+    "image-optimizer": {
+      "title": "Ottimizzatore Immagini",
+      "description": "Ottimizza e comprimi immagini",
+      "meta": {
+        "title": "Ottimizzatore Immagini - Strumento Online Gratuito | ToolsLab",
+        "description": "Ottimizza immagini online. Comprimi file immagine. Ottimizzatore immagini gratuito."
+      }
+    },
+    "base64-to-pdf": {
+      "title": "Base64 a PDF",
+      "description": "Converti stringhe Base64 in file PDF",
+      "meta": {
+        "title": "Base64 a PDF - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti Base64 in PDF online. Decodifica Base64 e salva come PDF. Convertitore gratuito."
+      }
+    },
+    "curl-to-code": {
+      "title": "cURL a Codice",
+      "description": "Converti comandi cURL in codice per vari linguaggi",
+      "meta": {
+        "title": "cURL a Codice - Strumento Online Gratuito | ToolsLab",
+        "description": "Converti cURL in codice online. Genera snippet da comandi curl. Convertitore cURL gratuito."
+      }
+    },
+    "js-minifier": {
+      "title": "Minimizzatore JavaScript",
+      "description": "Minimizza e comprimi codice JavaScript",
+      "meta": {
+        "title": "Minimizzatore JavaScript - Strumento Online Gratuito | ToolsLab",
+        "description": "Minimizza JavaScript online. Comprimi codice JS. Minimizzatore JS gratuito."
+      }
     }
   }
 }
