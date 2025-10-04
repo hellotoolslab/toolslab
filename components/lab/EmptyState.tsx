@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { Star, Search } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 export function EmptyState() {
+  const { data: t } = useDictionarySectionContext('lab');
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
       <motion.div
@@ -61,12 +63,13 @@ export function EmptyState() {
           transition={{ delay: 0.3, duration: 0.6 }}
         >
           <h2 className="mb-3 text-2xl font-bold text-gray-900 dark:text-white">
-            Your Lab is Empty!
+            {t?.empty?.title || 'Your Lab is Empty!'}
           </h2>
           <p className="mb-8 leading-relaxed text-gray-600 dark:text-gray-400">
-            Start by marking your favorite tools and categories with a{' '}
+            {t?.empty?.description ||
+              'Start by marking your favorite tools and categories with a'}{' '}
             <Star className="mx-1 inline h-4 w-4 fill-amber-500 text-amber-500" />
-            to add them here.
+            {t?.empty?.toAddThem || 'to add them here.'}
           </p>
         </motion.div>
 
@@ -88,7 +91,7 @@ export function EmptyState() {
             )}
           >
             <Search className="h-5 w-5" />
-            Explore Tools
+            {t?.empty?.exploreTools || 'Explore Tools'}
           </Link>
         </motion.div>
 
@@ -100,23 +103,30 @@ export function EmptyState() {
           className="mt-12 rounded-xl border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900"
         >
           <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
-            Pro Tips:
+            {t?.empty?.proTips || 'Pro Tips:'}
           </h3>
           <ul className="space-y-2 text-left text-sm text-gray-600 dark:text-gray-400">
             <li className="flex items-start gap-2">
               <Star className="mt-0.5 h-4 w-4 flex-shrink-0 fill-amber-500 text-amber-500" />
-              <span>Click the star on any tool card to add it to your Lab</span>
+              <span>
+                {t?.empty?.tip1 ||
+                  'Click the star on any tool card to add it to your Lab'}
+              </span>
             </li>
             <li className="flex items-start gap-2">
               <Star className="mt-0.5 h-4 w-4 flex-shrink-0 fill-amber-500 text-amber-500" />
-              <span>Mark entire categories as favorites for quick access</span>
+              <span>
+                {t?.empty?.tip2 ||
+                  'Mark entire categories as favorites for quick access'}
+              </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-0.5 flex-shrink-0 text-base font-medium text-violet-500">
                 🔒
               </span>
               <span>
-                Everything stays private in your browser - no accounts needed
+                {t?.empty?.tip3 ||
+                  'Everything stays private in your browser - no accounts needed'}
               </span>
             </li>
           </ul>

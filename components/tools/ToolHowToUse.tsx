@@ -12,13 +12,37 @@ import { toolInstructions, ToolInstruction } from '@/lib/tool-instructions';
 interface ToolHowToUseProps {
   toolId: string;
   categoryColor: string;
+  locale?: string;
+  instructions?: ToolInstruction;
+  labels?: {
+    keyFeatures?: string;
+    commonUseCases?: string;
+    proTips?: string;
+    troubleshooting?: string;
+    keyboardShortcuts?: string;
+    howToUse?: string;
+  };
 }
 
 export default function ToolHowToUse({
   toolId,
   categoryColor,
+  locale,
+  instructions: translatedInstructions,
+  labels,
 }: ToolHowToUseProps) {
-  const instruction = toolInstructions[toolId];
+  // Use translated instructions if available, otherwise fallback to English
+  const instruction = translatedInstructions || toolInstructions[toolId];
+
+  // Use translated labels if available, otherwise fallback to English
+  const sectionLabels = {
+    keyFeatures: labels?.keyFeatures || 'Key Features',
+    commonUseCases: labels?.commonUseCases || 'Common Use Cases',
+    proTips: labels?.proTips || 'Pro Tips',
+    troubleshooting: labels?.troubleshooting || 'Troubleshooting',
+    keyboardShortcuts: labels?.keyboardShortcuts || 'Keyboard Shortcuts',
+    howToUse: labels?.howToUse || 'How to Use This Tool',
+  };
 
   if (!instruction) {
     // Fallback to generic instructions if tool-specific content not found
@@ -27,7 +51,7 @@ export default function ToolHowToUse({
         <div className="mb-4 flex items-center gap-2">
           <BookOpen className="h-5 w-5" style={{ color: categoryColor }} />
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            How to Use This Tool
+            {sectionLabels.howToUse}
           </h2>
         </div>
         <ol className="space-y-3">
@@ -117,7 +141,7 @@ export default function ToolHowToUse({
         <div className="mb-6">
           <h3 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
             <Target className="h-4 w-4" style={{ color: categoryColor }} />
-            Key Features
+            {sectionLabels.keyFeatures}
           </h3>
           <ul className="grid gap-2 sm:grid-cols-2">
             {instruction.features.map((feature, index) => (
@@ -141,7 +165,7 @@ export default function ToolHowToUse({
         <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
           <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
             <Target className="h-4 w-4" style={{ color: categoryColor }} />
-            Common Use Cases
+            {sectionLabels.commonUseCases}
           </h3>
           <ul className="space-y-2">
             {instruction.useCases.map((useCase, index) => (
@@ -162,7 +186,7 @@ export default function ToolHowToUse({
         <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 dark:border-amber-800 dark:from-amber-900/20 dark:to-orange-900/20 sm:p-6">
           <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
             <Lightbulb className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-            Pro Tips
+            {sectionLabels.proTips}
           </h3>
           <ul className="space-y-2">
             {instruction.proTips.map((tip, index) => (
@@ -183,7 +207,7 @@ export default function ToolHowToUse({
         <div className="rounded-xl border border-red-200 bg-gradient-to-br from-red-50 to-rose-50 p-4 dark:border-red-800 dark:from-red-900/20 dark:to-rose-900/20 sm:p-6">
           <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
             <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
-            Troubleshooting
+            {sectionLabels.troubleshooting}
           </h3>
           <ul className="space-y-2">
             {instruction.troubleshooting.map((issue, index) => (
@@ -203,7 +227,7 @@ export default function ToolHowToUse({
             <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-4 dark:border-blue-800 dark:from-blue-900/20 dark:to-indigo-900/20 sm:p-6">
               <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
                 <Keyboard className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                Keyboard Shortcuts
+                {sectionLabels.keyboardShortcuts}
               </h3>
               <div className="space-y-3">
                 {instruction.keyboardShortcuts.map((shortcut, index) => (

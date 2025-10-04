@@ -87,6 +87,42 @@ const nextConfig = {
           },
         ],
       },
+      // Compression headers for dictionary API
+      {
+        source: '/api/dictionary/:locale',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json; charset=utf-8',
+          },
+          {
+            key: 'Vary',
+            value: 'Accept-Encoding',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+        ],
+      },
+      // Static dictionary files (if served directly)
+      {
+        source: '/dictionaries/:locale/:section.json',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json; charset=utf-8',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'Vary',
+            value: 'Accept-Encoding',
+          },
+        ],
+      },
     ];
   },
 };

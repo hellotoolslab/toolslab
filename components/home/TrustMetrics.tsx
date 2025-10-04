@@ -2,28 +2,36 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
-const metrics = [
+interface MetricConfig {
+  key: 'dailyOperations' | 'privacyFocused' | 'processingTime' | 'activeUsers';
+  value: number;
+  suffix: string;
+  duration: number;
+}
+
+const metricsConfig: MetricConfig[] = [
   {
-    label: 'Daily Operations',
+    key: 'dailyOperations',
     value: 5000,
     suffix: '+',
     duration: 2000,
   },
   {
-    label: 'Privacy Focused',
+    key: 'privacyFocused',
     value: 100,
     suffix: '%',
     duration: 1500,
   },
   {
-    label: 'Processing Time',
+    key: 'processingTime',
     value: 0,
     suffix: 'ms',
     duration: 1000,
   },
   {
-    label: 'Active Users',
+    key: 'activeUsers',
     value: 500,
     suffix: '+',
     duration: 2500,
@@ -74,6 +82,9 @@ function AnimatedCounter({
 }
 
 export function TrustMetrics() {
+  const { data: t } = useDictionarySectionContext('home');
+  const trustMetrics = t?.trustMetrics;
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 py-16">
       {/* Background pattern */}
@@ -100,9 +111,9 @@ export function TrustMetrics() {
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-8 lg:grid-cols-4">
-          {metrics.map((metric, index) => (
+          {metricsConfig.map((metric, index) => (
             <motion.div
-              key={metric.label}
+              key={metric.key}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -121,7 +132,7 @@ export function TrustMetrics() {
                     />
                   </div>
                   <div className="mt-2 text-sm font-medium text-white/80">
-                    {metric.label}
+                    {trustMetrics?.[metric.key] || metric.key}
                   </div>
                 </div>
               </div>

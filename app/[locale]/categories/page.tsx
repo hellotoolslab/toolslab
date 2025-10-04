@@ -32,7 +32,7 @@ export async function generateMetadata({
 
   const keywords =
     locale === 'it'
-      ? 'categorie strumenti sviluppatori, formattatore JSON, codificatore Base64, generatore hash, strumenti conversione dati, utilità sicurezza, strumenti sviluppo web, utilità programmazione'
+      ? 'categorie strumenti sviluppatori, JSON formattater , codificatore Base64, generatore hash, strumenti conversione dati, utilità sicurezza, strumenti sviluppo web, utilità programmazione'
       : 'developer tools categories, JSON formatter, Base64 encoder, hash generator, data conversion tools, security utilities, web development tools, programming utilities';
 
   return {

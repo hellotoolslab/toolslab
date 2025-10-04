@@ -112,7 +112,9 @@ export default async function LocaleHomePage({
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
+  // Load only sections needed for homepage
+  const homeSections = ['common', 'home', 'footer', 'seo', 'tools'];
+  const dict = await getDictionary(locale as Locale, homeSections);
   const structuredData = generateStructuredData(locale, dict);
 
   return (

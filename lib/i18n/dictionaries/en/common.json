@@ -1,0 +1,122 @@
+{
+  "common": {
+    "nav": {
+      "tools": "Tools",
+      "blog": "Blog",
+      "about": "About",
+      "categories": "Categories",
+      "lab": "The Lab",
+      "allTools": "All Tools",
+      "viewAllTools": "View all tools"
+    },
+    "actions": {
+      "copy": "Copy",
+      "download": "Download",
+      "clear": "Clear",
+      "process": "Process",
+      "upload": "Upload File",
+      "paste": "Paste",
+      "reset": "Reset",
+      "share": "Share",
+      "save": "Save",
+      "load": "Load",
+      "export": "Export",
+      "import": "Import",
+      "format": "Format",
+      "validate": "Validate",
+      "minify": "Minify",
+      "beautify": "Beautify",
+      "encode": "Encode",
+      "decode": "Decode",
+      "encrypt": "Encrypt",
+      "decrypt": "Decrypt",
+      "generate": "Generate",
+      "convert": "Convert",
+      "analyze": "Analyze",
+      "compare": "Compare"
+    },
+    "messages": {
+      "success": "Success!",
+      "error": "An error occurred",
+      "copied": "Copied to clipboard",
+      "processing": "Processing...",
+      "noData": "No data to process",
+      "invalid": "Invalid input",
+      "valid": "Valid",
+      "loading": "Loading...",
+      "saved": "Saved successfully",
+      "deleted": "Deleted successfully",
+      "updated": "Updated successfully",
+      "created": "Created successfully",
+      "failed": "Operation failed",
+      "warning": "Warning",
+      "info": "Information"
+    },
+    "labels": {
+      "input": "Input",
+      "output": "Output",
+      "options": "Options",
+      "settings": "Settings",
+      "result": "Result",
+      "preview": "Preview",
+      "source": "Source",
+      "target": "Target",
+      "from": "From",
+      "to": "To",
+      "file": "File",
+      "text": "Text",
+      "code": "Code",
+      "data": "Data",
+      "format": "Format",
+      "type": "Type",
+      "mode": "Mode",
+      "language": "Language",
+      "charset": "Charset",
+      "encoding": "Encoding",
+      "tool": "tool",
+      "tools": "tools",
+      "keyFeatures": "Key Features",
+      "commonUseCases": "Common Use Cases",
+      "proTips": "Pro Tips",
+      "troubleshooting": "Troubleshooting",
+      "keyboardShortcuts": "Keyboard Shortcuts",
+      "howToUse": "How to Use This Tool"
+    },
+    "units": {
+      "bytes": "bytes",
+      "kb": "KB",
+      "mb": "MB",
+      "gb": "GB",
+      "ms": "ms",
+      "seconds": "seconds",
+      "minutes": "minutes",
+      "hours": "hours",
+      "days": "days",
+      "characters": "characters",
+      "words": "words",
+      "lines": "lines"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "close": "Close",
+      "questions": [
+        {
+          "question": "Is this tool free to use?",
+          "answer": "Yes, all ToolsLab tools are completely free to use with no limits or registration required."
+        },
+        {
+          "question": "Is my data secure?",
+          "answer": "All processing happens locally in your browser. Your data never leaves your device."
+        },
+        {
+          "question": "Can I use this offline?",
+          "answer": "Once loaded, most tools work offline as they process data locally in your browser."
+        },
+        {
+          "question": "How do I report a bug or request a feature?",
+          "answer": "You can report issues or request features on our GitHub repository at https://github.com/hellotoolslab/toolslab or reach out to us on X at https://x.com/tools_lab."
+        }
+      ]
+    }
+  }
+}

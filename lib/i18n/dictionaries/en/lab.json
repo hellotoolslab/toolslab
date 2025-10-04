@@ -1,0 +1,72 @@
+{
+  "lab": {
+    "header": {
+      "title": "My Developer Lab",
+      "subtitle": "Your personalized toolkit for maximum productivity"
+    },
+    "overview": {
+      "favoriteTools": "Favorite Tools",
+      "recentlyUsed": "Recently Used",
+      "used": "Used",
+      "ago": "ago",
+      "justNow": "Just now",
+      "minutesAgo": "{minutes}m ago",
+      "hoursAgo": "{hours}h ago",
+      "daysAgo": "{days}d ago"
+    },
+    "sidebar": {
+      "myTools": "My Tools",
+      "overview": "Overview",
+      "starToolsToAdd": "Star tools to add them here"
+    },
+    "welcome": {
+      "title": "Welcome to Your Lab!",
+      "description": "This is your personal workspace where you can access your favorite tools and categories quickly.",
+      "howItWorks": "How it works:",
+      "howItWorksDescription": "Mark any tool or category with a ⭐ to add it here.",
+      "privacyTitle": "Privacy First",
+      "privacyDescription": "We don't know who you are, nor do we care. All your preferences stay in your browser's local storage. No accounts, no tracking, just tools.",
+      "gotIt": "Got it!",
+      "dontShowAgain": "Don't show again"
+    },
+    "empty": {
+      "title": "Your Lab is Empty!",
+      "description": "Start by marking your favorite tools and categories with a",
+      "toAddThem": "to add them here.",
+      "exploreTools": "Explore Tools",
+      "browseCategories": "Browse Categories",
+      "proTips": "Pro Tips:",
+      "tip1": "Click the star on any tool card to add it to your Lab",
+      "tip2": "Mark entire categories as favorites for quick access",
+      "tip3": "Everything stays private in your browser - no accounts needed",
+      "headerTitle": "Your Personal Developer Lab",
+      "headerSubtitle": "Streamline your workflow with curated tools and instant access",
+      "headerTagline": "Curate your favorite tools for instant access and streamlined workflows",
+      "headerDescription": "Build your personalized toolkit by starring tools across ToolsLab. Your Lab stays completely private - all data stored locally in your browser with no account required.",
+      "trustBadge1": "Completely Private",
+      "trustBadge2": "Instant Access",
+      "trustBadge3": "Zero Setup",
+      "introDescription": "Your Personal Lab is a curated workspace where you can star your most-used developer tools for instant access. From encoding utilities to security tools, build your personalized toolkit that evolves with your workflow. Everything stays private in your browser with no account required.",
+      "mainMessage": "Your Lab Awaits!",
+      "mainDescription": "Start building your personalized developer toolkit by starring tools with a ⭐ to add them here.",
+      "exploreAllTools": "Explore All Tools",
+      "proTipsTitle": "Pro Tips for Your Lab:",
+      "proTip1": "Click the star on any tool card to add it to your personal collection",
+      "proTip2": "Star entire categories for quick access to related tools",
+      "proTip3": "Everything stays completely private - stored locally in your browser with zero tracking",
+      "seoTitle": "Why Create a Personal Developer Lab?",
+      "seoIntro": "Your Personal Lab transforms scattered tool usage into an organized, efficient workflow. By curating your favorite tools, you eliminate the time spent searching and create muscle memory for your most common development tasks.",
+      "privacyControlTitle": "Privacy & Control",
+      "privacyControlDescription": "Everything in your Lab is stored locally using browser localStorage. No accounts, no tracking, no server-side storage. Your workflow preferences stay completely private and under your control.",
+      "workflowOptimizationTitle": "Workflow Optimization",
+      "workflowOptimizationDescription": "Star frequently-used tools like our JSON Formatter, Base64 Encoder, and security utilities to build workflows that match your development patterns.",
+      "needMoreTools": "Need More Tools?",
+      "needMoreToolsDescription": "Explore our complete collection of developer tools across all categories. Find the perfect tool for your workflow and add it to your Lab.",
+      "browseAllTools": "Browse All Tools"
+    },
+    "helpButton": {
+      "title": "About The Lab",
+      "ariaLabel": "About The Lab"
+    }
+  }
+}

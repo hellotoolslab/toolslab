@@ -23,7 +23,13 @@ export function useDictionary() {
       try {
         setLoading(true);
         setError(null);
-        const dict = await getClientDictionary(locale);
+        // Load all necessary sections for global components (Header, Footer, etc.)
+        const dict = await getClientDictionary(locale, [
+          'common',
+          'footer',
+          'tools',
+          'categories',
+        ]);
 
         if (isMounted) {
           setDictionary(dict);

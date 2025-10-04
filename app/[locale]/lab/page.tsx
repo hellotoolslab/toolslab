@@ -18,16 +18,17 @@ export async function generateMetadata({
     return {};
   }
 
-  const dict = await getDictionary(locale as Locale);
+  const labSections = ['common', 'lab'];
+  const dict = await getDictionary(locale as Locale, labSections);
 
   const title =
     locale === 'it'
-      ? 'Il Mio Lab Sviluppatore - Collezione Strumenti Personale | ToolsLab'
+      ? 'Il Mio Lab - Collezione Strumenti Personale | ToolsLab'
       : 'My Developer Lab - Personal Tool Collection | ToolsLab';
 
   const description =
     locale === 'it'
-      ? 'Crea il tuo toolkit personale per sviluppatori con i preferiti contrassegnati con stella. Accedi a formattatori JSON, codificatori Base64, generatori hash e altro in uno spazio di lavoro privato. Nessun account richiesto - salvato localmente.'
+      ? 'Crea il tuo toolkit personale per sviluppatori con i preferiti contrassegnati con stella. Accedi a JSON formatter, codificatori Base64, generatori hash e altro in uno spazio di lavoro privato. Nessun account richiesto - salvato localmente.'
       : 'Create your personal developer toolkit with starred favorites. Access JSON formatters, Base64 encoders, hash generators and more in one private workspace. No account required - stored locally.';
 
   const keywords =
@@ -37,7 +38,7 @@ export async function generateMetadata({
           'collezione strumenti preferiti',
           'spazio lavoro sviluppatore',
           'strumenti preferiti',
-          'formattatore JSON preferiti',
+          'JSON formatter preferiti',
           'codificatore Base64 segnalibro',
           'collezione generatore hash',
           'spazio lavoro strumenti privato',
@@ -72,7 +73,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${locale === 'it' ? 'Il Mio Lab Sviluppatore' : 'My Developer Lab'} - ToolsLab`,
+      title: `${locale === 'it' ? 'Il Mio Lab' : 'My Developer Lab'} - ToolsLab`,
       description:
         locale === 'it'
           ? 'Toolkit personale per sviluppatori. Segna i tuoi preferiti, crea flussi di lavoro, mantieni la privacy.'
@@ -100,7 +101,9 @@ export default async function LocaleLabPage({
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
+  // Load only sections needed for lab page
+  const labSections = ['common', 'lab'];
+  const dict = await getDictionary(locale as Locale, labSections);
 
   return <LocaleLabPageClient locale={locale as Locale} dictionary={dict} />;
 }

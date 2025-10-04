@@ -5,67 +5,59 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Code, Database, Lock, Globe, Zap } from 'lucide-react';
 import { tools } from '@/lib/tools';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
+import { useLocale } from '@/hooks/useLocale';
 
-const useCaseTabs = [
+const useCaseTabsConfig = [
   {
-    id: 'api',
-    label: 'API Development',
+    id: 'apiDev',
     icon: Code,
-    description: 'Tools for API testing and development',
     tools: [
       'json-formatter',
       'jwt-decoder',
-      'base64-encoder',
+      'base64-encode',
       'url-encoder',
       'uuid-generator',
     ],
   },
   {
-    id: 'data',
-    label: 'Data Processing',
+    id: 'dataProcessing',
     icon: Database,
-    description: 'Transform and process your data',
     tools: [
       'json-formatter',
       'csv-to-json',
-      'xml-formatter',
-      'yaml-formatter',
+      'xml-to-json',
+      'yaml-to-json',
       'sql-formatter',
     ],
   },
   {
-    id: 'web',
-    label: 'Web Development',
+    id: 'webDev',
     icon: Globe,
-    description: 'Essential web dev utilities',
     tools: [
-      'html-formatter',
-      'css-formatter',
+      'html-minifier',
+      'css-minifier',
       'javascript-minifier',
-      'color-picker',
-      'svg-optimizer',
+      'color-converter',
+      'markdown-to-html',
     ],
   },
   {
     id: 'security',
-    label: 'Security',
     icon: Lock,
-    description: 'Security and encryption tools',
     tools: [
       'hash-generator',
       'password-generator',
       'jwt-decoder',
-      'base64-encoder',
-      'encryption-tool',
+      'base64-encode',
+      'uuid-generator',
     ],
   },
   {
     id: 'productivity',
-    label: 'Productivity',
     icon: Zap,
-    description: 'Boost your productivity',
     tools: [
-      'timestamp-converter',
+      'unix-timestamp',
       'regex-tester',
       'diff-checker',
       'lorem-ipsum',
@@ -75,10 +67,15 @@ const useCaseTabs = [
 ];
 
 export function ToolDiscovery() {
-  const [activeTab, setActiveTab] = useState('api');
+  const { data: t } = useDictionarySectionContext('home');
+  const discovery = t?.toolDiscovery;
+  const { createHref } = useLocale();
+  const [activeTab, setActiveTab] = useState('apiDev');
 
-  const activeUseCase = useCaseTabs.find((tab) => tab.id === activeTab)!;
+  const activeUseCase = useCaseTabsConfig.find((tab) => tab.id === activeTab)!;
   const ActiveIcon = activeUseCase.icon;
+  const activeTabData =
+    discovery?.tabs?.[activeTab as keyof typeof discovery.tabs];
 
   const relevantTools = activeUseCase.tools
     .map((toolId) => tools.find((t) => t.id === toolId))
@@ -90,18 +87,21 @@ export function ToolDiscovery() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Find Your Perfect Tool
+            {discovery?.title || 'Find Your Perfect Tool'}
           </h2>
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-            Discover tools tailored to your specific use case
+            {discovery?.subtitle ||
+              'Discover tools tailored to your specific use case'}
           </p>
         </div>
 
         {/* Tab navigation */}
         <div className="mt-12">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-            {useCaseTabs.map((tab) => {
+            {useCaseTabsConfig.map((tab) => {
               const Icon = tab.icon;
+              const tabData =
+                discovery?.tabs?.[tab.id as keyof typeof discovery.tabs];
               return (
                 <button
                   key={tab.id}
@@ -113,8 +113,12 @@ export function ToolDiscovery() {
                   }`}
                 >
                   <Icon className="h-4 w-4" />
-                  <span className="hidden sm:inline">{tab.label}</span>
-                  <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
+                  <span className="hidden sm:inline">
+                    {tabData?.label || tab.id}
+                  </span>
+                  <span className="sm:hidden">
+                    {tabData?.label?.split(' ')[0] || tab.id}
+                  </span>
                   {activeTab === tab.id && (
                     <motion.div
                       layoutId="activeTabIndicator"
@@ -152,10 +156,10 @@ export function ToolDiscovery() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                      {activeUseCase.label}
+                      {activeTabData?.title || activeUseCase.id}
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {activeUseCase.description}
+                      {activeTabData?.description || ''}
                     </p>
                   </div>
                 </div>
@@ -172,7 +176,7 @@ export function ToolDiscovery() {
                       transition={{ delay: index * 0.1 }}
                     >
                       <Link
-                        href={tool!.route}
+                        href={createHref(tool!.route)}
                         className="group flex items-start gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4 transition-all hover:border-blue-300 hover:bg-blue-50 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-blue-600 dark:hover:bg-blue-900/20"
                       >
                         <div className="text-2xl">{tool!.icon}</div>

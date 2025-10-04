@@ -58,6 +58,109 @@ export default function LocaleCategoryPageContent({
   const categoryName = categoryDict?.name || category.name;
   const categoryDescription = categoryDict?.description || category.description;
 
+  // Translate FAQs based on locale
+  const getLocalizedFaqs = () => {
+    if (locale === 'it') {
+      // Italian translations for category FAQs
+      const italianFaqs: Record<
+        string,
+        Array<{ question: string; answer: string }>
+      > = {
+        text: [
+          {
+            question: 'Quali formati di testo posso elaborare?',
+            answer:
+              'I nostri strumenti supportano testo semplice, Markdown, HTML, e vari formati di codice con evidenziazione della sintassi e validazione in tempo reale.',
+          },
+          {
+            question: 'Posso elaborare file di testo di grandi dimensioni?',
+            answer:
+              "Sì, puoi elaborare file fino a 50MB direttamente nel tuo browser. Tutta l'elaborazione avviene localmente per massima velocità e privacy.",
+          },
+          {
+            question: 'È sicuro elaborare documenti sensibili?',
+            answer:
+              'Assolutamente. Tutto avviene localmente nel tuo browser. I tuoi dati non lasciano mai il tuo dispositivo, garantendo completa privacy e sicurezza.',
+          },
+        ],
+        data: [
+          {
+            question: 'Quali formati di file posso convertire?',
+            answer:
+              'I nostri strumenti supportano JSON, CSV, XML, YAML, Base64 e formati di testo semplice con rilevamento automatico e validazione.',
+          },
+          {
+            question: "C'è un limite di dimensione del file?",
+            answer:
+              "Puoi elaborare file fino a 50MB direttamente nel tuo browser. Tutta l'elaborazione avviene localmente per massima velocità e privacy.",
+          },
+          {
+            question: 'Quanto è sicuro il processo di conversione?',
+            answer:
+              'Tutte le conversioni avvengono localmente nel tuo browser. I tuoi dati non lasciano mai il tuo dispositivo, garantendo completa privacy e sicurezza.',
+          },
+        ],
+        encoding: [
+          {
+            question: 'Quali standard di codifica supportate?',
+            answer:
+              'Supportiamo Base64, URL encoding, JWT, hash (SHA, MD5, bcrypt) e molti altri standard di codifica e sicurezza.',
+          },
+          {
+            question: 'Posso decodificare token JWT?',
+            answer:
+              'Sì, il nostro JWT Decoder analizza e visualizza header, payload e signature. Ricorda che tutti i processi avvengono localmente nel tuo browser.',
+          },
+          {
+            question: 'Come funziona la generazione di hash?',
+            answer:
+              'Supportiamo vari algoritmi (MD5, SHA-1, SHA-256, SHA-512, bcrypt). Tutti gli hash vengono generati localmente nel tuo browser per massima sicurezza.',
+          },
+        ],
+        generators: [
+          {
+            question: 'Quali tipi di dati posso generare?',
+            answer:
+              'Puoi generare UUID, password sicure, hash, colori, QR code, dati mock e molto altro con opzioni personalizzabili.',
+          },
+          {
+            question: 'I dati generati sono sicuri da usare?',
+            answer:
+              'Sì, utilizziamo algoritmi crittografici sicuri. UUID e password sono generati con entropia elevata per massima sicurezza.',
+          },
+          {
+            question: 'Posso personalizzare le opzioni di generazione?',
+            answer:
+              'Assolutamente! Ogni generatore offre opzioni avanzate per lunghezza, caratteri speciali, formati e altri parametri specifici.',
+          },
+        ],
+        dev: [
+          {
+            question: 'Quali utilità per sviluppatori offrite?',
+            answer:
+              'Offriamo crontab builder, regex tester, diff checker, validatori di codice e molti altri strumenti essenziali per lo sviluppo.',
+          },
+          {
+            question: 'Posso testare espressioni regolari complesse?',
+            answer:
+              'Sì, il nostro Regex Tester supporta tutti i pattern con evidenziazione dei match in tempo reale, spiegazioni e test cases.',
+          },
+          {
+            question: 'Il crontab builder supporta tutti i formati?',
+            answer:
+              'Sì, supporta la sintassi standard cron con validazione in tempo reale e descrizioni leggibili delle espressioni generate.',
+          },
+        ],
+      };
+
+      return italianFaqs[categoryId] || seoContent.faqs;
+    }
+
+    return seoContent.faqs;
+  };
+
+  const localizedFaqs = getLocalizedFaqs();
+
   // Helper function to get tool label
   const getToolLabelForTool = (toolId: string) => {
     const tool = getToolById(toolId);
@@ -352,7 +455,7 @@ export default function LocaleCategoryPageContent({
           <section className="mt-12 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
             <h2 className="mb-4 text-xl font-bold">{text.faqTitle}</h2>
             <div className="space-y-3">
-              {seoContent.faqs.map((faq, index) => (
+              {localizedFaqs.map((faq, index) => (
                 <div
                   key={index}
                   className="border-b border-gray-100 pb-3 last:border-0 dark:border-gray-700"

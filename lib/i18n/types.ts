@@ -154,6 +154,134 @@ export interface Dictionary {
         };
       };
     };
+    trustMetrics: {
+      dailyOperations: string;
+      privacyFocused: string;
+      processingTime: string;
+      activeUsers: string;
+    };
+    poweredBy: {
+      title: string;
+      subtitle: string;
+      github: {
+        name: string;
+        description: string;
+      };
+      vercel: {
+        name: string;
+        description: string;
+      };
+      umami: {
+        name: string;
+        description: string;
+      };
+      cloudflare: {
+        name: string;
+        description: string;
+      };
+      porkbun: {
+        name: string;
+        description: string;
+      };
+    };
+    interactiveDemo: {
+      title: string;
+      subtitle: string;
+      action: string;
+      searchPlaceholder: string;
+      searchButton: string;
+      copyButton: string;
+      copied: string;
+      viewTool: string;
+    };
+    toolDiscovery: {
+      title: string;
+      subtitle: string;
+      tabs: {
+        api: {
+          label: string;
+          description: string;
+        };
+        data: {
+          label: string;
+          description: string;
+        };
+        web: {
+          label: string;
+          description: string;
+        };
+        security: {
+          label: string;
+          description: string;
+        };
+        productivity: {
+          label: string;
+          description: string;
+        };
+      };
+      viewTool: string;
+      exploreAll: string;
+    };
+    seoContent: {
+      title: string;
+      mainTitle: string;
+      intro: string;
+      builtForDevs: {
+        title: string;
+        description: string;
+      };
+      ctaBox: {
+        title: string;
+        description: string;
+      };
+      features: {
+        lightningFast: {
+          title: string;
+          description: string;
+        };
+        private: {
+          title: string;
+          description: string;
+        };
+        toolChaining: {
+          title: string;
+          description: string;
+        };
+        worksEverywhere: {
+          title: string;
+          description: string;
+        };
+      };
+      faqs: {
+        different: {
+          question: string;
+          answer: string;
+        };
+        free: {
+          question: string;
+          answer: string;
+        };
+        privacy: {
+          question: string;
+          answer: string;
+        };
+        commercial: {
+          question: string;
+          answer: string;
+        };
+        browsers: {
+          question: string;
+          answer: string;
+        };
+      };
+    };
+    footerCTA: {
+      title: string;
+      subtitle: string;
+      description: string;
+      button: string;
+      quickAccess: string;
+    };
   };
   tools: Record<
     string,
@@ -180,15 +308,96 @@ export interface Dictionary {
     }
   >;
   footer: {
+    aboutToolsLab: string;
+    aboutDescription: string;
+    learnMission: string;
+    quickLinks: string;
+    home: string;
+    allTools: string;
+    categories: string;
+    yourLab: string;
     about: string;
+    popularTools: string;
+    support: string;
+    buyMeCoffee: string;
     privacy: string;
     terms: string;
-    contact: string;
     copyright: string;
+    craftedIn: string;
     madeWith: string;
   };
   seo: {
     suffix: string;
     defaultDescription: string;
+  };
+  lab: {
+    header: {
+      title: string;
+      subtitle: string;
+    };
+    overview: {
+      favoriteTools: string;
+      recentlyUsed: string;
+      used: string;
+      ago: string;
+      justNow: string;
+      minutesAgo: string;
+      hoursAgo: string;
+      daysAgo: string;
+    };
+    sidebar: {
+      myTools: string;
+      overview: string;
+      starToolsToAdd: string;
+    };
+    welcome: {
+      title: string;
+      description: string;
+      howItWorks: string;
+      howItWorksDescription: string;
+      privacyTitle: string;
+      privacyDescription: string;
+      gotIt: string;
+      dontShowAgain: string;
+    };
+    empty: {
+      title: string;
+      description: string;
+      toAddThem: string;
+      exploreTools: string;
+      browseCategories: string;
+      proTips: string;
+      tip1: string;
+      tip2: string;
+      tip3: string;
+      headerTitle: string;
+      headerSubtitle: string;
+      headerTagline: string;
+      headerDescription: string;
+      trustBadge1: string;
+      trustBadge2: string;
+      trustBadge3: string;
+      introDescription: string;
+      mainMessage: string;
+      mainDescription: string;
+      exploreAllTools: string;
+      proTipsTitle: string;
+      proTip1: string;
+      proTip2: string;
+      proTip3: string;
+      seoTitle: string;
+      seoIntro: string;
+      privacyControlTitle: string;
+      privacyControlDescription: string;
+      workflowOptimizationTitle: string;
+      workflowOptimizationDescription: string;
+      needMoreTools: string;
+      needMoreToolsDescription: string;
+      browseAllTools: string;
+    };
+    helpButton: {
+      title: string;
+      ariaLabel: string;
+    };
   };
 }

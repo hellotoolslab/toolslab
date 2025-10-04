@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { useHydration } from '@/lib/hooks/useHydration';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 interface LabSidebarProps {
   selectedToolId: string | null;
@@ -24,6 +25,7 @@ export function LabSidebar({
   const [isCollapsed, setIsCollapsed] = useState(false);
   const isHydrated = useHydration();
   const { favoriteTools } = useToolStore();
+  const { data: t } = useDictionarySectionContext('lab');
 
   const favoriteToolsData = isHydrated
     ? favoriteTools
@@ -52,7 +54,7 @@ export function LabSidebar({
             >
               <Star className="h-4 w-4 fill-purple-500 text-purple-500" />
               <h2 className="text-sm font-medium text-gray-900 dark:text-white">
-                My Tools
+                {t?.sidebar?.myTools || 'My Tools'}
               </h2>
               <span className="rounded-full bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500 dark:bg-gray-800">
                 {favoriteToolsData.length}
@@ -93,7 +95,7 @@ export function LabSidebar({
                 exit={{ opacity: 0, x: -20 }}
                 className="text-sm font-medium"
               >
-                Overview
+                {t?.sidebar?.overview || 'Overview'}
               </motion.span>
             )}
           </AnimatePresence>
@@ -127,7 +129,7 @@ export function LabSidebar({
           className="border-t border-gray-200 p-4 dark:border-gray-800"
         >
           <p className="text-center text-xs text-gray-500">
-            Star tools to add them here
+            {t?.sidebar?.starToolsToAdd || 'Star tools to add them here'}
           </p>
         </motion.div>
       )}

@@ -89,7 +89,7 @@ export default async function LocaleToolsPage({
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <Suspense fallback={<div>Loading...</div>}>
-        <ToolsHubContent />
+        <ToolsHubContent locale={locale as Locale} dictionary={dict} />
       </Suspense>
     </div>
   );
