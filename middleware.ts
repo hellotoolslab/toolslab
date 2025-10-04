@@ -189,6 +189,43 @@ function applyStrictSecurityHeaders(response: NextResponse) {
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
+  // Handle sitemap requests
+  if (pathname === '/sitemap-index.xml') {
+    const { generateSitemapIndexXML } = await import(
+      '@/lib/sitemap/sitemap-utils'
+    );
+    const xml = generateSitemapIndexXML();
+    return new NextResponse(xml, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+      },
+    });
+  }
+
+  // Handle locale-specific sitemaps (e.g., /sitemap-en.xml, /sitemap-it.xml)
+  const sitemapMatch = pathname.match(/^\/sitemap-([a-z]{2})\.xml$/);
+  if (sitemapMatch) {
+    const locale = sitemapMatch[1];
+    const { locales } = await import('@/lib/i18n/config');
+
+    if (locales.includes(locale as any)) {
+      const { generateSitemapXML } = await import(
+        '@/lib/sitemap/sitemap-utils'
+      );
+      const xml = generateSitemapXML(locale as any);
+      return new NextResponse(xml, {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/xml; charset=utf-8',
+          'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+          'X-Sitemap-Locale': locale,
+        },
+      });
+    }
+  }
+
   // Check if pathname has a locale prefix
   const pathnameHasLocale = localesWithPrefix.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
@@ -568,7 +605,8 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - icon files (all favicon variants)
+     * Note: We DO handle sitemap*.xml files
      */
-    '/((?!_next/static|_next/image|.*\\.ico|.*\\.png|.*\\.svg|robots\\.txt|sitemap\\.xml).*)',
+    '/((?!_next/static|_next/image|.*\\.ico|.*\\.png|.*\\.svg|robots\\.txt).*)',
   ],
 };
