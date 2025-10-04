@@ -71,7 +71,7 @@
       "type": "Tipo",
       "mode": "Modalità",
       "language": "Lingua",
-      "charset": "Set di caratteri",
+      "charset": "Charset",
       "encoding": "Codifica",
       "tool": "strumento",
       "tools": "strumenti",
@@ -79,7 +79,7 @@
       "commonUseCases": "Casi d'Uso Comuni",
       "proTips": "Suggerimenti Pro",
       "troubleshooting": "Risoluzione Problemi",
-      "keyboardShortcuts": "Scorciatoie Tastiera",
+      "keyboardShortcuts": "Scorciatoie da Tastiera",
       "howToUse": "Come Usare Questo Strumento"
     },
     "units": {
