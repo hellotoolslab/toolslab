@@ -74,7 +74,13 @@
       "charset": "Set di caratteri",
       "encoding": "Codifica",
       "tool": "strumento",
-      "tools": "strumenti"
+      "tools": "strumenti",
+      "keyFeatures": "Caratteristiche Principali",
+      "commonUseCases": "Casi d'Uso Comuni",
+      "proTips": "Suggerimenti Pro",
+      "troubleshooting": "Risoluzione Problemi",
+      "keyboardShortcuts": "Scorciatoie Tastiera",
+      "howToUse": "Come Usare Questo Strumento"
     },
     "units": {
       "bytes": "byte",

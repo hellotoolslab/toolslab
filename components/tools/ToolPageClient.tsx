@@ -287,7 +287,16 @@ export default function ToolPageClient({
               toolId={tool.id}
               categoryColor={categoryColor}
               locale={locale}
-              dictionary={dictionary}
+              instructions={dictionary?.tools?.[tool.id]?.instructions}
+              labels={{
+                keyFeatures: dictionary?.common?.labels?.keyFeatures,
+                commonUseCases: dictionary?.common?.labels?.commonUseCases,
+                proTips: dictionary?.common?.labels?.proTips,
+                troubleshooting: dictionary?.common?.labels?.troubleshooting,
+                keyboardShortcuts:
+                  dictionary?.common?.labels?.keyboardShortcuts,
+                howToUse: dictionary?.common?.labels?.howToUse,
+              }}
             />
           </div>
 

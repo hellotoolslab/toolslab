@@ -74,7 +74,13 @@
       "charset": "Charset",
       "encoding": "Encoding",
       "tool": "tool",
-      "tools": "tools"
+      "tools": "tools",
+      "keyFeatures": "Key Features",
+      "commonUseCases": "Common Use Cases",
+      "proTips": "Pro Tips",
+      "troubleshooting": "Troubleshooting",
+      "keyboardShortcuts": "Keyboard Shortcuts",
+      "howToUse": "How to Use This Tool"
     },
     "units": {
       "bytes": "bytes",

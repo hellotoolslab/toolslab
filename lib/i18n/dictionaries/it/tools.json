@@ -38,7 +38,56 @@
       "tagline": "Codifica e decodifica file e testo Base64 istantaneamente",
       "pageDescription": "Codificatore e decodificatore Base64 gratuito per testo, immagini e file fino a 50MB. Perfetto per sviluppatori web che incorporano immagini in HTML/CSS, trasmissione dati API e allegati email. Interfaccia drag-and-drop con elaborazione sicura basata su browser. Scarica file decodificati direttamente o copia stringhe codificate negli appunti.",
       "placeholder": "Inserisci il testo da codificare...",
-      "instructions": "Inserisci testo o carica un file da codificare in Base64",
+      "instructions": {
+        "title": "Come usare il Codificatore/Decodificatore Base64",
+        "steps": [
+          {
+            "title": "Seleziona la modalità codifica o decodifica",
+            "description": "Scegli 'Codifica' per convertire testo o file in formato Base64, oppure 'Decodifica' per convertire Base64 nel formato originale."
+          },
+          {
+            "title": "Inserisci i tuoi dati",
+            "description": "Per testo: incolla direttamente nell'area di testo. Per file: trascina e rilascia o clicca per selezionare file fino a 50MB."
+          },
+          {
+            "title": "Elabora la conversione",
+            "description": "Clicca il pulsante codifica/decodifica. Lo strumento elabora i dati localmente nel tuo browser per massima sicurezza."
+          },
+          {
+            "title": "Copia o scarica i risultati",
+            "description": "Copia la stringa Base64 negli appunti o scarica file decodificati direttamente sul tuo dispositivo."
+          }
+        ],
+        "features": [
+          "Codifica/decodifica testo e file Base64",
+          "Supporto dimensioni file fino a 50MB",
+          "Elaborazione in tempo reale con indicatore progresso",
+          "Supporto per immagini, documenti e file binari",
+          "Interfaccia drag and drop per file",
+          "Download diretto dei file decodificati"
+        ],
+        "useCases": [
+          "Incorpora immagini direttamente in HTML/CSS usando Data URL",
+          "Codifica file per trasmissione API",
+          "Memorizza dati binari in JSON o XML",
+          "Codifica allegati email",
+          "Decodifica contenuti Base64 da fonti web",
+          "Converti immagini per uso in applicazioni web"
+        ],
+        "proTips": [
+          "Base64 aumenta dimensioni dati di circa il 33%",
+          "Usa per file piccoli/medi per evitare problemi memoria",
+          "Ottimo per incorporare icone e piccole immagini nel codice",
+          "Verifica sempre che contenuto decodificato corrisponda originale",
+          "Usa prefissi tipo MIME per Data URL (data:image/png;base64,)"
+        ],
+        "troubleshooting": [
+          "Errori Base64 invalidi di solito indicano dati corrotti o incompleti",
+          "Rimuovi spazi bianchi o interruzioni righe dalle stringhe Base64",
+          "Assicurati che la stringa Base64 usi caratteri validi (A-Z, a-z, 0-9, +, /, =)",
+          "Per file grandi, considera di dividere elaborazione o usare chunk più piccoli"
+        ]
+      },
       "meta": {
         "title": "Codificatore Base64 - Strumento Online Gratuito | ToolsLab",
         "description": "Codifica testo o file in formato Base64 istantaneamente. Codificatore Base64 online gratuito con supporto file. Nessuna registrazione richiesta."
