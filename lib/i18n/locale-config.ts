@@ -63,9 +63,6 @@ export const LOCALE_CONFIGS: Record<Locale, LocaleConfig> = {
       thousands: '.',
     },
   },
-  // Future locales ready to be activated
-  // Simply uncomment and add dictionary files to enable
-  /*
   fr: {
     code: 'fr',
     name: 'Français',
@@ -79,6 +76,9 @@ export const LOCALE_CONFIGS: Record<Locale, LocaleConfig> = {
       thousands: ' ',
     },
   },
+  // Future locales ready to be activated
+  // Simply uncomment and add dictionary files to enable
+  /*
   de: {
     code: 'de',
     name: 'Deutsch',
