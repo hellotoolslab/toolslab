@@ -49,18 +49,14 @@ export default function LanguageSwitcher({
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
+        className="flex items-center gap-2 rounded-lg px-3 py-2 text-2xl transition-colors hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/20"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <span className="text-lg" role="img" aria-label={activeConfig.name}>
+        <span role="img" aria-label={activeConfig.name}>
           {activeConfig.flag}
         </span>
-        <span className="hidden sm:inline">{activeConfig.name}</span>
-        <ChevronDown
-          className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-        />
       </button>
 
       {isOpen && (
