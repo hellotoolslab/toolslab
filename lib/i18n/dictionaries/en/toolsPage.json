@@ -1,0 +1,53 @@
+{
+  "breadcrumb": {
+    "home": "Home",
+    "allTools": "All Tools"
+  },
+  "header": {
+    "title": "All Developer Tools - Free Online Utilities",
+    "subtitle": "Complete collection of professional tools for developers, data analysts, and system administrators",
+    "description": "free browser-based tools for JSON formatting, Base64 encoding, hash generation, and more. Zero data transmission, no registration required."
+  },
+  "trust": {
+    "tools": "tools",
+    "freeForever": "Free forever",
+    "privacyFirst": "Privacy-first"
+  },
+  "search": {
+    "placeholder": "Search tools... (e.g. 'json', 'encode', 'hash')"
+  },
+  "filters": {
+    "all": "All",
+    "sortBy": "Sort by:",
+    "mostPopular": "Most Popular",
+    "alphabetical": "A-Z",
+    "recentlyAdded": "Recently Added",
+    "category": "Category",
+    "clearFilters": "Clear filters"
+  },
+  "sections": {
+    "recentlyAdded": "Recently Added Tools",
+    "newTools": "new tools",
+    "mostPopular": "Most Popular Tools",
+    "trendingTools": "trending tools",
+    "allTools": "All Tools"
+  },
+  "empty": {
+    "title": "No tools found",
+    "description": "Try adjusting your search or filter criteria.",
+    "clearAll": "Clear all filters"
+  },
+  "seo": {
+    "whyChoose": {
+      "title": "Why Choose ToolsLab Tools?",
+      "benefits": [
+        "Complete privacy - all processing happens in your browser",
+        "No registration or account required",
+        "Professional-grade tools used by developers worldwide",
+        "Real-time processing with instant results",
+        "Mobile-friendly responsive design",
+        "Regular updates with new tools and features"
+      ]
+    }
+  }
+}

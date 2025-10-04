@@ -153,7 +153,17 @@ export default async function RootLayout({
   if (!locale) {
     const referer = headersList.get('referer') || '';
     const url = headersList.get('x-invoke-path') || referer;
-    locale = url.includes('/it/') || url.startsWith('/it') ? 'it' : 'en';
+
+    // Check for all supported locales
+    if (url.includes('/it/') || url.startsWith('/it')) {
+      locale = 'it';
+    } else if (url.includes('/es/') || url.startsWith('/es')) {
+      locale = 'es';
+    } else if (url.includes('/fr/') || url.startsWith('/fr')) {
+      locale = 'fr';
+    } else {
+      locale = 'en';
+    }
   }
 
   return (
