@@ -373,7 +373,12 @@ export default function ToolPageClient({
         )}
 
         {/* FAQ Modal */}
-        <FAQModal categoryColor={categoryColor} toolName={tool.name} />
+        <FAQModal
+          categoryColor={categoryColor}
+          toolName={tool.name}
+          locale={locale}
+          faqData={dictionary?.common?.faq}
+        />
       </div>
     </div>
   );

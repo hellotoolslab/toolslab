@@ -89,6 +89,28 @@
       "characters": "characters",
       "words": "words",
       "lines": "lines"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "close": "Close",
+      "questions": [
+        {
+          "question": "Is this tool free to use?",
+          "answer": "Yes, all ToolsLab tools are completely free to use with no limits or registration required."
+        },
+        {
+          "question": "Is my data secure?",
+          "answer": "All processing happens locally in your browser. Your data never leaves your device."
+        },
+        {
+          "question": "Can I use this offline?",
+          "answer": "Once loaded, most tools work offline as they process data locally in your browser."
+        },
+        {
+          "question": "How do I report a bug or request a feature?",
+          "answer": "You can report issues or request features on our GitHub repository at https://github.com/hellotoolslab/toolslab or reach out to us on X at https://x.com/tools_lab."
+        }
+      ]
     }
   }
 }
