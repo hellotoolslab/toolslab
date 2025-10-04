@@ -9,76 +9,76 @@
   "tagline": "Testez les API REST avec en-têtes personnalisés et constructeur de requêtes",
   "pageDescription": "Outil professionnel de test API pour développeurs. Envoyez des requêtes HTTP avec en-têtes, méthodes et données body personnalisés. Testez les endpoints RESTful, déboguez les réponses API et validez les flux d'authentification. Supporte les méthodes GET, POST, PUT, DELETE, PATCH avec visualisation des réponses en temps réel.",
   "instructions": {
-    "title": "How to use Testeur API",
+    "title": "Comment utiliser Testeur API",
     "steps": [
       {
-        "title": "Paste your content",
-        "description": "Copy and paste your content into the input area. The tool accepts any format and will process it immediately."
+        "title": "Saisissez l'URL de l'API",
+        "description": "Entrez l'URL de l'endpoint API que vous souhaitez tester. L'outil accepte toutes les méthodes HTTP standards."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Configurez les options (si disponible)",
+        "description": "Ajustez la méthode HTTP, les en-têtes personnalisés ou d'autres paramètres pour correspondre à vos besoins de test."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will test your input and display the result with proper formatting and validation."
+        "title": "Examinez la réponse",
+        "description": "L'outil va tester votre requête et afficher la réponse avec formatage et validation appropriés."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Copiez ou téléchargez le résultat",
+        "description": "Copiez la réponse dans votre presse-papiers pour utilisation immédiate ou téléchargez-la en tant que fichier."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Traitement en temps réel avec résultats instantanés",
+      "Aucune limite de taille pour le traitement basé sur navigateur",
+      "Complètement sécurisé - tout le traitement se fait dans votre navigateur",
+      "Aucun téléchargement de données ou stockage serveur",
+      "Copier dans le presse-papiers en un clic",
+      "Télécharger les résultats sous forme de fichier",
+      "Validation de syntaxe et mise en évidence des erreurs",
+      "Fonctionne hors ligne après le chargement initial"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Tester les endpoints API REST rapidement",
+      "Déboguer les réponses API et identifier les erreurs",
+      "Valider les flux d'authentification et les tokens",
+      "Tester différentes méthodes HTTP sur le même endpoint",
+      "Analyser les en-têtes de réponse HTTP",
+      "Vérifier les temps de réponse des API",
+      "Tester les API avec en-têtes personnalisés",
+      "Valider les formats de réponse JSON/XML"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Utilisez les raccourcis clavier pour un flux de travail plus rapide",
+      "Sauvegardez les requêtes fréquentes pour les réutiliser",
+      "Vérifiez les en-têtes de réponse pour diagnostiquer les problèmes",
+      "Utilisez des variables d'environnement pour les tokens",
+      "Testez avec différents payloads pour valider la robustesse",
+      "Vérifiez attentivement la réponse avant utilisation en production"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Erreurs CORS : vérifiez la configuration du serveur API",
+      "Échec de requête : assurez-vous que l'URL est valide",
+      "Performance lente : vérifiez votre connexion réseau",
+      "Erreurs d'authentification : validez vos tokens et en-têtes",
+      "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Paste input"
+        "description": "Coller l'entrée"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Process/Format"
+        "description": "Envoyer la requête"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copy result"
+        "description": "Copier le résultat"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Download file"
+        "description": "Télécharger le fichier"
       }
     ]
   }

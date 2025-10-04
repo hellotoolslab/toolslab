@@ -3,76 +3,76 @@
   "description": "Decodifica texto codificado en URL",
   "placeholder": "Ingresa texto codificado en URL...",
   "instructions": {
-    "title": "How to use Decodificador URL",
+    "title": "Cómo usar Decodificador URL",
     "steps": [
       {
-        "title": "Paste your URL or text",
-        "description": "Copy and paste your URL or text into the input area. The tool accepts any format and will process it immediately."
+        "title": "Pega tu URL o texto",
+        "description": "Copia y pega tu URL o texto en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Configura las opciones (si disponible)",
+        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will process your input and display the result with proper formatting and validation."
+        "title": "Examina la salida",
+        "description": "La herramienta codificará tu entrada y mostrará el resultado con formato y validación apropiados."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Copia o descarga el resultado",
+        "description": "Copia el resultado procesado al portapapeles para uso inmediato o descárgalo como archivo."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Procesamiento en tiempo real con resultados instantáneos",
+      "Sin límite de tamaño para procesamiento basado en navegador",
+      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
+      "Sin carga de datos ni almacenamiento en servidor",
+      "Copiar al portapapeles con un clic",
+      "Descargar resultados como archivo",
+      "Validación de sintaxis y resaltado de errores",
+      "Funciona sin conexión después de la carga inicial"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Limpiar y formatear código desordenado para mejor legibilidad",
+      "Estandarizar el estilo de código en equipos de desarrollo",
+      "Depurar estructuras complejas con indentación apropiada",
+      "Preparar código para documentación y revisiones de código",
+      "Convertir entre diferentes estándares de formato",
+      "Validar sintaxis antes del despliegue",
+      "Procesar datos de fuentes externas o APIs",
+      "Generar código listo para producción"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Usa atajos de teclado para un flujo de trabajo más rápido",
+      "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
+      "Valida tu entrada antes del procesamiento para detectar errores temprano",
+      "Guarda las configuraciones frecuentes como predeterminadas",
+      "Usa la función de descarga para archivar archivos procesados",
+      "Verifica cuidadosamente la salida antes de usar en producción"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
+      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
+      "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
+      "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
+      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Paste input"
+        "description": "Pegar entrada"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Process/Format"
+        "description": "Procesar/Formatear"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copy result"
+        "description": "Copiar resultado"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Download file"
+        "description": "Descargar archivo"
       }
     ]
   },

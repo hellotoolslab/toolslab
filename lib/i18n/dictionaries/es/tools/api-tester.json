@@ -9,76 +9,76 @@
   "tagline": "Prueba API REST con encabezados personalizados y constructor de solicitudes",
   "pageDescription": "Herramienta profesional de prueba API para desarrolladores. Envía solicitudes HTTP con encabezados, métodos y datos body personalizados. Prueba endpoints RESTful, depura respuestas API y valida flujos de autenticación. Soporta métodos GET, POST, PUT, DELETE, PATCH con visualización de respuestas en tiempo real.",
   "instructions": {
-    "title": "How to use Probador API",
+    "title": "Cómo usar Probador API",
     "steps": [
       {
-        "title": "Paste your content",
-        "description": "Copy and paste your content into the input area. The tool accepts any format and will process it immediately."
+        "title": "Ingresa la URL de la API",
+        "description": "Ingresa la URL del endpoint API que deseas probar. La herramienta acepta todos los métodos HTTP estándar."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Configura las opciones (si disponible)",
+        "description": "Ajusta el método HTTP, los encabezados personalizados u otros parámetros para satisfacer tus necesidades de prueba."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will test your input and display the result with proper formatting and validation."
+        "title": "Examina la respuesta",
+        "description": "La herramienta probará tu solicitud y mostrará la respuesta con formato y validación apropiados."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Copia o descarga el resultado",
+        "description": "Copia la respuesta al portapapeles para uso inmediato o descárgala como archivo."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Procesamiento en tiempo real con resultados instantáneos",
+      "Sin límite de tamaño para procesamiento basado en navegador",
+      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
+      "Sin carga de datos ni almacenamiento en servidor",
+      "Copiar al portapapeles con un clic",
+      "Descargar resultados como archivo",
+      "Validación de sintaxis y resaltado de errores",
+      "Funciona sin conexión después de la carga inicial"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Probar endpoints API REST rápidamente",
+      "Depurar respuestas API e identificar errores",
+      "Validar flujos de autenticación y tokens",
+      "Probar diferentes métodos HTTP en el mismo endpoint",
+      "Analizar encabezados de respuesta HTTP",
+      "Verificar tiempos de respuesta de API",
+      "Probar API con encabezados personalizados",
+      "Validar formatos de respuesta JSON/XML"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Usa atajos de teclado para un flujo de trabajo más rápido",
+      "Guarda solicitudes frecuentes para reutilizarlas",
+      "Verifica los encabezados de respuesta para diagnosticar problemas",
+      "Usa variables de entorno para tokens",
+      "Prueba con diferentes payloads para validar robustez",
+      "Verifica cuidadosamente la respuesta antes de usar en producción"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Errores CORS: verifica la configuración del servidor API",
+      "Fallo de solicitud: asegúrate de que la URL sea válida",
+      "Rendimiento lento: verifica tu conexión de red",
+      "Errores de autenticación: valida tus tokens y encabezados",
+      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Paste input"
+        "description": "Pegar entrada"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Process/Format"
+        "description": "Enviar solicitud"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copy result"
+        "description": "Copiar resultado"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Download file"
+        "description": "Descargar archivo"
       }
     ]
   }
