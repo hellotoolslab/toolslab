@@ -50,22 +50,6 @@ export const LOCALE_CONFIGS: Record<Locale, LocaleConfig> = {
       thousands: '.',
     },
   },
-  // Future locales ready to be activated
-  // Simply uncomment and add dictionary files to enable
-  /*
-  fr: {
-    code: 'fr',
-    name: 'Français',
-    flag: '🇫🇷',
-    intlCode: 'fr-FR',
-    direction: 'ltr',
-    browserCodes: ['fr', 'fr-FR', 'fr-CA', 'fr-BE', 'fr-CH'],
-    dateFormat: 'd MMM yyyy',
-    numberFormat: {
-      decimal: ',',
-      thousands: ' ',
-    },
-  },
   es: {
     code: 'es',
     name: 'Español',
@@ -79,6 +63,22 @@ export const LOCALE_CONFIGS: Record<Locale, LocaleConfig> = {
       thousands: '.',
     },
   },
+  fr: {
+    code: 'fr',
+    name: 'Français',
+    flag: '🇫🇷',
+    intlCode: 'fr-FR',
+    direction: 'ltr',
+    browserCodes: ['fr', 'fr-FR', 'fr-CA', 'fr-BE', 'fr-CH'],
+    dateFormat: 'd MMM yyyy',
+    numberFormat: {
+      decimal: ',',
+      thousands: ' ',
+    },
+  },
+  // Future locales ready to be activated
+  // Simply uncomment and add dictionary files to enable
+  /*
   de: {
     code: 'de',
     name: 'Deutsch',

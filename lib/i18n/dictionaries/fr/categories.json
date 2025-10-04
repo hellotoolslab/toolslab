@@ -1,0 +1,32 @@
+{
+  "categories": {
+    "data": {
+      "name": "Données et Conversion",
+      "description": "Outils pour la transformation de données et la conversion de formats"
+    },
+    "encoding": {
+      "name": "Encodage et Sécurité",
+      "description": "Outils d'encodage, de chiffrement et de sécurité"
+    },
+    "text": {
+      "name": "Texte et Format",
+      "description": "Outils de manipulation et de formatage de texte"
+    },
+    "generators": {
+      "name": "Générateurs",
+      "description": "Générez divers types de données et de contenu"
+    },
+    "web": {
+      "name": "Web et Design",
+      "description": "Outils de développement web et de design"
+    },
+    "dev": {
+      "name": "Utilitaires de Développement",
+      "description": "Utilitaires et assistants pour développeurs"
+    },
+    "formatters": {
+      "name": "Formateurs",
+      "description": "Outils de formatage de code et de données"
+    }
+  }
+}

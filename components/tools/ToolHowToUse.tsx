@@ -116,137 +116,156 @@ export default function ToolHowToUse({
         </div>
 
         {/* Step-by-step Instructions */}
-        <ol className="mb-8 space-y-4">
-          {instruction.steps.map((step, index) => (
-            <li key={index} className="flex gap-4">
-              <span
-                className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-medium text-white"
-                style={{ backgroundColor: categoryColor }}
-              >
-                {index + 1}
-              </span>
-              <div className="flex-1">
-                <h3 className="font-medium text-gray-900 dark:text-white">
-                  {step.title}
-                </h3>
-                <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                  {step.description}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-
-        {/* Features Section */}
-        <div className="mb-6">
-          <h3 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
-            <Target className="h-4 w-4" style={{ color: categoryColor }} />
-            {sectionLabels.keyFeatures}
-          </h3>
-          <ul className="grid gap-2 sm:grid-cols-2">
-            {instruction.features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2">
+        {instruction.steps && instruction.steps.length > 0 && (
+          <ol className="mb-8 space-y-4">
+            {instruction.steps.map((step, index) => (
+              <li key={index} className="flex gap-4">
                 <span
-                  className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full"
+                  className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-medium text-white"
                   style={{ backgroundColor: categoryColor }}
-                />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {feature}
+                >
+                  {index + 1}
                 </span>
+                <div className="flex-1">
+                  <h3 className="font-medium text-gray-900 dark:text-white">
+                    {step.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {step.description}
+                  </p>
+                </div>
               </li>
             ))}
-          </ul>
-        </div>
+          </ol>
+        )}
+
+        {/* Features Section */}
+        {instruction.features && instruction.features.length > 0 && (
+          <div className="mb-6">
+            <h3 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+              <Target className="h-4 w-4" style={{ color: categoryColor }} />
+              {sectionLabels.keyFeatures}
+            </h3>
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {instruction.features.map((feature, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <span
+                    className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full"
+                    style={{ backgroundColor: categoryColor }}
+                  />
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       {/* Use Cases and Pro Tips Grid */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Use Cases */}
-        <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
-          <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
-            <Target className="h-4 w-4" style={{ color: categoryColor }} />
-            {sectionLabels.commonUseCases}
-          </h3>
-          <ul className="space-y-2">
-            {instruction.useCases.map((useCase, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span
-                  className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                  style={{ backgroundColor: categoryColor }}
-                />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {useCase}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Pro Tips */}
-        <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 dark:border-amber-800 dark:from-amber-900/20 dark:to-orange-900/20 sm:p-6">
-          <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
-            <Lightbulb className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-            {sectionLabels.proTips}
-          </h3>
-          <ul className="space-y-2">
-            {instruction.proTips.map((tip, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600 dark:bg-amber-400" />
-                <span className="text-sm text-amber-800 dark:text-amber-200">
-                  {tip}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* Troubleshooting and Keyboard Shortcuts Grid */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Troubleshooting */}
-        <div className="rounded-xl border border-red-200 bg-gradient-to-br from-red-50 to-rose-50 p-4 dark:border-red-800 dark:from-red-900/20 dark:to-rose-900/20 sm:p-6">
-          <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
-            <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
-            {sectionLabels.troubleshooting}
-          </h3>
-          <ul className="space-y-2">
-            {instruction.troubleshooting.map((issue, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600 dark:bg-red-400" />
-                <span className="text-sm text-red-800 dark:text-red-200">
-                  {issue}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Keyboard Shortcuts */}
-        {instruction.keyboardShortcuts &&
-          instruction.keyboardShortcuts.length > 0 && (
-            <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-4 dark:border-blue-800 dark:from-blue-900/20 dark:to-indigo-900/20 sm:p-6">
+      {((instruction.useCases && instruction.useCases.length > 0) ||
+        (instruction.proTips && instruction.proTips.length > 0)) && (
+        <div className="grid gap-6 lg:grid-cols-2">
+          {/* Use Cases */}
+          {instruction.useCases && instruction.useCases.length > 0 && (
+            <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
               <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
-                <Keyboard className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                {sectionLabels.keyboardShortcuts}
+                <Target className="h-4 w-4" style={{ color: categoryColor }} />
+                {sectionLabels.commonUseCases}
               </h3>
-              <div className="space-y-3">
-                {instruction.keyboardShortcuts.map((shortcut, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between"
-                  >
-                    <span className="text-sm text-blue-800 dark:text-blue-200">
-                      {shortcut.description}
+              <ul className="space-y-2">
+                {instruction.useCases.map((useCase, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span
+                      className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full"
+                      style={{ backgroundColor: categoryColor }}
+                    />
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      {useCase}
                     </span>
-                    <kbd className="rounded bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 dark:bg-blue-800/40 dark:text-blue-200">
-                      {shortcut.keys}
-                    </kbd>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           )}
-      </div>
+
+          {/* Pro Tips */}
+          {instruction.proTips && instruction.proTips.length > 0 && (
+            <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 dark:border-amber-800 dark:from-amber-900/20 dark:to-orange-900/20 sm:p-6">
+              <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+                <Lightbulb className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                {sectionLabels.proTips}
+              </h3>
+              <ul className="space-y-2">
+                {instruction.proTips.map((tip, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600 dark:bg-amber-400" />
+                    <span className="text-sm text-amber-800 dark:text-amber-200">
+                      {tip}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Troubleshooting and Keyboard Shortcuts Grid */}
+      {((instruction.troubleshooting &&
+        instruction.troubleshooting.length > 0) ||
+        (instruction.keyboardShortcuts &&
+          instruction.keyboardShortcuts.length > 0)) && (
+        <div className="grid gap-6 lg:grid-cols-2">
+          {/* Troubleshooting */}
+          {instruction.troubleshooting &&
+            instruction.troubleshooting.length > 0 && (
+              <div className="rounded-xl border border-red-200 bg-gradient-to-br from-red-50 to-rose-50 p-4 dark:border-red-800 dark:from-red-900/20 dark:to-rose-900/20 sm:p-6">
+                <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+                  <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
+                  {sectionLabels.troubleshooting}
+                </h3>
+                <ul className="space-y-2">
+                  {instruction.troubleshooting.map((issue, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600 dark:bg-red-400" />
+                      <span className="text-sm text-red-800 dark:text-red-200">
+                        {issue}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+          {/* Keyboard Shortcuts */}
+          {instruction.keyboardShortcuts &&
+            instruction.keyboardShortcuts.length > 0 && (
+              <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-4 dark:border-blue-800 dark:from-blue-900/20 dark:to-indigo-900/20 sm:p-6">
+                <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+                  <Keyboard className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                  {sectionLabels.keyboardShortcuts}
+                </h3>
+                <div className="space-y-3">
+                  {instruction.keyboardShortcuts.map((shortcut, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between"
+                    >
+                      <span className="text-sm text-blue-800 dark:text-blue-200">
+                        {shortcut.description}
+                      </span>
+                      <kbd className="rounded bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800 dark:bg-blue-800/40 dark:text-blue-200">
+                        {shortcut.keys}
+                      </kbd>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+        </div>
+      )}
     </div>
   );
 }
