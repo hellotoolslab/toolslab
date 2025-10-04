@@ -1,13 +1,19 @@
 // lib/tool-schema.ts
 import { getToolById } from '@/lib/tools';
-import { toolSEO } from '@/lib/tool-seo';
+import { loadToolTranslation } from '@/lib/i18n/load-tools';
 
-export function generateToolSchema(toolId: string) {
+export async function generateToolSchema(toolId: string) {
   const tool = getToolById(toolId);
-  const seo = toolSEO[toolId];
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://toolslab.dev';
 
-  if (!tool || !seo) {
+  if (!tool) {
+    return null;
+  }
+
+  // Load SEO data from granular JSON files
+  const seo = await loadToolTranslation('en', toolId);
+
+  if (!seo || !seo.pageDescription) {
     return null;
   }
 

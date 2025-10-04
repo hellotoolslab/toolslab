@@ -1,0 +1,93 @@
+{
+  "title": "Formateur SQL",
+  "description": "Formatez et embellissez les requêtes SQL",
+  "placeholder": "Collez votre requête SQL ici...",
+  "instructions": {
+    "title": "Comment utiliser le Formateur SQL",
+    "steps": [
+      {
+        "title": "Collez votre requête SQL",
+        "description": "Copiez et collez votre requête ou script SQL dans la zone de saisie. L'outil accepte le SQL minifié et non formaté de n'importe quel système de base de données."
+      },
+      {
+        "title": "Sélectionnez le dialecte SQL",
+        "description": "Choisissez votre système de base de données (MySQL, PostgreSQL, SQLite, SQL Server) pour un formatage spécifique au dialecte et la reconnaissance des mots-clés."
+      },
+      {
+        "title": "Configurez les options de formatage",
+        "description": "Personnalisez la taille de l'indentation, la casse des mots-clés (majuscules/minuscules) et les préférences de saut de ligne pour correspondre à vos normes de codage."
+      },
+      {
+        "title": "Examinez la sortie formatée",
+        "description": "L'outil valide la syntaxe SQL et affiche la requête formatée avec une indentation appropriée, une mise en évidence des mots-clés et une lisibilité améliorée."
+      },
+      {
+        "title": "Copiez ou téléchargez le résultat",
+        "description": "Copiez le SQL formaté dans le presse-papiers pour une utilisation immédiate ou téléchargez-le en tant que fichier .sql pour le stockage et le partage."
+      }
+    ],
+    "features": [
+      "Support multi-dialecte (MySQL, PostgreSQL, SQLite, SQL Server)",
+      "Reconnaissance intelligente des mots-clés et conversion de casse",
+      "Indentation personnalisable (2, 4 espaces ou tabulation)",
+      "Validation de la syntaxe SQL avec mise en évidence des erreurs",
+      "Analyse de requêtes complexes incluant CTE, sous-requêtes et jointures",
+      "Préservation et formatage des commentaires",
+      "Support des scripts SQL volumineux jusqu'à 5MB",
+      "Exportation du SQL formaté en fichier téléchargeable"
+    ],
+    "useCases": [
+      "Formater les requêtes SQL désordonnées pour une meilleure lisibilité",
+      "Standardiser le style de code SQL dans les équipes de développement",
+      "Déboguer des requêtes complexes avec une indentation appropriée",
+      "Préparer des scripts SQL pour la documentation et la revue de code",
+      "Convertir entre différents standards de formatage SQL",
+      "Nettoyer le SQL auto-généré des constructeurs de requêtes",
+      "Formater les procédures stockées et les scripts de migration de base de données",
+      "Préparer les requêtes SQL pour le déploiement en production"
+    ],
+    "proTips": [
+      "Utilisez des mots-clés en majuscules pour une meilleure lisibilité et conformité aux standards SQL",
+      "Choisissez une indentation de 4 espaces pour un équilibre optimal entre lisibilité et compacité",
+      "Sélectionnez le dialecte SQL correct pour garantir une reconnaissance appropriée des mots-clés",
+      "Formatez les scripts volumineux par sections si les performances ralentissent",
+      "Préservez les commentaires originaux - ils contiennent un contexte important",
+      "Utilisez un formatage cohérent dans toute votre base de code"
+    ],
+    "troubleshooting": [
+      "Erreurs de syntaxe : Vérifiez les points-virgules manquants, les parenthèses ou guillemets non fermés",
+      "Mots-clés non reconnus : Vérifiez que la sélection du dialecte SQL correspond à votre base de données",
+      "Problèmes de formatage : Assurez-vous que le SQL est valide avant le formatage",
+      "Performances lentes : Divisez les très gros scripts en morceaux plus petits",
+      "Fonctionnalités manquantes : Certaines syntaxes avancées spécifiques au dialecte peuvent nécessiter un formatage manuel"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller la requête SQL"
+      },
+      {
+        "keys": "Ctrl+Entrée",
+        "description": "Formater le SQL"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Sélectionner toute la sortie formatée"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le SQL formaté"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Télécharger le fichier SQL"
+      }
+    ]
+  },
+  "tagline": "Formatez et embellissez les requêtes SQL avec coloration syntaxique",
+  "pageDescription": "Formatez et embellissez les requêtes SQL avec indentation appropriée, mise en évidence des mots-clés et validation de syntaxe. Parfait pour les développeurs de bases de données, les analystes de données et l'optimisation SQL. Prend en charge plusieurs dialectes SQL (MySQL, PostgreSQL, SQLite) avec des options de formatage personnalisables. Formateur SQL gratuit et sécurisé basé sur navigateur sans téléchargement de données.",
+  "meta": {
+    "title": "Formateur SQL - Outil en Ligne Gratuit | ToolsLab",
+    "description": "Formatez et embellissez les requêtes SQL en ligne. Support pour plusieurs dialectes SQL. Outil formateur SQL gratuit."
+  }
+}

@@ -5,6 +5,7 @@ import {
   BaseDictionaryLoader,
   validateSections,
 } from './base-dictionary-loader';
+import { loadAllToolsTranslations } from './load-tools';
 
 // Re-export type for convenience in server components
 export type { Dictionary } from './types';
@@ -32,16 +33,40 @@ class ServerDictionaryLoader extends BaseDictionaryLoader {
 
     await Promise.all(
       sections.map(async (section) => {
-        try {
-          const sectionData = await import(
-            `./dictionaries/${locale}/${section}.json`
-          ).then((module) => module.default);
+        // Special handling for 'tools' section - load from granular files
+        if (section === 'tools') {
+          try {
+            const toolsData = await loadAllToolsTranslations(locale);
+            Object.assign(dictionary, toolsData);
+          } catch (toolsError) {
+            console.warn(
+              `Failed to load tools for locale "${locale}", trying fallback`
+            );
+            // Fallback to old tools.json if granular files don't exist
+            try {
+              const sectionData = await import(
+                `./dictionaries/${locale}/${section}.json`
+              ).then((module) => module.default);
+              Object.assign(dictionary, sectionData);
+            } catch (fallbackError) {
+              console.warn(
+                `Section "tools" not found for locale "${locale}", skipping`
+              );
+            }
+          }
+        } else {
+          // Normal section loading
+          try {
+            const sectionData = await import(
+              `./dictionaries/${locale}/${section}.json`
+            ).then((module) => module.default);
 
-          Object.assign(dictionary, sectionData);
-        } catch (sectionError) {
-          console.warn(
-            `Section "${section}" not found for locale "${locale}", skipping`
-          );
+            Object.assign(dictionary, sectionData);
+          } catch (sectionError) {
+            console.warn(
+              `Section "${section}" not found for locale "${locale}", skipping`
+            );
+          }
         }
       })
     );

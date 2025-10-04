@@ -1,0 +1,93 @@
+{
+  "title": "SQL Formatter",
+  "description": "Formatta e abbellisce query SQL",
+  "placeholder": "Incolla qui la tua query SQL...",
+  "instructions": {
+    "title": "Come usare SQL Formatter",
+    "steps": [
+      {
+        "title": "Incolla la tua query SQL",
+        "description": "Copia e incolla la tua query o script SQL nell'area di input. Lo strumento accetta SQL minimizzato e non formattato da qualsiasi sistema di database."
+      },
+      {
+        "title": "Seleziona il dialetto SQL",
+        "description": "Scegli il tuo sistema di database (MySQL, PostgreSQL, SQLite, SQL Server) per la formattazione specifica del dialetto e il riconoscimento delle keyword."
+      },
+      {
+        "title": "Configura le opzioni di formattazione",
+        "description": "Personalizza la dimensione dell'indentazione, la capitalizzazione delle keyword (maiuscole/minuscole) e le preferenze di interruzione di riga per adattarsi ai tuoi standard di codifica."
+      },
+      {
+        "title": "Rivedi l'output formattato",
+        "description": "Lo strumento valida la sintassi SQL e mostra la query formattata con indentazione corretta, evidenziazione delle keyword e leggibilità migliorata."
+      },
+      {
+        "title": "Copia o scarica il risultato",
+        "description": "Copia l'SQL formattato negli appunti per uso immediato o scaricalo come file .sql per archiviazione e condivisione."
+      }
+    ],
+    "features": [
+      "Supporto multi-dialetto (MySQL, PostgreSQL, SQLite, SQL Server)",
+      "Riconoscimento intelligente delle keyword e conversione maiuscole/minuscole",
+      "Indentazione personalizzabile (2, 4 spazi o tabulazione)",
+      "Validazione sintassi SQL con evidenziazione errori",
+      "Parsing di query complesse inclusi CTE, subquery e join",
+      "Preservazione e formattazione dei commenti",
+      "Supporto per script SQL di grandi dimensioni fino a 5MB",
+      "Esportazione SQL formattato come file scaricabile"
+    ],
+    "useCases": [
+      "Formattare query SQL disordinate per una migliore leggibilità",
+      "Standardizzare lo stile del codice SQL nei team di sviluppo",
+      "Debug di query complesse con indentazione corretta",
+      "Preparare script SQL per documentazione e code review",
+      "Convertire tra diversi standard di formattazione SQL",
+      "Pulire SQL auto-generato da query builder",
+      "Formattare stored procedure e script di migrazione database",
+      "Preparare query SQL per il deployment in produzione"
+    ],
+    "proTips": [
+      "Usa keyword maiuscole per una migliore leggibilità e standard SQL",
+      "Scegli indentazione a 4 spazi per un equilibrio ottimale tra leggibilità e compattezza",
+      "Seleziona il dialetto SQL corretto per garantire il riconoscimento corretto delle keyword",
+      "Formatta script di grandi dimensioni in sezioni se le prestazioni rallentano",
+      "Preserva i commenti originali - contengono contesto importante",
+      "Usa formattazione consistente in tutto il tuo codebase"
+    ],
+    "troubleshooting": [
+      "Errori di sintassi: Controlla punto e virgola mancanti, parentesi o virgolette non chiuse",
+      "Keyword non riconosciute: Verifica che la selezione del dialetto SQL corrisponda al tuo database",
+      "Problemi di formattazione: Assicurati che l'SQL sia valido prima della formattazione",
+      "Prestazioni lente: Dividi script molto grandi in pezzi più piccoli",
+      "Funzionalità mancanti: Alcune sintassi avanzate specifiche del dialetto potrebbero richiedere formattazione manuale"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla query SQL"
+      },
+      {
+        "keys": "Ctrl+Invio",
+        "description": "Formatta SQL"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleziona tutto l'output formattato"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia SQL formattato"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Scarica file SQL"
+      }
+    ]
+  },
+  "meta": {
+    "title": "SQL Formatter - Strumento Online Gratuito | ToolsLab",
+    "description": "Formatta e abbellisce query SQL online. Supporto per più dialetti SQL. Strumento SQL Formatter gratuito."
+  },
+  "tagline": "Formatta e abbellisci query SQL con evidenziazione sintassi",
+  "pageDescription": "Formatta e abbellisci query SQL con indentazione corretta, evidenziazione keyword e validazione sintassi. Perfetto per sviluppatori database, data analyst e ottimizzazione SQL. Supporta dialetti SQL multipli (MySQL, PostgreSQL, SQLite) con opzioni formattazione personalizzabili. Formatter SQL gratuito e sicuro basato su browser senza caricamento dati."
+}

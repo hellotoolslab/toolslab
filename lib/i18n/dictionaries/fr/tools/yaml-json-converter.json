@@ -1,0 +1,85 @@
+{
+  "title": "JSON vers YAML",
+  "description": "Convertissez JSON au format YAML",
+  "placeholder": "Collez les données JSON...",
+  "instructions": {
+    "title": "How to use JSON vers YAML",
+    "steps": [
+      {
+        "title": "Paste your JSON data",
+        "description": "Copy and paste your JSON data into the input area. The tool accepts any format and will process it immediately."
+      },
+      {
+        "title": "Configure options (if available)",
+        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+      },
+      {
+        "title": "Review the output",
+        "description": "The tool will convert your input and display the result with proper formatting and validation."
+      },
+      {
+        "title": "Copy or download result",
+        "description": "Copy the formatted JSON to your clipboard for immediate use or download it as a file for storage and sharing."
+      }
+    ],
+    "features": [
+      "Real-time processing with instant results",
+      "No file size limits for browser-based processing",
+      "Completely secure - all processing happens in your browser",
+      "No data uploads or server storage",
+      "Copy to clipboard with one click",
+      "Download results as file",
+      "Syntax validation and error highlighting",
+      "Works offline after initial page load"
+    ],
+    "useCases": [
+      "Clean up and format messy code for better readability",
+      "Standardize code style across development teams",
+      "Debug complex structures with proper indentation",
+      "Prepare code for documentation and code reviews",
+      "Convert between different formatting standards",
+      "Validate syntax before deployment",
+      "Process data from external sources or APIs",
+      "Generate production-ready code from development versions"
+    ],
+    "proTips": [
+      "Use keyboard shortcuts for faster workflow",
+      "Process large files in smaller chunks if performance slows",
+      "Validate your input before processing to catch errors early",
+      "Save frequently used settings as defaults in your browser",
+      "Use the download feature for archiving processed files",
+      "Check the output carefully before using in production"
+    ],
+    "troubleshooting": [
+      "Syntax errors: Check for missing brackets, quotes, or semicolons",
+      "Processing fails: Ensure your input format is valid",
+      "Slow performance: Try processing smaller chunks of data",
+      "Missing features: Some advanced syntax may require manual formatting",
+      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste input"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Process/Format"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy result"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Download file"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertisseur JSON vers YAML - Outil en Ligne Gratuit | ToolsLab",
+    "description": "Convertissez JSON au format YAML en ligne. Sortie YAML propre et lisible. Convertisseur JSON vers YAML gratuit."
+  },
+  "tagline": "Convert YAML to JSON and back with advanced validation features",
+  "pageDescription": "Free YAML to JSON converter with bidirectional conversion, multi-document support, and anchor resolution. Convert Kubernetes configs, Docker Compose files, CI/CD pipelines, and Swagger specifications instantly. Features real-time validation, syntax highlighting, type preservation, and comment handling. Supports YAML 1.2 with anchors, aliases, merge keys, and custom tags. Export to TypeScript interfaces and JSON Schema. Perfect for DevOps engineers, developers working with configuration files, and API documentation."
+}

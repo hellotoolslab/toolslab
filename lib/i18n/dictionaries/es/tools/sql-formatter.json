@@ -1,0 +1,93 @@
+{
+  "title": "Formateador SQL",
+  "description": "Formatea y embellece consultas SQL",
+  "placeholder": "Pega tu consulta SQL aquí...",
+  "instructions": {
+    "title": "Cómo usar el Formateador SQL",
+    "steps": [
+      {
+        "title": "Pega tu consulta SQL",
+        "description": "Copia y pega tu consulta o script SQL en el área de entrada. La herramienta acepta SQL minificado y sin formato de cualquier sistema de base de datos."
+      },
+      {
+        "title": "Selecciona el dialecto SQL",
+        "description": "Elige tu sistema de base de datos (MySQL, PostgreSQL, SQLite, SQL Server) para formateo específico del dialecto y reconocimiento de palabras clave."
+      },
+      {
+        "title": "Configura las opciones de formato",
+        "description": "Personaliza el tamaño de sangría, el uso de mayúsculas/minúsculas de palabras clave y las preferencias de salto de línea para adaptarse a tus estándares de codificación."
+      },
+      {
+        "title": "Revisa la salida formateada",
+        "description": "La herramienta valida la sintaxis SQL y muestra la consulta formateada con sangría adecuada, resaltado de palabras clave y legibilidad mejorada."
+      },
+      {
+        "title": "Copia o descarga el resultado",
+        "description": "Copia el SQL formateado al portapapeles para uso inmediato o descárgalo como archivo .sql para almacenamiento y compartir."
+      }
+    ],
+    "features": [
+      "Soporte multi-dialecto (MySQL, PostgreSQL, SQLite, SQL Server)",
+      "Reconocimiento inteligente de palabras clave y conversión de mayúsculas/minúsculas",
+      "Sangría personalizable (2, 4 espacios o tabulación)",
+      "Validación de sintaxis SQL con resaltado de errores",
+      "Análisis de consultas complejas incluyendo CTE, subconsultas y joins",
+      "Preservación y formato de comentarios",
+      "Soporte para scripts SQL grandes hasta 5MB",
+      "Exportación de SQL formateado como archivo descargable"
+    ],
+    "useCases": [
+      "Formatear consultas SQL desordenadas para mejor legibilidad",
+      "Estandarizar el estilo de código SQL en equipos de desarrollo",
+      "Depurar consultas complejas con sangría adecuada",
+      "Preparar scripts SQL para documentación y revisión de código",
+      "Convertir entre diferentes estándares de formato SQL",
+      "Limpiar SQL auto-generado de constructores de consultas",
+      "Formatear procedimientos almacenados y scripts de migración de base de datos",
+      "Preparar consultas SQL para despliegue en producción"
+    ],
+    "proTips": [
+      "Usa palabras clave en mayúsculas para mejor legibilidad y estándares SQL",
+      "Elige sangría de 4 espacios para un equilibrio óptimo entre legibilidad y compacidad",
+      "Selecciona el dialecto SQL correcto para garantizar el reconocimiento adecuado de palabras clave",
+      "Formatea scripts grandes en secciones si el rendimiento se vuelve lento",
+      "Preserva los comentarios originales - contienen contexto importante",
+      "Usa formato consistente en toda tu base de código"
+    ],
+    "troubleshooting": [
+      "Errores de sintaxis: Verifica punto y coma faltantes, paréntesis o comillas sin cerrar",
+      "Palabras clave no reconocidas: Verifica que la selección del dialecto SQL coincida con tu base de datos",
+      "Problemas de formato: Asegúrate de que el SQL sea válido antes de formatear",
+      "Rendimiento lento: Divide scripts muy grandes en fragmentos más pequeños",
+      "Funciones faltantes: Algunas sintaxis avanzadas específicas del dialecto pueden requerir formato manual"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar consulta SQL"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Formatear SQL"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleccionar toda la salida formateada"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar SQL formateado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar archivo SQL"
+      }
+    ]
+  },
+  "tagline": "Formatea y embellece consultas SQL con resaltado de sintaxis",
+  "pageDescription": "Formatea y embellece consultas SQL con sangría adecuada, resaltado de palabras clave y validación de sintaxis. Perfecto para desarrolladores de bases de datos, analistas de datos y optimización SQL. Soporta múltiples dialectos SQL (MySQL, PostgreSQL, SQLite) con opciones de formato personalizables. Formateador SQL gratuito y seguro basado en navegador sin carga de datos.",
+  "meta": {
+    "title": "Formateador SQL - Herramienta Online Gratuita | ToolsLab",
+    "description": "Formatea y embellece consultas SQL en línea. Soporte para múltiples dialectos SQL. Herramienta formateadora SQL gratuita."
+  }
+}

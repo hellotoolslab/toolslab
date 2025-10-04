@@ -90,17 +90,17 @@ function generateStructuredData(locale: string, dict: any) {
     inLanguage: locale === 'it' ? 'it-IT' : 'en-US',
     isAccessibleForFree: true,
     featureList: [
-      dict.tools['json-formatter'].title,
-      dict.tools['base64-encode'].title,
-      dict.tools['jwt-decoder'].title,
-      dict.tools['uuid-generator'].title,
-      dict.tools['hash-generator'].title,
-      dict.tools['url-encoder'].title,
-      dict.tools['unix-timestamp'].title,
-      dict.tools['regex-tester'].title,
-      dict.tools['password-generator'].title,
-      dict.tools['color-converter'].title,
-    ],
+      dict.tools?.['json-formatter']?.title,
+      dict.tools?.['base64-encode']?.title,
+      dict.tools?.['jwt-decoder']?.title,
+      dict.tools?.['uuid-generator']?.title,
+      dict.tools?.['hash-generator']?.title,
+      dict.tools?.['url-encode']?.title,
+      dict.tools?.['unix-timestamp-converter']?.title,
+      dict.tools?.['regex-tester']?.title,
+      dict.tools?.['password-generator']?.title,
+      dict.tools?.['color-picker']?.title,
+    ].filter(Boolean),
   };
 }
 
