@@ -50,6 +50,19 @@ export const LOCALE_CONFIGS: Record<Locale, LocaleConfig> = {
       thousands: '.',
     },
   },
+  es: {
+    code: 'es',
+    name: 'Español',
+    flag: '🇪🇸',
+    intlCode: 'es-ES',
+    direction: 'ltr',
+    browserCodes: ['es', 'es-ES', 'es-MX', 'es-AR', 'es-CO'],
+    dateFormat: 'd MMM yyyy',
+    numberFormat: {
+      decimal: ',',
+      thousands: '.',
+    },
+  },
   // Future locales ready to be activated
   // Simply uncomment and add dictionary files to enable
   /*
@@ -64,19 +77,6 @@ export const LOCALE_CONFIGS: Record<Locale, LocaleConfig> = {
     numberFormat: {
       decimal: ',',
       thousands: ' ',
-    },
-  },
-  es: {
-    code: 'es',
-    name: 'Español',
-    flag: '🇪🇸',
-    intlCode: 'es-ES',
-    direction: 'ltr',
-    browserCodes: ['es', 'es-ES', 'es-MX', 'es-AR', 'es-CO'],
-    dateFormat: 'd MMM yyyy',
-    numberFormat: {
-      decimal: ',',
-      thousands: '.',
     },
   },
   de: {
