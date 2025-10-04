@@ -321,11 +321,7 @@ export default function ToolsHubContent({
 
             {/* Search bar */}
             <div className="mx-auto max-w-2xl">
-              <SearchBar
-                value={search}
-                onChange={(value) => updateFilters('search', value)}
-                placeholder={t.search.placeholder}
-              />
+              <SearchBar placeholder={t.search.placeholder} />
             </div>
           </div>
         </div>
@@ -413,12 +409,7 @@ export default function ToolsHubContent({
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {recentTools.map((tool) => (
-                <ToolCardWrapper
-                  key={tool.id}
-                  tool={tool}
-                  locale={locale}
-                  dictionary={dictionary}
-                />
+                <ToolCardWrapper key={tool.id} tool={tool} />
               ))}
             </div>
           </section>
@@ -440,12 +431,7 @@ export default function ToolsHubContent({
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {popularTools.map((tool) => (
-                <ToolCardWrapper
-                  key={tool.id}
-                  tool={tool}
-                  locale={locale}
-                  dictionary={dictionary}
-                />
+                <ToolCardWrapper key={tool.id} tool={tool} />
               ))}
             </div>
           </section>
@@ -481,12 +467,7 @@ export default function ToolsHubContent({
           ) : (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {filteredTools.map((tool) => (
-                <ToolCardWrapper
-                  key={tool.id}
-                  tool={tool}
-                  locale={locale}
-                  dictionary={dictionary}
-                />
+                <ToolCardWrapper key={tool.id} tool={tool} />
               ))}
             </div>
           )}
@@ -503,14 +484,16 @@ export default function ToolsHubContent({
                 {t.seo.whyChoose.title}
               </h2>
               <ul className="grid gap-4 sm:grid-cols-2">
-                {t.seo.whyChoose.benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-green-600 dark:text-green-400" />
-                    <span className="text-gray-700 dark:text-gray-300">
-                      {benefit}
-                    </span>
-                  </li>
-                ))}
+                {t.seo.whyChoose.benefits.map(
+                  (benefit: string, index: number) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-green-600 dark:text-green-400" />
+                      <span className="text-gray-700 dark:text-gray-300">
+                        {benefit}
+                      </span>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
 

@@ -1,0 +1,84 @@
+{
+  "title": "cURL a Codice",
+  "description": "Converti comandi cURL in codice per vari linguaggi",
+  "meta": {
+    "title": "cURL a Codice - Strumento Online Gratuito | ToolsLab",
+    "description": "Converti cURL in codice online. Genera snippet da comandi curl. Convertitore cURL gratuito."
+  },
+  "tagline": "Converti comandi cURL in codice production-ready in qualsiasi linguaggio",
+  "pageDescription": "Convertitore cURL in codice gratuito trasforma comandi cURL in codice production-ready per JavaScript, Python, Go, Java, PHP, Ruby e oltre 15 linguaggi. Funzionalità gestione automatica errori, inferenza tipi, supporto async/await e integrazione best practices. Perfetto per sviluppatori API che convertono esempi documentazione, debug richieste network e costruzione client SDK. Supporta tutti i flag cURL, metodi autenticazione, upload multipart e genera unit test. Conversione sicura basata su browser senza caricamento dati.",
+  "instructions": {
+    "title": "Come usare cURL a Codice",
+    "steps": [
+      {
+        "title": "Incolla il tuo URL o testo",
+        "description": "Copia e incolla il tuo URL o testo nell'area di input. Lo strumento accetta qualsiasi formato e lo elaborerà immediatamente."
+      },
+      {
+        "title": "Configura le opzioni (se disponibile)",
+        "description": "Regola le opzioni di formattazione, indentazione o altre impostazioni per adattarle alle tue preferenze."
+      },
+      {
+        "title": "Esamina l'output",
+        "description": "Lo strumento elaborerà il tuo input e mostrerà il risultato con formattazione e validazione appropriate."
+      },
+      {
+        "title": "Copia o scarica il risultato",
+        "description": "Copia il risultato elaborato negli appunti per uso immediato o scaricalo come file."
+      }
+    ],
+    "features": [
+      "Elaborazione in tempo reale con risultati istantanei",
+      "Nessun limite di dimensione per l'elaborazione basata su browser",
+      "Completamente sicuro - tutta l'elaborazione avviene nel tuo browser",
+      "Nessun caricamento dati o archiviazione server",
+      "Copia negli appunti con un clic",
+      "Scarica i risultati come file",
+      "Validazione sintassi ed evidenziazione errori",
+      "Funziona offline dopo il caricamento iniziale"
+    ],
+    "useCases": [
+      "Pulire e formattare codice disordinato per una migliore leggibilità",
+      "Standardizzare lo stile del codice nei team di sviluppo",
+      "Debug di strutture complesse con indentazione appropriata",
+      "Preparare il codice per documentazione e code review",
+      "Convertire tra diversi standard di formattazione",
+      "Validare la sintassi prima del deploy",
+      "Elaborare dati da fonti esterne o API",
+      "Generare codice pronto per la produzione"
+    ],
+    "proTips": [
+      "Usa le scorciatoie da tastiera per un flusso di lavoro più veloce",
+      "Elabora file di grandi dimensioni in blocchi più piccoli se le prestazioni rallentano",
+      "Valida il tuo input prima dell'elaborazione per individuare errori anticipatamente",
+      "Salva le impostazioni utilizzate frequentemente come predefinite",
+      "Usa la funzione di download per archiviare i file elaborati",
+      "Controlla attentamente l'output prima di usarlo in produzione"
+    ],
+    "troubleshooting": [
+      "Errori di sintassi: controlla parentesi, virgolette o punti e virgola mancanti",
+      "Elaborazione fallita: assicurati che il formato di input sia valido",
+      "Performance lenta: prova a elaborare blocchi di dati più piccoli",
+      "Funzionalità mancanti: alcune sintassi avanzate potrebbero richiedere formattazione manuale",
+      "Compatibilità browser: usa Chrome, Firefox o Edge per risultati migliori"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla input"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Elabora/Formatta"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia risultato"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Scarica file"
+      }
+    ]
+  }
+}

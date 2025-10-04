@@ -103,15 +103,15 @@
       "title": "Descubre Herramientas por Caso de Uso",
       "subtitle": "Encuentra la herramienta adecuada para tu flujo de trabajo específico",
       "tabs": {
-        "api": {
+        "apiDev": {
           "label": "Desarrollo de APIs",
           "description": "Herramientas para pruebas y desarrollo de APIs"
         },
-        "data": {
+        "dataProcessing": {
           "label": "Procesamiento de Datos",
           "description": "Transforma y procesa tus datos"
         },
-        "web": {
+        "webDev": {
           "label": "Desarrollo Web",
           "description": "Utilidades esenciales para desarrollo web"
         },

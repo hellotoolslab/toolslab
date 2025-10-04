@@ -1,0 +1,85 @@
+{
+  "title": "Formateador XML",
+  "description": "Formatea, valida y minifica documentos XML con resaltado de sintaxis y soporte XPath",
+  "placeholder": "Pega tu XML...",
+  "meta": {
+    "title": "Formateador XML - Herramienta Online Gratuita | ToolsLab",
+    "description": "Formatea y valida XML en línea. Minifica documentos XML con soporte XPath. Formateador XML gratuito."
+  },
+  "tagline": "Formatta, valida e minimizza XML con ricerca XPath e supporto namespace",
+  "pageDescription": "Formatter XML professionale con validazione sintassi, abbellimento e minimizzazione. Funzionalità ricerca XPath, analisi namespace e visualizzazione struttura. Perfetto per SOAP, RSS, SVG e file configurazione. Gestisce documenti XML grandi in modo efficiente con validazione in tempo reale ed evidenziazione errori. Elaborazione XML gratuita e sicura basata su browser.",
+  "instructions": {
+    "title": "Cómo usar Formateador XML",
+    "steps": [
+      {
+        "title": "Pega tu datos XML",
+        "description": "Copia y pega tu datos XML en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
+      },
+      {
+        "title": "Configura las opciones (si disponible)",
+        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
+      },
+      {
+        "title": "Examina la salida",
+        "description": "La herramienta formateará y embellecerá tu entrada y mostrará el resultado con formato y validación apropiados."
+      },
+      {
+        "title": "Copia o descarga el resultado",
+        "description": "Copia el XML formateado al portapapeles para uso inmediato o descárgalo como archivo."
+      }
+    ],
+    "features": [
+      "Procesamiento en tiempo real con resultados instantáneos",
+      "Sin límite de tamaño para procesamiento basado en navegador",
+      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
+      "Sin carga de datos ni almacenamiento en servidor",
+      "Copiar al portapapeles con un clic",
+      "Descargar resultados como archivo",
+      "Validación de sintaxis y resaltado de errores",
+      "Funciona sin conexión después de la carga inicial"
+    ],
+    "useCases": [
+      "Limpiar y formatear código desordenado para mejor legibilidad",
+      "Estandarizar el estilo de código en equipos de desarrollo",
+      "Depurar estructuras complejas con indentación apropiada",
+      "Preparar código para documentación y revisiones de código",
+      "Convertir entre diferentes estándares de formato",
+      "Validar sintaxis antes del despliegue",
+      "Procesar datos de fuentes externas o APIs",
+      "Generar código listo para producción"
+    ],
+    "proTips": [
+      "Usa atajos de teclado para un flujo de trabajo más rápido",
+      "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
+      "Valida tu entrada antes del procesamiento para detectar errores temprano",
+      "Guarda las configuraciones frecuentes como predeterminadas",
+      "Usa la función de descarga para archivar archivos procesados",
+      "Verifica cuidadosamente la salida antes de usar en producción"
+    ],
+    "troubleshooting": [
+      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
+      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
+      "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
+      "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
+      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Procesar/Formatear"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar archivo"
+      }
+    ]
+  }
+}

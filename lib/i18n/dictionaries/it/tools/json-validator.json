@@ -1,0 +1,84 @@
+{
+  "title": "Validatore JSON",
+  "description": "Valida sintassi e struttura JSON",
+  "meta": {
+    "title": "Validatore JSON - Strumento Online Gratuito | ToolsLab",
+    "description": "Valida JSON online. Controlla sintassi e struttura JSON. Validatore JSON gratuito."
+  },
+  "tagline": "Valida JSON con supporto schema avanzato e rilevamento errori",
+  "pageDescription": "Validatore JSON avanzato con supporto JSON Schema, reporting errori in tempo reale e audit sicurezza. Valida risposte API, file configurazione e strutture dati con supporto schema Draft 7/2019-09/2020-12. Funzionalità evidenziazione sintassi, diagnostica errori dettagliata, metriche performance e rilevamento vulnerabilità sicurezza. Perfetto per sviluppatori e test API.",
+  "instructions": {
+    "title": "Come usare Validatore JSON",
+    "steps": [
+      {
+        "title": "Incolla il tuo dati JSON",
+        "description": "Copia e incolla il tuo dati JSON nell'area di input. Lo strumento accetta qualsiasi formato e lo elaborerà immediatamente."
+      },
+      {
+        "title": "Configura le opzioni (se disponibile)",
+        "description": "Regola le opzioni di formattazione, indentazione o altre impostazioni per adattarle alle tue preferenze."
+      },
+      {
+        "title": "Esamina l'output",
+        "description": "Lo strumento validerà il tuo input e mostrerà il risultato con formattazione e validazione appropriate."
+      },
+      {
+        "title": "Copia o scarica il risultato",
+        "description": "Copia il JSON formattato negli appunti per uso immediato o scaricalo come file."
+      }
+    ],
+    "features": [
+      "Elaborazione in tempo reale con risultati istantanei",
+      "Nessun limite di dimensione per l'elaborazione basata su browser",
+      "Completamente sicuro - tutta l'elaborazione avviene nel tuo browser",
+      "Nessun caricamento dati o archiviazione server",
+      "Copia negli appunti con un clic",
+      "Scarica i risultati come file",
+      "Validazione sintassi ed evidenziazione errori",
+      "Funziona offline dopo il caricamento iniziale"
+    ],
+    "useCases": [
+      "Pulire e formattare codice disordinato per una migliore leggibilità",
+      "Standardizzare lo stile del codice nei team di sviluppo",
+      "Debug di strutture complesse con indentazione appropriata",
+      "Preparare il codice per documentazione e code review",
+      "Convertire tra diversi standard di formattazione",
+      "Validare la sintassi prima del deploy",
+      "Elaborare dati da fonti esterne o API",
+      "Generare codice pronto per la produzione"
+    ],
+    "proTips": [
+      "Usa le scorciatoie da tastiera per un flusso di lavoro più veloce",
+      "Elabora file di grandi dimensioni in blocchi più piccoli se le prestazioni rallentano",
+      "Valida il tuo input prima dell'elaborazione per individuare errori anticipatamente",
+      "Salva le impostazioni utilizzate frequentemente come predefinite",
+      "Usa la funzione di download per archiviare i file elaborati",
+      "Controlla attentamente l'output prima di usarlo in produzione"
+    ],
+    "troubleshooting": [
+      "Errori di sintassi: controlla parentesi, virgolette o punti e virgola mancanti",
+      "Elaborazione fallita: assicurati che il formato di input sia valido",
+      "Performance lenta: prova a elaborare blocchi di dati più piccoli",
+      "Funzionalità mancanti: alcune sintassi avanzate potrebbero richiedere formattazione manuale",
+      "Compatibilità browser: usa Chrome, Firefox o Edge per risultati migliori"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla input"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Elabora/Formatta"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia risultato"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Scarica file"
+      }
+    ]
+  }
+}

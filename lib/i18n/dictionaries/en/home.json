@@ -103,15 +103,15 @@
       "title": "Discover Tools by Use Case",
       "subtitle": "Find the right tool for your specific workflow",
       "tabs": {
-        "api": {
+        "apiDev": {
           "label": "API Development",
           "description": "Tools for API testing and development"
         },
-        "data": {
+        "dataProcessing": {
           "label": "Data Processing",
           "description": "Transform and process your data"
         },
-        "web": {
+        "webDev": {
           "label": "Web Development",
           "description": "Essential web dev utilities"
         },

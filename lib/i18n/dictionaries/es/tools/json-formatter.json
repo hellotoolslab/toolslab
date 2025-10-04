@@ -1,0 +1,105 @@
+{
+  "title": "Formateador JSON",
+  "description": "Formatea, valida y embellece datos JSON con resaltado de sintaxis",
+  "placeholder": "Pega tu JSON aquí...",
+  "instructions": {
+    "title": "Cómo usar Formateador JSON",
+    "steps": [
+      {
+        "title": "Pega tu datos JSON",
+        "description": "Copia y pega tu datos JSON en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
+      },
+      {
+        "title": "Configura las opciones (si disponible)",
+        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
+      },
+      {
+        "title": "Examina la salida",
+        "description": "La herramienta formateará y embellecerá tu entrada y mostrará el resultado con formato y validación apropiados."
+      },
+      {
+        "title": "Copia o descarga el resultado",
+        "description": "Copia el JSON formateado al portapapeles para uso inmediato o descárgalo como archivo."
+      }
+    ],
+    "features": [
+      "Procesamiento en tiempo real con resultados instantáneos",
+      "Sin límite de tamaño para procesamiento basado en navegador",
+      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
+      "Sin carga de datos ni almacenamiento en servidor",
+      "Copiar al portapapeles con un clic",
+      "Descargar resultados como archivo",
+      "Validación de sintaxis y resaltado de errores",
+      "Funciona sin conexión después de la carga inicial"
+    ],
+    "useCases": [
+      "Limpiar y formatear código desordenado para mejor legibilidad",
+      "Estandarizar el estilo de código en equipos de desarrollo",
+      "Depurar estructuras complejas con indentación apropiada",
+      "Preparar código para documentación y revisiones de código",
+      "Convertir entre diferentes estándares de formato",
+      "Validar sintaxis antes del despliegue",
+      "Procesar datos de fuentes externas o APIs",
+      "Generar código listo para producción"
+    ],
+    "proTips": [
+      "Usa atajos de teclado para un flujo de trabajo más rápido",
+      "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
+      "Valida tu entrada antes del procesamiento para detectar errores temprano",
+      "Guarda las configuraciones frecuentes como predeterminadas",
+      "Usa la función de descarga para archivar archivos procesados",
+      "Verifica cuidadosamente la salida antes de usar en producción"
+    ],
+    "troubleshooting": [
+      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
+      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
+      "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
+      "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
+      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Procesar/Formatear"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar archivo"
+      }
+    ]
+  },
+  "features": [
+    "Resaltado de sintaxis",
+    "Detección de errores",
+    "Impresión bonita",
+    "Minificación"
+  ],
+  "meta": {
+    "title": "Formateador JSON - Herramienta Online Gratuita | ToolsLab",
+    "description": "Formatea, valida y embellece datos JSON con resaltado de sintaxis. Formateador JSON online gratuito sin registro requerido. Funciona instantáneamente en tu navegador."
+  },
+  "labels": {
+    "indentSize": "Tamaño de Sangría",
+    "sortKeys": "Ordenar Claves",
+    "validateOnly": "Solo Validar"
+  },
+  "messages": {
+    "validJson": "JSON Válido",
+    "invalidJson": "JSON Inválido",
+    "formatted": "JSON formateado exitosamente"
+  },
+  "options": {
+    "compact": "Compacto",
+    "expanded": "Expandido"
+  },
+  "tagline": "Format, validate and beautify JSON instantly online",
+  "pageDescription": "Format and validate JSON data with our free online JSON formatter. Debug malformed JSON, beautify minified code, and validate syntax with real-time error detection. Perfect for developers working with APIs, config files, and data processing. Search keys, customize indentation, and process large files securely in your browser."
+}

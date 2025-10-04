@@ -103,15 +103,15 @@
       "title": "Découvrez les Outils par Cas d'Usage",
       "subtitle": "Trouvez l'outil adapté à votre flux de travail spécifique",
       "tabs": {
-        "api": {
+        "apiDev": {
           "label": "Développement d'API",
           "description": "Outils pour les tests et le développement d'API"
         },
-        "data": {
+        "dataProcessing": {
           "label": "Traitement de Données",
           "description": "Transformez et traitez vos données"
         },
-        "web": {
+        "webDev": {
           "label": "Développement Web",
           "description": "Utilitaires essentiels pour le développement web"
         },
