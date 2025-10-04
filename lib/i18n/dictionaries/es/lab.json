@@ -1,0 +1,72 @@
+{
+  "lab": {
+    "header": {
+      "title": "Mi Laboratorio de Desarrollo",
+      "subtitle": "Tu caja de herramientas personalizada para máxima productividad"
+    },
+    "overview": {
+      "favoriteTools": "Herramientas Favoritas",
+      "recentlyUsed": "Usadas Recientemente",
+      "used": "Usado",
+      "ago": "hace",
+      "justNow": "Justo ahora",
+      "minutesAgo": "hace {minutes}m",
+      "hoursAgo": "hace {hours}h",
+      "daysAgo": "hace {days}d"
+    },
+    "sidebar": {
+      "myTools": "Mis Herramientas",
+      "overview": "Resumen",
+      "starToolsToAdd": "Marca herramientas con estrella para añadirlas aquí"
+    },
+    "welcome": {
+      "title": "¡Bienvenido a Tu Laboratorio!",
+      "description": "Este es tu espacio de trabajo personal donde puedes acceder rápidamente a tus herramientas y categorías favoritas.",
+      "howItWorks": "Cómo funciona:",
+      "howItWorksDescription": "Marca cualquier herramienta o categoría con una ⭐ para añadirla aquí.",
+      "privacyTitle": "Privacidad Primero",
+      "privacyDescription": "No sabemos quién eres, ni nos importa. Todas tus preferencias se quedan en el almacenamiento local de tu navegador. Sin cuentas, sin seguimiento, solo herramientas.",
+      "gotIt": "¡Entendido!",
+      "dontShowAgain": "No mostrar de nuevo"
+    },
+    "empty": {
+      "title": "¡Tu Laboratorio Está Vacío!",
+      "description": "Comienza marcando tus herramientas y categorías favoritas con una",
+      "toAddThem": "para añadirlas aquí.",
+      "exploreTools": "Explorar Herramientas",
+      "browseCategories": "Ver Categorías",
+      "proTips": "Consejos Profesionales:",
+      "tip1": "Haz clic en la estrella de cualquier tarjeta de herramienta para añadirla a tu Laboratorio",
+      "tip2": "Marca categorías completas como favoritas para acceso rápido",
+      "tip3": "Todo permanece privado en tu navegador - no se necesitan cuentas",
+      "headerTitle": "Tu Laboratorio Personal de Desarrollo",
+      "headerSubtitle": "Optimiza tu flujo de trabajo con herramientas seleccionadas y acceso instantáneo",
+      "headerTagline": "Selecciona tus herramientas favoritas para acceso instantáneo y flujos de trabajo optimizados",
+      "headerDescription": "Construye tu caja de herramientas personalizada marcando herramientas con estrella en ToolsLab. Tu Laboratorio permanece completamente privado - todos los datos almacenados localmente en tu navegador sin necesidad de cuenta.",
+      "trustBadge1": "Completamente Privado",
+      "trustBadge2": "Acceso Instantáneo",
+      "trustBadge3": "Configuración Cero",
+      "introDescription": "Tu Laboratorio Personal es un espacio de trabajo seleccionado donde puedes marcar con estrella tus herramientas de desarrollo más usadas para acceso instantáneo. Desde utilidades de codificación hasta herramientas de seguridad, construye tu caja de herramientas personalizada que evoluciona con tu flujo de trabajo. Todo permanece privado en tu navegador sin necesidad de cuenta.",
+      "mainMessage": "¡Tu Laboratorio Te Espera!",
+      "mainDescription": "Comienza a construir tu caja de herramientas de desarrollo personalizada marcando herramientas con una ⭐ para añadirlas aquí.",
+      "exploreAllTools": "Explorar Todas las Herramientas",
+      "proTipsTitle": "Consejos Profesionales para Tu Laboratorio:",
+      "proTip1": "Haz clic en la estrella de cualquier tarjeta de herramienta para añadirla a tu colección personal",
+      "proTip2": "Marca categorías completas con estrella para acceso rápido a herramientas relacionadas",
+      "proTip3": "Todo permanece completamente privado - almacenado localmente en tu navegador sin seguimiento",
+      "seoTitle": "¿Por Qué Crear un Laboratorio Personal de Desarrollo?",
+      "seoIntro": "Tu Laboratorio Personal transforma el uso disperso de herramientas en un flujo de trabajo organizado y eficiente. Al seleccionar tus herramientas favoritas, eliminas el tiempo dedicado a buscar y creas memoria muscular para tus tareas de desarrollo más comunes.",
+      "privacyControlTitle": "Privacidad y Control",
+      "privacyControlDescription": "Todo en tu Laboratorio se almacena localmente usando localStorage del navegador. Sin cuentas, sin seguimiento, sin almacenamiento del lado del servidor. Tus preferencias de flujo de trabajo permanecen completamente privadas y bajo tu control.",
+      "workflowOptimizationTitle": "Optimización del Flujo de Trabajo",
+      "workflowOptimizationDescription": "Marca con estrella herramientas usadas frecuentemente como nuestro Formateador JSON, Codificador Base64 y utilidades de seguridad para construir flujos de trabajo que coincidan con tus patrones de desarrollo.",
+      "needMoreTools": "¿Necesitas Más Herramientas?",
+      "needMoreToolsDescription": "Explora nuestra colección completa de herramientas de desarrollo en todas las categorías. Encuentra la herramienta perfecta para tu flujo de trabajo y añádela a tu Laboratorio.",
+      "browseAllTools": "Ver Todas las Herramientas"
+    },
+    "helpButton": {
+      "title": "Acerca del Laboratorio",
+      "ariaLabel": "Acerca del Laboratorio"
+    }
+  }
+}

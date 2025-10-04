@@ -1,0 +1,72 @@
+{
+  "lab": {
+    "header": {
+      "title": "Mon Laboratoire de Développement",
+      "subtitle": "Votre boîte à outils personnalisée pour une productivité maximale"
+    },
+    "overview": {
+      "favoriteTools": "Outils Favoris",
+      "recentlyUsed": "Utilisés Récemment",
+      "used": "Utilisé",
+      "ago": "il y a",
+      "justNow": "À l'instant",
+      "minutesAgo": "il y a {minutes}m",
+      "hoursAgo": "il y a {hours}h",
+      "daysAgo": "il y a {days}j"
+    },
+    "sidebar": {
+      "myTools": "Mes Outils",
+      "overview": "Aperçu",
+      "starToolsToAdd": "Marquez des outils d'une étoile pour les ajouter ici"
+    },
+    "welcome": {
+      "title": "Bienvenue dans Votre Laboratoire !",
+      "description": "Ceci est votre espace de travail personnel où vous pouvez accéder rapidement à vos outils et catégories favoris.",
+      "howItWorks": "Comment ça marche :",
+      "howItWorksDescription": "Marquez n'importe quel outil ou catégorie avec une ⭐ pour l'ajouter ici.",
+      "privacyTitle": "Confidentialité d'Abord",
+      "privacyDescription": "Nous ne savons pas qui vous êtes, et nous ne nous en soucions pas. Toutes vos préférences restent dans le stockage local de votre navigateur. Pas de comptes, pas de suivi, juste des outils.",
+      "gotIt": "J'ai compris !",
+      "dontShowAgain": "Ne plus afficher"
+    },
+    "empty": {
+      "title": "Votre Laboratoire est Vide !",
+      "description": "Commencez par marquer vos outils et catégories favoris avec une",
+      "toAddThem": "pour les ajouter ici.",
+      "exploreTools": "Explorer les Outils",
+      "browseCategories": "Parcourir les Catégories",
+      "proTips": "Conseils de Pro :",
+      "tip1": "Cliquez sur l'étoile de n'importe quelle carte d'outil pour l'ajouter à votre Laboratoire",
+      "tip2": "Marquez des catégories entières comme favorites pour un accès rapide",
+      "tip3": "Tout reste privé dans votre navigateur - aucun compte nécessaire",
+      "headerTitle": "Votre Laboratoire de Développement Personnel",
+      "headerSubtitle": "Rationalisez votre flux de travail avec des outils sélectionnés et un accès instantané",
+      "headerTagline": "Sélectionnez vos outils favoris pour un accès instantané et des flux de travail rationalisés",
+      "headerDescription": "Construisez votre boîte à outils personnalisée en marquant des outils d'une étoile sur ToolsLab. Votre Laboratoire reste entièrement privé - toutes les données stockées localement dans votre navigateur sans compte requis.",
+      "trustBadge1": "Entièrement Privé",
+      "trustBadge2": "Accès Instantané",
+      "trustBadge3": "Zéro Configuration",
+      "introDescription": "Votre Laboratoire Personnel est un espace de travail sélectionné où vous pouvez marquer d'une étoile vos outils de développement les plus utilisés pour un accès instantané. Des utilitaires d'encodage aux outils de sécurité, construisez votre boîte à outils personnalisée qui évolue avec votre flux de travail. Tout reste privé dans votre navigateur sans compte requis.",
+      "mainMessage": "Votre Laboratoire Vous Attend !",
+      "mainDescription": "Commencez à construire votre boîte à outils de développement personnalisée en marquant des outils d'une ⭐ pour les ajouter ici.",
+      "exploreAllTools": "Explorer Tous les Outils",
+      "proTipsTitle": "Conseils de Pro pour Votre Laboratoire :",
+      "proTip1": "Cliquez sur l'étoile de n'importe quelle carte d'outil pour l'ajouter à votre collection personnelle",
+      "proTip2": "Marquez des catégories entières d'une étoile pour un accès rapide aux outils connexes",
+      "proTip3": "Tout reste entièrement privé - stocké localement dans votre navigateur sans suivi",
+      "seoTitle": "Pourquoi Créer un Laboratoire de Développement Personnel ?",
+      "seoIntro": "Votre Laboratoire Personnel transforme l'utilisation dispersée d'outils en un flux de travail organisé et efficace. En sélectionnant vos outils favoris, vous éliminez le temps passé à chercher et créez une mémoire musculaire pour vos tâches de développement les plus courantes.",
+      "privacyControlTitle": "Confidentialité et Contrôle",
+      "privacyControlDescription": "Tout dans votre Laboratoire est stocké localement en utilisant le localStorage du navigateur. Pas de comptes, pas de suivi, pas de stockage côté serveur. Vos préférences de flux de travail restent entièrement privées et sous votre contrôle.",
+      "workflowOptimizationTitle": "Optimisation du Flux de Travail",
+      "workflowOptimizationDescription": "Marquez d'une étoile les outils fréquemment utilisés comme notre Formateur JSON, Encodeur Base64 et utilitaires de sécurité pour construire des flux de travail qui correspondent à vos modèles de développement.",
+      "needMoreTools": "Besoin de Plus d'Outils ?",
+      "needMoreToolsDescription": "Explorez notre collection complète d'outils de développement dans toutes les catégories. Trouvez l'outil parfait pour votre flux de travail et ajoutez-le à votre Laboratoire.",
+      "browseAllTools": "Parcourir Tous les Outils"
+    },
+    "helpButton": {
+      "title": "À propos du Laboratoire",
+      "ariaLabel": "À propos du Laboratoire"
+    }
+  }
+}

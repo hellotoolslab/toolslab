@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import CategoriesHubContent from '@/components/layout/CategoriesHubContent';
+import CategoriesHubContentSimple from '@/components/layout/CategoriesHubContentSimple';
 
 export const metadata: Metadata = {
   title: 'Developer Tool Categories - Browse by Functionality',
@@ -26,5 +26,5 @@ export const metadata: Metadata = {
 };
 
 export default function CategoriesPage() {
-  return <CategoriesHubContent />;
+  return <CategoriesHubContentSimple />;
 }

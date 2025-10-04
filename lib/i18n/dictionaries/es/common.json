@@ -1,0 +1,122 @@
+{
+  "common": {
+    "nav": {
+      "tools": "Herramientas",
+      "blog": "Blog",
+      "about": "Acerca de",
+      "categories": "Categorías",
+      "lab": "El Laboratorio",
+      "allTools": "Todas las Herramientas",
+      "viewAllTools": "Ver todas las herramientas"
+    },
+    "actions": {
+      "copy": "Copiar",
+      "download": "Descargar",
+      "clear": "Limpiar",
+      "process": "Procesar",
+      "upload": "Subir Archivo",
+      "paste": "Pegar",
+      "reset": "Restablecer",
+      "share": "Compartir",
+      "save": "Guardar",
+      "load": "Cargar",
+      "export": "Exportar",
+      "import": "Importar",
+      "format": "Formatear",
+      "validate": "Validar",
+      "minify": "Minificar",
+      "beautify": "Embellecer",
+      "encode": "Codificar",
+      "decode": "Decodificar",
+      "encrypt": "Encriptar",
+      "decrypt": "Desencriptar",
+      "generate": "Generar",
+      "convert": "Convertir",
+      "analyze": "Analizar",
+      "compare": "Comparar"
+    },
+    "messages": {
+      "success": "¡Éxito!",
+      "error": "Ha ocurrido un error",
+      "copied": "Copiado al portapapeles",
+      "processing": "Procesando...",
+      "noData": "No hay datos para procesar",
+      "invalid": "Entrada inválida",
+      "valid": "Válido",
+      "loading": "Cargando...",
+      "saved": "Guardado exitosamente",
+      "deleted": "Eliminado exitosamente",
+      "updated": "Actualizado exitosamente",
+      "created": "Creado exitosamente",
+      "failed": "Operación fallida",
+      "warning": "Advertencia",
+      "info": "Información"
+    },
+    "labels": {
+      "input": "Entrada",
+      "output": "Salida",
+      "options": "Opciones",
+      "settings": "Configuración",
+      "result": "Resultado",
+      "preview": "Vista previa",
+      "source": "Origen",
+      "target": "Destino",
+      "from": "Desde",
+      "to": "Hasta",
+      "file": "Archivo",
+      "text": "Texto",
+      "code": "Código",
+      "data": "Datos",
+      "format": "Formato",
+      "type": "Tipo",
+      "mode": "Modo",
+      "language": "Idioma",
+      "charset": "Conjunto de caracteres",
+      "encoding": "Codificación",
+      "tool": "herramienta",
+      "tools": "herramientas",
+      "keyFeatures": "Características Clave",
+      "commonUseCases": "Casos de Uso Comunes",
+      "proTips": "Consejos Profesionales",
+      "troubleshooting": "Solución de Problemas",
+      "keyboardShortcuts": "Atajos de Teclado",
+      "howToUse": "Cómo Usar Esta Herramienta"
+    },
+    "units": {
+      "bytes": "bytes",
+      "kb": "KB",
+      "mb": "MB",
+      "gb": "GB",
+      "ms": "ms",
+      "seconds": "segundos",
+      "minutes": "minutos",
+      "hours": "horas",
+      "days": "días",
+      "characters": "caracteres",
+      "words": "palabras",
+      "lines": "líneas"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "close": "Cerrar",
+      "questions": [
+        {
+          "question": "¿Es gratuito usar esta herramienta?",
+          "answer": "Sí, todas las herramientas de ToolsLab son completamente gratuitas sin límites ni registro requerido."
+        },
+        {
+          "question": "¿Mis datos están seguros?",
+          "answer": "Todo el procesamiento ocurre localmente en tu navegador. Tus datos nunca salen de tu dispositivo."
+        },
+        {
+          "question": "¿Puedo usar esto sin conexión?",
+          "answer": "Una vez cargada, la mayoría de las herramientas funcionan sin conexión ya que procesan los datos localmente en tu navegador."
+        },
+        {
+          "question": "¿Cómo reporto un error o solicito una función?",
+          "answer": "Puedes reportar problemas o solicitar funciones en nuestro repositorio de GitHub en https://github.com/hellotoolslab/toolslab o contactarnos en X en https://x.com/tools_lab."
+        }
+      ]
+    }
+  }
+}

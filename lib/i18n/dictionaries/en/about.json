@@ -1,0 +1,138 @@
+{
+  "about": {
+    "hero": {
+      "title": "About ToolsLab",
+      "subtitle": "Your Developer Toolbox, Reimagined",
+      "badges": {
+        "free": "100% Free",
+        "privacy": "Privacy First",
+        "noRegistration": "No Registration"
+      },
+      "scrollIndicator": "Scroll to explore"
+    },
+    "stats": {
+      "title": "Trusted by Developers",
+      "subtitle": "Numbers that tell our story",
+      "tools": {
+        "value": "25+",
+        "label": "Developer Tools",
+        "description": "And growing daily"
+      },
+      "users": {
+        "value": "1000+",
+        "label": "Daily Users",
+        "description": "Worldwide developers"
+      },
+      "loadTime": {
+        "value": "<1s",
+        "label": "Load Time",
+        "description": "Lightning fast"
+      },
+      "dataCollected": {
+        "value": "0",
+        "label": "Data Collected",
+        "description": "Complete privacy"
+      }
+    },
+    "timeline": {
+      "title": "The Journey",
+      "subtitle": "From personal frustration to community resource",
+      "steps": [
+        {
+          "title": "The Problem",
+          "year": "Early 2025",
+          "description": "Dozens of browser tabs for simple conversions. JSON here, Base64 there, UUID somewhere else. Each tool on different sites, most cluttered with ads, some behind paywalls."
+        },
+        {
+          "title": "The Idea",
+          "year": "Early 2025",
+          "description": "What if all my essential dev tools lived in one place? Clean interface, no registration, lightning fast. Built my personal Swiss Army knife for development."
+        },
+        {
+          "title": "The Build",
+          "year": "July 2025",
+          "description": "Nights and weekends coding. Started with JSON formatter, added Base64 encoder, UUID generator. Each tool faster and cleaner than scattered alternatives."
+        },
+        {
+          "title": "The Launch",
+          "year": "August 2025",
+          "description": "Shared with my team. They loved it. Realized this could help thousands of developers. Made it public, free forever, no strings attached."
+        },
+        {
+          "title": "The Growth",
+          "year": "Today",
+          "description": "From personal project to trusted toolkit for developers worldwide. Growing collection of tools, all maintaining the same principle: just work."
+        },
+        {
+          "title": "The Future",
+          "year": "2025+",
+          "description": "More tools, better performance, community-driven features. Always free, always private, always focused on developer productivity."
+        }
+      ]
+    },
+    "features": {
+      "title": "Why Choose ToolsLab?",
+      "subtitle": "Built with developers in mind, optimized for your workflow",
+      "items": [
+        {
+          "title": "Lightning Fast",
+          "description": "All processing happens in your browser. No server delays, no waiting. Tools load instantly and work at the speed of thought."
+        },
+        {
+          "title": "Privacy First",
+          "description": "Your data never leaves your device. No tracking, no analytics, no data collection. Complete privacy guaranteed."
+        },
+        {
+          "title": "Always Free",
+          "description": "No premium plans, no paywalls, no hidden costs. Quality tools accessible to every developer, regardless of budget."
+        },
+        {
+          "title": "No Sign Up",
+          "description": "Start using tools immediately. No accounts, no verification emails, no friction between you and productivity."
+        },
+        {
+          "title": "Dark Mode",
+          "description": "Easy on your eyes during those late coding sessions. Beautiful interface that adapts to your preference."
+        },
+        {
+          "title": "Mobile Ready",
+          "description": "Works perfectly on any device. Same great experience whether you're on desktop, tablet, or phone."
+        }
+      ]
+    },
+    "story": {
+      "quote": "Hi, I'm the developer behind ToolsLab. Like you, I was tired of juggling dozens of browser tabs for simple conversions and generations. Every tool on a different site, most filled with ads, some behind paywalls.\n\nSo I built ToolsLab - my personal Swiss Army knife for development. What started as a local project quickly became invaluable to my team, and now I'm thrilled to share it with developers worldwide.\n\nNo catches, no upsells. Just tools that work, built by a developer who uses them every single day.",
+      "author": "— ToolsLab Creator",
+      "badges": {
+        "developer": "Full Stack Developer",
+        "enthusiast": "Open Source Enthusiast"
+      }
+    },
+    "social": {
+      "title": "Connect & Support",
+      "subtitle": "Join the community, contribute, or show your appreciation",
+      "links": [
+        {
+          "label": "Follow on X",
+          "description": "Updates & behind the scenes"
+        },
+        {
+          "label": "Star on GitHub",
+          "description": "Contribute & feedback"
+        },
+        {
+          "label": "Buy me a coffee",
+          "description": "Support the project"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to Boost Your Productivity?",
+      "subtitle": "Join thousands of developers who've made ToolsLab their go-to toolkit. No registration, no costs, just pure productivity.",
+      "buttons": {
+        "exploreTools": "Explore Tools",
+        "support": "Support the Project"
+      }
+    }
+  }
+}

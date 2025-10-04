@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useToolStore } from '@/lib/store/toolStore';
 import { useHydration } from '@/lib/hooks/useHydration';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 interface WelcomePopupProps {
   isOpen?: boolean;
@@ -20,6 +21,7 @@ export function WelcomePopup({
 }: WelcomePopupProps) {
   const isHydrated = useHydration();
   const { labVisited, setLabVisited } = useToolStore();
+  const { data: t } = useDictionarySectionContext('lab');
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -81,21 +83,26 @@ export function WelcomePopup({
 
             <div className="flex items-center gap-3">
               <div className="text-4xl">🧪</div>
-              <h2 className="text-2xl font-bold">Welcome to Your Lab!</h2>
+              <h2 className="text-2xl font-bold">
+                {t?.welcome?.title || 'Welcome to Your Lab!'}
+              </h2>
             </div>
           </div>
 
           {/* Content */}
           <div className="space-y-4 p-6">
             <p className="text-gray-600 dark:text-gray-300">
-              This is your personal workspace where you can access your favorite
-              tools and categories quickly.
+              {t?.welcome?.description ||
+                'This is your personal workspace where you can access your favorite tools and categories quickly.'}
             </p>
 
             <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-950/30">
               <p className="text-sm">
-                <span className="font-semibold">How it works:</span> Mark any
-                tool or category with a ⭐ to add it here.
+                <span className="font-semibold">
+                  {t?.welcome?.howItWorks || 'How it works:'}
+                </span>{' '}
+                {t?.welcome?.howItWorksDescription ||
+                  'Mark any tool or category with a ⭐ to add it here.'}
               </p>
             </div>
 
@@ -103,11 +110,12 @@ export function WelcomePopup({
               <div className="flex items-start gap-2">
                 <span className="text-lg">🔒</span>
                 <div>
-                  <p className="mb-1 text-sm font-semibold">Privacy First</p>
+                  <p className="mb-1 text-sm font-semibold">
+                    {t?.welcome?.privacyTitle || 'Privacy First'}
+                  </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    We don&apos;t know who you are, nor do we care. All your
-                    preferences stay in your browser&apos;s local storage. No
-                    accounts, no tracking, just tools.
+                    {t?.welcome?.privacyDescription ||
+                      "We don't know who you are, nor do we care. All your preferences stay in your browser's local storage. No accounts, no tracking, just tools."}
                   </p>
                 </div>
               </div>
@@ -125,7 +133,7 @@ export function WelcomePopup({
                 'transition-all hover:shadow-lg'
               )}
             >
-              Got it!
+              {t?.welcome?.gotIt || 'Got it!'}
             </button>
 
             {!triggeredByHelp && (
@@ -138,7 +146,7 @@ export function WelcomePopup({
                   'transition-colors'
                 )}
               >
-                Don&apos;t show again
+                {t?.welcome?.dontShowAgain || "Don't show again"}
               </button>
             )}
           </div>
@@ -150,6 +158,7 @@ export function WelcomePopup({
 
 export function HelpButton() {
   const [showPopup, setShowPopup] = useState(false);
+  const { data: t } = useDictionarySectionContext('lab');
 
   return (
     <>
@@ -165,8 +174,8 @@ export function HelpButton() {
           'flex items-center justify-center',
           'transition-shadow hover:shadow-xl'
         )}
-        title="About The Lab"
-        aria-label="About The Lab"
+        title={t?.helpButton?.title || 'About The Lab'}
+        aria-label={t?.helpButton?.ariaLabel || 'About The Lab'}
       >
         <HelpCircle className="h-6 w-6" />
       </motion.button>

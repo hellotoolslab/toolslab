@@ -1,0 +1,72 @@
+{
+  "lab": {
+    "header": {
+      "title": "Il Mio Lab",
+      "subtitle": "Il tuo toolkit personalizzato per la massima produttività"
+    },
+    "overview": {
+      "favoriteTools": "Strumenti Preferiti",
+      "recentlyUsed": "Usati di Recente",
+      "used": "Usato",
+      "ago": "fa",
+      "justNow": "Proprio ora",
+      "minutesAgo": "{minutes}min fa",
+      "hoursAgo": "{hours}h fa",
+      "daysAgo": "{days}g fa"
+    },
+    "sidebar": {
+      "myTools": "I Miei Strumenti",
+      "overview": "Panoramica",
+      "starToolsToAdd": "Segna gli strumenti con la stella per aggiungerli qui"
+    },
+    "welcome": {
+      "title": "Benvenuto nel Tuo Lab!",
+      "description": "Questo è il tuo spazio di lavoro personale dove puoi accedere rapidamente ai tuoi strumenti e categorie preferiti.",
+      "howItWorks": "Come funziona:",
+      "howItWorksDescription": "Contrassegna qualsiasi strumento o categoria con una ⭐ per aggiungerlo qui.",
+      "privacyTitle": "Privacy Innanzitutto",
+      "privacyDescription": "Non sappiamo chi sei e non ci interessa. Tutte le tue preferenze rimangono nel localStorage del tuo browser. Nessun account, nessun tracciamento, solo strumenti.",
+      "gotIt": "Capito!",
+      "dontShowAgain": "Non mostrare più"
+    },
+    "empty": {
+      "title": "Il Tuo Lab è Vuoto!",
+      "description": "Inizia contrassegnando i tuoi strumenti e categorie preferiti con una",
+      "toAddThem": "per aggiungerli qui.",
+      "exploreTools": "Esplora Strumenti",
+      "browseCategories": "Sfoglia Categorie",
+      "proTips": "Suggerimenti Pro:",
+      "tip1": "Clicca sulla stella su qualsiasi card strumento per aggiungerlo al tuo Lab",
+      "tip2": "Contrassegna intere categorie come preferite per accesso rapido",
+      "tip3": "Tutto rimane privato nel tuo browser - nessun account necessario",
+      "headerTitle": "Il Tuo Lab Personale",
+      "headerSubtitle": "Ottimizza il tuo flusso di lavoro con strumenti curati e accesso istantaneo",
+      "headerTagline": "I tuoi strumenti preferiti in un unico posto, sempre disponibili, live",
+      "headerDescription": "Costruisci il tuo toolkit personalizzato contrassegnando con la stella gli strumenti su ToolsLab. Il tuo Lab rimane completamente privato - tutti i dati sono memorizzati localmente nel tuo browser senza bisogno di un account.",
+      "trustBadge1": "Completamente Privato",
+      "trustBadge2": "Accesso Istantaneo",
+      "trustBadge3": "Zero Configurazione",
+      "introDescription": "Il tuo Lab Personale è uno spazio di lavoro curato dove puoi contrassegnare con la stella i tuoi strumenti di sviluppo più utilizzati per un accesso istantaneo. Dalle utilità di codifica agli strumenti di sicurezza, costruisci il tuo toolkit personalizzato che evolve con il tuo flusso di lavoro. Tutto rimane privato nel tuo browser senza bisogno di un account.",
+      "mainMessage": "Il Tuo Lab Ti Aspetta!",
+      "mainDescription": "Inizia a costruire il tuo toolkit di sviluppo personalizzato contrassegnando con ⭐ gli strumenti per aggiungerli qui.",
+      "exploreAllTools": "Esplora Tutti gli Strumenti",
+      "proTipsTitle": "Suggerimenti Pro per il Tuo Lab:",
+      "proTip1": "Clicca sulla stella su qualsiasi card strumento per aggiungerlo alla tua collezione personale",
+      "proTip2": "Contrassegna intere categorie con la stella per un accesso rapido agli strumenti correlati",
+      "proTip3": "Tutto rimane completamente privato - memorizzato localmente nel tuo browser senza alcun tracciamento",
+      "seoTitle": "Perché Creare un Lab Personale per Sviluppatori?",
+      "seoIntro": "Il tuo Lab Personale trasforma l'uso disperso degli strumenti in un flusso di lavoro organizzato ed efficiente. Curando i tuoi strumenti preferiti, elimini il tempo speso nella ricerca e crei memoria muscolare per le tue attività di sviluppo più comuni.",
+      "privacyControlTitle": "Privacy e Controllo",
+      "privacyControlDescription": "Tutto nel tuo Lab è memorizzato localmente utilizzando il localStorage del browser. Nessun account, nessun tracciamento, nessuna archiviazione lato server. Le tue preferenze di flusso di lavoro rimangono completamente private e sotto il tuo controllo.",
+      "workflowOptimizationTitle": "Ottimizzazione del Flusso di Lavoro",
+      "workflowOptimizationDescription": "Contrassegna con la stella gli strumenti usati frequentemente come il nostro JSON formatter, Encoder Base64 e utilità di sicurezza per costruire flussi di lavoro che corrispondono ai tuoi pattern di sviluppo.",
+      "needMoreTools": "Hai Bisogno di Altri Strumenti?",
+      "needMoreToolsDescription": "Esplora la nostra collezione completa di strumenti per sviluppatori in tutte le categorie. Trova lo strumento perfetto per il tuo flusso di lavoro e aggiungilo al tuo Lab.",
+      "browseAllTools": "Sfoglia Tutti gli Strumenti"
+    },
+    "helpButton": {
+      "title": "Informazioni sul Lab",
+      "ariaLabel": "Informazioni sul Lab"
+    }
+  }
+}
