@@ -268,56 +268,48 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <hr className="border-slate-400/8 my-0 border-t border-none" />
+        <hr className="my-8 border-t border-slate-800/50" />
 
-        {/* Bottom Section */}
-        <div className="footer-bottom flex flex-col gap-5 pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <div className="footer-copyright">
-            <p className="m-0 text-sm tracking-[0.01em] text-slate-500">
-              {footer.copyright}{' '}
-              <span className="inline-block text-purple-400">💜</span>{' '}
-              {footer.craftedIn}
+        {/* Bottom Section - Redesigned */}
+        <div className="footer-bottom space-y-6">
+          {/* Row 1: Copyright and Crafted with love */}
+          <div className="flex flex-col items-center justify-center gap-2 text-center">
+            <p className="m-0 text-sm text-slate-500">{footer.copyright}</p>
+            <p className="m-0 flex items-center gap-2 text-sm text-slate-500">
+              <span className="inline-block text-purple-400">💜</span>
+              <span>{footer.craftedIn}</span>
             </p>
           </div>
 
-          <div className="footer-links flex flex-wrap items-center gap-5 text-sm">
+          {/* Row 2: Links - Centered horizontal layout */}
+          <div className="footer-links flex flex-wrap items-center justify-center gap-6 text-sm">
             <Link
               href={createHref('/privacy')}
-              className="text-slate-500 transition-colors duration-200 hover:text-white"
+              className="text-slate-400 transition-colors duration-200 hover:text-purple-300"
               rel="noopener noreferrer"
             >
               {footer.privacy}
             </Link>
+            <span className="text-slate-700">•</span>
             <Link
               href={createHref('/terms')}
-              className="text-slate-500 transition-colors duration-200 hover:text-white"
+              className="text-slate-400 transition-colors duration-200 hover:text-purple-300"
               rel="noopener noreferrer"
             >
               {footer.terms}
             </Link>
-            <span className="footer-separator hidden text-slate-600 sm:block">
-              •
-            </span>
+            <span className="text-slate-700">•</span>
             <a
               href="https://buymeacoffee.com/toolslab"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackConversion('donation', 'footer-support-link')}
-              className="support-link bg-purple-500/8 group relative inline-flex items-center gap-1.5 rounded-lg border border-purple-500/15 px-4 py-2 text-sm font-medium text-purple-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-500/30 hover:bg-purple-500/15 hover:text-purple-200 hover:shadow-lg hover:shadow-purple-500/10"
-              style={
-                {
-                  /* Tooltip styling with CSS-in-JS style object for complex pseudo-elements */
-                }
-              }
+              className="support-link group relative inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/5 px-5 py-2 text-sm font-medium text-purple-300 transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-purple-200 hover:shadow-lg hover:shadow-purple-500/20"
             >
-              <span className="coffee-icon text-base transition-transform duration-200 group-hover:rotate-[-10deg] group-hover:scale-110">
+              <span className="text-base transition-transform duration-200 group-hover:scale-110">
                 ☕
               </span>
               <span>{footer.support}</span>
-              <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 transform whitespace-nowrap rounded-md border border-purple-500/30 bg-slate-800 px-3 py-1.5 text-xs text-white opacity-0 transition-all duration-200 group-hover:-translate-y-1 group-hover:opacity-100">
-                {footer.buyMeCoffee}
-                <span className="absolute left-1/2 top-full -translate-x-1/2 transform border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-800"></span>
-              </span>
             </a>
           </div>
         </div>

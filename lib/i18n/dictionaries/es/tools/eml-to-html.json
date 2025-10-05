@@ -1,0 +1,120 @@
+{
+  "title": "Convertidor EML a HTML",
+  "description": "Convierte archivos de email EML a HTML con extracción de encabezados, manejo de adjuntos y renderizado multi-vista",
+  "placeholder": "Carga un archivo EML o pega el contenido EML aquí...",
+  "meta": {
+    "title": "Convertidor EML a HTML - Visualizador de Email Gratuito | ToolsLab",
+    "description": "Convierte archivos de email EML a HTML instantáneamente. Analiza encabezados de email, extrae adjuntos y visualiza contenido de email con nuestro visualizador EML gratuito. Soporta MIME, RFC822, mensajes multipart y todos los principales clientes de email."
+  },
+  "tagline": "Convierte archivos de email EML a HTML con análisis avanzado y renderizado multi-vista",
+  "pageDescription": "Convertidor profesional EML a HTML con análisis MIME, extracción de encabezados, manejo de adjuntos y sanitización de seguridad. Convierte emails de Outlook, Thunderbird, Apple Mail y otros clientes. Características: vista raw, HTML renderizado, tabla de encabezados, vista de código fuente y extracción de adjuntos. Perfecto para migración de email, análisis de plantillas, forense y archivo. Soporta quoted-printable, codificación base64, mensajes multipart, imágenes inline y todos los estándares RFC822/2822.",
+  "instructions": {
+    "title": "Cómo usar el Convertidor EML a HTML",
+    "steps": [
+      {
+        "title": "Carga o pega tu archivo EML",
+        "description": "Carga un archivo .eml desde tu computadora o pega directamente el contenido EML en el área de entrada. La herramienta acepta formato de email estándar RFC822/2822 de cualquier cliente de email."
+      },
+      {
+        "title": "Elige tu modo de visualización",
+        "description": "Selecciona entre Vista Raw (EML original), Vista Renderizada (HTML como aparece), Vista Encabezados (tabla de metadatos estructurada) o Vista Código Fuente (código HTML extraído) para analizar diferentes aspectos del email."
+      },
+      {
+        "title": "Revisa los componentes extraídos",
+        "description": "Examina los encabezados del email (De, Para, Asunto, Fecha), visualiza el cuerpo HTML o texto plano y accede a la lista de adjuntos con metadatos incluyendo nombres de archivo, tipos y tamaños."
+      },
+      {
+        "title": "Exporta o descarga los resultados",
+        "description": "Descarga el HTML convertido como archivo independiente, exporta encabezados como JSON para uso programático, guarda adjuntos por separado o copia el código fuente HTML al portapapeles."
+      }
+    ],
+    "features": [
+      "Renderizado multi-vista: Raw, Renderizado, Encabezados, Código",
+      "Análisis MIME completo con soporte RFC822/2822",
+      "Detección y conversión automática de codificación (UTF-8, ISO-8859-1, Windows-1252)",
+      "Decodificación Quoted-printable y Base64",
+      "Manejo Multipart/alternative y multipart/mixed",
+      "Extracción de imágenes inline con conversión de referencias CID",
+      "Lista de adjuntos con capacidad de descarga",
+      "Análisis de encabezados de email y exportación JSON",
+      "Sanitización HTML para protección XSS",
+      "Eliminación de JavaScript y manejadores de eventos",
+      "Resaltado de encabezados DKIM/SPF",
+      "Detección de píxeles de rastreo",
+      "Análisis y extracción de enlaces",
+      "Detección de cliente de email",
+      "Reconocimiento de plantillas (MailChimp, SendGrid, etc.)",
+      "Conversión HTML modo oscuro",
+      "Vista previa responsive móvil/escritorio",
+      "Procesamiento por lotes para múltiples archivos EML",
+      "Inserción de CSS para compatibilidad de email",
+      "Sin subida a servidor - procesamiento 100% del lado del cliente"
+    ],
+    "useCases": [
+      "Migración de email entre plataformas y sistemas",
+      "Análisis de plantillas de email e ingeniería inversa",
+      "Forense de email y solución de problemas de encabezados",
+      "Cumplimiento legal y archivo de email",
+      "Conversión de emails archivados a formato HTML legible",
+      "Extracción de plantillas de email para documentación",
+      "Depuración de problemas de renderizado de email",
+      "Prueba de compatibilidad de cliente de email",
+      "Análisis seguro de emails spam y phishing",
+      "Recuperación de contenido de email desde respaldos",
+      "Conversión de exportaciones Outlook PST a HTML",
+      "Procesamiento de archivos Thunderbird mbox",
+      "Extracción de diseños de email marketing",
+      "Creación de documentación de email desde plantillas"
+    ],
+    "proTips": [
+      "Usa Vista Raw para inspeccionar la estructura MIME original y depurar problemas de análisis",
+      "Vista Encabezados muestra datos de autenticación (DKIM, SPF) útiles para solucionar problemas de entrega",
+      "Exporta encabezados como JSON para analizar enrutamiento de email y saltos de servidor programáticamente",
+      "La herramienta detecta y resalta píxeles de rastreo - útil para análisis de privacidad",
+      "Modo por Lotes permite procesar carpetas enteras de emails archivados de una vez",
+      "Habilita inserción de CSS al exportar plantillas para mejor compatibilidad con clientes de email",
+      "Usa Análisis de Enlaces para extraer todas las URLs de emails marketing",
+      "Detección de Plantillas identifica patrones ESP comunes (MailChimp, SendGrid, etc.)",
+      "Conversión Modo Oscuro ajusta automáticamente colores para visualización de tema oscuro",
+      "Descarga como HTML independiente incluye todas las imágenes inline como data URI"
+    ],
+    "troubleshooting": [
+      "Formato EML inválido: Asegúrate que el archivo comience con encabezados de email y siga la estructura RFC822/2822",
+      "Problemas de codificación: Prueba selección manual de charset si los caracteres especiales aparecen distorsionados",
+      "Imágenes faltantes: Imágenes inline con referencias CID se convierten a data URI, imágenes externas pueden no cargar",
+      "Procesamiento de archivos grandes: Archivos de más de 10MB pueden ser lentos - considera dividirlos o usar modo por lotes",
+      "HTML no renderiza: Algunos emails solo contienen texto plano - revisa la pestaña Vista Renderizada",
+      "Adjuntos corruptos: Errores de decodificación Base64 indican codificación corrupta o no estándar",
+      "Advertencias JavaScript: La herramienta elimina automáticamente scripts por seguridad - este es comportamiento esperado",
+      "Rendimiento lento: Desactiva renderizado de vista previa para emails HTML muy grandes para mejorar velocidad",
+      "Compatibilidad de navegador: Usa Chrome, Firefox, Safari o Edge para soporte completo de funciones",
+      "Encabezados faltantes: Algunos clientes de email pueden eliminar encabezados - la herramienta muestra todos los datos disponibles"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar contenido EML"
+      },
+      {
+        "keys": "Ctrl+O",
+        "description": "Abrir diálogo de archivo"
+      },
+      {
+        "keys": "Ctrl+1/2/3/4",
+        "description": "Cambiar modos de vista"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar vista actual"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar HTML"
+      },
+      {
+        "keys": "Ctrl+E",
+        "description": "Exportar JSON encabezados"
+      }
+    ]
+  }
+}

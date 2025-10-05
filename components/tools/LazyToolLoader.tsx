@@ -67,6 +67,7 @@ const toolComponents = {
   'yaml-json-converter': lazy(
     () => import('./implementations/YamlJsonConverter')
   ),
+  'eml-to-html': lazy(() => import('./implementations/EmlToHtml')),
   // Add more as needed
 } as const;
 

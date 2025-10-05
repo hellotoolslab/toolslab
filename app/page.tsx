@@ -66,8 +66,8 @@ const structuredData = {
     name: 'ToolsLab',
     url: 'https://toolslab.dev',
   },
-  datePublished: '2024-01-01',
-  dateModified: '2024-12-01T00:00:00.000Z',
+  datePublished: '2025-01-01',
+  dateModified: '2025-01-15T00:00:00.000Z',
   inLanguage: 'en-US',
   isAccessibleForFree: true,
   featureList: [
