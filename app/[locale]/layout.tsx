@@ -53,5 +53,8 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // This layout wraps localized pages, but the <html> tag is in the root layout
+  // We need to pass the locale info through metadata or context
+  // For now, just return children - the lang attribute will be handled via middleware
   return <>{children}</>;
 }
