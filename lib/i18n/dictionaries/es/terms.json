@@ -1,0 +1,44 @@
+{
+  "terms": {
+    "meta": {
+      "title": "Términos de Servicio - ToolsLab | Herramientas Gratuitas para Desarrolladores",
+      "description": "Términos de servicio para ToolsLab - Herramientas para desarrolladores 100% gratuitas sin registro requerido. Términos simples y claros para nuestra comunidad.",
+      "ogTitle": "Términos de Servicio - ToolsLab",
+      "ogDescription": "Términos simples y claros para usar las herramientas gratuitas de ToolsLab."
+    },
+    "header": {
+      "title": "Términos de Servicio",
+      "subtitle": "Reglas simples para nuestras herramientas gratuitas",
+      "tldrTitle": "TL;DR - Lo Esencial",
+      "tldrText": "<strong>ToolsLab es gratis, para siempre.</strong> Usa nuestras herramientas responsablemente, no hagas cosas ilegales y recuerda que no ofrecemos garantías. Somos desarrolladores ayudando a otros desarrolladores."
+    },
+    "lastUpdated": "Última actualización:",
+    "sections": {
+      "freeService": {
+        "title": "Servicio 100% Gratuito",
+        "intro": "ToolsLab es y siempre será completamente gratis:",
+        "points": {
+          "noCost": "<strong>Sin costo:</strong> Todas las herramientas son gratis, para siempre",
+          "noAccount": "<strong>Sin cuenta requerida:</strong> Nunca, por ninguna razón",
+          "noFreemium": "<strong>Sin freemium:</strong> No existen versiones \"Pro\" o premium",
+          "noLimits": "<strong>Sin límites artificiales:</strong> Usa las herramientas todo lo que quieras",
+          "openSource": "<strong>Código abierto:</strong> El código está disponible en GitHub"
+        },
+        "promise": "<strong>💝 Nuestra promesa:</strong> ToolsLab nació de la pasión de desarrolladores para desarrolladores. Nunca será de pago."
+      },
+      "warranties": {
+        "title": "Limitación de Garantías",
+        "disclaimer": "⚠️ DESCARGO DE RESPONSABILIDAD IMPORTANTE",
+        "disclaimerText": "Las herramientas de ToolsLab se proporcionan <strong>\"TAL CUAL\"</strong>, sin garantías de ningún tipo.",
+        "intro": "Esto significa:",
+        "points": {
+          "functionality": "<strong>Funcionalidad:</strong> No garantizamos que las herramientas sean siempre perfectas",
+          "accuracy": "<strong>Precisión:</strong> Siempre verifica los resultados, especialmente para uso crítico",
+          "bugs": "<strong>Errores:</strong> Puede haber errores o comportamiento inesperado",
+          "dataLoss": "<strong>Pérdida de datos:</strong> Los datos procesados podrían perderse",
+          "security": "<strong>Seguridad:</strong> No ingreses datos sensibles (aunque se queden locales)"
+        }
+      }
+    }
+  }
+}

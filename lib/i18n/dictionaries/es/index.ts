@@ -14,23 +14,38 @@ export { default as seo } from './seo.json';
 export { default as lab } from './lab.json';
 export { default as about } from './about.json';
 export { default as toolsPage } from './toolsPage.json';
+export { default as terms } from './terms.json';
+export { default as privacy } from './privacy.json';
 
 /**
  * Load all sections (for backward compatibility)
  */
 export async function loadAll() {
-  const [common, home, tools, categories, footer, seo, lab, about, toolsPage] =
-    await Promise.all([
-      import('./common.json').then((m) => m.default),
-      import('./home.json').then((m) => m.default),
-      loadAllToolsTranslations('es'), // Load from granular files
-      import('./categories.json').then((m) => m.default),
-      import('./footer.json').then((m) => m.default),
-      import('./seo.json').then((m) => m.default),
-      import('./lab.json').then((m) => m.default),
-      import('./about.json').then((m) => m.default),
-      import('./toolsPage.json').then((m) => m.default),
-    ]);
+  const [
+    common,
+    home,
+    tools,
+    categories,
+    footer,
+    seo,
+    lab,
+    about,
+    toolsPage,
+    terms,
+    privacy,
+  ] = await Promise.all([
+    import('./common.json').then((m) => m.default),
+    import('./home.json').then((m) => m.default),
+    loadAllToolsTranslations('es'), // Load from granular files
+    import('./categories.json').then((m) => m.default),
+    import('./footer.json').then((m) => m.default),
+    import('./seo.json').then((m) => m.default),
+    import('./lab.json').then((m) => m.default),
+    import('./about.json').then((m) => m.default),
+    import('./toolsPage.json').then((m) => m.default),
+    import('./terms.json').then((m) => m.default),
+    import('./privacy.json').then((m) => m.default),
+  ]);
 
   return {
     ...common,
@@ -42,5 +57,7 @@ export async function loadAll() {
     ...lab,
     ...about,
     toolsPage,
+    ...terms,
+    ...privacy,
   };
 }

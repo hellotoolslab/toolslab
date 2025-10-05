@@ -1,0 +1,43 @@
+{
+  "privacy": {
+    "meta": {
+      "title": "Privacy Policy - ToolsLab | I Tuoi Dati Restano Tuoi",
+      "description": "ToolsLab rispetta la tua privacy. Nessun tracciamento, nessun account, nessuna raccolta dati. Tutta l'elaborazione avviene localmente nel tuo browser.",
+      "ogTitle": "Privacy Policy - ToolsLab",
+      "ogDescription": "La tua privacy è sacra. Non tracciamo, non profilizziamo e non sappiamo nemmeno chi sei."
+    },
+    "header": {
+      "title": "Privacy Policy",
+      "subtitle": "I tuoi dati restano tuoi. Sempre.",
+      "tldrTitle": "TL;DR - La Semplice Verità",
+      "tldrText": "<strong>La tua privacy è sacra.</strong> Non ti tracciamo, non ti profilizziamo e non sappiamo nemmeno chi sei. ToolsLab funziona come uno strumento desktop nel tuo browser - tutto rimane sul tuo dispositivo."
+    },
+    "lastUpdated": "Ultimo aggiornamento:",
+    "sections": {
+      "zeroData": {
+        "title": "Zero Raccolta Dati Personali",
+        "intro": "<strong>Non raccogliamo, memorizziamo o elaboriamo alcun dato personale.</strong> Questo include:",
+        "points": {
+          "noEmail": "Nessuna email o informazione di contatto",
+          "noNames": "Nessun nome, indirizzo o informazione identificativa",
+          "noAccounts": "Nessun account, registrazione o profilo utente",
+          "noCookies": "Nessun cookie di tracciamento o identificatore persistente",
+          "noSensitive": "Nessun dato sensibile come IP dettagliati o fingerprinting"
+        },
+        "summary": "<strong>💡 In parole semplici:</strong> Non sappiamo chi sei, da dove vieni o cosa fai con i nostri strumenti. E ci piace così."
+      },
+      "localProcessing": {
+        "title": "Tutto Avviene nel Tuo Browser",
+        "intro": "Tutti i nostri strumenti per sviluppatori funzionano completamente <strong>client-side</strong>:",
+        "points": {
+          "json": "Il JSON che formatti non lascia mai il tuo browser",
+          "base64": "Il Base64 che converti viene elaborato localmente",
+          "uuid": "Gli UUID che generi sono creati sul tuo dispositivo",
+          "noServers": "Nessun dato viene inviato ai nostri server",
+          "offline": "Funziona anche offline (una volta caricata la pagina)"
+        },
+        "summary": "<strong>🔧 Pensala così:</strong> Come usare uno strumento desktop, ma nel tuo browser. Noi forniamo solo il \"software\", i tuoi dati non ci raggiungono mai."
+      }
+    }
+  }
+}

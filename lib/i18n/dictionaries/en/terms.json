@@ -1,0 +1,44 @@
+{
+  "terms": {
+    "meta": {
+      "title": "Terms of Service - ToolsLab | Free Developer Tools",
+      "description": "Terms of service for ToolsLab - 100% free developer tools with no registration required. Simple, fair terms for our community.",
+      "ogTitle": "Terms of Service - ToolsLab",
+      "ogDescription": "Simple and fair terms for using ToolsLab's free developer tools."
+    },
+    "header": {
+      "title": "Terms of Service",
+      "subtitle": "Simple rules for our free developer tools",
+      "tldrTitle": "TL;DR - The Essentials",
+      "tldrText": "<strong>ToolsLab is free, forever.</strong> Use our tools responsibly, don't do illegal stuff, and remember we don't offer warranties. We're developers helping other developers."
+    },
+    "lastUpdated": "Last updated:",
+    "sections": {
+      "freeService": {
+        "title": "100% Free Service",
+        "intro": "<strong>ToolsLab is and will always remain completely free:</strong>",
+        "points": {
+          "noCost": "<strong>No cost:</strong> All tools are free, forever",
+          "noAccount": "<strong>No account required:</strong> Never, for any reason",
+          "noFreemium": "<strong>No freemium:</strong> No \"Pro\" or premium versions exist",
+          "noLimits": "<strong>No artificial limits:</strong> Use the tools as much as you want",
+          "openSource": "<strong>Open source:</strong> Code is available on GitHub"
+        },
+        "promise": "<strong>💝 Our promise:</strong> ToolsLab was born from developer passion for developers. It will never become paid."
+      },
+      "warranties": {
+        "title": "Limitation of Warranties",
+        "disclaimer": "⚠️ IMPORTANT DISCLAIMER",
+        "disclaimerText": "ToolsLab tools are provided <strong>\"AS IS\"</strong>, without warranties of any kind.",
+        "intro": "This means:",
+        "points": {
+          "functionality": "<strong>Functionality:</strong> We don't guarantee tools are always perfect",
+          "accuracy": "<strong>Accuracy:</strong> Always verify results, especially for critical use",
+          "bugs": "<strong>Bugs:</strong> There might be errors or unexpected behavior",
+          "dataLoss": "<strong>Data loss:</strong> Processed data might be lost",
+          "security": "<strong>Security:</strong> Don't input sensitive data (even though it stays local)"
+        }
+      }
+    }
+  }
+}
