@@ -1,0 +1,120 @@
+{
+  "title": "Convertitore EML in HTML",
+  "description": "Converti file email EML in HTML con estrazione intestazioni, gestione allegati e rendering multi-vista",
+  "placeholder": "Carica un file EML o incolla il contenuto EML qui...",
+  "meta": {
+    "title": "Convertitore EML in HTML - Visualizzatore Email Gratuito | ToolsLab",
+    "description": "Converti file email EML in HTML istantaneamente. Analizza intestazioni email, estrai allegati e visualizza contenuti email con il nostro visualizzatore EML gratuito. Supporta MIME, RFC822, messaggi multipart e tutti i principali client email."
+  },
+  "tagline": "Converti file email EML in HTML con parsing avanzato e rendering multi-vista",
+  "pageDescription": "Convertitore professionale EML in HTML con parsing MIME, estrazione intestazioni, gestione allegati e sanitizzazione sicurezza. Converti email da Outlook, Thunderbird, Apple Mail e altri client. Funzionalità: visualizzazione raw, HTML renderizzato, tabella intestazioni, vista sorgente ed estrazione allegati. Perfetto per migrazione email, analisi template, forensics e archiviazione. Supporta quoted-printable, codifica base64, messaggi multipart, immagini inline e tutti gli standard RFC822/2822.",
+  "instructions": {
+    "title": "Come usare il Convertitore EML in HTML",
+    "steps": [
+      {
+        "title": "Carica o incolla il tuo file EML",
+        "description": "Carica un file .eml dal tuo computer o incolla direttamente il contenuto EML nell'area di input. Lo strumento accetta il formato email standard RFC822/2822 da qualsiasi client email."
+      },
+      {
+        "title": "Scegli la modalità di visualizzazione",
+        "description": "Seleziona tra Vista Raw (EML originale), Vista Renderizzata (HTML come appare), Vista Intestazioni (tabella metadati strutturata) o Vista Sorgente (codice HTML estratto) per analizzare diversi aspetti dell'email."
+      },
+      {
+        "title": "Rivedi i componenti estratti",
+        "description": "Esamina le intestazioni email (Da, A, Oggetto, Data), visualizza il corpo HTML o testo semplice e accedi alla lista allegati con metadati inclusi nomi file, tipi e dimensioni."
+      },
+      {
+        "title": "Esporta o scarica i risultati",
+        "description": "Scarica l'HTML convertito come file standalone, esporta le intestazioni come JSON per uso programmatico, salva gli allegati separatamente o copia il codice sorgente HTML negli appunti."
+      }
+    ],
+    "features": [
+      "Rendering multi-vista: Raw, Renderizzato, Intestazioni, Sorgente",
+      "Parsing MIME completo con supporto RFC822/2822",
+      "Rilevamento e conversione automatica encoding (UTF-8, ISO-8859-1, Windows-1252)",
+      "Decodifica Quoted-printable e Base64",
+      "Gestione Multipart/alternative e multipart/mixed",
+      "Estrazione immagini inline con conversione riferimenti CID",
+      "Lista allegati con capacità download",
+      "Parsing intestazioni email ed esportazione JSON",
+      "Sanitizzazione HTML per protezione XSS",
+      "Rimozione JavaScript e gestori eventi",
+      "Evidenziazione intestazioni DKIM/SPF",
+      "Rilevamento pixel tracking",
+      "Analisi ed estrazione link",
+      "Rilevamento client email",
+      "Riconoscimento template (MailChimp, SendGrid, ecc.)",
+      "Conversione HTML modalità scura",
+      "Anteprima responsive mobile/desktop",
+      "Elaborazione batch per file EML multipli",
+      "Inlining CSS per compatibilità email",
+      "Nessun upload server - elaborazione 100% lato client"
+    ],
+    "useCases": [
+      "Migrazione email tra piattaforme e sistemi",
+      "Analisi template email e reverse engineering",
+      "Forensics email e troubleshooting intestazioni",
+      "Conformità legale e archiviazione email",
+      "Conversione email archiviate in formato HTML leggibile",
+      "Estrazione template email per documentazione",
+      "Debug problemi rendering email",
+      "Test compatibilità client email",
+      "Analisi sicura email spam e phishing",
+      "Recupero contenuti email da backup",
+      "Conversione esportazioni Outlook PST in HTML",
+      "Elaborazione archivi Thunderbird mbox",
+      "Estrazione design email marketing",
+      "Creazione documentazione email da template"
+    ],
+    "proTips": [
+      "Usa Vista Raw per ispezionare la struttura MIME originale e debuggare problemi di parsing",
+      "Vista Intestazioni mostra dati autenticazione (DKIM, SPF) utili per troubleshooting deliverability",
+      "Esporta intestazioni come JSON per analizzare routing email e hop server programmaticamente",
+      "Lo strumento rileva ed evidenzia pixel di tracking - utile per analisi privacy",
+      "Modalità Batch permette di elaborare intere cartelle di email archiviate in una volta",
+      "Abilita CSS inlining quando esporti template per migliore compatibilità client email",
+      "Usa Analisi Link per estrarre tutti gli URL da email marketing",
+      "Rilevamento Template identifica pattern ESP comuni (MailChimp, SendGrid, ecc.)",
+      "Conversione Modalità Scura regola automaticamente i colori per visualizzazione tema scuro",
+      "Download come HTML standalone include tutte le immagini inline come data URI"
+    ],
+    "troubleshooting": [
+      "Formato EML non valido: Assicurati che il file inizi con intestazioni email e segua la struttura RFC822/2822",
+      "Problemi encoding: Prova la selezione manuale charset se i caratteri speciali appaiono alterati",
+      "Immagini mancanti: Immagini inline con riferimenti CID sono convertite in data URI, immagini esterne potrebbero non caricarsi",
+      "Elaborazione file grandi: File oltre 10MB potrebbero essere lenti - considera di dividerli o usare modalità batch",
+      "HTML non renderizza: Alcune email contengono solo testo semplice - controlla la tab Vista Renderizzata",
+      "Allegati corrotti: Errori decodifica Base64 indicano encoding corrotto o non standard",
+      "Avvisi JavaScript: Lo strumento rimuove automaticamente script per sicurezza - questo è comportamento atteso",
+      "Performance lente: Disabilita rendering anteprima per email HTML molto grandi per migliorare velocità",
+      "Compatibilità browser: Usa Chrome, Firefox, Safari o Edge per supporto funzionalità completo",
+      "Intestazioni mancanti: Alcuni client email potrebbero rimuovere intestazioni - lo strumento mostra tutti i dati disponibili"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla contenuto EML"
+      },
+      {
+        "keys": "Ctrl+O",
+        "description": "Apri dialogo file"
+      },
+      {
+        "keys": "Ctrl+1/2/3/4",
+        "description": "Cambia modalità vista"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia vista corrente"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Scarica HTML"
+      },
+      {
+        "keys": "Ctrl+E",
+        "description": "Esporta JSON intestazioni"
+      }
+    ]
+  }
+}

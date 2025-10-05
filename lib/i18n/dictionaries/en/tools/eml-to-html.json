@@ -1,0 +1,120 @@
+{
+  "title": "EML to HTML Converter",
+  "description": "Convert EML email files to HTML with header extraction, attachment handling, and multi-view rendering",
+  "placeholder": "Upload an EML file or paste EML content here...",
+  "meta": {
+    "title": "EML to HTML Converter - Free Email Viewer | ToolsLab",
+    "description": "Convert EML email files to HTML instantly. Parse email headers, extract attachments, and view email content with our free EML viewer. Supports MIME, RFC822, multipart messages, and all major email clients."
+  },
+  "tagline": "Convert EML email files to HTML with advanced parsing and multi-view rendering",
+  "pageDescription": "Professional EML to HTML converter with MIME parsing, header extraction, attachment handling, and security sanitization. Convert emails from Outlook, Thunderbird, Apple Mail, and other clients. Features include raw view, rendered HTML view, headers table, source view, and attachment extraction. Perfect for email migration, template analysis, forensics, and archiving. Supports quoted-printable, base64 encoding, multipart messages, inline images, and all RFC822/2822 standards.",
+  "instructions": {
+    "title": "How to use EML to HTML Converter",
+    "steps": [
+      {
+        "title": "Upload or paste your EML file",
+        "description": "Upload an .eml file from your computer or paste the EML content directly into the input area. The tool accepts standard RFC822/2822 email format from any email client."
+      },
+      {
+        "title": "Choose your view mode",
+        "description": "Select from Raw View (original EML), Rendered View (HTML as it appears), Headers View (structured metadata table), or Source View (extracted HTML code) to analyze different aspects of the email."
+      },
+      {
+        "title": "Review extracted components",
+        "description": "Examine email headers (From, To, Subject, Date), view the HTML or plain text body, and access the attachments list with metadata including file names, types, and sizes."
+      },
+      {
+        "title": "Export or download results",
+        "description": "Download the converted HTML as a standalone file, export headers as JSON for programmatic use, save attachments separately, or copy the HTML source code to clipboard."
+      }
+    ],
+    "features": [
+      "Multi-view rendering: Raw, Rendered, Headers, Source",
+      "Complete MIME parsing with RFC822/2822 support",
+      "Automatic encoding detection and conversion (UTF-8, ISO-8859-1, Windows-1252)",
+      "Quoted-printable and Base64 decoding",
+      "Multipart/alternative and multipart/mixed handling",
+      "Inline image extraction with CID reference conversion",
+      "Attachment listing with download capability",
+      "Email header parsing and JSON export",
+      "HTML sanitization for XSS protection",
+      "JavaScript and event handler removal",
+      "DKIM/SPF header highlighting",
+      "Tracking pixel detection",
+      "Link analysis and extraction",
+      "Email client detection",
+      "Template recognition (MailChimp, SendGrid, etc.)",
+      "Dark mode HTML conversion",
+      "Responsive mobile/desktop preview",
+      "Batch processing for multiple EML files",
+      "CSS inlining for email compatibility",
+      "No server upload - 100% client-side processing"
+    ],
+    "useCases": [
+      "Email migration between platforms and systems",
+      "Email template analysis and reverse engineering",
+      "Email forensics and header troubleshooting",
+      "Legal compliance and email archiving",
+      "Converting archived emails to readable HTML format",
+      "Extracting email templates for documentation",
+      "Debugging email rendering issues",
+      "Testing email client compatibility",
+      "Analyzing spam and phishing emails safely",
+      "Recovering email content from backups",
+      "Converting Outlook PST exports to HTML",
+      "Processing Thunderbird mbox archives",
+      "Extracting marketing email designs",
+      "Creating email documentation from templates"
+    ],
+    "proTips": [
+      "Use Raw View to inspect the original MIME structure and debug parsing issues",
+      "Headers View shows authentication data (DKIM, SPF) useful for troubleshooting deliverability",
+      "Export headers as JSON to analyze email routing and server hops programmatically",
+      "The tool detects and highlights tracking pixels - useful for privacy analysis",
+      "Batch mode lets you process entire folders of archived emails at once",
+      "Enable CSS inlining when exporting templates for better email client compatibility",
+      "Use Link Analysis to extract all URLs from marketing emails",
+      "Template Detection identifies common ESP patterns (MailChimp, SendGrid, etc.)",
+      "Dark Mode conversion automatically adjusts colors for dark theme viewing",
+      "Download as standalone HTML includes all inline images as data URIs"
+    ],
+    "troubleshooting": [
+      "Invalid EML format: Ensure file starts with email headers and follows RFC822/2822 structure",
+      "Encoding issues: Try manual charset selection if special characters appear garbled",
+      "Missing images: Inline images with CID references are converted to data URIs, external images may not load",
+      "Large file processing: Files over 10MB may be slow - consider splitting or using batch mode",
+      "HTML not rendering: Some emails only contain plain text - check the Rendered View tab",
+      "Corrupt attachments: Base64 decoding errors indicate corrupted or non-standard encoding",
+      "JavaScript warnings: The tool automatically removes scripts for security - this is expected behavior",
+      "Slow performance: Disable preview rendering for very large HTML emails to improve speed",
+      "Browser compatibility: Use Chrome, Firefox, Safari, or Edge for full feature support",
+      "Missing headers: Some email clients may strip headers - the tool shows all available data"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste EML content"
+      },
+      {
+        "keys": "Ctrl+O",
+        "description": "Open file dialog"
+      },
+      {
+        "keys": "Ctrl+1/2/3/4",
+        "description": "Switch view modes"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy current view"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Download HTML"
+      },
+      {
+        "keys": "Ctrl+E",
+        "description": "Export headers JSON"
+      }
+    ]
+  }
+}
