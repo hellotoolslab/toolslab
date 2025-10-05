@@ -85,7 +85,7 @@ function generateStructuredData(locale: string, dict: any) {
       name: 'ToolsLab',
       url: 'https://toolslab.dev',
     },
-    datePublished: '2024-01-01',
+    datePublished: '2025-01-01',
     dateModified: new Date().toISOString(),
     inLanguage: locale === 'it' ? 'it-IT' : 'en-US',
     isAccessibleForFree: true,
