@@ -189,6 +189,9 @@ function applyStrictSecurityHeaders(response: NextResponse) {
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
+  // Set the full URL in a header so the layout can access it
+  const requestUrl = request.url;
+
   // Handle sitemap requests
   if (pathname === '/sitemap-index.xml') {
     const { generateSitemapIndexXML } = await import(
@@ -282,11 +285,28 @@ export async function middleware(request: NextRequest) {
   const botDetection = botDetector.detectBot(userAgent, referer, request.url);
 
   if (botDetection.isBot) {
+    // Detect locale for bots (critical for SEO)
+    let currentLocale: Locale = defaultLocale;
+    if (pathnameHasLocale) {
+      const detectedLocale = localesWithPrefix.find(
+        (locale) =>
+          pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+      );
+      if (detectedLocale) {
+        currentLocale = detectedLocale as Locale;
+      }
+    }
+
     // Return minimal response for bots to save resources
     const response = NextResponse.next();
     response.headers.set('X-Bot-Detected', 'true');
     response.headers.set('X-Bot-Reason', botDetection.reason || 'unknown');
     response.headers.set('Cache-Control', 'public, max-age=86400');
+
+    // CRITICAL for SEO: Set locale and URL headers for bots
+    response.headers.set('X-Locale', currentLocale);
+    response.headers.set('X-Pathname', pathname);
+    response.headers.set('X-Request-URL', requestUrl); // For layout to read
 
     // Allow all bots to index - prioritize SEO over analytics accuracy
     if (botDetection.isSearchEngine) {
@@ -316,6 +336,9 @@ export async function middleware(request: NextRequest) {
 
     const response = NextResponse.next();
 
+    // Set the request URL in a header for the layout to access
+    response.headers.set('X-Request-URL', requestUrl);
+
     // Detect current locale
     let currentLocale: Locale = defaultLocale;
     if (pathnameHasLocale) {
@@ -333,6 +356,13 @@ export async function middleware(request: NextRequest) {
 
     // Also set pathname for debugging
     response.headers.set('X-Pathname', pathname);
+
+    // Set a cookie with the current locale so the layout can read it
+    response.cookies.set('NEXT_LOCALE', currentLocale, {
+      path: '/',
+      sameSite: 'lax',
+      httpOnly: false, // Allow client-side reading
+    });
 
     // Dictionary Preload Strategy
     if (shouldPreloadDictionary(pathname)) {

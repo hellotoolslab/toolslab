@@ -7,7 +7,8 @@ import { UmamiProvider } from '@/components/analytics/UmamiProvider';
 import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import dynamic from 'next/dynamic';
-import { headers } from 'next/headers';
+import { headers, cookies } from 'next/headers';
+import { getLocaleFromPathname } from '@/lib/i18n/locale-detector';
 
 // Disable SSR for components that use stores to prevent hydration mismatch
 const Header = dynamic(
@@ -35,6 +36,7 @@ import { UpdateNotification } from '@/components/UpdateNotification';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import { cn } from '@/lib/utils';
+import { HtmlLangUpdater } from '@/components/HtmlLangUpdater';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -142,32 +144,35 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Detect locale from request URL
-  // In Next.js 14 App Router, we need to use headers to get the pathname
+  // Get locale for SSR - critical for SEO and user experience
   const headersList = await headers();
 
-  // Try to get locale from custom header first
-  let locale = headersList.get('x-locale');
+  let locale = 'en'; // default
 
-  // Fallback: detect from referer or other headers
-  if (!locale) {
-    const referer = headersList.get('referer') || '';
-    const url = headersList.get('x-invoke-path') || referer;
+  // Get the request URL from middleware
+  const requestUrl = headersList.get('x-request-url');
 
-    // Check for all supported locales
-    if (url.includes('/it/') || url.startsWith('/it')) {
-      locale = 'it';
-    } else if (url.includes('/es/') || url.startsWith('/es')) {
-      locale = 'es';
-    } else if (url.includes('/fr/') || url.startsWith('/fr')) {
-      locale = 'fr';
-    } else {
-      locale = 'en';
+  if (requestUrl) {
+    try {
+      const url = new URL(requestUrl);
+      locale = getLocaleFromPathname(url.pathname);
+      console.log(
+        '🌐 SSR Layout - URL:',
+        requestUrl,
+        '| pathname:',
+        url.pathname,
+        '| locale:',
+        locale
+      );
+    } catch (e) {
+      console.error('Failed to parse request URL:', e);
     }
+  } else {
+    console.warn('⚠️ No x-request-url header found, defaulting to en');
   }
 
   return (
-    <html lang={locale || 'en'} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -189,6 +194,7 @@ export default async function RootLayout({
           'min-h-screen bg-background font-sans antialiased'
         )}
       >
+        <HtmlLangUpdater />
         <UmamiProvider>
           <ThemeProvider>
             <Suspense fallback={null}>
