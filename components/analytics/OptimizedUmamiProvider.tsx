@@ -47,6 +47,7 @@ export function OptimizedUmamiProvider({
   const sessionTracker = useRef(new SessionTracker());
   const scriptLoaded = useRef(false);
   const isBot = useRef(false);
+  const heartbeatInterval = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     console.debug('Umami Provider - Config:', {
@@ -78,6 +79,19 @@ export function OptimizedUmamiProvider({
     console.debug('Loading Umami script...');
     // Load Umami script only for real users
     loadUmamiScript();
+
+    // Start heartbeat to track session duration
+    startHeartbeat();
+
+    // Track when user leaves/hides page
+    setupVisibilityTracking();
+
+    // Cleanup on unmount
+    return () => {
+      if (heartbeatInterval.current) {
+        clearInterval(heartbeatInterval.current);
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, websiteId, scriptUrl]);
 
@@ -102,6 +116,88 @@ export function OptimizedUmamiProvider({
     };
 
     document.head.appendChild(script);
+  };
+
+  const startHeartbeat = () => {
+    // Send a heartbeat event every 30 seconds to track session duration
+    heartbeatInterval.current = setInterval(() => {
+      if (shouldTrack()) {
+        const sessionData = sessionTracker.current.getSessionData();
+        const sessionDuration = Date.now() - sessionData.startTime;
+
+        // Only send heartbeat if user has been active
+        if (sessionDuration > 5000) {
+          // After 5 seconds
+          try {
+            (window as any).umami?.track('session-heartbeat', {
+              sessionId: sessionData.sessionId,
+              duration: sessionDuration,
+              pageViews: sessionData.pageViews,
+              events: sessionData.events,
+            });
+
+            if (process.env.NODE_ENV === 'development') {
+              console.debug('Heartbeat sent:', {
+                duration: `${Math.round(sessionDuration / 1000)}s`,
+                pageViews: sessionData.pageViews,
+                events: sessionData.events,
+              });
+            }
+          } catch (error) {
+            console.error('Heartbeat error:', error);
+          }
+        }
+      }
+    }, 30000); // Every 30 seconds
+  };
+
+  const setupVisibilityTracking = () => {
+    if (typeof document === 'undefined') return;
+
+    const handleVisibilityChange = () => {
+      if (document.hidden && shouldTrack()) {
+        // User is leaving/hiding the page - send final heartbeat
+        const sessionData = sessionTracker.current.getSessionData();
+        const sessionDuration = Date.now() - sessionData.startTime;
+
+        if (sessionDuration > 5000) {
+          try {
+            // Use sendBeacon for reliable delivery even when page is closing
+            const data = JSON.stringify({
+              name: 'session-end',
+              data: {
+                sessionId: sessionData.sessionId,
+                duration: sessionDuration,
+                pageViews: sessionData.pageViews,
+                events: sessionData.events,
+              },
+            });
+
+            // Fallback to regular track if sendBeacon not available
+            if (navigator.sendBeacon && scriptUrl) {
+              navigator.sendBeacon(scriptUrl, data);
+            } else {
+              (window as any).umami?.track('session-end', {
+                sessionId: sessionData.sessionId,
+                duration: sessionDuration,
+                pageViews: sessionData.pageViews,
+                events: sessionData.events,
+              });
+            }
+
+            if (process.env.NODE_ENV === 'development') {
+              console.debug('Session end tracked:', {
+                duration: `${Math.round(sessionDuration / 1000)}s`,
+              });
+            }
+          } catch (error) {
+            console.error('Session end tracking error:', error);
+          }
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
   };
 
   const shouldTrack = (): boolean => {
