@@ -1,0 +1,43 @@
+{
+  "privacy": {
+    "meta": {
+      "title": "Politique de Confidentialité - ToolsLab | Vos Données Vous Appartiennent",
+      "description": "ToolsLab respecte votre vie privée. Pas de suivi, pas de compte, pas de collecte de données. Tout le traitement se fait localement dans votre navigateur.",
+      "ogTitle": "Politique de Confidentialité - ToolsLab",
+      "ogDescription": "Votre vie privée est sacrée. Nous ne vous suivons pas, ne vous profilons pas et ne savons même pas qui vous êtes."
+    },
+    "header": {
+      "title": "Politique de Confidentialité",
+      "subtitle": "Vos données vous appartiennent. Toujours.",
+      "tldrTitle": "TL;DR - La Simple Vérité",
+      "tldrText": "<strong>Votre vie privée est sacrée.</strong> Nous ne vous suivons pas, ne vous profilons pas et ne savons même pas qui vous êtes. ToolsLab fonctionne comme un outil de bureau dans votre navigateur - tout reste sur votre appareil."
+    },
+    "lastUpdated": "Dernière mise à jour:",
+    "sections": {
+      "zeroData": {
+        "title": "Zéro Collecte de Données Personnelles",
+        "intro": "<strong>Nous ne collectons, ne stockons ni ne traitons aucune donnée personnelle.</strong> Cela inclut:",
+        "points": {
+          "noEmail": "Pas d'email ou d'informations de contact",
+          "noNames": "Pas de noms, adresses ou informations d'identification",
+          "noAccounts": "Pas de comptes, d'inscriptions ou de profils utilisateur",
+          "noCookies": "Pas de cookies de suivi ou d'identifiants persistants",
+          "noSensitive": "Pas de données sensibles comme des IP détaillées ou empreintes digitales"
+        },
+        "summary": "<strong>💡 En termes simples:</strong> Nous ne savons pas qui vous êtes, d'où vous venez ou ce que vous faites avec nos outils. Et nous aimons ça."
+      },
+      "localProcessing": {
+        "title": "Tout Se Passe Dans Votre Navigateur",
+        "intro": "Tous nos outils pour développeurs fonctionnent entièrement <strong>côté client</strong>:",
+        "points": {
+          "json": "Le JSON que vous formatez ne quitte jamais votre navigateur",
+          "base64": "Le Base64 que vous convertissez est traité localement",
+          "uuid": "Les UUID que vous générez sont créés sur votre appareil",
+          "noServers": "Aucune donnée n'est envoyée à nos serveurs",
+          "offline": "Fonctionne aussi hors ligne (une fois la page chargée)"
+        },
+        "summary": "<strong>🔧 Pensez-y:</strong> Comme utiliser un outil de bureau, mais dans votre navigateur. Nous ne fournissons que le \"logiciel\", vos données ne nous atteignent jamais."
+      }
+    }
+  }
+}

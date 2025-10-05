@@ -400,4 +400,87 @@ export interface Dictionary {
       ariaLabel: string;
     };
   };
+  terms: {
+    meta: {
+      title: string;
+      description: string;
+      ogTitle: string;
+      ogDescription: string;
+    };
+    header: {
+      title: string;
+      subtitle: string;
+      tldrTitle: string;
+      tldrText: string;
+    };
+    lastUpdated: string;
+    sections: {
+      freeService: {
+        title: string;
+        intro: string;
+        points: {
+          noCost: string;
+          noAccount: string;
+          noFreemium: string;
+          noLimits: string;
+          openSource: string;
+        };
+        promise: string;
+      };
+      warranties: {
+        title: string;
+        disclaimer: string;
+        disclaimerText: string;
+        intro: string;
+        points: {
+          functionality: string;
+          accuracy: string;
+          bugs: string;
+          dataLoss: string;
+          security: string;
+        };
+      };
+    };
+  };
+  privacy: {
+    meta: {
+      title: string;
+      description: string;
+      ogTitle: string;
+      ogDescription: string;
+    };
+    header: {
+      title: string;
+      subtitle: string;
+      tldrTitle: string;
+      tldrText: string;
+    };
+    lastUpdated: string;
+    sections: {
+      zeroData: {
+        title: string;
+        intro: string;
+        points: {
+          noEmail: string;
+          noNames: string;
+          noAccounts: string;
+          noCookies: string;
+          noSensitive: string;
+        };
+        summary: string;
+      };
+      localProcessing: {
+        title: string;
+        intro: string;
+        points: {
+          json: string;
+          base64: string;
+          uuid: string;
+          noServers: string;
+          offline: string;
+        };
+        summary: string;
+      };
+    };
+  };
 }

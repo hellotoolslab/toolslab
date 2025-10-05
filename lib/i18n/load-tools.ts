@@ -70,6 +70,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'js-minifier',
     'yaml-json-converter',
     'unix-timestamp-converter',
+    'eml-to-html',
   ];
 
   const tools: Record<string, any> = {};

@@ -1,0 +1,43 @@
+{
+  "privacy": {
+    "meta": {
+      "title": "Política de Privacidad - ToolsLab | Tus Datos Son Tuyos",
+      "description": "ToolsLab respeta tu privacidad. Sin seguimiento, sin cuentas, sin recopilación de datos. Todo el procesamiento ocurre localmente en tu navegador.",
+      "ogTitle": "Política de Privacidad - ToolsLab",
+      "ogDescription": "Tu privacidad es sagrada. No rastreamos, no perfilamos y ni siquiera sabemos quién eres."
+    },
+    "header": {
+      "title": "Política de Privacidad",
+      "subtitle": "Tus datos son tuyos. Siempre.",
+      "tldrTitle": "TL;DR - La Simple Verdad",
+      "tldrText": "<strong>Tu privacidad es sagrada.</strong> No te rastreamos, no te perfilamos y ni siquiera sabemos quién eres. ToolsLab funciona como una herramienta de escritorio en tu navegador - todo permanece en tu dispositivo."
+    },
+    "lastUpdated": "Última actualización:",
+    "sections": {
+      "zeroData": {
+        "title": "Cero Recopilación de Datos Personales",
+        "intro": "<strong>No recopilamos, almacenamos ni procesamos ningún dato personal.</strong> Esto incluye:",
+        "points": {
+          "noEmail": "Sin email o información de contacto",
+          "noNames": "Sin nombres, direcciones o información identificativa",
+          "noAccounts": "Sin cuentas, registros o perfiles de usuario",
+          "noCookies": "Sin cookies de seguimiento o identificadores persistentes",
+          "noSensitive": "Sin datos sensibles como IPs detalladas o huellas digitales"
+        },
+        "summary": "<strong>💡 En palabras simples:</strong> No sabemos quién eres, de dónde vienes o qué haces con nuestras herramientas. Y nos gusta así."
+      },
+      "localProcessing": {
+        "title": "Todo Sucede en Tu Navegador",
+        "intro": "Todas nuestras herramientas para desarrolladores funcionan completamente <strong>del lado del cliente</strong>:",
+        "points": {
+          "json": "El JSON que formateas nunca sale de tu navegador",
+          "base64": "El Base64 que conviertes se procesa localmente",
+          "uuid": "Los UUID que generas se crean en tu dispositivo",
+          "noServers": "No se envían datos a nuestros servidores",
+          "offline": "También funciona sin conexión (una vez cargada la página)"
+        },
+        "summary": "<strong>🔧 Piénsalo así:</strong> Como usar una herramienta de escritorio, pero en tu navegador. Solo proporcionamos el \"software\", tus datos nunca nos llegan."
+      }
+    }
+  }
+}
