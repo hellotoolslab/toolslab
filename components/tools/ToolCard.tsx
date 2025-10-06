@@ -5,6 +5,8 @@ import { cn } from '@/lib/utils';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { ToolLabel } from '@/lib/edge-config/types';
+import { useLocale } from '@/hooks/useLocale';
+import { useDictionary } from '@/hooks/useDictionary';
 
 const getCategoryColor = (category: string) => {
   const colors = {
@@ -34,6 +36,24 @@ export function ToolCard({
 }: ToolCardProps) {
   const { getToolLabelInfo, getLabelComponent } = useToolLabels();
   const labelInfo = getToolLabelInfo(toolLabel);
+  const { createHref } = useLocale();
+  const { dictionary } = useDictionary();
+
+  // Get translated tool info
+  const translatedTool = dictionary?.tools?.[tool.id] || {
+    title: tool.name,
+    description: tool.description,
+  };
+
+  // Get translated category name
+  const categoryId = tool.categories[0];
+  const translatedCategory =
+    dictionary?.categories?.[categoryId]?.name || categoryId;
+
+  // Coming soon message
+  const comingSoonMessage =
+    (dictionary?.common?.messages as any)?.comingSoon ||
+    'This tool is coming soon. Stay tuned for updates!';
 
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
     if (!labelInfo.isClickable) {
@@ -53,7 +73,7 @@ export function ToolCard({
     }
 
     return (
-      <Link href={tool.route} className="group block h-full">
+      <Link href={createHref(tool.route)} className="group block h-full">
         <div
           className={cn(
             'relative flex h-full flex-col rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg dark:border-gray-800 dark:bg-gray-900',
@@ -124,7 +144,7 @@ export function ToolCard({
                 : 'text-gray-900 dark:text-gray-100'
             )}
           >
-            {tool.name}
+            {translatedTool.title}
           </h3>
           <div
             className={cn(
@@ -137,7 +157,7 @@ export function ToolCard({
               borderColor: `${getCategoryColor(tool.categories[0])}30`,
             }}
           >
-            {tool.categories[0]}
+            {translatedCategory}
           </div>
         </div>
 
@@ -151,8 +171,8 @@ export function ToolCard({
           )}
         >
           {labelInfo.isComingSoon
-            ? 'This tool is coming soon. Stay tuned for updates!'
-            : tool.description}
+            ? comingSoonMessage
+            : translatedTool.description}
         </p>
 
         {/* Keywords - Bottom section */}

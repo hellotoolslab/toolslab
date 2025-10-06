@@ -6,13 +6,46 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { UmamiProvider } from '@/components/analytics/UmamiProvider';
 import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import dynamic from 'next/dynamic';
+import { headers, cookies } from 'next/headers';
+import { getLocaleFromPathname } from '@/lib/i18n/locale-detector';
+
+// Disable SSR for components that use stores to prevent hydration mismatch
+const Header = dynamic(
+  () =>
+    import('@/components/layout/Header').then((mod) => ({
+      default: mod.Header,
+    })),
+  {
+    ssr: false,
+    loading: () => <div className="h-16" />, // Placeholder height
+  }
+);
+
+const Footer = dynamic(
+  () =>
+    import('@/components/layout/Footer').then((mod) => ({
+      default: mod.Footer,
+    })),
+  {
+    ssr: false,
+  }
+);
+
+// Analytics Debug Panel (only in development)
+const AnalyticsDebugPanel = dynamic(
+  () => import('@/components/analytics/AnalyticsDebugPanel'),
+  {
+    ssr: false,
+  }
+);
+
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { UpdateNotification } from '@/components/UpdateNotification';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import { cn } from '@/lib/utils';
+import { HtmlLangUpdater } from '@/components/HtmlLangUpdater';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -110,16 +143,45 @@ export const metadata: Metadata = {
     canonical: 'https://toolslab.dev',
   },
 
+  manifest: '/manifest.webmanifest',
+
   category: 'technology',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Get locale for SSR - critical for SEO and user experience
+  const headersList = await headers();
+
+  let locale = 'en'; // default
+
+  // Get the request URL from middleware
+  const requestUrl = headersList.get('x-request-url');
+
+  if (requestUrl) {
+    try {
+      const url = new URL(requestUrl);
+      locale = getLocaleFromPathname(url.pathname);
+      console.log(
+        '🌐 SSR Layout - URL:',
+        requestUrl,
+        '| pathname:',
+        url.pathname,
+        '| locale:',
+        locale
+      );
+    } catch (e) {
+      console.error('Failed to parse request URL:', e);
+    }
+  } else {
+    console.warn('⚠️ No x-request-url header found, defaulting to en');
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -141,6 +203,7 @@ export default function RootLayout({
           'min-h-screen bg-background font-sans antialiased'
         )}
       >
+        <HtmlLangUpdater />
         <UmamiProvider>
           <ThemeProvider>
             <Suspense fallback={null}>
@@ -154,6 +217,7 @@ export default function RootLayout({
             </div>
             <UpdateNotification />
             <ToastProvider />
+            <AnalyticsDebugPanel />
           </ThemeProvider>
         </UmamiProvider>
         <SpeedInsights />

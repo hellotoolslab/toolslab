@@ -3,9 +3,50 @@
 import Link from 'next/link';
 import { Github } from 'lucide-react';
 import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
+import { useDictionary } from '@/hooks/useDictionary';
 
 export function Footer() {
   const { trackConversion, trackSocial, trackEngagement } = useUmami();
+  const { createHref } = useLocalizedRouter();
+  const { dictionary, loading } = useDictionary();
+
+  // Safe accessors with fallbacks
+  const footer = dictionary?.footer || {
+    aboutToolsLab: 'About ToolsLab',
+    aboutDescription:
+      'No BS developer tools built by developers, for developers. Fast, private, and completely free.',
+    learnMission: 'Learn about our mission',
+    quickLinks: 'Quick Links',
+    home: 'Home',
+    allTools: 'All Tools',
+    categories: 'Categories',
+    yourLab: 'Your Lab',
+    about: 'About',
+    popularTools: 'Popular Tools',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Service',
+    support: 'Support us',
+    buyMeCoffee: 'Buy us a coffee',
+    copyright: '© 2025 ToolsLab. Crafted with',
+    craftedIn: 'in our digital laboratory',
+  };
+
+  const categories = dictionary?.categories || {
+    data: { name: 'Data & Conversion' },
+    encoding: { name: 'Encoding & Security' },
+    text: { name: 'Text & Format' },
+    generators: { name: 'Generators' },
+    dev: { name: 'Dev Utilities' },
+  };
+
+  const tools = dictionary?.tools || {
+    'json-formatter': { title: 'JSON Formatter' },
+    'regex-tester': { title: 'Regex Tester' },
+    'uuid-generator': { title: 'UUID Generator' },
+    'base64-encode': { title: 'Base64 Encoder' },
+    'hash-generator': { title: 'Hash Generator' },
+  };
 
   return (
     <footer
@@ -26,20 +67,19 @@ export function Footer() {
           {/* Column 1: About */}
           <div className="footer-column">
             <h3 className="relative mb-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-200 after:absolute after:bottom-[-8px] after:left-0 after:h-0.5 after:w-6 after:rounded-full after:bg-gradient-to-r after:from-purple-500 after:to-transparent">
-              About ToolsLab
+              {footer.aboutToolsLab}
             </h3>
             <p className="mb-3 text-sm leading-relaxed text-slate-400">
-              No BS developer tools built by developers, for developers. Fast,
-              private, and completely free.
+              {footer.aboutDescription}
             </p>
             <Link
-              href="/about"
+              href={createHref('/about')}
               onClick={() =>
                 trackEngagement('about-mission-clicked', { from: 'footer' })
               }
               className="mission-link inline-flex items-center gap-1 text-sm font-medium text-purple-300 transition-all duration-200 hover:gap-2 hover:text-purple-200"
             >
-              Learn about our mission
+              {footer.learnMission}
               <span className="arrow transition-transform duration-200 hover:translate-x-1">
                 →
               </span>
@@ -82,47 +122,47 @@ export function Footer() {
           {/* Column 2: Quick Links */}
           <div className="footer-column">
             <h3 className="relative mb-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-200 after:absolute after:bottom-[-8px] after:left-0 after:h-0.5 after:w-6 after:rounded-full after:bg-gradient-to-r after:from-purple-500 after:to-transparent">
-              Quick Links
+              {footer.quickLinks}
             </h3>
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/"
+                  href={createHref('/')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Home
+                  {footer.home}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/tools"
+                  href={createHref('/tools')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  All Tools
+                  {footer.allTools}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/categories"
+                  href={createHref('/categories')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Categories
+                  {footer.categories}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/lab"
+                  href={createHref('/lab')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Your Lab
+                  {footer.yourLab}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href={createHref('/about')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  About
+                  {footer.about}
                 </Link>
               </li>
             </ul>
@@ -131,47 +171,47 @@ export function Footer() {
           {/* Column 3: Categories */}
           <div className="footer-column">
             <h3 className="relative mb-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-200 after:absolute after:bottom-[-8px] after:left-0 after:h-0.5 after:w-6 after:rounded-full after:bg-gradient-to-r after:from-purple-500 after:to-transparent">
-              Categories
+              {footer.categories}
             </h3>
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/category/data"
+                  href={createHref('/category/data')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Data & Conversion
+                  {categories.data.name}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/category/encoding"
+                  href={createHref('/category/encoding')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Encoding & Security
+                  {categories.encoding.name}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/category/text"
+                  href={createHref('/category/text')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Text & Format
+                  {categories.text.name}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/category/generators"
+                  href={createHref('/category/generators')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Generators
+                  {categories.generators.name}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/category/dev"
+                  href={createHref('/category/dev')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Dev Utilities
+                  {categories.dev.name}
                 </Link>
               </li>
             </ul>
@@ -180,47 +220,47 @@ export function Footer() {
           {/* Column 4: Popular Tools */}
           <div className="footer-column">
             <h3 className="relative mb-5 text-xs font-bold uppercase tracking-[0.08em] text-slate-200 after:absolute after:bottom-[-8px] after:left-0 after:h-0.5 after:w-6 after:rounded-full after:bg-gradient-to-r after:from-purple-500 after:to-transparent">
-              Popular Tools
+              {footer.popularTools}
             </h3>
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/tools/json-formatter"
+                  href={createHref('/tools/json-formatter')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  JSON Formatter
+                  {tools['json-formatter'].title}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/tools/regex-tester"
+                  href={createHref('/tools/regex-tester')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Regex Tester
+                  {tools['regex-tester'].title}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/tools/uuid-generator"
+                  href={createHref('/tools/uuid-generator')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  UUID Generator
+                  {tools['uuid-generator'].title}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/tools/base64-encode"
+                  href={createHref('/tools/base64-encode')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Base64 Encoder
+                  {tools['base64-encode'].title}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/tools/hash-generator"
+                  href={createHref('/tools/hash-generator')}
                   className="block py-1.5 text-sm leading-relaxed text-slate-400 transition-all duration-200 hover:pl-1 hover:text-white"
                 >
-                  Hash Generator
+                  {tools['hash-generator'].title}
                 </Link>
               </li>
             </ul>
@@ -228,56 +268,48 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <hr className="border-slate-400/8 my-0 border-t border-none" />
+        <hr className="my-8 border-t border-slate-800/50" />
 
-        {/* Bottom Section */}
-        <div className="footer-bottom flex flex-col gap-5 pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <div className="footer-copyright">
-            <p className="m-0 text-sm tracking-[0.01em] text-slate-500">
-              © 2025 ToolsLab. Crafted with{' '}
-              <span className="inline-block text-purple-400">💜</span> in our
-              digital laboratory
+        {/* Bottom Section - Redesigned */}
+        <div className="footer-bottom space-y-6">
+          {/* Row 1: Copyright and Crafted with love */}
+          <div className="flex flex-col items-center justify-center gap-2 text-center">
+            <p className="m-0 text-sm text-slate-500">{footer.copyright}</p>
+            <p className="m-0 flex items-center gap-2 text-sm text-slate-500">
+              <span className="inline-block text-purple-400">💜</span>
+              <span>{footer.craftedIn}</span>
             </p>
           </div>
 
-          <div className="footer-links flex flex-wrap items-center gap-5 text-sm">
+          {/* Row 2: Links - Centered horizontal layout */}
+          <div className="footer-links flex flex-wrap items-center justify-center gap-6 text-sm">
             <Link
-              href="/privacy"
-              className="text-slate-500 transition-colors duration-200 hover:text-white"
+              href={createHref('/privacy')}
+              className="text-slate-400 transition-colors duration-200 hover:text-purple-300"
               rel="noopener noreferrer"
             >
-              Privacy Policy
+              {footer.privacy}
             </Link>
+            <span className="text-slate-700">•</span>
             <Link
-              href="/terms"
-              className="text-slate-500 transition-colors duration-200 hover:text-white"
+              href={createHref('/terms')}
+              className="text-slate-400 transition-colors duration-200 hover:text-purple-300"
               rel="noopener noreferrer"
             >
-              Terms of Service
+              {footer.terms}
             </Link>
-            <span className="footer-separator hidden text-slate-600 sm:block">
-              •
-            </span>
+            <span className="text-slate-700">•</span>
             <a
               href="https://buymeacoffee.com/toolslab"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackConversion('donation', 'footer-support-link')}
-              className="support-link bg-purple-500/8 group relative inline-flex items-center gap-1.5 rounded-lg border border-purple-500/15 px-4 py-2 text-sm font-medium text-purple-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-500/30 hover:bg-purple-500/15 hover:text-purple-200 hover:shadow-lg hover:shadow-purple-500/10"
-              style={
-                {
-                  /* Tooltip styling with CSS-in-JS style object for complex pseudo-elements */
-                }
-              }
+              className="support-link group relative inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/5 px-5 py-2 text-sm font-medium text-purple-300 transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-purple-200 hover:shadow-lg hover:shadow-purple-500/20"
             >
-              <span className="coffee-icon text-base transition-transform duration-200 group-hover:rotate-[-10deg] group-hover:scale-110">
+              <span className="text-base transition-transform duration-200 group-hover:scale-110">
                 ☕
               </span>
-              <span>Support us</span>
-              <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 transform whitespace-nowrap rounded-md border border-purple-500/30 bg-slate-800 px-3 py-1.5 text-xs text-white opacity-0 transition-all duration-200 group-hover:-translate-y-1 group-hover:opacity-100">
-                Buy us a coffee
-                <span className="absolute left-1/2 top-full -translate-x-1/2 transform border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-800"></span>
-              </span>
+              <span>{footer.support}</span>
             </a>
           </div>
         </div>

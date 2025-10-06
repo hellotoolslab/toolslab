@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import HomePageContent from '@/components/layout/HomePageContent';
+import { getDictionary } from '@/lib/i18n/get-dictionary';
 
 export const metadata: Metadata = {
   title: 'ToolsLab - 50+ Free Developer Tools | JSON, Base64, JWT, UUID & More',
@@ -65,8 +66,8 @@ const structuredData = {
     name: 'ToolsLab',
     url: 'https://toolslab.dev',
   },
-  datePublished: '2024-01-01',
-  dateModified: '2024-12-01T00:00:00.000Z',
+  datePublished: '2025-01-01',
+  dateModified: '2025-01-15T00:00:00.000Z',
   inLanguage: 'en-US',
   isAccessibleForFree: true,
   featureList: [
@@ -83,14 +84,18 @@ const structuredData = {
   ],
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const locale = 'en';
+  const homeSections = ['common', 'home', 'footer', 'tools'];
+  const dictionary = await getDictionary(locale, homeSections);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <HomePageContent />
+      <HomePageContent locale={locale} dictionary={dictionary} />
     </>
   );
 }

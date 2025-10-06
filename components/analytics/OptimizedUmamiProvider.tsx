@@ -3,6 +3,9 @@
 import { createContext, useContext, useEffect, useRef, ReactNode } from 'react';
 import { BotDetector } from '@/lib/analytics/botDetection';
 import { SessionTracker } from '@/lib/analytics/sessionTracker';
+import { getSessionManager } from '@/lib/analytics/core/SessionManager';
+import { getTrackingManager } from '@/lib/analytics/core/TrackingManager';
+import { EventNormalizer } from '@/lib/analytics/core/EventNormalizer';
 
 interface UmamiContextType {
   trackEvent: (name: string, data?: Record<string, any>) => void;
@@ -40,8 +43,8 @@ export function OptimizedUmamiProvider({
     (process.env.NEXT_PUBLIC_UMAMI_HOST
       ? `${process.env.NEXT_PUBLIC_UMAMI_HOST}/script.js`
       : undefined),
-  enabled = process.env.NODE_ENV === 'production' ||
-    process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true',
+  // ✅ SINGLE SOURCE OF TRUTH: usa lo stesso parametro del TrackingManager
+  enabled = process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === 'true',
 }: UmamiProviderProps) {
   const botDetector = useRef(new BotDetector());
   const sessionTracker = useRef(new SessionTracker());
@@ -78,6 +81,9 @@ export function OptimizedUmamiProvider({
     console.debug('Loading Umami script...');
     // Load Umami script only for real users
     loadUmamiScript();
+
+    // Track initial pageview with normalized URL
+    trackInitialPageview();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, websiteId, scriptUrl]);
 
@@ -88,20 +94,93 @@ export function OptimizedUmamiProvider({
     script.src = scriptUrl!;
     script.defer = true;
     script.setAttribute('data-website-id', websiteId!);
-    script.setAttribute('data-auto-track', 'true'); // Enable auto tracking for pageviews
+    script.setAttribute('data-auto-track', 'false'); // Disable auto tracking - we handle it manually with normalized URLs
 
     script.onload = () => {
       scriptLoaded.current = true;
       console.debug('Umami Analytics loaded');
-
-      // Initialize session tracking
-      if (typeof (window as any).umami !== 'undefined') {
-        // Track initial pageview
-        (window as any).umami.track('pageview');
-      }
     };
 
     document.head.appendChild(script);
+  };
+
+  const trackInitialPageview = () => {
+    if (!shouldTrack()) return;
+
+    try {
+      const { page, locale, referrer } = EventNormalizer.getCurrentPageInfo();
+
+      // Track via new system with normalized URL
+      const trackingManager = getTrackingManager();
+      const sessionManager = getSessionManager();
+
+      const event = EventNormalizer.enrichEvent({
+        event: 'pageview' as const,
+        page,
+        locale,
+        referrer,
+        timestamp: Date.now(),
+        sessionId: sessionManager?.getSessionId() || '',
+      });
+
+      trackingManager.track(event);
+      sessionManager?.incrementPageView();
+
+      if (process.env.NODE_ENV === 'development') {
+        console.debug('Pageview tracked:', { page, locale, referrer });
+      }
+    } catch (error) {
+      console.error('Pageview tracking error:', error);
+    }
+  };
+
+  const setupVisibilityTracking = () => {
+    if (typeof document === 'undefined') return;
+
+    const handleVisibilityChange = () => {
+      if (document.hidden && shouldTrack()) {
+        // User is leaving/hiding the page - send session end
+        const sessionData = sessionTracker.current.getSessionData();
+        const sessionDuration = Date.now() - sessionData.startTime;
+
+        if (sessionDuration > 5000) {
+          try {
+            // Use sendBeacon for reliable delivery even when page is closing
+            const data = JSON.stringify({
+              name: 'session-end',
+              data: {
+                sessionId: sessionData.sessionId,
+                duration: sessionDuration,
+                pageViews: sessionData.pageViews,
+                events: sessionData.events,
+              },
+            });
+
+            // Fallback to regular track if sendBeacon not available
+            if (navigator.sendBeacon && scriptUrl) {
+              navigator.sendBeacon(scriptUrl, data);
+            } else {
+              (window as any).umami?.track('session-end', {
+                sessionId: sessionData.sessionId,
+                duration: sessionDuration,
+                pageViews: sessionData.pageViews,
+                events: sessionData.events,
+              });
+            }
+
+            if (process.env.NODE_ENV === 'development') {
+              console.debug('Session end tracked:', {
+                duration: `${Math.round(sessionDuration / 1000)}s`,
+              });
+            }
+          } catch (error) {
+            console.error('Session end tracking error:', error);
+          }
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
   };
 
   const shouldTrack = (): boolean => {
@@ -144,20 +223,27 @@ export function OptimizedUmamiProvider({
     if (!shouldTrack()) return;
 
     try {
-      sessionTracker.current.incrementPageView();
+      const pathname = url || window.location.pathname;
+      const { page, locale } = EventNormalizer.normalizeURL(pathname);
 
-      const pageData = {
-        url: url || window.location.pathname,
-        referrer: referrer || document.referrer,
-        title: document.title,
+      const trackingManager = getTrackingManager();
+      const sessionManager = getSessionManager();
+
+      const event = EventNormalizer.enrichEvent({
+        event: 'pageview' as const,
+        page,
+        locale,
+        referrer: referrer || EventNormalizer.getNormalizedReferrer(),
         timestamp: Date.now(),
-        sessionId: sessionTracker.current.getSessionData().sessionId,
-      };
+        sessionId: sessionManager?.getSessionId() || '',
+      });
 
-      (window as any).umami.track('pageview', pageData);
+      trackingManager.track(event);
+      sessionManager?.incrementPageView();
+      sessionTracker.current.incrementPageView(); // Keep legacy for compatibility
 
       if (process.env.NODE_ENV === 'development') {
-        console.debug('Page view tracked:', pageData);
+        console.debug('Page view tracked:', { page, locale });
       }
     } catch (error) {
       console.error('Umami page tracking error:', error);
@@ -170,6 +256,35 @@ export function OptimizedUmamiProvider({
     success: boolean,
     metadata?: any
   ) => {
+    // Use new TrackingManager for tool.use events
+    if (shouldTrack()) {
+      const trackingManager = getTrackingManager();
+      const sessionManager = getSessionManager();
+
+      const event = EventNormalizer.enrichEvent({
+        event: 'tool.use' as const,
+        tool,
+        success,
+        // Extract sizes from metadata if available
+        inputSize: metadata?.inputSize,
+        outputSize: metadata?.outputSize,
+        processingTime: metadata?.processingTime || metadata?.duration,
+        timestamp: Date.now(),
+        sessionId: sessionManager?.getSessionId() || '',
+        // Include any custom metadata
+        ...metadata,
+      });
+
+      trackingManager.track(event);
+      sessionManager?.addToolUsed(tool);
+      sessionManager?.incrementEvent();
+
+      if (process.env.NODE_ENV === 'development') {
+        console.debug('Tool action tracked:', { tool, action, success });
+      }
+    }
+
+    // Legacy fallback
     trackEvent('tool-action', {
       tool,
       action,

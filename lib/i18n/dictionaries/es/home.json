@@ -1,0 +1,191 @@
+{
+  "home": {
+    "hero": {
+      "title": "Herramientas de Desarrollo Gratuitas para Todos",
+      "subtitle": "Herramientas profesionales que funcionan en tu navegador",
+      "description": "Formatea JSON, codifica Base64, genera UUIDs y más. Todas las herramientas son gratuitas, seguras y no requieren instalación."
+    },
+    "features": {
+      "title": "Por Qué Elegir ToolsLab",
+      "fast": {
+        "title": "Increíblemente Rápido",
+        "description": "Todo el procesamiento ocurre localmente en tu navegador. Sin viajes al servidor significa resultados instantáneos."
+      },
+      "secure": {
+        "title": "100% Seguro",
+        "description": "Tus datos nunca salen de tu navegador. Sin subidas, sin almacenamiento, privacidad completa."
+      },
+      "free": {
+        "title": "Gratis Para Siempre",
+        "description": "Todas las herramientas son completamente gratuitas. Sin niveles premium, sin costos ocultos, sin registro requerido."
+      }
+    },
+    "categories": {
+      "title": "Explorar por Categoría",
+      "viewAll": "Ver todo"
+    },
+    "popular": {
+      "title": "Herramientas Populares",
+      "subtitle": "Herramientas más usadas por desarrolladores"
+    },
+    "whyToolsLab": {
+      "title": "¿Por Qué Elegir ToolsLab?",
+      "subtitle": "Seis razones por las que los desarrolladores aman nuestra plataforma",
+      "footer": "Construido con ❤️ por desarrolladores que entienden tus necesidades",
+      "benefits": {
+        "instantProcessing": {
+          "title": "Procesamiento Instantáneo",
+          "description": "Todo funciona en tu navegador. Sin demoras del servidor, sin esperas."
+        },
+        "zeroDataStorage": {
+          "title": "Cero Almacenamiento de Datos",
+          "description": "Tus datos nunca salen de tu dispositivo. Privacidad completa garantizada."
+        },
+        "chainTools": {
+          "title": "Encadena Herramientas",
+          "description": "Automatización inteligente del flujo de trabajo. Conecta herramientas para operaciones complejas."
+        },
+        "darkMode": {
+          "title": "Modo Oscuro",
+          "description": "Fácil para tus ojos durante sesiones de codificación nocturnas."
+        },
+        "worksEverywhere": {
+          "title": "Funciona en Todas Partes",
+          "description": "Listo para escritorio, tableta y móvil. Codifica desde cualquier lugar."
+        },
+        "noSignup": {
+          "title": "Sin Registro Requerido",
+          "description": "Comienza a usar herramientas inmediatamente. Sin barreras, solo productividad."
+        }
+      }
+    },
+    "trustMetrics": {
+      "dailyOperations": "Operaciones Diarias",
+      "privacyFocused": "Enfocado en Privacidad",
+      "processingTime": "Tiempo de Procesamiento",
+      "activeUsers": "Usuarios Activos"
+    },
+    "poweredBy": {
+      "title": "Impulsado Por",
+      "subtitle": "Construido con herramientas y servicios líderes en la industria",
+      "github": {
+        "name": "GitHub",
+        "description": "Repositorio de Código"
+      },
+      "vercel": {
+        "name": "Vercel",
+        "description": "Alojamiento y Despliegue"
+      },
+      "umami": {
+        "name": "Umami",
+        "description": "Análisis de Privacidad"
+      },
+      "cloudflare": {
+        "name": "Cloudflare",
+        "description": "CDN y Seguridad"
+      },
+      "porkbun": {
+        "name": "Porkbun",
+        "description": "Registro de Dominios"
+      }
+    },
+    "interactiveDemo": {
+      "title": "Prueba Nuestro Formateador JSON",
+      "subtitle": "Demo interactiva - formatea JSON en tiempo real",
+      "action": "Formatear JSON",
+      "searchPlaceholder": "Buscar por clave...",
+      "searchButton": "Buscar",
+      "copyButton": "Copiar",
+      "copied": "¡Copiado!",
+      "viewTool": "Ver Herramienta Completa"
+    },
+    "toolDiscovery": {
+      "title": "Descubre Herramientas por Caso de Uso",
+      "subtitle": "Encuentra la herramienta adecuada para tu flujo de trabajo específico",
+      "tabs": {
+        "apiDev": {
+          "label": "Desarrollo de APIs",
+          "description": "Herramientas para pruebas y desarrollo de APIs"
+        },
+        "dataProcessing": {
+          "label": "Procesamiento de Datos",
+          "description": "Transforma y procesa tus datos"
+        },
+        "webDev": {
+          "label": "Desarrollo Web",
+          "description": "Utilidades esenciales para desarrollo web"
+        },
+        "security": {
+          "label": "Seguridad",
+          "description": "Herramientas de seguridad y encriptación"
+        },
+        "productivity": {
+          "label": "Productividad",
+          "description": "Aumenta tu productividad"
+        }
+      },
+      "viewTool": "Ver Herramienta",
+      "exploreAll": "Explorar todas las herramientas"
+    },
+    "seoContent": {
+      "title": "Preguntas Frecuentes",
+      "mainTitle": "La Caja de Herramientas Completa para Desarrolladores que Estabas Buscando",
+      "intro": "ToolsLab reúne más de 50 herramientas esenciales para desarrolladores en una plataforma rápida y enfocada en la privacidad. Ya sea que necesites formatear JSON, decodificar Base64, generar UUIDs o validar JWTs, te tenemos cubierto. Nuestras herramientas están diseñadas para ahorrarte tiempo y optimizar tu flujo de trabajo de desarrollo.",
+      "builtForDevs": {
+        "title": "Construido para Desarrolladores, por Desarrolladores",
+        "description": "Cada herramienta está optimizada para velocidad y precisión. Sin anuncios que desordenan tu espacio de trabajo, sin cookies de seguimiento que te siguen, sin registros obligatorios que bloquean tu acceso. Solo funcionalidad pura que respeta tu privacidad y tiempo. Entendemos la frustración de los sitios de herramientas sobrecargados, así que construimos algo mejor."
+      },
+      "ctaBox": {
+        "title": "¿Listo para potenciar tu flujo de trabajo de desarrollo?",
+        "description": "Únete a cientos de desarrolladores que usan ToolsLab diariamente. No se requiere registro, solo elige una herramienta y comienza a codificar más inteligentemente."
+      },
+      "features": {
+        "lightningFast": {
+          "title": "🚀 Increíblemente Rápido",
+          "description": "Todas las herramientas se ejecutan directamente en tu navegador. Sin viajes al servidor, sin esperar respuestas. Procesa megabytes de datos en milisegundos."
+        },
+        "private": {
+          "title": "🔒 100% Privado",
+          "description": "Tus datos nunca salen de tu navegador. Sin almacenamiento en la nube, sin seguimiento de análisis, sin minería de datos. Privacidad completa garantizada."
+        },
+        "toolChaining": {
+          "title": "🔗 Encadenamiento de Herramientas",
+          "description": "Conecta herramientas para flujos de trabajo complejos. Formatea JSON, luego codifica a Base64, luego genera un hash - todo en un flujo sin interrupciones."
+        },
+        "worksEverywhere": {
+          "title": "📱 Funciona en Todas Partes",
+          "description": "Diseño responsivo que funciona perfectamente en escritorio, tableta y móvil. Usa ToolsLab dondequiera que codifiques."
+        }
+      },
+      "faqs": {
+        "different": {
+          "question": "¿Qué hace diferente a ToolsLab de otros sitios de herramientas para desarrolladores?",
+          "answer": "A diferencia de otros sitios de herramientas, ToolsLab procesa todo localmente en tu navegador usando WebAssembly y Web Workers. Esto significa cero almacenamiento de datos, procesamiento instantáneo y privacidad completa. También ofrecemos características únicas como el encadenamiento de herramientas para flujos de trabajo complejos y una interfaz limpia sin anuncios."
+        },
+        "free": {
+          "question": "¿ToolsLab es realmente gratuito? ¿Cuál es el truco?",
+          "answer": "Sí, ToolsLab es completamente gratuito sin costos ocultos. Creemos en proporcionar valor a la comunidad de desarrolladores. La plataforma puede ser apoyada a través de anuncios éticos y no intrusivos en el futuro y donaciones opcionales. No hay niveles premium, ni muros de registro, ni limitaciones de funciones."
+        },
+        "privacy": {
+          "question": "¿Cómo asegura ToolsLab la privacidad de mis datos?",
+          "answer": "Todo el procesamiento ocurre directamente en tu navegador usando JavaScript del lado del cliente. Tus datos nunca salen de tu dispositivo ni tocan nuestros servidores. No usamos cookies de seguimiento, no almacenamos tus entradas y cumplimos totalmente con GDPR. Incluso puedes usar ToolsLab sin conexión una vez que la página se carga."
+        },
+        "commercial": {
+          "question": "¿Puedo usar ToolsLab para proyectos comerciales?",
+          "answer": "Sí, puedes usar ToolsLab para proyectos comerciales, pero éticamente alentamos a usarlo principalmente para propósitos personales y educativos. ToolsLab fue construido como un recurso comunitario gratuito para desarrolladores. Si bien no hay restricciones de licencia, apoyar el proyecto a través de donaciones es apreciado si encuentras un valor comercial significativo."
+        },
+        "browsers": {
+          "question": "¿Qué navegadores y dispositivos soporta ToolsLab?",
+          "answer": "ToolsLab funciona en todos los navegadores modernos incluyendo Chrome, Firefox, Safari y Edge. Nuestro diseño responsivo asegura una gran experiencia en escritorio, tableta y dispositivos móviles. Recomendamos usar la última versión del navegador para un rendimiento óptimo."
+        }
+      }
+    },
+    "footerCTA": {
+      "title": "Comienza a Usar ToolsLab Ahora",
+      "subtitle": "Únete a miles de desarrolladores que confían en ToolsLab",
+      "description": "Herramientas de desarrollo gratuitas, rápidas y seguras. No se requiere registro.",
+      "button": "Explorar Todas las Herramientas",
+      "quickAccess": "Acceso Rápido"
+    }
+  }
+}

@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { tools, getToolById, categories } from '@/lib/tools';
 import { generateToolSchema } from '@/lib/tool-schema';
-import { getToolMetaDescription, toolSEO } from '@/lib/tool-seo';
+import { loadToolTranslation } from '@/lib/i18n/load-tools';
+import { getDictionary } from '@/lib/i18n/get-dictionary';
 
 interface ToolPageProps {
   params: {
@@ -27,6 +28,9 @@ export async function generateMetadata({
     };
   }
 
+  // Load SEO data from granular JSON files
+  const toolData = await loadToolTranslation('en', params.tool);
+
   // Get primary category name
   const primaryCategory = categories.find(
     (cat) => cat.id === tool.categories[0]
@@ -45,11 +49,13 @@ export async function generateMetadata({
     'toolslab',
   ];
 
-  // Try to get optimized meta description, fallback to generated one
-  const hasOptimizedSEO = toolSEO[params.tool];
-  const seoDescription = hasOptimizedSEO
-    ? getToolMetaDescription(params.tool)
+  // Use pageDescription from JSON if available, fallback to generated one
+  const seoDescription = toolData?.pageDescription
+    ? toolData.pageDescription
     : `${tool.description}. Use our free online ${tool.name.toLowerCase()} tool. No installation required, works in your browser. Fast, secure, and free.`;
+
+  // Use meta title from JSON if available
+  const metaTitle = toolData?.meta?.title;
 
   // Optimize title length to stay under 70 characters (layout template adds "| ToolsLab")
   const baseTitle = tool.name;
@@ -59,7 +65,10 @@ export async function generateMetadata({
   // Choose title based on length (accounting for template "| ToolsLab" = 12 chars)
   const templateSuffix = ' | ToolsLab';
   let finalTitle: string;
-  if ((longTitle + templateSuffix).length <= 70) {
+
+  if (metaTitle) {
+    finalTitle = metaTitle.replace(' | ToolsLab', ''); // Remove suffix if already in meta
+  } else if ((longTitle + templateSuffix).length <= 70) {
     finalTitle = longTitle;
   } else if ((shortTitle + templateSuffix).length <= 70) {
     finalTitle = shortTitle;
@@ -125,14 +134,28 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ToolPage({ params }: ToolPageProps) {
+export default async function ToolPage({ params }: ToolPageProps) {
   const tool = getToolById(params.tool);
 
   if (!tool) {
     notFound();
   }
 
-  const structuredData = generateToolSchema(params.tool);
+  // Load English dictionary and translations (default locale)
+  const dict = await getDictionary('en');
+  const structuredData = await generateToolSchema(params.tool);
+
+  // Extract tool-specific translations from granular JSON files
+  const toolData = dict.tools?.[params.tool] as any;
+
+  const toolTranslations = {
+    title: toolData?.title || tool.name,
+    description: toolData?.description || tool.description,
+    tagline: toolData?.tagline,
+    pageDescription: toolData?.pageDescription,
+    placeholder: toolData?.placeholder,
+    instructions: toolData?.instructions,
+  };
 
   return (
     <>
@@ -142,7 +165,12 @@ export default function ToolPage({ params }: ToolPageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}
-      <ToolPageClient toolId={params.tool} />
+      <ToolPageClient
+        toolId={params.tool}
+        locale="en"
+        dictionary={dict}
+        toolTranslations={toolTranslations}
+      />
     </>
   );
 }

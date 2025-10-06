@@ -64,16 +64,16 @@ function TimelineItem({
       {/* Content card */}
       <div className={`w-full md:w-5/12 ${isLeft ? 'md:pr-8' : 'md:pl-8'}`}>
         <motion.div
-          className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/30 hover:bg-white/10"
+          className="group relative rounded-2xl border border-white/20 bg-slate-800/80 p-6 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/50 hover:bg-slate-800/90"
           whileHover={{ scale: 1.02, y: -5 }}
         >
           {/* Gradient border on hover */}
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-indigo-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-indigo-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
           <div className="relative z-10">
             {/* Year badge */}
             <motion.div
-              className="mb-3 inline-block rounded-full bg-gradient-to-r from-purple-500 to-blue-600 px-3 py-1 text-xs font-semibold text-white"
+              className="mb-3 inline-block rounded-full bg-gradient-to-r from-purple-500 to-blue-600 px-3 py-1 text-xs font-semibold text-white shadow-lg"
               whileHover={{ scale: 1.05 }}
             >
               {step.year}
@@ -83,7 +83,7 @@ function TimelineItem({
             <h3 className="mb-3 text-xl font-bold text-white">{step.title}</h3>
 
             {/* Description */}
-            <p className="leading-relaxed text-gray-300">{step.description}</p>
+            <p className="leading-relaxed text-gray-200">{step.description}</p>
           </div>
 
           {/* Decorative elements */}

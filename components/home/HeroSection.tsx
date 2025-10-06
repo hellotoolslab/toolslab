@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { searchTools } from '@/lib/tools';
 import { cn } from '@/lib/utils';
+import { type Locale, defaultLocale } from '@/lib/i18n/config';
+import { type Dictionary } from '@/lib/i18n/get-dictionary';
+import { useLocale } from '@/hooks/useLocale';
 
 const placeholders = [
   'json formatter',
@@ -25,7 +28,15 @@ const popularSearches = [
   { label: 'URL Encode', query: 'url' },
 ];
 
-export function HeroSection() {
+interface HeroSectionProps {
+  locale?: Locale;
+  dictionary?: Dictionary;
+}
+
+export function HeroSection({
+  locale = defaultLocale,
+  dictionary,
+}: HeroSectionProps) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -36,6 +47,44 @@ export function HeroSection() {
   >([]);
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const { createHref } = useLocale();
+
+  // Get localized placeholders or fall back to English
+  const getLocalizedPlaceholders = () => {
+    if (!dictionary) return placeholders;
+
+    return [
+      dictionary.tools['json-formatter']?.title?.toLowerCase() ||
+        'json formatter',
+      dictionary.tools['base64-encode']?.title?.toLowerCase() ||
+        'base64 encoder',
+      dictionary.tools['jwt-decoder']?.title?.toLowerCase() || 'jwt decoder',
+      dictionary.tools['uuid-generator']?.title?.toLowerCase() ||
+        'uuid generator',
+      dictionary.tools['hash-generator']?.title?.toLowerCase() ||
+        'hash generator',
+      dictionary.tools['url-encoder']?.title?.toLowerCase() || 'url encoder',
+    ];
+  };
+
+  const localizedPlaceholders = getLocalizedPlaceholders();
+
+  // Get localized popular searches
+  const getPopularSearches = () => {
+    if (!dictionary) return popularSearches;
+
+    return [
+      { label: 'JSON', query: 'json' },
+      { label: 'Base64', query: 'base64' },
+      { label: 'JWT', query: 'jwt' },
+      { label: 'UUID', query: 'uuid' },
+      { label: 'Hash', query: 'hash' },
+      {
+        label: dictionary.common?.actions?.encode || 'URL Encode',
+        query: 'url',
+      },
+    ];
+  };
 
   // Generate particles only on client side to avoid hydration mismatch
   useEffect(() => {
@@ -51,7 +100,8 @@ export function HeroSection() {
 
   // Typewriter effect for placeholder
   useEffect(() => {
-    const targetText = `Try '${placeholders[currentPlaceholder]}'...`;
+    const tryText = dictionary?.common?.actions?.copy || 'Try';
+    const targetText = `${tryText} '${localizedPlaceholders[currentPlaceholder]}'...`;
     let currentIndex = 0;
 
     if (isTyping) {
@@ -74,14 +124,22 @@ export function HeroSection() {
           setPlaceholderText(placeholderText.slice(0, -1));
         } else {
           clearInterval(erasingInterval);
-          setCurrentPlaceholder((prev) => (prev + 1) % placeholders.length);
+          setCurrentPlaceholder(
+            (prev) => (prev + 1) % localizedPlaceholders.length
+          );
           setIsTyping(true);
         }
       }, 30);
 
       return () => clearInterval(erasingInterval);
     }
-  }, [currentPlaceholder, isTyping, placeholderText]);
+  }, [
+    currentPlaceholder,
+    isTyping,
+    placeholderText,
+    localizedPlaceholders,
+    dictionary,
+  ]);
 
   const searchResults =
     searchQuery.length > 0 ? searchTools(searchQuery).slice(0, 5) : [];
@@ -89,13 +147,13 @@ export function HeroSection() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchResults.length > 0) {
-      router.push(searchResults[0].route);
+      router.push(createHref(searchResults[0].route));
     }
   };
 
   const handleResultClick = (route: string) => {
     setIsSearchFocused(false);
-    router.push(route);
+    router.push(createHref(route));
   };
 
   const handlePopularSearch = (query: string) => {
@@ -149,14 +207,15 @@ export function HeroSection() {
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
               <Sparkles className="h-4 w-4 text-yellow-300" />
               <span className="text-sm font-medium text-white">
-                Trusted by hundreds of developers worldwide
+                {dictionary?.home?.hero?.subtitle ||
+                  'Trusted by hundreds of developers worldwide'}
               </span>
             </div>
           </div>
 
           {/* Main headline */}
           <h1 className="mb-6 text-center text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            Your Developer Tools{' '}
+            {dictionary?.home?.hero?.title || 'Your Developer Tools'}{' '}
             <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
               Laboratory
             </span>{' '}
@@ -165,14 +224,8 @@ export function HeroSection() {
 
           {/* Subheadline */}
           <p className="mx-auto mb-10 max-w-3xl text-center text-lg text-white/90 sm:text-xl md:text-2xl">
-            Experiment, Transform, Deploy.{' '}
-            <span className="font-semibold">
-              50+ precision-engineered tools
-            </span>{' '}
-            for your development workflow.{' '}
-            <span className="text-yellow-300">
-              No signup, no limits, just pure productivity.
-            </span>
+            {dictionary?.home?.hero?.description ||
+              'Experiment, Transform, Deploy. 50+ precision-engineered tools for your development workflow. No signup, no limits, just pure productivity.'}
           </p>
 
           {/* Search bar */}
@@ -221,8 +274,10 @@ export function HeroSection() {
 
             {/* Popular searches */}
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-              <span className="text-sm text-white/70">Popular:</span>
-              {popularSearches.map((search) => (
+              <span className="text-sm text-white/70">
+                {dictionary?.home?.popular?.subtitle || 'Popular'}:
+              </span>
+              {getPopularSearches().map((search) => (
                 <button
                   key={search.query}
                   onClick={() => handlePopularSearch(search.query)}

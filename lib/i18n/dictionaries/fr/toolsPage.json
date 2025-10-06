@@ -1,0 +1,83 @@
+{
+  "breadcrumb": {
+    "home": "Accueil",
+    "allTools": "Tous les Outils"
+  },
+  "header": {
+    "title": "Tous les Outils pour Développeurs - Utilitaires en Ligne Gratuits",
+    "subtitle": "Collection complète d'outils professionnels pour développeurs, analystes de données et administrateurs système",
+    "description": "outils gratuits basés sur navigateur pour le formatage JSON, l'encodage Base64, la génération hash et plus. Aucune transmission de données, aucune inscription requise."
+  },
+  "trust": {
+    "tools": "outils",
+    "freeForever": "Gratuit pour toujours",
+    "privacyFirst": "Confidentialité d'abord"
+  },
+  "search": {
+    "placeholder": "Rechercher des outils... (ex. 'json', 'encoder', 'hash')"
+  },
+  "filters": {
+    "all": "Tous",
+    "sortBy": "Trier par:",
+    "mostPopular": "Les Plus Populaires",
+    "alphabetical": "A-Z",
+    "recentlyAdded": "Récemment Ajoutés",
+    "category": "Catégorie",
+    "clearFilters": "Effacer les filtres"
+  },
+  "sections": {
+    "recentlyAdded": "Outils Récemment Ajoutés",
+    "newTools": "nouveaux outils",
+    "mostPopular": "Outils les Plus Populaires",
+    "trendingTools": "outils tendance",
+    "allTools": "Tous les Outils"
+  },
+  "empty": {
+    "title": "Aucun outil trouvé",
+    "description": "Essayez d'ajuster vos critères de recherche ou de filtrage.",
+    "clearAll": "Effacer tous les filtres"
+  },
+  "seo": {
+    "whyChoose": {
+      "title": "Pourquoi Choisir les Outils ToolsLab?",
+      "benefits": [
+        "Confidentialité complète - tout le traitement se fait dans votre navigateur",
+        "Aucune inscription ou compte requis",
+        "Outils de qualité professionnelle utilisés par des développeurs du monde entier",
+        "Traitement en temps réel avec résultats instantanés",
+        "Design responsive optimisé pour mobile",
+        "Mises à jour régulières avec de nouveaux outils et fonctionnalités"
+      ]
+    },
+    "workflows": {
+      "title": "Flux de Travail Développeur Courants",
+      "api": {
+        "title": "Développement & Test d'API",
+        "tools": [
+          "Formateur JSON",
+          "Décodeur JWT",
+          "Encodeur URL",
+          "Générateur de Hash"
+        ]
+      },
+      "data": {
+        "title": "Migration de Données & ETL",
+        "tools": [
+          "CSV vers JSON",
+          "Encodeur Base64",
+          "Formateur SQL",
+          "Générateur UUID"
+        ]
+      },
+      "security": {
+        "title": "Sécurité & Authentification",
+        "tools": [
+          "Décodeur JWT",
+          "Générateur de Hash",
+          "Générateur de Mot de Passe",
+          "Outils Base64"
+        ]
+      }
+    }
+  }
+}

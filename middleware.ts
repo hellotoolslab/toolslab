@@ -6,6 +6,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCompleteConfig } from '@/lib/edge-config/client';
 import { BotDetector } from '@/lib/analytics/botDetection';
+import {
+  localesWithPrefix,
+  defaultLocale,
+  type Locale,
+} from '@/lib/i18n/config';
+import {
+  detectSectionFromPathname,
+  generateDictionaryPreloadHeaders,
+  shouldPreloadDictionary,
+} from '@/lib/i18n/section-detector';
 
 // Paths that should be processed by middleware
 const PROCESSED_PATHS = ['/tools/:path*', '/api/tools/:path*', '/'];
@@ -179,6 +189,73 @@ function applyStrictSecurityHeaders(response: NextResponse) {
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
+  // Set the full URL in a header so the layout can access it
+  const requestUrl = request.url;
+
+  // Handle sitemap requests
+  if (pathname === '/sitemap-index.xml') {
+    const { generateSitemapIndexXML } = await import(
+      '@/lib/sitemap/sitemap-utils'
+    );
+    const xml = generateSitemapIndexXML();
+    return new NextResponse(xml, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+      },
+    });
+  }
+
+  // Handle locale-specific sitemaps (e.g., /sitemap-en.xml, /sitemap-it.xml)
+  const sitemapMatch = pathname.match(/^\/sitemap-([a-z]{2})\.xml$/);
+  if (sitemapMatch) {
+    const locale = sitemapMatch[1];
+    const { locales } = await import('@/lib/i18n/config');
+
+    if (locales.includes(locale as any)) {
+      const { generateSitemapXML } = await import(
+        '@/lib/sitemap/sitemap-utils'
+      );
+      const xml = generateSitemapXML(locale as any);
+      return new NextResponse(xml, {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/xml; charset=utf-8',
+          'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+          'X-Sitemap-Locale': locale,
+        },
+      });
+    }
+  }
+
+  // Check if pathname has a locale prefix
+  const pathnameHasLocale = localesWithPrefix.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  // Handle locale redirection for non-prefixed paths
+  if (
+    !pathnameHasLocale &&
+    !pathname.startsWith('/_next') &&
+    !pathname.startsWith('/api')
+  ) {
+    // Check if this is a path that should be localized
+    const shouldLocalize = ['/tools', '/categories', '/lab', '/about'].some(
+      (path) => pathname === path || pathname.startsWith(`${path}/`)
+    );
+
+    if (shouldLocalize) {
+      // Redirect to default locale (English doesn't need prefix, but others do)
+      const url = request.nextUrl.clone();
+      url.pathname = pathname; // English doesn't need prefix
+      return NextResponse.next(); // Let it go to the default route
+    }
+  }
+
+  // For localized paths, just ensure X-Locale header is set
+  // (this will be handled later in the middleware)
+
   // Domain canonicalization: Redirect www.toolslab.dev to toolslab.dev
   const hostname = request.nextUrl.hostname;
   if (hostname === 'www.toolslab.dev') {
@@ -187,8 +264,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(redirectUrl, 301);
   }
 
-  // Skip processing for excluded paths
-  if (!shouldProcessPath(pathname)) {
+  // Skip processing for excluded paths (but allow locale paths)
+  if (!shouldProcessPath(pathname) && !pathnameHasLocale) {
     return NextResponse.next();
   }
 
@@ -208,11 +285,28 @@ export async function middleware(request: NextRequest) {
   const botDetection = botDetector.detectBot(userAgent, referer, request.url);
 
   if (botDetection.isBot) {
+    // Detect locale for bots (critical for SEO)
+    let currentLocale: Locale = defaultLocale;
+    if (pathnameHasLocale) {
+      const detectedLocale = localesWithPrefix.find(
+        (locale) =>
+          pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+      );
+      if (detectedLocale) {
+        currentLocale = detectedLocale as Locale;
+      }
+    }
+
     // Return minimal response for bots to save resources
     const response = NextResponse.next();
     response.headers.set('X-Bot-Detected', 'true');
     response.headers.set('X-Bot-Reason', botDetection.reason || 'unknown');
     response.headers.set('Cache-Control', 'public, max-age=86400');
+
+    // CRITICAL for SEO: Set locale and URL headers for bots
+    response.headers.set('X-Locale', currentLocale);
+    response.headers.set('X-Pathname', pathname);
+    response.headers.set('X-Request-URL', requestUrl); // For layout to read
 
     // Allow all bots to index - prioritize SEO over analytics accuracy
     if (botDetection.isSearchEngine) {
@@ -241,6 +335,89 @@ export async function middleware(request: NextRequest) {
     }
 
     const response = NextResponse.next();
+
+    // Set the request URL in a header for the layout to access
+    response.headers.set('X-Request-URL', requestUrl);
+
+    // Detect current locale
+    let currentLocale: Locale = defaultLocale;
+    if (pathnameHasLocale) {
+      const detectedLocale = localesWithPrefix.find(
+        (locale) =>
+          pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+      );
+      if (detectedLocale) {
+        currentLocale = detectedLocale as Locale;
+      }
+    }
+
+    // Always set X-Locale header (even for default locale)
+    response.headers.set('X-Locale', currentLocale);
+
+    // Also set pathname for debugging
+    response.headers.set('X-Pathname', pathname);
+
+    // Set a cookie with the current locale so the layout can read it
+    response.cookies.set('NEXT_LOCALE', currentLocale, {
+      path: '/',
+      sameSite: 'lax',
+      httpOnly: false, // Allow client-side reading
+    });
+
+    // Dictionary Preload Strategy
+    if (shouldPreloadDictionary(pathname)) {
+      // Detect which dictionary sections this page needs
+      const sections = detectSectionFromPathname(pathname);
+
+      // Generate preload headers for dictionary chunks
+      const preloadHeaders = generateDictionaryPreloadHeaders(
+        currentLocale,
+        sections
+      );
+
+      // Add Link header for early hints / preload
+      response.headers.set('Link', preloadHeaders);
+
+      // Add metadata headers for debugging
+      if (process.env.NODE_ENV === 'development') {
+        response.headers.set('X-Dictionary-Sections', sections.join(','));
+        response.headers.set('X-Dictionary-Locale', currentLocale);
+      }
+    }
+
+    // Persistent language preference cookie
+    const preferredLocaleCookie = request.cookies.get('preferred-locale');
+
+    // If user visits a localized page, save their preference
+    if (pathnameHasLocale && currentLocale !== defaultLocale) {
+      if (
+        !preferredLocaleCookie ||
+        preferredLocaleCookie.value !== currentLocale
+      ) {
+        response.cookies.set('preferred-locale', currentLocale, {
+          maxAge: 365 * 24 * 60 * 60, // 1 year
+          path: '/',
+          sameSite: 'lax',
+          httpOnly: false, // Allow client-side reading for language switcher
+        });
+      }
+    }
+
+    // If user has preference but visits default locale, suggest redirect (optional)
+    // This is commented out to avoid aggressive redirects, but available if needed
+    /*
+    if (
+      !pathnameHasLocale &&
+      preferredLocaleCookie &&
+      preferredLocaleCookie.value !== defaultLocale &&
+      !pathname.startsWith('/api')
+    ) {
+      const preferredLocale = preferredLocaleCookie.value;
+      const redirectUrl = new URL(request.url);
+      redirectUrl.pathname = `/${preferredLocale}${pathname}`;
+      return NextResponse.redirect(redirectUrl, 307); // Temporary redirect
+    }
+    */
 
     // VPN Detection and Security Header Management
     const forwardedFor = request.headers.get('x-forwarded-for');
@@ -458,7 +635,8 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - icon files (all favicon variants)
+     * Note: We DO handle sitemap*.xml files
      */
-    '/((?!_next/static|_next/image|.*\\.ico|.*\\.png|.*\\.svg|robots\\.txt|sitemap\\.xml).*)',
+    '/((?!_next/static|_next/image|.*\\.ico|.*\\.png|.*\\.svg|robots\\.txt).*)',
   ],
 };

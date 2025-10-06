@@ -1,6 +1,9 @@
 'use client';
 
 import { Suspense, lazy } from 'react';
+import { type Locale } from '@/lib/i18n/config';
+import { type Dictionary } from '@/lib/i18n/get-dictionary';
+import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
 
 // Eager load critical above-the-fold components
 import { HeroSection } from '@/components/home/HeroSection';
@@ -57,45 +60,62 @@ function LoadingPlaceholder({
   );
 }
 
-export default function HomePageContent() {
+interface HomePageContentProps {
+  locale?: Locale;
+  dictionary?: Dictionary;
+}
+
+export default function HomePageContent({
+  locale = 'en',
+  dictionary,
+}: HomePageContentProps) {
+  // Specify sections needed for homepage
+  const homeSections = ['common', 'home', 'footer'];
+
   return (
-    <main className="min-h-screen">
-      {/* Above the fold - loaded immediately */}
-      <HeroSection />
+    <DictionaryProvider
+      locale={locale}
+      sections={homeSections}
+      initialDictionary={dictionary}
+    >
+      <main className="min-h-screen">
+        {/* Above the fold - loaded immediately */}
+        <HeroSection locale={locale} dictionary={dictionary} />
 
-      {/* Most Used This Week - moved before CategoryGrid */}
-      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[300px]" />}>
-        <FeaturedTools />
-      </Suspense>
+        {/* Most Used This Week - moved before CategoryGrid */}
+        <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[300px]" />}>
+          <FeaturedTools locale={locale} dictionary={dictionary} />
+        </Suspense>
 
-      <CategoryGrid />
+        <CategoryGrid locale={locale} dictionary={dictionary} />
 
-      {/* Powered By section - lightweight, loaded immediately */}
-      <PoweredBy />
+        {/* Powered By section - lightweight, loaded immediately */}
+        <PoweredBy />
 
-      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[200px]" />}>
-        <TrustMetrics />
-      </Suspense>
+        <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[200px]" />}>
+          <TrustMetrics />
+        </Suspense>
 
-      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[400px]" />}>
-        <WhyToolsLab />
-      </Suspense>
+        <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[400px]" />}>
+          <WhyToolsLab locale={locale} dictionary={dictionary} />
+        </Suspense>
 
-      <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[500px]" />}>
-        <InteractiveDemo />
-      </Suspense>
+        <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[500px]" />}>
+          <InteractiveDemo />
+        </Suspense>
 
-      <Suspense fallback={<LoadingPlaceholder />}>
-        <ToolDiscovery />
-      </Suspense>
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <ToolDiscovery />
+        </Suspense>
 
-      <Suspense fallback={<LoadingPlaceholder />}>
-        <SEOContent />
-      </Suspense>
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <SEOContent />
+        </Suspense>
 
-      <Suspense fallback={<LoadingPlaceholder />}>
-        <FooterCTA />
-      </Suspense>
-    </main>
+        <Suspense fallback={<LoadingPlaceholder />}>
+          <FooterCTA />
+        </Suspense>
+      </main>
+    </DictionaryProvider>
   );
 }

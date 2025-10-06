@@ -1,0 +1,85 @@
+{
+  "title": "JSON vers YAML",
+  "description": "Convertissez JSON au format YAML",
+  "placeholder": "Collez les données JSON...",
+  "instructions": {
+    "title": "Comment utiliser JSON vers YAML",
+    "steps": [
+      {
+        "title": "Collez votre données JSON",
+        "description": "Copiez et collez votre données JSON dans la zone de saisie. L'outil accepte tout format et le traitera immédiatement."
+      },
+      {
+        "title": "Configurez les options (si disponible)",
+        "description": "Ajustez les options de formatage, l'indentation ou d'autres paramètres pour correspondre à vos préférences."
+      },
+      {
+        "title": "Examinez la sortie",
+        "description": "L'outil va convertir votre saisie et afficher le résultat avec formatage et validation appropriés."
+      },
+      {
+        "title": "Copiez ou téléchargez le résultat",
+        "description": "Copiez le JSON formaté dans votre presse-papiers pour utilisation immédiate ou téléchargez-le en tant que fichier."
+      }
+    ],
+    "features": [
+      "Traitement en temps réel avec résultats instantanés",
+      "Aucune limite de taille pour le traitement basé sur navigateur",
+      "Complètement sécurisé - tout le traitement se fait dans votre navigateur",
+      "Aucun téléchargement de données ou stockage serveur",
+      "Copier dans le presse-papiers en un clic",
+      "Télécharger les résultats sous forme de fichier",
+      "Validation de syntaxe et mise en évidence des erreurs",
+      "Fonctionne hors ligne après le chargement initial"
+    ],
+    "useCases": [
+      "Nettoyer et formater le code désordonné pour une meilleure lisibilité",
+      "Standardiser le style de code dans les équipes de développement",
+      "Déboguer les structures complexes avec une indentation appropriée",
+      "Préparer le code pour la documentation et les revues de code",
+      "Convertir entre différents standards de formatage",
+      "Valider la syntaxe avant le déploiement",
+      "Traiter les données provenant de sources externes ou d'API",
+      "Générer du code prêt pour la production"
+    ],
+    "proTips": [
+      "Utilisez les raccourcis clavier pour un flux de travail plus rapide",
+      "Traitez les gros fichiers en petits morceaux si les performances ralentissent",
+      "Validez votre saisie avant le traitement pour détecter les erreurs tôt",
+      "Enregistrez les paramètres fréquemment utilisés par défaut",
+      "Utilisez la fonction de téléchargement pour archiver les fichiers",
+      "Vérifiez attentivement la sortie avant utilisation en production"
+    ],
+    "troubleshooting": [
+      "Erreurs de syntaxe : vérifiez les crochets, guillemets ou points-virgules manquants",
+      "Échec de traitement : assurez-vous que le format de saisie est valide",
+      "Performance lente : essayez de traiter de plus petits morceaux de données",
+      "Fonctionnalités manquantes : certaines syntaxes avancées peuvent nécessiter un formatage manuel",
+      "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entrée"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Traiter/Formater"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le résultat"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Télécharger le fichier"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertisseur JSON vers YAML - Outil en Ligne Gratuit | ToolsLab",
+    "description": "Convertissez JSON au format YAML en ligne. Sortie YAML propre et lisible. Convertisseur JSON vers YAML gratuit."
+  },
+  "tagline": "Convert YAML to JSON and back with advanced validation features",
+  "pageDescription": "Free YAML to JSON converter with bidirectional conversion, multi-document support, and anchor resolution. Convert Kubernetes configs, Docker Compose files, CI/CD pipelines, and Swagger specifications instantly. Features real-time validation, syntax highlighting, type preservation, and comment handling. Supports YAML 1.2 with anchors, aliases, merge keys, and custom tags. Export to TypeScript interfaces and JSON Schema. Perfect for DevOps engineers, developers working with configuration files, and API documentation."
+}

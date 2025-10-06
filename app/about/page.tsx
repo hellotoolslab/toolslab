@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import { NewAboutPage } from '@/components/about/NewAboutPage';
 
 export const metadata: Metadata = {
@@ -39,5 +40,18 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <NewAboutPage />;
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+          <div className="animate-pulse space-y-8 px-4 py-16">
+            <div className="mx-auto h-12 w-96 rounded bg-gray-200 dark:bg-gray-700"></div>
+            <div className="mx-auto h-96 max-w-4xl rounded-xl bg-gray-200 dark:bg-gray-700"></div>
+          </div>
+        </div>
+      }
+    >
+      <NewAboutPage />
+    </Suspense>
+  );
 }

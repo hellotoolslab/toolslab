@@ -59,8 +59,15 @@ const toolComponents = {
   'json-to-typescript': lazy(
     () => import('./implementations/JsonToTypeScript')
   ),
+  'unix-timestamp-converter': lazy(
+    () => import('./implementations/UnixTimestampConverter')
+  ),
   'css-minifier': lazy(() => import('./implementations/CSSMinifier')),
   'js-minifier': lazy(() => import('./implementations/JSMinifier')),
+  'yaml-json-converter': lazy(
+    () => import('./implementations/YamlJsonConverter')
+  ),
+  'eml-to-html': lazy(() => import('./implementations/EmlToHtml')),
   // Add more as needed
 } as const;
 

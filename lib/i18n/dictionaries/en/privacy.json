@@ -1,0 +1,43 @@
+{
+  "privacy": {
+    "meta": {
+      "title": "Privacy Policy - ToolsLab | Your Data Stays Yours",
+      "description": "ToolsLab respects your privacy. No tracking, no accounts, no data collection. All processing happens locally in your browser.",
+      "ogTitle": "Privacy Policy - ToolsLab",
+      "ogDescription": "Your privacy is sacred. We don't track, profile, or even know who you are."
+    },
+    "header": {
+      "title": "Privacy Policy",
+      "subtitle": "Your data stays yours. Always.",
+      "tldrTitle": "TL;DR - The Simple Truth",
+      "tldrText": "<strong>Your privacy is sacred.</strong> We don't track you, profile you, or even know who you are. ToolsLab works like a desktop tool in your browser - everything stays on your device."
+    },
+    "lastUpdated": "Last updated:",
+    "sections": {
+      "zeroData": {
+        "title": "Zero Personal Data Collection",
+        "intro": "<strong>We don't collect, store, or process any personal data.</strong> This includes:",
+        "points": {
+          "noEmail": "No email or contact information",
+          "noNames": "No names, addresses, or identifying information",
+          "noAccounts": "No accounts, registrations, or user profiles",
+          "noCookies": "No tracking cookies or persistent identifiers",
+          "noSensitive": "No sensitive data like detailed IPs or fingerprinting"
+        },
+        "summary": "<strong>💡 Simply put:</strong> We don't know who you are, where you're from, or what you do with our tools. And we like it that way."
+      },
+      "localProcessing": {
+        "title": "Everything Happens in Your Browser",
+        "intro": "All our developer tools work completely <strong>client-side</strong>:",
+        "points": {
+          "json": "The JSON you format never leaves your browser",
+          "base64": "The Base64 you convert is processed locally",
+          "uuid": "The UUIDs you generate are created on your device",
+          "noServers": "No data is sent to our servers",
+          "offline": "Works offline too (once the page is loaded)"
+        },
+        "summary": "<strong>🔧 Think of it:</strong> Like using a desktop tool, but in your browser. We only provide the \"software\", your data never reaches us."
+      }
+    }
+  }
+}

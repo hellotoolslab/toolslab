@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { Sparkles, Zap } from 'lucide-react';
-import { toolSEO, ToolSEO } from '@/lib/tool-seo';
 
 interface ToolHeroSectionProps {
   toolId: string;
   toolName: string;
+  toolDescription?: string;
+  toolTagline?: string;
+  toolPageDescription?: string;
   categoryColor: string;
   categoryName?: string;
   favoriteButton?: React.ReactNode;
@@ -18,6 +20,9 @@ interface ToolHeroSectionProps {
 export default function ToolHeroSection({
   toolId,
   toolName,
+  toolDescription,
+  toolTagline,
+  toolPageDescription,
   categoryColor,
   categoryName,
   favoriteButton,
@@ -26,14 +31,17 @@ export default function ToolHeroSection({
   className = '',
 }: ToolHeroSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const seoData = toolSEO[toolId];
+
+  // Use provided translations (from JSON granular files)
+  const tagline = toolTagline || toolDescription;
+  const pageDescription = toolPageDescription;
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   // Fallback for tools without SEO data
-  if (!seoData) {
+  if (!toolTagline && !toolPageDescription) {
     return (
       <div className={`mb-8 text-center ${className}`}>
         <div
@@ -44,13 +52,15 @@ export default function ToolHeroSection({
         >
           <Zap className="h-10 w-10" style={{ color: categoryColor }} />
         </div>
-        <h1
+        <div
           className={`mb-2 text-3xl font-bold text-gray-900 transition-all delay-100 duration-500 dark:text-white sm:text-4xl lg:text-5xl ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}
+          aria-level={1}
+          role="heading"
         >
           {toolName}
-        </h1>
+        </div>
         <p
           className={`mb-4 text-xl text-gray-700 transition-all delay-150 duration-500 dark:text-gray-300 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
@@ -91,15 +101,17 @@ export default function ToolHeroSection({
 
         {/* Title and badges inline */}
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:gap-3">
-          <h1
+          <div
             className={`text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl lg:text-4xl ${
               isVisible
                 ? 'translate-y-0 opacity-100'
                 : 'translate-y-1 opacity-0'
             } transition-all delay-75 duration-300`}
+            aria-level={1}
+            role="heading"
           >
             {toolName}
-          </h1>
+          </div>
           {labelBadge && <div className="flex items-center">{labelBadge}</div>}
           {favoriteButton && (
             <div className="flex items-center">{favoriteButton}</div>
@@ -110,23 +122,25 @@ export default function ToolHeroSection({
         </div>
       </div>
 
-      {/* Tagline - closely connected to title */}
+      {/* Tagline/Description - use translated version if available */}
       <p
         className={`mb-4 text-base text-gray-700 transition-all delay-100 duration-300 dark:text-gray-300 sm:text-lg ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
         }`}
       >
-        {seoData.tagline}
+        {tagline}
       </p>
 
-      {/* Page Description - proper separation */}
-      <p
-        className={`max-w-4xl text-sm leading-relaxed text-gray-600 transition-all delay-150 duration-300 dark:text-gray-400 sm:text-base ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
-        }`}
-      >
-        {seoData.pageDescription}
-      </p>
+      {/* Page Description - always show if available */}
+      {pageDescription && (
+        <p
+          className={`max-w-4xl text-sm leading-relaxed text-gray-600 transition-all delay-150 duration-300 dark:text-gray-400 sm:text-base ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
+          }`}
+        >
+          {pageDescription}
+        </p>
+      )}
 
       {/* Subtle Gradient Background */}
       <div

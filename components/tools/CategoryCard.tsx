@@ -3,6 +3,7 @@ import { Category, getCategoryColorClass } from '@/lib/tools';
 import { cn } from '@/lib/utils';
 import { ArrowRight, Zap } from 'lucide-react';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
+import { useLocale } from '@/hooks/useLocale';
 
 interface CategoryCardProps {
   category: Category;
@@ -12,9 +13,13 @@ interface CategoryCardProps {
 export function CategoryCard({ category, className }: CategoryCardProps) {
   const categoryClass = getCategoryColorClass(category.id);
   const previewTools = category.tools.slice(0, 4);
+  const { createHref } = useLocale();
 
   return (
-    <Link href={`/?category=${category.id}`} className="group block">
+    <Link
+      href={createHref(`/?category=${category.id}`)}
+      className="group block"
+    >
       <div
         className={cn(
           'category-card hover-lift transition-all duration-300 group-hover:scale-105',

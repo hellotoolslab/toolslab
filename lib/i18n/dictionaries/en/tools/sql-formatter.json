@@ -1,0 +1,85 @@
+{
+  "title": "SQL Formatter",
+  "description": "Format and beautify SQL queries",
+  "placeholder": "Paste your SQL query here...",
+  "instructions": {
+    "title": "How to use SQL Formatter",
+    "steps": [
+      {
+        "title": "Paste your SQL query",
+        "description": "Copy and paste your SQL query into the input area. The tool accepts any format and will process it immediately."
+      },
+      {
+        "title": "Configure options (if available)",
+        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+      },
+      {
+        "title": "Review the output",
+        "description": "The tool will format and beautify your input and display the result with proper formatting and validation."
+      },
+      {
+        "title": "Copy or download result",
+        "description": "Copy the formatted SQL to your clipboard for immediate use or download it as a file for storage and sharing."
+      }
+    ],
+    "features": [
+      "Real-time processing with instant results",
+      "No file size limits for browser-based processing",
+      "Completely secure - all processing happens in your browser",
+      "No data uploads or server storage",
+      "Copy to clipboard with one click",
+      "Download results as file",
+      "Syntax validation and error highlighting",
+      "Works offline after initial page load"
+    ],
+    "useCases": [
+      "Clean up and format messy code for better readability",
+      "Standardize code style across development teams",
+      "Debug complex structures with proper indentation",
+      "Prepare code for documentation and code reviews",
+      "Convert between different formatting standards",
+      "Validate syntax before deployment",
+      "Process data from external sources or APIs",
+      "Generate production-ready code from development versions"
+    ],
+    "proTips": [
+      "Use keyboard shortcuts for faster workflow",
+      "Process large files in smaller chunks if performance slows",
+      "Validate your input before processing to catch errors early",
+      "Save frequently used settings as defaults in your browser",
+      "Use the download feature for archiving processed files",
+      "Check the output carefully before using in production"
+    ],
+    "troubleshooting": [
+      "Syntax errors: Check for missing brackets, quotes, or semicolons",
+      "Processing fails: Ensure your input format is valid",
+      "Slow performance: Try processing smaller chunks of data",
+      "Missing features: Some advanced syntax may require manual formatting",
+      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste input"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Process/Format"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy result"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Download file"
+      }
+    ]
+  },
+  "meta": {
+    "title": "SQL Formatter - Free Online Tool | ToolsLab",
+    "description": "Format and beautify SQL queries online. Support for multiple SQL dialects. Free SQL formatter tool."
+  },
+  "tagline": "Format and beautify SQL queries with syntax highlighting",
+  "pageDescription": "Format and beautify SQL queries with proper indentation, keyword highlighting, and syntax validation. Perfect for database developers, data analysts, and SQL optimization. Supports multiple SQL dialects (MySQL, PostgreSQL, SQLite) with customizable formatting options. Free, secure browser-based SQL formatter with no data uploads."
+}

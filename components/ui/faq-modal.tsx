@@ -9,37 +9,57 @@ interface FAQItem {
   answer: string;
 }
 
+interface FAQData {
+  title: string;
+  close: string;
+  questions: FAQItem[];
+}
+
 interface FAQModalProps {
   categoryColor: string;
   toolName: string;
+  locale?: string;
+  faqData?: FAQData;
 }
 
-const defaultFAQs: FAQItem[] = [
-  {
-    question: 'Is this tool free to use?',
-    answer:
-      'Yes, all ToolsLab tools are completely free to use with no limits or registration required.',
-  },
-  {
-    question: 'Is my data secure?',
-    answer:
-      'All processing happens locally in your browser. Your data never leaves your device.',
-  },
-  {
-    question: 'Can I use this offline?',
-    answer:
-      'Once loaded, most tools work offline as they process data locally in your browser.',
-  },
-  {
-    question: 'How do I report a bug or request a feature?',
-    answer:
-      'You can report issues or request features on our GitHub repository at https://github.com/hellotoolslab/toolslab or reach out to us on X at https://x.com/tools_lab.',
-  },
-];
+// Default English FAQs
+const defaultFAQData: FAQData = {
+  title: 'Frequently Asked Questions',
+  close: 'Close',
+  questions: [
+    {
+      question: 'Is this tool free to use?',
+      answer:
+        'Yes, all ToolsLab tools are completely free to use with no limits or registration required.',
+    },
+    {
+      question: 'Is my data secure?',
+      answer:
+        'All processing happens locally in your browser. Your data never leaves your device.',
+    },
+    {
+      question: 'Can I use this offline?',
+      answer:
+        'Once loaded, most tools work offline as they process data locally in your browser.',
+    },
+    {
+      question: 'How do I report a bug or request a feature?',
+      answer:
+        'You can report issues or request features on our GitHub repository at https://github.com/hellotoolslab/toolslab or reach out to us on X at https://x.com/tools_lab.',
+    },
+  ],
+};
 
-export function FAQModal({ categoryColor, toolName }: FAQModalProps) {
+export function FAQModal({
+  categoryColor,
+  toolName,
+  locale,
+  faqData = defaultFAQData,
+}: FAQModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [openItems, setOpenItems] = useState<Set<number>>(new Set());
+
+  const faqs = faqData.questions || [];
 
   const toggleItem = (index: number) => {
     const newOpenItems = new Set(openItems);
@@ -73,11 +93,11 @@ export function FAQModal({ categoryColor, toolName }: FAQModalProps) {
                 className="h-5 w-5"
                 style={{ color: categoryColor }}
               />
-              Frequently Asked Questions
+              {faqData.title}
             </Dialog.Title>
 
             <div className="mt-4 max-h-[50vh] space-y-4 overflow-y-auto pr-2">
-              {defaultFAQs.map((faq, index) => (
+              {faqs.map((faq, index) => (
                 <div
                   key={index}
                   className="border-b border-gray-200 pb-4 last:border-b-0 dark:border-gray-700"
@@ -109,7 +129,7 @@ export function FAQModal({ categoryColor, toolName }: FAQModalProps) {
 
             <Dialog.Close className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100">
               <X className="h-4 w-4" />
-              <span className="sr-only">Close</span>
+              <span className="sr-only">{faqData.close}</span>
             </Dialog.Close>
           </Dialog.Content>
         </Dialog.Portal>

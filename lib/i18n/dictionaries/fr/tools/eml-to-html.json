@@ -1,0 +1,120 @@
+{
+  "title": "Convertisseur EML vers HTML",
+  "description": "Convertissez des fichiers email EML en HTML avec extraction d'en-têtes, gestion des pièces jointes et rendu multi-vues",
+  "placeholder": "Téléchargez un fichier EML ou collez le contenu EML ici...",
+  "meta": {
+    "title": "Convertisseur EML vers HTML - Visualiseur Email Gratuit | ToolsLab",
+    "description": "Convertissez des fichiers email EML en HTML instantanément. Analysez les en-têtes d'email, extrayez les pièces jointes et visualisez le contenu email avec notre visualiseur EML gratuit. Supporte MIME, RFC822, messages multipart et tous les principaux clients email."
+  },
+  "tagline": "Convertissez des fichiers email EML en HTML avec analyse avancée et rendu multi-vues",
+  "pageDescription": "Convertisseur professionnel EML vers HTML avec analyse MIME, extraction d'en-têtes, gestion des pièces jointes et assainissement de sécurité. Convertissez des emails d'Outlook, Thunderbird, Apple Mail et autres clients. Fonctionnalités : vue brute, HTML rendu, tableau d'en-têtes, vue source et extraction de pièces jointes. Parfait pour la migration d'emails, l'analyse de modèles, la forensique et l'archivage. Supporte quoted-printable, encodage base64, messages multipart, images inline et tous les standards RFC822/2822.",
+  "instructions": {
+    "title": "Comment utiliser le Convertisseur EML vers HTML",
+    "steps": [
+      {
+        "title": "Téléchargez ou collez votre fichier EML",
+        "description": "Téléchargez un fichier .eml depuis votre ordinateur ou collez directement le contenu EML dans la zone de saisie. L'outil accepte le format email standard RFC822/2822 de n'importe quel client email."
+      },
+      {
+        "title": "Choisissez votre mode d'affichage",
+        "description": "Sélectionnez parmi Vue Brute (EML original), Vue Rendue (HTML tel qu'il apparaît), Vue En-têtes (tableau de métadonnées structuré) ou Vue Source (code HTML extrait) pour analyser différents aspects de l'email."
+      },
+      {
+        "title": "Examinez les composants extraits",
+        "description": "Examinez les en-têtes d'email (De, À, Sujet, Date), visualisez le corps HTML ou texte brut et accédez à la liste des pièces jointes avec métadonnées incluant noms de fichiers, types et tailles."
+      },
+      {
+        "title": "Exportez ou téléchargez les résultats",
+        "description": "Téléchargez le HTML converti comme fichier autonome, exportez les en-têtes en JSON pour usage programmatique, enregistrez les pièces jointes séparément ou copiez le code source HTML dans le presse-papiers."
+      }
+    ],
+    "features": [
+      "Rendu multi-vues : Brut, Rendu, En-têtes, Source",
+      "Analyse MIME complète avec support RFC822/2822",
+      "Détection et conversion automatique d'encodage (UTF-8, ISO-8859-1, Windows-1252)",
+      "Décodage Quoted-printable et Base64",
+      "Gestion Multipart/alternative et multipart/mixed",
+      "Extraction d'images inline avec conversion de références CID",
+      "Liste de pièces jointes avec capacité de téléchargement",
+      "Analyse d'en-têtes d'email et exportation JSON",
+      "Assainissement HTML pour protection XSS",
+      "Suppression JavaScript et gestionnaires d'événements",
+      "Mise en évidence des en-têtes DKIM/SPF",
+      "Détection de pixels de suivi",
+      "Analyse et extraction de liens",
+      "Détection du client email",
+      "Reconnaissance de modèles (MailChimp, SendGrid, etc.)",
+      "Conversion HTML mode sombre",
+      "Aperçu responsive mobile/bureau",
+      "Traitement par lots pour multiples fichiers EML",
+      "Insertion CSS pour compatibilité email",
+      "Pas d'upload serveur - traitement 100% côté client"
+    ],
+    "useCases": [
+      "Migration d'emails entre plateformes et systèmes",
+      "Analyse de modèles d'email et rétro-ingénierie",
+      "Forensique d'email et dépannage d'en-têtes",
+      "Conformité légale et archivage d'email",
+      "Conversion d'emails archivés en format HTML lisible",
+      "Extraction de modèles d'email pour documentation",
+      "Débogage de problèmes de rendu d'email",
+      "Test de compatibilité de client email",
+      "Analyse sécurisée d'emails spam et phishing",
+      "Récupération de contenu email depuis sauvegardes",
+      "Conversion d'exportations Outlook PST vers HTML",
+      "Traitement d'archives Thunderbird mbox",
+      "Extraction de designs d'email marketing",
+      "Création de documentation email depuis modèles"
+    ],
+    "proTips": [
+      "Utilisez Vue Brute pour inspecter la structure MIME originale et déboguer les problèmes d'analyse",
+      "Vue En-têtes affiche les données d'authentification (DKIM, SPF) utiles pour dépanner la délivrabilité",
+      "Exportez les en-têtes en JSON pour analyser le routage email et les sauts serveur programmatiquement",
+      "L'outil détecte et met en évidence les pixels de suivi - utile pour analyse de confidentialité",
+      "Mode par Lots permet de traiter des dossiers entiers d'emails archivés en une fois",
+      "Activez l'insertion CSS lors de l'export de modèles pour meilleure compatibilité client email",
+      "Utilisez Analyse de Liens pour extraire toutes les URLs des emails marketing",
+      "Détection de Modèles identifie les motifs ESP courants (MailChimp, SendGrid, etc.)",
+      "Conversion Mode Sombre ajuste automatiquement les couleurs pour affichage thème sombre",
+      "Télécharger comme HTML autonome inclut toutes les images inline comme data URI"
+    ],
+    "troubleshooting": [
+      "Format EML invalide : Assurez-vous que le fichier commence par des en-têtes email et suit la structure RFC822/2822",
+      "Problèmes d'encodage : Essayez la sélection manuelle de charset si les caractères spéciaux apparaissent déformés",
+      "Images manquantes : Images inline avec références CID sont converties en data URI, images externes peuvent ne pas charger",
+      "Traitement de gros fichiers : Fichiers de plus de 10MB peuvent être lents - considérez diviser ou utiliser mode par lots",
+      "HTML ne rend pas : Certains emails contiennent seulement texte brut - vérifiez l'onglet Vue Rendue",
+      "Pièces jointes corrompues : Erreurs de décodage Base64 indiquent encodage corrompu ou non standard",
+      "Avertissements JavaScript : L'outil supprime automatiquement les scripts pour sécurité - c'est comportement attendu",
+      "Performance lente : Désactivez le rendu d'aperçu pour emails HTML très volumineux pour améliorer vitesse",
+      "Compatibilité navigateur : Utilisez Chrome, Firefox, Safari ou Edge pour support complet des fonctionnalités",
+      "En-têtes manquants : Certains clients email peuvent supprimer les en-têtes - l'outil affiche toutes les données disponibles"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller contenu EML"
+      },
+      {
+        "keys": "Ctrl+O",
+        "description": "Ouvrir dialogue fichier"
+      },
+      {
+        "keys": "Ctrl+1/2/3/4",
+        "description": "Changer modes d'affichage"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier vue actuelle"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Télécharger HTML"
+      },
+      {
+        "keys": "Ctrl+E",
+        "description": "Exporter JSON en-têtes"
+      }
+    ]
+  }
+}

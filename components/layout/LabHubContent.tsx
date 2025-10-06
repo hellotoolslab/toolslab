@@ -29,6 +29,8 @@ import { labToasts } from '@/lib/utils/toasts';
 import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
+import { useHydration } from '@/lib/hooks/useHydration';
+import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;
@@ -225,6 +227,7 @@ function LabToolCard({
 }
 
 function EnhancedEmptyState() {
+  const { data: t } = useDictionarySectionContext('lab');
   return (
     <>
       {/* Detailed Introduction Section */}
@@ -232,30 +235,8 @@ function EnhancedEmptyState() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              Your Personal Lab is a curated workspace where you can star your
-              most-used{' '}
-              <Link
-                href="/tools/json-formatter"
-                className="font-semibold text-purple-600 underline decoration-2 underline-offset-2 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
-              >
-                developer tools
-              </Link>{' '}
-              for instant access. From{' '}
-              <Link
-                href="/tools/base64-encode"
-                className="font-semibold text-purple-600 underline decoration-2 underline-offset-2 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
-              >
-                encoding utilities
-              </Link>{' '}
-              to{' '}
-              <Link
-                href="/tools/hash-generator"
-                className="font-semibold text-purple-600 underline decoration-2 underline-offset-2 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
-              >
-                security tools
-              </Link>
-              , build your personalized toolkit that evolves with your workflow.
-              Everything stays private in your browser with no account required.
+              {t?.empty?.introDescription ||
+                'Your Personal Lab is a curated workspace where you can star your most-used developer tools for instant access. From encoding utilities to security tools, build your personalized toolkit that evolves with your workflow. Everything stays private in your browser with no account required.'}
             </p>
           </div>
         </div>
@@ -321,13 +302,11 @@ function EnhancedEmptyState() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white lg:text-4xl">
-                Your Lab Awaits!
+                {t?.empty?.mainMessage || 'Your Lab Awaits!'}
               </h2>
               <p className="mb-8 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                Start building your personalized developer toolkit by starring
-                tools with a{' '}
-                <Star className="mx-1 inline h-5 w-5 fill-amber-500 text-amber-500" />{' '}
-                to add them here.
+                {t?.empty?.mainDescription ||
+                  'Start building your personalized developer toolkit by starring tools with a ⭐ to add them here.'}
               </p>
             </motion.div>
 
@@ -350,7 +329,7 @@ function EnhancedEmptyState() {
                 )}
               >
                 <Search className="h-5 w-5" />
-                Explore All Tools
+                {t?.empty?.exploreAllTools || 'Explore All Tools'}
                 <ArrowRight className="h-5 w-5" />
               </Link>
 
@@ -365,7 +344,7 @@ function EnhancedEmptyState() {
                 )}
               >
                 <Grid3X3 className="h-5 w-5" />
-                Browse Categories
+                {t?.empty?.browseCategories || 'Browse Categories'}
               </Link>
             </motion.div>
 
@@ -377,27 +356,28 @@ function EnhancedEmptyState() {
               className="rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-50 to-violet-50 p-6 dark:border-gray-700 dark:from-purple-950/20 dark:to-violet-950/20"
             >
               <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-white">
-                💡 Pro Tips for Your Lab:
+                💡 {t?.empty?.proTipsTitle || 'Pro Tips for Your Lab:'}
               </h3>
               <ul className="space-y-3 text-left text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
                   <Star className="mt-1 h-5 w-5 flex-shrink-0 fill-amber-500 text-amber-500" />
                   <span>
-                    Click the star on any tool card to add it to your personal
-                    collection
+                    {t?.empty?.proTip1 ||
+                      'Click the star on any tool card to add it to your personal collection'}
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Star className="mt-1 h-5 w-5 flex-shrink-0 fill-amber-500 text-amber-500" />
                   <span>
-                    Star entire categories for quick access to related tools
+                    {t?.empty?.proTip2 ||
+                      'Star entire categories for quick access to related tools'}
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Shield className="mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
                   <span>
-                    Everything stays completely private - stored locally in your
-                    browser with zero tracking
+                    {t?.empty?.proTip3 ||
+                      'Everything stays completely private - stored locally in your browser with zero tracking'}
                   </span>
                 </li>
               </ul>
@@ -411,6 +391,8 @@ function EnhancedEmptyState() {
 
 export default function LabHubContent() {
   const { trackEngagement } = useUmami();
+  const isHydrated = useHydration();
+  const { data: t } = useDictionarySectionContext('lab');
   const {
     favoriteTools,
     favoriteCategories,
@@ -423,6 +405,8 @@ export default function LabHubContent() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    if (!isHydrated) return; // Wait for hydration before accessing store
+
     setMounted(true);
     setLabVisited();
 
@@ -438,7 +422,7 @@ export default function LabHubContent() {
         categories_count: favoriteCategories.length,
       });
     }
-  }, []); // Empty dependency array - run only once on mount
+  }, [isHydrated]); // Re-run when hydration completes
 
   // Show welcome toast if first visit with favorites
   useEffect(() => {
@@ -549,43 +533,40 @@ export default function LabHubContent() {
 
                 {/* Main Heading */}
                 <h1 className="mb-4 text-3xl font-bold text-white lg:text-4xl">
-                  Your Personal{' '}
-                  <span className="bg-gradient-to-r from-white to-gray-100 bg-clip-text font-bold text-transparent">
-                    Developer Lab
-                  </span>
+                  {t?.empty?.headerTitle || 'Your Personal Developer Lab'}
                 </h1>
 
                 {/* Enhanced Subtitle */}
                 <p className="mx-auto mb-6 max-w-2xl text-lg text-white/90 lg:text-xl">
-                  Streamline your workflow with curated tools and instant access
+                  {t?.empty?.headerSubtitle ||
+                    'Streamline your workflow with curated tools and instant access'}
                 </p>
 
                 {/* Enhanced Tagline */}
                 <p className="mx-auto mb-4 max-w-2xl text-xl text-white/90 lg:text-2xl">
-                  Curate your favorite tools for instant access and streamlined
-                  workflows
+                  {t?.empty?.headerTagline ||
+                    'Curate your favorite tools for instant access and streamlined workflows'}
                 </p>
 
                 {/* Enhanced Description */}
                 <p className="mx-auto mb-8 max-w-4xl text-lg leading-relaxed text-white/80">
-                  Build your personalized toolkit by starring tools across
-                  ToolsLab. Your Lab stays completely private - all data stored
-                  locally in your browser with no account required.
+                  {t?.empty?.headerDescription ||
+                    'Build your personalized toolkit by starring tools across ToolsLab. Your Lab stays completely private - all data stored locally in your browser with no account required.'}
                 </p>
 
                 {/* Trust Badges */}
                 <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/90">
                   <span className="flex items-center gap-2">
                     <Shield className="h-4 w-4 text-green-300" />
-                    Completely Private
+                    {t?.empty?.trustBadge1 || 'Completely Private'}
                   </span>
                   <span className="flex items-center gap-2">
                     <Zap className="h-4 w-4 text-yellow-300" />
-                    Instant Access
+                    {t?.empty?.trustBadge2 || 'Instant Access'}
                   </span>
                   <span className="flex items-center gap-2">
                     <Heart className="h-4 w-4 text-pink-300" />
-                    Zero Setup
+                    {t?.empty?.trustBadge3 || 'Zero Setup'}
                   </span>
                 </div>
               </div>
@@ -605,15 +586,13 @@ export default function LabHubContent() {
           <div className="rounded-2xl bg-gradient-to-br from-purple-50 to-violet-50 py-16 dark:from-purple-950/20 dark:to-violet-950/20">
             <div className="mx-auto max-w-4xl px-8 text-center">
               <h2 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
-                Why Create a Personal Developer Lab?
+                {t?.empty?.seoTitle || 'Why Create a Personal Developer Lab?'}
               </h2>
 
               <div className="prose prose-lg mx-auto max-w-none text-gray-700 dark:text-gray-300">
                 <p className="mb-6">
-                  Your Personal Lab transforms scattered tool usage into an
-                  organized, efficient workflow. By curating your favorite
-                  tools, you eliminate the time spent searching and create
-                  muscle memory for your most common development tasks.
+                  {t?.empty?.seoIntro ||
+                    'Your Personal Lab transforms scattered tool usage into an organized, efficient workflow. By curating your favorite tools, you eliminate the time spent searching and create muscle memory for your most common development tasks.'}
                 </p>
 
                 <div className="grid gap-8 text-left md:grid-cols-2">
@@ -623,14 +602,12 @@ export default function LabHubContent() {
                         <Shield className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        Privacy &amp; Control
+                        {t?.empty?.privacyControlTitle || 'Privacy & Control'}
                       </h3>
                     </div>
                     <p className="text-gray-600 dark:text-gray-400">
-                      Everything in your Lab is stored locally using browser
-                      localStorage. No accounts, no tracking, no server-side
-                      storage. Your workflow preferences stay completely private
-                      and under your control.
+                      {t?.empty?.privacyControlDescription ||
+                        'Everything in your Lab is stored locally using browser localStorage. No accounts, no tracking, no server-side storage. Your workflow preferences stay completely private and under your control.'}
                     </p>
                   </div>
 
@@ -640,32 +617,13 @@ export default function LabHubContent() {
                         <Zap className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        Workflow Optimization
+                        {t?.empty?.workflowOptimizationTitle ||
+                          'Workflow Optimization'}
                       </h3>
                     </div>
                     <p className="text-gray-600 dark:text-gray-400">
-                      Star frequently-used tools like our{' '}
-                      <Link
-                        href="/tools/json-formatter"
-                        className="font-medium text-purple-600 underline hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
-                      >
-                        JSON Formatter
-                      </Link>
-                      ,{' '}
-                      <Link
-                        href="/tools/base64-encode"
-                        className="font-medium text-purple-600 underline hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
-                      >
-                        Base64 Encoder
-                      </Link>
-                      , and{' '}
-                      <Link
-                        href="/tools/hash-generator"
-                        className="font-medium text-purple-600 underline hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"
-                      >
-                        security utilities
-                      </Link>{' '}
-                      to build workflows that match your development patterns.
+                      {t?.empty?.workflowOptimizationDescription ||
+                        'Star frequently-used tools like our JSON Formatter, Base64 Encoder, and security utilities to build workflows that match your development patterns.'}
                     </p>
                   </div>
                 </div>
@@ -677,7 +635,7 @@ export default function LabHubContent() {
                   className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-6 py-3 font-semibold text-white transition-all hover:scale-105 hover:bg-purple-700"
                 >
                   <Search className="h-4 w-4" />
-                  Explore All Tools
+                  {t?.empty?.exploreAllTools || 'Explore All Tools'}
                 </Link>
 
                 <Link
@@ -685,7 +643,7 @@ export default function LabHubContent() {
                   className="inline-flex items-center gap-2 rounded-full border-2 border-purple-600 px-6 py-3 font-semibold text-purple-600 transition-all hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-950/20"
                 >
                   <Grid3X3 className="h-4 w-4" />
-                  Browse Categories
+                  {t?.empty?.browseCategories || 'Browse Categories'}
                 </Link>
               </div>
             </div>
@@ -927,13 +885,12 @@ export default function LabHubContent() {
               </div>
 
               <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                Need More Tools?
+                {t?.empty?.needMoreTools || 'Need More Tools?'}
               </h2>
 
               <p className="mx-auto mb-8 max-w-2xl text-gray-600 dark:text-gray-400">
-                Explore our complete collection of developer tools across all
-                categories. Find the perfect tool for your workflow and add it
-                to your Lab.
+                {t?.empty?.needMoreToolsDescription ||
+                  'Explore our complete collection of developer tools across all categories. Find the perfect tool for your workflow and add it to your Lab.'}
               </p>
 
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -942,7 +899,7 @@ export default function LabHubContent() {
                   className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                 >
                   <Search className="h-4 w-4" />
-                  Browse All Tools
+                  {t?.empty?.browseAllTools || 'Browse All Tools'}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
 
@@ -951,7 +908,7 @@ export default function LabHubContent() {
                   className="inline-flex items-center gap-2 rounded-full border-2 border-purple-600 px-6 py-3 font-semibold text-purple-600 transition-all hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-950/20"
                 >
                   <Grid3X3 className="h-4 w-4" />
-                  Browse Categories
+                  {t?.empty?.browseCategories || 'Browse Categories'}
                 </Link>
               </div>
             </div>

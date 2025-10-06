@@ -1,6 +1,6 @@
 // Barrel exports for layout components
 export { default as LabHubContent } from './LabHubContent';
-export { default as CategoriesHubContent } from './CategoriesHubContent';
+export { default as CategoriesHubContent } from './CategoriesHubContentSimple';
 export { default as CategoryPageContent } from './CategoryPageContent';
 export { Footer } from './Footer';
 export { Header } from './Header';
