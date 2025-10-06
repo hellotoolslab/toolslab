@@ -457,6 +457,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
 
   // Use eyedropper API
   const useEyedropper = useCallback(async () => {
+    // SSR guard: ensure we're in browser environment
+    if (typeof window === 'undefined') return;
+
     if ('EyeDropper' in window) {
       try {
         // @ts-ignore - EyeDropper API
@@ -1244,7 +1247,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
               <h3 className="text-lg font-medium">Color Picker</h3>
               <div className="flex gap-2">
                 {/* Eyedropper button */}
-                {'EyeDropper' in window && (
+                {typeof window !== 'undefined' && 'EyeDropper' in window && (
                   <button
                     onClick={useEyedropper}
                     className="rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-700"

@@ -46,6 +46,7 @@ import {
   generateJsonSchema,
   ConversionOptions,
 } from '@/lib/tools/yaml-json';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 
 // Sample data
 const sampleData = {
@@ -112,6 +113,9 @@ address:
 };
 
 export default function YamlJsonConverter() {
+  const { trackUse, trackError, trackCustom } = useToolTracking(
+    'yaml-json-converter'
+  );
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [conversionDirection, setConversionDirection] = useState<
@@ -208,15 +212,22 @@ export default function YamlJsonConverter() {
         if (result.warnings) {
           setWarnings(result.warnings);
         }
+        // Track successful conversion
+        trackUse(input, result.output || '', { success: true });
       } else {
         setError(result.error || 'Conversion failed');
       }
     } catch (err: any) {
-      setError(err.message || 'An unexpected error occurred');
+      const errorMessage = err.message || 'An unexpected error occurred';
+      setError(errorMessage);
+      trackError(
+        err instanceof Error ? err : new Error(errorMessage),
+        input.length
+      );
     } finally {
       setIsProcessing(false);
     }
-  }, [input, conversionDirection, options]);
+  }, [input, conversionDirection, options, trackUse, trackError]);
 
   // Copy to clipboard
   const handleCopy = useCallback(() => {

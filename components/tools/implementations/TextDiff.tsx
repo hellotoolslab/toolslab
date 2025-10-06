@@ -53,6 +53,7 @@ import {
   detectFileType,
 } from '@/lib/tools/textDiff';
 import { useDebounce } from '@/lib/hooks/useDebounce';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 
 interface TextDiffProps {
   initialText1?: string;
@@ -74,6 +75,7 @@ export default function TextDiff({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [workerReady, setWorkerReady] = useState(false);
+  const { trackUse, trackCustom, trackError } = useToolTracking('text-diff');
 
   // Options state
   const [options, setOptions] = useState<DiffOptions>({
@@ -116,9 +118,23 @@ export default function TextDiff({
           setDiffResult(result);
           setIsProcessing(false);
           setError(null);
+
+          // Track successful diff
+          if (result) {
+            trackCustom({
+              inputSize: text1.length + text2.length,
+              outputSize: JSON.stringify(result.statistics).length,
+              success: true,
+              mode: options.mode,
+              changes: result.changes.length,
+            });
+          }
         } else if (type === 'error') {
           setError(error);
           setIsProcessing(false);
+
+          // Track error
+          trackError(new Error(error), text1.length + text2.length);
         } else if (type === 'progress') {
           // Handle progress updates if needed
         }
@@ -162,12 +178,36 @@ export default function TextDiff({
         const result = computeDiff(debouncedText1, debouncedText2, options);
         setDiffResult(result);
         setIsProcessing(false);
+
+        // Track successful diff (fallback)
+        if (result) {
+          trackCustom({
+            inputSize: debouncedText1.length + debouncedText2.length,
+            outputSize: JSON.stringify(result.statistics).length,
+            success: true,
+            mode: options.mode,
+            changes: result.changes.length,
+          });
+        }
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to compute diff');
       setIsProcessing(false);
+
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        debouncedText1.length + debouncedText2.length
+      );
     }
-  }, [debouncedText1, debouncedText2, options, workerReady]);
+  }, [
+    debouncedText1,
+    debouncedText2,
+    options,
+    workerReady,
+    trackUse,
+    trackError,
+  ]);
 
   // File handling
   const handleFileUpload = useCallback((file: File, side: 'left' | 'right') => {

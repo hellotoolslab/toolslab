@@ -31,6 +31,15 @@ const Footer = dynamic(
     ssr: false,
   }
 );
+
+// Analytics Debug Panel (only in development)
+const AnalyticsDebugPanel = dynamic(
+  () => import('@/components/analytics/AnalyticsDebugPanel'),
+  {
+    ssr: false,
+  }
+);
+
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { UpdateNotification } from '@/components/UpdateNotification';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -208,6 +217,7 @@ export default async function RootLayout({
             </div>
             <UpdateNotification />
             <ToastProvider />
+            <AnalyticsDebugPanel />
           </ThemeProvider>
         </UmamiProvider>
         <SpeedInsights />

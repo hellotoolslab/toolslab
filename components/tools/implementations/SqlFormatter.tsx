@@ -24,6 +24,7 @@ import {
 } from '@/lib/tools/sql-formatter';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 
 interface SqlFormatterProps extends BaseToolProps {}
@@ -61,6 +62,8 @@ export default function SqlFormatter({ categoryColor }: SqlFormatterProps) {
 
   const { copied, copy } = useCopy();
   const { downloadText } = useDownload();
+  const { trackUse, trackCustom, trackError } =
+    useToolTracking('sql-formatter');
 
   // Auto-detect dialect when input changes and auto-detect is enabled
   useEffect(() => {
@@ -146,10 +149,24 @@ export default function SqlFormatter({ categoryColor }: SqlFormatterProps) {
       });
       setFormatSuccess(true);
       setTimeout(() => setFormatSuccess(false), 3000);
+
+      // Track successful formatting
+      trackCustom({
+        inputSize: input.length,
+        outputSize: result.formatted?.length || 0,
+        success: true,
+        dialect: actualDialect,
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to format SQL');
       setOutput('');
       setStats(null);
+
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
     } finally {
       setIsProcessing(false);
     }
@@ -162,6 +179,8 @@ export default function SqlFormatter({ categoryColor }: SqlFormatterProps) {
     linesBetweenQueries,
     maxLineLength,
     preserveComments,
+    trackUse,
+    trackError,
   ]);
 
   const handleValidate = useCallback(() => {

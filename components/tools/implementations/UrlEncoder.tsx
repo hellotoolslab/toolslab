@@ -33,6 +33,7 @@ import {
 } from '@/lib/tools/url-encode';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 
 interface UrlEncoderProps extends BaseToolProps {}
@@ -44,6 +45,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const { copied, copy } = useCopy();
   const { downloadText } = useDownload();
+  const { trackUse, trackCustom, trackError } = useToolTracking('url-encode');
 
   // Processing options
   const [options, setOptions] = useState<UrlEncodeOptions>({
@@ -107,6 +109,14 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
           setOriginalEncoding(result.originalEncoding || '');
           setDetectedOperation(result.detectedOperation || 'encode');
 
+          // Track successful encoding/decoding
+          trackCustom({
+            inputSize: input.length,
+            outputSize: result.result?.length || 0,
+            success: true,
+            operation: result.detectedOperation,
+          });
+
           // Parse query parameters if URL has them
           if (result.metadata?.hasQueryParams && input.includes('?')) {
             try {
@@ -126,10 +136,16 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
       setError(errorMessage);
       setOutput('');
       setSuggestions([]);
+
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
     } finally {
       setIsProcessing(false);
     }
-  }, [input, options, batchMode]);
+  }, [input, options, batchMode, trackUse, trackError]);
 
   // Auto-process when input changes
   useEffect(() => {

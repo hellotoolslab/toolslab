@@ -45,6 +45,7 @@ import {
   generateHtmlCode,
 } from '@/lib/tools/favicon';
 import { BaseToolProps } from '@/lib/types/tools';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 
 interface FaviconGeneratorProps extends BaseToolProps {}
 
@@ -73,6 +74,8 @@ export default function FaviconGenerator({
 
   const workerRef = useRef<Worker | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { trackUse, trackError, trackCustom } =
+    useToolTracking('favicon-generator');
 
   // Initialize Web Worker
   useEffect(() => {
@@ -84,6 +87,7 @@ export default function FaviconGenerator({
       if (error) {
         toast.error(`Processing error: ${error}`);
         setIsGenerating(false);
+        trackError(new Error(error), 0);
         return;
       }
 
@@ -120,6 +124,10 @@ export default function FaviconGenerator({
       toast.success('Image loaded successfully!');
     } catch (error) {
       toast.error('Failed to load image');
+      trackError(
+        error instanceof Error ? error : new Error('Failed to load image'),
+        file.size
+      );
     }
   }, []);
 
@@ -142,6 +150,12 @@ export default function FaviconGenerator({
       toast.success('Image loaded from URL!');
     } catch (error) {
       toast.error('Failed to load image from URL');
+      trackError(
+        error instanceof Error
+          ? error
+          : new Error('Failed to load image from URL'),
+        urlInput.length
+      );
     }
   };
 
@@ -200,6 +214,10 @@ export default function FaviconGenerator({
     } catch (error) {
       toast.error('Failed to create favicon');
       setIsGenerating(false);
+      trackError(
+        error instanceof Error ? error : new Error('Failed to create favicon'),
+        data.size
+      );
     }
   };
 
@@ -235,6 +253,12 @@ export default function FaviconGenerator({
     } catch (error) {
       toast.error('Failed to start processing');
       setIsGenerating(false);
+      trackError(
+        error instanceof Error
+          ? error
+          : new Error('Failed to start processing'),
+        0
+      );
     }
   };
 
@@ -254,6 +278,21 @@ export default function FaviconGenerator({
     setIsGenerating(false);
     setProgress(100);
     toast.success(`Generated ${favicons.length} favicon files!`);
+
+    // Track successful generation with custom metadata
+    const totalSize = favicons.reduce((sum, f) => sum + f.size, 0);
+    trackCustom({
+      event: 'tool.use',
+      tool: 'favicon-generator',
+      inputSize: 0,
+      outputSize: totalSize,
+      success: true,
+      metadata: {
+        count: favicons.length,
+        totalSize,
+        sourceType: activeTab,
+      },
+    });
   };
 
   // Download individual favicon

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Copy, Check, Shield, Hash } from 'lucide-react';
 import { useMultiCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps, HashAlgorithm } from '@/lib/types/tools';
 
 interface HashGeneratorProps extends BaseToolProps {}
@@ -23,6 +24,8 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
     string,
     Record<string, string>
   >();
+  const { trackUse, trackCustom, trackError } =
+    useToolTracking('hash-generator');
 
   const algorithms: HashAlgorithm[] = useMemo(
     () => ['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512', 'MD5', 'CRC32'],
@@ -327,10 +330,26 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
       }
 
       setHashes(result);
+
+      // Track successful hash generation
+      if (result[algorithm]) {
+        trackCustom({
+          inputSize: input.length,
+          outputSize: result[algorithm].length,
+          success: true,
+          algorithm,
+          hasSalt: !!salt,
+        });
+      }
     } catch (err) {
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
       // Error is handled by useToolProcessor
     }
-  }, [input, salt, algorithms, algorithm, processSync]);
+  }, [input, salt, algorithms, algorithm, processSync, trackUse, trackError]);
 
   useEffect(() => {
     if (input) {

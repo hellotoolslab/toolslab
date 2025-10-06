@@ -61,6 +61,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 
 interface ListConfig {
@@ -81,6 +82,7 @@ export default function ListCompare({
   onInputChange,
   onOutputChange,
 }: BaseToolProps) {
+  const { trackUse, trackError } = useToolTracking('list-compare');
   const [lists, setLists] = useState<ListConfig[]>([
     { id: '1', name: 'List 1', content: initialInput || '', visible: true },
     { id: '2', name: 'List 2', content: '', visible: true },
@@ -262,14 +264,25 @@ export default function ListCompare({
           `Comparison completed! Processed ${result.metadata?.totalItems} items across ${result.metadata?.listsProcessed} lists in ${result.metadata?.processingTime}ms`
         );
         onOutputChange?.(JSON.stringify(result, null, 2));
+        trackUse(JSON.stringify(parsedLists), JSON.stringify(result, null, 2), {
+          success: true,
+        });
       } else {
         setError(result.error || 'Comparison failed');
+        trackError(
+          new Error(result.error || 'Comparison failed'),
+          JSON.stringify(parsedLists).length
+        );
       }
     } catch (err) {
       setError(
         `Comparison failed: ${err instanceof Error ? err.message : 'Unknown error'}`
       );
       setComparisonResult(null);
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        JSON.stringify(parsedLists).length
+      );
     } finally {
       setIsProcessing(false);
     }
@@ -283,6 +296,8 @@ export default function ListCompare({
     fuzzyThreshold,
     filterPattern,
     onOutputChange,
+    trackUse,
+    trackError,
   ]);
 
   // Auto-run comparison when dependencies change

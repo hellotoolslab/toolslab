@@ -45,6 +45,7 @@ import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import {
   convertCurlToCode,
   detectAndNormalizeCurl,
@@ -85,6 +86,7 @@ const showToast = (message: string, type: 'success' | 'error' = 'success') => {
 
 export default function CurlToCodeConverter() {
   const { theme } = useTheme();
+  const { trackUse, trackError } = useToolTracking('curl-to-code');
 
   // State
   const [curlCommand, setCurlCommand] = useState('');
@@ -164,8 +166,19 @@ export default function CurlToCodeConverter() {
         setGeneratedCode(result);
         setActiveTab('code');
         showToast('cURL command converted successfully');
+
+        // Track successful conversion
+        trackUse(curlCommand, result.generatedCode?.code || '', {
+          success: true,
+        });
       } else {
         showToast(result.error || 'Failed to convert cURL command', 'error');
+
+        // Track error
+        trackError(
+          new Error(result.error || 'Conversion failed'),
+          curlCommand.length
+        );
       }
     } catch (error) {
       showToast(
@@ -173,6 +186,12 @@ export default function CurlToCodeConverter() {
           ? error.message
           : 'Failed to convert cURL command',
         'error'
+      );
+
+      // Track error
+      trackError(
+        error instanceof Error ? error : new Error('Conversion failed'),
+        curlCommand.length
       );
     } finally {
       setIsConverting(false);

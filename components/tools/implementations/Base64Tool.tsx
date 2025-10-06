@@ -24,6 +24,7 @@ import {
 } from '@/lib/tools/base64';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 
 interface Base64ToolProps {
   categoryColor: string;
@@ -36,6 +37,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const { copied, copy } = useCopy();
   const { downloadText, downloadBase64AsBinary } = useDownload();
+  const { trackUse, trackError } = useToolTracking('base64');
   const [fileInfo, setFileInfo] = useState<FileProcessResult | null>(null);
   const [operation, setOperation] = useState<'auto' | 'encode' | 'decode'>(
     'auto'
@@ -79,12 +81,23 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
       setDetectedOperation(result.operation);
       setMimeType(result.mimeType || '');
       setIsDataURL(result.isDataURL || false);
+
+      // Track successful operation
+      trackUse(input, result.output, {
+        success: true,
+      });
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : 'An unexpected error occurred';
       setError(errorMessage);
       setOutput('');
       setSuggestions([]);
+
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(errorMessage),
+        input.length
+      );
     } finally {
       setIsProcessing(false);
     }

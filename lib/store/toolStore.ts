@@ -2,6 +2,7 @@
 
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import { trackToolUsage } from '@/lib/analytics/middleware/toolStoreMiddleware';
 
 interface ToolOperation {
   id: string;
@@ -58,10 +59,14 @@ const storeLogic: any = (set: any, get: any): ToolStore => ({
   favoritesCountAtLastVisit: 0,
 
   // Original actions
-  addToHistory: (operation: ToolOperation) =>
+  addToHistory: (operation: ToolOperation) => {
     set((state: ToolStore) => ({
       history: [operation, ...state.history].slice(0, 100), // Keep last 100 operations
-    })),
+    }));
+
+    // 🔥 AUTO-TRACKING: Track tool usage via analytics middleware
+    trackToolUsage(operation, get() as ToolStore);
+  },
 
   setChainedData: (data: any) => set({ chainedData: data }),
 
