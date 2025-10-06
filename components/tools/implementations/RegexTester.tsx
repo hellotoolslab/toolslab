@@ -20,6 +20,7 @@ import {
   XCircle,
 } from 'lucide-react';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 
 interface RegexMatch {
   match: string;
@@ -122,6 +123,7 @@ const FLAG_OPTIONS = [
 
 export default function RegexTester({ categoryColor }: RegexTesterProps) {
   const { downloadJSON } = useDownload();
+  const { trackUse, trackCustom, trackError } = useToolTracking('regex-tester');
   const [pattern, setPattern] = useState('\\b\\w+@\\w+\\.\\w+\\b');
   const [testString, setTestString] = useState(
     'Contact us at info@example.com or support@company.co.uk'
@@ -201,6 +203,15 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
               flags,
             });
 
+            // Track successful regex test
+            trackCustom({
+              inputSize: pattern.length,
+              outputSize: JSON.stringify(matches).length,
+              success: true,
+              matchCount: matches.length,
+              flags,
+            });
+
             // Generate replacement preview if replace string is provided
             if (replaceString) {
               try {
@@ -224,6 +235,13 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
               totalMatches: 0,
               flags,
             });
+
+            // Track error
+            trackError(
+              err instanceof Error ? err : new Error(String(err)),
+              pattern.length
+            );
+
             setShowResults(true);
           } finally {
             setIsProcessing(false);

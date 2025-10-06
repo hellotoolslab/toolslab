@@ -22,6 +22,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps, JsonValue, JsonObject } from '@/lib/types/tools';
 import { formatJSON, minifyJSON } from '@/lib/tools/json';
 
@@ -57,6 +58,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     string
   >();
   const { downloadJSON, downloadText } = useDownload();
+  const { trackUse, trackError } = useToolTracking('json-formatter');
 
   const formatJson = () => {
     // Use uploaded file content if available, otherwise use manual input
@@ -155,6 +157,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
       setFormatSuccess(true);
       setTimeout(() => setFormatSuccess(false), 3000);
 
+      // Track successful formatting
+      trackUse(contentToProcess, result, {
+        success: true,
+        processingTime: Date.now() - Date.now(), // processSync already measures this
+      });
+
       // Auto-scroll to output
       setTimeout(() => {
         outputRef.current?.scrollIntoView({
@@ -163,6 +171,11 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         });
       }, 100);
     } catch (err) {
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        contentToProcess.length
+      );
       // Error is handled by useToolProcessor
     }
   };
@@ -189,7 +202,17 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
       });
 
       setOutput(result);
+
+      // Track successful minification
+      trackUse(contentToProcess, result, {
+        success: true,
+      });
     } catch (err) {
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        contentToProcess.length
+      );
       // Error is handled by useToolProcessor
     }
   };

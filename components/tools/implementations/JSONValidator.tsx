@@ -33,6 +33,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import {
   validateJSON,
   formatJSON,
@@ -63,6 +64,8 @@ export default function JSONValidator({
   const [isValidating, setIsValidating] = useState(false);
   const [activeTab, setActiveTab] = useState('validator');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { trackUse, trackCustom, trackError } =
+    useToolTracking('json-validator');
 
   // Advanced options
   const [maxDepth, setMaxDepth] = useState(50);
@@ -114,12 +117,33 @@ export default function JSONValidator({
         const validationResult = validateJSON(jsonInput, options);
         setResult(validationResult);
         setIsValidating(false);
+
+        // Track validation
+        if (validationResult.isValid) {
+          trackCustom({
+            inputSize: jsonInput.length,
+            outputSize: JSON.stringify(validationResult, null, 2).length,
+            success: true,
+            level: validationLevel,
+          });
+        } else {
+          trackError(
+            new Error(
+              `Validation failed: ${validationResult.summary.errorCount} errors`
+            ),
+            jsonInput.length
+          );
+        }
       }, 50);
     } catch (error) {
       console.error('Validation error:', error);
+      trackError(
+        error instanceof Error ? error : new Error(String(error)),
+        jsonInput.length
+      );
       setIsValidating(false);
     }
-  }, [jsonInput, options]);
+  }, [jsonInput, options, validationLevel, trackUse, trackError]);
 
   // Auto-validate on input change (debounced)
   useEffect(() => {

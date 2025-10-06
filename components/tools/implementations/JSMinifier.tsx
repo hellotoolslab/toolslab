@@ -22,6 +22,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
   minifyJS,
@@ -86,6 +87,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
     string
   >();
   const { downloadText } = useDownload();
+  const { trackUse, trackError } = useToolTracking('js-minifier');
 
   // Process JavaScript
   const processInput = () => {
@@ -107,10 +109,15 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
         setOutput(result.js || '');
         setStats(result.stats || null);
         setValidationError('');
+        trackUse(input, result.js || '', { success: true });
       } else {
         setValidationError(result.error || 'Failed to process JavaScript');
         setOutput('');
         setStats(null);
+        trackError(
+          new Error(result.error || 'Failed to process JavaScript'),
+          input.length
+        );
       }
     } catch (err) {
       setValidationError(
@@ -118,6 +125,10 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
       );
       setOutput('');
       setStats(null);
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
     }
   };
 
