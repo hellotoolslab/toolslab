@@ -1,15 +1,15 @@
 {
-  "title": "cURL a Codice",
-  "description": "Converti comandi cURL in codice per vari linguaggi",
+  "title": "cURL to Code Converter",
+  "description": "Convert cURL commands to code in various programming languages",
   "placeholder": "",
   "meta": {
-    "title": "cURL a Codice - Strumento Online Gratuito | ToolsLab",
-    "description": "Converti cURL in codice online. Genera snippet da comandi curl. Convertitore cURL gratuito."
+    "title": "cURL to Code Converter - Free Online Tool | ToolsLab",
+    "description": "Convert cURL to code online. Generate code snippets from curl commands. Free cURL converter."
   },
-  "tagline": "Converti comandi cURL in codice production-ready in qualsiasi linguaggio",
-  "pageDescription": "Convertitore cURL in codice gratuito trasforma comandi cURL in codice production-ready per JavaScript, Python, Go, Java, PHP, Ruby e oltre 15 linguaggi. Funzionalità gestione automatica errori, inferenza tipi, supporto async/await e integrazione best practices. Perfetto per sviluppatori API che convertono esempi documentazione, debug richieste network e costruzione client SDK. Supporta tutti i flag cURL, metodi autenticazione, upload multipart e genera unit test. Conversione sicura basata su browser senza caricamento dati.",
+  "tagline": "Convert cURL commands to production-ready code in any programming language",
+  "pageDescription": "Free cURL to code converter transforms cURL commands into production-ready code for JavaScript, Python, Go, Java, PHP, Ruby and 15+ languages. Features automatic error handling, type inference, async/await support and best practices integration. Perfect for API developers converting documentation examples, debugging network requests and building SDK clients. Supports all cURL flags, authentication methods, multipart uploads and generates unit tests. Secure browser-based conversion with no data upload.",
   "instructions": {
-    "title": "How to use cURL a Codice",
+    "title": "How to use cURL to Code Converter",
     "steps": [
       {
         "title": "Paste your URL or text",
