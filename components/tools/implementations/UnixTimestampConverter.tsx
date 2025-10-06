@@ -27,6 +27,7 @@ import {
   Settings,
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import {
   convertTimestamp,
   batchConvert,
@@ -40,6 +41,7 @@ import {
 } from '@/lib/tools/unix-timestamp';
 
 const UnixTimestampConverter = () => {
+  const { trackUse, trackError } = useToolTracking('unix-timestamp-converter');
   const [input, setInput] = useState('');
   const [batchInput, setBatchInput] = useState('');
   const [timezone, setTimezone] = useState('UTC');
@@ -97,16 +99,25 @@ const UnixTimestampConverter = () => {
 
       if (conversionResult.success) {
         toast.success('Conversion completed successfully');
+        trackUse(input, conversionResult.result || '', { success: true });
       } else {
         toast.error(conversionResult.error || 'Conversion failed');
+        trackError(
+          new Error(conversionResult.error || 'Conversion failed'),
+          input.length
+        );
       }
     } catch (error) {
       toast.error('An unexpected error occurred');
       console.error('Conversion error:', error);
+      trackError(
+        error instanceof Error ? error : new Error(String(error)),
+        input.length
+      );
     } finally {
       setIsProcessing(false);
     }
-  }, [input, options]);
+  }, [input, options, trackUse, trackError]);
 
   const handleBatchConvert = useCallback(async () => {
     if (!batchInput.trim()) {
@@ -128,16 +139,22 @@ const UnixTimestampConverter = () => {
         toast.success(
           `Batch processing completed: ${successCount}/${totalCount} successful`
         );
+        trackUse(batchInput, conversionResult.result || '', { success: true });
       } else {
         toast.error('Batch processing failed');
+        trackError(new Error('Batch processing failed'), batchInput.length);
       }
     } catch (error) {
       toast.error('An unexpected error occurred during batch processing');
       console.error('Batch conversion error:', error);
+      trackError(
+        error instanceof Error ? error : new Error(String(error)),
+        batchInput.length
+      );
     } finally {
       setIsProcessing(false);
     }
-  }, [batchInput, options]);
+  }, [batchInput, options, trackUse, trackError]);
 
   const handleInsertCurrentTimestamp = useCallback(() => {
     const current = getCurrentTimestamp(unit === 'auto' ? 'seconds' : unit);

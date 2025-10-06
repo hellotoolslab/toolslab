@@ -57,6 +57,7 @@ import {
 } from '@/lib/stores/crontab-store';
 import { BaseToolProps } from '@/lib/types/tools';
 import { useHydration } from '@/lib/hooks/useHydration';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 
 interface CrontabBuilderProps extends BaseToolProps {}
 
@@ -190,6 +191,8 @@ function CrontabBuilderContent({
   const [showAdvanced, setShowAdvanced] = useState(false);
   const isUpdatingFromBuilder = useRef(false);
   const isUpdatingFromExpression = useRef(false);
+  const { trackUse, trackError, trackCustom } =
+    useToolTracking('crontab-builder');
 
   // Parse expression when input changes
   const parseExpression = useCallback(
@@ -203,9 +206,37 @@ function CrontabBuilderContent({
         const result = parseCronExpression(expression, selectedTimezone);
         setParseResult(result);
         onOutputChange?.(JSON.stringify(result, null, 2));
+
+        // Track successful parsing (not history - that's handled by useCrontabStore)
+        if (result.validation.isValid) {
+          trackCustom({
+            event: 'tool.use',
+            tool: 'crontab-builder',
+            inputSize: expression.length,
+            outputSize: result.description.length,
+            success: true,
+            metadata: {
+              timezone: selectedTimezone,
+              hasWarnings: result.validation.warnings.length > 0,
+              warningsCount: result.validation.warnings.length,
+            },
+          });
+        } else {
+          // Track validation errors
+          trackError(
+            new Error(
+              `Invalid expression: ${result.validation.errors.join(', ')}`
+            ),
+            expression.length
+          );
+        }
       } catch (error) {
         setParseResult(null);
         toast.error('Failed to parse cron expression');
+        trackError(
+          error instanceof Error ? error : new Error(String(error)),
+          expression.length
+        );
       }
     },
     [selectedTimezone, onOutputChange]

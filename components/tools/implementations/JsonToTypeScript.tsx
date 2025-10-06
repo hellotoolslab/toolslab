@@ -36,6 +36,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import {
   convertJsonToTypeScript,
   validateJsonInput,
@@ -51,6 +52,8 @@ interface JsonToTypeScriptProps extends BaseToolProps {}
 export default function JsonToTypeScript({
   categoryColor,
 }: JsonToTypeScriptProps) {
+  const { trackUse, trackError } = useToolTracking('json-to-typescript');
+
   // State management
   const [jsonInput, setJsonInput] = useState('');
   const [result, setResult] = useState<TypeScriptGenerationResult | null>(null);
@@ -93,10 +96,24 @@ export default function JsonToTypeScript({
       await new Promise((resolve) => setTimeout(resolve, 100));
       const conversionResult = convertJsonToTypeScript(jsonInput, options);
       setResult(conversionResult);
+
+      // Track successful conversion
+      if (conversionResult.success) {
+        trackUse(jsonInput, conversionResult.interfaces, {
+          success: true,
+        });
+      } else {
+        trackError(
+          new Error(conversionResult.error || 'Conversion failed'),
+          jsonInput.length
+        );
+      }
     } catch (error) {
+      const errorMsg =
+        error instanceof Error ? error.message : 'Conversion failed';
       setResult({
         success: false,
-        error: error instanceof Error ? error.message : 'Conversion failed',
+        error: errorMsg,
         interfaces: '',
         detectedTypes: [],
         circularReferences: [],

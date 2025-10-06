@@ -53,6 +53,7 @@ import {
 } from '@/lib/tools/gradient-generator';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 
 interface GradientGeneratorProps extends BaseToolProps {}
@@ -82,11 +83,24 @@ export default function GradientGenerator({
   const previewRef = useRef<HTMLDivElement>(null);
   const { copied, copy } = useCopy();
   const { downloadText } = useDownload();
+  const { trackUse, trackError } = useToolTracking('gradient-generator');
 
   // Generate CSS result
   const gradientResult = useMemo(() => {
-    return generateGradientCSS(gradientConfig);
-  }, [gradientConfig]);
+    try {
+      const result = generateGradientCSS(gradientConfig);
+      if (result.success && result.css) {
+        trackUse(JSON.stringify(gradientConfig), result.css, { success: true });
+      }
+      return result;
+    } catch (error) {
+      trackError(
+        error instanceof Error ? error : new Error(String(error)),
+        JSON.stringify(gradientConfig).length
+      );
+      return { success: false, error: 'Failed to generate gradient' };
+    }
+  }, [gradientConfig, trackUse, trackError]);
 
   // Load saved gradients from localStorage
   useEffect(() => {

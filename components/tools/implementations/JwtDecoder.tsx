@@ -21,6 +21,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
   decodeJwt,
@@ -58,6 +59,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     JwtDecodeResult
   >();
   const { downloadText, downloadJSON } = useDownload();
+  const { trackUse, trackCustom, trackError } = useToolTracking('jwt-decoder');
 
   // Process JWT token
   const handleDecode = useCallback(() => {
@@ -71,11 +73,26 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
         return decodeJwt(token.trim(), options);
       });
       setResult(decoded);
+
+      // Track successful decoding
+      if (decoded.success) {
+        trackCustom({
+          inputSize: input.length,
+          outputSize: JSON.stringify(decoded.payload, null, 2).length,
+          success: true,
+          algorithm: decoded.header?.alg,
+        });
+      }
     } catch (err) {
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
       // Error handled by useToolProcessor
       setResult(null);
     }
-  }, [input, options, processSync]);
+  }, [input, options, processSync, trackUse, trackError]);
 
   // Auto-decode when input changes
   useMemo(() => {

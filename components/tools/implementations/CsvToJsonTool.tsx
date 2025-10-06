@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
   parseCsvToJson,
@@ -51,6 +52,7 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
 
   const { copied, copy } = useCopy();
   const { downloadJSON } = useDownload();
+  const { trackUse, trackCustom, trackError } = useToolTracking('csv-to-json');
 
   // Auto-detect delimiter when input changes and auto-detect is enabled
   useEffect(() => {
@@ -130,10 +132,25 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
       });
       setConvertSuccess(true);
       setTimeout(() => setConvertSuccess(false), 3000);
+
+      // Track successful conversion
+      trackCustom({
+        inputSize: input.length,
+        outputSize: jsonString.length,
+        success: true,
+        rows: result.rowCount,
+        columns: result.columnCount,
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to convert CSV');
       setOutput('');
       setStats(null);
+
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
     }
   }, [
     input,
@@ -146,6 +163,8 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
     nullValues,
     outputFormat,
     minifyOutput,
+    trackUse,
+    trackError,
   ]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {

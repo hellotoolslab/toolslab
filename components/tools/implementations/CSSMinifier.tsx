@@ -22,6 +22,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
   minifyCSS,
@@ -82,6 +83,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
     string
   >();
   const { downloadText } = useDownload();
+  const { trackUse, trackError } = useToolTracking('css-minifier');
 
   // Process CSS
   const processInput = () => {
@@ -103,15 +105,24 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
         setOutput(result.css);
         setStats(result.stats || null);
         setValidationError('');
+        trackUse(input, result.css, { success: true });
       } else {
         setValidationError(result.error || 'Failed to process CSS');
         setOutput('');
         setStats(null);
+        trackError(
+          new Error(result.error || 'Failed to process CSS'),
+          input.length
+        );
       }
     } catch (err) {
       setValidationError(err instanceof Error ? err.message : 'Invalid CSS');
       setOutput('');
       setStats(null);
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
     }
   };
 

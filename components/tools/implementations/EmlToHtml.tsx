@@ -25,6 +25,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import {
   convertEmlToHtml,
   exportHeadersAsJson,
@@ -43,6 +44,7 @@ interface EmlToHtmlProps {
 type ViewMode = 'raw' | 'rendered' | 'headers' | 'source';
 
 export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
+  const { trackUse, trackError } = useToolTracking('eml-to-html');
   const [emlInput, setEmlInput] = useState(defaultValue);
   const [result, setResult] = useState<ConversionResult | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>('rendered');
@@ -71,15 +73,36 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
       });
 
       setResult(conversionResult);
+
+      if (conversionResult.success) {
+        trackUse(emlInput, conversionResult.html || '', { success: true });
+      } else {
+        trackError(
+          new Error(conversionResult.error || 'Conversion failed'),
+          emlInput.length
+        );
+      }
     } catch (error) {
-      setResult({
+      const errorResult = {
         success: false,
         error: error instanceof Error ? error.message : 'Conversion failed',
-      });
+      };
+      setResult(errorResult);
+      trackError(
+        error instanceof Error ? error : new Error(String(error)),
+        emlInput.length
+      );
     } finally {
       setIsProcessing(false);
     }
-  }, [emlInput, sanitizeHtml, convertCid, includeHeaders]);
+  }, [
+    emlInput,
+    sanitizeHtml,
+    convertCid,
+    includeHeaders,
+    trackUse,
+    trackError,
+  ]);
 
   // Auto-process on input change (debounced would be better in production)
   React.useEffect(() => {

@@ -47,6 +47,34 @@ npm update
    ```
 8. **❌ NON creare route dedicata** - il sistema dinamico `[tool]/page.tsx` gestirà automaticamente il routing
 9. **La sitemap viene aggiornata automaticamente** - il sistema legge da `/lib/tools.ts`
+10. **✅ ANALYTICS AUTO-TRACKING** - Quando il tool processa dati, usa `addToHistory()`:
+   ```typescript
+   import { useToolStore } from '@/lib/store/toolStore';
+
+   const { addToHistory } = useToolStore();
+
+   const handleProcess = (input: string) => {
+     const output = processYourTool(input);
+
+     // ✅ Questo triggera tracking automatico in Umami!
+     addToHistory({
+       id: crypto.randomUUID(),
+       tool: 'your-tool-id',  // Same as tool ID in tools.ts
+       input,
+       output,
+       timestamp: Date.now(),
+     });
+
+     return output;
+   };
+   ```
+   **Non serve altro!** Il sistema traccia automaticamente:
+   - Tool usage event in Umami
+   - Input/output sizes
+   - Processing time
+   - User level (first-time, returning, power)
+   - Session data
+   - Device info & locale
 
 **🚨 ERRORE CRITICO DA EVITARE - Pagine dedicate:**
 ```typescript
@@ -573,23 +601,93 @@ Tutti questi componenti seguono il pattern corretto:
 4. **CSP Headers**: Mantieni Content Security Policy stringente
 5. **Dependencies**: Aggiorna regolarmente e controlla vulnerabilità
 
-## 📈 Analytics Events
+## 📈 ANALYTICS SYSTEM (DICEMBRE 2024) ⭐ NEW
 
-Eventi da tracciare con Umami:
+### Sistema Centralizzato con Auto-Tracking
+
+ToolsLab usa un **sistema analytics centralizzato** che traccia automaticamente:
+- ✅ Tool usage (quando usi `addToHistory()`)
+- ✅ Pageview normalizzati (URL multilingua unificati)
+- ✅ Session tracking (durata accurata anche se chiudi browser)
+- ✅ Performance metrics
+- ✅ User segmentation (first-time, returning, power)
+
+### 🎯 Zero Boilerplate per Nuovi Tool
 
 ```typescript
-// Tool usage
-track('tool-use', { tool: 'json-formatter', success: true });
+// ✅ Tutto quello che serve:
+addToHistory({
+  id: crypto.randomUUID(),
+  tool: 'my-tool',
+  input,
+  output,
+  timestamp: Date.now(),
+});
 
-// Tool chain
-track('tool-chain', { from: 'json', to: 'jwt', success: true });
-
-// Errors
-track('tool-error', { tool: 'json-formatter', error: 'invalid-json' });
-
-// Performance
-track('performance', { tool: 'json-formatter', duration: 123 });
+// → Evento tracciato automaticamente in Umami! 🎉
 ```
+
+### 📊 Cosa Viene Tracciato Automaticamente
+
+**Pageview normalizzati:**
+```
+/tools/json-formatter       → 'tool:json-formatter'
+/it/tools/json-formatter    → 'tool:json-formatter'  (stesso!)
+/es/tools/json-formatter    → 'tool:json-formatter'  (stesso!)
+
+// Locale tracciato separatamente: { page: 'tool:json-formatter', locale: 'it' }
+```
+
+**Tool usage event:**
+```typescript
+{
+  event: 'tool.use',
+  tool: 'json-formatter',
+  inputSize: 1024,           // bytes
+  outputSize: 2048,          // bytes
+  processingTime: 45,        // milliseconds
+  success: true,
+  userLevel: 'power',        // first_time | returning | power
+  locale: 'it',
+  sessionId: 'abc-123',
+  viewport: '1920x1080',
+  isMobile: false,
+}
+```
+
+### 🛠️ Debug Panel
+
+Aggiungi `?debug=analytics` all'URL per vedere:
+- Real-time queue status
+- Session data (duration, pageviews, events)
+- Online/offline status
+- Flush queue manualmente
+
+```
+http://localhost:3000?debug=analytics
+http://localhost:3000/tools/json-formatter?debug=analytics
+```
+
+### 🔥 Features Chiave
+
+1. **Batching**: Eventi raggruppati (max 10 eventi o 5 secondi) → 90% meno network requests
+2. **sendBeacon**: Eventi critici (tool.use, session.end) sopravvivono alla chiusura browser
+3. **Offline Queue**: Eventi salvati in localStorage quando offline
+4. **Retry Logic**: Exponential backoff (1s, 2s, 4s) per failed requests
+5. **PII Sanitization**: Auto-rimozione email, IP, carte credito da metadata
+
+### 📚 Documentazione Completa
+
+Vedi `/documentation/analytics/`:
+- **README.md** - Overview e quick reference
+- **ARCHITECTURE.md** - Design completo del sistema
+- **DEVELOPER_GUIDE.md** - Guida pratica per sviluppatori
+
+### ⚠️ Importante
+
+- **NON tracciare URL raw** - usa sempre `EventNormalizer.normalizeURL()`
+- **timestamp in addToHistory** deve essere quando **inizia** il processing, non quando finisce
+- **Tool ID** deve matchare con quello in `/lib/tools.ts`
 
 ## 🌍 SISTEMA MULTILINGUA (AGGIORNAMENTO DICEMBRE 2024)
 

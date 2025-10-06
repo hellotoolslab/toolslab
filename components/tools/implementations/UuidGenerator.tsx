@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Copy, Check, RefreshCw, Download, Zap, Hash } from 'lucide-react';
 import { useMultiCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps, UUIDVersion } from '@/lib/types/tools';
 
 interface UuidGeneratorProps extends BaseToolProps {}
@@ -18,6 +19,7 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
   // Use unified hooks
   const { copy, isCopied } = useMultiCopy<number | string>();
   const { downloadText } = useDownload();
+  const { trackUse } = useToolTracking('uuid-generator');
 
   const generateUUID = () => {
     const newUuids = [];
@@ -35,6 +37,11 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
       newUuids.push(uuid);
     }
     setUuids(newUuids);
+
+    // Track UUID generation
+    trackUse('', newUuids.join('\n'), {
+      success: true,
+    });
   };
 
   const handleCopy = async (uuid: string, index: number) => {

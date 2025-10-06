@@ -21,6 +21,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
 import { useDownload } from '@/lib/hooks/useDownload';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
   formatXml,
@@ -61,6 +62,8 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
     string
   >();
   const { downloadText } = useDownload();
+  const { trackUse, trackCustom, trackError } =
+    useToolTracking('xml-formatter');
 
   const formatXmlContent = () => {
     if (!input.trim()) {
@@ -100,6 +103,14 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
       setFormatSuccess(true);
       setTimeout(() => setFormatSuccess(false), 3000);
 
+      // Track successful formatting
+      trackCustom({
+        inputSize: input.length,
+        outputSize: result.length,
+        success: true,
+        mode: 'format',
+      });
+
       // Auto-scroll to output
       setTimeout(() => {
         outputRef.current?.scrollIntoView({
@@ -108,6 +119,11 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
         });
       }, 100);
     } catch (err) {
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
       // Error is handled by useToolProcessor
     }
   };
@@ -129,7 +145,20 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
 
       setOutput(result);
       setViewMode('minified');
+
+      // Track successful minification
+      trackCustom({
+        inputSize: input.length,
+        outputSize: result.length,
+        success: true,
+        mode: 'minify',
+      });
     } catch (err) {
+      // Track error
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
       // Error is handled by useToolProcessor
     }
   };
