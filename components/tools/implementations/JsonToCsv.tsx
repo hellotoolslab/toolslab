@@ -53,6 +53,7 @@ import {
 import { cn } from '@/lib/utils';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { BaseToolProps } from '@/lib/types/tools';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 
 interface ColumnConfig {
   name: string;
@@ -66,6 +67,7 @@ export default function JsonToCsv({
   onInputChange,
   onOutputChange,
 }: BaseToolProps) {
+  const { trackUse, trackError, trackCustom } = useToolTracking('json-to-csv');
   const [input, setInput] = useState(initialInput || '');
   const [output, setCsvOutput] = useState('');
   const [error, setError] = useState('');
@@ -181,11 +183,19 @@ export default function JsonToCsv({
         }
         setSuccess('JSON successfully converted to CSV');
         setSelectedTab('output');
+        // Track successful conversion
+        trackUse(input, result.csv, { success: true });
       } else {
         setError(result.error || 'Conversion failed');
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      const errorMessage =
+        err instanceof Error ? err.message : 'An error occurred';
+      setError(errorMessage);
+      trackError(
+        err instanceof Error ? err : new Error(errorMessage),
+        input.length
+      );
     } finally {
       setIsProcessing(false);
     }
@@ -203,6 +213,8 @@ export default function JsonToCsv({
     nullValue,
     arrayDelimiter,
     includeBOM,
+    trackUse,
+    trackError,
   ]);
 
   const handleDownload = useCallback(() => {

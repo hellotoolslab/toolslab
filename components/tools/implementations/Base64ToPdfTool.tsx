@@ -20,6 +20,7 @@ import {
   downloadBlob,
 } from '@/lib/tools/base64-to-pdf';
 import { useCopy } from '@/lib/hooks/useCopy';
+import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 
 interface Base64ToPdfToolProps {
   categoryColor: string;
@@ -39,6 +40,8 @@ export default function Base64ToPdfTool({
     hasDataUrlPrefix: boolean;
   } | null>(null);
   const { copied, copy } = useCopy();
+  const { trackUse, trackError, trackCustom } =
+    useToolTracking('base64-to-pdf');
 
   const validateInput = useCallback((base64String: string) => {
     if (!base64String.trim()) {
@@ -85,14 +88,34 @@ export default function Base64ToPdfTool({
 
       setResult(conversionResult);
 
-      if (!conversionResult.success) {
-        setError(conversionResult.error || 'Conversion failed');
+      if (conversionResult.success) {
+        // Track successful conversion with custom metadata
+        trackCustom({
+          event: 'tool.use',
+          tool: 'base64-to-pdf',
+          inputSize: input.length,
+          outputSize: conversionResult.fileSize || 0,
+          success: true,
+          metadata: {
+            fileSize: conversionResult.fileSize,
+            isPdf: conversionResult.metadata?.isPdf,
+            fileName: fileName,
+          },
+        });
+      } else {
+        const errorMessage = conversionResult.error || 'Conversion failed';
+        setError(errorMessage);
+        trackError(new Error(errorMessage), input.length);
       }
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : 'An unexpected error occurred';
       setError(errorMessage);
       setResult(null);
+      trackError(
+        err instanceof Error ? err : new Error(String(err)),
+        input.length
+      );
     } finally {
       setIsProcessing(false);
     }

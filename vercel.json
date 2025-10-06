@@ -4,7 +4,7 @@
   "framework": "nextjs",
   "installCommand": "npm ci",
   "devCommand": "npm run dev",
-  "regions": ["iad1"],
+  "regions": ["iad1", "sin1", "fra1"],
   "env": {
     "NEXT_TELEMETRY_DISABLED": "1"
   },
@@ -16,7 +16,8 @@
   },
   "functions": {
     "app/**/*.ts": {
-      "maxDuration": 10
+      "maxDuration": 10,
+      "regions": ["iad1", "sin1", "fra1"]
     }
   }
 }
