@@ -345,7 +345,7 @@ export const tools: Tool[] = [
       'Generate complete favicon packages with all sizes and formats',
     icon: '🖥️',
     route: '/tools/favicon-generator',
-    categories: ['web', 'image'],
+    categories: ['web', 'generators'],
     keywords: [
       'favicon',
       'icon',
@@ -354,6 +354,7 @@ export const tools: Tool[] = [
       'website-icon',
       'ico',
       'png',
+      'image',
     ],
     isNew: true,
     searchVolume: 3200,
