@@ -388,7 +388,13 @@ export const searchTools = withPerformanceMonitoring(
 );
 
 /**
- * Gets related tools based on category and usage patterns
+ * Gets related tools using intelligent algorithm
+ *
+ * Uses RelatedToolsEngine for:
+ * - Semantic relationships (40% weight)
+ * - Workflow relationships (30% weight)
+ * - Boosting under-linked tools (20% weight)
+ * - User experience with popular tools (10% weight)
  */
 export const getRelatedTools = withPerformanceMonitoring(
   async (toolSlug: string, limit: number = 4): Promise<ToolConfig[]> => {
@@ -397,17 +403,40 @@ export const getRelatedTools = withPerformanceMonitoring(
       return [];
     }
 
-    // Get tools from the same category
+    // Try smart related tools engine first
+    try {
+      const { getSmartRelatedTools } = await import(
+        '../seo/related-tools-engine'
+      );
+      const relatedToolIds = getSmartRelatedTools(toolSlug, limit);
+
+      // Map tool IDs to ToolConfig objects
+      const allTools = await getEnabledTools();
+      const relatedTools = relatedToolIds
+        .map((id) => allTools.find((tool) => tool.slug === id))
+        .filter((tool): tool is ToolConfig => tool !== undefined);
+
+      if (relatedTools.length >= limit) {
+        return relatedTools.slice(0, limit);
+      }
+
+      // If smart engine doesn't return enough, fallback to category-based
+      console.warn(
+        `Smart engine returned only ${relatedTools.length} tools for ${toolSlug}, falling back`
+      );
+    } catch (error) {
+      console.error('Failed to use smart related tools engine:', error);
+    }
+
+    // Fallback: Original logic (same category + popular tools)
     const categoryTools = await getToolsByCategory(currentTool.category, {
       limit: limit + 1, // +1 because we'll filter out current tool
     });
 
-    // Remove current tool and limit results
     const relatedTools = categoryTools
       .filter((tool) => tool.slug !== toolSlug)
       .slice(0, limit);
 
-    // If we don't have enough tools from the same category, fill with popular tools
     if (relatedTools.length < limit) {
       const popularTools = await getPopularTools(limit * 2);
       const additionalTools = popularTools
