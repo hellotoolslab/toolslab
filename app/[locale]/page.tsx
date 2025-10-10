@@ -5,6 +5,7 @@ import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { getPageMetadata, getKeywordsString } from '@/lib/i18n/seo-metadata';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
+import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 interface LocalePageProps {
   params: {
@@ -50,10 +51,10 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `https://toolslab.dev${getLocalizedPath('/', locale as Locale)}`,
-      languages: {
-        en: 'https://toolslab.dev',
-        it: 'https://toolslab.dev/it',
-      },
+      languages: generateHreflangAlternates({
+        pageType: 'static',
+        path: '',
+      }),
     },
   };
 }
