@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { NewAboutPage } from '@/components/about/NewAboutPage';
+import { getDictionary } from '@/lib/i18n/get-dictionary';
 
 export const metadata: Metadata = {
   title: 'About ToolsLab - The Story of Your Developer Toolbox',
@@ -39,7 +40,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const dict = await getDictionary('en');
+
   return (
     <Suspense
       fallback={
@@ -51,7 +54,7 @@ export default function AboutPage() {
         </div>
       }
     >
-      <NewAboutPage />
+      <NewAboutPage locale="en" dictionary={dict} />
     </Suspense>
   );
 }
