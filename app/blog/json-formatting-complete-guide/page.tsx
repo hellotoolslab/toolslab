@@ -14,6 +14,7 @@ import { ToolCard } from '@/components/blog/ToolCard';
 import { SectionDivider } from '@/components/blog/SectionDivider';
 import { generateAnchorId } from '@/lib/blog/generate-toc';
 import { TOCItem, FAQItem } from '@/lib/blog/types';
+import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -51,6 +52,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://toolslab.dev/blog/json-formatting-complete-guide',
+    languages: generateHreflangAlternates({
+      pageType: 'blog',
+      path: 'json-formatting-complete-guide',
+    }),
   },
   authors: [{ name: 'ToolsLab Team' }],
   category: 'Tutorial',

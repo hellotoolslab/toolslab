@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { NewAboutPage } from '@/components/about/NewAboutPage';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
+import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 export const metadata: Metadata = {
   title: 'About ToolsLab - The Story of Your Developer Toolbox',
@@ -33,6 +34,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://toolslab.dev/about',
+    languages: generateHreflangAlternates({
+      pageType: 'static',
+      path: 'about',
+    }),
   },
   robots: {
     index: true,

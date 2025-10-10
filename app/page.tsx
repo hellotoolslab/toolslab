@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import HomePageContent from '@/components/layout/HomePageContent';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
+import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 export const metadata: Metadata = {
   title: 'ToolsLab - 50+ Free Developer Tools | JSON, Base64, JWT, UUID & More',
@@ -33,6 +34,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://toolslab.dev',
+    languages: generateHreflangAlternates({
+      pageType: 'static',
+      path: '',
+    }),
   },
   other: {
     // 'google-site-verification': 'your-google-verification-code',
