@@ -195,8 +195,8 @@ export function Header() {
 
           {/* Right side controls */}
           <div className="ml-auto flex items-center space-x-8 text-sm font-medium">
-            {/* Blog Link */}
-            <Link
+            {/* Blog Link - Temporarily Hidden */}
+            {/* <Link
               href="/blog"
               className={cn(
                 'hidden items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 md:flex',
@@ -206,7 +206,7 @@ export function Header() {
             >
               <BookOpen className="mr-1 h-4 w-4" />
               Blog
-            </Link>
+            </Link> */}
 
             {/* About Link */}
             <Link
@@ -281,14 +281,15 @@ export function Header() {
                 <Zap className="h-5 w-5" />
                 <span>{common?.nav?.tools || 'Tools'}</span>
               </Link>
-              <Link
+              {/* Blog Link - Temporarily Hidden */}
+              {/* <Link
                 href="/blog"
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <BookOpen className="h-5 w-5" />
                 <span>Blog</span>
-              </Link>
+              </Link> */}
               <Link
                 href="/lab"
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
