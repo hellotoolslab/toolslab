@@ -5,6 +5,7 @@ import { tools, getToolById, categories } from '@/lib/tools';
 import { generateToolSchema } from '@/lib/tool-schema';
 import { loadToolTranslation } from '@/lib/i18n/load-tools';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
+import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 interface ToolPageProps {
   params: {
@@ -107,6 +108,10 @@ export async function generateMetadata({
 
     alternates: {
       canonical: `https://toolslab.dev/tools/${params.tool}`,
+      languages: generateHreflangAlternates({
+        pageType: 'tool',
+        path: params.tool,
+      }),
     },
 
     robots: {

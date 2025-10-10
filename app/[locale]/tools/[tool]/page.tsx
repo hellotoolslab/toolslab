@@ -5,6 +5,7 @@ import { tools, getToolById, categories } from '@/lib/tools';
 import { generateToolSchema } from '@/lib/tool-schema';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
+import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 interface LocaleToolPageProps {
   params: {
@@ -104,10 +105,10 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `https://toolslab.dev/${locale}/tools/${toolId}`,
-      languages: {
-        en: `https://toolslab.dev/tools/${toolId}`,
-        it: `https://toolslab.dev/it/tools/${toolId}`,
-      },
+      languages: generateHreflangAlternates({
+        pageType: 'tool',
+        path: toolId,
+      }),
     },
     robots: {
       index: true,

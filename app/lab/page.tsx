@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { LabPageClient } from './LabPageClient';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
+import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 export const metadata: Metadata = {
   title: 'My Developer Lab - Personal Tool Collection | ToolsLab',
@@ -38,6 +39,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://toolslab.dev/lab',
+    languages: generateHreflangAlternates({
+      pageType: 'static',
+      path: 'lab',
+    }),
   },
 };
 
