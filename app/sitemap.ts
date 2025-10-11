@@ -2,6 +2,7 @@
 import { MetadataRoute } from 'next';
 import { ToolDiscovery } from '@/lib/seo/discovery';
 import { locales, defaultLocale } from '@/lib/i18n/config';
+import { URLNormalizer } from '@/lib/seo/url-normalizer';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://toolslab.dev';
@@ -22,8 +23,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Homepage (highest priority) - for all locales
     locales.forEach((locale) => {
       const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+      const url = URLNormalizer.normalize(`${baseUrl}${localePrefix}`);
       routes.push({
-        url: `${baseUrl}${localePrefix}`,
+        url,
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1.0,
@@ -47,8 +49,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .forEach((tool, index) => {
         locales.forEach((locale) => {
           const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+          const url = URLNormalizer.normalize(
+            `${baseUrl}${localePrefix}${tool.path}`
+          );
           toolRoutes.push({
-            url: `${baseUrl}${localePrefix}${tool.path}`,
+            url,
             lastModified: tool.lastModified || new Date(),
             changeFrequency: 'weekly' as const,
             priority: Math.max(
@@ -70,8 +75,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     categories.forEach((cat) => {
       locales.forEach((locale) => {
         const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+        const url = URLNormalizer.normalize(
+          `${baseUrl}${localePrefix}/category/${cat}`
+        );
         categoryRoutes.push({
-          url: `${baseUrl}${localePrefix}/category/${cat}`,
+          url,
           lastModified: new Date(),
           changeFrequency: 'weekly' as const,
           priority: 0.7,
@@ -84,8 +92,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     staticPages.forEach((page) => {
       locales.forEach((locale) => {
         const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+        const url = URLNormalizer.normalize(`${baseUrl}${localePrefix}${page}`);
         staticRoutes.push({
-          url: `${baseUrl}${localePrefix}${page}`,
+          url,
           lastModified: new Date(),
           changeFrequency: (page === '/blog'
             ? 'daily'
@@ -103,13 +112,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
       additionalPages.push(
         {
-          url: `${baseUrl}${localePrefix}/tools`,
+          url: URLNormalizer.normalize(`${baseUrl}${localePrefix}/tools`),
           lastModified: new Date(),
           changeFrequency: 'daily' as const,
           priority: 0.9,
         },
         {
-          url: `${baseUrl}${localePrefix}/categories`,
+          url: URLNormalizer.normalize(`${baseUrl}${localePrefix}/categories`),
           lastModified: new Date(),
           changeFrequency: 'weekly' as const,
           priority: 0.8,
