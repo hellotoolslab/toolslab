@@ -37,6 +37,7 @@
     "sitemap:validate": "tsx scripts/validate-sitemap.ts",
     "validate:hreflang": "tsx scripts/validate-hreflang.ts",
     "validate:hreflang:samples": "tsx scripts/validate-hreflang.ts --show-samples",
+    "audit:canonical": "tsx scripts/audit-canonical.ts",
     "audit:links": "tsx scripts/audit-internal-links.ts",
     "validate:links": "tsx scripts/validate-internal-links.ts",
     "fix:orphan-pages": "tsx scripts/fix-orphan-pages.ts",
