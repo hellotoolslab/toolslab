@@ -39,7 +39,12 @@ export interface BlogArticleContent {
   publishDate: string;
   modifiedDate?: string;
   readTime: string;
-  category: string;
+  category:
+    | 'Tutorial'
+    | 'Guide'
+    | 'Comparison'
+    | 'Best Practices'
+    | 'Deep Dive';
   author: {
     name: string;
     bio?: string;
