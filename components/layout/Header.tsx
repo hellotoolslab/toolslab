@@ -195,7 +195,7 @@ export function Header() {
 
           {/* Right side controls */}
           <div className="ml-auto flex items-center space-x-8 text-sm font-medium">
-            {/* Blog Link */}
+            {/* Blog Link
             <Link
               href={createHref('/blog')}
               className={cn(
@@ -206,7 +206,7 @@ export function Header() {
             >
               <BookOpen className="mr-1 h-4 w-4" />
               Blog
-            </Link>
+            </Link> */}
 
             {/* About Link */}
             <Link
@@ -281,6 +281,7 @@ export function Header() {
                 <Zap className="h-5 w-5" />
                 <span>{common?.nav?.tools || 'Tools'}</span>
               </Link>
+              {/* Blog Link
               <Link
                 href={createHref('/blog')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
@@ -288,7 +289,7 @@ export function Header() {
               >
                 <BookOpen className="h-5 w-5" />
                 <span>Blog</span>
-              </Link>
+              </Link> */}
               <Link
                 href={createHref('/lab')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
