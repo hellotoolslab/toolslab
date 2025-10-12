@@ -27,6 +27,7 @@ interface ArticleCardProps {
   relatedTools: string[];
   slug: string;
   isPillar?: boolean;
+  locale?: string;
 }
 
 export function ArticleCard({
@@ -39,6 +40,7 @@ export function ArticleCard({
   relatedTools,
   slug,
   isPillar,
+  locale = 'en',
 }: ArticleCardProps) {
   const categoryColors = {
     Tutorial: 'bg-blue-500/10 text-blue-700 dark:text-blue-400',
@@ -48,8 +50,10 @@ export function ArticleCard({
     'Deep Dive': 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-400',
   };
 
+  const blogUrl = locale === 'en' ? `/blog/${slug}` : `/${locale}/blog/${slug}`;
+
   return (
-    <Link href={`/blog/${slug}`} className="block h-full">
+    <Link href={blogUrl} className="block h-full">
       <Card className="h-full transition-all hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-gray-800/50">
         <div className="relative aspect-video overflow-hidden rounded-t-lg">
           <ArticleImage

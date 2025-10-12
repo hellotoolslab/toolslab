@@ -195,12 +195,12 @@ export function Header() {
 
           {/* Right side controls */}
           <div className="ml-auto flex items-center space-x-8 text-sm font-medium">
-            {/* Blog Link - Temporarily Hidden */}
-            {/* <Link
-              href="/blog"
+            {/* Blog Link
+            <Link
+              href={createHref('/blog')}
               className={cn(
                 'hidden items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 md:flex',
-                pathname.startsWith('/blog') &&
+                pathname.includes('/blog') &&
                   'text-violet-600 dark:text-violet-400'
               )}
             >
@@ -281,9 +281,9 @@ export function Header() {
                 <Zap className="h-5 w-5" />
                 <span>{common?.nav?.tools || 'Tools'}</span>
               </Link>
-              {/* Blog Link - Temporarily Hidden */}
-              {/* <Link
-                href="/blog"
+              {/* Blog Link
+              <Link
+                href={createHref('/blog')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -291,7 +291,7 @@ export function Header() {
                 <span>Blog</span>
               </Link> */}
               <Link
-                href="/lab"
+                href={createHref('/lab')}
                 className="flex items-center space-x-3 rounded-lg p-3 transition-colors hover:bg-white/10"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

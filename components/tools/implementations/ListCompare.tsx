@@ -58,6 +58,7 @@ import {
   Code,
   Globe,
   Package,
+  ArrowUpDown,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
@@ -122,6 +123,7 @@ export default function ListCompare({
 
   // Results tab state
   const [resultsTab, setResultsTab] = useState('union');
+  const [sortResults, setSortResults] = useState(false);
 
   // Clear success/error messages after delay
   useEffect(() => {
@@ -411,20 +413,34 @@ export default function ListCompare({
     }
   }, [comparisonResult, exportFormat]);
 
+  // Helper function to sort results alphabetically
+  const sortResultsAlphabetically = useCallback(
+    (items: string[]) => {
+      if (!sortResults) return items;
+      return [...items].sort((a, b) =>
+        a.localeCompare(b, undefined, { sensitivity: 'base' })
+      );
+    },
+    [sortResults]
+  );
+
   // Copy specific result list to clipboard
   const copyResultToClipboard = useCallback(
     async (items: string[], resultType: string) => {
       try {
-        const text = items.join('\n');
+        const sortedItems = sortResultsAlphabetically(items);
+        const text = sortedItems.join('\n');
         await navigator.clipboard.writeText(text);
-        setSuccess(`${resultType} copied to clipboard (${items.length} items)`);
+        setSuccess(
+          `${resultType} copied to clipboard (${sortedItems.length} items)`
+        );
       } catch (err) {
         setError(
           `Failed to copy ${resultType.toLowerCase()}: ${err instanceof Error ? err.message : 'Unknown error'}`
         );
       }
     },
-    []
+    [sortResultsAlphabetically]
   );
 
   const visibleLists = lists.filter((list) => list.visible);
@@ -669,6 +685,24 @@ export default function ListCompare({
         </Card>
       ) : comparisonResult?.success ? (
         <div className="space-y-4">
+          {/* Sort Results Option */}
+          <Card>
+            <CardContent className="py-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
+                  <Label className="text-sm font-medium">
+                    Sort Results Alphabetically
+                  </Label>
+                </div>
+                <Switch
+                  checked={sortResults}
+                  onCheckedChange={setSortResults}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Results Tabs */}
           <Tabs
             value={resultsTab}
@@ -757,16 +791,18 @@ export default function ListCompare({
                   <CardContent>
                     <ScrollArea className="h-64">
                       <div className="space-y-2">
-                        {comparisonResult.union.map((item, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center rounded-lg border-2 border-blue-200 bg-blue-100/80 p-3 font-mono text-sm shadow-sm transition-colors hover:bg-blue-200/80 dark:border-blue-800 dark:bg-blue-900/30 dark:hover:bg-blue-800/40"
-                          >
-                            <span className="flex-1 font-medium text-slate-800 dark:text-slate-200">
-                              {item}
-                            </span>
-                          </div>
-                        ))}
+                        {sortResultsAlphabetically(comparisonResult.union).map(
+                          (item, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center rounded-lg border-2 border-blue-200 bg-blue-100/80 p-3 font-mono text-sm shadow-sm transition-colors hover:bg-blue-200/80 dark:border-blue-800 dark:bg-blue-900/30 dark:hover:bg-blue-800/40"
+                            >
+                              <span className="flex-1 font-medium text-slate-800 dark:text-slate-200">
+                                {item}
+                              </span>
+                            </div>
+                          )
+                        )}
                       </div>
                     </ScrollArea>
                   </CardContent>
@@ -808,7 +844,9 @@ export default function ListCompare({
                     <CardContent>
                       <ScrollArea className="h-64">
                         <div className="space-y-2">
-                          {comparisonResult.intersection.map((item, index) => (
+                          {sortResultsAlphabetically(
+                            comparisonResult.intersection
+                          ).map((item, index) => (
                             <div
                               key={index}
                               className="flex items-center rounded-lg border-2 border-green-200 bg-green-100/80 p-3 font-mono text-sm shadow-sm transition-colors hover:bg-green-200/80 dark:border-green-800 dark:bg-green-900/30 dark:hover:bg-green-800/40"
@@ -865,16 +903,18 @@ export default function ListCompare({
                             <CardContent>
                               <ScrollArea className="h-32">
                                 <div className="space-y-2">
-                                  {items.map((item, index) => (
-                                    <div
-                                      key={index}
-                                      className="flex items-center rounded-lg border-2 border-purple-200 bg-purple-100/80 p-3 font-mono text-sm shadow-sm transition-colors hover:bg-purple-200/80 dark:border-purple-800 dark:bg-purple-900/30 dark:hover:bg-purple-800/40"
-                                    >
-                                      <span className="flex-1 font-medium text-slate-800 dark:text-slate-200">
-                                        {item}
-                                      </span>
-                                    </div>
-                                  ))}
+                                  {sortResultsAlphabetically(items).map(
+                                    (item, index) => (
+                                      <div
+                                        key={index}
+                                        className="flex items-center rounded-lg border-2 border-purple-200 bg-purple-100/80 p-3 font-mono text-sm shadow-sm transition-colors hover:bg-purple-200/80 dark:border-purple-800 dark:bg-purple-900/30 dark:hover:bg-purple-800/40"
+                                      >
+                                        <span className="flex-1 font-medium text-slate-800 dark:text-slate-200">
+                                          {item}
+                                        </span>
+                                      </div>
+                                    )
+                                  )}
                                 </div>
                               </ScrollArea>
                             </CardContent>

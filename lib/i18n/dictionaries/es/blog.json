@@ -1,0 +1,30 @@
+{
+  "title": "Blog de ToolsLab",
+  "subtitle": "Guías y tutoriales para desarrolladores",
+  "featured": "Artículo Destacado",
+  "recentArticles": "Artículos Recientes",
+  "loadMore": "Cargar Más",
+  "loading": "Cargando...",
+  "comingSoon": "¡Próximamente!",
+  "comingSoonDescription": "Estamos trabajando en contenido increíble para ti. Vuelve pronto para guías, tutoriales y mejores prácticas para desarrolladores.",
+  "readMore": "Leer Más",
+  "minRead": "min de lectura",
+  "publishedOn": "Publicado el",
+  "lastUpdated": "Última actualización",
+  "author": "Autor",
+  "relatedArticles": "Artículos Relacionados",
+  "tableOfContents": "Tabla de Contenidos",
+  "shareArticle": "Compartir este artículo",
+  "copyLink": "Copiar enlace",
+  "linkCopied": "¡Enlace copiado!",
+  "categories": {
+    "Tutorial": "Tutorial",
+    "Guide": "Guía",
+    "Comparison": "Comparación",
+    "Best Practices": "Mejores Prácticas",
+    "Deep Dive": "Análisis Profundo"
+  },
+  "fallbackNotice": "Este artículo aún no está disponible en español. Mostrando versión en inglés.",
+  "availableIn": "Disponible en",
+  "pillarArticle": "Artículo Pilar"
+}
