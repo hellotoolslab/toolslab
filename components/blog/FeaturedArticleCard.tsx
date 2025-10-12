@@ -21,6 +21,7 @@ interface FeaturedArticleCardProps {
   relatedTools: string[];
   slug: string;
   isPillar?: boolean;
+  locale?: string;
 }
 
 export function FeaturedArticleCard({
@@ -33,6 +34,7 @@ export function FeaturedArticleCard({
   relatedTools,
   slug,
   isPillar,
+  locale = 'en',
 }: FeaturedArticleCardProps) {
   const categoryColors = {
     Tutorial: 'bg-blue-500/10 text-blue-700 dark:text-blue-400',
@@ -42,8 +44,10 @@ export function FeaturedArticleCard({
     'Deep Dive': 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-400',
   };
 
+  const blogUrl = locale === 'en' ? `/blog/${slug}` : `/${locale}/blog/${slug}`;
+
   return (
-    <Link href={`/blog/${slug}`} className="mb-12 block">
+    <Link href={blogUrl} className="mb-12 block">
       <Card className="overflow-hidden border-2 border-blue-200/50 bg-gradient-to-r from-blue-50 to-purple-50 transition-all hover:-translate-y-1 hover:shadow-xl dark:border-blue-800/50 dark:from-blue-950/20 dark:to-purple-950/20 dark:hover:shadow-gray-800/50">
         <CardContent className="p-0">
           <div className="grid gap-0 md:grid-cols-5">

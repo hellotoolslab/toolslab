@@ -15,6 +15,7 @@ export { default as about } from './about.json';
 export { default as toolsPage } from './toolsPage.json';
 export { default as terms } from './terms.json';
 export { default as privacy } from './privacy.json';
+export { default as blog } from './blog.json';
 
 /**
  * Load all sections (for backward compatibility)
@@ -32,6 +33,7 @@ export async function loadAll() {
     toolsPage,
     terms,
     privacy,
+    blog,
   ] = await Promise.all([
     import('./common.json').then((m) => m.default),
     import('./home.json').then((m) => m.default),
@@ -44,6 +46,7 @@ export async function loadAll() {
     import('./toolsPage.json').then((m) => m.default),
     import('./terms.json').then((m) => m.default),
     import('./privacy.json').then((m) => m.default),
+    import('./blog.json').then((m) => m.default),
   ]);
 
   return {
@@ -58,5 +61,6 @@ export async function loadAll() {
     toolsPage,
     ...terms,
     ...privacy,
+    blog,
   };
 }
