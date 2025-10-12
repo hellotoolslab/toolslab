@@ -3,6 +3,7 @@ import { BlogArticle } from './types';
 export const mockArticles: BlogArticle[] = [
   {
     slug: 'json-formatting-complete-guide',
+    locale: 'en',
     title: 'JSON Formatting: The Complete Developer Guide',
     excerpt:
       'Master JSON formatting with our comprehensive guide. Learn syntax rules, best practices, common errors, and advanced techniques for clean, readable JSON.',
@@ -39,6 +40,7 @@ export const mockArticles: BlogArticle[] = [
   },
   {
     slug: 'base64-encoding-explained',
+    locale: 'en',
     title: 'Base64 Encoding Explained: When and How to Use It',
     excerpt:
       'Deep dive into Base64 encoding. Understand how it works, when to use it, and best practices for implementing Base64 in your applications.',
@@ -72,6 +74,7 @@ export const mockArticles: BlogArticle[] = [
   },
   {
     slug: 'json-vs-xml-vs-yaml',
+    locale: 'en',
     title: 'JSON vs XML vs YAML: Choosing the Right Format',
     excerpt:
       'Comprehensive comparison of JSON, XML, and YAML. Learn the strengths, weaknesses, and ideal use cases for each data serialization format.',
@@ -110,6 +113,7 @@ export const mockArticles: BlogArticle[] = [
   },
   {
     slug: '10-essential-developer-tools',
+    locale: 'en',
     title: '10 Essential Developer Tools That Save Hours Daily',
     excerpt:
       'Discover the must-have developer tools that streamline your workflow. From formatters to generators, these tools will transform your productivity.',
@@ -145,6 +149,7 @@ export const mockArticles: BlogArticle[] = [
   },
   {
     slug: 'regex-patterns-guide',
+    locale: 'en',
     title: 'Regular Expressions: From Basics to Advanced Patterns',
     excerpt:
       'Master regular expressions with this comprehensive guide. Learn pattern matching, capturing groups, lookarounds, and real-world regex applications.',
@@ -183,6 +188,7 @@ export const mockArticles: BlogArticle[] = [
   },
   {
     slug: 'api-testing-best-practices',
+    locale: 'en',
     title: 'API Testing Best Practices for Modern Development',
     excerpt:
       'Learn essential API testing strategies, tools, and methodologies. From unit tests to integration testing, ensure your APIs are robust and reliable.',
@@ -210,6 +216,7 @@ export const mockArticles: BlogArticle[] = [
   },
   {
     slug: 'password-security-guide',
+    locale: 'en',
     title: 'Password Security: Generation, Storage, and Management',
     excerpt:
       'Complete guide to password security. Learn about strong password generation, secure storage methods, and modern authentication best practices.',
@@ -247,6 +254,7 @@ export const mockArticles: BlogArticle[] = [
   },
   {
     slug: 'color-theory-for-developers',
+    locale: 'en',
     title: 'Color Theory for Developers: Beyond Hex Codes',
     excerpt:
       'Understanding color theory for web development. From hex codes to HSL, learn how to create beautiful, accessible color schemes for your applications.',
@@ -278,6 +286,7 @@ export const mockArticles: BlogArticle[] = [
   },
   {
     slug: 'sql-formatting-standards',
+    locale: 'en',
     title: 'SQL Formatting Standards and Why They Matter',
     excerpt:
       'Learn SQL formatting best practices and standards. Improve readability, maintainability, and team collaboration with properly formatted SQL queries.',
@@ -308,6 +317,7 @@ export const mockArticles: BlogArticle[] = [
   },
   {
     slug: 'url-encoding-decoding-guide',
+    locale: 'en',
     title: 'The Ultimate Guide to URL Encoding and Decoding',
     excerpt:
       'Comprehensive guide to URL encoding and decoding. Understand percent-encoding, special characters, and best practices for handling URLs in applications.',

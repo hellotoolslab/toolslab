@@ -483,4 +483,34 @@ export interface Dictionary {
       };
     };
   };
+  blog: {
+    title: string;
+    subtitle: string;
+    featured: string;
+    recentArticles: string;
+    loadMore: string;
+    loading: string;
+    comingSoon: string;
+    comingSoonDescription: string;
+    readMore: string;
+    minRead: string;
+    publishedOn: string;
+    lastUpdated: string;
+    author: string;
+    relatedArticles: string;
+    tableOfContents: string;
+    shareArticle: string;
+    copyLink: string;
+    linkCopied: string;
+    categories: {
+      Tutorial: string;
+      Guide: string;
+      Comparison: string;
+      'Best Practices': string;
+      'Deep Dive': string;
+    };
+    fallbackNotice: string;
+    availableIn: string;
+    pillarArticle: string;
+  };
 }

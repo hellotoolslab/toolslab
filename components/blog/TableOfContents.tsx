@@ -92,14 +92,14 @@ export function TableOfContents({ items }: TableOfContentsProps) {
       <nav
         className={cn(
           'fixed top-32 z-40 hidden max-h-[calc(100vh-10rem)] overflow-y-auto lg:block',
-          'rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800'
+          'rounded-lg border border-gray-700/50 bg-gray-900/95 p-4 shadow-xl backdrop-blur-sm'
         )}
         style={{
           left: `${tocPosition.left}px`,
           width: `${tocPosition.width}px`,
         }}
       >
-        <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
+        <h3 className="mb-3 text-sm font-semibold text-white">
           📋 Table of Contents
         </h3>
         <ul className="space-y-1 text-sm">
@@ -112,9 +112,9 @@ export function TableOfContents({ items }: TableOfContentsProps) {
                 href={`#${item.id}`}
                 onClick={(e) => handleClick(e, item.id)}
                 className={cn(
-                  'block rounded px-2 py-1 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100',
+                  'block rounded px-2 py-1 text-gray-300 transition-colors hover:bg-gray-800 hover:text-white',
                   activeId === item.id &&
-                    'bg-blue-50 font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-400'
+                    'border-l-2 border-blue-400 bg-blue-600/20 font-medium text-blue-400'
                 )}
               >
                 {item.text}

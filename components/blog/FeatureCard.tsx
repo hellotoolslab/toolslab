@@ -21,7 +21,7 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        'relative rounded-xl border p-6 transition-all duration-300',
+        'relative rounded-xl border p-4 transition-all duration-300',
         'hover:-translate-y-1 hover:shadow-lg',
         highlight
           ? 'border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50 dark:border-purple-700 dark:from-purple-900/20 dark:to-pink-900/20'
@@ -37,10 +37,10 @@ export function FeatureCard({
         </div>
       )}
 
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-3">
         <div className="flex-shrink-0">
           {typeof icon === 'string' ? (
-            <span className="text-3xl" role="img" aria-label="Feature icon">
+            <span className="text-2xl" role="img" aria-label="Feature icon">
               {icon}
             </span>
           ) : (
@@ -49,7 +49,7 @@ export function FeatureCard({
         </div>
 
         <div className="flex-1">
-          <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+          <h3 className="mb-1.5 text-base font-semibold text-gray-900 dark:text-gray-100">
             {title}
           </h3>
           <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
