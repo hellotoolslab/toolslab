@@ -1,15 +1,15 @@
 {
-  "title": "Generatore Favicon",
-  "description": "Genera favicon per siti web in vari formati",
+  "title": "Favicon Generator",
+  "description": "Generate favicons for websites in various formats",
   "placeholder": "",
   "meta": {
-    "title": "Generatore Favicon - Strumento Online Gratuito | ToolsLab",
-    "description": "Crea favicon online. Genera favicon in più formati. Generatore favicon gratuito."
+    "title": "Favicon Generator - Free Online Tool | ToolsLab",
+    "description": "Create favicons online. Generate favicons in multiple formats. Free favicon generator."
   },
-  "tagline": "Genera pacchetti favicon completi per tutti i dispositivi",
-  "pageDescription": "Crea favicon professionali da qualsiasi immagine. Genera tutte le dimensioni richieste (16x16 a 512x512) in formati ICO, PNG e SVG. Include Apple Touch Icons, icone Android Chrome e codice implementazione HTML completo. Perfetto per sviluppatori web e designer che costruiscono siti professionali.",
+  "tagline": "Generate complete favicon packages for all devices",
+  "pageDescription": "Create professional favicons from any image. Generate all required sizes (16x16 to 512x512) in ICO, PNG and SVG formats. Includes Apple Touch Icons, Android Chrome icons and complete HTML implementation code. Perfect for web developers and designers building professional websites.",
   "instructions": {
-    "title": "How to use Generatore Favicon",
+    "title": "How to use Favicon Generator",
     "steps": [
       {
         "title": "Paste your content",

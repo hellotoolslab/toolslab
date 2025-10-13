@@ -1,13 +1,13 @@
 {
   "title": "XML Formatter",
-  "description": "Formatta, valida e minimizza documenti XML con evidenziazione sintassi e supporto XPath",
+  "description": "Format, validate and minify XML documents with syntax highlighting and XPath support",
   "placeholder": "",
   "meta": {
-    "title": "XML Formatter - Strumento Online Gratuito | ToolsLab",
-    "description": "Formatta e valida XML online. Minimizza documenti XML con supporto XPath. XML Formatter gratuito."
+    "title": "XML Formatter - Free Online Tool | ToolsLab",
+    "description": "Format and validate XML online. Minify XML documents with XPath support. Free XML formatter."
   },
-  "tagline": "Formatta, valida e minimizza XML con ricerca XPath e supporto namespace",
-  "pageDescription": "Formatter XML professionale con validazione sintassi, abbellimento e minimizzazione. Funzionalità ricerca XPath, analisi namespace e visualizzazione struttura. Perfetto per SOAP, RSS, SVG e file configurazione. Gestisce documenti XML grandi in modo efficiente con validazione in tempo reale ed evidenziazione errori. Elaborazione XML gratuita e sicura basata su browser.",
+  "tagline": "Format, validate and minify XML with XPath search and namespace support",
+  "pageDescription": "Professional XML formatter with syntax validation, beautification and minification. Features XPath search, namespace analysis and structure visualization. Perfect for SOAP, RSS, SVG and configuration files. Handles large XML documents efficiently with real-time validation and error highlighting. Free and secure browser-based XML processing.",
   "instructions": {
     "title": "How to use XML Formatter",
     "steps": [
