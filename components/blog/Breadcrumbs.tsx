@@ -40,7 +40,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
               {item.href ? (
                 <Link
                   href={item.href}
-                  className="transition-colors hover:text-gray-900 dark:hover:text-gray-100"
+                  className="no-underline transition-colors hover:text-gray-900 dark:hover:text-gray-100"
                 >
                   {item.name}
                 </Link>

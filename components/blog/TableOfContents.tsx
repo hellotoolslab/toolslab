@@ -112,10 +112,16 @@ export function TableOfContents({ items }: TableOfContentsProps) {
                 href={`#${item.id}`}
                 onClick={(e) => handleClick(e, item.id)}
                 className={cn(
-                  'block rounded px-2 py-1 text-gray-300 transition-colors hover:bg-gray-800 hover:text-white',
-                  activeId === item.id &&
-                    'border-l-2 border-blue-400 bg-blue-600/20 font-medium text-blue-400'
+                  'block rounded px-2 py-1 no-underline transition-colors',
+                  activeId === item.id
+                    ? 'border-l-2 border-blue-400 bg-blue-600/20 font-medium text-blue-400'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                 )}
+                style={
+                  activeId !== item.id
+                    ? { color: '#d1d5db', textDecoration: 'none' }
+                    : undefined
+                }
               >
                 {item.text}
               </a>
