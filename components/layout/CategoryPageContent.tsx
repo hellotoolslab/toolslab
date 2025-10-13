@@ -83,6 +83,7 @@ export default function CategoryPageContent({
       web: '#EC4899',
       dev: '#F59E0B',
       formatters: '#6366F1',
+      social: '#F43F5E',
     };
     return colors[categoryId] || '#3B82F6';
   };

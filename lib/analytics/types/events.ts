@@ -76,6 +76,7 @@ export interface UserFavoriteEvent extends BaseEventMetadata {
   type: 'tool' | 'category';
   id: string;
   action: 'add' | 'remove';
+  totalFavorites?: number; // Total favorites after this action
 }
 
 export interface SessionEndEvent extends BaseEventMetadata {

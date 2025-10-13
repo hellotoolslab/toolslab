@@ -1,0 +1,96 @@
+{
+  "title": "Generatore di Font per Instagram",
+  "description": "Genera font Unicode stilizzati per Instagram, WhatsApp e social media",
+  "placeholder": "Digita il tuo testo qui... (es. Il Tuo Nome, Bio, Didascalia)",
+  "meta": {
+    "title": "Generatore di Font per Instagram - Generatore di Testo Gratuito | ToolsLab",
+    "description": "Genera font Unicode stilizzati per bio Instagram, stato WhatsApp e social media. 22+ stili di font, controllo compatibilità piattaforme, contatore caratteri. Generatore di testo online gratuito."
+  },
+  "tagline": "Crea stili di testo Unicode accattivanti per i tuoi profili e post sui social media",
+  "pageDescription": "Il generatore di font per Instagram gratuito crea testo Unicode stilizzato per i social media. Trasforma il testo semplice in oltre 22 stili di font unici tra cui grassetto, corsivo, corsive, monospace e font decorativi. Include contatore caratteri in tempo reale per bio Instagram (150 caratteri) e post (2200 caratteri), controllo compatibilità piattaforme (Instagram, WhatsApp, Twitter, Facebook) e funzione di copia istantanea. Perfetto per content creator, influencer e marketer che vogliono distinguersi con testo stilizzato in bio, didascalie e post. Tutti i font funzionano nativamente su tutte le piattaforme senza installazione. Basato su browser con completa privacy.",
+  "instructions": {
+    "title": "Come usare il Generatore di Font per Instagram",
+    "steps": [
+      {
+        "title": "Digita o incolla il tuo testo",
+        "description": "Inserisci il testo che vuoi stilizzare nella casella di input. Funziona con qualsiasi carattere Unicode inclusi lettere, numeri ed emoji. Il contatore caratteri mostra i limiti per bio Instagram (150) e post (2200)."
+      },
+      {
+        "title": "Sfoglia gli stili di font generati",
+        "description": "Vedi istantaneamente il tuo testo convertito in oltre 22 stili di font diversi. Ogni stile mostra icone di compatibilità per Instagram, WhatsApp, Twitter e Facebook."
+      },
+      {
+        "title": "Filtra per piattaforma o cerca",
+        "description": "Usa i filtri piattaforma per mostrare solo i font compatibili con Instagram, WhatsApp, Twitter o Facebook. Cerca per nome font per trovare rapidamente stili specifici come 'grassetto' o 'script'."
+      },
+      {
+        "title": "Copia e usa il tuo testo stilizzato",
+        "description": "Clicca il pulsante copia su qualsiasi stile di font per copiarlo negli appunti. Poi incollalo direttamente nella tua bio Instagram, stato WhatsApp o qualsiasi post sui social media."
+      }
+    ],
+    "features": [
+      "22+ stili di font Unicode unici generati istantaneamente",
+      "Contatore caratteri in tempo reale per limiti Instagram",
+      "Controllo compatibilità piattaforme (Instagram, WhatsApp, Twitter, Facebook)",
+      "Cerca e filtra font per nome o piattaforma",
+      "Stili preferiti per accesso rapido",
+      "Caricamento lazy per prestazioni ottimali",
+      "Copia singoli stili o tutti gli stili insieme",
+      "Funziona con emoji, caratteri speciali e testo multilingua",
+      "Nessuna installazione font richiesta - funziona nativamente",
+      "100% basato su browser con completa privacy"
+    ],
+    "useCases": [
+      "Crea bio Instagram accattivanti che si distinguono",
+      "Stilizza messaggi di stato WhatsApp con font unici",
+      "Aggiungi personalità alle descrizioni profilo Twitter",
+      "Rendi i post Facebook più coinvolgenti con testo stilizzato",
+      "Progetta contenuti social media brandizzati",
+      "Crea username e nomi visualizzati unici",
+      "Distinguiti nei commenti e nelle risposte",
+      "Genera testo estetico per bio TikTok",
+      "Stilizza nomi server e canali Discord",
+      "Crea titoli accattivanti per post social"
+    ],
+    "proTips": [
+      "Salva i tuoi stili di font preferiti per accesso rapido successivo",
+      "Testa i font sulla tua piattaforma target prima di finalizzare",
+      "Combina stili diversi in una bio per effetti creativi",
+      "Usa il contatore caratteri per ottimizzare il limite di 150 caratteri della bio Instagram",
+      "I font grassetto e corsivo hanno la migliore compatibilità su tutte le piattaforme",
+      "Evita di usare troppi caratteri speciali - mantienilo leggibile",
+      "Visualizza in anteprima come appare il tuo testo stilizzato con gli emoji",
+      "Copia tutti gli stili insieme per testare più opzioni",
+      "Usa i filtri piattaforma per assicurare la compatibilità prima di pubblicare",
+      "Mantieni un backup del tuo testo originale prima di stilizzarlo"
+    ],
+    "troubleshooting": [
+      "Testo non visualizzato: Alcuni dispositivi più vecchi potrebbero non supportare tutti i font Unicode. Usa grassetto, corsivo o monospace per massima compatibilità.",
+      "I caratteri appaiono come riquadri: Significa che il font non è supportato su quella piattaforma. Usa il controllo compatibilità piattaforme per verificare prima di pubblicare.",
+      "Il testo appare diverso su mobile vs desktop: Il rendering Unicode varia leggermente per dispositivo. Visualizza sempre in anteprima sul tuo dispositivo target prima di pubblicare.",
+      "Instagram rimuove il testo stilizzato: Instagram occasionalmente blocca determinati intervalli Unicode. Se il testo scompare, prova uno stile di font diverso.",
+      "Il contatore caratteri mostra rosso: Il tuo testo supera i limiti di Instagram (150 per bio, 2200 per post). Accorcia il messaggio o rimuovi caratteri extra.",
+      "Il pulsante copia non funziona: Assicurati che il tuo browser consenta l'accesso agli appunti. Prova a cliccare di nuovo il pulsante o seleziona e copia manualmente il testo.",
+      "Gli emoji non si convertono: Gli emoji sono preservati nella loro forma originale - non necessitano conversione e funzionano su tutte le piattaforme.",
+      "La ricerca non trova i font: Usa termini semplici come 'grassetto', 'corsivo' o 'script'. I nomi dei font sono in inglese."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla testo"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia stile selezionato"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleziona tutto il testo nell'input"
+      },
+      {
+        "keys": "Escape",
+        "description": "Cancella filtri"
+      }
+    ]
+  }
+}

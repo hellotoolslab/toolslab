@@ -188,6 +188,43 @@ export const tools: Tool[] = [
 
   // Text & Format Tools
   {
+    id: 'instagram-font-generator',
+    name: 'Instagram Font Generator',
+    description:
+      'Generate stylized Unicode fonts for Instagram, WhatsApp, and social media bios',
+    icon: '✨',
+    route: '/tools/instagram-font-generator',
+    categories: ['social', 'text'],
+    keywords: [
+      'instagram',
+      'font',
+      'generator',
+      'unicode',
+      'text',
+      'style',
+      'fancy',
+      'bio',
+      'whatsapp',
+      'social',
+      'media',
+      'bold',
+      'italic',
+      'cursive',
+      'monospace',
+      'aesthetic',
+      'fonts for instagram',
+      'instagram bio fonts',
+      'fancy text generator',
+      'unicode text',
+      'stylish text',
+      'cool fonts',
+      'text decorator',
+    ],
+    isPopular: true,
+    searchVolume: 82000,
+    label: '',
+  },
+  {
     id: 'text-diff',
     name: 'Text Diff Checker',
     description:
@@ -783,6 +820,14 @@ export const categories: Category[] = [
     icon: '🪄',
     tools: getToolsByCategory('formatters'),
   },
+  {
+    id: 'social',
+    name: 'Social Media',
+    description:
+      'Tools for social media content creation, including Instagram, WhatsApp, Twitter, and Facebook.',
+    icon: '📱',
+    tools: getToolsByCategory('social'),
+  },
 ];
 
 // Helper functions
@@ -838,6 +883,7 @@ export function getCategoryColorClass(categoryColor: string): string {
     web: 'border-pink-500 bg-pink-50 dark:bg-pink-950',
     dev: 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950',
     formatters: 'border-indigo-500 bg-indigo-50 dark:bg-indigo-950',
+    social: 'border-rose-500 bg-rose-50 dark:bg-rose-950',
   };
   return (
     colorClasses[categoryColor as keyof typeof colorClasses] ||

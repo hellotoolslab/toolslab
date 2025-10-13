@@ -71,6 +71,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'yaml-json-converter',
     'unix-timestamp-converter',
     'eml-to-html',
+    'instagram-font-generator',
   ];
 
   const tools: Record<string, any> = {};

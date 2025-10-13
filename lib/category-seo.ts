@@ -372,6 +372,60 @@ export const categorySEO: Record<string, CategorySEO> = {
     metaDescription:
       'Professional code formatters for JSON, SQL, XML, HTML, CSS and more. Beautify, validate, and minify code instantly. Free online formatting tools for developers.',
   },
+  social: {
+    id: 'social',
+    h1Title: 'Social Media Tools',
+    tagline:
+      'Create stunning content for Instagram, WhatsApp, and social platforms',
+    description:
+      'Professional social media tools for content creators, influencers, and marketers. Generate stylized Unicode fonts for Instagram bios, WhatsApp status, Twitter posts, and Facebook content. Create eye-catching text styles, fancy fonts, and unique characters that work across all social platforms. Perfect for making your profile stand out, creating engaging posts, and adding personality to your social media presence. All tools work in-browser with instant preview and one-click copying.',
+    benefits: [
+      '22+ unique Unicode font styles',
+      'Platform compatibility indicators',
+      'Instagram bio and post character counters',
+      'Instant preview and copy functionality',
+      'Works on all social media platforms',
+    ],
+    useCases: [
+      'Instagram bio optimization',
+      'WhatsApp status styling',
+      'Twitter profile customization',
+      'Facebook post enhancement',
+      'Social media branding',
+    ],
+    keywords: [
+      'instagram fonts',
+      'instagram bio fonts',
+      'fancy text generator',
+      'unicode text',
+      'stylish text',
+      'cool fonts',
+      'whatsapp fonts',
+      'social media fonts',
+      'text decorator',
+      'aesthetic fonts',
+    ],
+    faqs: [
+      {
+        question: 'Do these fonts work on all social media platforms?',
+        answer:
+          'Yes, our Unicode fonts work on Instagram, WhatsApp, Twitter, Facebook, TikTok, and most social platforms. We indicate compatibility for each style.',
+      },
+      {
+        question: 'Will the fonts display correctly for everyone?',
+        answer:
+          'Yes, these are Unicode characters supported by all modern devices and platforms. Everyone will see your styled text correctly.',
+      },
+      {
+        question: 'Can I use these fonts in my Instagram bio?',
+        answer:
+          'Absolutely! Our tool includes a character counter specifically for Instagram bios (150 characters) and posts (2200 characters).',
+      },
+    ],
+    relatedCategories: ['text', 'generators'],
+    metaDescription:
+      'Generate stylish Unicode fonts for Instagram, WhatsApp, and social media. Create fancy text, cool fonts, and aesthetic styles for bios and posts. Free, instant, and works everywhere.',
+  },
 };
 
 // Helper function to get SEO content for a category

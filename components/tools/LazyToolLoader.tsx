@@ -68,6 +68,9 @@ const toolComponents = {
     () => import('./implementations/YamlJsonConverter')
   ),
   'eml-to-html': lazy(() => import('./implementations/EmlToHtml')),
+  'instagram-font-generator': lazy(
+    () => import('./implementations/InstagramFont')
+  ),
   // Add more as needed
 } as const;
 
