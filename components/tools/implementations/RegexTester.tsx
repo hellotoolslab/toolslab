@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import {
   Copy,
   Download,
@@ -124,6 +124,7 @@ const FLAG_OPTIONS = [
 export default function RegexTester({ categoryColor }: RegexTesterProps) {
   const { downloadJSON } = useDownload();
   const { trackUse, trackCustom, trackError } = useToolTracking('regex-tester');
+  const isFirstMount = useRef(true);
   const [pattern, setPattern] = useState('\\b\\w+@\\w+\\.\\w+\\b');
   const [testString, setTestString] = useState(
     'Contact us at info@example.com or support@company.co.uk'
@@ -203,14 +204,16 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
               flags,
             });
 
-            // Track successful regex test
-            trackCustom({
-              inputSize: pattern.length,
-              outputSize: JSON.stringify(matches).length,
-              success: true,
-              matchCount: matches.length,
-              flags,
-            });
+            // Track successful regex test (but not on first mount)
+            if (!isFirstMount.current) {
+              trackCustom({
+                inputSize: pattern.length,
+                outputSize: JSON.stringify(matches).length,
+                success: true,
+                matchCount: matches.length,
+                flags,
+              });
+            }
 
             // Generate replacement preview if replace string is provided
             if (replaceString) {
@@ -269,6 +272,11 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
 
   useEffect(() => {
     testRegex(pattern, testString, flags);
+
+    // Mark that the first mount has completed
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+    }
   }, [pattern, testString, flags, testRegex]);
 
   const handlePresetSelect = (presetName: string) => {
