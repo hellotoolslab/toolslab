@@ -82,22 +82,22 @@
   margin-bottom: 0.5rem;
 }
 
-/* Links */
-.blogContent a {
+/* Links (excluding breadcrumb navigation) */
+.blogContent a:not(nav a) {
   color: #2563eb;
   text-decoration: underline;
   transition: color 0.2s;
 }
 
-.blogContent a:hover {
+.blogContent a:not(nav a):hover {
   color: #1d4ed8;
 }
 
-.blogContent.dark a {
+.blogContent.dark a:not(nav a) {
   color: #60a5fa;
 }
 
-.blogContent.dark a:hover {
+.blogContent.dark a:not(nav a):hover {
   color: #93c5fd;
 }
 
