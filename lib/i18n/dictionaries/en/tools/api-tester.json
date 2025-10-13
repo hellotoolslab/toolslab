@@ -3,8 +3,8 @@
   "description": "Test API endpoints with support for various HTTP methods and headers",
   "placeholder": "",
   "meta": {
-    "title": "Tester API - Strumento Online Gratuito | ToolsLab",
-    "description": "Testa API REST online. Invia richieste HTTP con headers personalizzati. API tester gratuito."
+    "title": "API Tester - Free Online Tool | ToolsLab",
+    "description": "Test REST APIs online. Send HTTP requests with custom headers. Free API tester tool."
   },
   "tagline": "Test REST APIs with custom headers and request builder",
   "pageDescription": "Professional API testing tool for developers. Send HTTP requests with custom headers, methods, and body data. Test RESTful endpoints, debug API responses, and validate authentication flows. Supports GET, POST, PUT, DELETE, PATCH methods with real-time response viewing.",

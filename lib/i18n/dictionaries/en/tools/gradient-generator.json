@@ -1,15 +1,15 @@
 {
-  "title": "Generatore Gradienti",
-  "description": "Genera gradienti CSS personalizzati",
+  "title": "Gradient Generator",
+  "description": "Generate custom CSS gradients with visual editor",
   "placeholder": "",
   "meta": {
-    "title": "Generatore Gradienti CSS - Strumento Online Gratuito | ToolsLab",
-    "description": "Crea gradienti CSS online. Genera codice gradiente personalizzato. Generatore gradiente gratuito."
+    "title": "CSS Gradient Generator - Free Online Tool | ToolsLab",
+    "description": "Create CSS gradients online. Generate custom gradient code. Free gradient generator tool."
   },
-  "tagline": "Crea gradienti CSS stupendi con editor visuale e preset",
-  "pageDescription": "Generatore gradienti CSS professionale con gradienti lineari, radiali e conici. Crea sfondi bellissimi con editor visuale color stop, collezioni preset e anteprima in tempo reale. Export CSS, classi Tailwind e SVG. Funzionalità interfaccia drag-and-drop, generatore armonie colore e compatibilità browser. Perfetto per web designer e sviluppatori che creano sfondi UI moderni.",
+  "tagline": "Create beautiful CSS gradients with visual editor and presets",
+  "pageDescription": "Professional CSS gradient generator with linear, radial and conic gradients. Create beautiful backgrounds with visual color stop editor, preset collections and real-time preview. Export as CSS, Tailwind classes and SVG. Features drag-and-drop interface, color harmony generator and browser compatibility. Perfect for web designers and developers creating modern UI backgrounds.",
   "instructions": {
-    "title": "How to use Generatore Gradienti",
+    "title": "How to use Gradient Generator",
     "steps": [
       {
         "title": "Paste your content",
