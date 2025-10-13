@@ -10,6 +10,7 @@ import {
   Settings,
   Rocket,
   ChevronRight,
+  Share2,
 } from 'lucide-react';
 import { categories } from '@/lib/tools';
 import { type Locale, defaultLocale } from '@/lib/i18n/config';
@@ -23,7 +24,8 @@ const categoryIcons = {
   web: Palette,
   dev: Settings,
   generators: Rocket,
-  formatters: FileText, // Add missing formatters category
+  formatters: FileText,
+  social: Share2,
 };
 
 const categoryGradients = {
@@ -33,7 +35,8 @@ const categoryGradients = {
   web: 'from-pink-500 to-rose-500',
   dev: 'from-amber-500 to-orange-500',
   generators: 'from-orange-500 to-red-500',
-  formatters: 'from-indigo-500 to-purple-500', // Add missing formatters category
+  formatters: 'from-indigo-500 to-purple-500',
+  social: 'from-rose-500 to-pink-500',
 };
 
 interface CategoryGridProps {

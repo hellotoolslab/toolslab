@@ -91,8 +91,11 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://toolslab.dev/${locale}/category/${categoryId}`,
       languages: {
+        'x-default': `https://toolslab.dev/category/${categoryId}`,
         en: `https://toolslab.dev/category/${categoryId}`,
         it: `https://toolslab.dev/it/category/${categoryId}`,
+        es: `https://toolslab.dev/es/category/${categoryId}`,
+        fr: `https://toolslab.dev/fr/category/${categoryId}`,
       },
     },
   };
