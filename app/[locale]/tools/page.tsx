@@ -52,8 +52,11 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://toolslab.dev${getLocalizedPath('/tools', locale as Locale)}`,
       languages: {
+        'x-default': 'https://toolslab.dev/tools',
         en: 'https://toolslab.dev/tools',
         it: 'https://toolslab.dev/it/tools',
+        es: 'https://toolslab.dev/es/tools',
+        fr: 'https://toolslab.dev/fr/tools',
       },
     },
     robots: {

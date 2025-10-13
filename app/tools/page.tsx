@@ -50,8 +50,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://toolslab.dev/tools',
     languages: {
+      'x-default': 'https://toolslab.dev/tools',
       en: 'https://toolslab.dev/tools',
       it: 'https://toolslab.dev/it/tools',
+      es: 'https://toolslab.dev/es/tools',
+      fr: 'https://toolslab.dev/fr/tools',
     },
   },
   robots: {
