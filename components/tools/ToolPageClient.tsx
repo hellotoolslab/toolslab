@@ -122,6 +122,7 @@ export default function ToolPageClient({
       web: '#EC4899',
       dev: '#F59E0B',
       formatters: '#6366F1',
+      social: '#F43F5E',
     };
     return colors[category as keyof typeof colors] || '#3B82F6';
   };

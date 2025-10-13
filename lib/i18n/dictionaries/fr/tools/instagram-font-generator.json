@@ -1,0 +1,96 @@
+{
+  "title": "Générateur de Polices pour Instagram",
+  "description": "Générez des polices Unicode stylisées pour Instagram, WhatsApp et les réseaux sociaux",
+  "placeholder": "Tapez votre texte ici... (ex. Votre Nom, Bio, Légende)",
+  "meta": {
+    "title": "Générateur de Polices pour Instagram - Générateur de Texte Gratuit | ToolsLab",
+    "description": "Générez des polices Unicode stylisées pour les bios Instagram, statuts WhatsApp et réseaux sociaux. 22+ styles de polices, vérificateur de compatibilité des plateformes, compteur de caractères. Générateur de texte en ligne gratuit."
+  },
+  "tagline": "Créez des styles de texte Unicode accrocheurs pour vos profils et publications sur les réseaux sociaux",
+  "pageDescription": "Le générateur de polices pour Instagram gratuit crée du texte Unicode stylisé pour les réseaux sociaux. Transformez du texte simple en plus de 22 styles de polices uniques incluant gras, italique, cursive, monospace et polices décoratives. Comprend un compteur de caractères en temps réel pour les bios Instagram (150 caractères) et les publications (2200 caractères), un vérificateur de compatibilité des plateformes (Instagram, WhatsApp, Twitter, Facebook) et une fonction de copie instantanée. Parfait pour les créateurs de contenu, influenceurs et spécialistes du marketing qui veulent se démarquer avec du texte stylisé dans les bios, légendes et publications. Toutes les polices fonctionnent nativement sur toutes les plateformes sans installation. Basé sur navigateur avec confidentialité complète.",
+  "instructions": {
+    "title": "Comment utiliser le Générateur de Polices pour Instagram",
+    "steps": [
+      {
+        "title": "Tapez ou collez votre texte",
+        "description": "Entrez le texte que vous souhaitez styliser dans la zone de saisie. Fonctionne avec n'importe quel caractère Unicode incluant lettres, chiffres et emojis. Le compteur de caractères affiche les limites pour la bio Instagram (150) et les publications (2200)."
+      },
+      {
+        "title": "Parcourez les styles de polices générés",
+        "description": "Voyez instantanément votre texte converti en plus de 22 styles de polices différents. Chaque style affiche des icônes de compatibilité pour Instagram, WhatsApp, Twitter et Facebook."
+      },
+      {
+        "title": "Filtrez par plateforme ou recherchez",
+        "description": "Utilisez les filtres de plateforme pour afficher uniquement les polices compatibles avec Instagram, WhatsApp, Twitter ou Facebook. Recherchez par nom de police pour trouver rapidement des styles spécifiques comme 'gras' ou 'script'."
+      },
+      {
+        "title": "Copiez et utilisez votre texte stylisé",
+        "description": "Cliquez sur le bouton copier sur n'importe quel style de police pour le copier dans votre presse-papiers. Ensuite, collez-le directement dans votre bio Instagram, statut WhatsApp ou toute publication sur les réseaux sociaux."
+      }
+    ],
+    "features": [
+      "22+ styles de polices Unicode uniques générés instantanément",
+      "Compteur de caractères en temps réel pour les limites Instagram",
+      "Vérificateur de compatibilité des plateformes (Instagram, WhatsApp, Twitter, Facebook)",
+      "Recherchez et filtrez les polices par nom ou plateforme",
+      "Styles favoris pour accès rapide",
+      "Chargement différé pour performances optimales",
+      "Copiez des styles individuels ou tous les styles en une fois",
+      "Fonctionne avec les emojis, caractères spéciaux et texte multilingue",
+      "Aucune installation de police requise - fonctionne nativement",
+      "100% basé sur navigateur avec confidentialité complète"
+    ],
+    "useCases": [
+      "Créez des bios Instagram accrocheuses qui se démarquent",
+      "Stylisez les messages de statut WhatsApp avec des polices uniques",
+      "Ajoutez de la personnalité aux descriptions de profil Twitter",
+      "Rendez les publications Facebook plus engageantes avec du texte stylisé",
+      "Concevez du contenu de réseaux sociaux de marque",
+      "Créez des noms d'utilisateur et noms d'affichage uniques",
+      "Démarquez-vous dans les commentaires et les réponses",
+      "Générez du texte esthétique pour les bios TikTok",
+      "Stylisez les noms de serveurs et canaux Discord",
+      "Créez des titres accrocheurs pour les publications sociales"
+    ],
+    "proTips": [
+      "Enregistrez vos styles de polices préférés pour un accès rapide ultérieur",
+      "Testez les polices sur votre plateforme cible avant de finaliser",
+      "Combinez différents styles dans une bio pour des effets créatifs",
+      "Utilisez le compteur de caractères pour optimiser la limite de 150 caractères de la bio Instagram",
+      "Les polices gras et italique ont la meilleure compatibilité sur toutes les plateformes",
+      "Évitez d'utiliser trop de caractères spéciaux - gardez-le lisible",
+      "Prévisualisez comment votre texte stylisé apparaît avec les emojis",
+      "Copiez tous les styles en une fois pour tester plusieurs options",
+      "Utilisez les filtres de plateforme pour assurer la compatibilité avant de publier",
+      "Conservez une sauvegarde de votre texte original avant de le styliser"
+    ],
+    "troubleshooting": [
+      "Texte non affiché : Certains appareils plus anciens peuvent ne pas prendre en charge toutes les polices Unicode. Utilisez gras, italique ou monospace pour une compatibilité maximale.",
+      "Les caractères apparaissent comme des cases : Cela signifie que la police n'est pas prise en charge sur cette plateforme. Utilisez le vérificateur de compatibilité des plateformes pour vérifier avant de publier.",
+      "Le texte semble différent sur mobile vs bureau : Le rendu Unicode varie légèrement selon l'appareil. Prévisualisez toujours sur votre appareil cible avant de publier.",
+      "Instagram supprime le texte stylisé : Instagram bloque occasionnellement certaines plages Unicode. Si le texte disparaît, essayez un style de police différent.",
+      "Le compteur de caractères affiche rouge : Votre texte dépasse les limites Instagram (150 pour bio, 2200 pour publications). Raccourcissez le message ou supprimez des caractères supplémentaires.",
+      "Le bouton copier ne fonctionne pas : Assurez-vous que votre navigateur autorise l'accès au presse-papiers. Essayez de cliquer à nouveau sur le bouton ou sélectionnez et copiez manuellement le texte.",
+      "Les emojis ne se convertissent pas : Les emojis sont préservés dans leur forme originale - ils n'ont pas besoin de conversion et fonctionnent sur toutes les plateformes.",
+      "La recherche ne trouve pas les polices : Utilisez des termes simples comme 'gras', 'italique' ou 'script'. Les noms de polices sont en anglais."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller le texte"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le style sélectionné"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Sélectionner tout le texte dans l'entrée"
+      },
+      {
+        "keys": "Escape",
+        "description": "Effacer les filtres"
+      }
+    ]
+  }
+}
