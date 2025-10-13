@@ -1,0 +1,96 @@
+{
+  "title": "Instagram Font Generator",
+  "description": "Generate stylized Unicode fonts for Instagram, WhatsApp, and social media bios",
+  "placeholder": "Type your text here... (e.g., Your Name, Bio, Caption)",
+  "meta": {
+    "title": "Instagram Font Generator - Free Fancy Text Generator | ToolsLab",
+    "description": "Generate stylish Unicode fonts for Instagram bios, WhatsApp status, and social media. 22+ font styles, platform compatibility checker, character counter. Free online text generator."
+  },
+  "tagline": "Create eye-catching Unicode text styles for your social media profiles and posts",
+  "pageDescription": "Free Instagram font generator creates stylish Unicode text for social media. Transform plain text into 22+ unique font styles including bold, italic, cursive, monospace, and decorative fonts. Features real-time character counter for Instagram bios (150 chars) and posts (2200 chars), platform compatibility checker (Instagram, WhatsApp, Twitter, Facebook), and instant copy functionality. Perfect for content creators, influencers, and marketers who want to stand out with fancy text in bios, captions, and posts. All fonts work natively across platforms without installation. Browser-based with complete privacy.",
+  "instructions": {
+    "title": "How to use Instagram Font Generator",
+    "steps": [
+      {
+        "title": "Type or paste your text",
+        "description": "Enter the text you want to stylize in the input box. Works with any Unicode characters including letters, numbers, and emojis. The character counter shows limits for Instagram bio (150) and posts (2200)."
+      },
+      {
+        "title": "Browse generated font styles",
+        "description": "Instantly see your text converted into 22+ different font styles. Each style shows platform compatibility icons for Instagram, WhatsApp, Twitter, and Facebook."
+      },
+      {
+        "title": "Filter by platform or search",
+        "description": "Use platform filters to show only fonts compatible with Instagram, WhatsApp, Twitter, or Facebook. Search by font name to quickly find specific styles like 'bold' or 'script'."
+      },
+      {
+        "title": "Copy and use your styled text",
+        "description": "Click the copy button on any font style to copy it to your clipboard. Then paste it directly into your Instagram bio, WhatsApp status, or any social media post."
+      }
+    ],
+    "features": [
+      "22+ unique Unicode font styles instantly generated",
+      "Real-time character counter for Instagram limits",
+      "Platform compatibility checker (Instagram, WhatsApp, Twitter, Facebook)",
+      "Search and filter fonts by name or platform",
+      "Favorite styles for quick access",
+      "Lazy loading for optimal performance",
+      "Copy individual styles or all styles at once",
+      "Works with emojis, special characters, and multilingual text",
+      "No font installation required - works natively",
+      "100% browser-based with complete privacy"
+    ],
+    "useCases": [
+      "Create eye-catching Instagram bios that stand out",
+      "Style WhatsApp status messages with unique fonts",
+      "Add personality to Twitter profile descriptions",
+      "Make Facebook posts more engaging with styled text",
+      "Design branded social media content",
+      "Create unique usernames and display names",
+      "Stand out in comments and replies",
+      "Generate aesthetic text for TikTok bios",
+      "Style Discord server names and channels",
+      "Create attention-grabbing headlines for social posts"
+    ],
+    "proTips": [
+      "Save your favorite font styles for quick access later",
+      "Test fonts on your target platform before finalizing",
+      "Combine different styles in one bio for creative effects",
+      "Use the character counter to optimize for Instagram's 150-char bio limit",
+      "Bold and italic fonts have best compatibility across all platforms",
+      "Avoid using too many special characters - keep it readable",
+      "Preview how your styled text looks with emojis",
+      "Copy all styles at once to test multiple options",
+      "Use platform filters to ensure compatibility before posting",
+      "Keep a backup of your original text before styling"
+    ],
+    "troubleshooting": [
+      "Text not displaying: Some older devices may not support all Unicode fonts. Stick to bold, italic, or monospace for maximum compatibility.",
+      "Characters appear as boxes: This means the font isn't supported on that platform. Use the platform compatibility checker to verify before posting.",
+      "Text looks different on mobile vs desktop: Unicode rendering varies slightly by device. Always preview on your target device before publishing.",
+      "Instagram removing styled text: Instagram occasionally blocks certain Unicode ranges. If text disappears, try a different font style.",
+      "Character counter shows red: Your text exceeds Instagram's limits (150 for bio, 2200 for posts). Shorten your message or remove extra characters.",
+      "Copy button not working: Ensure your browser allows clipboard access. Try clicking the button again or manually select and copy the text.",
+      "Emojis not converting: Emojis are preserved in their original form - they don't need conversion and work across all platforms.",
+      "Search not finding fonts: Use simple terms like 'bold', 'italic', or 'script'. Font names are in English."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste text"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy selected style"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Select all text in input"
+      },
+      {
+        "keys": "Escape",
+        "description": "Clear filters"
+      }
+    ]
+  }
+}

@@ -7,6 +7,9 @@ import { labToasts } from '@/lib/utils/toasts';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { useHydration } from '@/lib/hooks/useHydration';
+import { getTrackingManager } from '@/lib/analytics/core/TrackingManager';
+import { getSessionManager } from '@/lib/analytics/core/SessionManager';
+import { EventNormalizer } from '@/lib/analytics/core/EventNormalizer';
 
 interface FavoriteButtonProps {
   type: 'tool' | 'category';
@@ -70,7 +73,27 @@ export function FavoriteButton({
       toggleCategoryFavorite(id);
     }
 
-    // Track the favorite action
+    // Track favorite action using new centralized system
+    const trackingManager = getTrackingManager();
+    const sessionManager = getSessionManager();
+
+    const { favoriteTools, favoriteCategories } = useToolStore.getState();
+    const totalFavorites =
+      type === 'tool' ? favoriteTools.length : favoriteCategories.length;
+
+    const event = EventNormalizer.enrichEvent({
+      event: 'user.favorite' as const,
+      type,
+      id,
+      action: wasAdded ? ('add' as const) : ('remove' as const),
+      totalFavorites: wasAdded ? totalFavorites + 1 : totalFavorites - 1,
+      timestamp: Date.now(),
+      sessionId: sessionManager?.getSessionId() || '',
+    });
+
+    trackingManager.track(event);
+
+    // Legacy tracking for backward compatibility
     trackFavorite(type, id, wasAdded);
 
     // Show toast notification
