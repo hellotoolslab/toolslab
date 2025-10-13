@@ -1,15 +1,15 @@
 {
-  "title": "Costruttore Espressioni Crontab",
-  "description": "Analizza, costruisci e valida espressioni cron con costruttore visuale, preset e prossime esecuzioni",
+  "title": "Crontab Expression Builder",
+  "description": "Parse, build and validate cron expressions with visual builder, presets and next execution times",
   "placeholder": "",
   "meta": {
-    "title": "Costruttore Crontab - Strumento Online Gratuito | ToolsLab",
-    "description": "Costruisci e valida espressioni cron online. Genera crontab con costruttore visuale. Strumento cron gratuito."
+    "title": "Crontab Builder - Free Online Tool | ToolsLab",
+    "description": "Build and validate cron expressions online. Generate crontab with visual builder. Free cron tool."
   },
-  "tagline": "Costruisci e analizza espressioni cron con interfaccia visuale",
-  "pageDescription": "Crea e valida espressioni cron usando il nostro builder visuale con menu dropdown e preset comuni. Analizza entry crontab esistenti con descrizioni leggibili e prossimi tempi esecuzione. Perfetto per amministratori sistema, DevOps engineer e sviluppatori che schedulano task automatizzati e deployment.",
+  "tagline": "Build and parse cron expressions with visual interface",
+  "pageDescription": "Create and validate cron expressions using our visual builder with dropdown menus and common presets. Parse existing crontab entries with human-readable descriptions and next execution times. Perfect for system administrators, DevOps engineers and developers scheduling automated tasks and deployments.",
   "instructions": {
-    "title": "How to use Costruttore Espressioni Crontab",
+    "title": "How to use Crontab Expression Builder",
     "steps": [
       {
         "title": "Paste your content",

@@ -1,15 +1,15 @@
 {
-  "title": "Validatore JSON",
-  "description": "Valida sintassi e struttura JSON",
+  "title": "JSON Validator",
+  "description": "Validate JSON syntax and structure",
   "placeholder": "",
   "meta": {
-    "title": "Validatore JSON - Strumento Online Gratuito | ToolsLab",
-    "description": "Valida JSON online. Controlla sintassi e struttura JSON. Validatore JSON gratuito."
+    "title": "JSON Validator - Free Online Tool | ToolsLab",
+    "description": "Validate JSON online. Check JSON syntax and structure. Free JSON validator."
   },
-  "tagline": "Valida JSON con supporto schema avanzato e rilevamento errori",
-  "pageDescription": "Validatore JSON avanzato con supporto JSON Schema, reporting errori in tempo reale e audit sicurezza. Valida risposte API, file configurazione e strutture dati con supporto schema Draft 7/2019-09/2020-12. Funzionalità evidenziazione sintassi, diagnostica errori dettagliata, metriche performance e rilevamento vulnerabilità sicurezza. Perfetto per sviluppatori e test API.",
+  "tagline": "Validate JSON with advanced schema support and error detection",
+  "pageDescription": "Advanced JSON validator with JSON Schema support, real-time error reporting and security audit. Validate API responses, configuration files and data structures with Draft 7/2019-09/2020-12 schema support. Features syntax highlighting, detailed error diagnostics, performance metrics and security vulnerability detection. Perfect for developers and API testing.",
   "instructions": {
-    "title": "How to use Validatore JSON",
+    "title": "How to use JSON Validator",
     "steps": [
       {
         "title": "Paste your JSON data",
