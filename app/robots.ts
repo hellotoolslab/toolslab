@@ -180,7 +180,7 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: [
-      `${baseUrl}/sitemap.xml`,
+      `${baseUrl}/sitemap-index.xml`,
       // `${baseUrl}/sitemap-tools.xml`,
     ],
   };
