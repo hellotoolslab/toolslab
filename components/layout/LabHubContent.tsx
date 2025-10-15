@@ -34,7 +34,7 @@ import {
   trackLabVisited,
   trackLabEmptyStateVisited,
   trackLabWelcomeToastShown,
-} from '@/lib/analytics/helpers/trackingHelpers';
+} from '@/lib/analytics/helpers/eventHelpers';
 
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;

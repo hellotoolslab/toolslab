@@ -1,8 +1,8 @@
 'use client';
 
 import { useCallback } from 'react';
-import { getTrackingManager } from '../core/TrackingManager';
-import { getSessionManager } from '../core/SessionManager';
+import { getUmamiAdapter } from '@/lib/analytics/umami/UmamiSDKAdapter';
+import { getUmamiSessionTracker } from '@/lib/analytics/umami/UmamiSessionTracker';
 import { EventNormalizer } from '../core/EventNormalizer';
 import type { ToolUseEvent } from '../types/events';
 
@@ -37,8 +37,8 @@ export function useToolTracking(toolId: string) {
       }
     ) => {
       try {
-        const manager = getTrackingManager();
-        const session = getSessionManager();
+        const manager = getUmamiAdapter();
+        const session = getUmamiSessionTracker();
 
         const inputSize = EventNormalizer.getByteSize(input);
         const outputSize = EventNormalizer.getByteSize(output);
@@ -99,7 +99,7 @@ export function useToolTracking(toolId: string) {
   const trackError = useCallback(
     (error: Error | string, inputSize?: number) => {
       try {
-        const manager = getTrackingManager();
+        const manager = getUmamiAdapter();
         const errorMessage = typeof error === 'string' ? error : error.message;
         const errorType = typeof error === 'string' ? 'Error' : error.name;
 
@@ -138,8 +138,8 @@ export function useToolTracking(toolId: string) {
   const trackCustom = useCallback(
     (eventData: Partial<ToolUseEvent>) => {
       try {
-        const manager = getTrackingManager();
-        const session = getSessionManager();
+        const manager = getUmamiAdapter();
+        const session = getUmamiSessionTracker();
 
         const event = EventNormalizer.enrichEvent({
           event: 'tool.use',

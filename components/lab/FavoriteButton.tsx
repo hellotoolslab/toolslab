@@ -7,8 +7,8 @@ import { labToasts } from '@/lib/utils/toasts';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { useHydration } from '@/lib/hooks/useHydration';
-import { getTrackingManager } from '@/lib/analytics/core/TrackingManager';
-import { getSessionManager } from '@/lib/analytics/core/SessionManager';
+import { getUmamiAdapter } from '@/lib/analytics/umami/UmamiSDKAdapter';
+import { getUmamiSessionTracker } from '@/lib/analytics/umami/UmamiSessionTracker';
 import { EventNormalizer } from '@/lib/analytics/core/EventNormalizer';
 
 interface FavoriteButtonProps {
@@ -74,8 +74,8 @@ export function FavoriteButton({
     }
 
     // Track favorite action using new centralized system
-    const trackingManager = getTrackingManager();
-    const sessionManager = getSessionManager();
+    const trackingManager = getUmamiAdapter();
+    const sessionManager = getUmamiSessionTracker();
 
     const { favoriteTools, favoriteCategories } = useToolStore.getState();
     const totalFavorites =

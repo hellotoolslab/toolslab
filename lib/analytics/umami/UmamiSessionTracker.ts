@@ -1,4 +1,8 @@
-// SessionManager - Unified session tracking for ToolsLab
+// UmamiSessionTracker - Session tracking for Umami analytics
+// Responsabilità:
+// - Session lifecycle (start/end)
+// - Tab visibility tracking
+// - Session metadata and history
 
 import type {
   SessionStartEvent,
@@ -6,8 +10,8 @@ import type {
   SessionTabVisibleEvent,
   SessionEndEvent,
 } from '../types/events';
-import { getTrackingManager } from './TrackingManager';
-import { EventNormalizer } from './EventNormalizer';
+import { getUmamiAdapter } from './UmamiSDKAdapter';
+import { EventNormalizer } from '../core/EventNormalizer';
 
 export interface SessionData {
   sessionId: string;
@@ -28,7 +32,7 @@ interface SessionHistory {
   lastSessionTime: number;
 }
 
-class SessionManager {
+class UmamiSessionTracker {
   private sessionData: SessionData | null = null;
   private readonly STORAGE_KEY = 'toolslab-session-history';
 
@@ -103,7 +107,7 @@ class SessionManager {
     };
 
     const enriched = EventNormalizer.enrichEvent(event);
-    getTrackingManager().track(enriched);
+    getUmamiAdapter().track(enriched);
 
     // Update session history after sending event
     this.updateSessionHistory();
@@ -197,7 +201,7 @@ class SessionManager {
     };
 
     const enriched = EventNormalizer.enrichEvent(event);
-    getTrackingManager().track(enriched);
+    getUmamiAdapter().track(enriched);
 
     // Update session data
     this.sessionData.lastHiddenTime = now;
@@ -223,7 +227,7 @@ class SessionManager {
     };
 
     const enriched = EventNormalizer.enrichEvent(event);
-    getTrackingManager().track(enriched);
+    getUmamiAdapter().track(enriched);
 
     // Update session data
     this.sessionData.totalHiddenDuration += hiddenDuration;
@@ -270,10 +274,10 @@ class SessionManager {
     };
 
     const enriched = EventNormalizer.enrichEvent(event);
-    getTrackingManager().track(enriched);
+    getUmamiAdapter().track(enriched);
 
     // Force immediate flush (critical event)
-    getTrackingManager().flush();
+    getUmamiAdapter().flush();
   }
 
   /**
@@ -353,13 +357,13 @@ class SessionManager {
 }
 
 // Singleton instance
-let instance: SessionManager | null = null;
+let instance: UmamiSessionTracker | null = null;
 
-export function getSessionManager(): SessionManager {
+export function getUmamiSessionTracker(): UmamiSessionTracker {
   if (!instance && typeof window !== 'undefined') {
-    instance = new SessionManager();
+    instance = new UmamiSessionTracker();
   }
   return instance!;
 }
 
-export { SessionManager };
+export { UmamiSessionTracker };

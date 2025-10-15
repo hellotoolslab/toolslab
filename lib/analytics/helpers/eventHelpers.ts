@@ -1,7 +1,7 @@
 // Tracking Helpers - Convenience functions for common tracking patterns
 
-import { getTrackingManager } from '../core/TrackingManager';
-import { getSessionManager } from '../core/SessionManager';
+import { getUmamiAdapter } from '../umami/UmamiSDKAdapter';
+import { getUmamiSessionTracker } from '../umami/UmamiSessionTracker';
 import { EventNormalizer } from '../core/EventNormalizer';
 import type {
   LabVisitedEvent,
@@ -26,11 +26,11 @@ export function trackLabVisited(params: {
     toolsCount: params.toolsCount,
     categoriesCount: params.categoriesCount,
     timestamp: Date.now(),
-    sessionId: getSessionManager()?.getSessionId() || '',
+    sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
   const enriched = EventNormalizer.enrichEvent(event);
-  getTrackingManager().track(enriched);
+  getUmamiAdapter().track(enriched);
 }
 
 /**
@@ -40,11 +40,11 @@ export function trackLabEmptyStateVisited(): void {
   const event: LabEmptyStateVisitedEvent = {
     event: 'lab.empty_state_visited',
     timestamp: Date.now(),
-    sessionId: getSessionManager()?.getSessionId() || '',
+    sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
   const enriched = EventNormalizer.enrichEvent(event);
-  getTrackingManager().track(enriched);
+  getUmamiAdapter().track(enriched);
 }
 
 /**
@@ -54,11 +54,11 @@ export function trackLabWelcomeToastShown(): void {
   const event: LabWelcomeToastShownEvent = {
     event: 'lab.welcome_toast_shown',
     timestamp: Date.now(),
-    sessionId: getSessionManager()?.getSessionId() || '',
+    sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
   const enriched = EventNormalizer.enrichEvent(event);
-  getTrackingManager().track(enriched);
+  getUmamiAdapter().track(enriched);
 }
 
 /**
@@ -69,11 +69,11 @@ export function trackLabToolSelected(toolId: string): void {
     event: 'lab.tool_selected',
     toolId,
     timestamp: Date.now(),
-    sessionId: getSessionManager()?.getSessionId() || '',
+    sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
   const enriched = EventNormalizer.enrichEvent(event);
-  getTrackingManager().track(enriched);
+  getUmamiAdapter().track(enriched);
 }
 
 /**
@@ -83,11 +83,11 @@ export function trackLabOverviewSelected(): void {
   const event: LabOverviewSelectedEvent = {
     event: 'lab.overview_selected',
     timestamp: Date.now(),
-    sessionId: getSessionManager()?.getSessionId() || '',
+    sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
   const enriched = EventNormalizer.enrichEvent(event);
-  getTrackingManager().track(enriched);
+  getUmamiAdapter().track(enriched);
 }
 
 /**
@@ -99,9 +99,9 @@ export function trackSocialClick(platform: string, from?: string): void {
     platform,
     from,
     timestamp: Date.now(),
-    sessionId: getSessionManager()?.getSessionId() || '',
+    sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
   const enriched = EventNormalizer.enrichEvent(event);
-  getTrackingManager().track(enriched);
+  getUmamiAdapter().track(enriched);
 }
