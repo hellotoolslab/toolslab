@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useToolStore } from '@/lib/store/toolStore';
 import { WelcomePopup, HelpButton } from '@/components/lab/WelcomePopup';
 import { labToasts } from '@/lib/utils/toasts';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { LabSidebar } from '@/components/lab/LabSidebar';
 import { LabToolViewer } from '@/components/lab/LabToolViewer';
 import { LabOverview } from '@/components/lab/LabOverview';
@@ -13,6 +12,13 @@ import { type Locale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
+import {
+  trackLabVisited,
+  trackLabEmptyStateVisited,
+  trackLabWelcomeToastShown,
+  trackLabToolSelected,
+  trackLabOverviewSelected,
+} from '@/lib/analytics/helpers/trackingHelpers';
 
 // Import della vista vuota esistente
 import LabHubContent from '../../../components/layout/LabHubContent';
@@ -23,7 +29,6 @@ interface LocaleLabPageClientProps {
 }
 
 function LabPageContent({ locale }: { locale: Locale }) {
-  const { trackEngagement } = useUmami();
   const { data: t } = useDictionarySectionContext('lab');
   const {
     favoriteTools,
@@ -48,13 +53,12 @@ function LabPageContent({ locale }: { locale: Locale }) {
     const favoriteCount = favoriteTools.length + favoriteCategories.length;
 
     if (favoriteCount === 0) {
-      trackEngagement('lab-empty-state-visited', { locale });
+      trackLabEmptyStateVisited();
     } else {
-      trackEngagement('lab-visited', {
-        favorites_count: favoriteCount,
-        tools_count: favoriteTools.length,
-        categories_count: favoriteCategories.length,
-        locale,
+      trackLabVisited({
+        favoritesCount: favoriteCount,
+        toolsCount: favoriteTools.length,
+        categoriesCount: favoriteCategories.length,
       });
     }
   }, []); // Run only once on mount
@@ -68,15 +72,10 @@ function LabPageContent({ locale }: { locale: Locale }) {
     ) {
       setTimeout(() => {
         labToasts.welcomeToLab();
-        trackEngagement('lab-welcome-toast-shown', { locale });
+        trackLabWelcomeToastShown();
       }, 1000);
     }
-  }, [
-    favoriteTools.length,
-    favoriteCategories.length,
-    trackEngagement,
-    locale,
-  ]);
+  }, [favoriteTools.length, favoriteCategories.length]);
 
   if (!mounted) {
     return (
@@ -115,12 +114,12 @@ function LabPageContent({ locale }: { locale: Locale }) {
 
   const handleToolSelect = (toolId: string) => {
     setSelectedToolId(toolId);
-    trackEngagement('lab-tool-selected', { tool_id: toolId, locale });
+    trackLabToolSelected(toolId);
   };
 
   const handleShowOverview = () => {
     setSelectedToolId(null);
-    trackEngagement('lab-overview-selected', { locale });
+    trackLabOverviewSelected();
   };
 
   return (

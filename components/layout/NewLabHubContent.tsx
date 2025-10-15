@@ -5,17 +5,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useToolStore } from '@/lib/store/toolStore';
 import { WelcomePopup, HelpButton } from '@/components/lab/WelcomePopup';
 import { labToasts } from '@/lib/utils/toasts';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { LabSidebar } from '@/components/lab/LabSidebar';
 import { LabToolViewer } from '@/components/lab/LabToolViewer';
 import { LabOverview } from '@/components/lab/LabOverview';
 import { useHydration } from '@/lib/hooks/useHydration';
+import {
+  trackLabVisited,
+  trackLabEmptyStateVisited,
+  trackLabWelcomeToastShown,
+  trackLabToolSelected,
+  trackLabOverviewSelected,
+} from '@/lib/analytics/helpers/trackingHelpers';
 
 // Import della vista vuota esistente
 import LabHubContent from './LabHubContent';
 
 export default function NewLabHubContent() {
-  const { trackEngagement } = useUmami();
   const isHydrated = useHydration();
   const {
     favoriteTools,
@@ -42,12 +47,12 @@ export default function NewLabHubContent() {
     const favoriteCount = favoriteTools.length + favoriteCategories.length;
 
     if (favoriteCount === 0) {
-      trackEngagement('lab-empty-state-visited');
+      trackLabEmptyStateVisited();
     } else {
-      trackEngagement('lab-visited', {
-        favorites_count: favoriteCount,
-        tools_count: favoriteTools.length,
-        categories_count: favoriteCategories.length,
+      trackLabVisited({
+        favoritesCount: favoriteCount,
+        toolsCount: favoriteTools.length,
+        categoriesCount: favoriteCategories.length,
       });
     }
   }, [isHydrated]); // Re-run when hydration completes
@@ -61,10 +66,10 @@ export default function NewLabHubContent() {
     ) {
       setTimeout(() => {
         labToasts.welcomeToLab();
-        trackEngagement('lab-welcome-toast-shown');
+        trackLabWelcomeToastShown();
       }, 1000);
     }
-  }, [favoriteTools.length, favoriteCategories.length, trackEngagement]);
+  }, [favoriteTools.length, favoriteCategories.length]);
 
   if (!mounted) {
     return (
@@ -103,12 +108,12 @@ export default function NewLabHubContent() {
 
   const handleToolSelect = (toolId: string) => {
     setSelectedToolId(toolId);
-    trackEngagement('lab-tool-selected', { tool_id: toolId });
+    trackLabToolSelected(toolId);
   };
 
   const handleShowOverview = () => {
     setSelectedToolId(null);
-    trackEngagement('lab-overview-selected');
+    trackLabOverviewSelected();
   };
 
   return (

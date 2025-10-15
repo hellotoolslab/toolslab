@@ -94,7 +94,7 @@ export function OptimizedUmamiProvider({
     script.src = scriptUrl!;
     script.defer = true;
     script.setAttribute('data-website-id', websiteId!);
-    script.setAttribute('data-auto-track', 'false'); // Disable auto tracking - we handle it manually with normalized URLs
+    script.setAttribute('data-auto-track', 'true'); // Disable auto tracking - we handle it manually with normalized URLs
 
     script.onload = () => {
       scriptLoaded.current = true;
