@@ -1,6 +1,6 @@
 // SessionManager - Unified session tracking for ToolsLab
 
-import type { SessionEndEvent } from '../types/events';
+import type { SessionStartEvent, SessionEndEvent } from '../types/events';
 import { getTrackingManager } from './TrackingManager';
 import { EventNormalizer } from './EventNormalizer';
 
@@ -13,14 +13,90 @@ export interface SessionData {
   toolsUsed: Set<string>;
 }
 
+interface SessionHistory {
+  sessionCount: number;
+  lastSessionTime: number;
+}
+
 class SessionManager {
   private sessionData: SessionData | null = null;
+  private readonly STORAGE_KEY = 'toolslab-session-history';
 
   constructor() {
     if (typeof window !== 'undefined') {
       this.initializeSession();
       this.setupListeners();
     }
+  }
+
+  /**
+   * Get session history from localStorage
+   */
+  private getSessionHistory(): SessionHistory | null {
+    try {
+      const stored = localStorage.getItem(this.STORAGE_KEY);
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch {
+      // localStorage not available or parse error
+    }
+    return null;
+  }
+
+  /**
+   * Update session history in localStorage
+   */
+  private updateSessionHistory(): void {
+    try {
+      const history = this.getSessionHistory() || {
+        sessionCount: 0,
+        lastSessionTime: 0,
+      };
+
+      history.sessionCount++;
+      history.lastSessionTime = Date.now();
+
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(history));
+    } catch {
+      // Ignore localStorage errors
+    }
+  }
+
+  /**
+   * Send session start event
+   */
+  private sendSessionStart(): void {
+    if (!this.sessionData) return;
+
+    const history = this.getSessionHistory();
+    const isReturningUser = history !== null;
+    const previousSessionCount = history?.sessionCount || 0;
+
+    let daysSinceLastVisit: number | undefined;
+    if (history?.lastSessionTime) {
+      const millisSinceLastVisit = Date.now() - history.lastSessionTime;
+      daysSinceLastVisit = Math.floor(
+        millisSinceLastVisit / (1000 * 60 * 60 * 24)
+      );
+    }
+
+    const event: SessionStartEvent = {
+      event: 'session.start',
+      sessionId: this.sessionData.sessionId,
+      isReturningUser,
+      previousSessionCount,
+      daysSinceLastVisit,
+      referrer: typeof document !== 'undefined' ? document.referrer : undefined,
+      entryPage: typeof window !== 'undefined' ? window.location.pathname : '/',
+      timestamp: Date.now(),
+    };
+
+    const enriched = EventNormalizer.enrichEvent(event);
+    getTrackingManager().track(enriched);
+
+    // Update session history after sending event
+    this.updateSessionHistory();
   }
 
   /**
@@ -36,7 +112,8 @@ class SessionManager {
       // sessionStorage not available
     }
 
-    // Generate new session ID if needed
+    // Generate new session ID if needed (new session)
+    const isNewSession = !sessionId;
     if (!sessionId) {
       sessionId =
         typeof crypto !== 'undefined' && crypto.randomUUID
@@ -58,6 +135,11 @@ class SessionManager {
       events: 0,
       toolsUsed: new Set(),
     };
+
+    // Send session.start event only for new sessions
+    if (isNewSession) {
+      this.sendSessionStart();
+    }
   }
 
   /**
