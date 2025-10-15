@@ -26,11 +26,15 @@ import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { cn } from '@/lib/utils';
 import { categories as CATEGORIES, tools as TOOLS_CONFIG } from '@/lib/tools';
 import { labToasts } from '@/lib/utils/toasts';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
+import {
+  trackLabVisited,
+  trackLabEmptyStateVisited,
+  trackLabWelcomeToastShown,
+} from '@/lib/analytics/helpers/trackingHelpers';
 
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;
@@ -390,7 +394,6 @@ function EnhancedEmptyState() {
 }
 
 export default function LabHubContent() {
-  const { trackEngagement } = useUmami();
   const isHydrated = useHydration();
   const { data: t } = useDictionarySectionContext('lab');
   const {
@@ -414,12 +417,12 @@ export default function LabHubContent() {
     const favoriteCount = favoriteTools.length + favoriteCategories.length;
 
     if (favoriteCount === 0) {
-      trackEngagement('lab-empty-state-visited');
+      trackLabEmptyStateVisited();
     } else {
-      trackEngagement('lab-visited', {
-        favorites_count: favoriteCount,
-        tools_count: favoriteTools.length,
-        categories_count: favoriteCategories.length,
+      trackLabVisited({
+        favoritesCount: favoriteCount,
+        toolsCount: favoriteTools.length,
+        categoriesCount: favoriteCategories.length,
       });
     }
   }, [isHydrated]); // Re-run when hydration completes
@@ -433,10 +436,10 @@ export default function LabHubContent() {
     ) {
       setTimeout(() => {
         labToasts.welcomeToLab();
-        trackEngagement('lab-welcome-toast-shown');
+        trackLabWelcomeToastShown();
       }, 1000);
     }
-  }, [favoriteTools.length, favoriteCategories.length, trackEngagement]);
+  }, [favoriteTools.length, favoriteCategories.length]);
 
   if (!mounted) {
     return (

@@ -9,10 +9,17 @@ export type EventName =
   | 'user.copy'
   | 'user.download'
   | 'user.favorite'
+  | 'session.start'
   | 'session.end'
   | 'chain.start'
   | 'chain.step'
-  | 'chain.complete';
+  | 'chain.complete'
+  | 'lab.visited'
+  | 'lab.empty_state_visited'
+  | 'lab.welcome_toast_shown'
+  | 'lab.tool_selected'
+  | 'lab.overview_selected'
+  | 'social.click';
 
 export interface BaseEventMetadata {
   // Timestamp
@@ -79,6 +86,15 @@ export interface UserFavoriteEvent extends BaseEventMetadata {
   totalFavorites?: number; // Total favorites after this action
 }
 
+export interface SessionStartEvent extends BaseEventMetadata {
+  event: 'session.start';
+  isReturningUser: boolean; // Based on localStorage presence
+  previousSessionCount?: number; // Number of previous sessions
+  daysSinceLastVisit?: number; // Days since last session
+  referrer?: string; // Where the user came from
+  entryPage: string; // First page of the session
+}
+
 export interface SessionEndEvent extends BaseEventMetadata {
   event: 'session.end';
   duration: number; // total milliseconds
@@ -109,6 +125,36 @@ export interface ChainCompleteEvent extends BaseEventMetadata {
   totalDuration: number;
 }
 
+export interface LabVisitedEvent extends BaseEventMetadata {
+  event: 'lab.visited';
+  favoritesCount: number;
+  toolsCount: number;
+  categoriesCount: number;
+}
+
+export interface LabEmptyStateVisitedEvent extends BaseEventMetadata {
+  event: 'lab.empty_state_visited';
+}
+
+export interface LabWelcomeToastShownEvent extends BaseEventMetadata {
+  event: 'lab.welcome_toast_shown';
+}
+
+export interface LabToolSelectedEvent extends BaseEventMetadata {
+  event: 'lab.tool_selected';
+  toolId: string;
+}
+
+export interface LabOverviewSelectedEvent extends BaseEventMetadata {
+  event: 'lab.overview_selected';
+}
+
+export interface SocialClickEvent extends BaseEventMetadata {
+  event: 'social.click';
+  platform: string;
+  from?: string;
+}
+
 export type AnalyticsEvent =
   | PageviewEvent
   | ToolUseEvent
@@ -116,10 +162,17 @@ export type AnalyticsEvent =
   | UserCopyEvent
   | UserDownloadEvent
   | UserFavoriteEvent
+  | SessionStartEvent
   | SessionEndEvent
   | ChainStartEvent
   | ChainStepEvent
-  | ChainCompleteEvent;
+  | ChainCompleteEvent
+  | LabVisitedEvent
+  | LabEmptyStateVisitedEvent
+  | LabWelcomeToastShownEvent
+  | LabToolSelectedEvent
+  | LabOverviewSelectedEvent
+  | SocialClickEvent;
 
 // Event batch for sending multiple events at once
 export interface EventBatch {
