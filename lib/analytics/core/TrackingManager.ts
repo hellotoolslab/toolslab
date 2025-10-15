@@ -29,13 +29,8 @@ class TrackingManager {
       window.addEventListener('online', () => this.handleOnline());
       window.addEventListener('offline', () => this.handleOffline());
 
-      // Listen for page unload
+      // Listen for page unload ONLY (let SessionManager handle visibilitychange)
       window.addEventListener('beforeunload', () => this.handleBeforeUnload());
-      window.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          this.handleBeforeUnload();
-        }
-      });
 
       // Restore offline queue from localStorage
       this.restoreOfflineQueue();
