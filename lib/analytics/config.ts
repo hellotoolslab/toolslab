@@ -78,12 +78,14 @@ export function getAnalyticsConfig(): AnalyticsConfig {
   };
 }
 
-// Critical events that MUST be delivered (use sendBeacon)
+// Critical events that use sendBeacon for reliable delivery
+// Note: These events still use batching, but get sendBeacon delivery method
+// to survive page unload. All events preserve exact timestamps regardless.
 export const CRITICAL_EVENTS = [
-  'session.end',
-  'tool.use',
-  'tool.error',
-  'chain.complete',
+  'session.end', // MUST survive page unload
+  'tool.use', // Important business metric
+  'tool.error', // Error tracking
+  'chain.complete', // Workflow completion
 ] as const;
 
 // Events that can use best-effort delivery
