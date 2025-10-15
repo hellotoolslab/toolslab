@@ -15,7 +15,7 @@ import {
   trackLabWelcomeToastShown,
   trackLabToolSelected,
   trackLabOverviewSelected,
-} from '@/lib/analytics/helpers/trackingHelpers';
+} from '@/lib/analytics/helpers/eventHelpers';
 
 // Import della vista vuota esistente
 import LabHubContent from './LabHubContent';
