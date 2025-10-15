@@ -157,10 +157,10 @@ class UmamiSessionTracker {
       tabHiddenCount: 0,
     };
 
-    // Send session.start event only for new sessions
-    if (isNewSession) {
-      this.sendSessionStart();
-    }
+    // ❌ session.start event REMOVED per request utente
+    // if (isNewSession) {
+    //   this.sendSessionStart();
+    // }
   }
 
   /**
@@ -212,7 +212,18 @@ class UmamiSessionTracker {
    * Send session.tab_visible event
    */
   private sendTabVisible(): void {
-    if (!this.sessionData || !this.sessionData.lastHiddenTime) return;
+    if (!this.sessionData) {
+      console.warn('[SessionTracker] sendTabVisible: no sessionData');
+      return;
+    }
+
+    if (!this.sessionData.lastHiddenTime) {
+      console.warn('[SessionTracker] sendTabVisible: no lastHiddenTime', {
+        sessionId: this.sessionData.sessionId,
+        lastHiddenTime: this.sessionData.lastHiddenTime,
+      });
+      return;
+    }
 
     const now = Date.now();
     const hiddenDuration = now - this.sessionData.lastHiddenTime;
@@ -225,6 +236,12 @@ class UmamiSessionTracker {
         typeof window !== 'undefined' ? window.location.pathname : '/',
       timestamp: now,
     };
+
+    console.log('[SessionTracker] Sending session.tab_visible', {
+      hiddenDuration,
+      lastHiddenTime: this.sessionData.lastHiddenTime,
+      now,
+    });
 
     const enriched = EventNormalizer.enrichEvent(event);
     getUmamiAdapter().track(enriched);
