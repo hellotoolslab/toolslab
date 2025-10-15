@@ -3,8 +3,8 @@
 import { createContext, useContext, useEffect, useRef, ReactNode } from 'react';
 import { BotDetector } from '@/lib/analytics/botDetection';
 import { SessionTracker } from '@/lib/analytics/sessionTracker';
-import { getSessionManager } from '@/lib/analytics/core/SessionManager';
-import { getTrackingManager } from '@/lib/analytics/core/TrackingManager';
+import { getUmamiSessionTracker } from '@/lib/analytics/umami/UmamiSessionTracker';
+import { getUmamiAdapter } from '@/lib/analytics/umami/UmamiSDKAdapter';
 import { EventNormalizer } from '@/lib/analytics/core/EventNormalizer';
 
 interface UmamiContextType {
@@ -109,25 +109,30 @@ export function OptimizedUmamiProvider({
 
     try {
       // CRITICAL: Initialize SessionManager FIRST to send session.start before pageview
-      const sessionManager = getSessionManager();
-      const trackingManager = getTrackingManager();
+      const sessionManager = getUmamiSessionTracker();
+      const trackingManager = getUmamiAdapter();
 
       const { page, locale, referrer } = EventNormalizer.getCurrentPageInfo();
 
-      const event = EventNormalizer.enrichEvent({
-        event: 'pageview' as const,
-        page,
-        locale,
-        referrer,
-        timestamp: Date.now(),
-        sessionId: sessionManager?.getSessionId() || '',
-      });
+      // ❌ TEMPORARILY DISABLED - pageview tracking commented out for testing
+      // const event = EventNormalizer.enrichEvent({
+      //   event: 'pageview' as const,
+      //   page,
+      //   locale,
+      //   referrer,
+      //   timestamp: Date.now(),
+      //   sessionId: sessionManager?.getSessionId() || '',
+      // });
 
-      trackingManager.track(event);
+      // trackingManager.track(event);
       sessionManager?.incrementPageView();
 
       if (process.env.NODE_ENV === 'development') {
-        console.debug('Pageview tracked:', { page, locale, referrer });
+        console.debug('Pageview tracking DISABLED:', {
+          page,
+          locale,
+          referrer,
+        });
       }
     } catch (error) {
       console.error('Pageview tracking error:', error);
@@ -226,24 +231,25 @@ export function OptimizedUmamiProvider({
       const pathname = url || window.location.pathname;
       const { page, locale } = EventNormalizer.normalizeURL(pathname);
 
-      const sessionManager = getSessionManager();
-      const trackingManager = getTrackingManager();
+      const sessionManager = getUmamiSessionTracker();
+      const trackingManager = getUmamiAdapter();
 
-      const event = EventNormalizer.enrichEvent({
-        event: 'pageview' as const,
-        page,
-        locale,
-        referrer: referrer || EventNormalizer.getNormalizedReferrer(),
-        timestamp: Date.now(),
-        sessionId: sessionManager?.getSessionId() || '',
-      });
+      // ❌ TEMPORARILY DISABLED - pageview tracking commented out for testing
+      // const event = EventNormalizer.enrichEvent({
+      //   event: 'pageview' as const,
+      //   page,
+      //   locale,
+      //   referrer: referrer || EventNormalizer.getNormalizedReferrer(),
+      //   timestamp: Date.now(),
+      //   sessionId: sessionManager?.getSessionId() || '',
+      // });
 
-      trackingManager.track(event);
+      // trackingManager.track(event);
       sessionManager?.incrementPageView();
       sessionTracker.current.incrementPageView(); // Keep legacy for compatibility
 
       if (process.env.NODE_ENV === 'development') {
-        console.debug('Page view tracked:', { page, locale });
+        console.debug('Page view tracking DISABLED:', { page, locale });
       }
     } catch (error) {
       console.error('Umami page tracking error:', error);
@@ -258,8 +264,8 @@ export function OptimizedUmamiProvider({
   ) => {
     // Use new TrackingManager for tool.use events
     if (shouldTrack()) {
-      const sessionManager = getSessionManager();
-      const trackingManager = getTrackingManager();
+      const sessionManager = getUmamiSessionTracker();
+      const trackingManager = getUmamiAdapter();
 
       const event = EventNormalizer.enrichEvent({
         event: 'tool.use' as const,

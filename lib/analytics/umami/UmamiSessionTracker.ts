@@ -1,4 +1,8 @@
-// SessionManager - Unified session tracking for ToolsLab
+// UmamiSessionTracker - Session tracking for Umami analytics
+// Responsabilità:
+// - Session lifecycle (start/end)
+// - Tab visibility tracking
+// - Session metadata and history
 
 import type {
   SessionStartEvent,
@@ -6,8 +10,8 @@ import type {
   SessionTabVisibleEvent,
   SessionEndEvent,
 } from '../types/events';
-import { getTrackingManager } from './TrackingManager';
-import { EventNormalizer } from './EventNormalizer';
+import { getUmamiAdapter } from './UmamiSDKAdapter';
+import { EventNormalizer } from '../core/EventNormalizer';
 
 export interface SessionData {
   sessionId: string;
@@ -28,7 +32,7 @@ interface SessionHistory {
   lastSessionTime: number;
 }
 
-class SessionManager {
+class UmamiSessionTracker {
   private sessionData: SessionData | null = null;
   private readonly STORAGE_KEY = 'toolslab-session-history';
 
@@ -103,7 +107,7 @@ class SessionManager {
     };
 
     const enriched = EventNormalizer.enrichEvent(event);
-    getTrackingManager().track(enriched);
+    getUmamiAdapter().track(enriched);
 
     // Update session history after sending event
     this.updateSessionHistory();
@@ -153,10 +157,10 @@ class SessionManager {
       tabHiddenCount: 0,
     };
 
-    // Send session.start event only for new sessions
-    if (isNewSession) {
-      this.sendSessionStart();
-    }
+    // ❌ session.start event REMOVED per request utente
+    // if (isNewSession) {
+    //   this.sendSessionStart();
+    // }
   }
 
   /**
@@ -197,7 +201,7 @@ class SessionManager {
     };
 
     const enriched = EventNormalizer.enrichEvent(event);
-    getTrackingManager().track(enriched);
+    getUmamiAdapter().track(enriched);
 
     // Update session data
     this.sessionData.lastHiddenTime = now;
@@ -208,7 +212,18 @@ class SessionManager {
    * Send session.tab_visible event
    */
   private sendTabVisible(): void {
-    if (!this.sessionData || !this.sessionData.lastHiddenTime) return;
+    if (!this.sessionData) {
+      console.warn('[SessionTracker] sendTabVisible: no sessionData');
+      return;
+    }
+
+    if (!this.sessionData.lastHiddenTime) {
+      console.warn('[SessionTracker] sendTabVisible: no lastHiddenTime', {
+        sessionId: this.sessionData.sessionId,
+        lastHiddenTime: this.sessionData.lastHiddenTime,
+      });
+      return;
+    }
 
     const now = Date.now();
     const hiddenDuration = now - this.sessionData.lastHiddenTime;
@@ -222,8 +237,14 @@ class SessionManager {
       timestamp: now,
     };
 
+    console.log('[SessionTracker] Sending session.tab_visible', {
+      hiddenDuration,
+      lastHiddenTime: this.sessionData.lastHiddenTime,
+      now,
+    });
+
     const enriched = EventNormalizer.enrichEvent(event);
-    getTrackingManager().track(enriched);
+    getUmamiAdapter().track(enriched);
 
     // Update session data
     this.sessionData.totalHiddenDuration += hiddenDuration;
@@ -270,10 +291,10 @@ class SessionManager {
     };
 
     const enriched = EventNormalizer.enrichEvent(event);
-    getTrackingManager().track(enriched);
+    getUmamiAdapter().track(enriched);
 
     // Force immediate flush (critical event)
-    getTrackingManager().flush();
+    getUmamiAdapter().flush();
   }
 
   /**
@@ -353,13 +374,13 @@ class SessionManager {
 }
 
 // Singleton instance
-let instance: SessionManager | null = null;
+let instance: UmamiSessionTracker | null = null;
 
-export function getSessionManager(): SessionManager {
+export function getUmamiSessionTracker(): UmamiSessionTracker {
   if (!instance && typeof window !== 'undefined') {
-    instance = new SessionManager();
+    instance = new UmamiSessionTracker();
   }
   return instance!;
 }
 
-export { SessionManager };
+export { UmamiSessionTracker };

@@ -1,7 +1,7 @@
 // toolStore Middleware - Auto-tracks tool usage when addToHistory() called
 
 import type { ToolUseEvent, UserLevel } from '../types/events';
-import { getTrackingManager } from '../core/TrackingManager';
+import { getUmamiAdapter } from '../umami/UmamiSDKAdapter';
 import { EventNormalizer } from '../core/EventNormalizer';
 
 interface ToolOperation {
@@ -58,8 +58,8 @@ export function trackToolUsage(
     const enrichedEvent = EventNormalizer.enrichEvent(event);
 
     // Get TrackingManager and track
-    const manager = getTrackingManager();
-    manager.track(enrichedEvent);
+    const adapter = getUmamiAdapter();
+    adapter.track(enrichedEvent);
 
     // Log in debug mode
     if (process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true') {
@@ -100,7 +100,7 @@ export function trackToolError(
       sessionId: '',
     });
 
-    const manager = getTrackingManager();
+    const manager = getUmamiAdapter();
     manager.track(event);
 
     if (process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true') {

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getTrackingManager } from '@/lib/analytics/core/TrackingManager';
-import { getSessionManager } from '@/lib/analytics/core/SessionManager';
+import { getUmamiAdapter } from '@/lib/analytics/umami/UmamiSDKAdapter';
+import { getUmamiSessionTracker } from '@/lib/analytics/umami/UmamiSessionTracker';
 
 /**
  * Analytics Debug Panel
@@ -29,8 +29,8 @@ export function AnalyticsDebugPanel() {
       // Update status every 2 seconds
       const interval = setInterval(() => {
         try {
-          const manager = getTrackingManager();
-          const session = getSessionManager();
+          const manager = getUmamiAdapter();
+          const session = getUmamiSessionTracker();
 
           setStatus(manager.getStatus());
           setSessionData(session?.getSessionData());
@@ -180,7 +180,7 @@ export function AnalyticsDebugPanel() {
             <button
               onClick={() => {
                 try {
-                  const manager = getTrackingManager();
+                  const manager = getUmamiAdapter();
                   manager.flush();
                   alert('Queue flushed!');
                 } catch (error) {
@@ -193,7 +193,7 @@ export function AnalyticsDebugPanel() {
             </button>
             <button
               onClick={() => {
-                const manager = getTrackingManager();
+                const manager = getUmamiAdapter();
                 console.log('TrackingManager Config:', manager.getConfig());
                 alert('Config logged to console');
               }}
