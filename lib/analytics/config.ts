@@ -78,11 +78,13 @@ export function getAnalyticsConfig(): AnalyticsConfig {
   };
 }
 
-// Critical events that use sendBeacon for reliable delivery
-// Note: These events still use batching, but get sendBeacon delivery method
-// to survive page unload. All events preserve exact timestamps regardless.
+// Critical events that are flushed immediately (no batching delay)
+// These events are time-sensitive and must be sent ASAP to preserve chronological order
 export const CRITICAL_EVENTS = [
+  'session.start', // MUST be first event, sent immediately
   'session.end', // MUST survive page unload
+  'session.tab_hidden', // Time-sensitive visibility tracking
+  'session.tab_visible', // Time-sensitive visibility tracking
   'tool.use', // Important business metric
   'tool.error', // Error tracking
   'chain.complete', // Workflow completion

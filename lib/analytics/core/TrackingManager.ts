@@ -112,6 +112,10 @@ class TrackingManager {
     const eventsToSend = [...this.queue];
     this.queue = [];
 
+    // ✅ CRITICAL: Sort events by timestamp to preserve chronological order
+    // This ensures Umami displays events in the correct order even when batched
+    eventsToSend.sort((a, b) => a.timestamp - b.timestamp);
+
     // Create batch
     const batch: EventBatch = {
       events: eventsToSend,
@@ -368,8 +372,13 @@ class TrackingManager {
     // Flush ALL pending events (not just critical ones)
     // This ensures maximum data reliability when user closes the page
     if (this.queue.length > 0) {
+      // ✅ Sort events by timestamp before sending
+      const sortedEvents = [...this.queue].sort(
+        (a, b) => a.timestamp - b.timestamp
+      );
+
       const batch: EventBatch = {
-        events: [...this.queue], // ✅ Send ALL events in queue
+        events: sortedEvents, // ✅ Send ALL events in chronological order
         batchId: this.generateBatchId(),
         timestamp: Date.now(),
       };
