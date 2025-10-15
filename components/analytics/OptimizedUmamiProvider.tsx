@@ -108,11 +108,11 @@ export function OptimizedUmamiProvider({
     if (!shouldTrack()) return;
 
     try {
-      const { page, locale, referrer } = EventNormalizer.getCurrentPageInfo();
-
-      // Track via new system with normalized URL
-      const trackingManager = getTrackingManager();
+      // CRITICAL: Initialize SessionManager FIRST to send session.start before pageview
       const sessionManager = getSessionManager();
+      const trackingManager = getTrackingManager();
+
+      const { page, locale, referrer } = EventNormalizer.getCurrentPageInfo();
 
       const event = EventNormalizer.enrichEvent({
         event: 'pageview' as const,
@@ -226,8 +226,8 @@ export function OptimizedUmamiProvider({
       const pathname = url || window.location.pathname;
       const { page, locale } = EventNormalizer.normalizeURL(pathname);
 
-      const trackingManager = getTrackingManager();
       const sessionManager = getSessionManager();
+      const trackingManager = getTrackingManager();
 
       const event = EventNormalizer.enrichEvent({
         event: 'pageview' as const,
@@ -258,8 +258,8 @@ export function OptimizedUmamiProvider({
   ) => {
     // Use new TrackingManager for tool.use events
     if (shouldTrack()) {
-      const trackingManager = getTrackingManager();
       const sessionManager = getSessionManager();
+      const trackingManager = getTrackingManager();
 
       const event = EventNormalizer.enrichEvent({
         event: 'tool.use' as const,
