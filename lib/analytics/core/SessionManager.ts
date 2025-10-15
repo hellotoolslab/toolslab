@@ -1,6 +1,11 @@
 // SessionManager - Unified session tracking for ToolsLab
 
-import type { SessionStartEvent, SessionEndEvent } from '../types/events';
+import type {
+  SessionStartEvent,
+  SessionTabHiddenEvent,
+  SessionTabVisibleEvent,
+  SessionEndEvent,
+} from '../types/events';
 import { getTrackingManager } from './TrackingManager';
 import { EventNormalizer } from './EventNormalizer';
 
@@ -11,6 +16,11 @@ export interface SessionData {
   pageViews: number;
   events: number;
   toolsUsed: Set<string>;
+  // Visibility tracking
+  lastVisibleTime: number; // When tab became visible
+  lastHiddenTime: number | null; // When tab became hidden
+  totalHiddenDuration: number; // Total time tab was hidden
+  tabHiddenCount: number; // Number of times tab was hidden
 }
 
 interface SessionHistory {
@@ -127,13 +137,20 @@ class SessionManager {
       }
     }
 
+    const now = Date.now();
+
     this.sessionData = {
       sessionId,
-      startTime: Date.now(),
-      lastActivity: Date.now(),
+      startTime: now,
+      lastActivity: now,
       pageViews: 0,
       events: 0,
       toolsUsed: new Set(),
+      // Visibility tracking - initialized as visible
+      lastVisibleTime: now,
+      lastHiddenTime: null,
+      totalHiddenDuration: 0,
+      tabHiddenCount: 0,
     };
 
     // Send session.start event only for new sessions
@@ -162,6 +179,59 @@ class SessionManager {
   }
 
   /**
+   * Send session.tab_hidden event
+   */
+  private sendTabHidden(): void {
+    if (!this.sessionData) return;
+
+    const now = Date.now();
+    const visibleDuration = now - this.sessionData.lastVisibleTime;
+
+    const event: SessionTabHiddenEvent = {
+      event: 'session.tab_hidden',
+      sessionId: this.sessionData.sessionId,
+      visibleDuration,
+      currentPage:
+        typeof window !== 'undefined' ? window.location.pathname : '/',
+      timestamp: now,
+    };
+
+    const enriched = EventNormalizer.enrichEvent(event);
+    getTrackingManager().track(enriched);
+
+    // Update session data
+    this.sessionData.lastHiddenTime = now;
+    this.sessionData.tabHiddenCount++;
+  }
+
+  /**
+   * Send session.tab_visible event
+   */
+  private sendTabVisible(): void {
+    if (!this.sessionData || !this.sessionData.lastHiddenTime) return;
+
+    const now = Date.now();
+    const hiddenDuration = now - this.sessionData.lastHiddenTime;
+
+    const event: SessionTabVisibleEvent = {
+      event: 'session.tab_visible',
+      sessionId: this.sessionData.sessionId,
+      hiddenDuration,
+      currentPage:
+        typeof window !== 'undefined' ? window.location.pathname : '/',
+      timestamp: now,
+    };
+
+    const enriched = EventNormalizer.enrichEvent(event);
+    getTrackingManager().track(enriched);
+
+    // Update session data
+    this.sessionData.totalHiddenDuration += hiddenDuration;
+    this.sessionData.lastVisibleTime = now;
+    this.sessionData.lastHiddenTime = null;
+  }
+
+  /**
    * Send session end event
    */
   private sendSessionEnd(): void {
@@ -169,22 +239,34 @@ class SessionManager {
       return;
     }
 
-    const duration = Date.now() - this.sessionData.startTime;
+    const now = Date.now();
+    const duration = now - this.sessionData.startTime;
 
     // Only send if session is meaningful (> 5 seconds)
     if (duration < 5000) {
       return;
     }
 
+    // Calculate active duration (excluding hidden time)
+    let activeDuration = duration - this.sessionData.totalHiddenDuration;
+
+    // If currently hidden, add the current hidden period
+    if (this.sessionData.lastHiddenTime) {
+      const currentHiddenDuration = now - this.sessionData.lastHiddenTime;
+      activeDuration -= currentHiddenDuration;
+    }
+
     const event: SessionEndEvent = {
       event: 'session.end',
       sessionId: this.sessionData.sessionId,
       duration,
+      activeDuration,
       pageViews: this.sessionData.pageViews,
       eventsCount: this.sessionData.events,
       toolsUsed: this.sessionData.toolsUsed.size,
       toolsList: Array.from(this.sessionData.toolsUsed),
-      timestamp: Date.now(),
+      tabHiddenCount: this.sessionData.tabHiddenCount,
+      timestamp: now,
     };
 
     const enriched = EventNormalizer.enrichEvent(event);
@@ -198,7 +280,8 @@ class SessionManager {
    * Handle page hidden (user switched tab or minimized)
    */
   private handlePageHidden(): void {
-    this.sendSessionEnd();
+    // Send tab_hidden event (user switched tab, NOT closing)
+    this.sendTabHidden();
   }
 
   /**
@@ -207,6 +290,9 @@ class SessionManager {
   private handlePageVisible(): void {
     if (this.sessionData) {
       this.sessionData.lastActivity = Date.now();
+
+      // Send tab_visible event (user returned to tab)
+      this.sendTabVisible();
     }
   }
 
@@ -214,6 +300,7 @@ class SessionManager {
    * Handle page unload (user closing browser/tab)
    */
   private handlePageUnload(): void {
+    // Send session.end event (user is closing tab/browser)
     this.sendSessionEnd();
   }
 
