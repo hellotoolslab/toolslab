@@ -365,27 +365,30 @@ class TrackingManager {
   }
 
   /**
-   * Handle page unload - flush critical events immediately
+   * Handle page unload - flush ALL pending events immediately
    */
   private handleBeforeUnload(): void {
-    this.log('Page unloading, flushing critical events');
+    this.log('Page unloading, flushing ALL pending events');
 
-    // Flush any pending events
+    // Flush ALL pending events (not just critical ones)
+    // This ensures maximum data reliability when user closes the page
     if (this.queue.length > 0) {
-      const criticalEvents = this.queue.filter((e) =>
-        CRITICAL_EVENTS.includes(e.event as any)
+      const batch: EventBatch = {
+        events: [...this.queue], // ✅ Send ALL events in queue
+        batchId: this.generateBatchId(),
+        timestamp: Date.now(),
+      };
+
+      // Clear queue immediately to prevent duplicates
+      this.queue = [];
+
+      // Use sendBeacon (synchronous, survives unload)
+      this.sendViaBeacon(batch);
+
+      this.log(
+        `✅ Sent ${batch.events.length} events via sendBeacon on unload`,
+        batch.events.map((e) => e.event)
       );
-
-      if (criticalEvents.length > 0) {
-        const batch: EventBatch = {
-          events: criticalEvents,
-          batchId: this.generateBatchId(),
-          timestamp: Date.now(),
-        };
-
-        // Use sendBeacon (synchronous, survives unload)
-        this.sendViaBeacon(batch);
-      }
     }
   }
 
