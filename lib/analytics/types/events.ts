@@ -10,6 +10,8 @@ export type EventName =
   | 'user.download'
   | 'user.favorite'
   | 'session.start'
+  | 'session.tab_hidden'
+  | 'session.tab_visible'
   | 'session.end'
   | 'chain.start'
   | 'chain.step'
@@ -95,13 +97,27 @@ export interface SessionStartEvent extends BaseEventMetadata {
   entryPage: string; // First page of the session
 }
 
+export interface SessionTabHiddenEvent extends BaseEventMetadata {
+  event: 'session.tab_hidden';
+  visibleDuration: number; // How long tab was visible before hiding (ms)
+  currentPage: string; // Page user was on when hiding
+}
+
+export interface SessionTabVisibleEvent extends BaseEventMetadata {
+  event: 'session.tab_visible';
+  hiddenDuration: number; // How long tab was hidden (ms)
+  currentPage: string; // Page user returned to
+}
+
 export interface SessionEndEvent extends BaseEventMetadata {
   event: 'session.end';
   duration: number; // total milliseconds
+  activeDuration: number; // duration excluding hidden time
   pageViews: number;
   eventsCount: number;
   toolsUsed: number;
   toolsList?: string[];
+  tabHiddenCount: number; // Number of times user hid the tab
 }
 
 export interface ChainStartEvent extends BaseEventMetadata {
@@ -163,6 +179,8 @@ export type AnalyticsEvent =
   | UserDownloadEvent
   | UserFavoriteEvent
   | SessionStartEvent
+  | SessionTabHiddenEvent
+  | SessionTabVisibleEvent
   | SessionEndEvent
   | ChainStartEvent
   | ChainStepEvent
