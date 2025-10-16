@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import {
   Download,
   Check,
@@ -10,6 +10,8 @@ import {
   Info,
   RefreshCw,
   FileCheck,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import {
   base64ToPdf,
@@ -39,6 +41,8 @@ export default function Base64ToPdfTool({
     estimatedSize: number;
     hasDataUrlPrefix: boolean;
   } | null>(null);
+  const [showPreview, setShowPreview] = useState(true);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const { copied, copy } = useCopy();
   const { trackUse, trackError, trackCustom } =
     useToolTracking('base64-to-pdf');
@@ -88,7 +92,11 @@ export default function Base64ToPdfTool({
 
       setResult(conversionResult);
 
-      if (conversionResult.success) {
+      if (conversionResult.success && conversionResult.pdfBlob) {
+        // Create preview URL for the PDF
+        const url = URL.createObjectURL(conversionResult.pdfBlob);
+        setPreviewUrl(url);
+
         // Track successful conversion with custom metadata
         trackCustom({
           event: 'tool.use',
@@ -128,11 +136,16 @@ export default function Base64ToPdfTool({
   }, [result]);
 
   const handleClear = useCallback(() => {
+    // Clean up preview URL to avoid memory leak
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
     setInput('');
     setResult(null);
     setError(null);
     setValidationInfo(null);
-  }, []);
+    setPreviewUrl(null);
+  }, [previewUrl]);
 
   // Validate input on change
   useEffect(() => {
@@ -146,6 +159,15 @@ export default function Base64ToPdfTool({
       setFileName(`document_${timestamp}.pdf`);
     }
   }, [fileName]);
+
+  // Cleanup preview URL on unmount
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
 
   return (
     <div className="mx-auto w-full max-w-6xl space-y-6">
@@ -306,27 +328,67 @@ export default function Base64ToPdfTool({
             )}
           </div>
 
-          {/* Download Button */}
-          <button
-            onClick={handleDownload}
-            className="inline-flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
-          >
-            <Download className="h-4 w-4" />
-            Download PDF
-          </button>
+          {/* Download Buttons */}
+          <div className="mb-4">
+            <button
+              onClick={handleDownload}
+              className="inline-flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
+            >
+              <Download className="h-4 w-4" />
+              Download PDF
+            </button>
 
-          {/* Copy filename button for convenience */}
-          <button
-            onClick={() => copy(result.fileName || '')}
-            className="ml-3 inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-          >
-            {copied ? (
-              <Check className="h-4 w-4" />
-            ) : (
-              <FileText className="h-4 w-4" />
-            )}
-            {copied ? 'Copied!' : 'Copy filename'}
-          </button>
+            {/* Copy filename button for convenience */}
+            <button
+              onClick={() => copy(result.fileName || '')}
+              className="ml-3 inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+            >
+              {copied ? (
+                <Check className="h-4 w-4" />
+              ) : (
+                <FileText className="h-4 w-4" />
+              )}
+              {copied ? 'Copied!' : 'Copy filename'}
+            </button>
+          </div>
+
+          {/* PDF Preview */}
+          {previewUrl && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  PDF Preview
+                </h3>
+                <button
+                  onClick={() => setShowPreview(!showPreview)}
+                  className="flex items-center gap-1 rounded-md bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                >
+                  {showPreview ? (
+                    <>
+                      <EyeOff className="h-3 w-3" />
+                      Hide Preview
+                    </>
+                  ) : (
+                    <>
+                      <Eye className="h-3 w-3" />
+                      Show Preview
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {showPreview && (
+                <div className="overflow-hidden rounded-md border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700">
+                  <embed
+                    src={previewUrl}
+                    type="application/pdf"
+                    className="h-[600px] w-full"
+                    title="PDF Preview"
+                  />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
 
