@@ -588,86 +588,110 @@ export default function YourTool() {
 }
 ```
 
-### Step 7: Create Page Route
+### Step 7: Register in LazyToolLoader (Dynamic Routing)
 
-Create page file `app/tools/your-tool-slug/page.tsx`:
+**⚠️ IMPORTANT**: ToolsLab uses a unified dynamic routing system. **DO NOT create dedicated page routes** like `app/tools/your-tool-slug/page.tsx`.
+
+All tools are automatically served through the dynamic route at `app/[locale]/tools/[tool]/page.tsx`. You only need to register your component in the LazyToolLoader.
+
+**Register your component in `components/tools/LazyToolLoader.tsx`:**
 
 ```typescript
-// app/tools/your-tool-slug/page.tsx
-import { Metadata } from 'next';
-import { Suspense } from 'react';
-import ToolPageClient from '@/components/tools/ToolPageClient';
-import { getToolById } from '@/lib/tools';
-import { getToolSeoContent } from '@/lib/tool-seo';
+// components/tools/LazyToolLoader.tsx
+import { lazy, Suspense } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
-const TOOL_ID = 'your-tool-slug';
+const toolComponents = {
+  // ... existing tools
+  'json-formatter': lazy(() => import('./implementations/JsonFormatter')),
+  'base64-encode': lazy(() => import('./implementations/Base64Encode')),
 
-// Generate metadata for SEO
-export async function generateMetadata(): Promise<Metadata> {
-  const tool = getToolById(TOOL_ID);
-  const seoContent = getToolSeoContent(TOOL_ID);
+  // ADD YOUR NEW TOOL HERE
+  'your-tool-slug': lazy(() => import('./implementations/YourTool')),
+};
 
-  if (!tool) {
-    return {
-      title: 'Tool Not Found - ToolsLab',
-      description: 'The requested tool could not be found.',
-    };
+export default function LazyToolLoader({ toolId, ...props }: LazyToolLoaderProps) {
+  const ToolComponent = toolComponents[toolId as keyof typeof toolComponents];
+
+  if (!ToolComponent) {
+    return <div>Tool not found</div>;
   }
 
-  const title = `${tool.name} - Free Online Tool | ToolsLab`;
-  const description = seoContent?.seoDescription || tool.description;
-
-  return {
-    title,
-    description,
-    keywords: tool.keywords.join(', '),
-    openGraph: {
-      title,
-      description,
-      type: 'website',
-      url: `https://toolslab.dev${tool.route}`,
-      siteName: 'ToolsLab',
-      images: [
-        {
-          url: '/og-image.png',
-          width: 1200,
-          height: 630,
-          alt: tool.name,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: ['/og-image.png'],
-    },
-    alternates: {
-      canonical: `https://toolslab.dev${tool.route}`,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-  };
-}
-
-// IMPORTANT: Always wrap ToolPageClient in Suspense
-export default function YourToolPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ToolPageClient toolId={TOOL_ID} />
+    <Suspense fallback={<Skeleton className="h-[400px] w-full" />}>
+      <ToolComponent {...props} />
     </Suspense>
   );
 }
 ```
+
+**That's it!** The dynamic routing system will automatically:
+- ✅ Generate metadata and SEO tags
+- ✅ Handle multilingual URLs (`/tools/your-tool`, `/it/tools/your-tool`, etc.)
+- ✅ Create OpenGraph and Twitter Card tags
+- ✅ Add Schema.org structured data
+- ✅ Include tool in sitemap
+- ✅ Lazy load your component for optimal performance
+
+### Step 8: Add Multilingual Translations
+
+Add translations for all supported languages in `lib/i18n/dictionaries/{locale}/tools/`:
+
+**Create `/lib/i18n/dictionaries/en/tools/your-tool-slug.json`:**
+```json
+{
+  "title": "Your Tool Name",
+  "description": "Clear description of the tool",
+  "placeholder": "Enter your data here...",
+  "tagline": "Action verb + tool benefit (8-12 words)",
+  "pageDescription": "Detailed SEO description with keywords and benefits",
+  "meta": {
+    "title": "Your Tool Name - Free Online Tool | ToolsLab",
+    "description": "SEO-optimized description for search engines"
+  }
+}
+```
+
+**Create `/lib/i18n/dictionaries/it/tools/your-tool-slug.json`:**
+```json
+{
+  "title": "Nome Strumento",
+  "description": "Descrizione chiara dello strumento",
+  "placeholder": "Inserisci i tuoi dati qui...",
+  "tagline": "Verbo d'azione + beneficio (8-12 parole)",
+  "pageDescription": "Descrizione SEO dettagliata con parole chiave",
+  "meta": {
+    "title": "Nome Strumento - Strumento Online Gratuito | ToolsLab",
+    "description": "Descrizione ottimizzata per i motori di ricerca"
+  }
+}
+```
+
+**Repeat for Spanish (`es`) and French (`fr`).**
+
+### Step 9: Add Related Tools Relationships
+
+Define semantic relationships in `lib/seo/tool-relationships.ts`:
+
+```typescript
+// lib/seo/tool-relationships.ts
+export const toolRelationships: ToolRelationships = {
+  // ... existing relationships
+
+  'your-tool-slug': {
+    workflow: ['tool-1', 'tool-2'],           // Tools used in same workflow
+    complementary: ['tool-3', 'tool-4'],      // Tools that work well together
+    alternatives: ['tool-5'],                  // Similar tools for different formats
+    boostVisibility: false,                    // Set true if tool needs extra linking
+  },
+};
+```
+
+**Relationship Types:**
+- **workflow**: Tools typically used in sequence (e.g., json-formatter → json-validator → json-to-typescript)
+- **complementary**: Tools that enhance this tool (e.g., base64-encode + jwt-decoder)
+- **alternatives**: Similar tools for different formats (e.g., json-formatter vs xml-formatter)
+- **boostVisibility**: Flag for under-linked tools that need more internal links
 
 ## 💧 State Management & Hydration
 
