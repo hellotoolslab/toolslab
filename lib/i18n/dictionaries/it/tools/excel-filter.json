@@ -1,0 +1,99 @@
+{
+  "title": "Strumento Filtro Excel",
+  "description": "Carica file Excel e applica filtri dinamici alle tabelle con ricerca, ordinamento e capacità di esportazione",
+  "placeholder": "Carica il tuo file Excel per iniziare...",
+  "instructions": {
+    "title": "Come usare lo Strumento Filtro Excel",
+    "steps": [
+      {
+        "title": "Carica il tuo file Excel",
+        "description": "Trascina e rilascia il tuo file .xlsx o .xls (fino a 50MB) o clicca per sfogliare. Lo strumento caricherà e visualizzerà istantaneamente i tuoi dati in formato tabella."
+      },
+      {
+        "title": "Applica filtri alle colonne",
+        "description": "Clicca 'Aggiungi Filtro' per creare filtri specifici per colonna. Scegli tra operatori di testo, numerici e di data come contiene, uguale, maggiore di o tra valori."
+      },
+      {
+        "title": "Cerca e ordina i dati",
+        "description": "Usa la ricerca globale per trovare dati su tutte le colonne istantaneamente. Clicca sulle intestazioni delle colonne per ordinare i dati in ordine crescente o decrescente."
+      },
+      {
+        "title": "Esporta i risultati filtrati",
+        "description": "Esporta i tuoi dati filtrati e ordinati in formato CSV o Excel. Le colonne nascoste saranno escluse dall'esportazione."
+      }
+    ],
+    "features": [
+      "Carica file Excel fino a 50MB",
+      "Filtri dinamici con 13 operatori diversi",
+      "Ricerca globale su tutte le colonne",
+      "Ordina per qualsiasi colonna (crescente/decrescente)",
+      "Mostra/nascondi colonne dinamicamente",
+      "Esporta in formato CSV o Excel",
+      "Combina più filtri (logica AND)",
+      "Filtraggio e paginazione in tempo reale"
+    ],
+    "useCases": [
+      "Filtra grandi set di dati rapidamente senza aprire Excel",
+      "Condividi dati filtrati con i membri del team facilmente",
+      "Pulisci e prepara i dati per l'analisi",
+      "Trova record specifici su più colonne",
+      "Esporta sottoinsiemi di dati per report",
+      "Analizza dati di vendite, inventario o clienti",
+      "Elabora risultati di sondaggi e moduli di feedback",
+      "Filtra dati di gestione progetti ed elenchi di attività"
+    ],
+    "proTips": [
+      "Combina più filtri per query di dati precise",
+      "Usa l'operatore 'tra' per intervalli di date e numerici",
+      "Nascondi le colonne che non ti servono prima di esportare",
+      "Clicca sulle intestazioni delle colonne più volte per ciclare l'ordine",
+      "Usa la ricerca globale per ricerche rapide su tutti i dati",
+      "Esporta dati filtrati per condividere sottoinsiemi specifici con altri"
+    ],
+    "troubleshooting": [
+      "Il file non si carica: Assicurati che il file sia in formato .xlsx o .xls e inferiore a 50MB",
+      "Nessun dato visualizzato: Controlla se il file Excel ha dati nel primo foglio",
+      "Filtro non funzionante: Verifica che il valore del filtro corrisponda al tipo di dati (testo/numero)",
+      "Prestazioni lente: Prova a filtrare i dati per ridurre le righe visibili",
+      "Esportazione con colonne mancanti: Controlla se le colonne sono nascoste nel gestore colonne"
+    ],
+    "keyboardShortcuts": []
+  },
+  "features": [
+    "Caricamento file Excel",
+    "Filtraggio dinamico",
+    "Ricerca globale",
+    "Esporta CSV/Excel"
+  ],
+  "meta": {
+    "title": "Strumento Filtro Excel - Strumento Online Gratuito",
+    "description": "Carica e filtra file Excel online con funzionalità avanzate di ricerca, ordinamento ed esportazione. Strumento filtro Excel gratuito senza installazione richiesta. Funziona istantaneamente nel tuo browser."
+  },
+  "labels": {
+    "upload": "Carica File",
+    "filter": "Filtra",
+    "search": "Cerca",
+    "export": "Esporta"
+  },
+  "messages": {
+    "uploadSuccess": "File caricato con successo",
+    "filterApplied": "Filtri applicati",
+    "noData": "Nessun dato corrisponde ai tuoi filtri"
+  },
+  "options": {
+    "showFilters": "Mostra Filtri",
+    "hideFilters": "Nascondi Filtri"
+  },
+  "tagline": "Filtra e analizza dati Excel istantaneamente online",
+  "pageDescription": "Carica file Excel e applica potenti filtri ai tuoi dati con il nostro strumento filtro Excel online gratuito. Cerca tra le colonne, ordina i dati, nascondi colonne ed esporta risultati filtrati in CSV o Excel. Perfetto per analisi dati, reportistica e manipolazione rapida dei dati senza installare software. Elabora file fino a 50MB in modo sicuro nel tuo browser.",
+  "usageTips": {
+    "title": "Suggerimenti per l'Uso",
+    "tips": [
+      "Carica file Excel fino a 50MB",
+      "Combina più filtri per query di dati avanzate",
+      "Clicca sulle intestazioni delle colonne per ordinare i dati in modo crescente/decrescente",
+      "Usa la ricerca globale per trovare dati in tutte le colonne istantaneamente",
+      "Esporta i risultati filtrati in formato CSV o Excel"
+    ]
+  }
+}

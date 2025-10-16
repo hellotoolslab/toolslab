@@ -72,6 +72,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'unix-timestamp-converter',
     'eml-to-html',
     'instagram-font-generator',
+    'excel-filter',
   ];
 
   const tools: Record<string, any> = {};
