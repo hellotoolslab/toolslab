@@ -59,14 +59,50 @@ export async function generateMetadata({
   const categoryDict = dict.categories[primaryCategory?.id || 'dev'];
   const categoryName = categoryDict?.name || primaryCategory?.name || 'Tools';
 
+  // Generate comprehensive keywords with proper translations
+  const getTranslatedKeywords = (locale: string) => {
+    switch (locale) {
+      case 'it':
+        return {
+          onlineTool: 'strumento online',
+          freeTool: 'strumento gratuito',
+          developerTool: 'strumento sviluppatore',
+          webTool: 'strumento web',
+        };
+      case 'es':
+        return {
+          onlineTool: 'herramienta en línea',
+          freeTool: 'herramienta gratuita',
+          developerTool: 'herramienta para desarrolladores',
+          webTool: 'herramienta web',
+        };
+      case 'fr':
+        return {
+          onlineTool: 'outil en ligne',
+          freeTool: 'outil gratuit',
+          developerTool: 'outil développeur',
+          webTool: 'outil web',
+        };
+      default:
+        return {
+          onlineTool: 'online tool',
+          freeTool: 'free tool',
+          developerTool: 'developer tool',
+          webTool: 'web tool',
+        };
+    }
+  };
+
+  const translatedKeywords = getTranslatedKeywords(locale);
+
   // Generate comprehensive keywords
   const keywords = [
     toolDict?.title.toLowerCase() || tool.name.toLowerCase(),
     ...tool.keywords,
-    locale === 'it' ? 'strumento online' : 'online tool',
-    locale === 'it' ? 'strumento gratuito' : 'free tool',
-    locale === 'it' ? 'strumento sviluppatore' : 'developer tool',
-    locale === 'it' ? 'strumento web' : 'web tool',
+    translatedKeywords.onlineTool,
+    translatedKeywords.freeTool,
+    translatedKeywords.developerTool,
+    translatedKeywords.webTool,
     categoryName.toLowerCase(),
     'toolslab',
   ];
@@ -154,13 +190,21 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
     instructions: toolData?.instructions,
   };
 
+  // Map locale to inLanguage format
+  const localeToLanguageMap: Record<string, string> = {
+    en: 'en-US',
+    it: 'it-IT',
+    es: 'es-ES',
+    fr: 'fr-FR',
+  };
+
   // Generate localized schema
   const localizedSchema = {
     ...toolSchema,
     name: toolTranslations.title,
     description: toolTranslations.description,
     url: `https://toolslab.dev/${locale}/tools/${toolId}`,
-    inLanguage: locale === 'it' ? 'it-IT' : 'en-US',
+    inLanguage: localeToLanguageMap[locale] || 'en-US',
   };
 
   return (

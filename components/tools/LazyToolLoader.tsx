@@ -71,6 +71,7 @@ const toolComponents = {
   'instagram-font-generator': lazy(
     () => import('./implementations/InstagramFont')
   ),
+  'excel-filter': lazy(() => import('./implementations/ExcelFilter')),
   // Add more as needed
 } as const;
 
