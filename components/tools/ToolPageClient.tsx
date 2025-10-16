@@ -178,7 +178,7 @@ export default function ToolPageClient({
       const relatedToolObjects = smartRelatedIds
         .map((id: string) => tools.find((t) => t.id === id))
         .filter(
-          (t): t is (typeof tools)[0] =>
+          (t: (typeof tools)[0] | undefined): t is (typeof tools)[0] =>
             t !== undefined && t.label !== 'coming-soon'
         );
 
@@ -323,7 +323,7 @@ export default function ToolPageClient({
                   {t.relatedTools}
                 </h3>
                 <div className="space-y-3">
-                  {relatedTools.map((relatedTool) => (
+                  {relatedTools.map((relatedTool: (typeof tools)[0]) => (
                     <Link
                       key={relatedTool.id}
                       href={createHref(`/tools/${relatedTool.id}`)}
@@ -366,7 +366,7 @@ export default function ToolPageClient({
               {t.relatedTools}
             </h3>
             <div className="grid grid-cols-2 gap-4">
-              {relatedTools.map((relatedTool) => (
+              {relatedTools.map((relatedTool: (typeof tools)[0]) => (
                 <Link
                   key={relatedTool.id}
                   href={createHref(`/tools/${relatedTool.id}`)}
