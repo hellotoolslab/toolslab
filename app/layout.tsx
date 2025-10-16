@@ -196,6 +196,13 @@ export default async function RootLayout({
           `,
           }}
         />
+        {process.env.NODE_ENV === 'production' && (
+          <script
+            src="https://analytics.ahrefs.com/analytics.js"
+            data-key="ohz106bEmijaQizKWgpORQ"
+            async
+          />
+        )}
       </head>
       <body
         className={cn(
