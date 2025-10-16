@@ -257,6 +257,13 @@ export const toolRelationships: ToolRelationships = {
     complementary: ['url-encode', 'eml-to-html'],
     alternatives: ['base64-encode'],
   },
+
+  // ==================== SOCIAL MEDIA ====================
+  'instagram-font-generator': {
+    workflow: ['qr-generator', 'url-encode'],
+    complementary: ['text-diff', 'regex-tester', 'markdown-preview'],
+    alternatives: ['base64-encode', 'hash-generator'],
+  },
 };
 
 /**

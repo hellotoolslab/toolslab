@@ -168,9 +168,9 @@ export function HeroSection({
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-purple-600 via-blue-600 to-teal-500">
+    <section className="relative bg-gradient-to-br from-purple-600 via-blue-600 to-teal-500">
       {/* Animated gradient background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         <div className="animate-gradient absolute inset-0 bg-gradient-to-br from-purple-600/20 via-blue-600/20 to-teal-500/20" />
         <div
           className="absolute inset-0 opacity-20"
@@ -230,7 +230,7 @@ export function HeroSection({
 
           {/* Search bar */}
           <div className="mx-auto max-w-2xl">
-            <form onSubmit={handleSearch} className="relative z-50">
+            <form onSubmit={handleSearch} className="relative">
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/60" />
                 <input
