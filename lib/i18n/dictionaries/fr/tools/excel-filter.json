@@ -1,0 +1,99 @@
+{
+  "title": "Outil Filtre Excel",
+  "description": "Téléchargez des fichiers Excel et appliquez des filtres dynamiques aux tableaux avec recherche, tri et capacités d'exportation",
+  "placeholder": "Téléchargez votre fichier Excel pour commencer...",
+  "instructions": {
+    "title": "Comment utiliser l'Outil Filtre Excel",
+    "steps": [
+      {
+        "title": "Téléchargez votre fichier Excel",
+        "description": "Glissez-déposez votre fichier .xlsx ou .xls (jusqu'à 50 Mo) ou cliquez pour parcourir. L'outil chargera et affichera instantanément vos données au format tableau."
+      },
+      {
+        "title": "Appliquez des filtres aux colonnes",
+        "description": "Cliquez sur 'Ajouter un filtre' pour créer des filtres spécifiques aux colonnes. Choisissez parmi les opérateurs de texte, numériques et de date comme contient, égal, supérieur à ou entre les valeurs."
+      },
+      {
+        "title": "Recherchez et triez les données",
+        "description": "Utilisez la recherche globale pour trouver des données dans toutes les colonnes instantanément. Cliquez sur les en-têtes de colonnes pour trier les données par ordre croissant ou décroissant."
+      },
+      {
+        "title": "Exportez les résultats filtrés",
+        "description": "Exportez vos données filtrées et triées au format CSV ou Excel. Les colonnes masquées seront exclues de l'exportation."
+      }
+    ],
+    "features": [
+      "Téléchargez des fichiers Excel jusqu'à 50 Mo",
+      "Filtres dynamiques avec 13 opérateurs différents",
+      "Recherche globale sur toutes les colonnes",
+      "Triez par n'importe quelle colonne (croissant/décroissant)",
+      "Affichez/masquez les colonnes dynamiquement",
+      "Exportez au format CSV ou Excel",
+      "Combinez plusieurs filtres (logique ET)",
+      "Filtrage et pagination en temps réel"
+    ],
+    "useCases": [
+      "Filtrez rapidement de grands ensembles de données sans ouvrir Excel",
+      "Partagez facilement les données filtrées avec les membres de l'équipe",
+      "Nettoyez et préparez les données pour l'analyse",
+      "Trouvez des enregistrements spécifiques dans plusieurs colonnes",
+      "Exportez des sous-ensembles de données pour les rapports",
+      "Analysez les données de ventes, d'inventaire ou de clients",
+      "Traitez les résultats d'enquêtes et les formulaires de commentaires",
+      "Filtrez les données de gestion de projet et les listes de tâches"
+    ],
+    "proTips": [
+      "Combinez plusieurs filtres pour des requêtes de données précises",
+      "Utilisez l'opérateur 'entre' pour les plages de dates et numériques",
+      "Masquez les colonnes dont vous n'avez pas besoin avant d'exporter",
+      "Cliquez plusieurs fois sur les en-têtes de colonnes pour faire défiler l'ordre",
+      "Utilisez la recherche globale pour des recherches rapides sur toutes les données",
+      "Exportez les données filtrées pour partager des sous-ensembles spécifiques avec d'autres"
+    ],
+    "troubleshooting": [
+      "Le fichier ne se télécharge pas: Assurez-vous que le fichier est au format .xlsx ou .xls et inférieur à 50 Mo",
+      "Aucune donnée affichée: Vérifiez si le fichier Excel contient des données dans la première feuille",
+      "Le filtre ne fonctionne pas: Vérifiez que la valeur du filtre correspond au type de données (texte/nombre)",
+      "Performances lentes: Essayez de filtrer les données pour réduire les lignes visibles",
+      "Exportation avec colonnes manquantes: Vérifiez si les colonnes sont masquées dans le gestionnaire de colonnes"
+    ],
+    "keyboardShortcuts": []
+  },
+  "features": [
+    "Téléchargement de fichier Excel",
+    "Filtrage dynamique",
+    "Recherche globale",
+    "Export CSV/Excel"
+  ],
+  "meta": {
+    "title": "Outil Filtre Excel - Outil en Ligne Gratuit",
+    "description": "Téléchargez et filtrez des fichiers Excel en ligne avec des capacités avancées de recherche, tri et exportation. Outil de filtre Excel gratuit sans installation requise. Fonctionne instantanément dans votre navigateur."
+  },
+  "labels": {
+    "upload": "Télécharger le fichier",
+    "filter": "Filtrer",
+    "search": "Rechercher",
+    "export": "Exporter"
+  },
+  "messages": {
+    "uploadSuccess": "Fichier téléchargé avec succès",
+    "filterApplied": "Filtres appliqués",
+    "noData": "Aucune donnée ne correspond à vos filtres"
+  },
+  "options": {
+    "showFilters": "Afficher les filtres",
+    "hideFilters": "Masquer les filtres"
+  },
+  "tagline": "Filtrez et analysez les données Excel instantanément en ligne",
+  "pageDescription": "Téléchargez des fichiers Excel et appliquez de puissants filtres à vos données avec notre outil de filtre Excel en ligne gratuit. Recherchez dans les colonnes, triez les données, masquez les colonnes et exportez les résultats filtrés au format CSV ou Excel. Parfait pour l'analyse de données, les rapports et la manipulation rapide des données sans installer de logiciel. Traitez des fichiers jusqu'à 50 Mo en toute sécurité dans votre navigateur.",
+  "usageTips": {
+    "title": "Conseils d'Utilisation",
+    "tips": [
+      "Téléchargez des fichiers Excel jusqu'à 50 Mo",
+      "Combinez plusieurs filtres pour des requêtes de données avancées",
+      "Cliquez sur les en-têtes de colonnes pour trier les données par ordre croissant/décroissant",
+      "Utilisez la recherche globale pour trouver des données dans toutes les colonnes instantanément",
+      "Exportez les résultats filtrés au format CSV ou Excel"
+    ]
+  }
+}

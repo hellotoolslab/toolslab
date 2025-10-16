@@ -185,6 +185,34 @@ export const tools: Tool[] = [
     searchVolume: 3200,
     label: '',
   },
+  {
+    id: 'excel-filter',
+    name: 'Excel Filter Tool',
+    description:
+      'Upload Excel files and apply dynamic filters to tables with search, sort, and export capabilities',
+    icon: '📊',
+    route: '/tools/excel-filter',
+    categories: ['data'],
+    keywords: [
+      'excel',
+      'filter',
+      'spreadsheet',
+      'table',
+      'data',
+      'search',
+      'sort',
+      'export',
+      'csv',
+      'xlsx',
+      'query',
+      'analyze',
+      'viewer',
+      'browser',
+      'online',
+    ],
+    searchVolume: 8500,
+    label: '',
+  },
 
   // Text & Format Tools
   {

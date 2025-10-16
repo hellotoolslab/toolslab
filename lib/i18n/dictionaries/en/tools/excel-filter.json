@@ -1,0 +1,99 @@
+{
+  "title": "Excel Filter Tool",
+  "description": "Upload Excel files and apply dynamic filters to tables with search, sort, and export capabilities",
+  "placeholder": "Upload your Excel file to get started...",
+  "instructions": {
+    "title": "How to use Excel Filter Tool",
+    "steps": [
+      {
+        "title": "Upload your Excel file",
+        "description": "Drag and drop your .xlsx or .xls file (up to 50MB) or click to browse. The tool will instantly load and display your data in a table format."
+      },
+      {
+        "title": "Apply filters to columns",
+        "description": "Click 'Add Filter' to create column-specific filters. Choose from text, numeric, and date operators like contains, equals, greater than, or between values."
+      },
+      {
+        "title": "Search and sort data",
+        "description": "Use the global search to find data across all columns instantly. Click column headers to sort data in ascending or descending order."
+      },
+      {
+        "title": "Export filtered results",
+        "description": "Export your filtered and sorted data as CSV or Excel format. Hidden columns will be excluded from the export."
+      }
+    ],
+    "features": [
+      "Upload Excel files up to 50MB",
+      "Dynamic filters with 13 different operators",
+      "Global search across all columns",
+      "Sort by any column (ascending/descending)",
+      "Show/hide columns dynamically",
+      "Export to CSV or Excel format",
+      "Combine multiple filters (AND logic)",
+      "Real-time filtering and pagination"
+    ],
+    "useCases": [
+      "Filter large datasets quickly without opening Excel",
+      "Share filtered data with team members easily",
+      "Clean and prepare data for analysis",
+      "Find specific records across multiple columns",
+      "Export subsets of data for reports",
+      "Analyze sales, inventory, or customer data",
+      "Process survey results and feedback forms",
+      "Filter project management data and task lists"
+    ],
+    "proTips": [
+      "Combine multiple filters for precise data queries",
+      "Use 'between' operator for date ranges and numeric ranges",
+      "Hide columns you don't need before exporting",
+      "Click column headers multiple times to cycle sort order",
+      "Use global search for quick lookups across all data",
+      "Export filtered data to share specific subsets with others"
+    ],
+    "troubleshooting": [
+      "File won't upload: Ensure file is .xlsx or .xls format and under 50MB",
+      "No data showing: Check if Excel file has data in first sheet",
+      "Filter not working: Verify the filter value matches data type (text/number)",
+      "Slow performance: Try filtering data to reduce visible rows",
+      "Export missing columns: Check if columns are hidden in column manager"
+    ],
+    "keyboardShortcuts": []
+  },
+  "features": [
+    "Excel file upload",
+    "Dynamic filtering",
+    "Global search",
+    "Export CSV/Excel"
+  ],
+  "meta": {
+    "title": "Excel Filter Tool - Free Online Tool",
+    "description": "Upload and filter Excel files online with advanced search, sort, and export capabilities. Free Excel filter tool with no installation required. Works instantly in your browser."
+  },
+  "labels": {
+    "upload": "Upload File",
+    "filter": "Filter",
+    "search": "Search",
+    "export": "Export"
+  },
+  "messages": {
+    "uploadSuccess": "File uploaded successfully",
+    "filterApplied": "Filters applied",
+    "noData": "No data matches your filters"
+  },
+  "options": {
+    "showFilters": "Show Filters",
+    "hideFilters": "Hide Filters"
+  },
+  "tagline": "Filter and analyze Excel data instantly online",
+  "pageDescription": "Upload Excel files and apply powerful filters to your data with our free online Excel filter tool. Search across columns, sort data, hide columns, and export filtered results to CSV or Excel. Perfect for data analysis, reporting, and quick data manipulation without installing software. Process files up to 50MB securely in your browser.",
+  "usageTips": {
+    "title": "Usage Tips",
+    "tips": [
+      "Upload Excel files up to 50MB in size",
+      "Combine multiple filters for advanced data querying",
+      "Click column headers to sort data ascending/descending",
+      "Use global search to find data across all columns instantly",
+      "Export filtered results to CSV or Excel format"
+    ]
+  }
+}

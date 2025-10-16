@@ -167,22 +167,33 @@ export default function ToolPageClient({
     }
   };
 
-  // Get related tools from same category (excluding coming-soon tools)
+  // Get related tools using the intelligent relationship system
   const getRelatedTools = () => {
+    // First try to use the smart relationship system
+    const { getSmartRelatedTools } = require('@/lib/seo/related-tools-engine');
+    const smartRelatedIds = getSmartRelatedTools(toolId, 4);
+
+    if (smartRelatedIds && smartRelatedIds.length > 0) {
+      // Map IDs to full tool objects
+      const relatedToolObjects = smartRelatedIds
+        .map((id: string) => tools.find((t) => t.id === id))
+        .filter(
+          (t): t is (typeof tools)[0] =>
+            t !== undefined && t.label !== 'coming-soon'
+        );
+
+      if (relatedToolObjects.length > 0) {
+        return relatedToolObjects;
+      }
+    }
+
+    // Fallback: Get tools from same category
     let filteredTools = tools.filter(
       (t) =>
         t.categories.includes(tool.categories[0]) &&
         t.id !== tool.id &&
         t.label !== 'coming-soon'
     );
-
-    // Special case: Add JSON Formatter to Base64 related tools
-    if (toolId === 'base64-encode') {
-      const jsonFormatter = tools.find((t) => t.id === 'json-formatter');
-      if (jsonFormatter && !filteredTools.includes(jsonFormatter)) {
-        filteredTools.unshift(jsonFormatter); // Add JSON Formatter at the beginning
-      }
-    }
 
     return filteredTools.slice(0, 4);
   };
