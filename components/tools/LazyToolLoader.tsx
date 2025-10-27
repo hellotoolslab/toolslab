@@ -75,6 +75,9 @@ const toolComponents = {
   'color-format-converter': lazy(
     () => import('./implementations/ColorConverter')
   ),
+  'ai-prompt-token-counter': lazy(
+    () => import('./implementations/AITokenCounter')
+  ),
   // Add more as needed
 } as const;
 

@@ -45,9 +45,20 @@ npm update
      'tool-name': lazy(() => import('./implementations/ToolName')),
    }
    ```
-8. **❌ NON creare route dedicata** - il sistema dinamico `[tool]/page.tsx` gestirà automaticamente il routing
-9. **La sitemap viene aggiornata automaticamente** - il sistema legge da `/lib/tools.ts`
-10. **✅ ANALYTICS AUTO-TRACKING** - Quando il tool processa dati, usa `addToHistory()`:
+8. **🚨 CRITICO: Registra nel sistema i18n** in `/lib/i18n/load-tools.ts`:
+   ```typescript
+   const toolIds = [
+     // ... altri tool IDs
+     'your-tool-id',  // ⚠️ DEVE matchare l'ID in tools.ts
+   ];
+   ```
+   **⚠️ Se dimentichi questo step, le traduzioni non verranno caricate e il tool mostrerà testi generici!**
+9. **Crea traduzioni per tutte le lingue** in `/lib/i18n/dictionaries/{en,it,es,fr}/tools/`:
+   - Crea `tool-name.json` per ogni lingua con: title, description, placeholder, meta, tagline, pageDescription, instructions
+   - Le instructions devono includere: steps, features, useCases, proTips, troubleshooting, keyboardShortcuts (opzionale)
+10. **❌ NON creare route dedicata** - il sistema dinamico `[tool]/page.tsx` gestirà automaticamente il routing
+11. **La sitemap viene aggiornata automaticamente** - il sistema legge da `/lib/tools.ts`
+12. **✅ ANALYTICS AUTO-TRACKING** - Quando il tool processa dati, usa `addToHistory()`:
    ```typescript
    import { useToolStore } from '@/lib/store/toolStore';
 
