@@ -1,0 +1,91 @@
+{
+  "title": "Convertisseur de Format de Couleur",
+  "description": "Convertir les couleurs entre les formats HEX, RGB, HSL, HSV et CMYK avec génération de palettes",
+  "placeholder": "Entrez la couleur (HEX, RGB, HSL, HSV, CMYK ou nom)",
+  "meta": {
+    "title": "Convertisseur de Format de Couleur - HEX vers RGB, HSL, HSV, CMYK | ToolsLab",
+    "description": "Convertisseur de format de couleur gratuit. Convertir entre HEX, RGB, HSL, HSV et CMYK. Générer des palettes de couleurs, vérifier le contraste, créer des teintes et des nuances. Parfait pour les designers web et les développeurs."
+  },
+  "tagline": "Convertir les couleurs entre les formats avec générateur de palettes et vérificateur de contraste",
+  "pageDescription": "Convertisseur professionnel de formats de couleur pour designers et développeurs. Convertir facilement entre les formats HEX, RGB, HSL, HSV et CMYK. Générer des palettes de couleurs harmonieuses avec des schémas complémentaires, analogues, triadiques et tétradiques. Créer des teintes et des nuances pour n'importe quelle couleur. Vérifier la conformité du contraste WCAG pour l'accessibilité. Exporter les couleurs en tant que variables CSS, SCSS ou JSON. Sauvegarder l'historique des couleurs et réutiliser rapidement les couleurs récentes. Tout le traitement se fait dans votre navigateur pour une confidentialité maximale.",
+  "instructions": {
+    "title": "Comment utiliser le Convertisseur de Format de Couleur",
+    "steps": [
+      {
+        "title": "Entrez votre couleur",
+        "description": "Tapez ou collez n'importe quelle valeur de couleur au format HEX (#FF5733), RGB (rgb(255, 87, 51)), HSL (hsl(9, 100%, 60%)), HSV, CMYK, ou utilisez un nom de couleur CSS comme 'red' ou 'skyblue'. Vous pouvez également utiliser le bouton sélecteur de couleur pour sélectionner visuellement."
+      },
+      {
+        "title": "Voir tous les formats",
+        "description": "Voyez instantanément votre couleur convertie dans tous les formats supportés : HEX, RGB, RGBA, HSL, HSLA, HSV, CMYK, variables CSS et variables SCSS. Chaque format a un bouton copier pour un accès rapide au presse-papiers."
+      },
+      {
+        "title": "Générer des palettes de couleurs",
+        "description": "Cliquez sur 'Générer' sous Générateur de Palettes pour créer des schémas de couleurs harmonieux. Choisissez parmi des palettes complémentaires, analogues, triadiques, tétradiques ou monochromatiques. Générez des variations de teintes (plus claires) ou de nuances (plus foncées). Cliquez sur n'importe quelle couleur de la palette pour l'utiliser."
+      },
+      {
+        "title": "Vérifier l'accessibilité",
+        "description": "Utilisez le Vérificateur de Contraste pour vérifier la conformité WCAG. Testez votre couleur sur des fonds blancs ou noirs. Voyez si elle passe les normes AA et AAA pour le texte normal et grand pour assurer que vos designs sont accessibles."
+      },
+      {
+        "title": "Exporter et réutiliser",
+        "description": "Exportez les données de votre couleur et palettes en JSON. Accédez à vos couleurs récentes depuis le panneau d'historique. Copiez n'importe quel format en un clic pour l'utiliser dans vos projets."
+      }
+    ],
+    "features": [
+      "Conversion instantanée entre plus de 7 formats de couleur",
+      "Détection automatique du format depuis l'entrée",
+      "Support pour HEX (3 et 6 chiffres), RGB, RGBA, HSL, HSLA, HSV, CMYK",
+      "Génération de variables CSS et SCSS",
+      "Support des noms de couleurs pour toutes les couleurs CSS",
+      "Génération de palette d'harmonie (complémentaire, triadique, analogue, etc.)",
+      "Générateur de teintes et nuances pour les variations de couleur",
+      "Vérificateur de contraste WCAG avec conformité AA/AAA",
+      "Intégration du sélecteur de couleur visuel",
+      "Historique des couleurs sauvegardé localement (15 dernières couleurs)",
+      "Copie en un clic pour n'importe quel format",
+      "Exportation en JSON avec tous les formats et palettes",
+      "Entièrement basé sur le navigateur - aucun traitement serveur",
+      "Fonctionne hors ligne après le chargement initial"
+    ],
+    "useCases": [
+      "Convertir les couleurs de marque entre les formats de design et de développement",
+      "Générer des palettes de couleurs pour les systèmes de design UI",
+      "Assurer la conformité à l'accessibilité avec la vérification du contraste",
+      "Créer des variations de couleur pour les états hover et les thèmes",
+      "Convertir les couleurs des outils de design (Figma, Sketch) en CSS",
+      "Faire correspondre les couleurs entre différents standards de format",
+      "Construire des schémas de couleurs pour sites web et applications",
+      "Vérifier que les combinaisons de couleurs respectent les directives WCAG",
+      "Exporter les données de couleur pour les guides de style et la documentation",
+      "Référence rapide de format de couleur pour les développeurs"
+    ],
+    "proTips": [
+      "Utilisez le sélecteur de couleur pour la sélection visuelle, puis affinez avec les valeurs de format",
+      "Cliquez sur n'importe quelle couleur dans votre historique ou palettes pour la convertir instantanément",
+      "Générez des palettes monochromatiques pour des systèmes de design cohérents",
+      "Vérifiez le contraste à la fois sur blanc et noir pour des choix de couleur polyvalents",
+      "Exportez les couleurs en JSON pour partager avec votre équipe ou sauvegarder pour plus tard",
+      "Utilisez le format de variable CSS pour une thématisation facile dans vos projets",
+      "Essayez différents types d'harmonie pour découvrir de nouvelles combinaisons de couleurs",
+      "Sauvegardez les couleurs fréquemment utilisées en les gardant dans votre historique récent"
+    ],
+    "troubleshooting": [
+      "Erreur de format invalide : Assurez-vous que la valeur de couleur correspond à la syntaxe standard (ex. #FF0000, rgb(255,0,0))",
+      "Couleur non reconnue : Vérifiez les fautes de frappe dans les noms de couleurs ou vérifiez la structure du format",
+      "Historique non sauvegardé : Activez localStorage dans les paramètres de votre navigateur",
+      "Échec de génération de palette : Vérifiez que votre couleur d'entrée est valide avant de générer",
+      "Problèmes de vérificateur de contraste : Assurez-vous que les couleurs de premier plan et d'arrière-plan sont valides"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller la valeur de couleur"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier la valeur HEX actuelle"
+      }
+    ]
+  }
+}

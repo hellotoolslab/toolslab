@@ -72,6 +72,9 @@ const toolComponents = {
     () => import('./implementations/InstagramFont')
   ),
   'excel-filter': lazy(() => import('./implementations/ExcelFilter')),
+  'color-format-converter': lazy(
+    () => import('./implementations/ColorConverter')
+  ),
   // Add more as needed
 } as const;
 
