@@ -1,0 +1,91 @@
+{
+  "title": "Convertitore Formato Colori",
+  "description": "Converti colori tra formati HEX, RGB, HSL, HSV e CMYK con generazione palette",
+  "placeholder": "Inserisci colore (HEX, RGB, HSL, HSV, CMYK o nome)",
+  "meta": {
+    "title": "Convertitore Formato Colori - HEX a RGB, HSL, HSV, CMYK | ToolsLab",
+    "description": "Convertitore formato colori gratuito. Converti tra HEX, RGB, HSL, HSV e CMYK. Genera palette di colori, controlla il contrasto, crea tinte e sfumature. Perfetto per web designer e sviluppatori."
+  },
+  "tagline": "Converti colori tra formati con generatore palette e controllo contrasto",
+  "pageDescription": "Convertitore professionale di formati colore per designer e sviluppatori. Converti senza problemi tra formati HEX, RGB, HSL, HSV e CMYK. Genera palette di colori armoniose con schemi complementari, analoghi, triadici e tetradici. Crea tinte e sfumature per qualsiasi colore. Verifica la conformità del contrasto WCAG per l'accessibilità. Esporta i colori come variabili CSS, SCSS o JSON. Salva la cronologia dei colori e riutilizza rapidamente i colori recenti. Tutta l'elaborazione avviene nel tuo browser per la massima privacy.",
+  "instructions": {
+    "title": "Come usare il Convertitore Formato Colori",
+    "steps": [
+      {
+        "title": "Inserisci il tuo colore",
+        "description": "Digita o incolla qualsiasi valore di colore in formato HEX (#FF5733), RGB (rgb(255, 87, 51)), HSL (hsl(9, 100%, 60%)), HSV, CMYK, oppure usa un nome di colore CSS come 'red' o 'skyblue'. Puoi anche usare il pulsante del selettore colori per selezionare visivamente."
+      },
+      {
+        "title": "Visualizza tutti i formati",
+        "description": "Vedi istantaneamente il tuo colore convertito in tutti i formati supportati: HEX, RGB, RGBA, HSL, HSLA, HSV, CMYK, variabili CSS e variabili SCSS. Ogni formato ha un pulsante copia per un rapido accesso agli appunti."
+      },
+      {
+        "title": "Genera palette di colori",
+        "description": "Clicca 'Genera' sotto Generatore Palette per creare schemi di colori armoniosi. Scegli tra palette complementari, analoghe, triadiche, tetradiche o monocromatiche. Genera variazioni di tinte (più chiare) o sfumature (più scure). Clicca su qualsiasi colore della palette per usarlo."
+      },
+      {
+        "title": "Verifica l'accessibilità",
+        "description": "Usa il Controllo Contrasto per verificare la conformità WCAG. Testa il tuo colore su sfondi bianchi o neri. Verifica se supera gli standard AA e AAA per testo normale e grande per garantire che i tuoi design siano accessibili."
+      },
+      {
+        "title": "Esporta e riutilizza",
+        "description": "Esporta i dati del tuo colore e le palette come JSON. Accedi ai tuoi colori recenti dal pannello cronologia. Copia qualsiasi formato con un clic per usarlo nei tuoi progetti."
+      }
+    ],
+    "features": [
+      "Conversione istantanea tra oltre 7 formati di colore",
+      "Rilevamento automatico del formato dall'input",
+      "Supporto per HEX (3 e 6 cifre), RGB, RGBA, HSL, HSLA, HSV, CMYK",
+      "Generazione variabili CSS e SCSS",
+      "Supporto nomi colori per tutti i colori CSS",
+      "Generazione palette di armonia (complementare, triadica, analoga, ecc.)",
+      "Generatore di tinte e sfumature per variazioni di colore",
+      "Controllo contrasto WCAG con conformità AA/AAA",
+      "Integrazione selettore colori visuale",
+      "Cronologia colori salvata localmente (ultimi 15 colori)",
+      "Copia con un clic per qualsiasi formato",
+      "Esportazione in JSON con tutti i formati e palette",
+      "Completamente basato su browser - nessuna elaborazione server",
+      "Funziona offline dopo il caricamento iniziale"
+    ],
+    "useCases": [
+      "Converti colori del brand tra formati di design e sviluppo",
+      "Genera palette di colori per sistemi di design UI",
+      "Garantisci la conformità all'accessibilità con il controllo del contrasto",
+      "Crea variazioni di colore per stati hover e temi",
+      "Converti colori da strumenti di design (Figma, Sketch) a CSS",
+      "Abbina colori tra diversi standard di formato",
+      "Costruisci schemi di colori per siti web e applicazioni",
+      "Verifica che le combinazioni di colori rispettino le linee guida WCAG",
+      "Esporta dati colore per guide di stile e documentazione",
+      "Riferimento rapido formato colori per sviluppatori"
+    ],
+    "proTips": [
+      "Usa il selettore colori per la selezione visiva, poi regola con i valori di formato",
+      "Clicca su qualsiasi colore nella cronologia o nelle palette per convertirlo istantaneamente",
+      "Genera palette monocromatiche per sistemi di design coerenti",
+      "Controlla il contrasto sia su bianco che su nero per scelte di colore versatili",
+      "Esporta i colori come JSON per condividerli con il tuo team o salvarli per dopo",
+      "Usa il formato variabile CSS per una facile tematizzazione nei tuoi progetti",
+      "Prova diversi tipi di armonia per scoprire nuove combinazioni di colori",
+      "Salva i colori usati frequentemente mantenendoli nella cronologia recente"
+    ],
+    "troubleshooting": [
+      "Errore formato non valido: Assicurati che il valore del colore corrisponda alla sintassi standard (es. #FF0000, rgb(255,0,0))",
+      "Colore non riconosciuto: Controlla errori di battitura nei nomi dei colori o verifica la struttura del formato",
+      "Cronologia non salvata: Abilita localStorage nelle impostazioni del browser",
+      "Generazione palette fallita: Verifica che il colore di input sia valido prima di generare",
+      "Problemi controllo contrasto: Assicurati che sia i colori di primo piano che di sfondo siano validi"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla valore colore"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia valore HEX corrente"
+      }
+    ]
+  }
+}
