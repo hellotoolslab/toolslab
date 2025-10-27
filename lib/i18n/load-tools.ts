@@ -57,6 +57,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'password-generator',
     'qr-generator',
     'color-picker',
+    'color-format-converter',
     'image-optimizer',
     'favicon-generator',
     'gradient-generator',

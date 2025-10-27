@@ -1,0 +1,91 @@
+{
+  "title": "Conversor de Formato de Color",
+  "description": "Convierte colores entre formatos HEX, RGB, HSL, HSV y CMYK con generación de paletas",
+  "placeholder": "Ingresa color (HEX, RGB, HSL, HSV, CMYK o nombre)",
+  "meta": {
+    "title": "Conversor de Formato de Color - HEX a RGB, HSL, HSV, CMYK | ToolsLab",
+    "description": "Conversor de formato de color gratuito. Convierte entre HEX, RGB, HSL, HSV y CMYK. Genera paletas de colores, verifica contraste, crea tintes y sombras. Perfecto para diseñadores web y desarrolladores."
+  },
+  "tagline": "Convierte colores entre formatos con generador de paletas y verificador de contraste",
+  "pageDescription": "Conversor profesional de formatos de color para diseñadores y desarrolladores. Convierte sin problemas entre formatos HEX, RGB, HSL, HSV y CMYK. Genera paletas de colores armoniosas con esquemas complementarios, análogos, triádicos y tetrádicos. Crea tintes y sombras para cualquier color. Verifica el cumplimiento del contraste WCAG para accesibilidad. Exporta colores como variables CSS, SCSS o JSON. Guarda el historial de colores y reutiliza rápidamente colores recientes. Todo el procesamiento ocurre en tu navegador para máxima privacidad.",
+  "instructions": {
+    "title": "Cómo usar el Conversor de Formato de Color",
+    "steps": [
+      {
+        "title": "Ingresa tu color",
+        "description": "Escribe o pega cualquier valor de color en formato HEX (#FF5733), RGB (rgb(255, 87, 51)), HSL (hsl(9, 100%, 60%)), HSV, CMYK, o usa un nombre de color CSS como 'red' o 'skyblue'. También puedes usar el botón selector de color para seleccionar visualmente."
+      },
+      {
+        "title": "Ver todos los formatos",
+        "description": "Ve instantáneamente tu color convertido a todos los formatos soportados: HEX, RGB, RGBA, HSL, HSLA, HSV, CMYK, variables CSS y variables SCSS. Cada formato tiene un botón copiar para acceso rápido al portapapeles."
+      },
+      {
+        "title": "Genera paletas de colores",
+        "description": "Haz clic en 'Generar' en Generador de Paletas para crear esquemas de colores armoniosos. Elige entre paletas complementarias, análogas, triádicas, tetrádicas o monocromáticas. Genera variaciones de tintes (más claros) o sombras (más oscuros). Haz clic en cualquier color de la paleta para usarlo."
+      },
+      {
+        "title": "Verifica accesibilidad",
+        "description": "Usa el Verificador de Contraste para verificar el cumplimiento WCAG. Prueba tu color contra fondos blancos o negros. Ve si pasa los estándares AA y AAA para texto normal y grande para asegurar que tus diseños sean accesibles."
+      },
+      {
+        "title": "Exporta y reutiliza",
+        "description": "Exporta los datos de tu color y paletas como JSON. Accede a tus colores recientes desde el panel de historial. Copia cualquier formato con un clic para usar en tus proyectos."
+      }
+    ],
+    "features": [
+      "Conversión instantánea entre más de 7 formatos de color",
+      "Detección automática de formato desde entrada",
+      "Soporte para HEX (3 y 6 dígitos), RGB, RGBA, HSL, HSLA, HSV, CMYK",
+      "Generación de variables CSS y SCSS",
+      "Soporte de nombres de colores para todos los colores CSS",
+      "Generación de paleta de armonía (complementaria, triádica, análoga, etc.)",
+      "Generador de tintes y sombras para variaciones de color",
+      "Verificador de contraste WCAG con cumplimiento AA/AAA",
+      "Integración de selector de color visual",
+      "Historial de colores guardado localmente (últimos 15 colores)",
+      "Copia con un clic para cualquier formato",
+      "Exportación a JSON con todos los formatos y paletas",
+      "Completamente basado en navegador - sin procesamiento de servidor",
+      "Funciona sin conexión después de la carga inicial"
+    ],
+    "useCases": [
+      "Convierte colores de marca entre formatos de diseño y desarrollo",
+      "Genera paletas de colores para sistemas de diseño UI",
+      "Asegura el cumplimiento de accesibilidad con verificación de contraste",
+      "Crea variaciones de color para estados hover y temas",
+      "Convierte colores de herramientas de diseño (Figma, Sketch) a CSS",
+      "Coincide colores entre diferentes estándares de formato",
+      "Construye esquemas de colores para sitios web y aplicaciones",
+      "Verifica que las combinaciones de colores cumplan las pautas WCAG",
+      "Exporta datos de color para guías de estilo y documentación",
+      "Referencia rápida de formato de color para desarrolladores"
+    ],
+    "proTips": [
+      "Usa el selector de color para selección visual, luego ajusta con valores de formato",
+      "Haz clic en cualquier color en tu historial o paletas para convertirlo instantáneamente",
+      "Genera paletas monocromáticas para sistemas de diseño consistentes",
+      "Verifica el contraste tanto en blanco como en negro para opciones de color versátiles",
+      "Exporta colores como JSON para compartir con tu equipo o guardar para después",
+      "Usa el formato de variable CSS para tematización fácil en tus proyectos",
+      "Prueba diferentes tipos de armonía para descubrir nuevas combinaciones de colores",
+      "Guarda colores usados frecuentemente manteniéndolos en tu historial reciente"
+    ],
+    "troubleshooting": [
+      "Error de formato inválido: Asegúrate de que el valor del color coincida con la sintaxis estándar (ej. #FF0000, rgb(255,0,0))",
+      "Color no reconocido: Verifica errores tipográficos en nombres de colores o verifica la estructura del formato",
+      "Historial no guardado: Habilita localStorage en la configuración de tu navegador",
+      "Generación de paleta fallida: Verifica que tu color de entrada sea válido antes de generar",
+      "Problemas con verificador de contraste: Asegúrate de que tanto los colores de primer plano como de fondo sean válidos"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar valor de color"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar valor HEX actual"
+      }
+    ]
+  }
+}

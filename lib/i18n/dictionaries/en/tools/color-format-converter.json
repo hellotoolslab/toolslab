@@ -1,0 +1,91 @@
+{
+  "title": "Color Format Converter",
+  "description": "Convert colors between HEX, RGB, HSL, HSV, and CMYK formats with palette generation",
+  "placeholder": "Enter color (HEX, RGB, HSL, HSV, CMYK, or name)",
+  "meta": {
+    "title": "Color Format Converter - HEX to RGB, HSL, HSV, CMYK | ToolsLab",
+    "description": "Free color format converter. Convert between HEX, RGB, HSL, HSV, and CMYK. Generate color palettes, check contrast, create tints and shades. Perfect for web designers and developers."
+  },
+  "tagline": "Convert colors between formats with palette generator and contrast checker",
+  "pageDescription": "Professional color format converter for designers and developers. Convert seamlessly between HEX, RGB, HSL, HSV, and CMYK formats. Generate harmonious color palettes with complementary, analogous, triadic, and tetradic schemes. Create tints and shades for any color. Check WCAG contrast compliance for accessibility. Export colors as CSS variables, SCSS, or JSON. Save color history and quickly reuse recent colors. All processing happens in your browser for maximum privacy.",
+  "instructions": {
+    "title": "How to use Color Format Converter",
+    "steps": [
+      {
+        "title": "Enter your color",
+        "description": "Type or paste any color value in HEX (#FF5733), RGB (rgb(255, 87, 51)), HSL (hsl(9, 100%, 60%)), HSV, CMYK format, or use a CSS color name like 'red' or 'skyblue'. You can also use the color picker button to select visually."
+      },
+      {
+        "title": "View all formats",
+        "description": "Instantly see your color converted to all supported formats: HEX, RGB, RGBA, HSL, HSLA, HSV, CMYK, CSS variables, and SCSS variables. Each format has a copy button for quick clipboard access."
+      },
+      {
+        "title": "Generate color palettes",
+        "description": "Click 'Generate' under Palette Generator to create harmonious color schemes. Choose from complementary, analogous, triadic, tetradic, or monochromatic palettes. Generate tints (lighter) or shades (darker) variations. Click any palette color to use it."
+      },
+      {
+        "title": "Check accessibility",
+        "description": "Use the Contrast Checker to verify WCAG compliance. Test your color against white or black backgrounds. See if it passes AA and AAA standards for normal and large text to ensure your designs are accessible."
+      },
+      {
+        "title": "Export and reuse",
+        "description": "Export your color data and palettes as JSON. Access your recent colors from the history panel. Copy any format with one click for use in your projects."
+      }
+    ],
+    "features": [
+      "Instant conversion between 7+ color formats",
+      "Automatic format detection from input",
+      "Support for HEX (3 & 6 digit), RGB, RGBA, HSL, HSLA, HSV, CMYK",
+      "CSS and SCSS variable generation",
+      "Named color support for all CSS colors",
+      "Harmony palette generation (complementary, triadic, analogous, etc.)",
+      "Tints and shades generator for color variations",
+      "WCAG contrast checker with AA/AAA compliance",
+      "Visual color picker integration",
+      "Color history saved locally (last 15 colors)",
+      "One-click copy for any format",
+      "Export to JSON with all formats and palettes",
+      "Completely browser-based - no server processing",
+      "Works offline after initial load"
+    ],
+    "useCases": [
+      "Convert brand colors between design and development formats",
+      "Generate color palettes for UI design systems",
+      "Ensure accessibility compliance with contrast checking",
+      "Create color variations for hover states and themes",
+      "Convert colors from design tools (Figma, Sketch) to CSS",
+      "Match colors between different format standards",
+      "Build color schemes for websites and applications",
+      "Verify color combinations meet WCAG guidelines",
+      "Export color data for style guides and documentation",
+      "Quick color format reference for developers"
+    ],
+    "proTips": [
+      "Use the color picker for visual selection, then fine-tune with format values",
+      "Click any color in your history or palettes to instantly convert it",
+      "Generate monochromatic palettes for consistent design systems",
+      "Check contrast on both white and black for versatile color choices",
+      "Export colors as JSON to share with your team or save for later",
+      "Use CSS variable format for easy theming in your projects",
+      "Try different harmony types to discover new color combinations",
+      "Save frequently used colors by keeping them in your recent history"
+    ],
+    "troubleshooting": [
+      "Invalid format error: Ensure your color value matches standard syntax (e.g., #FF0000, rgb(255,0,0))",
+      "Color not recognized: Check for typos in named colors or verify format structure",
+      "History not saving: Enable localStorage in your browser settings",
+      "Palette generation fails: Verify your input color is valid before generating",
+      "Contrast checker issues: Ensure both foreground and background colors are valid"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste color value"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy current HEX value"
+      }
+    ]
+  }
+}
