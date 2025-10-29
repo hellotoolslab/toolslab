@@ -175,17 +175,20 @@ export default function XmlToJsonConverter() {
   return (
     <div className="space-y-6">
       {/* Options Panel */}
-      <Card className="bg-muted/30 p-4">
+      <Card className="bg-muted/30 p-2">
         <Button
           variant="ghost"
-          className="w-full justify-between"
+          size="sm"
+          className="h-9 w-full justify-between"
           onClick={() => setShowOptions(!showOptions)}
         >
           <div className="flex items-center gap-2">
-            <Settings className="h-4 w-4" />
-            <span className="font-medium">Conversion Options</span>
+            <Settings className="h-3.5 w-3.5" />
+            <span className="text-sm font-medium">Conversion Options</span>
           </div>
-          <Badge variant="secondary">{showOptions ? 'Hide' : 'Show'}</Badge>
+          <Badge variant="secondary" className="text-xs">
+            {showOptions ? 'Hide' : 'Show'}
+          </Badge>
         </Button>
         {showOptions && (
           <div className="space-y-4 pt-4">
