@@ -1,0 +1,90 @@
+{
+  "title": "XML zu JSON Konverter",
+  "description": "Konvertieren Sie XML-Dokumente ins JSON-Format mit Attributbehandlung, Namespace-Unterstützung und intelligenter Array-Erkennung",
+  "placeholder": "Fügen Sie Ihr XML hier ein...",
+  "meta": {
+    "title": "XML zu JSON Konverter - Kostenloses Online-Tool | ToolsLab",
+    "description": "Konvertieren Sie XML zu JSON online mit intelligenter Array-Erkennung, Namespace-Unterstützung und Attributbehandlung. Kostenloser XML zu JSON Konverter mit CDATA-Unterstützung und Typkonvertierung."
+  },
+  "tagline": "Konvertieren Sie XML-Dokumente ins JSON-Format mit erweiterter Analyse und flexiblen Ausgabeoptionen",
+  "pageDescription": "Professioneller XML zu JSON Konverter mit intelligenter Array-Erkennung, Namespace-Verwaltung und flexiblen Attributmodi. Bietet CDATA-Erhaltung, automatische Typkonvertierung und Pretty-Print-Formatierung. Perfekt für API-Integration, Datentransformation und Konvertierung von SOAP/RSS-Feeds. Verarbeitet effizient komplexe XML-Strukturen mit gemischtem Inhalt. Kostenlos und sicher, alles im Browser.",
+  "instructions": {
+    "title": "Wie man den XML zu JSON Konverter benutzt",
+    "steps": [
+      {
+        "title": "Fügen Sie Ihr XML ein oder laden Sie es hoch",
+        "description": "Kopieren und fügen Sie Ihre XML-Daten in den Eingabebereich ein, oder klicken Sie auf Hochladen, um eine XML-Datei von Ihrem Computer auszuwählen. Das Tool unterstützt XML-Deklarationen, Namespaces und CDATA-Abschnitte."
+      },
+      {
+        "title": "Konfigurieren Sie die Konvertierungsoptionen",
+        "description": "Wählen Sie Ihr bevorzugtes Ausgabeformat: Aktivieren Sie Pretty Print für lesbares JSON, aktivieren Sie kompakte Attribute für kleinere Ausgabe, aktivieren Sie intelligente Arrays für wiederholte Elemente und aktivieren Sie Typkonvertierung für Zahlen und Boolesche Werte."
+      },
+      {
+        "title": "Konvertieren und überprüfen Sie die Ausgabe",
+        "description": "Klicken Sie auf 'In JSON konvertieren', um Ihr XML zu verarbeiten. Überprüfen Sie das formatierte JSON und sehen Sie sich das Metadaten-Panel für Größenvergleiche und Verarbeitungsstatistiken an."
+      },
+      {
+        "title": "Kopieren oder laden Sie das Ergebnis herunter",
+        "description": "Verwenden Sie die Kopieren-Schaltfläche, um JSON in die Zwischenablage zu kopieren, oder Herunterladen, um es als .json-Datei für die Verwendung in Ihren Anwendungen zu speichern."
+      }
+    ],
+    "features": [
+      "Intelligente Array-Erkennung für wiederholte XML-Elemente",
+      "Flexible Attributbehandlung (kompakter oder ausführlicher Modus)",
+      "Namespace-Unterstützung mit optionaler Präfixentfernung",
+      "Automatische Typkonvertierung für Zahlen und Boolesche Werte",
+      "CDATA-Abschnittserhaltung",
+      "Pretty Print mit anpassbarer Einrückung",
+      "XML-Validierung mit detaillierten Fehlermeldungen",
+      "Verarbeitungsstatistiken und Größenvergleich",
+      "Verarbeitet große XML-Dateien effizient",
+      "Keine Daten-Uploads - alles im Browser verarbeitet"
+    ],
+    "useCases": [
+      "SOAP-Antworten in JSON für moderne APIs konvertieren",
+      "RSS/Atom-Feeds für Webanwendungen transformieren",
+      "XML-Konfigurationsdateien als JSON verarbeiten",
+      "Legacy-XML-Systeme mit JSON-basierten Diensten integrieren",
+      "SVG-Dateien für programmatische Manipulation analysieren",
+      "XML-API-Antworten für Frontend-Konsum konvertieren",
+      "XML-Datenexporte ins JSON-Format transformieren",
+      "XML-Daten für NoSQL-Datenbankimport vorbereiten",
+      "XML-Schemas in JSON-Struktur konvertieren",
+      "XML-basierte Mikroformate und Metadaten verarbeiten"
+    ],
+    "proTips": [
+      "Aktivieren Sie intelligente Arrays, wenn XML wiederholte Elemente hat, um korrekte JSON-Arrays zu erstellen",
+      "Verwenden Sie den kompakten Attributmodus, um die JSON-Ausgabegröße um 20-30% zu reduzieren",
+      "Entfernen Sie Namespaces bei der Arbeit mit internen Daten, die sie nicht benötigen",
+      "Aktivieren Sie Typkonvertierung, um echte Zahlen/Boolesche Werte anstelle von Zeichenketten zu erhalten",
+      "Verarbeiten Sie große XML-Dateien, indem Sie Pretty Print für schnellere Konvertierung deaktivieren",
+      "Verwenden Sie das Beispiel-XML, um zu verstehen, wie verschiedene Optionen die Ausgabestruktur beeinflussen"
+    ],
+    "troubleshooting": [
+      "Parsing-Fehler: Stellen Sie sicher, dass XML wohlgeformt ist mit übereinstimmenden öffnenden und schließenden Tags",
+      "Fehlende Daten: Überprüfen Sie, ob CDATA-Abschnitte Ihren Inhalt enthalten und erhalten werden",
+      "Unerwartete Struktur: Schalten Sie den Array-Modus um, um zu sehen, ob wiederholte Elemente Arrays sein sollten",
+      "Falsche Datentypen: Aktivieren Sie Typkonvertierung, um String-Zahlen in echte Zahlen zu konvertieren",
+      "Namespace-Probleme: Versuchen Sie, 'Namespaces entfernen' zu aktivieren, um die Ausgabestruktur zu vereinfachen",
+      "Große Dateien langsam: Deaktivieren Sie Pretty Print und verarbeiten Sie in kleineren Teilen, falls erforderlich"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "XML-Eingabe einfügen"
+      },
+      {
+        "keys": "Strg+Enter",
+        "description": "In JSON konvertieren"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "JSON-Ergebnis kopieren"
+      },
+      {
+        "keys": "Strg+S",
+        "description": "JSON-Datei herunterladen"
+      }
+    ]
+  }
+}

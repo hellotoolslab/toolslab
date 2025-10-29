@@ -1,0 +1,90 @@
+{
+  "title": "Convertisseur XML vers JSON",
+  "description": "Convertissez des documents XML au format JSON avec gestion des attributs, support des espaces de noms et détection intelligente des tableaux",
+  "placeholder": "Collez votre XML ici...",
+  "meta": {
+    "title": "Convertisseur XML vers JSON - Outil Gratuit en Ligne | ToolsLab",
+    "description": "Convertissez XML en JSON en ligne avec détection intelligente des tableaux, support des espaces de noms et gestion des attributs. Convertisseur gratuit XML vers JSON avec support CDATA et conversion de types."
+  },
+  "tagline": "Convertissez des documents XML au format JSON avec analyse avancée et options de sortie flexibles",
+  "pageDescription": "Convertisseur professionnel XML vers JSON avec détection intelligente des tableaux, gestion des espaces de noms et modes d'attributs flexibles. Inclut la préservation CDATA, la conversion automatique des types et le formatage pretty print. Parfait pour l'intégration d'API, la transformation de données et la conversion de flux SOAP/RSS. Gère efficacement les structures XML complexes avec contenu mixte. Gratuit et sécurisé, tout dans le navigateur.",
+  "instructions": {
+    "title": "Comment utiliser le Convertisseur XML vers JSON",
+    "steps": [
+      {
+        "title": "Collez ou chargez votre XML",
+        "description": "Copiez et collez vos données XML dans la zone de saisie, ou cliquez sur Charger pour sélectionner un fichier XML depuis votre ordinateur. L'outil supporte les déclarations XML, les espaces de noms et les sections CDATA."
+      },
+      {
+        "title": "Configurez les options de conversion",
+        "description": "Choisissez votre format de sortie préféré : activez pretty print pour un JSON lisible, activez les attributs compacts pour une sortie plus petite, activez les tableaux intelligents pour les éléments répétés et activez la conversion de types pour les nombres et booléens."
+      },
+      {
+        "title": "Convertissez et vérifiez la sortie",
+        "description": "Cliquez sur 'Convertir en JSON' pour traiter votre XML. Vérifiez le JSON formaté et consultez le panneau de métadonnées pour la comparaison des tailles et les statistiques de traitement."
+      },
+      {
+        "title": "Copiez ou téléchargez le résultat",
+        "description": "Utilisez le bouton Copier pour copier le JSON dans le presse-papiers, ou Télécharger pour l'enregistrer en tant que fichier .json pour l'utiliser dans vos applications."
+      }
+    ],
+    "features": [
+      "Détection intelligente des tableaux pour les éléments XML répétés",
+      "Gestion flexible des attributs (mode compact ou verbeux)",
+      "Support des espaces de noms avec suppression optionnelle des préfixes",
+      "Conversion automatique des types pour les nombres et booléens",
+      "Préservation des sections CDATA",
+      "Pretty print avec indentation personnalisable",
+      "Validation XML avec messages d'erreur détaillés",
+      "Statistiques de traitement et comparaison des tailles",
+      "Gère efficacement les gros fichiers XML",
+      "Aucun téléchargement de données - tout traité dans le navigateur"
+    ],
+    "useCases": [
+      "Convertir les réponses SOAP en JSON pour les API modernes",
+      "Transformer les flux RSS/Atom pour les applications web",
+      "Traiter les fichiers de configuration XML en JSON",
+      "Intégrer les systèmes XML hérités avec des services basés sur JSON",
+      "Analyser les fichiers SVG pour manipulation programmatique",
+      "Convertir les réponses API XML pour consommation frontend",
+      "Transformer les exports de données XML au format JSON",
+      "Préparer les données XML pour l'import dans des bases NoSQL",
+      "Convertir les schémas XML en structure JSON",
+      "Traiter les microformats et métadonnées basés sur XML"
+    ],
+    "proTips": [
+      "Activez les tableaux intelligents quand le XML a des éléments répétés pour créer des tableaux JSON corrects",
+      "Utilisez le mode attributs compacts pour réduire la taille du JSON de 20-30%",
+      "Supprimez les espaces de noms lorsque vous travaillez avec des données internes qui n'en ont pas besoin",
+      "Activez la conversion de types pour obtenir de vrais nombres/booléens au lieu de chaînes",
+      "Traitez les gros fichiers XML en désactivant pretty print pour une conversion plus rapide",
+      "Utilisez l'exemple XML pour comprendre comment les différentes options affectent la structure de sortie"
+    ],
+    "troubleshooting": [
+      "Erreurs d'analyse : Assurez-vous que le XML est bien formé avec des balises d'ouverture et de fermeture correspondantes",
+      "Données manquantes : Vérifiez si les sections CDATA contiennent votre contenu et sont préservées",
+      "Structure inattendue : Activez/désactivez le mode tableau pour voir si les éléments répétés doivent être des tableaux",
+      "Types de données incorrects : Activez la conversion de types pour convertir les nombres chaînes en nombres réels",
+      "Problèmes d'espaces de noms : Essayez d'activer 'Supprimer les Espaces de Noms' pour simplifier la structure de sortie",
+      "Gros fichiers lents : Désactivez pretty print et traitez en plus petits morceaux si nécessaire"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entrée XML"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Convertir en JSON"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le résultat JSON"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Télécharger le fichier JSON"
+      }
+    ]
+  }
+}

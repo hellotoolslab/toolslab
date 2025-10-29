@@ -47,6 +47,22 @@ export default function Base64ToPdfTool({
   const { trackUse, trackError, trackCustom } =
     useToolTracking('base64-to-pdf');
 
+  // Ref per scroll automatico al risultato
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  // Effect per scroll quando c'è un risultato di successo
+  useEffect(() => {
+    if (result && result.success && resultRef.current) {
+      // Piccolo delay per assicurarsi che il rendering sia completo
+      setTimeout(() => {
+        resultRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 100);
+    }
+  }, [result]);
+
   const validateInput = useCallback((base64String: string) => {
     if (!base64String.trim()) {
       setValidationInfo(null);
@@ -272,7 +288,10 @@ export default function Base64ToPdfTool({
 
       {/* Result Section */}
       {result && result.success && (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div
+          ref={resultRef}
+          className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+        >
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white">
               PDF Ready for Download
