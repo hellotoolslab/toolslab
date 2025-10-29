@@ -1,0 +1,32 @@
+{
+  "categories": {
+    "data": {
+      "name": "Daten & Konvertierung",
+      "description": "Tools für Datentransformation und Formatkonvertierung"
+    },
+    "encoding": {
+      "name": "Kodierung & Sicherheit",
+      "description": "Kodierungs-, Verschlüsselungs- und Sicherheitstools"
+    },
+    "text": {
+      "name": "Text & Format",
+      "description": "Textmanipulations- und Formatierungstools"
+    },
+    "generators": {
+      "name": "Generatoren",
+      "description": "Generieren Sie verschiedene Arten von Daten und Inhalten"
+    },
+    "web": {
+      "name": "Web & Design",
+      "description": "Webentwicklungs- und Design-Tools"
+    },
+    "dev": {
+      "name": "Dev-Utilities",
+      "description": "Entwickler-Utilities und Helfer"
+    },
+    "formatters": {
+      "name": "Formatierer",
+      "description": "Code- und Datenformatierungstools"
+    }
+  }
+}

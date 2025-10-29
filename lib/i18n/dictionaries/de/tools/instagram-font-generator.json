@@ -1,0 +1,96 @@
+{
+  "title": "Instagram-Schriftart-Generator",
+  "description": "Stilisierte Unicode-Schriftarten für Instagram, WhatsApp und Social-Media-Bios generieren",
+  "placeholder": "Geben Sie Ihren Text hier ein... (z.B. Ihr Name, Bio, Bildunterschrift)",
+  "meta": {
+    "title": "Instagram-Schriftart-Generator - Kostenloses Online-Tool | ToolsLab",
+    "description": "Stilvolle Unicode-Schriftarten für Instagram-Bios, WhatsApp-Status und Social Media generieren. 22+ Schriftstile, Plattform-Kompatibilitäts-Prüfer, Zeichenzähler. Kostenloser Online-Text-Generator."
+  },
+  "tagline": "Erstellen Sie auffällige Unicode-Textstile für Ihre Social-Media-Profile und Posts",
+  "pageDescription": "Kostenloser Instagram-Schriftart-Generator erstellt stilvolle Unicode-Texte für Social Media. Verwandeln Sie einfachen Text in über 22 einzigartige Schriftstile einschließlich fett, kursiv, Schreibschrift, Monospace und dekorative Schriftarten. Funktionen: Echtzeit-Zeichenzähler für Instagram-Bios (150 Zeichen) und Posts (2200 Zeichen), Plattform-Kompatibilitäts-Prüfer (Instagram, WhatsApp, Twitter, Facebook) und sofortige Kopierfunktion. Perfekt für Content-Ersteller, Influencer und Marketer, die mit ausgefallenen Texten in Bios, Bildunterschriften und Posts herausstechen möchten. Alle Schriftarten funktionieren nativ plattformübergreifend ohne Installation. Browserbasiert mit vollständiger Privatsphäre.",
+  "instructions": {
+    "title": "So verwenden Sie Instagram-Schriftart-Generator",
+    "steps": [
+      {
+        "title": "Text eingeben oder einfügen",
+        "description": "Geben Sie den Text ein, den Sie gestalten möchten. Funktioniert mit allen Unicode-Zeichen einschließlich Buchstaben, Zahlen und Emojis. Der Zeichenzähler zeigt Limits für Instagram-Bio (150) und Posts (2200) an."
+      },
+      {
+        "title": "Generierte Schriftstile durchsuchen",
+        "description": "Sehen Sie Ihren Text sofort in über 22 verschiedene Schriftstile konvertiert. Jeder Stil zeigt Plattform-Kompatibilitäts-Icons für Instagram, WhatsApp, Twitter und Facebook."
+      },
+      {
+        "title": "Nach Plattform filtern oder suchen",
+        "description": "Verwenden Sie Plattform-Filter, um nur Schriftarten anzuzeigen, die mit Instagram, WhatsApp, Twitter oder Facebook kompatibel sind. Suchen Sie nach Schriftartnamen, um schnell bestimmte Stile wie 'fett' oder 'Schreibschrift' zu finden."
+      },
+      {
+        "title": "Gestylten Text kopieren und verwenden",
+        "description": "Klicken Sie auf die Kopieren-Schaltfläche bei jedem Schriftstil, um ihn in Ihre Zwischenablage zu kopieren. Fügen Sie ihn dann direkt in Ihre Instagram-Bio, Ihren WhatsApp-Status oder jeden Social-Media-Post ein."
+      }
+    ],
+    "features": [
+      "22+ einzigartige Unicode-Schriftstile sofort generiert",
+      "Echtzeit-Zeichenzähler für Instagram-Limits",
+      "Plattform-Kompatibilitäts-Prüfer (Instagram, WhatsApp, Twitter, Facebook)",
+      "Suchen und Filtern von Schriftarten nach Name oder Plattform",
+      "Favoriten-Stile für schnellen Zugriff",
+      "Lazy Loading für optimale Leistung",
+      "Einzelne Stile oder alle Stile auf einmal kopieren",
+      "Funktioniert mit Emojis, Sonderzeichen und mehrsprachigem Text",
+      "Keine Schriftinstallation erforderlich - funktioniert nativ",
+      "100% browserbasiert mit vollständiger Privatsphäre"
+    ],
+    "useCases": [
+      "Auffällige Instagram-Bios erstellen, die herausstechen",
+      "WhatsApp-Statusnachrichten mit einzigartigen Schriftarten gestalten",
+      "Persönlichkeit zu Twitter-Profilbeschreibungen hinzufügen",
+      "Facebook-Posts mit gestyltem Text ansprechender machen",
+      "Gebrandeten Social-Media-Content designen",
+      "Einzigartige Benutzernamen und Anzeigenamen erstellen",
+      "In Kommentaren und Antworten herausstechen",
+      "Ästhetischen Text für TikTok-Bios generieren",
+      "Discord-Servernamen und Kanäle gestalten",
+      "Aufmerksamkeitsstarke Überschriften für Social Posts erstellen"
+    ],
+    "proTips": [
+      "Speichern Sie Ihre Lieblings-Schriftstile für schnellen späteren Zugriff",
+      "Testen Sie Schriftarten auf Ihrer Zielplattform, bevor Sie sie finalisieren",
+      "Kombinieren Sie verschiedene Stile in einer Bio für kreative Effekte",
+      "Verwenden Sie den Zeichenzähler zur Optimierung für Instagrams 150-Zeichen-Bio-Limit",
+      "Fette und kursive Schriftarten haben die beste Kompatibilität über alle Plattformen hinweg",
+      "Vermeiden Sie zu viele Sonderzeichen - halten Sie es lesbar",
+      "Sehen Sie in der Vorschau, wie Ihr gestylter Text mit Emojis aussieht",
+      "Kopieren Sie alle Stile auf einmal, um mehrere Optionen zu testen",
+      "Verwenden Sie Plattform-Filter, um Kompatibilität vor dem Posten sicherzustellen",
+      "Bewahren Sie ein Backup Ihres Originaltextes vor dem Styling auf"
+    ],
+    "troubleshooting": [
+      "Text wird nicht angezeigt: Einige ältere Geräte unterstützen möglicherweise nicht alle Unicode-Schriftarten. Bleiben Sie bei fett, kursiv oder Monospace für maximale Kompatibilität.",
+      "Zeichen erscheinen als Kästchen: Dies bedeutet, dass die Schriftart auf dieser Plattform nicht unterstützt wird. Verwenden Sie den Plattform-Kompatibilitäts-Prüfer zur Überprüfung vor dem Posten.",
+      "Text sieht auf Mobilgeräten anders aus als auf Desktop: Unicode-Rendering variiert je nach Gerät leicht. Sehen Sie sich immer eine Vorschau auf Ihrem Zielgerät an, bevor Sie veröffentlichen.",
+      "Instagram entfernt gestylten Text: Instagram blockiert gelegentlich bestimmte Unicode-Bereiche. Wenn Text verschwindet, versuchen Sie einen anderen Schriftstil.",
+      "Zeichenzähler zeigt rot: Ihr Text überschreitet Instagrams Limits (150 für Bio, 2200 für Posts). Kürzen Sie Ihre Nachricht oder entfernen Sie zusätzliche Zeichen.",
+      "Kopieren-Schaltfläche funktioniert nicht: Stellen Sie sicher, dass Ihr Browser Zugriff auf die Zwischenablage erlaubt. Versuchen Sie, die Schaltfläche erneut zu klicken oder wählen und kopieren Sie den Text manuell.",
+      "Emojis werden nicht konvertiert: Emojis werden in ihrer ursprünglichen Form beibehalten - sie benötigen keine Konvertierung und funktionieren über alle Plattformen hinweg.",
+      "Suche findet keine Schriftarten: Verwenden Sie einfache Begriffe wie 'bold', 'italic' oder 'script'. Schriftartnamen sind auf Englisch."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Text einfügen"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Ausgewählten Stil kopieren"
+      },
+      {
+        "keys": "Strg+A",
+        "description": "Gesamten Text im Eingabefeld auswählen"
+      },
+      {
+        "keys": "Escape",
+        "description": "Filter löschen"
+      }
+    ]
+  }
+}
