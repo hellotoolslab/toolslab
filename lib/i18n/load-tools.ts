@@ -74,6 +74,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'eml-to-html',
     'instagram-font-generator',
     'excel-filter',
+    'ai-prompt-token-counter',
   ];
 
   const tools: Record<string, any> = {};

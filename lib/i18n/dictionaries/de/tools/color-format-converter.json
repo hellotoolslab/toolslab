@@ -1,0 +1,91 @@
+{
+  "title": "Farbformat-Konverter",
+  "description": "Farben zwischen HEX, RGB, HSL, HSV und CMYK-Formaten konvertieren mit Palettengenerierung",
+  "placeholder": "Farbe eingeben (HEX, RGB, HSL, HSV, CMYK oder Farbname)",
+  "meta": {
+    "title": "Farbformat-Konverter - Kostenloses Online-Tool | ToolsLab",
+    "description": "Kostenloser Farbformat-Konverter. Zwischen HEX, RGB, HSL, HSV und CMYK konvertieren. Farbpaletten generieren, Kontrast prüfen, Tönungen und Schattierungen erstellen. Perfekt für Webdesigner und Entwickler."
+  },
+  "tagline": "Farben zwischen Formaten konvertieren mit Palettengenerator und Kontrastprüfer",
+  "pageDescription": "Professioneller Farbformat-Konverter für Designer und Entwickler. Konvertieren Sie nahtlos zwischen HEX, RGB, HSL, HSV und CMYK-Formaten. Generieren Sie harmonische Farbpaletten mit komplementären, analogen, triadischen und tetradischen Schemata. Erstellen Sie Tönungen und Schattierungen für jede Farbe. Prüfen Sie WCAG-Kontrast-Konformität für Barrierefreiheit. Exportieren Sie Farben als CSS-Variablen, SCSS oder JSON. Speichern Sie den Farbverlauf und verwenden Sie kürzlich verwendete Farben schnell wieder. Alle Verarbeitungen erfolgen in Ihrem Browser für maximale Privatsphäre.",
+  "instructions": {
+    "title": "So verwenden Sie Farbformat-Konverter",
+    "steps": [
+      {
+        "title": "Farbe eingeben",
+        "description": "Geben Sie einen Farbwert in HEX (#FF5733), RGB (rgb(255, 87, 51)), HSL (hsl(9, 100%, 60%)), HSV oder CMYK Format ein, oder verwenden Sie einen CSS-Farbnamen wie 'red' oder 'skyblue'. Sie können auch die Farbwähler-Schaltfläche verwenden, um visuell eine Farbe auszuwählen."
+      },
+      {
+        "title": "Alle Formate anzeigen",
+        "description": "Sehen Sie sofort Ihre Farbe konvertiert in alle unterstützten Formate: HEX, RGB, RGBA, HSL, HSLA, HSV, CMYK, CSS-Variablen und SCSS-Variablen. Jedes Format hat eine Kopierschaltfläche für schnellen Zugriff auf die Zwischenablage."
+      },
+      {
+        "title": "Farbpaletten generieren",
+        "description": "Klicken Sie auf 'Generieren' unter dem Paletten-Generator, um harmonische Farbschemata zu erstellen. Wählen Sie aus komplementären, analogen, triadischen, tetradischen oder monochromatischen Paletten. Generieren Sie Tönungen (heller) oder Schattierungen (dunkler) als Variationen. Klicken Sie auf eine Palettenfarbe, um sie zu verwenden."
+      },
+      {
+        "title": "Barrierefreiheit prüfen",
+        "description": "Verwenden Sie den Kontrast-Prüfer, um WCAG-Konformität zu überprüfen. Testen Sie Ihre Farbe gegen weiße oder schwarze Hintergründe. Sehen Sie, ob sie die AA- und AAA-Standards für normalen und großen Text erfüllt, um sicherzustellen, dass Ihre Designs barrierefrei sind."
+      },
+      {
+        "title": "Exportieren und wiederverwenden",
+        "description": "Exportieren Sie Ihre Farbdaten und Paletten als JSON. Greifen Sie auf Ihre kürzlich verwendeten Farben über das Verlaufs-Panel zu. Kopieren Sie jedes Format mit einem Klick zur Verwendung in Ihren Projekten."
+      }
+    ],
+    "features": [
+      "Sofortige Konvertierung zwischen 7+ Farbformaten",
+      "Automatische Formaterkennung der Eingabe",
+      "Unterstützung für HEX (3 & 6 Ziffern), RGB, RGBA, HSL, HSLA, HSV, CMYK",
+      "CSS- und SCSS-Variablen-Generierung",
+      "Unterstützung benannter Farben für alle CSS-Farben",
+      "Harmonische Paletten-Generierung (komplementär, triadisch, analog, etc.)",
+      "Tönungs- und Schattierungs-Generator für Farbvariationen",
+      "WCAG-Kontrast-Prüfer mit AA/AAA-Konformität",
+      "Visueller Farbwähler-Integration",
+      "Farbverlauf lokal gespeichert (letzte 15 Farben)",
+      "Ein-Klick-Kopieren für jedes Format",
+      "Als JSON exportieren mit allen Formaten und Paletten",
+      "Vollständig browserbasiert - keine Serververarbeitung",
+      "Funktioniert offline nach dem ersten Laden"
+    ],
+    "useCases": [
+      "Markenfarben zwischen Design- und Entwicklungsformaten konvertieren",
+      "Farbpaletten für UI-Design-Systeme generieren",
+      "Barrierefreiheit-Konformität durch Kontrast-Prüfung sicherstellen",
+      "Farbvariationen für Hover-Zustände und Themen erstellen",
+      "Farben von Design-Tools (Figma, Sketch) zu CSS konvertieren",
+      "Farben zwischen verschiedenen Formatstandards abgleichen",
+      "Farbschemata für Websites und Anwendungen erstellen",
+      "Farbkombinationen auf WCAG-Richtlinien-Erfüllung überprüfen",
+      "Farbdaten für Style Guides und Dokumentation exportieren",
+      "Schnelle Farbformat-Referenz für Entwickler"
+    ],
+    "proTips": [
+      "Verwenden Sie den Farbwähler für visuelle Auswahl und stimmen Sie dann mit Formatwerten fein ab",
+      "Klicken Sie auf jede Farbe in Ihrem Verlauf oder Paletten, um sie sofort zu konvertieren",
+      "Generieren Sie monochromatische Paletten für konsistente Design-Systeme",
+      "Prüfen Sie den Kontrast sowohl auf Weiß als auch auf Schwarz für vielseitige Farbauswahl",
+      "Exportieren Sie Farben als JSON, um sie mit Ihrem Team zu teilen oder für später zu speichern",
+      "Verwenden Sie das CSS-Variablen-Format für einfache Themengestaltung in Ihren Projekten",
+      "Probieren Sie verschiedene Harmonie-Typen aus, um neue Farbkombinationen zu entdecken",
+      "Speichern Sie häufig verwendete Farben, indem Sie sie in Ihrem kürzlichen Verlauf behalten"
+    ],
+    "troubleshooting": [
+      "Ungültiges Format-Fehler: Stellen Sie sicher, dass Ihr Farbwert der Standardsyntax entspricht (z.B. #FF0000, rgb(255,0,0))",
+      "Farbe wird nicht erkannt: Prüfen Sie auf Tippfehler bei benannten Farben oder überprüfen Sie die Formatstruktur",
+      "Verlauf wird nicht gespeichert: Aktivieren Sie localStorage in Ihren Browser-Einstellungen",
+      "Paletten-Generierung schlägt fehl: Überprüfen Sie, ob Ihre Eingabefarbe gültig ist, bevor Sie generieren",
+      "Kontrast-Prüfer-Probleme: Stellen Sie sicher, dass sowohl Vordergrund- als auch Hintergrundfarben gültig sind"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Farbwert einfügen"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Aktuellen HEX-Wert kopieren"
+      }
+    ]
+  }
+}

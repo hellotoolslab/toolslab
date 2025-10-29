@@ -1,0 +1,122 @@
+{
+  "common": {
+    "nav": {
+      "tools": "Tools",
+      "blog": "Blog",
+      "about": "Über uns",
+      "categories": "Kategorien",
+      "lab": "Das Labor",
+      "allTools": "Alle Tools",
+      "viewAllTools": "Alle Tools anzeigen"
+    },
+    "actions": {
+      "copy": "Kopieren",
+      "download": "Herunterladen",
+      "clear": "Löschen",
+      "process": "Verarbeiten",
+      "upload": "Datei hochladen",
+      "paste": "Einfügen",
+      "reset": "Zurücksetzen",
+      "share": "Teilen",
+      "save": "Speichern",
+      "load": "Laden",
+      "export": "Exportieren",
+      "import": "Importieren",
+      "format": "Formatieren",
+      "validate": "Validieren",
+      "minify": "Minimieren",
+      "beautify": "Verschönern",
+      "encode": "Kodieren",
+      "decode": "Dekodieren",
+      "encrypt": "Verschlüsseln",
+      "decrypt": "Entschlüsseln",
+      "generate": "Generieren",
+      "convert": "Konvertieren",
+      "analyze": "Analysieren",
+      "compare": "Vergleichen"
+    },
+    "messages": {
+      "success": "Erfolgreich!",
+      "error": "Ein Fehler ist aufgetreten",
+      "copied": "In Zwischenablage kopiert",
+      "processing": "Verarbeitung...",
+      "noData": "Keine Daten zu verarbeiten",
+      "invalid": "Ungültige Eingabe",
+      "valid": "Gültig",
+      "loading": "Laden...",
+      "saved": "Erfolgreich gespeichert",
+      "deleted": "Erfolgreich gelöscht",
+      "updated": "Erfolgreich aktualisiert",
+      "created": "Erfolgreich erstellt",
+      "failed": "Vorgang fehlgeschlagen",
+      "warning": "Warnung",
+      "info": "Information"
+    },
+    "labels": {
+      "input": "Eingabe",
+      "output": "Ausgabe",
+      "options": "Optionen",
+      "settings": "Einstellungen",
+      "result": "Ergebnis",
+      "preview": "Vorschau",
+      "source": "Quelle",
+      "target": "Ziel",
+      "from": "Von",
+      "to": "Nach",
+      "file": "Datei",
+      "text": "Text",
+      "code": "Code",
+      "data": "Daten",
+      "format": "Format",
+      "type": "Typ",
+      "mode": "Modus",
+      "language": "Sprache",
+      "charset": "Zeichensatz",
+      "encoding": "Kodierung",
+      "tool": "Tool",
+      "tools": "Tools",
+      "keyFeatures": "Hauptfunktionen",
+      "commonUseCases": "Häufige Anwendungsfälle",
+      "proTips": "Profi-Tipps",
+      "troubleshooting": "Fehlerbehebung",
+      "keyboardShortcuts": "Tastenkombinationen",
+      "howToUse": "Wie man dieses Tool verwendet"
+    },
+    "units": {
+      "bytes": "Bytes",
+      "kb": "KB",
+      "mb": "MB",
+      "gb": "GB",
+      "ms": "ms",
+      "seconds": "Sekunden",
+      "minutes": "Minuten",
+      "hours": "Stunden",
+      "days": "Tage",
+      "characters": "Zeichen",
+      "words": "Wörter",
+      "lines": "Zeilen"
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "close": "Schließen",
+      "questions": [
+        {
+          "question": "Ist dieses Tool kostenlos?",
+          "answer": "Ja, alle ToolsLab-Tools sind vollständig kostenlos und ohne Limits oder Registrierung nutzbar."
+        },
+        {
+          "question": "Sind meine Daten sicher?",
+          "answer": "Alle Verarbeitungen erfolgen lokal in Ihrem Browser. Ihre Daten verlassen niemals Ihr Gerät."
+        },
+        {
+          "question": "Kann ich dies offline nutzen?",
+          "answer": "Nach dem Laden funktionieren die meisten Tools offline, da sie Daten lokal in Ihrem Browser verarbeiten."
+        },
+        {
+          "question": "Wie melde ich einen Fehler oder fordere ein Feature an?",
+          "answer": "Sie können Probleme melden oder Features anfragen in unserem GitHub-Repository unter https://github.com/hellotoolslab/toolslab oder uns auf X unter https://x.com/tools_lab kontaktieren."
+        }
+      ]
+    }
+  }
+}

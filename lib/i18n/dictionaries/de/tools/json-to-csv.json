@@ -1,0 +1,85 @@
+{
+  "title": "JSON zu CSV",
+  "description": "Konvertieren JSON-Daten zu CSV Format",
+  "placeholder": "Einfügen JSON-Daten...",
+  "instructions": {
+    "title": "So verwenden Sie JSON zu CSV",
+    "steps": [
+      {
+        "title": "JSON-Daten einfügen",
+        "description": "Kopieren und fügen Sie Ihre JSON-Daten in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+      },
+      {
+        "title": "Optionen konfigurieren (falls verfügbar)",
+        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+      },
+      {
+        "title": "Ausgabe überprüfen",
+        "description": "Das Tool verarbeitet Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+      },
+      {
+        "title": "Ergebnis kopieren oder herunterladen",
+        "description": "Kopieren Sie das formatierte JSON in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+      }
+    ],
+    "features": [
+      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
+      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
+      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
+      "Keine Datenuploads oder Server-Speicherung",
+      "Mit einem Klick in die Zwischenablage kopieren",
+      "Ergebnisse als Datei herunterladen",
+      "Syntax-Validierung und Fehlerhervorhebung",
+      "Funktioniert offline nach dem ersten Laden der Seite"
+    ],
+    "useCases": [
+      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
+      "Code-Stil über Entwicklungsteams hinweg standardisieren",
+      "Komplexe Strukturen mit richtiger Einrückung debuggen",
+      "Code für Dokumentation und Code-Reviews vorbereiten",
+      "Zwischen verschiedenen Formatierungsstandards konvertieren",
+      "Syntax vor Deployment validieren",
+      "Daten von externen Quellen oder APIs verarbeiten",
+      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+    ],
+    "proTips": [
+      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
+      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
+      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
+      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
+      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
+      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+    ],
+    "troubleshooting": [
+      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
+      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
+      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
+      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
+      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Eingabe einfügen"
+      },
+      {
+        "keys": "Strg+Eingeben",
+        "description": "Verarbeiten/Formatieren"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Ergebnis kopieren"
+      },
+      {
+        "keys": "Strg+S",
+        "description": "Datei herunterladen"
+      }
+    ]
+  },
+  "meta": {
+    "title": "JSON zu CSV - Kostenloses Online-Tool | ToolsLab",
+    "description": "Konvertieren JSON-Daten zu CSV Format online. Flatten nested objects und arrays. Kostenlos JSON zu CSV converter."
+  },
+  "tagline": "Konvertieren JSON zu CSV mit advanced formatting und column mapping",
+  "pageDescription": "Kostenlos JSON zu CSV converter mit advanced flattening, column mapping, und formatting options. Transform JSON arrays, nested objects, und complex Daten structures into Excel-compatible CSV files. Features drag-und-drop column ordering, custom delimiters, header configuration, und real-time preview. Perfect für Daten exportieren, API response Konvertierung, und spreadsheet Integration. Secure browserbasiert processing mit no file uploads."
+}

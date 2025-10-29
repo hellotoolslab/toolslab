@@ -1,0 +1,109 @@
+{
+  "title": "Contatore Token AI",
+  "description": "Conta i token per prompt AI su GPT-4, Claude, Llama con stima accurata dei costi",
+  "placeholder": "Inserisci il tuo prompt o incolla il testo qui...",
+  "meta": {
+    "title": "Contatore Token AI - Calcolatore Token GPT-4, Claude, Llama | ToolsLab",
+    "description": "Contatore token AI e calcolatore costi gratuito. Conta i token per modelli GPT-4, GPT-3.5, Claude, Llama, Gemini e Mistral. Stima i costi API, ottimizza i prompt e confronta i modelli. Perfetto per prompt engineer e sviluppatori AI."
+  },
+  "tagline": "Conta token e stima costi su GPT-4, Claude, Llama e altri modelli AI",
+  "pageDescription": "Contatore token AI professionale per prompt engineer e sviluppatori. Conta accuratamente i token per modelli OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini e Mistral. Ottieni stime dettagliate dei costi con i prezzi API più recenti, confronta i conteggi token su tutti i modelli e ottimizza i tuoi prompt per ridurre token e costi. Funzionalità: conteggio token in tempo reale, monitoraggio finestra di contesto, analisi batch, suggerimenti ottimizzazione prompt e proiezioni costi complete. Salva la cronologia delle tue analisi ed esporta i risultati come JSON. Tutta l'elaborazione avviene localmente nel tuo browser per massima privacy e velocità.",
+  "instructions": {
+    "title": "Come usare il Contatore Token AI",
+    "steps": [
+      {
+        "title": "Inserisci il tuo prompt o testo",
+        "description": "Digita o incolla il tuo prompt AI nell'area di testo grande. Puoi anche caricare file .txt o .md cliccando il pulsante upload o trascinandoli. Lo strumento supporta testi molto lunghi (100k+ caratteri) e salva automaticamente il tuo input per prevenire perdite di dati."
+      },
+      {
+        "title": "Seleziona il tuo modello AI",
+        "description": "Scegli il modello AI che stai utilizzando dal menu a discesa: GPT-4, GPT-4 Turbo, GPT-3.5, Claude 3/3.5/4, Llama 2/3, Gemini Pro/1.5 o Mistral. Ogni modello usa un tokenizer diverso e ha finestre di contesto e prezzi differenti. Lo strumento mostra il limite di contesto e il tipo di tokenizer del modello."
+      },
+      {
+        "title": "Visualizza conteggio token e analisi",
+        "description": "Vedi risultati istantanei inclusi token totali, caratteri, parole, rapporto token/parole e utilizzo finestra di contesto. Una barra di progresso visuale mostra quanto del contesto del modello stai usando (verde: 0-50%, giallo: 50-80%, rosso: 80-100%). Ricevi avvisi se ti stai avvicinando al limite e suggerimenti per l'ottimizzazione."
+      },
+      {
+        "title": "Stima i costi API",
+        "description": "Visualizza stime dettagliate dei costi basate sui prezzi API più recenti (aggiornati gennaio 2025). Vedi costi per richiesta, per 100 richieste, per 1.000 e per 10.000 richieste. Regola lo slider del rapporto token output per stimare i costi includendo le risposte attese del modello. I prezzi includono sia i costi dei token input che output."
+      },
+      {
+        "title": "Confronta modelli e ottimizza",
+        "description": "Passa alla vista Confronto per vedere conteggi token e costi su tutti i modelli simultaneamente. Usa la vista Ottimizza per ottenere una versione ottimizzata del tuo prompt con token ridotti. Lo strumento rimuove spazi eccessivi, pattern ripetitivi e formattazione non necessaria preservando il significato."
+      }
+    ],
+    "features": [
+      "Supporto per 15+ modelli AI inclusi GPT-4o, Claude 3.5, Llama 3.1, Gemini 2.0, Mistral",
+      "Stima accurata dei token per il tokenizer specifico di ogni modello",
+      "Conteggio token in tempo reale mentre digiti",
+      "Monitoraggio finestra di contesto con indicatore di progresso visuale",
+      "Stima completa dei costi con prezzi API recenti (gennaio 2025)",
+      "Confronto multi-modello per trovare l'opzione più conveniente",
+      "Ottimizzazione prompt per ridurre il conteggio token",
+      "Analisi rapporto token/parole per insight sull'efficienza",
+      "Salvataggio automatico cronologia delle ultime 20 analisi",
+      "Salvataggio automatico input per prevenire perdite dati",
+      "Supporto caricamento file (.txt, .md) con drag & drop",
+      "Esporta risultati come JSON con dati analisi completi",
+      "Copia risultati negli appunti",
+      "Avvisi quando ti avvicini ai limiti di contesto",
+      "Suggerimenti ottimizzazione per riduzione token",
+      "Proiezioni costi per utilizzo scalato (100, 1k, 10k richieste)",
+      "Funziona 100% offline dopo caricamento iniziale",
+      "Nessun dato inviato a server esterni"
+    ],
+    "useCases": [
+      "Stimare costi API prima di distribuire applicazioni AI",
+      "Ottimizzare prompt per ridurre utilizzo token e costi",
+      "Scegliere il modello più conveniente per il tuo caso d'uso",
+      "Verificare che i prompt rientrino nelle finestre di contesto del modello",
+      "Analizzare efficienza token di diversi stili di prompt",
+      "Pianificazione budget per utilizzo API AI",
+      "Testare variazioni prompt per trovare la versione più efficiente",
+      "Calcolare costi per scenari di elaborazione batch",
+      "Confrontare differenze di tokenizzazione tra modelli",
+      "Ottimizzare contenuti long-form per elaborazione AI",
+      "Debug perché i prompt vengono troncati",
+      "Pianificare allocazione contesto per applicazioni RAG",
+      "Stimare costi per funzionalità AI prima dello sviluppo",
+      "Monitorare trend utilizzo token nei workflow prompt engineering"
+    ],
+    "proTips": [
+      "Usa GPT-3.5 per task semplici - è 20x più economico di GPT-4 con tokenizzazione simile",
+      "I modelli Claude sono molto efficienti per contesti lunghi - usali per documenti",
+      "Controlla rapporto token/parole: valori > 2 indicano formattazione inefficiente",
+      "Rimuovi formattazione markdown se non necessaria - aggiunge token extra",
+      "Usa la funzione Ottimizza prima di finalizzare prompt produzione",
+      "Confronta modelli nella vista Confronto per trovare risparmi",
+      "Regola rapporto token output per stimare costi conversazione completa",
+      "Salva prompt usati frequentemente nella cronologia per accesso rapido",
+      "Carica file direttamente invece di copia-incolla per testi molto lunghi",
+      "Contesto all'80%+ significa che il modello potrebbe troncare risposte - dividi il prompt",
+      "Gemini 2.0 Flash ha contesto 1M token - eccellente per documenti lunghi",
+      "Per generazione codice, GPT-4 Turbo offre miglior bilanciamento qualità-costo"
+    ],
+    "troubleshooting": [
+      "Conteggi token sono stime: I conteggi API reali possono variare leggermente (±5%) per implementazioni tokenizer esatte",
+      "Avvisi limite contesto: Se vedi rosso (80%+), il tuo prompt potrebbe essere troncato",
+      "Rapporto token/parole alto: Solitamente causato da caratteri speciali, codice o formattazione eccessiva",
+      "Discrepanze prezzo: I prezzi sono aggiornati regolarmente ma controlla documentazione provider ufficiale",
+      "Problemi caricamento file: Solo file .txt e .md supportati",
+      "Cronologia non salvata: Abilita localStorage nel browser",
+      "Performance lenta con testi molto lunghi: Il conteggio token per testi 50k+ caratteri può richiedere secondi"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla testo"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleziona tutto"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia selezione"
+      }
+    ]
+  }
+}

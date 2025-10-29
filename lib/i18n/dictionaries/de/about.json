@@ -1,0 +1,138 @@
+{
+  "about": {
+    "hero": {
+      "title": "Über ToolsLab",
+      "subtitle": "Ihre Entwickler-Toolbox, neu gedacht",
+      "badges": {
+        "free": "100% kostenlos",
+        "privacy": "Datenschutz zuerst",
+        "noRegistration": "Keine Registrierung"
+      },
+      "scrollIndicator": "Scrollen Sie, um zu erkunden"
+    },
+    "stats": {
+      "title": "Vertraut von Entwicklern",
+      "subtitle": "Zahlen, die unsere Geschichte erzählen",
+      "tools": {
+        "value": "25+",
+        "label": "Entwickler-Tools",
+        "description": "Und täglich wachsend"
+      },
+      "users": {
+        "value": "1000+",
+        "label": "Tägliche Benutzer",
+        "description": "Entwickler weltweit"
+      },
+      "loadTime": {
+        "value": "<1s",
+        "label": "Ladezeit",
+        "description": "Blitzschnell"
+      },
+      "dataCollected": {
+        "value": "0",
+        "label": "Gesammelte Daten",
+        "description": "Vollständige Privatsphäre"
+      }
+    },
+    "timeline": {
+      "title": "Die Reise",
+      "subtitle": "Von persönlicher Frustration zur Community-Ressource",
+      "steps": [
+        {
+          "title": "Das Problem",
+          "year": "Anfang 2025",
+          "description": "Dutzende von Browser-Tabs für einfache Konvertierungen. JSON hier, Base64 dort, UUID irgendwo anders. Jedes Tool auf verschiedenen Seiten, die meisten vollgestopft mit Werbung, einige hinter Paywalls."
+        },
+        {
+          "title": "Die Idee",
+          "year": "Anfang 2025",
+          "description": "Was wäre, wenn alle meine wichtigen Dev-Tools an einem Ort wären? Saubere Oberfläche, keine Registrierung, blitzschnell. Ich baute mein persönliches Schweizer Taschenmesser für die Entwicklung."
+        },
+        {
+          "title": "Der Aufbau",
+          "year": "Juli 2025",
+          "description": "Nächte und Wochenenden mit Programmieren. Begann mit JSON-Formatierer, fügte Base64-Encoder, UUID-Generator hinzu. Jedes Tool schneller und sauberer als verstreute Alternativen."
+        },
+        {
+          "title": "Der Launch",
+          "year": "August 2025",
+          "description": "Mit meinem Team geteilt. Sie liebten es. Erkannte, dass dies Tausenden von Entwicklern helfen könnte. Machte es öffentlich, für immer kostenlos, ohne Bedingungen."
+        },
+        {
+          "title": "Das Wachstum",
+          "year": "Heute",
+          "description": "Von persönlichem Projekt zu vertrautem Toolkit für Entwickler weltweit. Wachsende Sammlung von Tools, alle mit dem gleichen Prinzip: einfach funktionieren."
+        },
+        {
+          "title": "Die Zukunft",
+          "year": "2025+",
+          "description": "Mehr Tools, bessere Performance, community-getriebene Features. Immer kostenlos, immer privat, immer auf Entwicklerproduktivität fokussiert."
+        }
+      ]
+    },
+    "features": {
+      "title": "Warum ToolsLab wählen?",
+      "subtitle": "Mit Entwicklern im Sinn gebaut, für Ihren Workflow optimiert",
+      "items": [
+        {
+          "title": "Blitzschnell",
+          "description": "Alle Verarbeitungen erfolgen in Ihrem Browser. Keine Server-Verzögerungen, kein Warten. Tools laden sofort und arbeiten in Gedankengeschwindigkeit."
+        },
+        {
+          "title": "Datenschutz zuerst",
+          "description": "Ihre Daten verlassen niemals Ihr Gerät. Kein Tracking, keine Analytik, keine Datenerfassung. Vollständige Privatsphäre garantiert."
+        },
+        {
+          "title": "Immer kostenlos",
+          "description": "Keine Premium-Pläne, keine Paywalls, keine versteckten Kosten. Qualitäts-Tools für jeden Entwickler zugänglich, unabhängig vom Budget."
+        },
+        {
+          "title": "Keine Anmeldung",
+          "description": "Beginnen Sie sofort mit der Nutzung der Tools. Keine Konten, keine Verifizierungs-E-Mails, keine Reibung zwischen Ihnen und Produktivität."
+        },
+        {
+          "title": "Dark Mode",
+          "description": "Schont Ihre Augen während dieser späten Coding-Sessions. Schöne Oberfläche, die sich Ihrer Präferenz anpasst."
+        },
+        {
+          "title": "Mobile-bereit",
+          "description": "Funktioniert perfekt auf jedem Gerät. Gleiche großartige Erfahrung, egal ob auf Desktop, Tablet oder Telefon."
+        }
+      ]
+    },
+    "story": {
+      "quote": "Hallo, ich bin der Entwickler hinter ToolsLab. Wie Sie war ich es leid, Dutzende von Browser-Tabs für einfache Konvertierungen und Generierungen zu jonglieren. Jedes Tool auf einer anderen Seite, die meisten voller Werbung, einige hinter Paywalls.\n\nAlso baute ich ToolsLab - mein persönliches Schweizer Taschenmesser für die Entwicklung. Was als lokales Projekt begann, wurde schnell unverzichtbar für mein Team, und jetzt freue ich mich, es mit Entwicklern weltweit zu teilen.\n\nKeine Haken, keine Upsells. Nur Tools, die funktionieren, gebaut von einem Entwickler, der sie jeden Tag nutzt.",
+      "author": "— ToolsLab Creator",
+      "badges": {
+        "developer": "Full Stack Developer",
+        "enthusiast": "Open Source Enthusiast"
+      }
+    },
+    "social": {
+      "title": "Verbinden & Unterstützen",
+      "subtitle": "Treten Sie der Community bei, tragen Sie bei oder zeigen Sie Ihre Wertschätzung",
+      "links": [
+        {
+          "label": "Auf X folgen",
+          "description": "Updates & hinter den Kulissen"
+        },
+        {
+          "label": "Auf GitHub markieren",
+          "description": "Beitragen & Feedback"
+        },
+        {
+          "label": "Spendieren Sie mir einen Kaffee",
+          "description": "Unterstützen Sie das Projekt"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Bereit, Ihre Produktivität zu steigern?",
+      "subtitle": "Treten Sie Tausenden von Entwicklern bei, die ToolsLab zu ihrem bevorzugten Toolkit gemacht haben. Keine Registrierung, keine Kosten, nur pure Produktivität.",
+      "buttons": {
+        "exploreTools": "Tools erkunden",
+        "support": "Projekt unterstützen"
+      }
+    }
+  }
+}
