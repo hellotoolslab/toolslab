@@ -1,0 +1,30 @@
+{
+  "title": "ToolsLab Blog",
+  "subtitle": "Entwickler-Leitfäden & Tutorials",
+  "featured": "Hauptartikel",
+  "recentArticles": "Aktuelle Artikel",
+  "loadMore": "Mehr laden",
+  "loading": "Laden...",
+  "comingSoon": "Demnächst!",
+  "comingSoonDescription": "Wir arbeiten an erstaunlichen Inhalten für Sie. Schauen Sie bald wieder vorbei für Entwickler-Leitfäden, Tutorials und Best Practices.",
+  "readMore": "Weiterlesen",
+  "minRead": "Min. Lesezeit",
+  "publishedOn": "Veröffentlicht am",
+  "lastUpdated": "Zuletzt aktualisiert",
+  "author": "Autor",
+  "relatedArticles": "Verwandte Artikel",
+  "tableOfContents": "Inhaltsverzeichnis",
+  "shareArticle": "Diesen Artikel teilen",
+  "copyLink": "Link kopieren",
+  "linkCopied": "Link kopiert!",
+  "categories": {
+    "Tutorial": "Tutorial",
+    "Guide": "Leitfaden",
+    "Comparison": "Vergleich",
+    "Best Practices": "Best Practices",
+    "Deep Dive": "Tiefgehende Analyse"
+  },
+  "fallbackNotice": "Dieser Artikel ist noch nicht in Ihrer Sprache verfügbar. Zeige englische Version.",
+  "availableIn": "Verfügbar in",
+  "pillarArticle": "Pillar-Artikel"
+}

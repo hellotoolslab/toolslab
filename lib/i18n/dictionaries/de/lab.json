@@ -1,0 +1,72 @@
+{
+  "lab": {
+    "header": {
+      "title": "Mein Entwickler-Labor",
+      "subtitle": "Ihr personalisiertes Toolkit für maximale Produktivität"
+    },
+    "overview": {
+      "favoriteTools": "Favorisierte Tools",
+      "recentlyUsed": "Kürzlich verwendet",
+      "used": "Verwendet",
+      "ago": "vor",
+      "justNow": "Gerade eben",
+      "minutesAgo": "vor {minutes} Min.",
+      "hoursAgo": "vor {hours} Std.",
+      "daysAgo": "vor {days} T."
+    },
+    "sidebar": {
+      "myTools": "Meine Tools",
+      "overview": "Übersicht",
+      "starToolsToAdd": "Markieren Sie Tools mit Stern, um sie hier hinzuzufügen"
+    },
+    "welcome": {
+      "title": "Willkommen in Ihrem Labor!",
+      "description": "Dies ist Ihr persönlicher Arbeitsbereich, in dem Sie schnell auf Ihre bevorzugten Tools und Kategorien zugreifen können.",
+      "howItWorks": "So funktioniert's:",
+      "howItWorksDescription": "Markieren Sie jedes Tool oder jede Kategorie mit einem ⭐, um es hier hinzuzufügen.",
+      "privacyTitle": "Datenschutz zuerst",
+      "privacyDescription": "Wir wissen nicht, wer Sie sind, und es interessiert uns auch nicht. Alle Ihre Einstellungen bleiben im lokalen Speicher Ihres Browsers. Keine Konten, kein Tracking, nur Tools.",
+      "gotIt": "Verstanden!",
+      "dontShowAgain": "Nicht mehr anzeigen"
+    },
+    "empty": {
+      "title": "Ihr Labor ist leer!",
+      "description": "Beginnen Sie, indem Sie Ihre bevorzugten Tools und Kategorien mit einem",
+      "toAddThem": "markieren, um sie hier hinzuzufügen.",
+      "exploreTools": "Tools erkunden",
+      "browseCategories": "Kategorien durchsuchen",
+      "proTips": "Profi-Tipps:",
+      "tip1": "Klicken Sie auf den Stern auf einer Tool-Karte, um es Ihrem Labor hinzuzufügen",
+      "tip2": "Markieren Sie ganze Kategorien als Favoriten für schnellen Zugriff",
+      "tip3": "Alles bleibt privat in Ihrem Browser - keine Konten erforderlich",
+      "headerTitle": "Ihr persönliches Entwickler-Labor",
+      "headerSubtitle": "Optimieren Sie Ihren Workflow mit kuratierten Tools und sofortigem Zugriff",
+      "headerTagline": "Kuratieren Sie Ihre bevorzugten Tools für sofortigen Zugriff und optimierte Workflows",
+      "headerDescription": "Erstellen Sie Ihr personalisiertes Toolkit, indem Sie Tools in ToolsLab markieren. Ihr Labor bleibt vollständig privat - alle Daten werden lokal in Ihrem Browser gespeichert, ohne dass ein Konto erforderlich ist.",
+      "trustBadge1": "Vollständig privat",
+      "trustBadge2": "Sofortiger Zugriff",
+      "trustBadge3": "Keine Einrichtung",
+      "introDescription": "Ihr persönliches Labor ist ein kuratierter Arbeitsbereich, in dem Sie Ihre am häufigsten verwendeten Entwickler-Tools für sofortigen Zugriff markieren können. Von Kodierungs-Utilities bis hin zu Sicherheitstools - erstellen Sie Ihr personalisiertes Toolkit, das sich mit Ihrem Workflow entwickelt. Alles bleibt privat in Ihrem Browser, ohne dass ein Konto erforderlich ist.",
+      "mainMessage": "Ihr Labor wartet!",
+      "mainDescription": "Beginnen Sie mit dem Aufbau Ihres personalisierten Entwickler-Toolkits, indem Sie Tools mit einem ⭐ markieren, um sie hier hinzuzufügen.",
+      "exploreAllTools": "Alle Tools erkunden",
+      "proTipsTitle": "Profi-Tipps für Ihr Labor:",
+      "proTip1": "Klicken Sie auf den Stern auf einer Tool-Karte, um es Ihrer persönlichen Sammlung hinzuzufügen",
+      "proTip2": "Markieren Sie ganze Kategorien für schnellen Zugriff auf verwandte Tools",
+      "proTip3": "Alles bleibt vollständig privat - lokal in Ihrem Browser gespeichert ohne Tracking",
+      "seoTitle": "Warum ein persönliches Entwickler-Labor erstellen?",
+      "seoIntro": "Ihr persönliches Labor verwandelt verstreute Tool-Nutzung in einen organisierten, effizienten Workflow. Durch das Kuratieren Ihrer bevorzugten Tools eliminieren Sie die Zeit, die mit Suchen verbracht wird, und schaffen Muskelgedächtnis für Ihre häufigsten Entwicklungsaufgaben.",
+      "privacyControlTitle": "Datenschutz & Kontrolle",
+      "privacyControlDescription": "Alles in Ihrem Labor wird lokal im Browser-localStorage gespeichert. Keine Konten, kein Tracking, keine serverseitige Speicherung. Ihre Workflow-Präferenzen bleiben vollständig privat und unter Ihrer Kontrolle.",
+      "workflowOptimizationTitle": "Workflow-Optimierung",
+      "workflowOptimizationDescription": "Markieren Sie häufig verwendete Tools wie unseren JSON-Formatierer, Base64-Encoder und Sicherheits-Utilities, um Workflows zu erstellen, die Ihren Entwicklungsmustern entsprechen.",
+      "needMoreTools": "Benötigen Sie mehr Tools?",
+      "needMoreToolsDescription": "Erkunden Sie unsere vollständige Sammlung von Entwickler-Tools in allen Kategorien. Finden Sie das perfekte Tool für Ihren Workflow und fügen Sie es Ihrem Labor hinzu.",
+      "browseAllTools": "Alle Tools durchsuchen"
+    },
+    "helpButton": {
+      "title": "Über das Labor",
+      "ariaLabel": "Über das Labor"
+    }
+  }
+}

@@ -21,12 +21,14 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       it: 'ToolsLab - Laboratorio Strumenti Sviluppatore Gratuiti',
       es: 'ToolsLab - Laboratorio de Herramientas Gratuitas para Desarrolladores',
       fr: "ToolsLab - Laboratoire d'Outils Gratuits pour Développeurs",
+      de: 'ToolsLab - Kostenlose Entwickler-Tools Labor',
     },
     descriptions: {
       en: 'Free online developer tools for JSON formatting, Base64 encoding, URL decoding, hash generation, and more. All tools work entirely in your browser with no data transmission to servers.',
       it: 'Strumenti online gratuiti per sviluppatori: formattazione JSON, codifica Base64, decodifica URL, generazione hash e altro. Tutti gli strumenti funzionano nel tuo browser senza trasmissione dati.',
       es: 'Herramientas en línea gratuitas para desarrolladores: formateo JSON, codificación Base64, decodificación URL, generación hash y más. Todas las herramientas funcionan en tu navegador sin transmisión de datos.',
       fr: 'Outils en ligne gratuits pour développeurs: formatage JSON, encodage Base64, décodage URL, génération hash et plus. Tous les outils fonctionnent dans votre navigateur sans transmission de données.',
+      de: 'Kostenlose Online-Entwickler-Tools für JSON-Formatierung, Base64-Kodierung, URL-Dekodierung, Hash-Generierung und mehr. Alle Tools funktionieren vollständig in Ihrem Browser ohne Datenübertragung zu Servern.',
     },
     keywords: {
       en: [
@@ -86,6 +88,20 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'outils web',
         'outils gratuits',
       ],
+      de: [
+        'entwickler tools',
+        'json formatierer',
+        'base64 encoder',
+        'jwt decoder',
+        'uuid generator',
+        'hash generator',
+        'url encoder',
+        'timestamp konverter',
+        'regex tester',
+        'online tools',
+        'web tools',
+        'kostenlose tools',
+      ],
     },
   },
   tools: {
@@ -94,12 +110,14 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       it: 'Tutti gli Strumenti Sviluppatore - Tools Online Gratuiti | ToolsLab',
       es: 'Todas las Herramientas para Desarrolladores - Utilidades Online Gratuitas | ToolsLab',
       fr: 'Tous les Outils pour Développeurs - Utilitaires en Ligne Gratuits | ToolsLab',
+      de: 'Alle Entwickler-Tools - Kostenlose Online-Utilities | ToolsLab',
     },
     descriptions: {
       en: 'Discover 20+ free online tools for JSON formatting, Base64 encoding, URL decoding, hash generation, and more. All tools work entirely in your browser with no data transmission to servers. Perfect for development, debugging, and data processing workflows.',
       it: 'Scopri 20+ strumenti online gratuiti per formattazione JSON, codifica Base64, decodifica URL, generazione hash e altro. Tutti gli strumenti funzionano interamente nel tuo browser senza trasmissione dati ai server. Perfetti per flussi di lavoro di sviluppo, debug e elaborazione dati.',
       es: 'Descubre 20+ herramientas en línea gratuitas para formateo JSON, codificación Base64, decodificación URL, generación hash y más. Todas las herramientas funcionan completamente en tu navegador sin transmisión de datos a servidores. Perfectas para flujos de trabajo de desarrollo, depuración y procesamiento de datos.',
       fr: "Découvrez 20+ outils en ligne gratuits pour le formatage JSON, l'encodage Base64, le décodage URL, la génération hash et plus. Tous les outils fonctionnent entièrement dans votre navigateur sans transmission de données aux serveurs. Parfaits pour les flux de travail de développement, débogage et traitement de données.",
+      de: 'Entdecken Sie 20+ kostenlose Online-Tools für JSON-Formatierung, Base64-Kodierung, URL-Dekodierung, Hash-Generierung und mehr. Alle Tools funktionieren vollständig in Ihrem Browser ohne Datenübertragung zu Servern. Perfekt für Entwicklungs-, Debugging- und Datenverarbeitungs-Workflows.',
     },
     keywords: {
       en: [
@@ -158,6 +176,20 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'utilitaires web',
         'outils en ligne gratuits',
       ],
+      de: [
+        'entwickler tools online',
+        'kostenlose entwickler utilities',
+        'web development tools',
+        'json formatierer',
+        'base64 encoder',
+        'url decoder',
+        'hash generator',
+        'browser-basierte tools',
+        'development utilities',
+        'programming tools',
+        'web utilities',
+        'kostenlose online tools',
+      ],
     },
   },
   categories: {
@@ -166,12 +198,14 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       it: 'Categorie Strumenti - Sfoglia per Tipo | ToolsLab',
       es: 'Categorías de Herramientas - Navegar por Tipo | ToolsLab',
       fr: "Catégories d'Outils - Parcourir par Type | ToolsLab",
+      de: 'Tool-Kategorien - Nach Typ durchsuchen | ToolsLab',
     },
     descriptions: {
       en: 'Browse developer tools organized by category: Data & Conversion, Encoding & Security, Text & Format, Generators, Web & Design, and Development Utilities.',
       it: 'Sfoglia gli strumenti per sviluppatori organizzati per categoria: Data & Conversione, Codifica & Sicurezza, Testo & Formato, Generatori, Web & Design, e Utilità di Sviluppo.',
       es: 'Explora herramientas para desarrolladores organizadas por categoría: Datos & Conversión, Codificación & Seguridad, Texto & Formato, Generadores, Web & Diseño, y Utilidades de Desarrollo.',
       fr: 'Parcourez les outils pour développeurs organisés par catégorie: Données & Conversion, Encodage & Sécurité, Texte & Format, Générateurs, Web & Design, et Utilitaires de Développement.',
+      de: 'Durchsuchen Sie Entwickler-Tools organisiert nach Kategorie: Daten & Konvertierung, Kodierung & Sicherheit, Text & Format, Generatoren, Web & Design und Entwicklungs-Utilities.',
     },
     keywords: {
       en: [
@@ -214,6 +248,16 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'outils développement web',
         'catégories utilitaires',
       ],
+      de: [
+        'tool kategorien',
+        'entwickler tools nach typ',
+        'datenkonvertierungs tools',
+        'kodierungs tools',
+        'textformatierungs tools',
+        'code generatoren',
+        'webentwicklungs tools',
+        'utility kategorien',
+      ],
     },
   },
   lab: {
@@ -222,12 +266,14 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       it: 'Il Mio Lab Sviluppatore - Preferiti & Catena Strumenti | ToolsLab',
       es: 'Mi Laboratorio de Desarrollo - Favoritos & Cadena de Herramientas | ToolsLab',
       fr: "Mon Laboratoire de Développeur - Favoris & Chaîne d'Outils | ToolsLab",
+      de: 'Mein Entwickler-Labor - Favoriten & Tool-Kette | ToolsLab',
     },
     descriptions: {
       en: 'Your personal developer lab. Save your favorite tools, create custom tool chains, and streamline your development workflow with quick access to frequently used utilities.',
       it: 'Il tuo laboratorio personale per sviluppatori. Salva i tuoi strumenti preferiti, crea catene di strumenti personalizzate e ottimizza il tuo flusso di lavoro con accesso rapido alle utilità più utilizzate.',
       es: 'Tu laboratorio personal de desarrollo. Guarda tus herramientas favoritas, crea cadenas de herramientas personalizadas y optimiza tu flujo de trabajo con acceso rápido a las utilidades más utilizadas.',
       fr: "Votre laboratoire personnel de développeur. Enregistrez vos outils favoris, créez des chaînes d'outils personnalisées et rationalisez votre flux de travail avec un accès rapide aux utilitaires fréquemment utilisés.",
+      de: 'Ihr persönliches Entwickler-Labor. Speichern Sie Ihre bevorzugten Tools, erstellen Sie benutzerdefinierte Tool-Ketten und optimieren Sie Ihren Entwicklungs-Workflow mit schnellem Zugriff auf häufig verwendete Utilities.',
     },
     keywords: {
       en: [
@@ -270,6 +316,16 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'productivité',
         'espace travail développeur',
       ],
+      de: [
+        'entwickler labor',
+        'favoriten tools',
+        'tool kette',
+        'entwicklungs workflow',
+        'persönlicher arbeitsbereich',
+        'gespeicherte tools',
+        'produktivität',
+        'entwickler arbeitsbereich',
+      ],
     },
   },
   about: {
@@ -278,12 +334,14 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       it: 'Chi Siamo - La Storia del Tuo Toolbox per Sviluppatori',
       es: 'Acerca de ToolsLab - La Historia de Tu Caja de Herramientas de Desarrollo',
       fr: "À Propos de ToolsLab - L'Histoire de Votre Boîte à Outils de Développeur",
+      de: 'Über ToolsLab - Die Geschichte Ihrer Entwickler-Toolbox',
     },
     descriptions: {
       en: 'Discover how ToolsLab evolved from a personal project to a trusted toolkit for thousands of developers worldwide. Free forever, no strings attached.',
       it: 'Scopri come ToolsLab si è evoluto da un progetto personale a un toolkit affidabile per migliaia di sviluppatori in tutto il mondo. Gratuito per sempre, senza vincoli.',
       es: 'Descubre cómo ToolsLab evolucionó de un proyecto personal a un conjunto de herramientas confiable para miles de desarrolladores en todo el mundo. Gratis para siempre, sin condiciones.',
       fr: "Découvrez comment ToolsLab a évolué d'un projet personnel à une boîte à outils fiable pour des milliers de développeurs dans le monde entier. Gratuit pour toujours, sans conditions.",
+      de: 'Entdecken Sie, wie ToolsLab sich von einem persönlichen Projekt zu einem vertrauenswürdigen Toolkit für Tausende von Entwicklern weltweit entwickelt hat. Für immer kostenlos, ohne Bedingungen.',
     },
     keywords: {
       en: [
@@ -325,6 +383,16 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'mission toolslab',
         'productivité développeur',
         'couteau suisse pour développeurs',
+      ],
+      de: [
+        'über toolslab',
+        'entwickler tools geschichte',
+        'kostenlose entwickler tools',
+        'datenschutz zuerst tools',
+        'unabhängiger entwickler',
+        'toolslab mission',
+        'entwickler produktivität',
+        'schweizer taschenmesser für entwickler',
       ],
     },
   },

@@ -1,0 +1,43 @@
+{
+  "privacy": {
+    "meta": {
+      "title": "Datenschutzerklärung - ToolsLab | Ihre Daten bleiben Ihre",
+      "description": "ToolsLab respektiert Ihre Privatsphäre. Kein Tracking, keine Konten, keine Datenerfassung. Alle Verarbeitungen erfolgen lokal in Ihrem Browser.",
+      "ogTitle": "Datenschutzerklärung - ToolsLab",
+      "ogDescription": "Ihre Privatsphäre ist heilig. Wir tracken Sie nicht, erstellen kein Profil und wissen nicht einmal, wer Sie sind."
+    },
+    "header": {
+      "title": "Datenschutzerklärung",
+      "subtitle": "Ihre Daten bleiben Ihre. Immer.",
+      "tldrTitle": "TL;DR - Die einfache Wahrheit",
+      "tldrText": "<strong>Ihre Privatsphäre ist heilig.</strong> Wir tracken Sie nicht, erstellen kein Profil von Ihnen und wissen nicht einmal, wer Sie sind. ToolsLab funktioniert wie ein Desktop-Tool in Ihrem Browser - alles bleibt auf Ihrem Gerät."
+    },
+    "lastUpdated": "Zuletzt aktualisiert:",
+    "sections": {
+      "zeroData": {
+        "title": "Keine Erfassung persönlicher Daten",
+        "intro": "<strong>Wir erfassen, speichern oder verarbeiten keine persönlichen Daten.</strong> Dies beinhaltet:",
+        "points": {
+          "noEmail": "Keine E-Mail- oder Kontaktinformationen",
+          "noNames": "Keine Namen, Adressen oder identifizierende Informationen",
+          "noAccounts": "Keine Konten, Registrierungen oder Benutzerprofile",
+          "noCookies": "Keine Tracking-Cookies oder persistente Identifikatoren",
+          "noSensitive": "Keine sensiblen Daten wie detaillierte IPs oder Fingerprinting"
+        },
+        "summary": "<strong>💡 Einfach ausgedrückt:</strong> Wir wissen nicht, wer Sie sind, woher Sie kommen oder was Sie mit unseren Tools machen. Und so soll es sein."
+      },
+      "localProcessing": {
+        "title": "Alles geschieht in Ihrem Browser",
+        "intro": "Alle unsere Entwickler-Tools funktionieren vollständig <strong>clientseitig</strong>:",
+        "points": {
+          "json": "Das JSON, das Sie formatieren, verlässt niemals Ihren Browser",
+          "base64": "Die Base64-Daten, die Sie konvertieren, werden lokal verarbeitet",
+          "uuid": "Die UUIDs, die Sie generieren, werden auf Ihrem Gerät erstellt",
+          "noServers": "Keine Daten werden an unsere Server gesendet",
+          "offline": "Funktioniert auch offline (sobald die Seite geladen ist)"
+        },
+        "summary": "<strong>🔧 Denken Sie daran:</strong> Wie die Verwendung eines Desktop-Tools, aber in Ihrem Browser. Wir stellen nur die \"Software\" bereit, Ihre Daten erreichen uns nie."
+      }
+    }
+  }
+}

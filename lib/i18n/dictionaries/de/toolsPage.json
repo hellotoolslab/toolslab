@@ -1,0 +1,83 @@
+{
+  "breadcrumb": {
+    "home": "Startseite",
+    "allTools": "Alle Tools"
+  },
+  "header": {
+    "title": "Alle Entwickler-Tools - Kostenlose Online-Utilities",
+    "subtitle": "Vollständige Sammlung professioneller Tools für Entwickler, Datenanalysten und Systemadministratoren",
+    "description": "kostenlose browserbasierte Tools für JSON-Formatierung, Base64-Kodierung, Hash-Generierung und mehr. Keine Datenübertragung, keine Registrierung erforderlich."
+  },
+  "trust": {
+    "tools": "Tools",
+    "freeForever": "Für immer kostenlos",
+    "privacyFirst": "Datenschutz zuerst"
+  },
+  "search": {
+    "placeholder": "Tools suchen... (z.B. 'json', 'encode', 'hash')"
+  },
+  "filters": {
+    "all": "Alle",
+    "sortBy": "Sortieren nach:",
+    "mostPopular": "Am beliebtesten",
+    "alphabetical": "A-Z",
+    "recentlyAdded": "Kürzlich hinzugefügt",
+    "category": "Kategorie",
+    "clearFilters": "Filter löschen"
+  },
+  "sections": {
+    "recentlyAdded": "Kürzlich hinzugefügte Tools",
+    "newTools": "neue Tools",
+    "mostPopular": "Beliebteste Tools",
+    "trendingTools": "angesagte Tools",
+    "allTools": "Alle Tools"
+  },
+  "empty": {
+    "title": "Keine Tools gefunden",
+    "description": "Versuchen Sie, Ihre Such- oder Filterkriterien anzupassen.",
+    "clearAll": "Alle Filter löschen"
+  },
+  "seo": {
+    "whyChoose": {
+      "title": "Warum ToolsLab Tools wählen?",
+      "benefits": [
+        "Vollständige Privatsphäre - alle Verarbeitungen erfolgen in Ihrem Browser",
+        "Keine Registrierung oder Konto erforderlich",
+        "Professionelle Tools, die von Entwicklern weltweit verwendet werden",
+        "Echtzeitverarbeitung mit sofortigen Ergebnissen",
+        "Mobilfreundliches responsives Design",
+        "Regelmäßige Updates mit neuen Tools und Features"
+      ]
+    },
+    "workflows": {
+      "title": "Häufige Entwickler-Workflows",
+      "api": {
+        "title": "API-Entwicklung & Testing",
+        "tools": [
+          "JSON-Formatierer",
+          "JWT-Decoder",
+          "URL-Encoder",
+          "Hash-Generator"
+        ]
+      },
+      "data": {
+        "title": "Datenmigration & ETL",
+        "tools": [
+          "CSV zu JSON",
+          "Base64-Encoder",
+          "SQL-Formatierer",
+          "UUID-Generator"
+        ]
+      },
+      "security": {
+        "title": "Sicherheit & Authentifizierung",
+        "tools": [
+          "JWT-Decoder",
+          "Hash-Generator",
+          "Passwort-Generator",
+          "Base64-Tools"
+        ]
+      }
+    }
+  }
+}

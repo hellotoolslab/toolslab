@@ -1,0 +1,85 @@
+{
+  "title": "JWT-Decoder",
+  "description": "Dekodieren und validate JSON Web Tokens",
+  "placeholder": "Fügen Sie Ihre JWT token hier ein...",
+  "instructions": {
+    "title": "So verwenden Sie JWT-Decoder",
+    "steps": [
+      {
+        "title": "Einfügen Ihre JWT token",
+        "description": "Kopieren und fügen Sie Ihre JWT token in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+      },
+      {
+        "title": "Optionen konfigurieren (falls verfügbar)",
+        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+      },
+      {
+        "title": "Ausgabe überprüfen",
+        "description": "The Tool will encode/decode Ihre input und display die result mit proper formatting und validation."
+      },
+      {
+        "title": "Ergebnis kopieren oder herunterladen",
+        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+      }
+    ],
+    "features": [
+      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
+      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
+      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
+      "Keine Datenuploads oder Server-Speicherung",
+      "Mit einem Klick in die Zwischenablage kopieren",
+      "Ergebnisse als Datei herunterladen",
+      "Syntax-Validierung und Fehlerhervorhebung",
+      "Funktioniert offline nach dem ersten Laden der Seite"
+    ],
+    "useCases": [
+      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
+      "Code-Stil über Entwicklungsteams hinweg standardisieren",
+      "Komplexe Strukturen mit richtiger Einrückung debuggen",
+      "Code für Dokumentation und Code-Reviews vorbereiten",
+      "Zwischen verschiedenen Formatierungsstandards konvertieren",
+      "Syntax vor Deployment validieren",
+      "Daten von externen Quellen oder APIs verarbeiten",
+      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+    ],
+    "proTips": [
+      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
+      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
+      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
+      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
+      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
+      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+    ],
+    "troubleshooting": [
+      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
+      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
+      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
+      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
+      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Eingabe einfügen"
+      },
+      {
+        "keys": "Strg+Eingeben",
+        "description": "Verarbeiten/Formatieren"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Ergebnis kopieren"
+      },
+      {
+        "keys": "Strg+S",
+        "description": "Datei herunterladen"
+      }
+    ]
+  },
+  "meta": {
+    "title": "JWT-Decoder - Kostenloses Online-Tool | ToolsLab",
+    "description": "Dekodieren und validate JSON Web Tokens (JWT) online. Inspect header, payload, und signature. Kostenlos JWT decoder Tool."
+  },
+  "tagline": "Dekodieren und analyze JWT tokens mit security validation instantly",
+  "pageDescription": "Professioneller JWT decoder mit claims analysis, security validation, und expiration checking. Dekodieren JSON Web Tokens safely mit detailed header, payload, und signature information. Perfect für debugging authentication Probleme, analyzing token claims, und validating JWT security. Supports alle JWT algorithms mit real-time security recommendations und time-based claim analysis."
+}
