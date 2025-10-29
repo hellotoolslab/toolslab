@@ -1,0 +1,90 @@
+{
+  "title": "XML to JSON Converter",
+  "description": "Convert XML documents to JSON format with attribute handling, namespace support, and smart array detection",
+  "placeholder": "Paste your XML here...",
+  "meta": {
+    "title": "XML to JSON Converter - Free Online Tool | ToolsLab",
+    "description": "Convert XML to JSON online with smart array detection, namespace support, and attribute handling. Free XML to JSON converter with CDATA support and type conversion."
+  },
+  "tagline": "Convert XML documents to JSON format with advanced parsing and flexible output options",
+  "pageDescription": "Professional XML to JSON converter with smart array detection, namespace handling, and flexible attribute modes. Features CDATA preservation, automatic type conversion, and pretty print formatting. Perfect for API integration, data transformation, and converting SOAP/RSS feeds. Handles complex XML structures with mixed content efficiently. Free and secure browser-based conversion.",
+  "instructions": {
+    "title": "How to use XML to JSON Converter",
+    "steps": [
+      {
+        "title": "Paste or upload your XML",
+        "description": "Copy and paste your XML data into the input area, or click Upload to select an XML file from your computer. The tool supports XML declarations, namespaces, and CDATA sections."
+      },
+      {
+        "title": "Configure conversion options",
+        "description": "Choose your preferred output format: enable pretty print for readable JSON, toggle compact attributes for smaller output, enable smart arrays for repeated elements, and activate type conversion for numbers and booleans."
+      },
+      {
+        "title": "Convert and review output",
+        "description": "Click 'Convert to JSON' to process your XML. Review the formatted JSON output and check the metadata panel for size comparisons and processing statistics."
+      },
+      {
+        "title": "Copy or download result",
+        "description": "Use the Copy button to copy JSON to your clipboard, or Download to save it as a .json file for use in your applications."
+      }
+    ],
+    "features": [
+      "Smart array detection for repeated XML elements",
+      "Flexible attribute handling (compact or verbose mode)",
+      "Namespace support with optional prefix removal",
+      "Automatic type conversion for numbers and booleans",
+      "CDATA section preservation",
+      "Pretty print with customizable indentation",
+      "XML validation with detailed error messages",
+      "Processing statistics and size comparison",
+      "Handles large XML files efficiently",
+      "No data uploads - all processing in browser"
+    ],
+    "useCases": [
+      "Convert SOAP responses to JSON for modern APIs",
+      "Transform RSS/Atom feeds for web applications",
+      "Process XML configuration files as JSON",
+      "Integrate legacy XML systems with JSON-based services",
+      "Parse SVG files for programmatic manipulation",
+      "Convert XML API responses for frontend consumption",
+      "Transform XML data exports to JSON format",
+      "Prepare XML data for NoSQL database import",
+      "Convert XML schemas to JSON structure",
+      "Process XML-based microformats and metadata"
+    ],
+    "proTips": [
+      "Enable smart arrays when XML has repeated elements to create proper JSON arrays",
+      "Use compact attributes mode to reduce JSON output size by 20-30%",
+      "Remove namespaces when working with internal data that doesn't need them",
+      "Enable type conversion to get proper number/boolean types instead of strings",
+      "Process large XML files by disabling pretty print for faster conversion",
+      "Use the sample XML to understand how different options affect output structure"
+    ],
+    "troubleshooting": [
+      "Parsing errors: Ensure XML is well-formed with matching opening and closing tags",
+      "Missing data: Check if CDATA sections contain your content and are being preserved",
+      "Unexpected structure: Toggle array mode to see if repeated elements should be arrays",
+      "Wrong data types: Enable type conversion to convert string numbers to actual numbers",
+      "Namespace issues: Try enabling 'Remove Namespaces' to simplify output structure",
+      "Large files slow: Disable pretty print and process in smaller chunks if needed"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste XML input"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Convert to JSON"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy JSON result"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Download JSON file"
+      }
+    ]
+  }
+}
