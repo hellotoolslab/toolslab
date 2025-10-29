@@ -45,6 +45,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'json-to-csv',
     'sql-formatter',
     'xml-formatter',
+    'xml-to-json-converter',
     'base64-encode',
     'url-encode',
     'hash-generator',

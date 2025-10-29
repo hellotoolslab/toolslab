@@ -124,6 +124,35 @@ export const tools: Tool[] = [
     searchVolume: 8900,
     label: '',
   },
+  {
+    id: 'xml-to-json-converter',
+    name: 'XML to JSON Converter',
+    description:
+      'Convert XML documents to JSON format with attribute handling, namespace support, and smart array detection',
+    icon: '🔄',
+    route: '/tools/xml-to-json-converter',
+    categories: ['data', 'formatters'],
+    keywords: [
+      'xml to json',
+      'xml converter',
+      'convert xml to json',
+      'xml parser',
+      'xml',
+      'json',
+      'converter',
+      'parser',
+      'namespace',
+      'attributes',
+      'cdata',
+      'soap to json',
+      'rss to json',
+      'api',
+      'data transformation',
+    ],
+    isPopular: true,
+    searchVolume: 12500,
+    label: 'new',
+  },
 
   // Encoding & Security Tools
   {

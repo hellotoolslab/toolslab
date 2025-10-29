@@ -1,0 +1,90 @@
+{
+  "title": "Convertidor XML a JSON",
+  "description": "Convierte documentos XML a formato JSON con manejo de atributos, soporte de espacios de nombres y detección inteligente de arrays",
+  "placeholder": "Pega tu XML aquí...",
+  "meta": {
+    "title": "Convertidor XML a JSON - Herramienta Gratuita Online | ToolsLab",
+    "description": "Convierte XML a JSON online con detección inteligente de arrays, soporte de espacios de nombres y manejo de atributos. Convertidor gratuito XML a JSON con soporte CDATA y conversión de tipos."
+  },
+  "tagline": "Convierte documentos XML a formato JSON con análisis avanzado y opciones de salida flexibles",
+  "pageDescription": "Convertidor profesional de XML a JSON con detección inteligente de arrays, manejo de espacios de nombres y modos de atributos flexibles. Incluye preservación de CDATA, conversión automática de tipos y formateo pretty print. Perfecto para integración de APIs, transformación de datos y conversión de feeds SOAP/RSS. Maneja estructuras XML complejas con contenido mixto de manera eficiente. Gratuito y seguro, todo en el navegador.",
+  "instructions": {
+    "title": "Cómo usar el Convertidor XML a JSON",
+    "steps": [
+      {
+        "title": "Pega o carga tu XML",
+        "description": "Copia y pega tus datos XML en el área de entrada, o haz clic en Cargar para seleccionar un archivo XML de tu computadora. La herramienta admite declaraciones XML, espacios de nombres y secciones CDATA."
+      },
+      {
+        "title": "Configura las opciones de conversión",
+        "description": "Elige tu formato de salida preferido: habilita pretty print para JSON legible, activa atributos compactos para salida más pequeña, habilita arrays inteligentes para elementos repetidos y activa conversión de tipos para números y booleanos."
+      },
+      {
+        "title": "Convierte y revisa la salida",
+        "description": "Haz clic en 'Convertir a JSON' para procesar tu XML. Revisa el JSON formateado y verifica el panel de metadatos para comparación de tamaños y estadísticas de procesamiento."
+      },
+      {
+        "title": "Copia o descarga el resultado",
+        "description": "Usa el botón Copiar para copiar el JSON al portapapeles, o Descargar para guardarlo como archivo .json para usar en tus aplicaciones."
+      }
+    ],
+    "features": [
+      "Detección inteligente de arrays para elementos XML repetidos",
+      "Manejo flexible de atributos (modo compacto o verboso)",
+      "Soporte de espacios de nombres con eliminación opcional de prefijos",
+      "Conversión automática de tipos para números y booleanos",
+      "Preservación de secciones CDATA",
+      "Pretty print con indentación personalizable",
+      "Validación XML con mensajes de error detallados",
+      "Estadísticas de procesamiento y comparación de tamaños",
+      "Maneja archivos XML grandes de manera eficiente",
+      "Sin carga de datos - todo procesado en el navegador"
+    ],
+    "useCases": [
+      "Convertir respuestas SOAP a JSON para APIs modernas",
+      "Transformar feeds RSS/Atom para aplicaciones web",
+      "Procesar archivos de configuración XML como JSON",
+      "Integrar sistemas legacy XML con servicios basados en JSON",
+      "Analizar archivos SVG para manipulación programática",
+      "Convertir respuestas de API XML para consumo frontend",
+      "Transformar exportaciones de datos XML a formato JSON",
+      "Preparar datos XML para importación en bases de datos NoSQL",
+      "Convertir esquemas XML a estructura JSON",
+      "Procesar microformatos y metadatos basados en XML"
+    ],
+    "proTips": [
+      "Habilita arrays inteligentes cuando el XML tiene elementos repetidos para crear arrays JSON correctos",
+      "Usa modo de atributos compactos para reducir el tamaño del JSON en un 20-30%",
+      "Elimina los espacios de nombres cuando trabajes con datos internos que no los necesitan",
+      "Habilita conversión de tipos para obtener números/booleanos reales en lugar de cadenas",
+      "Procesa archivos XML grandes deshabilitando pretty print para conversión más rápida",
+      "Usa el XML de muestra para entender cómo las diferentes opciones afectan la estructura de salida"
+    ],
+    "troubleshooting": [
+      "Errores de análisis: Asegúrate de que el XML esté bien formado con etiquetas de apertura y cierre coincidentes",
+      "Datos faltantes: Verifica si las secciones CDATA contienen tu contenido y se están preservando",
+      "Estructura inesperada: Activa/desactiva el modo array para ver si los elementos repetidos deberían ser arrays",
+      "Tipos de datos incorrectos: Habilita conversión de tipos para convertir números cadena a números reales",
+      "Problemas con espacios de nombres: Prueba habilitar 'Eliminar Espacios de Nombres' para simplificar la estructura de salida",
+      "Archivos grandes lentos: Deshabilita pretty print y procesa en partes más pequeñas si es necesario"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar entrada XML"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Convertir a JSON"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado JSON"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar archivo JSON"
+      }
+    ]
+  }
+}

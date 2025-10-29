@@ -45,6 +45,9 @@ const toolComponents = {
   'json-to-csv': lazy(() => import('./implementations/JsonToCsv')),
   'sql-formatter': lazy(() => import('./implementations/SqlFormatter')),
   'xml-formatter': lazy(() => import('./implementations/XmlFormatter')),
+  'xml-to-json-converter': lazy(
+    () => import('./implementations/XmlToJsonConverter')
+  ),
   'jwt-decoder': lazy(() => import('./implementations/JwtDecoder')),
   'url-encode': lazy(() => import('./implementations/UrlEncoder')),
   'text-diff': lazy(() => import('./implementations/TextDiff')),
