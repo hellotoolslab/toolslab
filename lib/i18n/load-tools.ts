@@ -48,6 +48,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'xml-to-json-converter',
     'base64-encode',
     'url-encode',
+    'html-encode-decode',
     'hash-generator',
     'jwt-decoder',
     'base64-to-pdf',

@@ -50,6 +50,9 @@ const toolComponents = {
   ),
   'jwt-decoder': lazy(() => import('./implementations/JwtDecoder')),
   'url-encode': lazy(() => import('./implementations/UrlEncoder')),
+  'html-encode-decode': lazy(
+    () => import('./implementations/HtmlEncodeDecode')
+  ),
   'text-diff': lazy(() => import('./implementations/TextDiff')),
   'qr-generator': lazy(() => import('./implementations/QRGenerator')),
   'color-picker': lazy(() => import('./implementations/ColorPicker')),
