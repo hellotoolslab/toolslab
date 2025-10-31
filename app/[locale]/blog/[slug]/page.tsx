@@ -14,6 +14,7 @@ import { Breadcrumbs } from '@/components/blog/Breadcrumbs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
+import { getLocalizedPath } from '@/lib/i18n/helpers';
 import styles from './page.module.css';
 
 interface ArticlePageProps {
@@ -36,9 +37,7 @@ export async function generateMetadata({
   }
 
   const baseUrl = 'https://toolslab.dev';
-  const path = `blog/${slug}`;
-  const url =
-    locale === 'en' ? `${baseUrl}/${path}` : `${baseUrl}/${locale}/${path}`;
+  const url = `${baseUrl}${getLocalizedPath(`/blog/${slug}`, locale)}`;
 
   return {
     title: article.seo.metaTitle,
@@ -102,18 +101,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   // Build breadcrumbs
   const breadcrumbs = [
-    { name: 'Home', href: locale === 'en' ? '/' : `/${locale}` },
+    { name: 'Home', href: getLocalizedPath('/', locale) },
     {
       name: dict.blog.title,
-      href: locale === 'en' ? '/blog' : `/${locale}/blog`,
+      href: getLocalizedPath('/blog', locale),
     },
     { name: article.title, href: '#' },
   ];
 
-  const articleUrl =
-    locale === 'en'
-      ? `https://toolslab.dev/blog/${slug}`
-      : `https://toolslab.dev/${locale}/blog/${slug}`;
+  const articleUrl = `https://toolslab.dev${getLocalizedPath(`/blog/${slug}`, locale)}`;
 
   return (
     <div

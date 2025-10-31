@@ -6,6 +6,7 @@ import { generateToolSchema } from '@/lib/tool-schema';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
+import { getLocalizedPath } from '@/lib/i18n/helpers';
 
 interface LocaleToolPageProps {
   params: {
@@ -121,7 +122,7 @@ export async function generateMetadata({
       title: metaTitle,
       description: metaDescription,
       type: 'website',
-      url: `https://toolslab.dev/${locale}/tools/${toolId}`,
+      url: `https://toolslab.dev${getLocalizedPath(`/tools/${toolId}`, locale as Locale)}`,
       images: [
         {
           url: `/tools/${toolId}/opengraph-image.png`,
@@ -140,7 +141,7 @@ export async function generateMetadata({
       creator: '@toolslab',
     },
     alternates: {
-      canonical: `https://toolslab.dev/${locale}/tools/${toolId}`,
+      canonical: `https://toolslab.dev${getLocalizedPath(`/tools/${toolId}`, locale as Locale)}`,
       languages: generateHreflangAlternates({
         pageType: 'tool',
         path: toolId,

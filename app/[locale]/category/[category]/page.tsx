@@ -5,6 +5,7 @@ import { categories } from '@/lib/tools';
 import { getCategorySEO } from '@/lib/category-seo';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
+import { getLocalizedPath } from '@/lib/i18n/helpers';
 import LocaleCategoryPageContent from '@/components/layout/LocaleCategoryPageContent';
 
 interface LocaleCategoryPageProps {
@@ -81,7 +82,7 @@ export async function generateMetadata({
       title: `${categoryDict?.name || category.name} - ToolsLab`,
       description,
       type: 'website',
-      url: `https://toolslab.dev/${locale}/category/${categoryId}`,
+      url: `https://toolslab.dev${getLocalizedPath(`/category/${categoryId}`, locale as Locale)}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -89,7 +90,7 @@ export async function generateMetadata({
       description,
     },
     alternates: {
-      canonical: `https://toolslab.dev/${locale}/category/${categoryId}`,
+      canonical: `https://toolslab.dev${getLocalizedPath(`/category/${categoryId}`, locale as Locale)}`,
       languages: {
         'x-default': `https://toolslab.dev/category/${categoryId}`,
         en: `https://toolslab.dev/category/${categoryId}`,
