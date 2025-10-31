@@ -67,6 +67,7 @@ export default function HtmlEncodeDecode({
   const [encodingType, setEncodingType] =
     useState<EncodingType>('special-only');
   const [showOptions, setShowOptions] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const { copied, copy } = useCopy();
   const { trackUse, trackError } = useToolTracking('html-encode-decode');
 
@@ -82,9 +83,20 @@ export default function HtmlEncodeDecode({
     handleProcess();
   }, [input, mode, encodingType]);
 
+  // Auto-hide success message after 3 seconds
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => {
+        setShowSuccess(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
+
   const handleProcess = useCallback(() => {
     if (!input.trim()) {
       setOutput('');
+      setShowSuccess(false);
       return;
     }
 
@@ -93,6 +105,7 @@ export default function HtmlEncodeDecode({
         const result = htmlEncode(input, { encodingType });
         if (result.success) {
           setOutput(result.result);
+          setShowSuccess(true);
           trackUse(input, result.result, {
             success: true,
           });
@@ -101,12 +114,14 @@ export default function HtmlEncodeDecode({
         const result = htmlDecode(input);
         if (result.success) {
           setOutput(result.result);
+          setShowSuccess(true);
           trackUse(input, result.result, {
             success: true,
           });
         }
       }
     } catch (error) {
+      setShowSuccess(false);
       trackError(
         error instanceof Error ? error : new Error('Processing failed'),
         input.length
@@ -117,11 +132,13 @@ export default function HtmlEncodeDecode({
   const handleClear = () => {
     setInput('');
     setOutput('');
+    setShowSuccess(false);
   };
 
   const handleSwap = () => {
     setInput(output);
     setOutput('');
+    setShowSuccess(false);
     // Auto-switch mode
     setMode(mode === 'encode' ? 'decode' : 'encode');
   };
@@ -219,6 +236,17 @@ export default function HtmlEncodeDecode({
               'Encodes every character including letters and numbers'}
           </p>
         </div>
+      )}
+
+      {/* Success indicator */}
+      {showSuccess && output && (
+        <Alert className="border-green-500 bg-green-50 text-green-900 dark:bg-green-950 dark:text-green-100">
+          <Check className="h-4 w-4 text-green-600 dark:text-green-400" />
+          <AlertDescription>
+            {mode === 'encode' ? 'Encoding' : 'Decoding'} completed
+            successfully!
+          </AlertDescription>
+        </Alert>
       )}
 
       {/* Auto-detect suggestion */}
