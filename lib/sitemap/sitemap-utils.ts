@@ -103,6 +103,11 @@ export function getAbsoluteUrl(locale: Locale, path: string): string {
     return `${SITE_URL}${path}`;
   }
 
+  // Special case for root path: return /{locale} without trailing slash
+  if (path === '/') {
+    return `${SITE_URL}/${locale}`;
+  }
+
   // Other locales have prefix
   return `${SITE_URL}/${locale}${path}`;
 }

@@ -20,6 +20,11 @@ export function getLocalizedPath(path: string, locale: Locale): string {
     return cleanPath;
   }
 
+  // Special case for root path: return /{locale} without trailing slash
+  if (cleanPath === '/') {
+    return `/${locale}`;
+  }
+
   // Add locale prefix for non-default locales
   return `/${locale}${cleanPath}`;
 }

@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
+import { getLocalizedPath } from '@/lib/i18n/helpers';
 import { LocaleLabPageClient } from './LocaleLabPageClient';
 
 interface LocaleLabPageProps {
@@ -69,7 +70,7 @@ export async function generateMetadata({
           ? 'Costruisci il tuo toolkit personalizzato per sviluppatori contrassegnando i tuoi strumenti più usati. Completamente privato con localStorage - nessun account necessario.'
           : 'Build your personalized developer toolkit by starring your most-used tools. Completely private with localStorage - no account needed.',
       type: 'website',
-      url: `https://toolslab.dev/${locale}/lab`,
+      url: `https://toolslab.dev${getLocalizedPath('/lab', locale as Locale)}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -84,7 +85,7 @@ export async function generateMetadata({
       follow: true,
     },
     alternates: {
-      canonical: `https://toolslab.dev/${locale}/lab`,
+      canonical: `https://toolslab.dev${getLocalizedPath('/lab', locale as Locale)}`,
       languages: {
         en: 'https://toolslab.dev/lab',
         it: 'https://toolslab.dev/it/lab',
