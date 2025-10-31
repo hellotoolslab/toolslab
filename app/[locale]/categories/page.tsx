@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import CategoriesHubContentSimple from '@/components/layout/CategoriesHubContentSimple';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
+import { getLocalizedPath } from '@/lib/i18n/helpers';
 
 interface LocaleCategoriesPageProps {
   params: {
@@ -43,7 +44,7 @@ export async function generateMetadata({
       title,
       description,
       type: 'website',
-      url: `https://toolslab.dev/${locale}/categories`,
+      url: `https://toolslab.dev${getLocalizedPath('/categories', locale as Locale)}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -51,7 +52,7 @@ export async function generateMetadata({
       description,
     },
     alternates: {
-      canonical: `https://toolslab.dev/${locale}/categories`,
+      canonical: `https://toolslab.dev${getLocalizedPath('/categories', locale as Locale)}`,
       languages: {
         en: 'https://toolslab.dev/categories',
         it: 'https://toolslab.dev/it/categories',
