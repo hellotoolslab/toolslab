@@ -1,0 +1,88 @@
+{
+  "title": "HTML Encoder/Decoder",
+  "description": "Convert text to HTML entities and decode HTML entities to plain text",
+  "placeholder": "Enter text to encode or HTML entities to decode...",
+  "instructions": {
+    "title": "How to use HTML Encoder/Decoder",
+    "steps": [
+      {
+        "title": "Choose encoding or decoding mode",
+        "description": "Select 'Encode' to convert text to HTML entities, or 'Decode' to convert HTML entities back to plain text. The tool auto-detects entities in your input."
+      },
+      {
+        "title": "Select encoding options (for encode mode)",
+        "description": "Choose from special characters only, named entities, decimal, hexadecimal, or encode all characters. Each option serves different use cases."
+      },
+      {
+        "title": "Paste or type your text",
+        "description": "Enter the text you want to process. The conversion happens instantly as you type, with real-time character counting and entity detection."
+      },
+      {
+        "title": "Copy or reprocess the result",
+        "description": "Use the copy button to save the output to clipboard, or swap input/output to process the result again with a different mode."
+      }
+    ],
+    "features": [
+      "Real-time encoding and decoding",
+      "Multiple encoding formats (named, decimal, hex)",
+      "Auto-detection of HTML entities",
+      "Character counter for input and output",
+      "Entity statistics for decode mode",
+      "Swap button to reverse process",
+      "Quick example templates",
+      "100% client-side processing",
+      "No data sent to servers",
+      "Handles unicode and emoji",
+      "Detects malformed entities"
+    ],
+    "useCases": [
+      "Prepare text for HTML attributes and content",
+      "Debug HTML code that appears as text",
+      "Sanitize user input to prevent XSS attacks",
+      "Convert code snippets for documentation",
+      "Encode special characters for XML/HTML",
+      "Decode entities from copied HTML source",
+      "Process form data before database insertion",
+      "Create safe content for email templates",
+      "Handle international characters in URLs",
+      "Convert legacy HTML with entities to plain text"
+    ],
+    "proTips": [
+      "Use 'special-only' mode for most cases - it's fast and safe",
+      "The tool auto-suggests decode mode if it finds entities",
+      "Decimal and hex modes are useful for unicode characters",
+      "'Encode all' mode creates very long output but is most secure",
+      "Use the swap button to quickly test encoding/decoding cycles",
+      "Entity statistics help identify malformed HTML",
+      "Named entities are more readable but less universal than numeric"
+    ],
+    "troubleshooting": [
+      "If entities don't decode, check for missing semicolons (;)",
+      "Malformed entity warning indicates incomplete HTML entities",
+      "Use named entities mode for better readability in source code",
+      "Very long text may slow down the browser - process in chunks",
+      "Unicode emoji may display as decimal entities - this is normal",
+      "If output looks wrong, try switching between decimal and hex modes"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy result"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Select all"
+      }
+    ]
+  },
+  "meta": {
+    "title": "HTML Encoder/Decoder - Free Online Tool | ToolsLab",
+    "description": "Free HTML encoder and decoder. Convert text to HTML entities (encode) or decode HTML entities to plain text. Supports named, decimal, and hexadecimal entities. Browser-based, secure, and instant."
+  },
+  "tagline": "Convert text to HTML entities and decode HTML safely",
+  "pageDescription": "Encode special characters to HTML entities or decode entities back to plain text. Essential for web developers working with HTML, XML, preventing XSS attacks, and handling special characters. Supports multiple encoding formats including named entities (&lt; &gt;), decimal (&#60;), and hexadecimal (&#x3C;). Process text instantly in your browser with no server uploads."
+}

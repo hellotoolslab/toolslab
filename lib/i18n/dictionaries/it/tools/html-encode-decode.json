@@ -1,0 +1,88 @@
+{
+  "title": "Codificatore/Decodificatore HTML",
+  "description": "Converti testo in entità HTML e decodifica entità HTML in testo normale",
+  "placeholder": "Inserisci testo da codificare o entità HTML da decodificare...",
+  "instructions": {
+    "title": "Come usare il Codificatore/Decodificatore HTML",
+    "steps": [
+      {
+        "title": "Scegli la modalità codifica o decodifica",
+        "description": "Seleziona 'Codifica' per convertire il testo in entità HTML, o 'Decodifica' per convertire le entità HTML in testo normale. Lo strumento rileva automaticamente le entità nel tuo input."
+      },
+      {
+        "title": "Seleziona le opzioni di codifica (per modalità codifica)",
+        "description": "Scegli tra soli caratteri speciali, entità nominate, decimali, esadecimali o codifica tutti i caratteri. Ogni opzione serve casi d'uso diversi."
+      },
+      {
+        "title": "Incolla o digita il tuo testo",
+        "description": "Inserisci il testo che vuoi processare. La conversione avviene istantaneamente mentre digiti, con conteggio caratteri in tempo reale e rilevamento entità."
+      },
+      {
+        "title": "Copia o riprocessa il risultato",
+        "description": "Usa il pulsante copia per salvare l'output negli appunti, o scambia input/output per processare nuovamente il risultato con una modalità diversa."
+      }
+    ],
+    "features": [
+      "Codifica e decodifica in tempo reale",
+      "Formati di codifica multipli (nominale, decimale, esadecimale)",
+      "Auto-rilevamento entità HTML",
+      "Contatore caratteri per input e output",
+      "Statistiche entità per modalità decodifica",
+      "Pulsante scambio per invertire il processo",
+      "Template di esempio rapidi",
+      "Elaborazione 100% lato client",
+      "Nessun dato inviato ai server",
+      "Gestisce unicode ed emoji",
+      "Rileva entità malformate"
+    ],
+    "useCases": [
+      "Preparare testo per attributi e contenuti HTML",
+      "Debug di codice HTML che appare come testo",
+      "Sanificare input utente per prevenire attacchi XSS",
+      "Convertire snippet di codice per documentazione",
+      "Codificare caratteri speciali per XML/HTML",
+      "Decodificare entità da sorgente HTML copiato",
+      "Processare dati form prima dell'inserimento in database",
+      "Creare contenuto sicuro per template email",
+      "Gestire caratteri internazionali negli URL",
+      "Convertire HTML legacy con entità in testo normale"
+    ],
+    "proTips": [
+      "Usa la modalità 'soli speciali' per la maggior parte dei casi - è veloce e sicura",
+      "Lo strumento suggerisce automaticamente la modalità decodifica se trova entità",
+      "Le modalità decimale ed esadecimale sono utili per caratteri unicode",
+      "La modalità 'codifica tutto' crea output molto lungo ma è la più sicura",
+      "Usa il pulsante scambia per testare rapidamente cicli codifica/decodifica",
+      "Le statistiche entità aiutano a identificare HTML malformato",
+      "Le entità nominate sono più leggibili ma meno universali delle numeriche"
+    ],
+    "troubleshooting": [
+      "Se le entità non si decodificano, controlla i punto e virgola mancanti (;)",
+      "L'avviso entità malformate indica entità HTML incomplete",
+      "Usa la modalità entità nominate per migliore leggibilità nel codice sorgente",
+      "Testo molto lungo può rallentare il browser - processa a blocchi",
+      "Gli emoji unicode possono apparire come entità decimali - è normale",
+      "Se l'output sembra sbagliato, prova a cambiare tra modalità decimale ed esadecimale"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia risultato"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleziona tutto"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Codificatore/Decodificatore HTML - Strumento Online Gratuito | ToolsLab",
+    "description": "Codificatore e decodificatore HTML gratuito. Converti testo in entità HTML (codifica) o decodifica entità HTML in testo normale. Supporta entità nominate, decimali ed esadecimali. Basato su browser, sicuro e istantaneo."
+  },
+  "tagline": "Converti testo in entità HTML e decodifica HTML in sicurezza",
+  "pageDescription": "Codifica caratteri speciali in entità HTML o decodifica entità in testo normale. Essenziale per sviluppatori web che lavorano con HTML, XML, prevenzione attacchi XSS e gestione caratteri speciali. Supporta formati di codifica multipli incluse entità nominate (&lt; &gt;), decimali (&#60;) ed esadecimali (&#x3C;). Processa testo istantaneamente nel browser senza caricamenti server."
+}

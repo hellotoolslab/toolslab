@@ -1,0 +1,88 @@
+{
+  "title": "HTML Encoder/Decoder",
+  "description": "Konvertieren Sie Text in HTML-Entitäten und dekodieren Sie HTML-Entitäten in Klartext",
+  "placeholder": "Geben Sie Text zum Kodieren oder HTML-Entitäten zum Dekodieren ein...",
+  "instructions": {
+    "title": "So verwenden Sie den HTML Encoder/Decoder",
+    "steps": [
+      {
+        "title": "Wählen Sie Kodierungs- oder Dekodierungsmodus",
+        "description": "Wählen Sie 'Kodieren', um Text in HTML-Entitäten zu konvertieren, oder 'Dekodieren', um HTML-Entitäten zurück in Klartext zu konvertieren. Das Tool erkennt automatisch Entitäten in Ihrer Eingabe."
+      },
+      {
+        "title": "Wählen Sie Kodierungsoptionen (für Kodiermodus)",
+        "description": "Wählen Sie zwischen nur Sonderzeichen, benannten Entitäten, Dezimal, Hexadezimal oder Kodierung aller Zeichen. Jede Option dient unterschiedlichen Anwendungsfällen."
+      },
+      {
+        "title": "Fügen Sie Ihren Text ein oder tippen Sie ihn",
+        "description": "Geben Sie den Text ein, den Sie verarbeiten möchten. Die Konvertierung erfolgt sofort während Sie tippen, mit Echtzeit-Zeichenzählung und Entitätserkennung."
+      },
+      {
+        "title": "Kopieren oder verarbeiten Sie das Ergebnis erneut",
+        "description": "Verwenden Sie die Kopiertaste, um die Ausgabe in die Zwischenablage zu speichern, oder tauschen Sie Ein-/Ausgabe aus, um das Ergebnis erneut mit einem anderen Modus zu verarbeiten."
+      }
+    ],
+    "features": [
+      "Echtzeit-Kodierung und -Dekodierung",
+      "Mehrere Kodierungsformate (benannt, dezimal, hex)",
+      "Automatische Erkennung von HTML-Entitäten",
+      "Zeichenzähler für Eingabe und Ausgabe",
+      "Entitätsstatistiken für Dekodiermodus",
+      "Tausch-Taste zum Umkehren des Prozesses",
+      "Schnelle Beispielvorlagen",
+      "100% clientseitige Verarbeitung",
+      "Keine Daten werden an Server gesendet",
+      "Unterstützt Unicode und Emoji",
+      "Erkennt fehlerhaft formatierte Entitäten"
+    ],
+    "useCases": [
+      "Text für HTML-Attribute und -Inhalte vorbereiten",
+      "HTML-Code debuggen, der als Text erscheint",
+      "Benutzereingaben bereinigen, um XSS-Angriffe zu verhindern",
+      "Code-Snippets für Dokumentation konvertieren",
+      "Sonderzeichen für XML/HTML kodieren",
+      "Entitäten aus kopiertem HTML-Quellcode dekodieren",
+      "Formulardaten vor Datenbankeinfügung verarbeiten",
+      "Sicheren Inhalt für E-Mail-Vorlagen erstellen",
+      "Internationale Zeichen in URLs handhaben",
+      "Legacy-HTML mit Entitäten in Klartext konvertieren"
+    ],
+    "proTips": [
+      "Verwenden Sie den Modus 'nur Sonderzeichen' für die meisten Fälle - er ist schnell und sicher",
+      "Das Tool schlägt automatisch den Dekodiermodus vor, wenn es Entitäten findet",
+      "Dezimal- und Hex-Modi sind nützlich für Unicode-Zeichen",
+      "Der Modus 'alles kodieren' erzeugt sehr lange Ausgabe, ist aber am sichersten",
+      "Verwenden Sie die Tausch-Taste, um Kodier-/Dekodierzyklen schnell zu testen",
+      "Entitätsstatistiken helfen, fehlerhaft formatiertes HTML zu identifizieren",
+      "Benannte Entitäten sind lesbarer, aber weniger universell als numerische"
+    ],
+    "troubleshooting": [
+      "Wenn Entitäten nicht dekodiert werden, prüfen Sie auf fehlende Semikolons (;)",
+      "Warnung fehlerhaft formatierte Entität zeigt unvollständige HTML-Entitäten an",
+      "Verwenden Sie den Modus benannte Entitäten für bessere Lesbarkeit im Quellcode",
+      "Sehr langer Text kann den Browser verlangsamen - verarbeiten Sie in Blöcken",
+      "Unicode-Emoji können als Dezimalentitäten angezeigt werden - das ist normal",
+      "Wenn die Ausgabe falsch aussieht, versuchen Sie zwischen Dezimal- und Hex-Modi zu wechseln"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Eingabe einfügen"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Ergebnis kopieren"
+      },
+      {
+        "keys": "Strg+A",
+        "description": "Alles auswählen"
+      }
+    ]
+  },
+  "meta": {
+    "title": "HTML Encoder/Decoder - Kostenloses Online-Tool | ToolsLab",
+    "description": "Kostenloser HTML-Encoder und -Decoder. Konvertieren Sie Text in HTML-Entitäten (kodieren) oder dekodieren Sie HTML-Entitäten in Klartext. Unterstützt benannte, dezimale und hexadezimale Entitäten. Browserbasiert, sicher und sofort."
+  },
+  "tagline": "Konvertieren Sie Text in HTML-Entitäten und dekodieren Sie HTML sicher",
+  "pageDescription": "Kodieren Sie Sonderzeichen in HTML-Entitäten oder dekodieren Sie Entitäten zurück in Klartext. Unverzichtbar für Webentwickler, die mit HTML, XML arbeiten, XSS-Angriffe verhindern und Sonderzeichen handhaben. Unterstützt mehrere Kodierungsformate einschließlich benannter Entitäten (&lt; &gt;), Dezimal (&#60;) und Hexadezimal (&#x3C;). Verarbeiten Sie Text sofort in Ihrem Browser ohne Server-Uploads."
+}
