@@ -3,76 +3,76 @@
   "description": "Convierte archivos CSV al formato JSON",
   "placeholder": "Pega datos CSV o sube archivo...",
   "instructions": {
-    "title": "Cómo usar CSV a JSON",
+    "title": "Cómo usar el Convertidor CSV a JSON",
     "steps": [
       {
-        "title": "Pega tu datos JSON",
-        "description": "Copia y pega tu datos JSON en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
+        "title": "Pega o sube tus datos CSV",
+        "description": "Copia y pega tus datos CSV en el área de entrada, o usa el botón de carga de archivos para importar un archivo CSV desde tu computadora. La herramienta detecta automáticamente los delimitadores comunes."
       },
       {
-        "title": "Configura las opciones (si disponible)",
-        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
+        "title": "Configura las opciones de análisis",
+        "description": "Elige tu delimitador CSV (coma, punto y coma, tabulador, barra vertical), especifica si la primera fila contiene encabezados, habilita la detección de tipos para números y booleanos, y selecciona tu formato de salida JSON preferido (array, anidado o compacto)."
       },
       {
-        "title": "Examina la salida",
-        "description": "La herramienta procesará tu entrada y mostrará el resultado con formato y validación apropiados."
+        "title": "Revisa y valida",
+        "description": "La herramienta analizará tu CSV y mostrará estadísticas incluyendo conteo de filas, columnas y cualquier error de validación. Revisa la vista previa para asegurarte de que los datos se interpreten correctamente."
       },
       {
-        "title": "Copia o descarga el resultado",
-        "description": "Copia el JSON formateado al portapapeles para uso inmediato o descárgalo como archivo."
+        "title": "Copia o descarga el JSON",
+        "description": "Una vez convertido, copia la salida JSON al portapapeles con un clic o descárgalo como archivo .json para usar en tus aplicaciones, APIs o bases de datos."
       }
     ],
     "features": [
-      "Procesamiento en tiempo real con resultados instantáneos",
-      "Sin límite de tamaño para procesamiento basado en navegador",
-      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
-      "Sin carga de datos ni almacenamiento en servidor",
-      "Copiar al portapapeles con un clic",
-      "Descargar resultados como archivo",
-      "Validación de sintaxis y resaltado de errores",
-      "Funciona sin conexión después de la carga inicial"
+      "Detección automática de delimitador (coma, punto y coma, tabulador, barra vertical)",
+      "Soporte de encabezados personalizados y generación automática",
+      "Detección inteligente de tipos (números, booleanos, valores null)",
+      "Múltiples formatos de salida: array de objetos, objetos anidados, formato compacto",
+      "Maneja campos entre comillas y datos CSV multilínea",
+      "Preserva caracteres especiales y codificación UTF-8",
+      "Validación en tiempo real y reporte de errores",
+      "Funciona completamente offline - sin carga de datos a servidores"
     ],
     "useCases": [
-      "Limpiar y formatear código desordenado para mejor legibilidad",
-      "Estandarizar el estilo de código en equipos de desarrollo",
-      "Depurar estructuras complejas con indentación apropiada",
-      "Preparar código para documentación y revisiones de código",
-      "Convertir entre diferentes estándares de formato",
-      "Validar sintaxis antes del despliegue",
-      "Procesar datos de fuentes externas o APIs",
-      "Generar código listo para producción"
+      "Importar datos de hojas de cálculo en aplicaciones web y APIs",
+      "Convertir exportaciones de Excel a JSON para migraciones de bases de datos",
+      "Transformar informes CSV a JSON para visualización de datos",
+      "Preparar datos para bases de datos NoSQL como MongoDB",
+      "Convertir exportaciones de analytics a formato JSON estructurado",
+      "Procesar logs CSV para consumo de API",
+      "Importar catálogos de productos de CSV a JSON",
+      "Migrar datos legacy de CSV a sistemas modernos basados en JSON"
     ],
     "proTips": [
-      "Usa atajos de teclado para un flujo de trabajo más rápido",
-      "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
-      "Valida tu entrada antes del procesamiento para detectar errores temprano",
-      "Guarda las configuraciones frecuentes como predeterminadas",
-      "Usa la función de descarga para archivar archivos procesados",
-      "Verifica cuidadosamente la salida antes de usar en producción"
+      "Habilita la detección de tipos para convertir automáticamente números y booleanos",
+      "Usa encabezados personalizados si tu CSV no tiene una fila de encabezado",
+      "Prueba diferentes delimitadores si el análisis falla - tabulador y punto y coma son comunes en datos europeos",
+      "El formato compacto es excelente para reducir el tamaño del archivo al transmitir datos",
+      "El formato anidado funciona bien cuando la primera columna es una clave única o ID",
+      "La opción trim elimina espacios en blanco - útil para limpiar exportaciones desordenadas"
     ],
     "troubleshooting": [
-      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
-      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
-      "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
-      "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
-      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
+      "Columnas inconsistentes: Habilita el modo estricto para detectar filas con conteos de columnas no coincidentes",
+      "Delimitador incorrecto: Prueba la detección automática o selecciona manualmente el delimitador correcto (busca coma, punto y coma, tabulador)",
+      "Problemas de conversión de tipos: Deshabilita la detección de tipos si los números deben permanecer como cadenas",
+      "Datos faltantes: Configura la detección de valores null para manejar campos vacíos, 'N/A', o cadenas 'NULL'",
+      "Archivos grandes: Procesa en fragmentos más pequeños si el rendimiento del navegador se degrada con archivos superiores a 10MB"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Pegar entrada"
+        "description": "Pegar datos CSV"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Procesar/Formatear"
+        "description": "Convertir a JSON"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copiar resultado"
+        "description": "Copiar salida JSON"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Descargar archivo"
+        "description": "Descargar archivo JSON"
       }
     ]
   },
@@ -80,6 +80,6 @@
     "title": "Convertidor CSV a JSON - Herramienta Online Gratuita | ToolsLab",
     "description": "Convierte archivos CSV al formato JSON en línea. Soporte para delimitadores personalizados y encabezados. Convertidor CSV a JSON gratuito."
   },
-  "tagline": "Convert CSV data to JSON format with smart parsing",
-  "pageDescription": "Transform CSV files and data into JSON format with automatic header detection and custom delimiter support. Perfect for data migration, API integration, and spreadsheet processing. Handles large files with streaming, preserves data types, and offers multiple output formats. Free, secure browser-based conversion with no file uploads."
+  "tagline": "Convierte datos CSV a formato JSON con análisis inteligente",
+  "pageDescription": "Transforma archivos CSV a formato JSON con detección automática de encabezados y soporte de delimitadores personalizados. Perfecto para migración de datos, integración de API y procesamiento de hojas de cálculo. Maneja archivos grandes con streaming, preserva tipos de datos y ofrece múltiples formatos de salida. Conversión gratuita y segura basada en navegador sin carga de archivos."
 }

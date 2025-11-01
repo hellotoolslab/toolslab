@@ -15,6 +15,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
   parseCsvToJson,
@@ -30,12 +31,7 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [delimiter, setDelimiter] = useState(',');
-  const [autoDetectDelimiter, setAutoDetectDelimiter] = useState(true);
-  const [detectedDelimiter, setDetectedDelimiter] = useState<string | null>(
-    null
-  );
   const [hasHeaders, setHasHeaders] = useState(true);
-  const [detectTypes, setDetectTypes] = useState(false);
   const [trimValues, setTrimValues] = useState(true);
   const [outputFormat, setOutputFormat] = useState<
     'array' | 'nested' | 'compact'
@@ -53,23 +49,16 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
   const { copied, copy } = useCopy();
   const { downloadJSON } = useDownload();
   const { trackUse, trackCustom, trackError } = useToolTracking('csv-to-json');
+  const { resultRef, scrollToResult } = useScrollToResult({
+    delay: 300, // Aumentato delay per aspettare il render completo
+  });
 
-  // Auto-detect delimiter when input changes and auto-detect is enabled
+  // Scroll to result when output changes
   useEffect(() => {
-    if (autoDetectDelimiter && input.trim()) {
-      const detected = detectDelimiter(input);
-      setDetectedDelimiter(detected);
-
-      // Also update stats
-      const csvStats = getCsvStats(input, detected);
-      setStats({
-        rows: csvStats.rows,
-        columns: csvStats.columns,
-      });
-    } else if (!autoDetectDelimiter) {
-      setDetectedDelimiter(null);
+    if (output) {
+      scrollToResult();
     }
-  }, [input, autoDetectDelimiter]);
+  }, [output, scrollToResult]);
 
   const handleConvert = useCallback(() => {
     if (!input.trim()) {
@@ -82,15 +71,6 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
     try {
       setError(null);
 
-      // Auto-detect delimiter if enabled
-      let actualDelimiter = delimiter;
-      if (autoDetectDelimiter) {
-        actualDelimiter = detectDelimiter(input);
-        setDetectedDelimiter(actualDelimiter);
-      } else {
-        setDetectedDelimiter(null);
-      }
-
       // Parse custom headers
       const headers = customHeaders.trim()
         ? customHeaders.split(',').map((h) => h.trim())
@@ -102,10 +82,9 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
         : [];
 
       const options: CsvToJsonOptions = {
-        delimiter: actualDelimiter,
+        delimiter,
         hasHeaders,
         customHeaders: headers,
-        detectTypes,
         trimValues,
         nullValues: nullValuesList,
         outputFormat,
@@ -155,9 +134,7 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
   }, [
     input,
     delimiter,
-    autoDetectDelimiter,
     hasHeaders,
-    detectTypes,
     trimValues,
     customHeaders,
     nullValues,
@@ -165,6 +142,7 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
     minifyOutput,
     trackUse,
     trackError,
+    trackCustom,
   ]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -176,12 +154,8 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
       const content = e.target?.result as string;
       setInput(content);
 
-      // Auto-detect stats
-      const csvStats = getCsvStats(content);
-      if (autoDetectDelimiter) {
-        const detected = csvStats.delimiter;
-        setDetectedDelimiter(detected);
-      }
+      // Detect if file has headers
+      const csvStats = getCsvStats(content, delimiter);
       setHasHeaders(csvStats.hasHeaders);
     };
     reader.readAsText(file);
@@ -193,18 +167,13 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
       return;
     }
 
-    let actualDelimiter = delimiter;
-    if (autoDetectDelimiter) {
-      actualDelimiter = detectDelimiter(input);
-      setDetectedDelimiter(actualDelimiter);
-    }
-    const validation = validateCsv(input, actualDelimiter);
+    const validation = validateCsv(input, delimiter);
 
     if (!validation.valid) {
       setError(validation.errors.join(', '));
     } else {
       setError(null);
-      const csvStats = getCsvStats(input, actualDelimiter);
+      const csvStats = getCsvStats(input, delimiter);
       setStats({
         rows: csvStats.rows,
         columns: csvStats.columns,
@@ -283,28 +252,16 @@ Alice Williams,28,Houston,alice@example.com`;
           {/* Delimiter */}
           <div>
             <label className="mb-1 block text-sm font-medium">Delimiter</label>
-            <div className="flex gap-2">
-              <select
-                value={delimiter}
-                onChange={(e) => setDelimiter(e.target.value)}
-                disabled={autoDetectDelimiter}
-                className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm disabled:opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-              >
-                <option value=",">Comma (,)</option>
-                <option value=";">Semicolon (;)</option>
-                <option value="\t">Tab</option>
-                <option value="|">Pipe (|)</option>
-              </select>
-              <label className="flex items-center gap-1.5 text-sm">
-                <input
-                  type="checkbox"
-                  checked={autoDetectDelimiter}
-                  onChange={(e) => setAutoDetectDelimiter(e.target.checked)}
-                  className="rounded"
-                />
-                Auto
-              </label>
-            </div>
+            <select
+              value={delimiter}
+              onChange={(e) => setDelimiter(e.target.value)}
+              className="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+            >
+              <option value=",">Comma (,)</option>
+              <option value=";">Semicolon (;)</option>
+              <option value="\t">Tab</option>
+              <option value="|">Pipe (|)</option>
+            </select>
           </div>
 
           {/* Output Format */}
@@ -366,24 +323,15 @@ Alice Williams,28,Houston,alice@example.com`;
             <label className="flex items-center gap-2 text-sm">
               <input
                 type="checkbox"
-                checked={detectTypes}
-                onChange={(e) => setDetectTypes(e.target.checked)}
-                className="rounded"
-              />
-              Auto-detect data types
-            </label>
-          </div>
-
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-sm">
-              <input
-                type="checkbox"
                 checked={trimValues}
                 onChange={(e) => setTrimValues(e.target.checked)}
                 className="rounded"
               />
               Trim whitespace
             </label>
+          </div>
+
+          <div className="space-y-2">
             <label className="flex items-center gap-2 text-sm">
               <input
                 type="checkbox"
@@ -464,66 +412,56 @@ Alice Williams,28,Houston,alice@example.com`;
           <span className="text-gray-700 dark:text-gray-300">
             <strong>Columns:</strong> {stats.columns}
           </span>
-          {autoDetectDelimiter && detectedDelimiter && (
-            <span className="text-gray-700 dark:text-gray-300">
-              <strong>Detected Delimiter:</strong>{' '}
-              {detectedDelimiter === '\t'
-                ? 'Tab'
-                : detectedDelimiter === ','
-                  ? 'Comma'
-                  : detectedDelimiter === ';'
-                    ? 'Semicolon'
-                    : detectedDelimiter === '|'
-                      ? 'Pipe'
-                      : detectedDelimiter}
-            </span>
-          )}
         </div>
       )}
 
       {/* Output Section */}
-      {output && (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-          <div className="mb-4 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <FileJson className="h-5 w-5 text-green-500" />
-              <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-                JSON Output
-              </h2>
+      <div ref={resultRef}>
+        {output && (
+          <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <FileJson className="h-5 w-5 text-green-500" />
+                <h2 className="text-lg font-medium text-gray-900 dark:text-white">
+                  JSON Output
+                </h2>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={handleCopy}
+                  className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="h-3.5 w-3.5" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-3.5 w-3.5" />
+                      Copy
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={handleDownload}
+                  className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  Download
+                </button>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <button
-                onClick={handleCopy}
-                className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80"
-              >
-                {copied ? (
-                  <>
-                    <Check className="h-3.5 w-3.5" />
-                    Copied!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-3.5 w-3.5" />
-                    Copy
-                  </>
-                )}
-              </button>
-              <button
-                onClick={handleDownload}
-                className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80"
-              >
-                <Download className="h-3.5 w-3.5" />
-                Download
-              </button>
+            <div className="relative">
+              <pre className="max-h-96 overflow-auto rounded-md border border-gray-300 bg-gray-50 p-4 font-mono text-sm dark:border-gray-600 dark:bg-gray-700">
+                <code className="text-gray-800 dark:text-gray-200">
+                  {output}
+                </code>
+              </pre>
             </div>
           </div>
-          <div className="relative">
-            <pre className="max-h-96 overflow-auto rounded-md border border-gray-300 bg-gray-50 p-4 font-mono text-sm dark:border-gray-600 dark:bg-gray-700">
-              <code className="text-gray-800 dark:text-gray-200">{output}</code>
-            </pre>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
