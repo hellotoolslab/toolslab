@@ -54,6 +54,7 @@ import { cn } from '@/lib/utils';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { BaseToolProps } from '@/lib/types/tools';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 
 interface ColumnConfig {
   name: string;
@@ -68,6 +69,7 @@ export default function JsonToCsv({
   onOutputChange,
 }: BaseToolProps) {
   const { trackUse, trackError, trackCustom } = useToolTracking('json-to-csv');
+  const { resultRef, scrollToResult } = useScrollToResult();
   const [input, setInput] = useState(initialInput || '');
   const [output, setCsvOutput] = useState('');
   const [error, setError] = useState('');
@@ -122,6 +124,13 @@ export default function JsonToCsv({
       setPreviewData(processedData.slice(0, 10)); // Preview first 10 rows
     }
   }, [input, flattenNested, flattenSeparator]);
+
+  // Scroll to result when output changes
+  useEffect(() => {
+    if (output) {
+      scrollToResult();
+    }
+  }, [output, scrollToResult]);
 
   const handleFileUpload = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -664,66 +673,68 @@ export default function JsonToCsv({
         </TabsContent>
 
         <TabsContent value="output" className="space-y-4">
-          {output && (
-            <>
-              <div className="flex items-center justify-between">
-                <Label>CSV Output</Label>
-                <div className="flex gap-2">
-                  <Button
-                    onClick={handleCopy}
-                    variant="outline"
-                    size="sm"
-                    className="gap-2"
-                  >
-                    <Copy className="h-4 w-4" />
-                    Copy
-                  </Button>
-                  <Button
-                    onClick={handleDownload}
-                    variant="outline"
-                    size="sm"
-                    className="gap-2"
-                  >
-                    <Download className="h-4 w-4" />
-                    Download
-                  </Button>
+          <div ref={resultRef}>
+            {output && (
+              <>
+                <div className="flex items-center justify-between">
+                  <Label>CSV Output</Label>
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={handleCopy}
+                      variant="outline"
+                      size="sm"
+                      className="gap-2"
+                    >
+                      <Copy className="h-4 w-4" />
+                      Copy
+                    </Button>
+                    <Button
+                      onClick={handleDownload}
+                      variant="outline"
+                      size="sm"
+                      className="gap-2"
+                    >
+                      <Download className="h-4 w-4" />
+                      Download
+                    </Button>
+                  </div>
                 </div>
-              </div>
 
-              {stats && (
-                <div className="flex flex-wrap gap-3">
-                  <Badge variant="secondary" className="gap-1">
-                    <BarChart className="h-3 w-3" />
-                    {stats.rows} rows
-                  </Badge>
-                  <Badge variant="secondary" className="gap-1">
-                    <Table className="h-3 w-3" />
-                    {stats.columns} columns
-                  </Badge>
-                  <Badge variant="secondary" className="gap-1">
-                    <Filter className="h-3 w-3" />
-                    {stats.empty} empty fields
-                  </Badge>
-                </div>
-              )}
+                {stats && (
+                  <div className="flex flex-wrap gap-3">
+                    <Badge variant="secondary" className="gap-1">
+                      <BarChart className="h-3 w-3" />
+                      {stats.rows} rows
+                    </Badge>
+                    <Badge variant="secondary" className="gap-1">
+                      <Table className="h-3 w-3" />
+                      {stats.columns} columns
+                    </Badge>
+                    <Badge variant="secondary" className="gap-1">
+                      <Filter className="h-3 w-3" />
+                      {stats.empty} empty fields
+                    </Badge>
+                  </div>
+                )}
 
-              <Textarea
-                value={output}
-                readOnly
-                className="min-h-[400px] font-mono text-sm"
-              />
-            </>
-          )}
+                <Textarea
+                  value={output}
+                  readOnly
+                  className="min-h-[400px] font-mono text-sm"
+                />
+              </>
+            )}
 
-          {!output && (
-            <Alert>
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>
-                No CSV output yet. Configure options and click Convert to
-                generate CSV.
-              </AlertDescription>
-            </Alert>
-          )}
+            {!output && (
+              <Alert>
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>
+                  No CSV output yet. Configure options and click Convert to
+                  generate CSV.
+                </AlertDescription>
+              </Alert>
+            )}
+          </div>
         </TabsContent>
       </Tabs>
 
