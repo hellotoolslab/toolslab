@@ -96,13 +96,8 @@ export default function MaintenancePage() {
         {/* Contact Info */}
         <div className="border-t border-gray-200 pt-6 dark:border-gray-700">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Need urgent assistance?{' '}
-            <a
-              href="mailto:support@toolslab.dev"
-              className="text-amber-600 hover:underline dark:text-amber-400"
-            >
-              Contact Laboratory Support
-            </a>
+            Need urgent assistance? Please check back shortly or visit our
+            homepage for updates.
           </p>
         </div>
 
