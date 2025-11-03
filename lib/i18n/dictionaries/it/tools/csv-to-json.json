@@ -3,76 +3,76 @@
   "description": "Converti file CSV in formato JSON",
   "placeholder": "Incolla dati CSV o carica file...",
   "instructions": {
-    "title": "Come usare CSV in JSON",
+    "title": "Come usare il Convertitore CSV in JSON",
     "steps": [
       {
-        "title": "Incolla il tuo dati JSON",
-        "description": "Copia e incolla il tuo dati JSON nell'area di input. Lo strumento accetta qualsiasi formato e lo elaborerà immediatamente."
+        "title": "Incolla o carica i tuoi dati CSV",
+        "description": "Copia e incolla i tuoi dati CSV nell'area di input, oppure usa il pulsante di caricamento file per importare un file CSV dal tuo computer. Lo strumento rileva automaticamente i delimitatori comuni."
       },
       {
-        "title": "Configura le opzioni (se disponibile)",
-        "description": "Regola le opzioni di formattazione, indentazione o altre impostazioni per adattarle alle tue preferenze."
+        "title": "Configura le opzioni di parsing",
+        "description": "Scegli il delimitatore CSV (virgola, punto e virgola, tab, pipe), specifica se la prima riga contiene intestazioni, abilita il rilevamento dei tipi per numeri e booleani, e seleziona il formato di output JSON preferito (array, nidificato, o compatto)."
       },
       {
-        "title": "Esamina l'output",
-        "description": "Lo strumento elaborerà il tuo input e mostrerà il risultato con formattazione e validazione appropriate."
+        "title": "Rivedi e valida",
+        "description": "Lo strumento analizzerà il tuo CSV e mostrerà statistiche inclusi conteggio righe, colonne ed eventuali errori di validazione. Controlla l'anteprima per assicurarti che i dati siano interpretati correttamente."
       },
       {
-        "title": "Copia o scarica il risultato",
-        "description": "Copia il JSON formattato negli appunti per uso immediato o scaricalo come file."
+        "title": "Copia o scarica il JSON",
+        "description": "Una volta convertito, copia l'output JSON negli appunti con un clic o scaricalo come file .json per usarlo nelle tue applicazioni, API o database."
       }
     ],
     "features": [
-      "Elaborazione in tempo reale con risultati istantanei",
-      "Nessun limite di dimensione per l'elaborazione basata su browser",
-      "Completamente sicuro - tutta l'elaborazione avviene nel tuo browser",
-      "Nessun caricamento dati o archiviazione server",
-      "Copia negli appunti con un clic",
-      "Scarica i risultati come file",
-      "Validazione sintassi ed evidenziazione errori",
-      "Funziona offline dopo il caricamento iniziale"
+      "Rilevamento automatico delimitatore (virgola, punto e virgola, tab, pipe)",
+      "Supporto intestazioni personalizzate e generazione automatica",
+      "Rilevamento intelligente dei tipi (numeri, booleani, valori null)",
+      "Formati di output multipli: array di oggetti, oggetti nidificati, formato compatto",
+      "Gestisce campi quotati e dati CSV multilinea",
+      "Preserva caratteri speciali e codifica UTF-8",
+      "Validazione in tempo reale e segnalazione errori",
+      "Funziona completamente offline - nessun caricamento dati su server"
     ],
     "useCases": [
-      "Pulire e formattare codice disordinato per una migliore leggibilità",
-      "Standardizzare lo stile del codice nei team di sviluppo",
-      "Debug di strutture complesse con indentazione appropriata",
-      "Preparare il codice per documentazione e code review",
-      "Convertire tra diversi standard di formattazione",
-      "Validare la sintassi prima del deploy",
-      "Elaborare dati da fonti esterne o API",
-      "Generare codice pronto per la produzione"
+      "Importare dati da fogli di calcolo in applicazioni web e API",
+      "Convertire esportazioni Excel in JSON per migrazioni database",
+      "Trasformare report CSV in JSON per visualizzazione dati",
+      "Preparare dati per database NoSQL come MongoDB",
+      "Convertire esportazioni analytics in formato JSON strutturato",
+      "Processare log CSV per consumo API",
+      "Importare cataloghi prodotti da CSV a JSON",
+      "Migrare dati legacy da CSV a sistemi moderni basati su JSON"
     ],
     "proTips": [
-      "Usa le scorciatoie da tastiera per un flusso di lavoro più veloce",
-      "Elabora file di grandi dimensioni in blocchi più piccoli se le prestazioni rallentano",
-      "Valida il tuo input prima dell'elaborazione per individuare errori anticipatamente",
-      "Salva le impostazioni utilizzate frequentemente come predefinite",
-      "Usa la funzione di download per archiviare i file elaborati",
-      "Controlla attentamente l'output prima di usarlo in produzione"
+      "Abilita il rilevamento tipi per convertire automaticamente numeri e booleani",
+      "Usa intestazioni personalizzate se il tuo CSV non ha una riga di intestazione",
+      "Prova delimitatori diversi se il parsing fallisce - tab e punto e virgola sono comuni nei dati europei",
+      "Il formato compatto è ottimo per ridurre le dimensioni del file quando trasmetti dati",
+      "Il formato nidificato funziona bene quando la prima colonna è una chiave unica o ID",
+      "L'opzione trim rimuove gli spazi bianchi - utile per pulire esportazioni disordinate"
     ],
     "troubleshooting": [
-      "Errori di sintassi: controlla parentesi, virgolette o punti e virgola mancanti",
-      "Elaborazione fallita: assicurati che il formato di input sia valido",
-      "Performance lenta: prova a elaborare blocchi di dati più piccoli",
-      "Funzionalità mancanti: alcune sintassi avanzate potrebbero richiedere formattazione manuale",
-      "Compatibilità browser: usa Chrome, Firefox o Edge per risultati migliori"
+      "Colonne inconsistenti: Abilita la modalità strict per rilevare righe con conteggi colonne non corrispondenti",
+      "Delimitatore errato: Prova il rilevamento automatico o seleziona manualmente il delimitatore corretto (cerca virgola, punto e virgola, tab)",
+      "Problemi conversione tipi: Disabilita il rilevamento tipi se i numeri devono rimanere stringhe",
+      "Dati mancanti: Configura il rilevamento valori null per gestire campi vuoti, 'N/A', o stringhe 'NULL'",
+      "File grandi: Processa in blocchi più piccoli se le prestazioni del browser degradano con file oltre 10MB"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Incolla input"
+        "description": "Incolla dati CSV"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Elabora/Formatta"
+        "description": "Converti in JSON"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copia risultato"
+        "description": "Copia output JSON"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Scarica file"
+        "description": "Scarica file JSON"
       }
     ]
   },

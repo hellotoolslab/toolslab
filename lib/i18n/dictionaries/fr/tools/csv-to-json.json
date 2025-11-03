@@ -3,76 +3,76 @@
   "description": "Convertissez les fichiers CSV au format JSON",
   "placeholder": "Collez les données CSV ou téléversez un fichier...",
   "instructions": {
-    "title": "Comment utiliser CSV vers JSON",
+    "title": "Comment utiliser le Convertisseur CSV vers JSON",
     "steps": [
       {
-        "title": "Collez votre données JSON",
-        "description": "Copiez et collez votre données JSON dans la zone de saisie. L'outil accepte tout format et le traitera immédiatement."
+        "title": "Collez ou téléversez vos données CSV",
+        "description": "Copiez et collez vos données CSV dans la zone de saisie, ou utilisez le bouton de téléversement de fichier pour importer un fichier CSV depuis votre ordinateur. L'outil détecte automatiquement les délimiteurs courants."
       },
       {
-        "title": "Configurez les options (si disponible)",
-        "description": "Ajustez les options de formatage, l'indentation ou d'autres paramètres pour correspondre à vos préférences."
+        "title": "Configurez les options d'analyse",
+        "description": "Choisissez votre délimiteur CSV (virgule, point-virgule, tabulation, barre verticale), spécifiez si la première ligne contient des en-têtes, activez la détection de type pour les nombres et les booléens, et sélectionnez votre format de sortie JSON préféré (tableau, imbriqué ou compact)."
       },
       {
-        "title": "Examinez la sortie",
-        "description": "L'outil va traiter votre saisie et afficher le résultat avec formatage et validation appropriés."
+        "title": "Vérifiez et validez",
+        "description": "L'outil analysera votre CSV et affichera des statistiques incluant le nombre de lignes, de colonnes et les éventuelles erreurs de validation. Vérifiez l'aperçu pour vous assurer que les données sont correctement interprétées."
       },
       {
-        "title": "Copiez ou téléchargez le résultat",
-        "description": "Copiez le JSON formaté dans votre presse-papiers pour utilisation immédiate ou téléchargez-le en tant que fichier."
+        "title": "Copiez ou téléchargez le JSON",
+        "description": "Une fois converti, copiez la sortie JSON dans votre presse-papiers en un clic ou téléchargez-la en tant que fichier .json pour l'utiliser dans vos applications, API ou bases de données."
       }
     ],
     "features": [
-      "Traitement en temps réel avec résultats instantanés",
-      "Aucune limite de taille pour le traitement basé sur navigateur",
-      "Complètement sécurisé - tout le traitement se fait dans votre navigateur",
-      "Aucun téléchargement de données ou stockage serveur",
-      "Copier dans le presse-papiers en un clic",
-      "Télécharger les résultats sous forme de fichier",
-      "Validation de syntaxe et mise en évidence des erreurs",
-      "Fonctionne hors ligne après le chargement initial"
+      "Détection automatique du délimiteur (virgule, point-virgule, tabulation, barre verticale)",
+      "Support d'en-têtes personnalisés et génération automatique",
+      "Détection intelligente des types (nombres, booléens, valeurs null)",
+      "Multiples formats de sortie : tableau d'objets, objets imbriqués, format compact",
+      "Gère les champs entre guillemets et les données CSV multilignes",
+      "Préserve les caractères spéciaux et l'encodage UTF-8",
+      "Validation en temps réel et rapport d'erreurs",
+      "Fonctionne entièrement hors ligne - aucun téléchargement de données vers des serveurs"
     ],
     "useCases": [
-      "Nettoyer et formater le code désordonné pour une meilleure lisibilité",
-      "Standardiser le style de code dans les équipes de développement",
-      "Déboguer les structures complexes avec une indentation appropriée",
-      "Préparer le code pour la documentation et les revues de code",
-      "Convertir entre différents standards de formatage",
-      "Valider la syntaxe avant le déploiement",
-      "Traiter les données provenant de sources externes ou d'API",
-      "Générer du code prêt pour la production"
+      "Importer des données de feuilles de calcul dans des applications web et des API",
+      "Convertir des exportations Excel en JSON pour les migrations de bases de données",
+      "Transformer des rapports CSV en JSON pour la visualisation de données",
+      "Préparer des données pour des bases de données NoSQL comme MongoDB",
+      "Convertir des exportations analytics en format JSON structuré",
+      "Traiter des logs CSV pour la consommation d'API",
+      "Importer des catalogues de produits de CSV vers JSON",
+      "Migrer des données legacy de CSV vers des systèmes modernes basés sur JSON"
     ],
     "proTips": [
-      "Utilisez les raccourcis clavier pour un flux de travail plus rapide",
-      "Traitez les gros fichiers en petits morceaux si les performances ralentissent",
-      "Validez votre saisie avant le traitement pour détecter les erreurs tôt",
-      "Enregistrez les paramètres fréquemment utilisés par défaut",
-      "Utilisez la fonction de téléchargement pour archiver les fichiers",
-      "Vérifiez attentivement la sortie avant utilisation en production"
+      "Activez la détection de type pour convertir automatiquement les nombres et les booléens",
+      "Utilisez des en-têtes personnalisés si votre CSV n'a pas de ligne d'en-tête",
+      "Essayez différents délimiteurs si l'analyse échoue - la tabulation et le point-virgule sont courants dans les données européennes",
+      "Le format compact est idéal pour réduire la taille du fichier lors de la transmission de données",
+      "Le format imbriqué fonctionne bien lorsque la première colonne est une clé unique ou un ID",
+      "L'option trim supprime les espaces - utile pour nettoyer les exportations désordonnées"
     ],
     "troubleshooting": [
-      "Erreurs de syntaxe : vérifiez les crochets, guillemets ou points-virgules manquants",
-      "Échec de traitement : assurez-vous que le format de saisie est valide",
-      "Performance lente : essayez de traiter de plus petits morceaux de données",
-      "Fonctionnalités manquantes : certaines syntaxes avancées peuvent nécessiter un formatage manuel",
-      "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
+      "Colonnes incohérentes : Activez le mode strict pour détecter les lignes avec des nombres de colonnes non concordants",
+      "Mauvais délimiteur : Essayez la détection automatique ou sélectionnez manuellement le délimiteur correct (cherchez virgule, point-virgule, tabulation)",
+      "Problèmes de conversion de type : Désactivez la détection de type si les nombres doivent rester des chaînes",
+      "Données manquantes : Configurez la détection des valeurs null pour gérer les champs vides, 'N/A' ou les chaînes 'NULL'",
+      "Fichiers volumineux : Traitez en petits morceaux si les performances du navigateur se dégradent avec des fichiers de plus de 10 Mo"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Coller l'entrée"
+        "description": "Coller les données CSV"
       },
       {
-        "keys": "Ctrl+Enter",
-        "description": "Traiter/Formater"
+        "keys": "Ctrl+Entrée",
+        "description": "Convertir en JSON"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copier le résultat"
+        "description": "Copier la sortie JSON"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Télécharger le fichier"
+        "description": "Télécharger le fichier JSON"
       }
     ]
   },
@@ -80,6 +80,6 @@
     "title": "Convertisseur CSV vers JSON - Outil en Ligne Gratuit | ToolsLab",
     "description": "Convertissez les fichiers CSV au format JSON en ligne. Support pour délimiteurs personnalisés et en-têtes. Convertisseur CSV vers JSON gratuit."
   },
-  "tagline": "Convert CSV data to JSON format with smart parsing",
-  "pageDescription": "Transform CSV files and data into JSON format with automatic header detection and custom delimiter support. Perfect for data migration, API integration, and spreadsheet processing. Handles large files with streaming, preserves data types, and offers multiple output formats. Free, secure browser-based conversion with no file uploads."
+  "tagline": "Convertissez les données CSV au format JSON avec analyse intelligente",
+  "pageDescription": "Transformez les fichiers CSV au format JSON avec détection automatique des en-têtes et support des délimiteurs personnalisés. Parfait pour la migration de données, l'intégration d'API et le traitement de feuilles de calcul. Gère les fichiers volumineux avec streaming, préserve les types de données et offre plusieurs formats de sortie. Conversion gratuite et sécurisée basée sur navigateur sans téléchargement de fichiers."
 }

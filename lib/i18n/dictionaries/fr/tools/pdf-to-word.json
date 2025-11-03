@@ -1,0 +1,82 @@
+{
+  "title": "PDF vers Word",
+  "description": "Convertissez des fichiers PDF au format Word (DOCX) modifiable",
+  "placeholder": "Glissez-déposez des fichiers PDF ou cliquez pour télécharger...",
+  "instructions": {
+    "title": "Comment utiliser le Convertisseur PDF vers Word",
+    "steps": [
+      {
+        "title": "Téléchargez vos fichiers PDF",
+        "description": "Glissez-déposez jusqu'à 10 fichiers PDF dans la zone de téléchargement, ou cliquez pour parcourir et sélectionner les fichiers depuis votre ordinateur. Chaque fichier peut avoir une taille allant jusqu'à 100 Mo."
+      },
+      {
+        "title": "Configurez les options de conversion",
+        "description": "Choisissez votre mode de conversion (Préserver la mise en page, Texte fluide ou Texte uniquement), sélectionnez la qualité d'image et décidez d'inclure ou non les images dans le document de sortie."
+      },
+      {
+        "title": "Convertissez vos fichiers",
+        "description": "Cliquez sur le bouton Convertir pour démarrer le processus de conversion. Vous verrez la progression en temps réel pour chaque fichier, y compris le temps estimé restant et l'état de la conversion."
+      },
+      {
+        "title": "Téléchargez les documents Word",
+        "description": "Une fois la conversion terminée, téléchargez les fichiers individuellement ou utilisez le bouton Télécharger Tous pour des téléchargements par lots. Examinez les métriques de qualité de conversion et les avertissements avant d'utiliser les documents."
+      }
+    ],
+    "features": [
+      "Convertissez jusqu'à 10 fichiers PDF simultanément",
+      "Préservez le formatage et la mise en page d'origine",
+      "Extrayez et incluez des images des PDFs",
+      "Plusieurs modes de conversion pour différents cas d'usage",
+      "Qualité d'image ajustable pour l'optimisation de la taille du fichier",
+      "Suivi de la progression de conversion en temps réel",
+      "Évaluation de la qualité de conversion pour chaque fichier",
+      "Téléchargement par lots pour plusieurs fichiers",
+      "Totalement sécurisé - tout le traitement se fait dans votre navigateur",
+      "Aucune limite de taille de fichier pour la conversion basée sur navigateur",
+      "Support pour PDFs basés sur texte et scannés",
+      "Affichage détaillé des métadonnées (pages, mots, images)"
+    ],
+    "useCases": [
+      "Modifiez des documents PDF en les convertissant au format Word éditable",
+      "Extrayez du texte et des images de fichiers PDF pour réutilisation",
+      "Convertissez des contrats et accords pour modification et signature",
+      "Préparez du matériel de présentation depuis des sources PDF",
+      "Migrez des documents PDF anciens vers des formats modernes",
+      "Extrayez des données de rapports PDF pour analyse",
+      "Créez des modèles depuis des documents PDF existants",
+      "Convertissez des articles académiques pour édition collaborative"
+    ],
+    "proTips": [
+      "Utilisez le mode Préserver la mise en page pour les documents avec formatage complexe comme les tableaux et colonnes",
+      "Choisissez le mode Texte uniquement si vous prévoyez de réorganiser massivement le contenu",
+      "Une qualité d'image inférieure réduit la taille du fichier sans impact visuel significatif",
+      "Les PDFs basés sur texte se convertissent mieux que les PDFs scannés ou uniquement en image",
+      "Convertissez les PDFs protégés par mot de passe en supprimant d'abord le mot de passe",
+      "Traitez les gros fichiers en lots plus petits pour de meilleures performances"
+    ],
+    "troubleshooting": [
+      "Aucun texte extrait : le PDF peut être basé sur image ou scanné - envisagez d'utiliser d'abord des outils OCR",
+      "Formatage médiocre : essayez différents modes de conversion ou ajustez manuellement dans Word",
+      "Images manquantes : activez l'option 'Inclure les images' dans les paramètres de conversion",
+      "Échec de conversion : le fichier peut être corrompu, protégé par mot de passe ou utiliser des fonctionnalités non prises en charge",
+      "Taille de fichier importante : réduisez la qualité d'image ou supprimez les images pour des fichiers de sortie plus petits",
+      "Conversion lente : les PDFs volumineux ou complexes prennent plus de temps - soyez patient ou divisez le fichier"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Glisser-déposer",
+        "description": "Déposez des fichiers PDF pour télécharger"
+      },
+      {
+        "keys": "Clic",
+        "description": "Parcourez et sélectionnez des fichiers"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertisseur PDF vers Word - Outil Gratuit PDF vers DOCX en Ligne | ToolsLab",
+    "description": "Convertissez PDF en Word (DOCX) en ligne gratuitement. Préservez le formatage, extrayez des images et modifiez des PDFs facilement. Supporte la conversion par lots jusqu'à 10 fichiers. Conversion 100% sécurisée basée sur navigateur."
+  },
+  "tagline": "Convertissez des fichiers PDF en documents Word éditables avec formatage et images préservés",
+  "pageDescription": "Transformez des fichiers PDF en documents Word (DOCX) éditables tout en préservant le formatage, la mise en page et les images d'origine. Parfait pour modifier des contrats, extraire du contenu, convertir des rapports et préparer des documents pour la collaboration. Supporte plusieurs modes de conversion, traitement par lots jusqu'à 10 fichiers et qualité d'image ajustable. Conversion gratuite et sécurisée basée sur navigateur sans téléchargement de fichiers ou stockage serveur. Fonctionne avec des PDFs basés sur texte et scannés."
+}
