@@ -167,11 +167,12 @@ export default function PdfToWord() {
           f.id === fileWithPreview.id
             ? {
                 ...f,
-                status: 'completed',
+                status: 'completed' as const,
                 progress: 100,
                 docxBlob,
                 metadata: {
-                  ...f.metadata,
+                  pdfSize: f.metadata?.pdfSize || f.file.size,
+                  pages: f.metadata?.pages,
                   docxSize: result.metadata?.docxSize || docxBlob.size,
                 },
               }
