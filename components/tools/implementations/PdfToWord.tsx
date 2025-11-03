@@ -24,6 +24,7 @@ interface FileWithPreview {
   id: string;
   status: 'pending' | 'converting' | 'completed' | 'error';
   progress: number;
+  statusMessage?: string;
   error?: string;
   docxBlob?: Blob;
   metadata?: {
@@ -100,10 +101,17 @@ export default function PdfToWord() {
     setFiles((prev) =>
       prev.map((f) =>
         f.id === fileWithPreview.id
-          ? { ...f, status: 'converting', progress: 10 }
+          ? {
+              ...f,
+              status: 'converting',
+              progress: 10,
+              statusMessage: 'Preparing file...',
+            }
           : f
       )
     );
+
+    let progressInterval: NodeJS.Timeout | null = null;
 
     try {
       // Read file as base64
@@ -121,9 +129,23 @@ export default function PdfToWord() {
 
       setFiles((prev) =>
         prev.map((f) =>
-          f.id === fileWithPreview.id ? { ...f, progress: 30 } : f
+          f.id === fileWithPreview.id
+            ? { ...f, progress: 30, statusMessage: 'Converting PDF to Word...' }
+            : f
         )
       );
+
+      // Simulate progress during Railway processing
+      progressInterval = setInterval(() => {
+        setFiles((prev) =>
+          prev.map((f) => {
+            if (f.id === fileWithPreview.id && f.progress < 70) {
+              return { ...f, progress: Math.min(f.progress + 5, 70) };
+            }
+            return f;
+          })
+        );
+      }, 500);
 
       // Call external converter service (Railway)
       const converterUrl =
@@ -138,20 +160,27 @@ export default function PdfToWord() {
         }),
       });
 
+      if (progressInterval) clearInterval(progressInterval);
+
       setFiles((prev) =>
         prev.map((f) =>
-          f.id === fileWithPreview.id ? { ...f, progress: 80 } : f
+          f.id === fileWithPreview.id
+            ? { ...f, progress: 80, statusMessage: 'Processing result...' }
+            : f
         )
       );
 
       if (!response.ok) {
-        throw new Error(`Conversion failed: ${response.statusText}`);
+        const error = await response.json();
+        throw new Error(
+          error.error || `Conversion failed: ${response.statusText}`
+        );
       }
 
       const result = await response.json();
 
-      if (!result.success) {
-        throw new Error(result.error || 'Conversion failed');
+      if (!result.docx) {
+        throw new Error(result.error || 'No conversion result received');
       }
 
       // Convert base64 to blob
@@ -191,6 +220,7 @@ export default function PdfToWord() {
         timestamp: Date.now(),
       });
     } catch (error) {
+      if (progressInterval) clearInterval(progressInterval);
       console.error('Conversion error:', error);
       setFiles((prev) =>
         prev.map((f) =>
@@ -198,6 +228,7 @@ export default function PdfToWord() {
             ? {
                 ...f,
                 status: 'error',
+                statusMessage: undefined,
                 error:
                   error instanceof Error ? error.message : 'Conversion failed',
               }
@@ -340,7 +371,17 @@ export default function PdfToWord() {
                   {/* File Header */}
                   <div className="flex items-start justify-between">
                     <div className="flex flex-1 items-start gap-3">
-                      <FileIcon className="mt-1 h-5 w-5 flex-shrink-0 text-red-500" />
+                      <FileIcon
+                        className={`mt-1 h-5 w-5 flex-shrink-0 ${
+                          fileItem.status === 'completed'
+                            ? 'text-green-600'
+                            : fileItem.status === 'error'
+                              ? 'text-red-500'
+                              : fileItem.status === 'converting'
+                                ? 'text-blue-500'
+                                : 'text-green-600'
+                        }`}
+                      />
                       <div className="min-w-0 flex-1">
                         <p className="truncate font-medium">
                           {fileItem.file.name}
@@ -363,11 +404,24 @@ export default function PdfToWord() {
 
                   {/* Progress Bar */}
                   {fileItem.status === 'converting' && (
-                    <div className="space-y-2">
-                      <Progress value={fileItem.progress} />
-                      <p className="text-sm text-gray-500">
-                        Converting... {fileItem.progress}%
-                      </p>
+                    <div className="space-y-3 rounded-lg bg-primary/5 p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <Loader2Icon className="h-6 w-6 animate-spin text-primary" />
+                          <div>
+                            <p className="font-semibold text-primary">
+                              {fileItem.statusMessage || 'Converting...'}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              Please wait, this may take a few seconds
+                            </p>
+                          </div>
+                        </div>
+                        <span className="text-2xl font-bold text-primary">
+                          {fileItem.progress}%
+                        </span>
+                      </div>
+                      <Progress value={fileItem.progress} className="h-3" />
                     </div>
                   )}
 
