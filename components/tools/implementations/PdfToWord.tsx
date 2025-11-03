@@ -98,6 +98,8 @@ export default function PdfToWord() {
   };
 
   const convertFile = async (fileWithPreview: FileWithPreview) => {
+    const startTime = Date.now(); // Track when processing starts
+
     setFiles((prev) =>
       prev.map((f) =>
         f.id === fileWithPreview.id
@@ -211,17 +213,30 @@ export default function PdfToWord() {
         )
       );
 
-      // Track in history
+      // Track successful conversion
       addToHistory({
         id: crypto.randomUUID(),
         tool: 'pdf-to-word',
         input: fileWithPreview.file.name,
-        output: `Converted successfully`,
-        timestamp: Date.now(),
+        output: `Converted to DOCX (${formatFileSize(result.metadata?.docxSize || docxBlob.size)})`,
+        timestamp: startTime, // When processing started, not finished
       });
     } catch (error) {
       if (progressInterval) clearInterval(progressInterval);
       console.error('Conversion error:', error);
+
+      const errorMessage =
+        error instanceof Error ? error.message : 'Conversion failed';
+
+      // Track error in history (system will send tool.error event)
+      addToHistory({
+        id: crypto.randomUUID(),
+        tool: 'pdf-to-word',
+        input: fileWithPreview.file.name,
+        output: `Error: ${errorMessage}`,
+        timestamp: startTime,
+      });
+
       setFiles((prev) =>
         prev.map((f) =>
           f.id === fileWithPreview.id
@@ -229,8 +244,7 @@ export default function PdfToWord() {
                 ...f,
                 status: 'error',
                 statusMessage: undefined,
-                error:
-                  error instanceof Error ? error.message : 'Conversion failed',
+                error: errorMessage,
               }
             : f
         )
