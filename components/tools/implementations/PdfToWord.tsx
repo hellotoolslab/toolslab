@@ -125,8 +125,10 @@ export default function PdfToWord() {
         )
       );
 
-      // Call API
-      const response = await fetch('/api/convert-pdf-to-word', {
+      // Call external converter service (Railway)
+      const converterUrl =
+        process.env.NEXT_PUBLIC_PDF_CONVERTER_URL || 'http://localhost:8080';
+      const response = await fetch(`${converterUrl}/convert`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
