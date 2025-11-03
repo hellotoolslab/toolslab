@@ -151,7 +151,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 12500,
-    label: 'new',
+    label: '',
   },
 
   // Encoding & Security Tools
@@ -201,7 +201,7 @@ export const tools: Tool[] = [
     ],
     isNew: true,
     searchVolume: 6200,
-    label: 'new',
+    label: '',
   },
   {
     id: 'hash-generator',
@@ -476,7 +476,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 18500,
-    label: 'new',
+    label: '',
   },
   {
     id: 'image-optimizer',
@@ -906,7 +906,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 35000,
-    label: 'new',
+    label: '',
   },
 
   // PDF Tools
@@ -917,7 +917,7 @@ export const tools: Tool[] = [
       'Convert PDF files to editable Word (DOCX) format with preserved formatting',
     icon: '📄',
     route: '/tools/pdf-to-word',
-    categories: ['data'],
+    categories: ['pdf'],
     keywords: [
       'pdf',
       'word',
@@ -1072,6 +1072,7 @@ export function getCategoryColorClass(categoryColor: string): string {
     dev: 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950',
     formatters: 'border-indigo-500 bg-indigo-50 dark:bg-indigo-950',
     social: 'border-rose-500 bg-rose-50 dark:bg-rose-950',
+    pdf: 'border-red-500 bg-red-50 dark:bg-red-950',
   };
   return (
     colorClasses[categoryColor as keyof typeof colorClasses] ||

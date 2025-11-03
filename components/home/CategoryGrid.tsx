@@ -26,6 +26,7 @@ const categoryIcons = {
   generators: Rocket,
   formatters: FileText,
   social: Share2,
+  pdf: FileText,
 };
 
 const categoryGradients = {
@@ -37,6 +38,7 @@ const categoryGradients = {
   generators: 'from-orange-500 to-red-500',
   formatters: 'from-indigo-500 to-purple-500',
   social: 'from-rose-500 to-pink-500',
+  pdf: 'from-red-600 to-orange-600',
 };
 
 interface CategoryGridProps {

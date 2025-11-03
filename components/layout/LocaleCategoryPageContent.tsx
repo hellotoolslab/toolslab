@@ -151,9 +151,112 @@ export default function LocaleCategoryPageContent({
               'Sì, supporta la sintassi standard cron con validazione in tempo reale e descrizioni leggibili delle espressioni generate.',
           },
         ],
+        pdf: [
+          {
+            question: 'Quanto è accurata la conversione da PDF a Word?',
+            answer:
+              'Il nostro convertitore PDF to Word utilizza algoritmi avanzati per preservare formattazione, immagini, tabelle e layout del testo con oltre il 90% di accuratezza, paragonabile a strumenti professionali come Adobe Acrobat.',
+          },
+          {
+            question: 'Quali sono i limiti di dimensione del file?',
+            answer:
+              "Puoi elaborare file PDF fino a 10MB. Tutte le conversioni avvengono su server sicuri con pulizia automatica dopo l'elaborazione.",
+          },
+          {
+            question: 'I miei dati sono sicuri durante la conversione?',
+            answer:
+              "Sì, tutte le conversioni avvengono su server sicuri con trasmissione crittografata. I file vengono automaticamente eliminati dopo l'elaborazione e non accediamo mai ai tuoi documenti.",
+          },
+        ],
       };
 
       return italianFaqs[categoryId] || seoContent.faqs;
+    }
+
+    if (locale === 'es') {
+      // Spanish translations for category FAQs
+      const spanishFaqs: Record<
+        string,
+        Array<{ question: string; answer: string }>
+      > = {
+        pdf: [
+          {
+            question: '¿Qué tan precisa es la conversión de PDF a Word?',
+            answer:
+              'Nuestro convertidor de PDF a Word utiliza algoritmos avanzados para preservar el formato, imágenes, tablas y diseño del texto con más del 90% de precisión, comparable a herramientas profesionales como Adobe Acrobat.',
+          },
+          {
+            question: '¿Cuáles son los límites de tamaño de archivo?',
+            answer:
+              'Puedes procesar archivos PDF de hasta 10MB. Todas las conversiones se realizan en servidores seguros con limpieza automática después del procesamiento.',
+          },
+          {
+            question: '¿Mis datos están seguros durante la conversión?',
+            answer:
+              'Sí, todas las conversiones se realizan en servidores seguros con transmisión encriptada. Los archivos se eliminan automáticamente después del procesamiento y nunca accedemos a tus documentos.',
+          },
+        ],
+      };
+
+      return spanishFaqs[categoryId] || seoContent.faqs;
+    }
+
+    if (locale === 'fr') {
+      // French translations for category FAQs
+      const frenchFaqs: Record<
+        string,
+        Array<{ question: string; answer: string }>
+      > = {
+        pdf: [
+          {
+            question:
+              'Quelle est la précision de la conversion PDF vers Word ?',
+            answer:
+              'Notre convertisseur PDF vers Word utilise des algorithmes avancés pour préserver la mise en forme, les images, les tableaux et la disposition du texte avec plus de 90% de précision, comparable aux outils professionnels comme Adobe Acrobat.',
+          },
+          {
+            question: 'Quelles sont les limites de taille de fichier ?',
+            answer:
+              "Vous pouvez traiter des fichiers PDF jusqu'à 10MB. Toutes les conversions se font sur des serveurs sécurisés avec nettoyage automatique après le traitement.",
+          },
+          {
+            question:
+              'Mes données sont-elles sécurisées pendant la conversion ?',
+            answer:
+              "Oui, toutes les conversions se font sur des serveurs sécurisés avec transmission cryptée. Les fichiers sont automatiquement supprimés après le traitement et nous n'accédons jamais à vos documents.",
+          },
+        ],
+      };
+
+      return frenchFaqs[categoryId] || seoContent.faqs;
+    }
+
+    if (locale === 'de') {
+      // German translations for category FAQs
+      const germanFaqs: Record<
+        string,
+        Array<{ question: string; answer: string }>
+      > = {
+        pdf: [
+          {
+            question: 'Wie genau ist die PDF-zu-Word-Konvertierung?',
+            answer:
+              'Unser PDF-zu-Word-Konverter verwendet fortschrittliche Algorithmen, um Formatierung, Bilder, Tabellen und Textlayout mit über 90% Genauigkeit zu erhalten, vergleichbar mit professionellen Tools wie Adobe Acrobat.',
+          },
+          {
+            question: 'Welche Dateigrößenlimits gibt es?',
+            answer:
+              'Sie können PDF-Dateien bis zu 10MB verarbeiten. Alle Konvertierungen erfolgen auf sicheren Servern mit automatischer Bereinigung nach der Verarbeitung.',
+          },
+          {
+            question: 'Sind meine Daten während der Konvertierung sicher?',
+            answer:
+              'Ja, alle Konvertierungen erfolgen auf sicheren Servern mit verschlüsselter Übertragung. Dateien werden nach der Verarbeitung automatisch gelöscht und wir greifen niemals auf Ihre Dokumente zu.',
+          },
+        ],
+      };
+
+      return germanFaqs[categoryId] || seoContent.faqs;
     }
 
     return seoContent.faqs;
