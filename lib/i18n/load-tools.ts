@@ -48,6 +48,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'xml-to-json-converter',
     'base64-encode',
     'url-encode',
+    'html-encode-decode',
     'hash-generator',
     'jwt-decoder',
     'base64-to-pdf',
@@ -76,6 +77,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'instagram-font-generator',
     'excel-filter',
     'ai-prompt-token-counter',
+    'pdf-to-word',
   ];
 
   const tools: Record<string, any> = {};

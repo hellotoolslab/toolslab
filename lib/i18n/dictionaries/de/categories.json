@@ -27,6 +27,10 @@
     "formatters": {
       "name": "Formatierer",
       "description": "Code- und Datenformatierungstools"
+    },
+    "pdf": {
+      "name": "PDF-Tools",
+      "description": "Professionelle PDF-Tools für Konvertierung, Bearbeitung, Zusammenführung, Teilung und Optimierung"
     }
   }
 }

@@ -426,6 +426,57 @@ export const categorySEO: Record<string, CategorySEO> = {
     metaDescription:
       'Generate stylish Unicode fonts for Instagram, WhatsApp, and social media. Create fancy text, cool fonts, and aesthetic styles for bios and posts. Free, instant, and works everywhere.',
   },
+  pdf: {
+    id: 'pdf',
+    h1Title: 'PDF Tools',
+    tagline: 'Professional PDF tools for conversion, editing, and optimization',
+    description:
+      'Professional PDF tools for document conversion, editing, merging, splitting, and optimization. Convert PDF files to Word (DOCX), Excel, images, and other formats with high-fidelity formatting preservation. Merge multiple PDFs, split documents, compress files, extract pages, and rotate pages with powerful server-side processing. Perfect for document management, digital workflows, form processing, and batch operations. All processing happens securely with automatic file cleanup.',
+    benefits: [
+      'High-quality PDF to Word conversion',
+      'Preserve formatting, images, and tables',
+      'Merge and split PDF documents',
+      'Compress PDFs without quality loss',
+      'Extract and rotate pages',
+    ],
+    useCases: [
+      'Document format conversion',
+      'PDF editing and modification',
+      'Batch PDF processing',
+      'Form extraction and filling',
+      'Digital document workflows',
+    ],
+    keywords: [
+      'pdf to word',
+      'pdf converter',
+      'pdf editor',
+      'merge pdf',
+      'split pdf',
+      'compress pdf',
+      'pdf tools',
+      'document converter',
+    ],
+    faqs: [
+      {
+        question: 'How accurate is the PDF to Word conversion?',
+        answer:
+          'Our PDF to Word converter uses advanced algorithms to preserve formatting, images, tables, and text layout with 90%+ accuracy, matching professional tools like Adobe Acrobat.',
+      },
+      {
+        question: 'What file size limits do you have?',
+        answer:
+          'You can process PDF files up to 10MB. All conversions happen on secure servers with automatic cleanup after processing.',
+      },
+      {
+        question: 'Is my data secure during conversion?',
+        answer:
+          'Yes, all conversions happen on secure servers with encrypted transmission. Files are automatically deleted after processing, and we never store or access your documents.',
+      },
+    ],
+    relatedCategories: ['data', 'dev'],
+    metaDescription:
+      'Professional PDF tools for conversion to Word, editing, merging, splitting, and compression. High-quality document processing with format preservation. Free, secure, and instant.',
+  },
 };
 
 // Helper function to get SEO content for a category

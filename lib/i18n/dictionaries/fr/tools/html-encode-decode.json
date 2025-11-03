@@ -1,0 +1,88 @@
+{
+  "title": "Encodeur/Décodeur HTML",
+  "description": "Convertir le texte en entités HTML et décoder les entités HTML en texte brut",
+  "placeholder": "Entrez le texte à encoder ou les entités HTML à décoder...",
+  "instructions": {
+    "title": "Comment utiliser l'Encodeur/Décodeur HTML",
+    "steps": [
+      {
+        "title": "Choisissez le mode encodage ou décodage",
+        "description": "Sélectionnez 'Encoder' pour convertir le texte en entités HTML, ou 'Décoder' pour convertir les entités HTML en texte brut. L'outil détecte automatiquement les entités dans votre saisie."
+      },
+      {
+        "title": "Sélectionnez les options d'encodage (pour mode encoder)",
+        "description": "Choisissez parmi caractères spéciaux uniquement, entités nommées, décimal, hexadécimal ou encoder tous les caractères. Chaque option sert différents cas d'usage."
+      },
+      {
+        "title": "Collez ou tapez votre texte",
+        "description": "Entrez le texte que vous voulez traiter. La conversion se fait instantanément pendant que vous tapez, avec comptage de caractères en temps réel et détection d'entités."
+      },
+      {
+        "title": "Copiez ou retraitez le résultat",
+        "description": "Utilisez le bouton copier pour sauvegarder la sortie dans le presse-papiers, ou échangez entrée/sortie pour traiter à nouveau le résultat avec un mode différent."
+      }
+    ],
+    "features": [
+      "Encodage et décodage en temps réel",
+      "Formats d'encodage multiples (nommé, décimal, hex)",
+      "Détection automatique des entités HTML",
+      "Compteur de caractères pour entrée et sortie",
+      "Statistiques d'entités pour mode décoder",
+      "Bouton échanger pour inverser le processus",
+      "Modèles d'exemples rapides",
+      "Traitement 100% côté client",
+      "Aucune donnée envoyée aux serveurs",
+      "Gère unicode et emoji",
+      "Détecte les entités mal formées"
+    ],
+    "useCases": [
+      "Préparer du texte pour attributs et contenu HTML",
+      "Déboguer du code HTML qui apparaît comme texte",
+      "Assainir l'entrée utilisateur pour prévenir les attaques XSS",
+      "Convertir des extraits de code pour documentation",
+      "Encoder des caractères spéciaux pour XML/HTML",
+      "Décoder les entités du code source HTML copié",
+      "Traiter les données de formulaire avant insertion en base de données",
+      "Créer du contenu sûr pour modèles d'email",
+      "Gérer les caractères internationaux dans les URL",
+      "Convertir HTML hérité avec entités en texte brut"
+    ],
+    "proTips": [
+      "Utilisez le mode 'spéciaux uniquement' pour la plupart des cas - c'est rapide et sûr",
+      "L'outil suggère automatiquement le mode décoder s'il trouve des entités",
+      "Les modes décimal et hex sont utiles pour les caractères unicode",
+      "Le mode 'encoder tout' crée une sortie très longue mais est le plus sûr",
+      "Utilisez le bouton échanger pour tester rapidement les cycles encoder/décoder",
+      "Les statistiques d'entités aident à identifier le HTML mal formé",
+      "Les entités nommées sont plus lisibles mais moins universelles que les numériques"
+    ],
+    "troubleshooting": [
+      "Si les entités ne se décodent pas, vérifiez les points-virgules manquants (;)",
+      "Avertissement entité mal formée indique des entités HTML incomplètes",
+      "Utilisez le mode entités nommées pour meilleure lisibilité dans le code source",
+      "Un texte très long peut ralentir le navigateur - traitez par morceaux",
+      "Les emoji unicode peuvent apparaître comme entités décimales - c'est normal",
+      "Si la sortie semble incorrecte, essayez de changer entre modes décimal et hex"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entrée"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le résultat"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Tout sélectionner"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Encodeur/Décodeur HTML - Outil en Ligne Gratuit | ToolsLab",
+    "description": "Encodeur et décodeur HTML gratuit. Convertir le texte en entités HTML (encoder) ou décoder les entités HTML en texte brut. Supporte les entités nommées, décimales et hexadécimales. Basé sur navigateur, sécurisé et instantané."
+  },
+  "tagline": "Convertir le texte en entités HTML et décoder HTML en toute sécurité",
+  "pageDescription": "Encoder les caractères spéciaux en entités HTML ou décoder les entités en texte brut. Essentiel pour les développeurs web travaillant avec HTML, XML, prévention des attaques XSS et gestion des caractères spéciaux. Supporte plusieurs formats d'encodage incluant les entités nommées (&lt; &gt;), décimales (&#60;) et hexadécimales (&#x3C;). Traiter le texte instantanément dans votre navigateur sans téléchargements serveur."
+}

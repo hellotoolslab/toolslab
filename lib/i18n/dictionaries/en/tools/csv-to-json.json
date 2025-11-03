@@ -3,76 +3,76 @@
   "description": "Convert CSV files to JSON format",
   "placeholder": "Paste CSV data or upload file...",
   "instructions": {
-    "title": "How to use CSV to JSON",
+    "title": "How to use CSV to JSON Converter",
     "steps": [
       {
-        "title": "Paste your JSON data",
-        "description": "Copy and paste your JSON data into the input area. The tool accepts any format and will process it immediately."
+        "title": "Paste or upload your CSV data",
+        "description": "Copy and paste your CSV data into the input area, or use the file upload button to import a CSV file from your computer. The tool automatically detects common delimiters."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Configure parsing options",
+        "description": "Choose your CSV delimiter (comma, semicolon, tab, pipe), specify if first row contains headers, enable type detection for numbers and booleans, and select your preferred JSON output format (array, nested, or compact)."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will process your input and display the result with proper formatting and validation."
+        "title": "Review and validate",
+        "description": "The tool will parse your CSV and display statistics including row count, column count, and any validation errors. Check the preview to ensure data is correctly interpreted."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the formatted JSON to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Copy or download JSON",
+        "description": "Once converted, copy the JSON output to your clipboard with one click or download it as a .json file for use in your applications, APIs, or databases."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Automatic delimiter detection (comma, semicolon, tab, pipe)",
+      "Custom header support and auto-generation",
+      "Smart type detection (numbers, booleans, null values)",
+      "Multiple output formats: array of objects, nested objects, compact format",
+      "Handles quoted fields and multiline CSV data",
+      "Preserves special characters and UTF-8 encoding",
+      "Real-time validation and error reporting",
+      "Works completely offline - no data upload to servers"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Import spreadsheet data into web applications and APIs",
+      "Convert Excel exports to JSON for database migrations",
+      "Transform CSV reports into JSON for data visualization",
+      "Prepare data for NoSQL databases like MongoDB",
+      "Convert analytics exports to structured JSON format",
+      "Process CSV logs for API consumption",
+      "Import product catalogs from CSV to JSON",
+      "Migrate legacy data from CSV to modern JSON-based systems"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Enable type detection to automatically convert numbers and booleans",
+      "Use custom headers if your CSV doesn't have a header row",
+      "Try different delimiters if parsing fails - tab and semicolon are common in European data",
+      "Compact format is great for reducing file size when transmitting data",
+      "Nested format works well when first column is a unique key or ID",
+      "Trim values option removes whitespace - useful for cleaning messy exports"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Inconsistent columns: Enable strict mode to detect rows with mismatched column counts",
+      "Wrong delimiter: Try auto-detection or manually select the correct delimiter (look for comma, semicolon, tab)",
+      "Type conversion issues: Disable type detection if numbers should remain as strings",
+      "Missing data: Configure null value detection to handle empty fields, 'N/A', or 'NULL' strings",
+      "Large files: Process in smaller chunks if browser performance degrades with files over 10MB"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Paste input"
+        "description": "Paste CSV data"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Process/Format"
+        "description": "Convert to JSON"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copy result"
+        "description": "Copy JSON output"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Download file"
+        "description": "Download JSON file"
       }
     ]
   },

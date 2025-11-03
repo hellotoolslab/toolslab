@@ -1,0 +1,82 @@
+{
+  "title": "PDF to Word",
+  "description": "Convert PDF files to editable Word (DOCX) format",
+  "placeholder": "Drag & drop PDF files or click to upload...",
+  "instructions": {
+    "title": "How to use PDF to Word Converter",
+    "steps": [
+      {
+        "title": "Upload your PDF files",
+        "description": "Drag and drop up to 10 PDF files into the upload area, or click to browse and select files from your computer. Each file can be up to 100MB in size."
+      },
+      {
+        "title": "Configure conversion options",
+        "description": "Choose your conversion mode (Preserve Layout, Fluid Text, or Text Only), select image quality, and decide whether to include images in the output document."
+      },
+      {
+        "title": "Convert your files",
+        "description": "Click the Convert button to start the conversion process. You'll see real-time progress for each file, including estimated time remaining and conversion status."
+      },
+      {
+        "title": "Download Word documents",
+        "description": "Once conversion is complete, download individual files or use the Download All button for batch downloads. Review conversion quality metrics and any warnings before using the documents."
+      }
+    ],
+    "features": [
+      "Convert up to 10 PDF files simultaneously",
+      "Preserve original formatting and layout",
+      "Extract and include images from PDFs",
+      "Multiple conversion modes for different use cases",
+      "Adjustable image quality for file size optimization",
+      "Real-time conversion progress tracking",
+      "Conversion quality rating for each file",
+      "Batch download for multiple files",
+      "Completely secure - all processing happens in your browser",
+      "No file size limits for browser-based conversion",
+      "Support for text-based and scanned PDFs",
+      "Detailed metadata display (pages, words, images)"
+    ],
+    "useCases": [
+      "Edit PDF documents by converting to editable Word format",
+      "Extract text and images from PDF files for reuse",
+      "Convert contracts and agreements for editing and signing",
+      "Prepare presentation materials from PDF sources",
+      "Migrate legacy PDF documents to modern formats",
+      "Extract data from PDF reports for analysis",
+      "Create templates from existing PDF documents",
+      "Convert academic papers for collaborative editing"
+    ],
+    "proTips": [
+      "Use Preserve Layout mode for documents with complex formatting like tables and columns",
+      "Choose Text Only mode if you plan to heavily reorganize the content",
+      "Lower image quality reduces file size without significant visual impact",
+      "Text-based PDFs convert better than scanned/image-only PDFs",
+      "Convert password-protected PDFs by removing the password first",
+      "Process large files in smaller batches for better performance"
+    ],
+    "troubleshooting": [
+      "No text extracted: PDF may be image-based or scanned - consider using OCR tools first",
+      "Poor formatting: Try different conversion modes or manually adjust in Word",
+      "Missing images: Enable 'Include Images' option in conversion settings",
+      "Conversion failed: File may be corrupted, password-protected, or use unsupported features",
+      "Large file size: Lower image quality or remove images for smaller output files",
+      "Slow conversion: Large or complex PDFs take longer - be patient or split the file"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Drag & Drop",
+        "description": "Drop PDF files to upload"
+      },
+      {
+        "keys": "Click",
+        "description": "Browse and select files"
+      }
+    ]
+  },
+  "meta": {
+    "title": "PDF to Word Converter - Free Online PDF to DOCX Tool | ToolsLab",
+    "description": "Convert PDF to Word (DOCX) online for free. Preserve formatting, extract images, and edit PDFs easily. Supports batch conversion up to 10 files. 100% secure browser-based conversion."
+  },
+  "tagline": "Convert PDF files to editable Word documents with preserved formatting and images",
+  "pageDescription": "Transform PDF files into editable Word (DOCX) documents while preserving original formatting, layout, and images. Perfect for editing contracts, extracting content, converting reports, and preparing documents for collaboration. Supports multiple conversion modes, batch processing up to 10 files, and adjustable image quality. Free, secure browser-based conversion with no file uploads or server storage. Works with both text-based and scanned PDFs."
+}

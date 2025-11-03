@@ -27,6 +27,10 @@
     "formatters": {
       "name": "Formatters",
       "description": "Strumenti per formattazione codice e dati"
+    },
+    "pdf": {
+      "name": "Strumenti PDF",
+      "description": "Strumenti professionali per PDF: conversione, modifica, unione, divisione e ottimizzazione"
     }
   }
 }

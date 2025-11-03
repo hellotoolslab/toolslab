@@ -50,6 +50,9 @@ const toolComponents = {
   ),
   'jwt-decoder': lazy(() => import('./implementations/JwtDecoder')),
   'url-encode': lazy(() => import('./implementations/UrlEncoder')),
+  'html-encode-decode': lazy(
+    () => import('./implementations/HtmlEncodeDecode')
+  ),
   'text-diff': lazy(() => import('./implementations/TextDiff')),
   'qr-generator': lazy(() => import('./implementations/QRGenerator')),
   'color-picker': lazy(() => import('./implementations/ColorPicker')),
@@ -81,6 +84,7 @@ const toolComponents = {
   'ai-prompt-token-counter': lazy(
     () => import('./implementations/AITokenCounter')
   ),
+  'pdf-to-word': lazy(() => import('./implementations/PdfToWord')),
   // Add more as needed
 } as const;
 

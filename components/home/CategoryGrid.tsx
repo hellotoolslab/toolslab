@@ -26,6 +26,7 @@ const categoryIcons = {
   generators: Rocket,
   formatters: FileText,
   social: Share2,
+  pdf: FileText,
 };
 
 const categoryGradients = {
@@ -37,6 +38,7 @@ const categoryGradients = {
   generators: 'from-orange-500 to-red-500',
   formatters: 'from-indigo-500 to-purple-500',
   social: 'from-rose-500 to-pink-500',
+  pdf: 'from-red-600 to-orange-600',
 };
 
 interface CategoryGridProps {
@@ -66,9 +68,12 @@ export function CategoryGrid({
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category, index) => {
             const Icon =
-              categoryIcons[category.id as keyof typeof categoryIcons];
+              categoryIcons[category.id as keyof typeof categoryIcons] ||
+              Database;
             const gradient =
-              categoryGradients[category.id as keyof typeof categoryGradients];
+              categoryGradients[
+                category.id as keyof typeof categoryGradients
+              ] || 'from-gray-500 to-gray-600';
 
             return (
               <motion.div

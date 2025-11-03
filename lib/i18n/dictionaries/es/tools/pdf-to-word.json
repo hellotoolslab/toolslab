@@ -1,0 +1,82 @@
+{
+  "title": "PDF a Word",
+  "description": "Convierte archivos PDF a formato Word (DOCX) editable",
+  "placeholder": "Arrastra archivos PDF o haz clic para cargar...",
+  "instructions": {
+    "title": "Cómo usar el Convertidor PDF a Word",
+    "steps": [
+      {
+        "title": "Sube tus archivos PDF",
+        "description": "Arrastra hasta 10 archivos PDF en el área de carga, o haz clic para explorar y seleccionar archivos de tu computadora. Cada archivo puede tener hasta 100MB de tamaño."
+      },
+      {
+        "title": "Configura las opciones de conversión",
+        "description": "Elige tu modo de conversión (Preservar Diseño, Texto Fluido o Solo Texto), selecciona la calidad de imagen y decide si incluir imágenes en el documento de salida."
+      },
+      {
+        "title": "Convierte tus archivos",
+        "description": "Haz clic en el botón Convertir para iniciar el proceso de conversión. Verás el progreso en tiempo real para cada archivo, incluyendo tiempo estimado restante y estado de conversión."
+      },
+      {
+        "title": "Descarga documentos Word",
+        "description": "Una vez completada la conversión, descarga archivos individuales o usa el botón Descargar Todos para descargas por lotes. Revisa las métricas de calidad de conversión y cualquier advertencia antes de usar los documentos."
+      }
+    ],
+    "features": [
+      "Convierte hasta 10 archivos PDF simultáneamente",
+      "Preserva el formato y diseño original",
+      "Extrae e incluye imágenes de PDFs",
+      "Múltiples modos de conversión para diferentes casos de uso",
+      "Calidad de imagen ajustable para optimización de tamaño de archivo",
+      "Seguimiento de progreso de conversión en tiempo real",
+      "Calificación de calidad de conversión para cada archivo",
+      "Descarga por lotes para múltiples archivos",
+      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
+      "Sin límites de tamaño de archivo para conversión basada en navegador",
+      "Soporte para PDFs basados en texto y escaneados",
+      "Visualización de metadatos detallados (páginas, palabras, imágenes)"
+    ],
+    "useCases": [
+      "Edita documentos PDF convirtiéndolos a formato Word editable",
+      "Extrae texto e imágenes de archivos PDF para reutilización",
+      "Convierte contratos y acuerdos para edición y firma",
+      "Prepara materiales de presentación desde fuentes PDF",
+      "Migra documentos PDF antiguos a formatos modernos",
+      "Extrae datos de informes PDF para análisis",
+      "Crea plantillas desde documentos PDF existentes",
+      "Convierte artículos académicos para edición colaborativa"
+    ],
+    "proTips": [
+      "Usa el modo Preservar Diseño para documentos con formato complejo como tablas y columnas",
+      "Elige el modo Solo Texto si planeas reorganizar mucho el contenido",
+      "Menor calidad de imagen reduce el tamaño del archivo sin impacto visual significativo",
+      "Los PDFs basados en texto se convierten mejor que los PDFs escaneados o solo de imagen",
+      "Convierte PDFs protegidos con contraseña eliminando primero la contraseña",
+      "Procesa archivos grandes en lotes más pequeños para mejor rendimiento"
+    ],
+    "troubleshooting": [
+      "No se extrajo texto: el PDF puede estar basado en imágenes o escaneado - considera usar herramientas OCR primero",
+      "Formato pobre: prueba diferentes modos de conversión o ajusta manualmente en Word",
+      "Imágenes faltantes: habilita la opción 'Incluir Imágenes' en la configuración de conversión",
+      "Conversión fallida: el archivo puede estar corrupto, protegido con contraseña o usar características no compatibles",
+      "Tamaño de archivo grande: reduce la calidad de imagen o elimina imágenes para archivos de salida más pequeños",
+      "Conversión lenta: PDFs grandes o complejos toman más tiempo - ten paciencia o divide el archivo"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Arrastrar",
+        "description": "Arrastra archivos PDF para cargar"
+      },
+      {
+        "keys": "Clic",
+        "description": "Explora y selecciona archivos"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertidor PDF a Word - Herramienta Gratuita PDF a DOCX en Línea | ToolsLab",
+    "description": "Convierte PDF a Word (DOCX) en línea gratis. Preserva el formato, extrae imágenes y edita PDFs fácilmente. Soporta conversión por lotes hasta 10 archivos. Conversión 100% segura basada en navegador."
+  },
+  "tagline": "Convierte archivos PDF a documentos Word editables con formato e imágenes preservados",
+  "pageDescription": "Transforma archivos PDF en documentos Word (DOCX) editables mientras preservas el formato, diseño e imágenes originales. Perfecto para editar contratos, extraer contenido, convertir informes y preparar documentos para colaboración. Soporta múltiples modos de conversión, procesamiento por lotes hasta 10 archivos y calidad de imagen ajustable. Conversión gratuita y segura basada en navegador sin carga de archivos o almacenamiento en servidor. Funciona con PDFs basados en texto y escaneados."
+}

@@ -151,7 +151,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 12500,
-    label: 'new',
+    label: '',
   },
 
   // Encoding & Security Tools
@@ -177,6 +177,30 @@ export const tools: Tool[] = [
     keywords: ['url', 'encode', 'decode', 'percent', 'uri'],
     isPopular: true,
     searchVolume: 7800,
+    label: '',
+  },
+  {
+    id: 'html-encode-decode',
+    name: 'HTML Encoder/Decoder',
+    description:
+      'Convert text to HTML entities and decode HTML entities to plain text',
+    icon: '🏷️',
+    route: '/tools/html-encode-decode',
+    categories: ['encoding', 'text'],
+    keywords: [
+      'html',
+      'encode',
+      'decode',
+      'entities',
+      'escape',
+      'unescape',
+      'sanitize',
+      'xss',
+      'special characters',
+      'xml',
+    ],
+    isNew: true,
+    searchVolume: 6200,
     label: '',
   },
   {
@@ -452,7 +476,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 18500,
-    label: 'new',
+    label: '',
   },
   {
     id: 'image-optimizer',
@@ -882,6 +906,38 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 35000,
+    label: '',
+  },
+
+  // PDF Tools
+  {
+    id: 'pdf-to-word',
+    name: 'PDF to Word',
+    description:
+      'Convert PDF files to editable Word (DOCX) format with preserved formatting',
+    icon: '📄',
+    route: '/tools/pdf-to-word',
+    categories: ['pdf'],
+    keywords: [
+      'pdf',
+      'word',
+      'docx',
+      'convert',
+      'converter',
+      'pdf to word',
+      'pdf to docx',
+      'document',
+      'edit',
+      'format',
+      'export',
+      'transformation',
+      'office',
+      'microsoft word',
+      'libre office',
+      'editable',
+    ],
+    isPopular: true,
+    searchVolume: 12000,
     label: 'new',
   },
 ];
@@ -952,6 +1008,14 @@ export const categories: Category[] = [
     icon: '📱',
     tools: getToolsByCategory('social'),
   },
+  {
+    id: 'pdf',
+    name: 'PDF Tools',
+    description:
+      'Professional PDF tools for conversion, editing, merging, splitting and optimization.',
+    icon: '📄',
+    tools: getToolsByCategory('pdf'),
+  },
 ];
 
 // Helper functions
@@ -1008,6 +1072,7 @@ export function getCategoryColorClass(categoryColor: string): string {
     dev: 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950',
     formatters: 'border-indigo-500 bg-indigo-50 dark:bg-indigo-950',
     social: 'border-rose-500 bg-rose-50 dark:bg-rose-950',
+    pdf: 'border-red-500 bg-red-50 dark:bg-red-950',
   };
   return (
     colorClasses[categoryColor as keyof typeof colorClasses] ||

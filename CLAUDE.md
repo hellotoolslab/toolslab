@@ -86,6 +86,54 @@ npm update
    - User level (first-time, returning, power)
    - Session data
    - Device info & locale
+13. **✅ AUTO-SCROLL TO RESULT (OBBLIGATORIO)** - Per tool con pulsante di conferma/processing:
+   ```typescript
+   import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
+   import { useEffect } from 'react';
+
+   export default function YourTool() {
+     const { resultRef, scrollToResult } = useScrollToResult();
+     const [output, setOutput] = useState('');
+
+     // ✅ PATTERN RACCOMANDATO: Scroll automatico quando output cambia
+     useEffect(() => {
+       if (output) {
+         scrollToResult();
+       }
+     }, [output, scrollToResult]);
+
+     const handleProcess = async () => {
+       const result = await processData(input);
+       setOutput(result); // Lo scroll avviene automaticamente via useEffect
+     };
+
+     return (
+       <div>
+         <button onClick={handleProcess}>Process</button>
+         {/* Aggiungi ref alla sezione risultato */}
+         <div ref={resultRef}>
+           {output && <ResultComponent data={output} />}
+         </div>
+       </div>
+     );
+   }
+   ```
+   **⚠️ IMPORTANTE**: Usa sempre `useEffect` per lo scroll, non chiamare `scrollToResult()` direttamente dopo `setOutput()` perché React potrebbe non aver ancora aggiornato il DOM.
+
+   **Opzioni disponibili:**
+   - `behavior`: 'smooth' (default) | 'instant' - Comportamento scroll
+   - `delay`: 100ms (default) - Delay prima dello scroll (per aspettare DOM updates)
+   - `offset`: 20px (default) - Offset dall'alto dell'elemento
+   - `onlyIfNotVisible`: true (default) - Scrolla solo se elemento non visibile
+
+   **Alternative - Hook auto-scroll (più semplice):**
+   ```typescript
+   const resultRef = useAutoScrollToResult([output], {
+     shouldScroll: !!output
+   });
+
+   return <div ref={resultRef}>{output && <Result />}</div>;
+   ```
 
 **🚨 ERRORE CRITICO DA EVITARE - Pagine dedicate:**
 ```typescript
