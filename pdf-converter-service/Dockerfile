@@ -15,5 +15,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY main.py .
 
-# Run with gunicorn - Railway sets PORT env var at runtime
-CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 2 --timeout 120 --log-level info main:app"]
+# Use Python to run gunicorn with PORT from environment
+CMD python -c "import os; os.system(f'gunicorn --bind 0.0.0.0:{os.environ.get(\"PORT\", \"8080\")} --workers 2 --timeout 120 --log-level info --access-logfile - --error-logfile - main:app')"
