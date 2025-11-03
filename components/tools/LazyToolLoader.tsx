@@ -84,6 +84,7 @@ const toolComponents = {
   'ai-prompt-token-counter': lazy(
     () => import('./implementations/AITokenCounter')
   ),
+  'pdf-to-word': lazy(() => import('./implementations/PdfToWord')),
   // Add more as needed
 } as const;
 

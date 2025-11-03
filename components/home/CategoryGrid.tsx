@@ -66,9 +66,12 @@ export function CategoryGrid({
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category, index) => {
             const Icon =
-              categoryIcons[category.id as keyof typeof categoryIcons];
+              categoryIcons[category.id as keyof typeof categoryIcons] ||
+              Database;
             const gradient =
-              categoryGradients[category.id as keyof typeof categoryGradients];
+              categoryGradients[
+                category.id as keyof typeof categoryGradients
+              ] || 'from-gray-500 to-gray-600';
 
             return (
               <motion.div

@@ -1,0 +1,451 @@
+'use client';
+
+import { useState, useCallback, useEffect } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Progress } from '@/components/ui/progress';
+import {
+  FileIcon,
+  UploadIcon,
+  XIcon,
+  DownloadIcon,
+  AlertTriangleIcon,
+  CheckCircleIcon,
+  Loader2Icon,
+  StarIcon,
+} from 'lucide-react';
+import { useToolStore } from '@/lib/store/toolStore';
+import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
+
+interface FileWithPreview {
+  file: File;
+  id: string;
+  status: 'pending' | 'converting' | 'completed' | 'error';
+  progress: number;
+  error?: string;
+  docxBlob?: Blob;
+  metadata?: {
+    pages?: number;
+    pdfSize: number;
+    docxSize?: number;
+  };
+}
+
+function formatFileSize(bytes: number): string {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+export default function PdfToWord() {
+  const { addToHistory } = useToolStore();
+  const [files, setFiles] = useState<FileWithPreview[]>([]);
+  const [isConverting, setIsConverting] = useState(false);
+  const [globalError, setGlobalError] = useState<string | null>(null);
+
+  const { resultRef, scrollToResult } = useScrollToResult({ delay: 300 });
+
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    setGlobalError(null);
+
+    const validFiles = acceptedFiles.filter(
+      (file) =>
+        file.type === 'application/pdf' ||
+        file.name.toLowerCase().endsWith('.pdf')
+    );
+    const invalidCount = acceptedFiles.length - validFiles.length;
+
+    if (invalidCount > 0) {
+      setGlobalError(
+        `${invalidCount} file(s) were rejected. Only PDF files are accepted.`
+      );
+    }
+
+    if (validFiles.length > 10) {
+      setGlobalError('Maximum 10 files can be uploaded at once.');
+      validFiles.splice(10);
+    }
+
+    const newFiles: FileWithPreview[] = validFiles.map((file) => ({
+      file,
+      id: crypto.randomUUID(),
+      status: 'pending' as const,
+      progress: 0,
+      metadata: {
+        pdfSize: file.size,
+      },
+    }));
+
+    setFiles((prev) => [...prev, ...newFiles]);
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      'application/pdf': ['.pdf'],
+    },
+    maxFiles: 10,
+    maxSize: 50 * 1024 * 1024, // 50MB
+  });
+
+  const removeFile = (id: string) => {
+    setFiles((prev) => prev.filter((f) => f.id !== id));
+  };
+
+  const convertFile = async (fileWithPreview: FileWithPreview) => {
+    setFiles((prev) =>
+      prev.map((f) =>
+        f.id === fileWithPreview.id
+          ? { ...f, status: 'converting', progress: 10 }
+          : f
+      )
+    );
+
+    try {
+      // Read file as base64
+      const reader = new FileReader();
+      const fileDataPromise = new Promise<string>((resolve, reject) => {
+        reader.onload = () => {
+          const base64 = (reader.result as string).split(',')[1];
+          resolve(base64);
+        };
+        reader.onerror = reject;
+      });
+
+      reader.readAsDataURL(fileWithPreview.file);
+      const pdfBase64 = await fileDataPromise;
+
+      setFiles((prev) =>
+        prev.map((f) =>
+          f.id === fileWithPreview.id ? { ...f, progress: 30 } : f
+        )
+      );
+
+      // Call API
+      const response = await fetch('/api/convert-pdf-to-word', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pdf: pdfBase64,
+        }),
+      });
+
+      setFiles((prev) =>
+        prev.map((f) =>
+          f.id === fileWithPreview.id ? { ...f, progress: 80 } : f
+        )
+      );
+
+      if (!response.ok) {
+        throw new Error(`Conversion failed: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error(result.error || 'Conversion failed');
+      }
+
+      // Convert base64 to blob
+      const docxData = atob(result.docx);
+      const docxBytes = new Uint8Array(docxData.length);
+      for (let i = 0; i < docxData.length; i++) {
+        docxBytes[i] = docxData.charCodeAt(i);
+      }
+      const docxBlob = new Blob([docxBytes], {
+        type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      });
+
+      setFiles((prev) =>
+        prev.map((f) =>
+          f.id === fileWithPreview.id
+            ? {
+                ...f,
+                status: 'completed',
+                progress: 100,
+                docxBlob,
+                metadata: {
+                  ...f.metadata,
+                  docxSize: result.metadata?.docxSize || docxBlob.size,
+                },
+              }
+            : f
+        )
+      );
+
+      // Track in history
+      addToHistory({
+        id: crypto.randomUUID(),
+        tool: 'pdf-to-word',
+        input: fileWithPreview.file.name,
+        output: `Converted successfully`,
+        timestamp: Date.now(),
+      });
+    } catch (error) {
+      console.error('Conversion error:', error);
+      setFiles((prev) =>
+        prev.map((f) =>
+          f.id === fileWithPreview.id
+            ? {
+                ...f,
+                status: 'error',
+                error:
+                  error instanceof Error ? error.message : 'Conversion failed',
+              }
+            : f
+        )
+      );
+    }
+  };
+
+  const convertAll = async () => {
+    setIsConverting(true);
+    setGlobalError(null);
+
+    const pendingFiles = files.filter((f) => f.status === 'pending');
+
+    for (const file of pendingFiles) {
+      await convertFile(file);
+    }
+
+    setIsConverting(false);
+  };
+
+  // Auto-scroll when conversion completes
+  useEffect(() => {
+    const hasCompleted = files.some((f) => f.status === 'completed');
+    if (hasCompleted) {
+      scrollToResult();
+    }
+  }, [files, scrollToResult]);
+
+  const downloadFile = (fileWithPreview: FileWithPreview) => {
+    if (fileWithPreview.docxBlob) {
+      const fileName = fileWithPreview.file.name.replace(
+        /\.pdf$/i,
+        '_converted.docx'
+      );
+      const url = URL.createObjectURL(fileWithPreview.docxBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  const downloadAll = () => {
+    const completedFiles = files.filter(
+      (f) => f.status === 'completed' && f.docxBlob
+    );
+    completedFiles.forEach((file) => {
+      downloadFile(file);
+    });
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Upload Area */}
+      <Card className="p-6">
+        <div
+          {...getRootProps()}
+          className={`cursor-pointer rounded-lg border-2 border-dashed p-8 text-center transition-colors ${
+            isDragActive
+              ? 'border-primary bg-primary/5'
+              : 'border-gray-300 hover:border-primary/50'
+          }`}
+        >
+          <input {...getInputProps()} />
+          <UploadIcon className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+          {isDragActive ? (
+            <p className="text-lg font-medium">Drop PDF files here...</p>
+          ) : (
+            <>
+              <p className="mb-2 text-lg font-medium">
+                Drag & drop PDF files here, or click to select
+              </p>
+              <p className="text-sm text-gray-500">
+                Support for up to 10 files, max 50MB each
+              </p>
+            </>
+          )}
+        </div>
+      </Card>
+
+      {/* Global Error */}
+      {globalError && (
+        <Alert variant="destructive">
+          <AlertTriangleIcon className="h-4 w-4" />
+          <AlertDescription>{globalError}</AlertDescription>
+        </Alert>
+      )}
+
+      {/* Conversion Button */}
+      {files.length > 0 && (
+        <Card className="p-6">
+          <div className="flex gap-2">
+            <Button
+              onClick={convertAll}
+              disabled={
+                isConverting || files.every((f) => f.status !== 'pending')
+              }
+              className="flex-1"
+            >
+              {isConverting ? (
+                <>
+                  <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                  Converting...
+                </>
+              ) : (
+                <>
+                  Convert {files.filter((f) => f.status === 'pending').length}{' '}
+                  File(s)
+                </>
+              )}
+            </Button>
+            {files.some((f) => f.status === 'completed') && (
+              <Button onClick={downloadAll} variant="outline">
+                <DownloadIcon className="mr-2 h-4 w-4" />
+                Download All
+              </Button>
+            )}
+          </div>
+        </Card>
+      )}
+
+      {/* Files List */}
+      <div ref={resultRef}>
+        {files.length > 0 && (
+          <Card className="p-6">
+            <h3 className="mb-4 text-lg font-semibold">
+              Files ({files.length})
+            </h3>
+            <div className="space-y-3">
+              {files.map((fileItem) => (
+                <div
+                  key={fileItem.id}
+                  className="space-y-3 rounded-lg border p-4"
+                >
+                  {/* File Header */}
+                  <div className="flex items-start justify-between">
+                    <div className="flex flex-1 items-start gap-3">
+                      <FileIcon className="mt-1 h-5 w-5 flex-shrink-0 text-red-500" />
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate font-medium">
+                          {fileItem.file.name}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {formatFileSize(fileItem.file.size)}
+                        </p>
+                      </div>
+                    </div>
+                    {fileItem.status === 'pending' && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => removeFile(fileItem.id)}
+                      >
+                        <XIcon className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
+
+                  {/* Progress Bar */}
+                  {fileItem.status === 'converting' && (
+                    <div className="space-y-2">
+                      <Progress value={fileItem.progress} />
+                      <p className="text-sm text-gray-500">
+                        Converting... {fileItem.progress}%
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Success State */}
+                  {fileItem.status === 'completed' && (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-green-600">
+                        <CheckCircleIcon className="h-5 w-5" />
+                        <span className="font-medium">
+                          Conversion Successful
+                        </span>
+                      </div>
+
+                      <Button
+                        onClick={() => downloadFile(fileItem)}
+                        className="w-full"
+                      >
+                        <DownloadIcon className="mr-2 h-4 w-4" />
+                        Download Word Document
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* Error State */}
+                  {fileItem.status === 'error' && (
+                    <Alert variant="destructive">
+                      <AlertTriangleIcon className="h-4 w-4" />
+                      <AlertDescription>
+                        {fileItem.error || 'Conversion failed'}
+                      </AlertDescription>
+                    </Alert>
+                  )}
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
+      </div>
+
+      {/* Tips */}
+      {files.length === 0 && (
+        <Card className="p-6">
+          <h3 className="mb-4 text-lg font-semibold">
+            💡 Tips for Best Results
+          </h3>
+          <ul className="space-y-2 text-sm text-gray-600">
+            <li className="flex gap-2">
+              <span className="text-primary">•</span>
+              <span>
+                High-quality conversion powered by professional algorithms
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary">•</span>
+              <span>
+                Layout, tables, and formatting are preserved automatically
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary">•</span>
+              <span>
+                All conversion happens on our server - fast and secure
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary">•</span>
+              <span>
+                Your files are never stored and are deleted immediately after
+                conversion
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary">•</span>
+              <span>
+                For password-protected PDFs, remove the password before
+                converting
+              </span>
+            </li>
+          </ul>
+        </Card>
+      )}
+    </div>
+  );
+}

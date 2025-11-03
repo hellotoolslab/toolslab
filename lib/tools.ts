@@ -908,6 +908,38 @@ export const tools: Tool[] = [
     searchVolume: 35000,
     label: 'new',
   },
+
+  // PDF Tools
+  {
+    id: 'pdf-to-word',
+    name: 'PDF to Word',
+    description:
+      'Convert PDF files to editable Word (DOCX) format with preserved formatting',
+    icon: '📄',
+    route: '/tools/pdf-to-word',
+    categories: ['data'],
+    keywords: [
+      'pdf',
+      'word',
+      'docx',
+      'convert',
+      'converter',
+      'pdf to word',
+      'pdf to docx',
+      'document',
+      'edit',
+      'format',
+      'export',
+      'transformation',
+      'office',
+      'microsoft word',
+      'libre office',
+      'editable',
+    ],
+    isPopular: true,
+    searchVolume: 12000,
+    label: 'new',
+  },
 ];
 
 // Group tools by category
@@ -975,6 +1007,14 @@ export const categories: Category[] = [
       'Tools for social media content creation, including Instagram, WhatsApp, Twitter, and Facebook.',
     icon: '📱',
     tools: getToolsByCategory('social'),
+  },
+  {
+    id: 'pdf',
+    name: 'PDF Tools',
+    description:
+      'Professional PDF tools for conversion, editing, merging, splitting and optimization.',
+    icon: '📄',
+    tools: getToolsByCategory('pdf'),
   },
 ];
 
