@@ -1,0 +1,92 @@
+{
+  "title": "Base64 a WebP",
+  "description": "Converti stringhe Base64 in immagini WebP",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 a WebP - Convertitore Online Gratuito | ToolsLab",
+    "description": "Converti Base64 in WebP online. Decodifica Base64 e salva come immagine WebP moderna. Convertitore gratuito con anteprima istantanea, supporto trasparenza e analisi compressione."
+  },
+  "tagline": "Converti dati Base64 in immagini WebP moderne istantaneamente con funzionalità avanzate",
+  "pageDescription": "Converti dati codificati in Base64 in immagini WebP con download e anteprima istantanei. Perfetto per sviluppatori che lavorano con formati immagine moderni, API e ottimizzazione web. Supporta sia compressione lossy che lossless, trasparenza (canale alpha) e WebP animate. Conversione sicura basata su browser senza caricamenti su server. Valida l'input Base64, visualizza l'anteprima delle immagini WebP con supporto trasparenza, visualizza tipo di compressione e metadati, e scarica i file convertiti direttamente sul tuo dispositivo.",
+  "instructions": {
+    "title": "Come usare il Convertitore Base64 a WebP",
+    "steps": [
+      {
+        "title": "Incolla la tua stringa Base64",
+        "description": "Copia e incolla i tuoi dati WebP codificati in Base64 nell'area di input. Lo strumento rileva automaticamente i prefissi data URL e li rimuove se presenti."
+      },
+      {
+        "title": "Valida il formato Base64",
+        "description": "Lo strumento valida automaticamente il tuo input Base64 e mostra la dimensione file stimata. Controlla la presenza di header WebP (RIFF/WEBP) validi per garantire l'integrità dei dati."
+      },
+      {
+        "title": "Imposta un nome file personalizzato (opzionale)",
+        "description": "Personalizza il nome del file di output se necessario. Lo strumento genera automaticamente un nome file con timestamp per default per una facile organizzazione."
+      },
+      {
+        "title": "Converti e analizza",
+        "description": "Clicca 'Converti in WebP' per elaborare i dati. Lo strumento mostra informazioni WebP complete incluse dimensioni, tipo di compressione (Lossy/Lossless), presenza canale alpha, stato animazione, e fornisce un'anteprima istantanea con supporto trasparenza."
+      },
+      {
+        "title": "Scarica il tuo WebP",
+        "description": "Clicca 'Scarica WebP' per salvare l'immagine convertita sul tuo dispositivo. L'anteprima mostra correttamente la trasparenza con uno sfondo a scacchi."
+      }
+    ],
+    "features": [
+      "Validazione Base64 in tempo reale con feedback istantaneo",
+      "Supporto per compressione WebP sia lossy che lossless",
+      "Rilevamento e anteprima trasparenza (canale alpha)",
+      "Rilevamento WebP animate",
+      "Analisi tipo di compressione (Lossy/Lossless/Extended)",
+      "Rilevamento e rimozione automatica dei prefissi data URL",
+      "Validazione header RIFF WebP per l'integrità dei dati",
+      "Anteprima istantanea dell'immagine con supporto trasparenza",
+      "Visualizzazione metadati completi (dimensioni, compressione, alpha, animazione)",
+      "Supporto nomi file personalizzati con generazione automatica",
+      "Stima e visualizzazione dimensione file",
+      "Completamente sicuro - tutta l'elaborazione avviene nel tuo browser",
+      "Nessun caricamento dati o archiviazione server",
+      "Funziona offline dopo il caricamento iniziale della pagina"
+    ],
+    "useCases": [
+      "Convertire risposte API contenenti dati WebP Base64",
+      "Estrarre immagini WebP da payload JSON o XML moderni",
+      "Decodificare allegati WebP da progressive web app",
+      "Elaborare dati WebP da API di ottimizzazione immagini",
+      "Debug di formati immagine moderni in sviluppo e testing",
+      "Convertire WebP data URL in file scaricabili",
+      "Recuperare immagini WebP da backup codificati in Base64",
+      "Visualizzare anteprima e validare compressione WebP prima del salvataggio",
+      "Analizzare metadati WebP per decisioni di ottimizzazione",
+      "Convertire formati immagine di nuova generazione per prestazioni web"
+    ],
+    "proTips": [
+      "I dati WebP Base64 validi iniziano con 'UklGR' (signature RIFF) quando codificati",
+      "Lo strumento rimuove automaticamente i prefissi data URL come 'data:image/webp;base64,'",
+      "WebP lossless fornisce qualità migliore, lossy fornisce file più piccoli",
+      "WebP con canale alpha supporta trasparenza come PNG ma con dimensioni minori",
+      "WebP animato combina animazione tipo-GIF con compressione migliore",
+      "L'indicatore tipo compressione aiuta a identificare opportunità di ottimizzazione",
+      "WebP tipicamente risparmia il 25-35% di dimensione file rispetto a JPEG/PNG",
+      "Disattiva la visibilità dell'anteprima per ridurre l'uso della memoria con file grandi"
+    ],
+    "troubleshooting": [
+      "Errore Base64 non valido: Assicurati che l'input contenga solo caratteri Base64 validi (A-Z, a-z, 0-9, +, /, =)",
+      "Nessun header WebP trovato: I dati potrebbero essere Base64 validi ma non un'immagine WebP - controlla la sorgente",
+      "Anteprima non visualizzata: Alcuni browser più vecchi potrebbero non supportare WebP - prova Chrome, Firefox o Safari 14+",
+      "Problemi di memoria: Prova a disattivare l'anteprima per file WebP molto grandi o animati",
+      "Trasparenza non visibile: Lo sfondo a scacchi dovrebbe rendere evidenti le aree trasparenti",
+      "Animazione non riprodotta: Il browser potrebbe non supportare WebP animato o il file potrebbe essere statico"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla input Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia nome file"
+      }
+    ]
+  }
+}

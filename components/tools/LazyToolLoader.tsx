@@ -36,6 +36,7 @@ const toolComponents = {
   'base64-to-gif': lazy(() => import('./implementations/Base64ToGifTool')),
   'base64-to-png': lazy(() => import('./implementations/Base64ToPngTool')),
   'base64-to-jpg': lazy(() => import('./implementations/Base64ToJpgTool')),
+  'base64-to-webp': lazy(() => import('./implementations/Base64ToWebpTool')),
   'hash-generator': lazy(() => import('./implementations/HashGenerator')),
   'uuid-generator': lazy(() => import('./implementations/UuidGenerator')),
   'password-generator': lazy(

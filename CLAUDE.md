@@ -86,13 +86,16 @@ npm update
    - User level (first-time, returning, power)
    - Session data
    - Device info & locale
-13. **✅ AUTO-SCROLL TO RESULT (OBBLIGATORIO)** - Per tool con pulsante di conferma/processing:
+13. **✅ AUTO-SCROLL TO RESULT (OBBLIGATORIO PER TUTTI I NUOVI TOOL)** - Ogni tool con risultato DEVE implementare auto-scroll:
    ```typescript
    import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
    import { useEffect } from 'react';
 
    export default function YourTool() {
-     const { resultRef, scrollToResult } = useScrollToResult();
+     // ⚠️ IMPORTANTE: Usa onlyIfNotVisible: false per scroll affidabile
+     const { resultRef, scrollToResult } = useScrollToResult({
+       onlyIfNotVisible: false,  // ← Forza scroll sempre, ignora visibilità
+     });
      const [output, setOutput] = useState('');
 
      // ✅ PATTERN RACCOMANDATO: Scroll automatico quando output cambia
@@ -118,22 +121,52 @@ npm update
      );
    }
    ```
-   **⚠️ IMPORTANTE**: Usa sempre `useEffect` per lo scroll, non chiamare `scrollToResult()` direttamente dopo `setOutput()` perché React potrebbe non aver ancora aggiornato il DOM.
+   **⚠️ IMPORTANTE**:
+   - Usa sempre `useEffect` per lo scroll, non chiamare `scrollToResult()` direttamente dopo `setOutput()` perché React potrebbe non aver ancora aggiornato il DOM
+   - **Usa SEMPRE `onlyIfNotVisible: false`** per garantire scroll affidabile - il default `true` causa problemi quando il risultato è parzialmente visibile
+
+   **Per tool con caricamento immagini/preview (Base64, etc.):**
+   ```typescript
+   const [imageLoading, setImageLoading] = useState(false);
+   const [imageError, setImageError] = useState(null);
+   const { resultRef, scrollToResult } = useScrollToResult({
+     onlyIfNotVisible: false,
+   });
+
+   // Aspetta che l'immagine sia caricata prima di scrollare
+   useEffect(() => {
+     if (result && result.success && !imageLoading && !imageError) {
+       scrollToResult();
+     }
+   }, [result, imageLoading, imageError, scrollToResult]);
+
+   // Nell'elemento <img>
+   <img
+     onLoad={() => setImageLoading(false)}
+     onError={() => { setImageError('Error'); setImageLoading(false); }}
+   />
+   ```
 
    **Opzioni disponibili:**
    - `behavior`: 'smooth' (default) | 'instant' - Comportamento scroll
    - `delay`: 100ms (default) - Delay prima dello scroll (per aspettare DOM updates)
    - `offset`: 20px (default) - Offset dall'alto dell'elemento
-   - `onlyIfNotVisible`: true (default) - Scrolla solo se elemento non visibile
+   - `onlyIfNotVisible`: **false (RACCOMANDATO)** | true - Forza scroll sempre o solo se non visibile
 
    **Alternative - Hook auto-scroll (più semplice):**
    ```typescript
    const resultRef = useAutoScrollToResult([output], {
-     shouldScroll: !!output
+     shouldScroll: !!output,
+     onlyIfNotVisible: false,  // ← Non dimenticare!
    });
 
    return <div ref={resultRef}>{output && <Result />}</div>;
    ```
+
+   **📋 Tool che HANNO già useScrollToResult:**
+   - ✅ Base64-to-WebP, Base64-to-JPG, Base64-to-PNG, Base64-to-GIF, Base64-to-PDF
+
+   **⚠️ Tool che devono ancora essere aggiornati:** SQL Formatter, JSON Formatter, e altri tool con output lungo
 
 **🚨 ERRORE CRITICO DA EVITARE - Pagine dedicate:**
 ```typescript

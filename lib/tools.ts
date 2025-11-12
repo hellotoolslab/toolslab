@@ -302,6 +302,29 @@ export const tools: Tool[] = [
     label: '',
   },
   {
+    id: 'base64-to-webp',
+    name: 'Base64 to WebP',
+    description:
+      'Convert Base64 encoded data to WebP images with instant preview, transparency support and compression info',
+    icon: '⚡',
+    route: '/tools/base64-to-webp',
+    categories: ['base64', 'data'],
+    keywords: [
+      'base64',
+      'webp',
+      'image',
+      'convert',
+      'download',
+      'decode',
+      'modern',
+      'compression',
+      'lossy',
+      'lossless',
+    ],
+    searchVolume: 3800,
+    label: '',
+  },
+  {
     id: 'excel-filter',
     name: 'Excel Filter Tool',
     description:

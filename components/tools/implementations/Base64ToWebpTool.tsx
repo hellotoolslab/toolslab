@@ -12,31 +12,32 @@ import {
   FileCheck,
   Eye,
   EyeOff,
+  Zap,
 } from 'lucide-react';
 import {
-  base64ToPng,
-  Base64ToPngResult,
+  base64ToWebp,
+  Base64ToWebpResult,
   formatFileSize,
   estimateDecodedSize,
   isValidBase64,
   downloadBlob,
-} from '@/lib/tools/base64-to-png';
+} from '@/lib/tools/base64-to-webp';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 
-interface Base64ToPngToolProps {
+interface Base64ToWebpToolProps {
   categoryColor: string;
 }
 
-export default function Base64ToPngTool({
+export default function Base64ToWebpTool({
   categoryColor,
-}: Base64ToPngToolProps) {
+}: Base64ToWebpToolProps) {
   const [input, setInput] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [result, setResult] = useState<Base64ToPngResult | null>(null);
-  const [fileName, setFileName] = useState('image.png');
+  const [result, setResult] = useState<Base64ToWebpResult | null>(null);
+  const [fileName, setFileName] = useState('image.webp');
   const [validationInfo, setValidationInfo] = useState<{
     isValid: boolean;
     estimatedSize: number;
@@ -52,7 +53,7 @@ export default function Base64ToPngTool({
   } | null>(null);
   const { copied, copy } = useCopy();
   const { trackUse, trackError, trackCustom } =
-    useToolTracking('base64-to-png');
+    useToolTracking('base64-to-webp');
   const { resultRef, scrollToResult } = useScrollToResult({
     onlyIfNotVisible: false,
   });
@@ -118,15 +119,15 @@ export default function Base64ToPngTool({
     setImageDimensions(null);
 
     try {
-      const conversionResult = base64ToPng(input, {
-        fileName: fileName || 'image.png',
+      const conversionResult = base64ToWebp(input, {
+        fileName: fileName || 'image.webp',
       });
 
       setResult(conversionResult);
 
-      if (conversionResult.success && conversionResult.pngBlob) {
+      if (conversionResult.success && conversionResult.webpBlob) {
         // Create preview URL
-        const url = URL.createObjectURL(conversionResult.pngBlob);
+        const url = URL.createObjectURL(conversionResult.webpBlob);
         setPreviewUrl(url);
         setImageLoading(true);
         setImageError(null);
@@ -134,7 +135,7 @@ export default function Base64ToPngTool({
         // Track successful conversion with custom metadata
         trackCustom({
           event: 'tool.use',
-          tool: 'base64-to-png',
+          tool: 'base64-to-webp',
           inputSize: input.length,
           outputSize: conversionResult.fileSize || 0,
           success: true,
@@ -142,8 +143,9 @@ export default function Base64ToPngTool({
             fileSize: conversionResult.fileSize,
             width: conversionResult.metadata?.width,
             height: conversionResult.metadata?.height,
-            colorType: conversionResult.metadata?.colorType,
-            bitDepth: conversionResult.metadata?.bitDepth,
+            hasAlpha: conversionResult.metadata?.hasAlpha,
+            isAnimated: conversionResult.metadata?.isAnimated,
+            compressionType: conversionResult.metadata?.compressionType,
             fileName: fileName,
           },
         });
@@ -167,8 +169,8 @@ export default function Base64ToPngTool({
   }, [input, fileName, trackCustom, trackError, previewUrl]);
 
   const handleDownload = useCallback(() => {
-    if (result?.pngBlob && result.fileName) {
-      downloadBlob(result.pngBlob, result.fileName);
+    if (result?.webpBlob && result.fileName) {
+      downloadBlob(result.webpBlob, result.fileName);
     }
   }, [result]);
 
@@ -176,7 +178,7 @@ export default function Base64ToPngTool({
     setInput('');
     setResult(null);
     setError(null);
-    setFileName('image.png');
+    setFileName('image.webp');
     setValidationInfo(null);
     setImageDimensions(null);
     setImageError(null);
@@ -211,7 +213,7 @@ export default function Base64ToPngTool({
             id="base64-input"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Paste your Base64 encoded PNG data here..."
+            placeholder="Paste your Base64 encoded WebP data here..."
             className="h-48 w-full resize-y rounded-lg border border-gray-200 p-4 font-mono text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             spellCheck={false}
           />
@@ -258,7 +260,7 @@ export default function Base64ToPngTool({
             type="text"
             value={fileName}
             onChange={(e) => setFileName(e.target.value)}
-            placeholder="image.png"
+            placeholder="image.webp"
             className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
           />
         </div>
@@ -277,7 +279,7 @@ export default function Base64ToPngTool({
             ) : (
               <RefreshCw className="h-4 w-4" />
             )}
-            {isProcessing ? 'Converting...' : 'Convert to PNG'}
+            {isProcessing ? 'Converting...' : 'Convert to WebP'}
           </button>
 
           {input && (
@@ -313,7 +315,7 @@ export default function Base64ToPngTool({
           <div className="flex items-center justify-between">
             <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
               <Check className="h-5 w-5 text-green-500" />
-              PNG Created Successfully
+              WebP Created Successfully
             </h3>
             <button
               onClick={() => setShowPreview(!showPreview)}
@@ -352,26 +354,48 @@ export default function Base64ToPngTool({
               </span>
             </div>
             {result.metadata?.width && result.metadata?.height && (
-              <>
-                <div className="flex items-center gap-2 text-sm">
-                  <ImageIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Dimensions:
-                  </span>
-                  <span className="font-medium text-gray-900 dark:text-white">
-                    {result.metadata.width} × {result.metadata.height}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Info className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Color Type:
-                  </span>
-                  <span className="font-medium text-gray-900 dark:text-white">
-                    {result.metadata.colorType}
-                  </span>
-                </div>
-              </>
+              <div className="flex items-center gap-2 text-sm">
+                <ImageIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <span className="text-gray-600 dark:text-gray-400">
+                  Dimensions:
+                </span>
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {result.metadata.width} × {result.metadata.height}
+                </span>
+              </div>
+            )}
+            {result.metadata?.compressionType && (
+              <div className="flex items-center gap-2 text-sm">
+                <Zap className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <span className="text-gray-600 dark:text-gray-400">
+                  Compression:
+                </span>
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {result.metadata.compressionType}
+                </span>
+              </div>
+            )}
+            {result.metadata?.hasAlpha !== undefined && (
+              <div className="flex items-center gap-2 text-sm">
+                <Info className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <span className="text-gray-600 dark:text-gray-400">
+                  Alpha Channel:
+                </span>
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {result.metadata.hasAlpha ? 'Yes' : 'No'}
+                </span>
+              </div>
+            )}
+            {result.metadata?.isAnimated !== undefined && (
+              <div className="flex items-center gap-2 text-sm">
+                <Info className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <span className="text-gray-600 dark:text-gray-400">
+                  Animated:
+                </span>
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {result.metadata.isAnimated ? 'Yes' : 'No'}
+                </span>
+              </div>
             )}
           </div>
 
@@ -405,7 +429,7 @@ export default function Base64ToPngTool({
                 <img
                   key={previewUrl}
                   src={previewUrl}
-                  alt="PNG Preview"
+                  alt="WebP Preview"
                   className="max-h-[400px] max-w-full border border-gray-300 dark:border-gray-600"
                   style={{ display: imageLoading ? 'none' : 'block' }}
                   onLoad={(e) => {
@@ -438,7 +462,7 @@ export default function Base64ToPngTool({
             style={{ backgroundColor: categoryColor }}
           >
             <Download className="h-4 w-4" />
-            Download PNG
+            Download WebP
           </button>
         </div>
       )}
