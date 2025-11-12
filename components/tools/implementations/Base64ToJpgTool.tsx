@@ -55,12 +55,12 @@ export default function Base64ToJpgTool({
     useToolTracking('base64-to-jpg');
   const { resultRef, scrollToResult } = useScrollToResult();
 
-  // Effect per scroll automatico quando c'è un risultato
+  // Effect per scroll automatico quando l'immagine è caricata
   useEffect(() => {
-    if (result && result.success) {
+    if (result && result.success && !imageLoading && !imageError) {
       scrollToResult();
     }
-  }, [result, scrollToResult]);
+  }, [result, imageLoading, imageError, scrollToResult]);
 
   const validateInput = useCallback((base64String: string) => {
     if (!base64String.trim()) {
