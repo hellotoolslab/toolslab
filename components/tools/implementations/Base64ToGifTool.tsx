@@ -5,7 +5,7 @@ import {
   Download,
   Check,
   Loader2,
-  FileText,
+  Image as ImageIcon,
   AlertCircle,
   Info,
   RefreshCw,
@@ -14,29 +14,29 @@ import {
   EyeOff,
 } from 'lucide-react';
 import {
-  base64ToPdf,
-  Base64ToPdfResult,
+  base64ToGif,
+  Base64ToGifResult,
   formatFileSize,
   estimateDecodedSize,
   isValidBase64,
   downloadBlob,
-} from '@/lib/tools/base64-to-pdf';
+} from '@/lib/tools/base64-to-gif';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 
-interface Base64ToPdfToolProps {
+interface Base64ToGifToolProps {
   categoryColor: string;
 }
 
-export default function Base64ToPdfTool({
+export default function Base64ToGifTool({
   categoryColor,
-}: Base64ToPdfToolProps) {
+}: Base64ToGifToolProps) {
   const [input, setInput] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [result, setResult] = useState<Base64ToPdfResult | null>(null);
-  const [fileName, setFileName] = useState('document.pdf');
+  const [result, setResult] = useState<Base64ToGifResult | null>(null);
+  const [fileName, setFileName] = useState('image.gif');
   const [validationInfo, setValidationInfo] = useState<{
     isValid: boolean;
     estimatedSize: number;
@@ -44,19 +44,25 @@ export default function Base64ToPdfTool({
   } | null>(null);
   const [showPreview, setShowPreview] = useState(true);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageError, setImageError] = useState<string | null>(null);
+  const [imageDimensions, setImageDimensions] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
   const { copied, copy } = useCopy();
   const { trackUse, trackError, trackCustom } =
-    useToolTracking('base64-to-pdf');
+    useToolTracking('base64-to-gif');
   const { resultRef, scrollToResult } = useScrollToResult({
     onlyIfNotVisible: false,
   });
 
-  // Effect per scroll automatico quando c'è un risultato di successo
+  // Effect per scroll automatico quando l'immagine è caricata
   useEffect(() => {
-    if (result && result.success) {
+    if (result && result.success && !imageLoading && !imageError) {
       scrollToResult();
     }
-  }, [result, scrollToResult]);
+  }, [result, imageLoading, imageError, scrollToResult]);
 
   const validateInput = useCallback((base64String: string) => {
     if (!base64String.trim()) {
@@ -95,29 +101,43 @@ export default function Base64ToPdfTool({
     setIsProcessing(true);
     setError(null);
 
+    // Pulisci la preview precedente PRIMA di creare la nuova
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      setPreviewUrl(null);
+    }
+
+    // Reset stati della preview
+    setImageLoading(false);
+    setImageError(null);
+    setImageDimensions(null);
+
     try {
-      const conversionResult = base64ToPdf(input, {
+      const conversionResult = base64ToGif(input, {
         fileName,
-        validatePdfHeader: true,
+        validateGifHeader: true,
       });
 
       setResult(conversionResult);
 
-      if (conversionResult.success && conversionResult.pdfBlob) {
-        // Create preview URL for the PDF
-        const url = URL.createObjectURL(conversionResult.pdfBlob);
+      if (conversionResult.success && conversionResult.gifBlob) {
+        // Create preview URL for the GIF
+        const url = URL.createObjectURL(conversionResult.gifBlob);
         setPreviewUrl(url);
+        setImageLoading(true);
+        setImageError(null);
 
         // Track successful conversion with custom metadata
         trackCustom({
           event: 'tool.use',
-          tool: 'base64-to-pdf',
+          tool: 'base64-to-gif',
           inputSize: input.length,
           outputSize: conversionResult.fileSize || 0,
           success: true,
           metadata: {
             fileSize: conversionResult.fileSize,
-            isPdf: conversionResult.metadata?.isPdf,
+            isGif: conversionResult.metadata?.isGif,
+            gifVersion: conversionResult.metadata?.version,
             fileName: fileName,
           },
         });
@@ -138,11 +158,11 @@ export default function Base64ToPdfTool({
     } finally {
       setIsProcessing(false);
     }
-  }, [input, fileName]);
+  }, [input, fileName, trackCustom, trackError, previewUrl]);
 
   const handleDownload = useCallback(() => {
-    if (result?.pdfBlob && result.fileName) {
-      downloadBlob(result.pdfBlob, result.fileName);
+    if (result?.gifBlob && result.fileName) {
+      downloadBlob(result.gifBlob, result.fileName);
     }
   }, [result]);
 
@@ -156,6 +176,9 @@ export default function Base64ToPdfTool({
     setError(null);
     setValidationInfo(null);
     setPreviewUrl(null);
+    setImageLoading(false);
+    setImageError(null);
+    setImageDimensions(null);
   }, [previewUrl]);
 
   // Validate input on change
@@ -165,9 +188,9 @@ export default function Base64ToPdfTool({
 
   // Auto-generate filename with timestamp
   useEffect(() => {
-    if (!fileName || fileName === 'document.pdf') {
+    if (!fileName || fileName === 'image.gif') {
       const timestamp = new Date().toISOString().split('T')[0];
-      setFileName(`document_${timestamp}.pdf`);
+      setFileName(`image_${timestamp}.gif`);
     }
   }, [fileName]);
 
@@ -200,7 +223,7 @@ export default function Base64ToPdfTool({
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Paste your Base64 encoded PDF data here..."
+          placeholder="Paste your Base64 encoded GIF data here..."
           className="min-h-[200px] w-full rounded-md border border-gray-300 p-3 font-mono text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
           spellCheck={false}
         />
@@ -245,7 +268,7 @@ export default function Base64ToPdfTool({
             type="text"
             value={fileName}
             onChange={(e) => setFileName(e.target.value)}
-            placeholder="document.pdf"
+            placeholder="image.gif"
             className="w-full max-w-sm rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
           />
         </div>
@@ -264,9 +287,9 @@ export default function Base64ToPdfTool({
             {isProcessing ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <FileText className="h-4 w-4" />
+              <ImageIcon className="h-4 w-4" />
             )}
-            {isProcessing ? 'Converting...' : 'Convert to PDF'}
+            {isProcessing ? 'Converting...' : 'Convert to GIF'}
           </button>
         </div>
       </div>
@@ -289,7 +312,7 @@ export default function Base64ToPdfTool({
         >
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-              PDF Ready for Download
+              GIF Ready for Download
             </h2>
             <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
               <Check className="h-4 w-4" />
@@ -297,7 +320,7 @@ export default function Base64ToPdfTool({
             </div>
           </div>
 
-          {/* PDF Information */}
+          {/* GIF Information */}
           <div className="mb-4 space-y-2 rounded-md bg-gray-50 p-4 dark:bg-gray-700">
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
@@ -324,17 +347,17 @@ export default function Base64ToPdfTool({
               <div className="mt-3 space-y-1 text-sm">
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-gray-700 dark:text-gray-300">
-                    PDF validation:
+                    GIF validation:
                   </span>
-                  {result.metadata.isPdf ? (
+                  {result.metadata.isGif ? (
                     <span className="flex items-center gap-1 text-green-600 dark:text-green-400">
                       <Check className="h-3 w-3" />
-                      Valid PDF header
+                      Valid {result.metadata.version} format
                     </span>
                   ) : (
                     <span className="flex items-center gap-1 text-yellow-600 dark:text-yellow-400">
                       <AlertCircle className="h-3 w-3" />
-                      No PDF header found
+                      No GIF header found
                     </span>
                   )}
                 </div>
@@ -349,7 +372,7 @@ export default function Base64ToPdfTool({
               className="inline-flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
             >
               <Download className="h-4 w-4" />
-              Download PDF
+              Download GIF
             </button>
 
             {/* Copy filename button for convenience */}
@@ -360,19 +383,26 @@ export default function Base64ToPdfTool({
               {copied ? (
                 <Check className="h-4 w-4" />
               ) : (
-                <FileText className="h-4 w-4" />
+                <ImageIcon className="h-4 w-4" />
               )}
               {copied ? 'Copied!' : 'Copy filename'}
             </button>
           </div>
 
-          {/* PDF Preview */}
+          {/* GIF Preview */}
           {previewUrl && (
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  PDF Preview
-                </h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    GIF Preview
+                  </h3>
+                  {!imageLoading && !imageError && (
+                    <span className="text-xs text-green-600 dark:text-green-400">
+                      ✓ Ready
+                    </span>
+                  )}
+                </div>
                 <button
                   onClick={() => setShowPreview(!showPreview)}
                   className="flex items-center gap-1 rounded-md bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
@@ -392,13 +422,71 @@ export default function Base64ToPdfTool({
               </div>
 
               {showPreview && (
-                <div className="overflow-hidden rounded-md border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700">
-                  <embed
-                    src={previewUrl}
-                    type="application/pdf"
-                    className="h-[600px] w-full"
-                    title="PDF Preview"
-                  />
+                <div className="overflow-hidden rounded-md border border-gray-300 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                  {imageLoading && !imageError && (
+                    <div className="flex items-center justify-center py-8">
+                      <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                      <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                        Loading preview...
+                      </span>
+                    </div>
+                  )}
+
+                  {imageError && (
+                    <div className="flex items-center justify-center gap-2 py-8 text-red-600 dark:text-red-400">
+                      <AlertCircle className="h-5 w-5" />
+                      <span className="text-sm">{imageError}</span>
+                    </div>
+                  )}
+
+                  <div className={imageLoading ? 'hidden' : 'block'}>
+                    {/* Mostra dimensioni immagine */}
+                    {imageDimensions && (
+                      <p className="mb-2 text-center text-xs text-gray-600 dark:text-gray-400">
+                        Image size: {imageDimensions.width} ×{' '}
+                        {imageDimensions.height} pixels
+                      </p>
+                    )}
+
+                    {/* Container con sfondo a scacchiera per trasparenze */}
+                    <div
+                      className="flex justify-center p-4"
+                      style={{
+                        backgroundImage:
+                          'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
+                        backgroundSize: '20px 20px',
+                        backgroundPosition:
+                          '0 0, 0 10px, 10px -10px, -10px 0px',
+                      }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        key={previewUrl}
+                        src={previewUrl}
+                        alt="GIF Preview"
+                        className="border-2 border-gray-300 shadow-lg dark:border-gray-600"
+                        style={{
+                          maxHeight: '500px',
+                          maxWidth: '100%',
+                          minWidth: '50px',
+                          minHeight: '50px',
+                          imageRendering: 'pixelated',
+                        }}
+                        onLoad={(e) => {
+                          const img = e.currentTarget;
+                          setImageDimensions({
+                            width: img.naturalWidth,
+                            height: img.naturalHeight,
+                          });
+                          setImageLoading(false);
+                        }}
+                        onError={() => {
+                          setImageLoading(false);
+                          setImageError('Failed to load GIF preview');
+                        }}
+                      />
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -414,19 +502,21 @@ export default function Base64ToPdfTool({
         </h3>
         <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-200">
           <li>
-            • Valid PDF Base64 data should start with &quot;JVBERi0&quot; when
-            decoded
+            • Valid GIF Base64 data should start with &quot;R0lGOD&quot; when
+            encoded
           </li>
           <li>
             • Remove any data URL prefixes like
-            &quot;data:application/pdf;base64,&quot; before pasting
+            &quot;data:image/gif;base64,&quot; before pasting
           </li>
           <li>
-            • Large files may take longer to process - be patient with big PDFs
+            • Both GIF87a and GIF89a formats are supported (including animated
+            GIFs)
           </li>
           <li>
-            • The tool validates PDF headers to ensure you have valid PDF data
+            • The tool validates GIF headers to ensure you have valid GIF data
           </li>
+          <li>• Use the preview to verify your GIF before downloading</li>
         </ul>
       </div>
     </div>

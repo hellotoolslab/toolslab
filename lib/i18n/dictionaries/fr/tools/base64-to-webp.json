@@ -1,0 +1,92 @@
+{
+  "title": "Base64 vers WebP",
+  "description": "Convertissez des chaînes Base64 en images WebP",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 vers WebP - Convertisseur en Ligne Gratuit | ToolsLab",
+    "description": "Convertissez Base64 en WebP en ligne. Décodez Base64 et enregistrez en image WebP moderne. Convertisseur gratuit avec aperçu instantané, support de transparence et analyse de compression."
+  },
+  "tagline": "Convertissez instantanément des données Base64 en images WebP modernes avec des fonctionnalités avancées",
+  "pageDescription": "Convertissez des données encodées en Base64 en images WebP avec téléchargement et aperçu instantanés. Parfait pour les développeurs travaillant avec des formats d'images modernes, des APIs et l'optimisation web. Prend en charge la compression lossy et lossless, la transparence (canal alpha) et le WebP animé. Conversion sécurisée basée sur le navigateur sans téléchargements sur serveur. Validez l'entrée Base64, prévisualisez les images WebP avec support de transparence, affichez le type de compression et les métadonnées, et téléchargez les fichiers convertis directement sur votre appareil.",
+  "instructions": {
+    "title": "Comment utiliser le Convertisseur Base64 vers WebP",
+    "steps": [
+      {
+        "title": "Collez votre chaîne Base64",
+        "description": "Copiez et collez vos données WebP encodées en Base64 dans la zone de saisie. L'outil détecte automatiquement les préfixes d'URL de données et les supprime s'ils sont présents."
+      },
+      {
+        "title": "Validez le format Base64",
+        "description": "L'outil valide automatiquement votre entrée Base64 et affiche la taille de fichier estimée. Il vérifie les en-têtes WebP (RIFF/WEBP) valides pour garantir l'intégrité des données."
+      },
+      {
+        "title": "Définissez un nom de fichier personnalisé (optionnel)",
+        "description": "Personnalisez le nom du fichier de sortie si nécessaire. L'outil génère automatiquement un nom de fichier horodaté par défaut pour une organisation facile."
+      },
+      {
+        "title": "Convertissez et analysez",
+        "description": "Cliquez sur 'Convertir en WebP' pour traiter les données. L'outil affiche des informations WebP complètes, y compris les dimensions, le type de compression (Lossy/Lossless), la présence de canal alpha, l'état d'animation, et fournit un aperçu instantané avec support de transparence."
+      },
+      {
+        "title": "Téléchargez votre WebP",
+        "description": "Cliquez sur 'Télécharger WebP' pour enregistrer l'image convertie sur votre appareil. L'aperçu affiche correctement la transparence avec un fond en damier."
+      }
+    ],
+    "features": [
+      "Validation Base64 en temps réel avec retour instantané",
+      "Support de la compression WebP lossy et lossless",
+      "Détection et aperçu de transparence (canal alpha)",
+      "Détection de WebP animé",
+      "Analyse du type de compression (Lossy/Lossless/Extended)",
+      "Détection et suppression automatiques des préfixes d'URL de données",
+      "Validation d'en-tête RIFF WebP pour l'intégrité des données",
+      "Aperçu instantané de l'image avec support de transparence",
+      "Affichage complet des métadonnées (dimensions, compression, alpha, animation)",
+      "Support de noms de fichiers personnalisés avec génération automatique",
+      "Estimation et affichage de la taille de fichier",
+      "Entièrement sécurisé - tout le traitement se fait dans votre navigateur",
+      "Aucun téléchargement de données ni stockage sur serveur",
+      "Fonctionne hors ligne après le chargement initial de la page"
+    ],
+    "useCases": [
+      "Convertir les réponses API contenant des données WebP Base64",
+      "Extraire des images WebP de charges utiles JSON ou XML modernes",
+      "Décoder des pièces jointes WebP de Progressive Web Apps",
+      "Traiter des données WebP d'APIs d'optimisation d'images",
+      "Déboguer des formats d'image modernes en développement et tests",
+      "Convertir des WebP d'URL de données en fichiers téléchargeables",
+      "Récupérer des images WebP de sauvegardes encodées en Base64",
+      "Prévisualiser et valider la compression WebP avant d'enregistrer",
+      "Analyser les métadonnées WebP pour les décisions d'optimisation",
+      "Convertir des formats d'image de nouvelle génération pour la performance web"
+    ],
+    "proTips": [
+      "Les données WebP Base64 valides commencent par 'UklGR' (signature RIFF) lorsqu'elles sont encodées",
+      "L'outil supprime automatiquement les préfixes d'URL de données comme 'data:image/webp;base64,'",
+      "Le WebP lossless offre une meilleure qualité, le lossy offre des fichiers plus petits",
+      "Le WebP avec canal alpha prend en charge la transparence comme PNG mais avec des tailles plus petites",
+      "Le WebP animé combine une animation de type GIF avec une meilleure compression",
+      "L'indicateur de type de compression aide à identifier les opportunités d'optimisation",
+      "Le WebP économise généralement 25-35% de taille de fichier par rapport à JPEG/PNG",
+      "Désactivez la visibilité de l'aperçu pour réduire l'utilisation de la mémoire avec les gros fichiers"
+    ],
+    "troubleshooting": [
+      "Erreur Base64 invalide: Assurez-vous que l'entrée contient uniquement des caractères Base64 valides (A-Z, a-z, 0-9, +, /, =)",
+      "Aucun en-tête WebP trouvé: Les données peuvent être du Base64 valide mais pas une image WebP - vérifiez la source",
+      "Aperçu non affiché: Certains navigateurs plus anciens peuvent ne pas prendre en charge WebP - essayez Chrome, Firefox ou Safari 14+",
+      "Problèmes de mémoire: Essayez de désactiver l'aperçu pour les très gros fichiers WebP ou animés",
+      "Transparence non visible: Le fond en damier devrait rendre les zones transparentes évidentes",
+      "Animation non lue: Le navigateur peut ne pas prendre en charge le WebP animé ou le fichier peut être statique"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entrée Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le nom de fichier"
+      }
+    ]
+  }
+}

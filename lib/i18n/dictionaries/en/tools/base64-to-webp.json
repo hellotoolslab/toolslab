@@ -1,0 +1,92 @@
+{
+  "title": "Base64 to WebP",
+  "description": "Convert Base64 strings to WebP images",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 to WebP - Free Online Converter | ToolsLab",
+    "description": "Convert Base64 to WebP online. Decode Base64 and save as modern WebP image. Free converter with instant preview, transparency support and compression analysis."
+  },
+  "tagline": "Convert Base64 data to modern WebP images instantly with advanced features",
+  "pageDescription": "Convert Base64-encoded data to WebP images with instant download and preview. Perfect for developers working with modern image formats, APIs and web optimization. Supports both lossy and lossless compression, transparency (alpha channel), and animated WebP. Secure browser-based conversion without server uploads. Validate Base64 input, preview WebP images with transparency support, view compression type and metadata, and download converted files directly to your device.",
+  "instructions": {
+    "title": "How to use Base64 to WebP Converter",
+    "steps": [
+      {
+        "title": "Paste your Base64 string",
+        "description": "Copy and paste your Base64-encoded WebP data into the input area. The tool automatically detects data URL prefixes and removes them if present."
+      },
+      {
+        "title": "Validate Base64 format",
+        "description": "The tool automatically validates your Base64 input and shows estimated file size. It checks for valid WebP (RIFF/WEBP) headers to ensure data integrity."
+      },
+      {
+        "title": "Set custom filename (optional)",
+        "description": "Customize the output filename if needed. The tool auto-generates a timestamped filename by default for easy organization."
+      },
+      {
+        "title": "Convert and analyze",
+        "description": "Click 'Convert to WebP' to process the data. The tool displays comprehensive WebP information including dimensions, compression type (Lossy/Lossless), alpha channel presence, animation status, and provides an instant preview with transparency support."
+      },
+      {
+        "title": "Download your WebP",
+        "description": "Click 'Download WebP' to save the converted image to your device. The preview shows transparency correctly with a checkered background."
+      }
+    ],
+    "features": [
+      "Real-time Base64 validation with instant feedback",
+      "Support for both lossy and lossless WebP compression",
+      "Transparency (alpha channel) detection and preview",
+      "Animated WebP detection",
+      "Compression type analysis (Lossy/Lossless/Extended)",
+      "Automatic data URL prefix detection and removal",
+      "WebP RIFF header validation for data integrity",
+      "Instant image preview with transparency support",
+      "Comprehensive metadata display (dimensions, compression, alpha, animation)",
+      "Custom filename support with auto-generation",
+      "File size estimation and display",
+      "Completely secure - all processing happens in your browser",
+      "No data uploads or server storage",
+      "Works offline after initial page load"
+    ],
+    "useCases": [
+      "Convert API responses containing Base64 WebP data",
+      "Extract WebP images from modern JSON or XML payloads",
+      "Decode WebP attachments from progressive web apps",
+      "Process WebP data from image optimization APIs",
+      "Debug modern image formats in development and testing",
+      "Convert data URL WebPs to downloadable files",
+      "Recover WebP images from Base64-encoded backups",
+      "Preview and validate WebP compression before saving",
+      "Analyze WebP metadata for optimization decisions",
+      "Convert next-gen image formats for web performance"
+    ],
+    "proTips": [
+      "Valid WebP Base64 data starts with 'UklGR' (RIFF signature) when encoded",
+      "The tool automatically strips data URL prefixes like 'data:image/webp;base64,'",
+      "Lossless WebP provides better quality, lossy provides smaller files",
+      "WebP with alpha channel supports transparency like PNG but with smaller sizes",
+      "Animated WebP combines GIF-like animation with better compression",
+      "Compression type indicator helps identify optimization opportunities",
+      "WebP typically saves 25-35% file size compared to JPEG/PNG",
+      "Toggle preview visibility to reduce memory usage for large files"
+    ],
+    "troubleshooting": [
+      "Invalid Base64 error: Ensure input contains only valid Base64 characters (A-Z, a-z, 0-9, +, /, =)",
+      "No WebP header found: The data may be valid Base64 but not a WebP image - check the source",
+      "Preview not showing: Some older browsers may not support WebP - try Chrome, Firefox or Safari 14+",
+      "Memory issues: Try toggling preview off for very large or animated WebP files",
+      "Transparency not visible: The checkered background should make transparent areas obvious",
+      "Animation not playing: Browser may not support animated WebP or file may be static"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste Base64 input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy filename"
+      }
+    ]
+  }
+}

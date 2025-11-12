@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Base64 to GIF Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            font-family: monospace;
+            padding: 10px;
+        }
+        button {
+            background: #0070f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #preview {
+            margin-top: 20px;
+            border: 2px solid #ddd;
+            padding: 20px;
+            min-height: 100px;
+        }
+        img {
+            max-width: 100%;
+            border: 1px solid #ccc;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Base64 to GIF Converter</h1>
+    <p>Paste your Base64-encoded GIF data below and click "Convert":</p>
+
+    <textarea id="input" placeholder="Paste Base64 GIF data here..."></textarea>
+
+    <div>
+        <button onclick="convertGif()">Convert to GIF</button>
+        <button onclick="downloadGif()" id="downloadBtn" disabled>Download GIF</button>
+        <button onclick="clearAll()">Clear</button>
+    </div>
+
+    <div id="status"></div>
+    <div id="preview"></div>
+
+    <script>
+        let gifBlob = null;
+        let fileName = 'converted.gif';
+
+        function isValidBase64(str) {
+            if (!str || str.length === 0) return false;
+            const cleanStr = str.replace(/\s+/g, '');
+            const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
+            return base64Regex.test(cleanStr);
+        }
+
+        function convertGif() {
+            const input = document.getElementById('input').value.trim();
+            const statusDiv = document.getElementById('status');
+            const previewDiv = document.getElementById('preview');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            if (!input) {
+                statusDiv.innerHTML = '<p class="error">Please paste Base64 data</p>';
+                return;
+            }
+
+            try {
+                let cleanBase64 = input;
+
+                // Remove data URL prefix if present
+                if (cleanBase64.startsWith('data:')) {
+                    const commaIndex = cleanBase64.indexOf(',');
+                    if (commaIndex !== -1) {
+                        cleanBase64 = cleanBase64.substring(commaIndex + 1);
+                    }
+                }
+
+                // Remove whitespace
+                cleanBase64 = cleanBase64.replace(/\s+/g, '');
+
+                // Validate Base64
+                if (!isValidBase64(cleanBase64)) {
+                    statusDiv.innerHTML = '<p class="error">Invalid Base64 format!</p>';
+                    return;
+                }
+
+                // Decode Base64 to binary data
+                const binaryString = atob(cleanBase64);
+                const bytes = new Uint8Array(binaryString.length);
+                for (let i = 0; i < binaryString.length; i++) {
+                    bytes[i] = binaryString.charCodeAt(i) & 0xff;
+                }
+
+                // Check GIF header
+                const header = String.fromCharCode(...bytes.slice(0, 6));
+                const isGif = header.startsWith('GIF87a') || header.startsWith('GIF89a');
+
+                if (!isGif) {
+                    statusDiv.innerHTML = `<p class="error">Warning: Data doesn't appear to be a GIF (header: ${header})</p>`;
+                }
+
+                // Create Blob
+                gifBlob = new Blob([bytes], { type: 'image/gif' });
+
+                // Create preview
+                const url = URL.createObjectURL(gifBlob);
+                previewDiv.innerHTML = `
+                    <div class="success">
+                        <p><strong>✓ Conversion successful!</strong></p>
+                        <p>File size: ${bytes.length} bytes</p>
+                        <p>Header: ${header}</p>
+                        <p>Preview:</p>
+                        <img src="${url}" alt="GIF Preview" />
+                    </div>
+                `;
+
+                statusDiv.innerHTML = '<p class="success">✓ GIF created successfully!</p>';
+                downloadBtn.disabled = false;
+
+            } catch (error) {
+                statusDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+                console.error('Conversion error:', error);
+            }
+        }
+
+        function downloadGif() {
+            if (!gifBlob) {
+                alert('Please convert the data first!');
+                return;
+            }
+
+            const url = URL.createObjectURL(gifBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('status').innerHTML = '';
+            document.getElementById('preview').innerHTML = '';
+            document.getElementById('downloadBtn').disabled = true;
+            gifBlob = null;
+        }
+
+        // Test with sample data
+        function loadSampleGif() {
+            document.getElementById('input').value = 'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        }
+    </script>
+
+    <hr style="margin-top: 40px;">
+    <p style="color: #666;">
+        <small>
+            <button onclick="loadSampleGif()">Load Sample GIF</button> (1x1 transparent pixel)
+        </small>
+    </p>
+</body>
+</html>

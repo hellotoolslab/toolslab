@@ -1,0 +1,88 @@
+{
+  "title": "Base64 zu PNG",
+  "description": "Konvertieren Sie Base64-Strings in PNG-Bilder",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 zu PNG - Kostenloser Online-Konverter | ToolsLab",
+    "description": "Konvertieren Sie Base64 zu PNG online. Dekodieren Sie Base64 und speichern Sie als PNG-Bild. Kostenloses Konverter-Tool mit sofortiger Vorschau und Metadaten-Anzeige."
+  },
+  "tagline": "Konvertieren Sie Base64-Daten sofort mit Vorschau in PNG-Bilder",
+  "pageDescription": "Konvertieren Sie Base64-kodierte Daten in PNG-Bilder mit sofortigem Download und Vorschau. Perfekt für Entwickler, die mit Bild-APIs, E-Mail-Anhängen und Datenverarbeitungs-Workflows arbeiten. Unterstützt alle PNG-Farbtypen einschließlich Transparenz. Sichere browserbasierte Konvertierung ohne Server-Uploads. Validieren Sie Base64-Eingaben, zeigen Sie PNG-Bilder mit Transparenzunterstützung in der Vorschau an, sehen Sie Bildabmessungen und Metadaten, und laden Sie konvertierte Dateien direkt auf Ihr Gerät herunter.",
+  "instructions": {
+    "title": "So verwenden Sie den Base64 zu PNG Konverter",
+    "steps": [
+      {
+        "title": "Fügen Sie Ihre Base64-Zeichenfolge ein",
+        "description": "Kopieren und fügen Sie Ihre Base64-kodierten PNG-Daten in den Eingabebereich ein. Das Tool erkennt automatisch Daten-URL-Präfixe und entfernt sie, falls vorhanden."
+      },
+      {
+        "title": "Validieren Sie das Base64-Format",
+        "description": "Das Tool validiert automatisch Ihre Base64-Eingabe und zeigt die geschätzte Dateigröße an. Es überprüft gültige PNG-Header, um die Datenintegrität sicherzustellen."
+      },
+      {
+        "title": "Legen Sie einen benutzerdefinierten Dateinamen fest (optional)",
+        "description": "Passen Sie den Ausgabedateinamen bei Bedarf an. Das Tool generiert standardmäßig automatisch einen Dateinamen mit Zeitstempel für eine einfache Organisation."
+      },
+      {
+        "title": "Konvertieren und Vorschau anzeigen",
+        "description": "Klicken Sie auf 'In PNG konvertieren', um die Daten zu verarbeiten. Das Tool zeigt PNG-Informationen einschließlich Abmessungen, Farbtyp, Bittiefe an und bietet eine sofortige Vorschau mit Transparenzunterstützung vor dem Herunterladen."
+      },
+      {
+        "title": "Laden Sie Ihr PNG herunter",
+        "description": "Klicken Sie auf 'PNG herunterladen', um das konvertierte Bild auf Ihr Gerät zu speichern. Die Vorschau mit Schachbrett-Hintergrund zeigt Transparenz korrekt an."
+      }
+    ],
+    "features": [
+      "Echtzeit-Base64-Validierung mit sofortigem Feedback",
+      "Unterstützung für alle PNG-Farbtypen (Graustufen, Truecolor, Indiziert, mit/ohne Alpha)",
+      "Transparenz-Vorschau mit Schachbrett-Hintergrund",
+      "Automatische Erkennung und Entfernung von Daten-URL-Präfixen",
+      "PNG-Header-Validierung für Datenintegrität",
+      "Sofortige Bildvorschau vor dem Download",
+      "Anzeige von Bildabmessungen und Metadaten (Breite, Höhe, Farbtyp, Bittiefe)",
+      "Unterstützung benutzerdefinierter Dateinamen mit automatischer Generierung",
+      "Schätzung und Anzeige der Dateigröße",
+      "Vollständig sicher - alle Verarbeitung erfolgt in Ihrem Browser",
+      "Keine Daten-Uploads oder Server-Speicherung",
+      "Funktioniert offline nach dem ersten Laden der Seite"
+    ],
+    "useCases": [
+      "Konvertieren Sie API-Antworten mit Base64-PNG-Daten",
+      "Extrahieren Sie PNG-Bilder aus JSON- oder XML-Payloads",
+      "Dekodieren Sie PNG-Anhänge aus E-Mail- oder Messaging-APIs",
+      "Verarbeiten Sie PNG-Daten aus Web-Scraping- oder Automatisierungs-Tools",
+      "Debuggen Sie Bilddaten in Entwicklung und Tests",
+      "Konvertieren Sie Daten-URL-PNGs in herunterladbare Dateien",
+      "Stellen Sie PNG-Bilder aus Base64-kodierten Backups wieder her",
+      "Vorschau und Validierung der PNG-Transparenz vor dem Speichern",
+      "Extrahieren Sie PNG-Screenshots aus Testautomatisierungs-Ergebnissen"
+    ],
+    "proTips": [
+      "Gültige PNG-Base64-Daten beginnen mit 'iVBORw0KG', wenn sie kodiert sind",
+      "Das Tool entfernt automatisch Daten-URL-Präfixe wie 'data:image/png;base64,'",
+      "Der Schachbrett-Hintergrund in der Vorschau zeigt Transparenz in PNG-Bildern",
+      "Metadaten zeigen den Farbtyp: Graustufen, Truecolor oder mit Alpha-Kanal",
+      "Die Bittiefe gibt die Farbpräzision an (typischerweise 8 oder 16 Bit pro Kanal)",
+      "Das PNG-Format ist verlustfrei und erhält die gesamte Bildqualität",
+      "Deaktivieren Sie die Vorschau-Sichtbarkeit, um den Speicherverbrauch bei großen Dateien zu reduzieren"
+    ],
+    "troubleshooting": [
+      "Ungültiger Base64-Fehler: Stellen Sie sicher, dass die Eingabe nur gültige Base64-Zeichen enthält (A-Z, a-z, 0-9, +, /, =)",
+      "Kein PNG-Header gefunden: Die Daten könnten gültiges Base64 sein, aber kein PNG-Bild - überprüfen Sie die Quelle",
+      "Vorschau wird nicht angezeigt: Überprüfen Sie die Browser-Konsole auf Fehler oder versuchen Sie ein kleineres Bild",
+      "Speicherprobleme: Versuchen Sie, die Vorschau für sehr große PNG-Dateien zu deaktivieren",
+      "Transparenz nicht sichtbar: Der Schachbrett-Hintergrund sollte transparente Bereiche deutlich machen",
+      "Falsche Farben: Stellen Sie sicher, dass die Base64-Daten beim Kopieren/Einfügen nicht beschädigt wurden"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Base64-Eingabe einfügen"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Dateinamen kopieren"
+      }
+    ]
+  }
+}
