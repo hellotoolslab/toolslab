@@ -55,6 +55,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'base64-to-gif',
     'base64-to-png',
     'base64-to-jpg',
+    'base64-to-webp',
     'text-diff',
     'markdown-preview',
     'regex-tester',
