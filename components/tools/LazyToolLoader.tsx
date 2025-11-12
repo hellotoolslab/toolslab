@@ -33,6 +33,9 @@ const toolComponents = {
   'json-formatter': lazy(() => import('./implementations/JsonFormatter')),
   'base64-encode': lazy(() => import('./implementations/Base64Tool')),
   'base64-to-pdf': lazy(() => import('./implementations/Base64ToPdfTool')),
+  'base64-to-gif': lazy(() => import('./implementations/Base64ToGifTool')),
+  'base64-to-png': lazy(() => import('./implementations/Base64ToPngTool')),
+  'base64-to-jpg': lazy(() => import('./implementations/Base64ToJpgTool')),
   'hash-generator': lazy(() => import('./implementations/HashGenerator')),
   'uuid-generator': lazy(() => import('./implementations/UuidGenerator')),
   'password-generator': lazy(

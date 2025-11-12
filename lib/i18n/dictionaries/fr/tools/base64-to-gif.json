@@ -1,0 +1,86 @@
+{
+  "title": "Base64 vers GIF",
+  "description": "Convertir des chaînes Base64 en images GIF",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 vers GIF - Convertisseur en ligne gratuit | ToolsLab",
+    "description": "Convertir Base64 en GIF en ligne. Décoder Base64 et enregistrer en tant qu'image GIF. Outil de conversion gratuit avec support de prévisualisation pour les GIF animés."
+  },
+  "tagline": "Convertissez instantanément des données Base64 en images GIF avec prévisualisation",
+  "pageDescription": "Convertissez des données encodées en Base64 en images GIF avec téléchargement et prévisualisation instantanés. Parfait pour les développeurs travaillant avec des API d'images, des pièces jointes d'e-mails et des flux de traitement de données. Prend en charge les formats GIF87a et GIF89a, y compris les GIF animés. Conversion sécurisée basée sur le navigateur sans téléchargements vers le serveur. Validez l'entrée Base64, prévisualisez les images GIF et téléchargez les fichiers convertis directement sur votre appareil.",
+  "instructions": {
+    "title": "Comment utiliser le Convertisseur Base64 vers GIF",
+    "steps": [
+      {
+        "title": "Collez votre chaîne Base64",
+        "description": "Copiez et collez vos données GIF encodées en Base64 dans la zone de saisie. L'outil détecte automatiquement les préfixes d'URL de données et les supprime s'ils sont présents."
+      },
+      {
+        "title": "Valider le format Base64",
+        "description": "L'outil valide automatiquement votre entrée Base64 et affiche la taille de fichier estimée. Il vérifie les en-têtes GIF valides (GIF87a ou GIF89a) pour garantir l'intégrité des données."
+      },
+      {
+        "title": "Définir un nom de fichier personnalisé (facultatif)",
+        "description": "Personnalisez le nom du fichier de sortie si nécessaire. L'outil génère automatiquement un nom de fichier horodaté par défaut pour une organisation facile."
+      },
+      {
+        "title": "Convertir et prévisualiser",
+        "description": "Cliquez sur 'Convertir en GIF' pour traiter les données. L'outil affiche les informations GIF, y compris la version, la taille du fichier et fournit un aperçu instantané de l'image avant le téléchargement."
+      },
+      {
+        "title": "Télécharger votre GIF",
+        "description": "Cliquez sur 'Télécharger GIF' pour enregistrer l'image convertie sur votre appareil. L'aperçu garantit que vous téléchargez la bonne image."
+      }
+    ],
+    "features": [
+      "Validation Base64 en temps réel avec retour instantané",
+      "Support des formats GIF87a et GIF89a",
+      "Support des GIF animés avec prévisualisation complète de l'animation",
+      "Détection et suppression automatiques des préfixes d'URL de données",
+      "Validation de l'en-tête GIF pour l'intégrité des données",
+      "Aperçu instantané de l'image avant le téléchargement",
+      "Support des noms de fichiers personnalisés avec génération automatique",
+      "Estimation de la taille du fichier et affichage des métadonnées",
+      "Entièrement sécurisé - tout le traitement se fait dans votre navigateur",
+      "Aucun téléchargement de données ni stockage sur serveur",
+      "Fonctionne hors ligne après le chargement initial de la page"
+    ],
+    "useCases": [
+      "Convertir les réponses d'API contenant des données GIF Base64",
+      "Extraire des images GIF de charges utiles JSON ou XML",
+      "Décoder les pièces jointes GIF des e-mails ou des API de messagerie",
+      "Traiter des données GIF à partir d'outils de web scraping ou d'automatisation",
+      "Déboguer les données d'image en développement et en tests",
+      "Convertir les GIF data URL en fichiers téléchargeables",
+      "Récupérer des images GIF à partir de sauvegardes encodées en Base64",
+      "Prévisualiser et valider les données GIF avant de les enregistrer"
+    ],
+    "proTips": [
+      "Les données GIF Base64 valides commencent par 'R0lGOD' lorsqu'elles sont encodées",
+      "L'outil supprime automatiquement les préfixes d'URL de données comme 'data:image/gif;base64,'",
+      "Utilisez l'aperçu pour vérifier que les GIF animés se lisent correctement",
+      "Les formats GIF87a (ancien) et GIF89a (nouveau avec transparence) sont pris en charge",
+      "Les GIF animés volumineux peuvent prendre un moment à traiter",
+      "L'indicateur de validation affiche vert pour un Base64 valide avant la conversion",
+      "Désactivez la visibilité de l'aperçu pour réduire l'utilisation de la mémoire avec les fichiers volumineux"
+    ],
+    "troubleshooting": [
+      "Erreur Base64 non valide : Assurez-vous que l'entrée ne contient que des caractères Base64 valides (A-Z, a-z, 0-9, +, /, =)",
+      "Aucun en-tête GIF trouvé : Les données peuvent être du Base64 valide mais pas une image GIF - vérifiez la source",
+      "Aperçu non affiché : Certains navigateurs peuvent avoir des problèmes avec les GIF animés très volumineux",
+      "Conversion lente : Les GIF animés volumineux avec de nombreuses images peuvent prendre plus de temps à traiter",
+      "Problèmes de mémoire : Essayez de désactiver l'aperçu pour les fichiers GIF très volumineux",
+      "Animation non lue : Assurez-vous que votre navigateur prend en charge la lecture des GIF animés"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entrée Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le nom de fichier"
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "title": "Base64 to GIF",
+  "description": "Convert Base64 strings to GIF images",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 to GIF - Free Online Converter | ToolsLab",
+    "description": "Convert Base64 to GIF online. Decode Base64 and save as GIF image. Free converter tool with preview support for animated GIFs."
+  },
+  "tagline": "Convert Base64 data to GIF images instantly with preview",
+  "pageDescription": "Convert Base64-encoded data to GIF images with instant download and preview. Perfect for developers working with image APIs, email attachments and data processing workflows. Supports both GIF87a and GIF89a formats including animated GIFs. Secure browser-based conversion without server uploads. Validate Base64 input, preview GIF images and download converted files directly to your device.",
+  "instructions": {
+    "title": "How to use Base64 to GIF Converter",
+    "steps": [
+      {
+        "title": "Paste your Base64 string",
+        "description": "Copy and paste your Base64-encoded GIF data into the input area. The tool automatically detects data URL prefixes and removes them if present."
+      },
+      {
+        "title": "Validate Base64 format",
+        "description": "The tool automatically validates your Base64 input and shows estimated file size. It checks for valid GIF headers (GIF87a or GIF89a) to ensure data integrity."
+      },
+      {
+        "title": "Set custom filename (optional)",
+        "description": "Customize the output filename if needed. The tool auto-generates a timestamped filename by default for easy organization."
+      },
+      {
+        "title": "Convert and preview",
+        "description": "Click 'Convert to GIF' to process the data. The tool displays GIF information including version, file size and provides an instant preview of the image before downloading."
+      },
+      {
+        "title": "Download your GIF",
+        "description": "Click 'Download GIF' to save the converted image to your device. The preview ensures you're downloading the correct image."
+      }
+    ],
+    "features": [
+      "Real-time Base64 validation with instant feedback",
+      "Support for both GIF87a and GIF89a formats",
+      "Animated GIF support with full animation preview",
+      "Automatic data URL prefix detection and removal",
+      "GIF header validation for data integrity",
+      "Instant image preview before download",
+      "Custom filename support with auto-generation",
+      "File size estimation and metadata display",
+      "Completely secure - all processing happens in your browser",
+      "No data uploads or server storage",
+      "Works offline after initial page load"
+    ],
+    "useCases": [
+      "Convert API responses containing Base64 GIF data",
+      "Extract GIF images from JSON or XML payloads",
+      "Decode GIF attachments from email or messaging APIs",
+      "Process GIF data from web scraping or automation tools",
+      "Debug image data in development and testing",
+      "Convert data URL GIFs to downloadable files",
+      "Recover GIF images from Base64-encoded backups",
+      "Preview and validate GIF data before saving"
+    ],
+    "proTips": [
+      "Valid GIF Base64 data starts with 'R0lGOD' when encoded",
+      "The tool automatically strips data URL prefixes like 'data:image/gif;base64,'",
+      "Use the preview to verify animated GIFs play correctly",
+      "Both GIF87a (older) and GIF89a (newer with transparency) are supported",
+      "Large animated GIFs may take a moment to process",
+      "The validation indicator shows green for valid Base64 before conversion",
+      "Toggle preview visibility to reduce memory usage for large files"
+    ],
+    "troubleshooting": [
+      "Invalid Base64 error: Ensure input contains only valid Base64 characters (A-Z, a-z, 0-9, +, /, =)",
+      "No GIF header found: The data may be valid Base64 but not a GIF image - check the source",
+      "Preview not showing: Some browsers may have issues with very large animated GIFs",
+      "Slow conversion: Large animated GIFs with many frames may take longer to process",
+      "Memory issues: Try toggling preview off for very large GIF files",
+      "Animation not playing: Ensure your browser supports animated GIF playback"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste Base64 input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy filename"
+      }
+    ]
+  }
+}

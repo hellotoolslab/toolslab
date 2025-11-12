@@ -1,0 +1,89 @@
+{
+  "title": "Base64 a JPG",
+  "description": "Convierte cadenas Base64 en imágenes JPG/JPEG",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 a JPG - Conversor Online Gratuito | ToolsLab",
+    "description": "Convierte Base64 a JPG/JPEG online. Decodifica Base64 y guarda como imagen JPEG. Herramienta gratuita con vista previa instantánea y visualización de metadatos de calidad."
+  },
+  "tagline": "Convierte datos Base64 en imágenes JPG/JPEG instantáneamente con vista previa",
+  "pageDescription": "Convierte datos codificados en Base64 en imágenes JPG/JPEG con descarga y vista previa instantáneas. Perfecto para desarrolladores que trabajan con APIs de imágenes, archivos adjuntos de correo electrónico y flujos de procesamiento de datos. Admite estimación de calidad JPEG y extracción de metadatos. Conversión segura basada en navegador sin cargas en servidor. Valida entrada Base64, previsualiza imágenes JPEG, visualiza dimensiones e información de calidad de imagen, y descarga archivos convertidos directamente a tu dispositivo.",
+  "instructions": {
+    "title": "Cómo usar el Conversor Base64 a JPG",
+    "steps": [
+      {
+        "title": "Pega tu cadena Base64",
+        "description": "Copia y pega tus datos JPEG codificados en Base64 en el área de entrada. La herramienta detecta automáticamente prefijos de URL de datos y los elimina si están presentes."
+      },
+      {
+        "title": "Valida el formato Base64",
+        "description": "La herramienta valida automáticamente tu entrada Base64 y muestra el tamaño de archivo estimado. Verifica encabezados JPEG válidos para garantizar la integridad de los datos."
+      },
+      {
+        "title": "Establece un nombre de archivo personalizado (opcional)",
+        "description": "Personaliza el nombre del archivo de salida si es necesario. Puedes usar extensión .jpg o .jpeg. La herramienta genera automáticamente un nombre de archivo con marca de tiempo por defecto para una fácil organización."
+      },
+      {
+        "title": "Convierte y previsualiza",
+        "description": "Haz clic en 'Convertir a JPEG' para procesar los datos. La herramienta muestra información del JPEG incluyendo dimensiones y estimación de calidad, y proporciona una vista previa instantánea antes de descargar."
+      },
+      {
+        "title": "Descarga tu JPEG",
+        "description": "Haz clic en 'Descargar JPEG' para guardar la imagen convertida en tu dispositivo. La vista previa asegura que estás descargando la imagen correcta."
+      }
+    ],
+    "features": [
+      "Validación Base64 en tiempo real con retroalimentación instantánea",
+      "Soporte para extensiones de archivo JPG y JPEG",
+      "Estimación de calidad JPEG (Baja, Media, Alta)",
+      "Detección y eliminación automática de prefijos de URL de datos",
+      "Validación de encabezado JPEG para integridad de datos",
+      "Vista previa instantánea de imagen antes de descargar",
+      "Visualización de dimensiones y metadatos de imagen (ancho, alto, calidad)",
+      "Soporte de nombres de archivo personalizados con generación automática",
+      "Estimación y visualización de tamaño de archivo",
+      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
+      "Sin cargas de datos ni almacenamiento en servidor",
+      "Funciona sin conexión después de la carga inicial de la página"
+    ],
+    "useCases": [
+      "Convertir respuestas API que contienen datos JPEG Base64",
+      "Extraer imágenes JPEG de cargas útiles JSON o XML",
+      "Decodificar archivos adjuntos JPEG de correo electrónico o APIs de mensajería",
+      "Procesar datos JPEG de herramientas de web scraping o automatización",
+      "Depurar datos de imagen en desarrollo y pruebas",
+      "Convertir JPEG de URL de datos en archivos descargables",
+      "Recuperar imágenes JPEG de copias de seguridad codificadas en Base64",
+      "Previsualizar y validar calidad JPEG antes de guardar",
+      "Extraer fotos JPEG de resultados de automatización de pruebas",
+      "Convertir datos de cámara o escáner en archivos JPEG"
+    ],
+    "proTips": [
+      "Los datos JPEG Base64 válidos comienzan con '/9j/' cuando están codificados",
+      "La herramienta elimina automáticamente prefijos de URL de datos como 'data:image/jpeg;base64,'",
+      "Las extensiones .jpg y .jpeg son soportadas y equivalentes",
+      "La estimación de calidad ayuda a identificar el nivel de compresión (Baja/Media/Alta)",
+      "El formato JPEG usa compresión con pérdida, ideal para fotografías",
+      "Tamaños de archivo más pequeños típicamente indican menor calidad o dimensiones menores",
+      "Desactiva la visibilidad de la vista previa para reducir el uso de memoria con archivos grandes"
+    ],
+    "troubleshooting": [
+      "Error de Base64 inválido: Asegúrate de que la entrada contenga solo caracteres Base64 válidos (A-Z, a-z, 0-9, +, /, =)",
+      "No se encontró encabezado JPEG: Los datos pueden ser Base64 válidos pero no una imagen JPEG - verifica la fuente",
+      "Vista previa no se muestra: Verifica la consola del navegador en busca de errores o prueba con una imagen más pequeña",
+      "Problemas de memoria: Intenta desactivar la vista previa para archivos JPEG muy grandes",
+      "Advertencia de calidad baja: El JPEG puede tener alta compresión o ser una imagen pequeña",
+      "Colores incorrectos o artefactos: JPEG usa compresión con pérdida que puede introducir artefactos visuales"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar entrada Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar nombre de archivo"
+      }
+    ]
+  }
+}

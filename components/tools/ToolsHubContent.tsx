@@ -128,7 +128,7 @@ export default function ToolsHubContent({
             'JWT Decoder',
             'Hash Generator',
             'Password Generator',
-            'Base64 Tools',
+            'Base64',
           ],
         },
       },

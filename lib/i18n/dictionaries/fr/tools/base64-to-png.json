@@ -1,0 +1,88 @@
+{
+  "title": "Base64 vers PNG",
+  "description": "Convertissez des chaînes Base64 en images PNG",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 vers PNG - Convertisseur en Ligne Gratuit | ToolsLab",
+    "description": "Convertissez Base64 en PNG en ligne. Décodez Base64 et enregistrez en image PNG. Outil de conversion gratuit avec aperçu instantané et affichage des métadonnées."
+  },
+  "tagline": "Convertissez instantanément des données Base64 en images PNG avec aperçu",
+  "pageDescription": "Convertissez des données encodées en Base64 en images PNG avec téléchargement et aperçu instantanés. Parfait pour les développeurs travaillant avec des API d'images, des pièces jointes d'e-mails et des flux de traitement de données. Prend en charge tous les types de couleurs PNG, y compris la transparence. Conversion sécurisée basée sur le navigateur sans téléchargements sur serveur. Validez l'entrée Base64, prévisualisez les images PNG avec support de transparence, affichez les dimensions et métadonnées de l'image, et téléchargez les fichiers convertis directement sur votre appareil.",
+  "instructions": {
+    "title": "Comment utiliser le Convertisseur Base64 vers PNG",
+    "steps": [
+      {
+        "title": "Collez votre chaîne Base64",
+        "description": "Copiez et collez vos données PNG encodées en Base64 dans la zone de saisie. L'outil détecte automatiquement les préfixes d'URL de données et les supprime s'ils sont présents."
+      },
+      {
+        "title": "Validez le format Base64",
+        "description": "L'outil valide automatiquement votre entrée Base64 et affiche la taille de fichier estimée. Il vérifie les en-têtes PNG valides pour garantir l'intégrité des données."
+      },
+      {
+        "title": "Définissez un nom de fichier personnalisé (optionnel)",
+        "description": "Personnalisez le nom du fichier de sortie si nécessaire. L'outil génère automatiquement un nom de fichier horodaté par défaut pour une organisation facile."
+      },
+      {
+        "title": "Convertissez et prévisualisez",
+        "description": "Cliquez sur 'Convertir en PNG' pour traiter les données. L'outil affiche les informations PNG, y compris les dimensions, le type de couleur, la profondeur de bits et fournit un aperçu instantané avec support de transparence avant le téléchargement."
+      },
+      {
+        "title": "Téléchargez votre PNG",
+        "description": "Cliquez sur 'Télécharger PNG' pour enregistrer l'image convertie sur votre appareil. L'aperçu avec fond en damier affiche correctement la transparence."
+      }
+    ],
+    "features": [
+      "Validation Base64 en temps réel avec retour instantané",
+      "Support de tous les types de couleurs PNG (Niveaux de gris, Truecolor, Indexé, avec/sans Alpha)",
+      "Aperçu de transparence avec fond en damier",
+      "Détection et suppression automatiques des préfixes d'URL de données",
+      "Validation d'en-tête PNG pour l'intégrité des données",
+      "Aperçu instantané de l'image avant téléchargement",
+      "Affichage des dimensions et métadonnées de l'image (largeur, hauteur, type de couleur, profondeur de bits)",
+      "Support de noms de fichiers personnalisés avec génération automatique",
+      "Estimation et affichage de la taille de fichier",
+      "Entièrement sécurisé - tout le traitement se fait dans votre navigateur",
+      "Aucun téléchargement de données ni stockage sur serveur",
+      "Fonctionne hors ligne après le chargement initial de la page"
+    ],
+    "useCases": [
+      "Convertir les réponses API contenant des données PNG Base64",
+      "Extraire des images PNG de charges utiles JSON ou XML",
+      "Décoder des pièces jointes PNG d'e-mails ou d'APIs de messagerie",
+      "Traiter des données PNG d'outils de web scraping ou d'automatisation",
+      "Déboguer des données d'image en développement et tests",
+      "Convertir des PNG d'URL de données en fichiers téléchargeables",
+      "Récupérer des images PNG de sauvegardes encodées en Base64",
+      "Prévisualiser et valider la transparence PNG avant d'enregistrer",
+      "Extraire des captures d'écran PNG de résultats d'automatisation de tests"
+    ],
+    "proTips": [
+      "Les données PNG Base64 valides commencent par 'iVBORw0KG' lorsqu'elles sont encodées",
+      "L'outil supprime automatiquement les préfixes d'URL de données comme 'data:image/png;base64,'",
+      "Le fond en damier dans l'aperçu révèle la transparence dans les images PNG",
+      "Les métadonnées affichent le type de couleur: Niveaux de gris, Truecolor, ou avec canal Alpha",
+      "La profondeur de bits indique la précision des couleurs (typiquement 8 ou 16 bits par canal)",
+      "Le format PNG est sans perte, préservant toute la qualité de l'image",
+      "Désactivez la visibilité de l'aperçu pour réduire l'utilisation de la mémoire avec les gros fichiers"
+    ],
+    "troubleshooting": [
+      "Erreur Base64 invalide: Assurez-vous que l'entrée contient uniquement des caractères Base64 valides (A-Z, a-z, 0-9, +, /, =)",
+      "Aucun en-tête PNG trouvé: Les données peuvent être du Base64 valide mais pas une image PNG - vérifiez la source",
+      "Aperçu non affiché: Vérifiez la console du navigateur pour les erreurs ou essayez une image plus petite",
+      "Problèmes de mémoire: Essayez de désactiver l'aperçu pour les très gros fichiers PNG",
+      "Transparence non visible: Le fond en damier devrait rendre les zones transparentes évidentes",
+      "Couleurs incorrectes: Assurez-vous que les données Base64 n'ont pas été corrompues lors du copier/coller"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entrée Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le nom de fichier"
+      }
+    ]
+  }
+}

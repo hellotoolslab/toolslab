@@ -1,0 +1,89 @@
+{
+  "title": "Base64 zu JPG",
+  "description": "Konvertieren Sie Base64-Strings in JPG/JPEG-Bilder",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 zu JPG - Kostenloser Online-Konverter | ToolsLab",
+    "description": "Konvertieren Sie Base64 zu JPG/JPEG online. Dekodieren Sie Base64 und speichern Sie als JPEG-Bild. Kostenloses Konverter-Tool mit sofortiger Vorschau und Qualitätsmetadaten-Anzeige."
+  },
+  "tagline": "Konvertieren Sie Base64-Daten sofort mit Vorschau in JPG/JPEG-Bilder",
+  "pageDescription": "Konvertieren Sie Base64-kodierte Daten in JPG/JPEG-Bilder mit sofortigem Download und Vorschau. Perfekt für Entwickler, die mit Bild-APIs, E-Mail-Anhängen und Datenverarbeitungs-Workflows arbeiten. Unterstützt JPEG-Qualitätsschätzung und Metadatenextraktion. Sichere browserbasierte Konvertierung ohne Server-Uploads. Validieren Sie Base64-Eingaben, zeigen Sie JPEG-Bilder in der Vorschau an, sehen Sie Bildabmessungen und Qualitätsinformationen, und laden Sie konvertierte Dateien direkt auf Ihr Gerät herunter.",
+  "instructions": {
+    "title": "So verwenden Sie den Base64 zu JPG Konverter",
+    "steps": [
+      {
+        "title": "Fügen Sie Ihre Base64-Zeichenfolge ein",
+        "description": "Kopieren und fügen Sie Ihre Base64-kodierten JPEG-Daten in den Eingabebereich ein. Das Tool erkennt automatisch Daten-URL-Präfixe und entfernt sie, falls vorhanden."
+      },
+      {
+        "title": "Validieren Sie das Base64-Format",
+        "description": "Das Tool validiert automatisch Ihre Base64-Eingabe und zeigt die geschätzte Dateigröße an. Es überprüft gültige JPEG-Header, um die Datenintegrität sicherzustellen."
+      },
+      {
+        "title": "Legen Sie einen benutzerdefinierten Dateinamen fest (optional)",
+        "description": "Passen Sie den Ausgabedateinamen bei Bedarf an. Sie können entweder .jpg oder .jpeg Erweiterung verwenden. Das Tool generiert standardmäßig automatisch einen Dateinamen mit Zeitstempel für eine einfache Organisation."
+      },
+      {
+        "title": "Konvertieren und Vorschau anzeigen",
+        "description": "Klicken Sie auf 'In JPEG konvertieren', um die Daten zu verarbeiten. Das Tool zeigt JPEG-Informationen einschließlich Abmessungen und Qualitätsschätzung an und bietet eine sofortige Vorschau vor dem Herunterladen."
+      },
+      {
+        "title": "Laden Sie Ihr JPEG herunter",
+        "description": "Klicken Sie auf 'JPEG herunterladen', um das konvertierte Bild auf Ihr Gerät zu speichern. Die Vorschau stellt sicher, dass Sie das richtige Bild herunterladen."
+      }
+    ],
+    "features": [
+      "Echtzeit-Base64-Validierung mit sofortigem Feedback",
+      "Unterstützung für JPG- und JPEG-Dateierweiterungen",
+      "JPEG-Qualitätsschätzung (Niedrig, Mittel, Hoch)",
+      "Automatische Erkennung und Entfernung von Daten-URL-Präfixen",
+      "JPEG-Header-Validierung für Datenintegrität",
+      "Sofortige Bildvorschau vor dem Download",
+      "Anzeige von Bildabmessungen und Metadaten (Breite, Höhe, Qualität)",
+      "Unterstützung benutzerdefinierter Dateinamen mit automatischer Generierung",
+      "Schätzung und Anzeige der Dateigröße",
+      "Vollständig sicher - alle Verarbeitung erfolgt in Ihrem Browser",
+      "Keine Daten-Uploads oder Server-Speicherung",
+      "Funktioniert offline nach dem ersten Laden der Seite"
+    ],
+    "useCases": [
+      "Konvertieren Sie API-Antworten mit Base64-JPEG-Daten",
+      "Extrahieren Sie JPEG-Bilder aus JSON- oder XML-Payloads",
+      "Dekodieren Sie JPEG-Anhänge aus E-Mail- oder Messaging-APIs",
+      "Verarbeiten Sie JPEG-Daten aus Web-Scraping- oder Automatisierungs-Tools",
+      "Debuggen Sie Bilddaten in Entwicklung und Tests",
+      "Konvertieren Sie Daten-URL-JPEGs in herunterladbare Dateien",
+      "Stellen Sie JPEG-Bilder aus Base64-kodierten Backups wieder her",
+      "Vorschau und Validierung der JPEG-Qualität vor dem Speichern",
+      "Extrahieren Sie JPEG-Fotos aus Testautomatisierungs-Ergebnissen",
+      "Konvertieren Sie Kamera- oder Scanner-Daten in JPEG-Dateien"
+    ],
+    "proTips": [
+      "Gültige JPEG-Base64-Daten beginnen mit '/9j/', wenn sie kodiert sind",
+      "Das Tool entfernt automatisch Daten-URL-Präfixe wie 'data:image/jpeg;base64,'",
+      "Die Erweiterungen .jpg und .jpeg werden unterstützt und sind gleichwertig",
+      "Die Qualitätsschätzung hilft, das Kompressionsniveau zu identifizieren (Niedrig/Mittel/Hoch)",
+      "Das JPEG-Format verwendet verlustbehaftete Kompression, ideal für Fotografien",
+      "Kleinere Dateigrößen weisen typischerweise auf geringere Qualität oder kleinere Abmessungen hin",
+      "Deaktivieren Sie die Vorschau-Sichtbarkeit, um den Speicherverbrauch bei großen Dateien zu reduzieren"
+    ],
+    "troubleshooting": [
+      "Ungültiger Base64-Fehler: Stellen Sie sicher, dass die Eingabe nur gültige Base64-Zeichen enthält (A-Z, a-z, 0-9, +, /, =)",
+      "Kein JPEG-Header gefunden: Die Daten könnten gültiges Base64 sein, aber kein JPEG-Bild - überprüfen Sie die Quelle",
+      "Vorschau wird nicht angezeigt: Überprüfen Sie die Browser-Konsole auf Fehler oder versuchen Sie ein kleineres Bild",
+      "Speicherprobleme: Versuchen Sie, die Vorschau für sehr große JPEG-Dateien zu deaktivieren",
+      "Warnung wegen niedriger Qualität: Das JPEG könnte hohe Kompression aufweisen oder ein kleines Bild sein",
+      "Falsche Farben oder Artefakte: JPEG verwendet verlustbehaftete Kompression, die visuelle Artefakte einführen kann"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Base64-Eingabe einfügen"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Dateinamen kopieren"
+      }
+    ]
+  }
+}

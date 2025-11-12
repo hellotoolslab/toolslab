@@ -1,0 +1,89 @@
+{
+  "title": "Base64 to JPG",
+  "description": "Convert Base64 strings to JPG/JPEG images",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 to JPG - Free Online Converter | ToolsLab",
+    "description": "Convert Base64 to JPG/JPEG online. Decode Base64 and save as JPEG image. Free converter tool with instant preview and quality metadata display."
+  },
+  "tagline": "Convert Base64 data to JPG/JPEG images instantly with preview",
+  "pageDescription": "Convert Base64-encoded data to JPG/JPEG images with instant download and preview. Perfect for developers working with image APIs, email attachments and data processing workflows. Supports JPEG quality estimation and metadata extraction. Secure browser-based conversion without server uploads. Validate Base64 input, preview JPEG images, view image dimensions and quality information, and download converted files directly to your device.",
+  "instructions": {
+    "title": "How to use Base64 to JPG Converter",
+    "steps": [
+      {
+        "title": "Paste your Base64 string",
+        "description": "Copy and paste your Base64-encoded JPEG data into the input area. The tool automatically detects data URL prefixes and removes them if present."
+      },
+      {
+        "title": "Validate Base64 format",
+        "description": "The tool automatically validates your Base64 input and shows estimated file size. It checks for valid JPEG headers to ensure data integrity."
+      },
+      {
+        "title": "Set custom filename (optional)",
+        "description": "Customize the output filename if needed. You can use either .jpg or .jpeg extension. The tool auto-generates a timestamped filename by default for easy organization."
+      },
+      {
+        "title": "Convert and preview",
+        "description": "Click 'Convert to JPEG' to process the data. The tool displays JPEG information including dimensions and quality estimation, and provides an instant preview before downloading."
+      },
+      {
+        "title": "Download your JPEG",
+        "description": "Click 'Download JPEG' to save the converted image to your device. The preview ensures you're downloading the correct image."
+      }
+    ],
+    "features": [
+      "Real-time Base64 validation with instant feedback",
+      "Support for both JPG and JPEG file extensions",
+      "JPEG quality estimation (Low, Medium, High)",
+      "Automatic data URL prefix detection and removal",
+      "JPEG header validation for data integrity",
+      "Instant image preview before download",
+      "Image dimensions and metadata display (width, height, quality)",
+      "Custom filename support with auto-generation",
+      "File size estimation and display",
+      "Completely secure - all processing happens in your browser",
+      "No data uploads or server storage",
+      "Works offline after initial page load"
+    ],
+    "useCases": [
+      "Convert API responses containing Base64 JPEG data",
+      "Extract JPEG images from JSON or XML payloads",
+      "Decode JPEG attachments from email or messaging APIs",
+      "Process JPEG data from web scraping or automation tools",
+      "Debug image data in development and testing",
+      "Convert data URL JPEGs to downloadable files",
+      "Recover JPEG images from Base64-encoded backups",
+      "Preview and validate JPEG quality before saving",
+      "Extract JPEG photos from test automation results",
+      "Convert camera or scanner data to JPEG files"
+    ],
+    "proTips": [
+      "Valid JPEG Base64 data starts with '/9j/' when encoded",
+      "The tool automatically strips data URL prefixes like 'data:image/jpeg;base64,'",
+      "Both .jpg and .jpeg extensions are supported and equivalent",
+      "Quality estimation helps identify compression level (Low/Medium/High)",
+      "JPEG format uses lossy compression, ideal for photographs",
+      "Smaller file sizes typically indicate lower quality or smaller dimensions",
+      "Toggle preview visibility to reduce memory usage for large files"
+    ],
+    "troubleshooting": [
+      "Invalid Base64 error: Ensure input contains only valid Base64 characters (A-Z, a-z, 0-9, +, /, =)",
+      "No JPEG header found: The data may be valid Base64 but not a JPEG image - check the source",
+      "Preview not showing: Check browser console for errors or try a smaller image",
+      "Memory issues: Try toggling preview off for very large JPEG files",
+      "Low quality warning: The JPEG may have high compression or be a small image",
+      "Wrong colors or artifacts: JPEG uses lossy compression which may introduce visual artifacts"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste Base64 input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy filename"
+      }
+    ]
+  }
+}

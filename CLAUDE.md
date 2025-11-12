@@ -166,18 +166,26 @@ export default function ToolPage() {
   keywords: ['keyword1', 'keyword2', 'tool', 'specific', 'terms'],
   isPopular: true, // se è un tool popolare
   searchVolume: 5500, // volume di ricerca stimato
-  label: 'new', // 'new' | 'popular' | 'coming-soon' | ''
+  label: '', // ⚠️ SEMPRE usare '' per nuovi tool. Valori: '' | 'popular' | 'coming-soon'
 },
 ```
 
+**⚠️ IMPORTANTE - Label Policy:**
+- **NON usare mai `label: 'new'`** per i nuovi tool
+- Usa sempre `label: ''` (stringa vuota) di default
+- Usa `label: 'popular'` solo se esplicitamente richiesto
+- Usa `label: 'coming-soon'` solo per tool in sviluppo
+
 **📚 Categorie disponibili:**
-- `data`: Data & Conversion 
+- `data`: Data & Conversion
 - `encoding`: Encoding & Security
+- `base64`: Base64 Tools (conversione Base64 a file)
 - `text`: Text & Format
 - `generators`: Generators
 - `web`: Web & Design
 - `dev`: Dev Utilities
 - `formatters`: Formatters
+- `pdf`: PDF Tools
 
 **⛔ NON creare file in `/data/tools.ts` o `/data/categories.ts` - sono stati eliminati!**
 
