@@ -53,6 +53,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'jwt-decoder',
     'base64-to-pdf',
     'base64-to-gif',
+    'base64-to-png',
     'text-diff',
     'markdown-preview',
     'regex-tester',
