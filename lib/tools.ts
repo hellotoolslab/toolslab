@@ -280,6 +280,28 @@ export const tools: Tool[] = [
     label: '',
   },
   {
+    id: 'base64-to-jpg',
+    name: 'Base64 to JPG',
+    description:
+      'Convert Base64 encoded data to JPG/JPEG images with instant preview and download',
+    icon: '📸',
+    route: '/tools/base64-to-jpg',
+    categories: ['base64', 'data'],
+    keywords: [
+      'base64',
+      'jpg',
+      'jpeg',
+      'image',
+      'convert',
+      'download',
+      'decode',
+      'picture',
+      'photo',
+    ],
+    searchVolume: 4200,
+    label: '',
+  },
+  {
     id: 'excel-filter',
     name: 'Excel Filter Tool',
     description:
