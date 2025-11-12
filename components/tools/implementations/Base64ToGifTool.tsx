@@ -53,7 +53,9 @@ export default function Base64ToGifTool({
   const { copied, copy } = useCopy();
   const { trackUse, trackError, trackCustom } =
     useToolTracking('base64-to-gif');
-  const { resultRef, scrollToResult } = useScrollToResult();
+  const { resultRef, scrollToResult } = useScrollToResult({
+    onlyIfNotVisible: false,
+  });
 
   // Effect per scroll automatico quando l'immagine è caricata
   useEffect(() => {

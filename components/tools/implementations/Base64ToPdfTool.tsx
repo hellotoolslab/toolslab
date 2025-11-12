@@ -47,7 +47,9 @@ export default function Base64ToPdfTool({
   const { copied, copy } = useCopy();
   const { trackUse, trackError, trackCustom } =
     useToolTracking('base64-to-pdf');
-  const { resultRef, scrollToResult } = useScrollToResult();
+  const { resultRef, scrollToResult } = useScrollToResult({
+    onlyIfNotVisible: false,
+  });
 
   // Effect per scroll automatico quando c'è un risultato di successo
   useEffect(() => {

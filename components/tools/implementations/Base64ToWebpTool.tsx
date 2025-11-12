@@ -54,11 +54,14 @@ export default function Base64ToWebpTool({
   const { copied, copy } = useCopy();
   const { trackUse, trackError, trackCustom } =
     useToolTracking('base64-to-webp');
-  const { resultRef, scrollToResult } = useScrollToResult();
+  const { resultRef, scrollToResult } = useScrollToResult({
+    onlyIfNotVisible: false,
+  });
 
   // Effect per scroll automatico quando l'immagine è caricata
   useEffect(() => {
     if (result && result.success && !imageLoading && !imageError) {
+      console.log('🔄 Base64ToWebP: Scrolling to result');
       scrollToResult();
     }
   }, [result, imageLoading, imageError, scrollToResult]);
@@ -127,6 +130,9 @@ export default function Base64ToWebpTool({
         // Create preview URL
         const url = URL.createObjectURL(conversionResult.webpBlob);
         setPreviewUrl(url);
+        console.log(
+          '📸 Base64ToWebP: Created preview URL, setting imageLoading=true'
+        );
         setImageLoading(true);
         setImageError(null);
 
@@ -432,6 +438,9 @@ export default function Base64ToWebpTool({
                   style={{ display: imageLoading ? 'none' : 'block' }}
                   onLoad={(e) => {
                     const img = e.currentTarget;
+                    console.log(
+                      '✅ Base64ToWebP: Image loaded, setting imageLoading=false'
+                    );
                     setImageDimensions({
                       width: img.naturalWidth,
                       height: img.naturalHeight,
@@ -439,6 +448,9 @@ export default function Base64ToWebpTool({
                     setImageLoading(false);
                   }}
                   onError={() => {
+                    console.log(
+                      '❌ Base64ToWebP: Image error, setting imageLoading=false'
+                    );
                     setImageError('Failed to load image');
                     setImageLoading(false);
                   }}
