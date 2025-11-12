@@ -201,20 +201,17 @@ export default function ToolPageClient({
 
   const relatedTools = getRelatedTools();
 
-  // Get tools from same category (excluding related tools)
+  // Get all tools from same primary category
   const getSameCategoryTools = () => {
-    const relatedToolIds = relatedTools.map((t: (typeof tools)[0]) => t.id);
-
-    // Get all tools from same category excluding current tool and related tools
+    // Get all tools from same primary category excluding only current tool
     const categoryTools = tools.filter(
       (t) =>
         t.categories.includes(tool.categories[0]) &&
         t.id !== tool.id &&
-        !relatedToolIds.includes(t.id) &&
         t.label !== 'coming-soon'
     );
 
-    // Return minimum 3 tools, maximum 6
+    // Return up to 6 tools from the same category
     return categoryTools.slice(0, 6);
   };
 
@@ -375,7 +372,7 @@ export default function ToolPageClient({
               </div>
 
               {/* Same Category Tools */}
-              {sameCategoryTools.length >= 3 && (
+              {sameCategoryTools.length > 0 && (
                 <div className="mt-6 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
                   <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
                     {t.sameCategoryTools}
@@ -457,7 +454,7 @@ export default function ToolPageClient({
         )}
 
         {/* Mobile Same Category Tools */}
-        {isMobile && sameCategoryTools.length >= 3 && (
+        {isMobile && sameCategoryTools.length > 0 && (
           <div className="mt-12 sm:mt-16">
             <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
               {t.sameCategoryTools}

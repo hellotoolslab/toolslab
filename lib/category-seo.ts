@@ -117,6 +117,57 @@ export const categorySEO: Record<string, CategorySEO> = {
     metaDescription:
       'Secure encoding and cryptographic tools for Base64, JWT, URL encoding, and hashing. Professional security utilities for developers. Free, private, browser-based.',
   },
+  base64: {
+    id: 'base64',
+    h1Title: 'Base64 Conversion Tools',
+    tagline: 'Convert Base64 encoded data to PDFs, images, and files instantly',
+    description:
+      'Professional Base64 conversion tools for developers and data engineers. Decode Base64 strings and convert them to PDF documents, GIF images, PNG files, and other formats with instant preview and download. Our browser-based tools handle large Base64 payloads, validate encoding format, and provide real-time conversion with proper error handling. Perfect for API debugging, data recovery, email attachment processing, and web scraping workflows where Base64-encoded content needs to be converted back to usable files.',
+    benefits: [
+      'Instant Base64 decoding and conversion',
+      'Preview before downloading files',
+      'Support for multiple output formats',
+      'Validation of Base64 encoding',
+      'Handle files up to 10MB',
+    ],
+    useCases: [
+      'API response data extraction',
+      'Email attachment recovery',
+      'Web scraping data conversion',
+      'JSON payload processing',
+      'Database blob extraction',
+    ],
+    keywords: [
+      'base64 to pdf',
+      'base64 to image',
+      'base64 decoder',
+      'base64 converter',
+      'decode base64',
+      'base64 to gif',
+      'base64 file converter',
+      'data uri decoder',
+    ],
+    faqs: [
+      {
+        question: 'What file formats can I convert Base64 to?',
+        answer:
+          'Currently we support conversion to PDF and GIF formats, with more formats (PNG, JPEG, DOCX) coming soon.',
+      },
+      {
+        question: 'Is there a size limit for Base64 conversion?',
+        answer:
+          'You can convert Base64 strings representing files up to 10MB. The conversion happens entirely in your browser.',
+      },
+      {
+        question: 'How do I know if my Base64 string is valid?',
+        answer:
+          'Our tools automatically validate Base64 format and check file headers (like GIF or PDF signatures) before conversion.',
+      },
+    ],
+    relatedCategories: ['data', 'encoding'],
+    metaDescription:
+      'Convert Base64 to PDF, GIF, and images instantly. Professional Base64 decoder and converter tools for developers. Free, secure, browser-based conversion with preview.',
+  },
   text: {
     id: 'text',
     h1Title: 'Text & Format Tools',

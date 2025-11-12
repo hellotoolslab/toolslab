@@ -8,6 +8,10 @@
       "name": "Encoding & Security",
       "description": "Encoding, encryption, and security tools"
     },
+    "base64": {
+      "name": "Base64",
+      "description": "Convert Base64 encoded data to various file formats"
+    },
     "text": {
       "name": "Text & Format",
       "description": "Text manipulation and formatting tools"

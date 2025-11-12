@@ -233,7 +233,7 @@ export const tools: Tool[] = [
     description: 'Convert Base64 encoded data to PDF files and download them',
     icon: '📄',
     route: '/tools/base64-to-pdf',
-    categories: ['data'],
+    categories: ['base64', 'data'],
     keywords: ['base64', 'pdf', 'convert', 'download', 'decode', 'file'],
     searchVolume: 3200,
     label: '',
@@ -245,7 +245,7 @@ export const tools: Tool[] = [
       'Convert Base64 encoded data to GIF images and download them with preview',
     icon: '🎞️',
     route: '/tools/base64-to-gif',
-    categories: ['data'],
+    categories: ['base64', 'data'],
     keywords: [
       'base64',
       'gif',
@@ -256,7 +256,7 @@ export const tools: Tool[] = [
       'animation',
     ],
     searchVolume: 2800,
-    label: 'new',
+    label: '',
   },
   {
     id: 'excel-filter',
@@ -958,7 +958,7 @@ export const tools: Tool[] = [
     ],
     isPopular: true,
     searchVolume: 12000,
-    label: 'new',
+    label: '',
   },
 ];
 
@@ -979,6 +979,14 @@ export const categories: Category[] = [
       'Encode, decode, hash, and secure your data with various encryption methods.',
     icon: '🔐',
     tools: getToolsByCategory('encoding'),
+  },
+  {
+    id: 'base64',
+    name: 'Base64',
+    description:
+      'Convert Base64 encoded data to PDF, images, and other file formats with instant download and preview.',
+    icon: '🔤',
+    tools: getToolsByCategory('base64'),
   },
   {
     id: 'text',
