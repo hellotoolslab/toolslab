@@ -197,16 +197,98 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
     it: 'it-IT',
     es: 'es-ES',
     fr: 'fr-FR',
+    de: 'de-DE',
   };
 
-  // Generate localized schema
-  const localizedSchema = {
-    ...toolSchema,
-    name: toolTranslations.title,
-    description: toolTranslations.description,
-    url: `https://toolslab.dev/${locale}/tools/${toolId}`,
-    inLanguage: localeToLanguageMap[locale] || 'en-US',
-  };
+  // Generate localized schema - properly update @graph items
+  const localizedSchema = toolSchema
+    ? {
+        '@context': toolSchema['@context'],
+        '@graph': toolSchema['@graph'].map((item: any) => {
+          const localizedUrl = `https://toolslab.dev/${locale}/tools/${toolId}`;
+
+          // Update WebApplication schema
+          if (item['@type'] === 'WebApplication') {
+            return {
+              ...item,
+              '@id': `${localizedUrl}#webapp`,
+              name: toolTranslations.title,
+              description:
+                toolTranslations.pageDescription ||
+                toolTranslations.description,
+              url: localizedUrl,
+              inLanguage: localeToLanguageMap[locale] || 'en-US',
+              mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': localizedUrl,
+              },
+            };
+          }
+
+          // Update BreadcrumbList schema with localized URLs
+          if (item['@type'] === 'BreadcrumbList') {
+            const baseUrl = 'https://toolslab.dev';
+            const localePath = locale === 'en' ? '' : `/${locale}`;
+
+            return {
+              ...item,
+              '@id': `${localizedUrl}#breadcrumb`,
+              itemListElement: item.itemListElement.map((listItem: any) => {
+                // Update each breadcrumb item with localized path
+                let localizedItemUrl = listItem.item;
+
+                if (listItem.position === 1) {
+                  // Home
+                  localizedItemUrl =
+                    locale === 'en' ? baseUrl : `${baseUrl}${localePath}`;
+                } else if (listItem.position === 2) {
+                  // Tools
+                  localizedItemUrl = `${baseUrl}${localePath}/tools`;
+                } else if (listItem.position === 3) {
+                  // Category
+                  const categorySlug = listItem.item.split('/category/')[1];
+                  localizedItemUrl = `${baseUrl}${localePath}/category/${categorySlug}`;
+                } else if (listItem.position === 4) {
+                  // Tool page
+                  localizedItemUrl = localizedUrl;
+                }
+
+                return {
+                  ...listItem,
+                  item: localizedItemUrl,
+                };
+              }),
+            };
+          }
+
+          // Update FAQPage schema
+          if (item['@type'] === 'FAQPage') {
+            return {
+              ...item,
+              '@id': `${localizedUrl}#faq`,
+            };
+          }
+
+          // Update SoftwareApplication schema
+          if (item['@type'] === 'SoftwareApplication') {
+            return {
+              ...item,
+              '@id': `${localizedUrl}#software`,
+              name: toolTranslations.title,
+              description:
+                toolTranslations.pageDescription ||
+                toolTranslations.description,
+              url: localizedUrl,
+              downloadUrl: localizedUrl,
+              installUrl: localizedUrl,
+            };
+          }
+
+          // Return unchanged for other types
+          return item;
+        }),
+      }
+    : null;
 
   return (
     <>
