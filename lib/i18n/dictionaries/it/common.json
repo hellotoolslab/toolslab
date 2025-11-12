@@ -9,7 +9,8 @@
       "allTools": "Tutti gli strumenti",
       "viewAllTools": "Vedi tutti gli strumenti",
       "home": "Home",
-      "relatedTools": "Strumenti Correlati"
+      "relatedTools": "Strumenti Correlati",
+      "sameCategoryTools": "Altri strumenti in questa categoria"
     },
     "actions": {
       "copy": "Copia",
