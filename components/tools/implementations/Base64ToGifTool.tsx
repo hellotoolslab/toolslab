@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   Download,
   Check,
@@ -23,6 +23,7 @@ import {
 } from '@/lib/tools/base64-to-gif';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 
 interface Base64ToGifToolProps {
   categoryColor: string;
@@ -52,22 +53,14 @@ export default function Base64ToGifTool({
   const { copied, copy } = useCopy();
   const { trackUse, trackError, trackCustom } =
     useToolTracking('base64-to-gif');
+  const { resultRef, scrollToResult } = useScrollToResult();
 
-  // Ref per scroll automatico al risultato
-  const resultRef = useRef<HTMLDivElement>(null);
-
-  // Effect per scroll quando c'è un risultato di successo
+  // Effect per scroll automatico quando l'immagine è caricata
   useEffect(() => {
-    if (result && result.success && resultRef.current) {
-      // Piccolo delay per assicurarsi che il rendering sia completo
-      setTimeout(() => {
-        resultRef.current?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }, 100);
+    if (result && result.success && !imageLoading && !imageError) {
+      scrollToResult();
     }
-  }, [result]);
+  }, [result, imageLoading, imageError, scrollToResult]);
 
   const validateInput = useCallback((base64String: string) => {
     if (!base64String.trim()) {
