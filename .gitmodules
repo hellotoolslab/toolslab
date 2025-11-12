@@ -1,0 +1,3 @@
+[submodule "pdf-converter-service"]
+	path = pdf-converter-service
+	url = https://github.com/gianlucaricaldone/railwaypdf.git
