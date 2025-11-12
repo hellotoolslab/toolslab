@@ -7,7 +7,9 @@
       "categories": "Catégories",
       "lab": "Le Laboratoire",
       "allTools": "Tous les Outils",
-      "viewAllTools": "Voir tous les outils"
+      "viewAllTools": "Voir tous les outils",
+      "home": "Accueil",
+      "relatedTools": "Outils Associés"
     },
     "actions": {
       "copy": "Copier",

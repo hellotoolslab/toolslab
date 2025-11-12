@@ -7,7 +7,9 @@
       "categories": "Categories",
       "lab": "The Lab",
       "allTools": "All Tools",
-      "viewAllTools": "View all tools"
+      "viewAllTools": "View all tools",
+      "home": "Home",
+      "relatedTools": "Related Tools"
     },
     "actions": {
       "copy": "Copy",

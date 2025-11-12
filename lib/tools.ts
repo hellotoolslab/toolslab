@@ -239,6 +239,26 @@ export const tools: Tool[] = [
     label: '',
   },
   {
+    id: 'base64-to-gif',
+    name: 'Base64 to GIF',
+    description:
+      'Convert Base64 encoded data to GIF images and download them with preview',
+    icon: '🎞️',
+    route: '/tools/base64-to-gif',
+    categories: ['data'],
+    keywords: [
+      'base64',
+      'gif',
+      'image',
+      'convert',
+      'download',
+      'decode',
+      'animation',
+    ],
+    searchVolume: 2800,
+    label: 'new',
+  },
+  {
     id: 'excel-filter',
     name: 'Excel Filter Tool',
     description:

@@ -92,14 +92,13 @@ export default function ToolPageClient({
   }
 
   // Get translations
-  const isItalian = locale === 'it';
   const commonDict = dictionary?.common || {};
 
   const t = {
-    share: isItalian ? 'Condividi' : 'Share',
-    relatedTools: isItalian ? 'Strumenti Correlati' : 'Related Tools',
-    home: isItalian ? 'Home' : 'Home',
-    allTools: isItalian ? 'Tutti gli Strumenti' : 'All Tools',
+    share: commonDict?.actions?.share || 'Share',
+    relatedTools: commonDict?.nav?.relatedTools || 'Related Tools',
+    home: commonDict?.nav?.home || 'Home',
+    allTools: commonDict?.nav?.allTools || 'All Tools',
     toolName: toolTranslations?.title || tool.name,
     toolDescription: toolTranslations?.description || tool.description,
   };
