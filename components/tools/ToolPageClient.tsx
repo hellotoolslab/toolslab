@@ -92,14 +92,15 @@ export default function ToolPageClient({
   }
 
   // Get translations
-  const isItalian = locale === 'it';
   const commonDict = dictionary?.common || {};
 
   const t = {
-    share: isItalian ? 'Condividi' : 'Share',
-    relatedTools: isItalian ? 'Strumenti Correlati' : 'Related Tools',
-    home: isItalian ? 'Home' : 'Home',
-    allTools: isItalian ? 'Tutti gli Strumenti' : 'All Tools',
+    share: commonDict?.actions?.share || 'Share',
+    relatedTools: commonDict?.nav?.relatedTools || 'Related Tools',
+    sameCategoryTools:
+      commonDict?.nav?.sameCategoryTools || 'Tools from the same category',
+    home: commonDict?.nav?.home || 'Home',
+    allTools: commonDict?.nav?.allTools || 'All Tools',
     toolName: toolTranslations?.title || tool.name,
     toolDescription: toolTranslations?.description || tool.description,
   };
@@ -199,6 +200,22 @@ export default function ToolPageClient({
   };
 
   const relatedTools = getRelatedTools();
+
+  // Get all tools from same primary category
+  const getSameCategoryTools = () => {
+    // Get all tools from same primary category excluding only current tool
+    const categoryTools = tools.filter(
+      (t) =>
+        t.categories.includes(tool.categories[0]) &&
+        t.id !== tool.id &&
+        t.label !== 'coming-soon'
+    );
+
+    // Return up to 6 tools from the same category
+    return categoryTools.slice(0, 6);
+  };
+
+  const sameCategoryTools = getSameCategoryTools();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
@@ -354,6 +371,47 @@ export default function ToolPageClient({
                 </div>
               </div>
 
+              {/* Same Category Tools */}
+              {sameCategoryTools.length > 0 && (
+                <div className="mt-6 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+                  <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                    {t.sameCategoryTools}
+                  </h3>
+                  <div className="space-y-3">
+                    {sameCategoryTools.map(
+                      (categoryTool: (typeof tools)[0]) => (
+                        <Link
+                          key={categoryTool.id}
+                          href={createHref(`/tools/${categoryTool.id}`)}
+                          className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
+                        >
+                          <div
+                            className="rounded-lg p-2"
+                            style={{ backgroundColor: `${categoryColor}20` }}
+                          >
+                            <span
+                              className="flex h-5 w-5 items-center justify-center text-lg"
+                              style={{ color: categoryColor }}
+                            >
+                              {categoryTool.icon}
+                            </span>
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-gray-900 dark:text-white">
+                              {categoryTool.name}
+                            </p>
+                            <p className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400">
+                              {categoryTool.description}
+                            </p>
+                          </div>
+                          <ArrowRight className="h-4 w-4 text-gray-400 transition-colors group-hover:text-gray-600 dark:group-hover:text-gray-300" />
+                        </Link>
+                      )
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* Sidebar Ad - Hidden */}
             </div>
           )}
@@ -388,6 +446,42 @@ export default function ToolPageClient({
                   </p>
                   <p className="mt-1 line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
                     {relatedTool.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Same Category Tools */}
+        {isMobile && sameCategoryTools.length > 0 && (
+          <div className="mt-12 sm:mt-16">
+            <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
+              {t.sameCategoryTools}
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              {sameCategoryTools.map((categoryTool: (typeof tools)[0]) => (
+                <Link
+                  key={categoryTool.id}
+                  href={createHref(`/tools/${categoryTool.id}`)}
+                  className="rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <div
+                    className="mb-2 inline-block rounded-lg p-2"
+                    style={{ backgroundColor: `${categoryColor}20` }}
+                  >
+                    <span
+                      className="flex h-5 w-5 items-center justify-center text-lg"
+                      style={{ color: categoryColor }}
+                    >
+                      {categoryTool.icon}
+                    </span>
+                  </div>
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                    {categoryTool.name}
+                  </p>
+                  <p className="mt-1 line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
+                    {categoryTool.description}
                   </p>
                 </Link>
               ))}

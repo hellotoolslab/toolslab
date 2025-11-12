@@ -8,6 +8,10 @@
       "name": "Codificación y Seguridad",
       "description": "Herramientas de codificación, encriptación y seguridad"
     },
+    "base64": {
+      "name": "Herramientas Base64",
+      "description": "Convierte datos codificados en Base64 a varios formatos de archivo"
+    },
     "text": {
       "name": "Texto y Formato",
       "description": "Herramientas de manipulación y formato de texto"

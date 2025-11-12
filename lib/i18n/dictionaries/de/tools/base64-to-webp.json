@@ -1,0 +1,92 @@
+{
+  "title": "Base64 zu WebP",
+  "description": "Konvertieren Sie Base64-Strings in WebP-Bilder",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 zu WebP - Kostenloser Online-Konverter | ToolsLab",
+    "description": "Konvertieren Sie Base64 zu WebP online. Dekodieren Sie Base64 und speichern Sie als modernes WebP-Bild. Kostenloser Konverter mit sofortiger Vorschau, Transparenzunterstützung und Kompressionsanalyse."
+  },
+  "tagline": "Konvertieren Sie Base64-Daten sofort mit erweiterten Funktionen in moderne WebP-Bilder",
+  "pageDescription": "Konvertieren Sie Base64-kodierte Daten in WebP-Bilder mit sofortigem Download und Vorschau. Perfekt für Entwickler, die mit modernen Bildformaten, APIs und Web-Optimierung arbeiten. Unterstützt sowohl verlustbehaftete als auch verlustfreie Kompression, Transparenz (Alpha-Kanal) und animiertes WebP. Sichere browserbasierte Konvertierung ohne Server-Uploads. Validieren Sie Base64-Eingaben, zeigen Sie WebP-Bilder mit Transparenzunterstützung in der Vorschau an, sehen Sie Kompressionstyp und Metadaten, und laden Sie konvertierte Dateien direkt auf Ihr Gerät herunter.",
+  "instructions": {
+    "title": "So verwenden Sie den Base64 zu WebP Konverter",
+    "steps": [
+      {
+        "title": "Fügen Sie Ihre Base64-Zeichenfolge ein",
+        "description": "Kopieren und fügen Sie Ihre Base64-kodierten WebP-Daten in den Eingabebereich ein. Das Tool erkennt automatisch Daten-URL-Präfixe und entfernt sie, falls vorhanden."
+      },
+      {
+        "title": "Validieren Sie das Base64-Format",
+        "description": "Das Tool validiert automatisch Ihre Base64-Eingabe und zeigt die geschätzte Dateigröße an. Es überprüft gültige WebP (RIFF/WEBP) Header, um die Datenintegrität sicherzustellen."
+      },
+      {
+        "title": "Legen Sie einen benutzerdefinierten Dateinamen fest (optional)",
+        "description": "Passen Sie den Ausgabedateinamen bei Bedarf an. Das Tool generiert standardmäßig automatisch einen Dateinamen mit Zeitstempel für eine einfache Organisation."
+      },
+      {
+        "title": "Konvertieren und analysieren",
+        "description": "Klicken Sie auf 'In WebP konvertieren', um die Daten zu verarbeiten. Das Tool zeigt umfassende WebP-Informationen einschließlich Abmessungen, Kompressionstyp (Lossy/Lossless), Alpha-Kanal-Präsenz, Animationsstatus an und bietet eine sofortige Vorschau mit Transparenzunterstützung."
+      },
+      {
+        "title": "Laden Sie Ihr WebP herunter",
+        "description": "Klicken Sie auf 'WebP herunterladen', um das konvertierte Bild auf Ihr Gerät zu speichern. Die Vorschau zeigt Transparenz korrekt mit einem Schachbrett-Hintergrund an."
+      }
+    ],
+    "features": [
+      "Echtzeit-Base64-Validierung mit sofortigem Feedback",
+      "Unterstützung für verlustbehaftete und verlustfreie WebP-Kompression",
+      "Erkennung und Vorschau von Transparenz (Alpha-Kanal)",
+      "Erkennung von animiertem WebP",
+      "Analyse des Kompressionstyps (Lossy/Lossless/Extended)",
+      "Automatische Erkennung und Entfernung von Daten-URL-Präfixen",
+      "WebP RIFF-Header-Validierung für Datenintegrität",
+      "Sofortige Bildvorschau mit Transparenzunterstützung",
+      "Umfassende Metadaten-Anzeige (Abmessungen, Kompression, Alpha, Animation)",
+      "Unterstützung benutzerdefinierter Dateinamen mit automatischer Generierung",
+      "Schätzung und Anzeige der Dateigröße",
+      "Vollständig sicher - alle Verarbeitung erfolgt in Ihrem Browser",
+      "Keine Daten-Uploads oder Server-Speicherung",
+      "Funktioniert offline nach dem ersten Laden der Seite"
+    ],
+    "useCases": [
+      "Konvertieren Sie API-Antworten mit Base64-WebP-Daten",
+      "Extrahieren Sie WebP-Bilder aus modernen JSON- oder XML-Payloads",
+      "Dekodieren Sie WebP-Anhänge aus Progressive Web Apps",
+      "Verarbeiten Sie WebP-Daten aus Bildoptimierungs-APIs",
+      "Debuggen Sie moderne Bildformate in Entwicklung und Tests",
+      "Konvertieren Sie Daten-URL-WebPs in herunterladbare Dateien",
+      "Stellen Sie WebP-Bilder aus Base64-kodierten Backups wieder her",
+      "Vorschau und Validierung der WebP-Kompression vor dem Speichern",
+      "Analysieren Sie WebP-Metadaten für Optimierungsentscheidungen",
+      "Konvertieren Sie Next-Gen-Bildformate für Web-Performance"
+    ],
+    "proTips": [
+      "Gültige WebP-Base64-Daten beginnen mit 'UklGR' (RIFF-Signatur), wenn sie kodiert sind",
+      "Das Tool entfernt automatisch Daten-URL-Präfixe wie 'data:image/webp;base64,'",
+      "Verlustfreies WebP bietet bessere Qualität, verlustbehaftetes bietet kleinere Dateien",
+      "WebP mit Alpha-Kanal unterstützt Transparenz wie PNG, aber mit kleineren Größen",
+      "Animiertes WebP kombiniert GIF-ähnliche Animation mit besserer Kompression",
+      "Der Kompressionstyp-Indikator hilft, Optimierungsmöglichkeiten zu identifizieren",
+      "WebP spart typischerweise 25-35% Dateigröße im Vergleich zu JPEG/PNG",
+      "Deaktivieren Sie die Vorschau-Sichtbarkeit, um den Speicherverbrauch bei großen Dateien zu reduzieren"
+    ],
+    "troubleshooting": [
+      "Ungültiger Base64-Fehler: Stellen Sie sicher, dass die Eingabe nur gültige Base64-Zeichen enthält (A-Z, a-z, 0-9, +, /, =)",
+      "Kein WebP-Header gefunden: Die Daten könnten gültiges Base64 sein, aber kein WebP-Bild - überprüfen Sie die Quelle",
+      "Vorschau wird nicht angezeigt: Einige ältere Browser unterstützen möglicherweise kein WebP - versuchen Sie Chrome, Firefox oder Safari 14+",
+      "Speicherprobleme: Versuchen Sie, die Vorschau für sehr große oder animierte WebP-Dateien zu deaktivieren",
+      "Transparenz nicht sichtbar: Der Schachbrett-Hintergrund sollte transparente Bereiche deutlich machen",
+      "Animation wird nicht abgespielt: Browser unterstützt möglicherweise kein animiertes WebP oder die Datei ist statisch"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Base64-Eingabe einfügen"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Dateinamen kopieren"
+      }
+    ]
+  }
+}
