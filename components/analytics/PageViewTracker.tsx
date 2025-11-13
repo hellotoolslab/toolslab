@@ -147,11 +147,15 @@ function getConnectionType(): string | null {
   if (typeof window === 'undefined') return null;
 
   try {
-    // @ts-ignore - NetworkInformation API is not in TypeScript types
+    // Type assertion for NetworkInformation API (not in standard TypeScript types)
+    const nav = navigator as Navigator & {
+      connection?: { effectiveType?: string };
+      mozConnection?: { effectiveType?: string };
+      webkitConnection?: { effectiveType?: string };
+    };
+
     const connection =
-      navigator.connection ||
-      navigator.mozConnection ||
-      navigator.webkitConnection;
+      nav.connection || nav.mozConnection || nav.webkitConnection;
     return connection?.effectiveType || null;
   } catch (error) {
     return null;
