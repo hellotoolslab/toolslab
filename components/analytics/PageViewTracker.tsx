@@ -223,30 +223,71 @@ function collectPageViewData(
 export function PageViewTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { track } = useUmami();
+  const { track, isEnabled } = useUmami();
 
   useEffect(() => {
     const url = pathname + (searchParams?.toString() ? `?${searchParams}` : '');
+    let timeoutIds: NodeJS.Timeout[] = [];
 
-    // Small delay to ensure page is fully loaded
-    const timer = setTimeout(() => {
-      // Collect enhanced pageview data
-      const enhancedData = collectPageViewData(pathname, searchParams);
+    /**
+     * Wait for Umami to be ready before tracking
+     * Polls every 100ms for up to 5 seconds
+     */
+    const waitForUmamiAndTrack = () => {
+      let attempts = 0;
+      const maxAttempts = 50; // 50 * 100ms = 5 seconds max
 
-      // Track pageview with original + enhanced data
-      track('pageview', {
-        url,
-        title: document.title,
-        referrer: document.referrer,
-        ...enhancedData, // Add all enhanced metrics
-      });
+      const checkAndTrack = () => {
+        attempts++;
 
-      // Mark user as returning after first pageview
-      markUserAsReturning();
-    }, 150);
+        // Check if Umami is ready
+        if (
+          isEnabled &&
+          typeof window !== 'undefined' &&
+          typeof (window as any).umami !== 'undefined'
+        ) {
+          // Umami is ready! Track the pageview
+          const enhancedData = collectPageViewData(pathname, searchParams);
 
-    return () => clearTimeout(timer);
-  }, [pathname, searchParams, track]);
+          track('pageview', {
+            url,
+            title: document.title,
+            referrer: document.referrer,
+            ...enhancedData,
+          });
+
+          // Mark user as returning after first pageview
+          markUserAsReturning();
+
+          if (process.env.NODE_ENV === 'development') {
+            console.log('✅ Pageview tracked after', attempts * 100, 'ms');
+          }
+        } else if (attempts < maxAttempts) {
+          // Umami not ready yet, try again
+          const timeoutId = setTimeout(checkAndTrack, 100);
+          timeoutIds.push(timeoutId);
+        } else {
+          // Max attempts reached, give up
+          if (process.env.NODE_ENV === 'development') {
+            console.warn(
+              '⚠️ Pageview NOT tracked - Umami not ready after 5 seconds'
+            );
+          }
+        }
+      };
+
+      // Start checking after initial small delay
+      const initialTimeout = setTimeout(checkAndTrack, 100);
+      timeoutIds.push(initialTimeout);
+    };
+
+    waitForUmamiAndTrack();
+
+    // Cleanup: clear all pending timeouts
+    return () => {
+      timeoutIds.forEach((id) => clearTimeout(id));
+    };
+  }, [pathname, searchParams, track, isEnabled]);
 
   return null;
 }
