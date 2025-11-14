@@ -128,6 +128,7 @@ export class UmamiSDKAdapter {
 
   /**
    * Traccia singolo evento via Umami SDK
+   * Usa sendBeacon() se la tab è hidden per garantire delivery
    */
   private trackSingleEvent(event: AnalyticsEvent): void {
     if (!this.isSDKReady()) {
@@ -136,11 +137,33 @@ export class UmamiSDKAdapter {
 
     const { event: eventName, timestamp, ...metadata } = event;
 
-    // Prepare event data with original timestamp
+    // Validate timestamp
+    if (!this.isValidTimestamp(timestamp)) {
+      this.log(`⚠️ Invalid timestamp for event ${eventName}: ${timestamp}`);
+    }
+
+    // Prepare event data with validated timestamp
     const eventData = {
       ...metadata,
-      created_at: timestamp, // Original event timestamp for post-analysis
+      // Only include created_at if timestamp is valid
+      ...(this.isValidTimestamp(timestamp) && {
+        created_at: new Date(timestamp).toISOString(),
+      }),
     };
+
+    // Check if tab is hidden AND event is critical
+    const isTabHidden =
+      typeof document !== 'undefined' && document.hidden === true;
+    const isCritical = this.isCriticalEvent(event);
+
+    // Use sendBeacon for critical events when tab is hidden
+    if (isTabHidden && isCritical && typeof navigator !== 'undefined') {
+      this.log(
+        `📡 Using sendBeacon for critical event (tab hidden): ${eventName}`
+      );
+      this.trackWithBeacon(eventName, eventData);
+      return;
+    }
 
     // Special handling for pageview events
     if (eventName === 'pageview' && 'page' in metadata) {
@@ -150,6 +173,45 @@ export class UmamiSDKAdapter {
     } else {
       // Standard event tracking - Umami SDK handles everything
       (window as any).umami.track(eventName, eventData);
+    }
+  }
+
+  /**
+   * Send event using sendBeacon API for guaranteed delivery
+   * Used when tab is hidden or page is unloading
+   */
+  private trackWithBeacon(eventName: string, data: any): void {
+    try {
+      // Get Umami endpoint from SDK
+      const endpoint =
+        typeof (window as any).umami?.endpoint === 'string'
+          ? (window as any).umami.endpoint
+          : '/api/send';
+
+      // Prepare payload in Umami format
+      const payload = JSON.stringify({
+        payload: {
+          website: (window as any).umami?.websiteId,
+          name: eventName,
+          data,
+        },
+        type: 'event',
+      });
+
+      // Send via beacon (guaranteed delivery even if page closes)
+      const sent = navigator.sendBeacon(endpoint, payload);
+
+      if (!sent) {
+        this.log(
+          `⚠️ sendBeacon failed (queue full?), falling back to umami.track()`
+        );
+        // Fallback to normal tracking
+        (window as any).umami.track(eventName, data);
+      }
+    } catch (error) {
+      this.log(`❌ sendBeacon error, falling back:`, error);
+      // Fallback to normal tracking
+      (window as any).umami.track(eventName, data);
     }
   }
 
@@ -245,6 +307,29 @@ export class UmamiSDKAdapter {
    */
   private isCriticalEvent(event: AnalyticsEvent): boolean {
     return CRITICAL_EVENTS.includes(event.event as any);
+  }
+
+  /**
+   * Validate timestamp value
+   */
+  private isValidTimestamp(timestamp: number | undefined): boolean {
+    if (timestamp === undefined || timestamp === null) {
+      return false;
+    }
+
+    if (isNaN(timestamp)) {
+      return false;
+    }
+
+    // Check if timestamp is within reasonable range
+    // Min: 2020-01-01 (1577836800000)
+    // Max: 2100-01-01 (4102444800000)
+    if (timestamp < 1577836800000 || timestamp > 4102444800000) {
+      this.log(`⚠️ Timestamp out of range: ${timestamp}`);
+      return false;
+    }
+
+    return true;
   }
 
   /**
