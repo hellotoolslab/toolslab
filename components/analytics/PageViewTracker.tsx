@@ -256,9 +256,8 @@ export function PageViewTracker() {
           umamiDefined: typeof (window as any)?.umami !== 'undefined',
         });
 
-        // Check if Umami is ready
+        // Check if Umami is ready (don't depend on isEnabled from provider)
         if (
-          isEnabled &&
           typeof window !== 'undefined' &&
           typeof (window as any).umami !== 'undefined'
         ) {
