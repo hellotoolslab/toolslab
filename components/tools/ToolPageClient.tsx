@@ -77,7 +77,7 @@ export default function ToolPageClient({
       trackEngagement('tool-page-viewed', {
         tool: toolId,
         has_initial_input: !!initialInput,
-        is_mobile: window.innerWidth < 768,
+        // Note: referrer and url are automatically added by trackEngagement()
       });
     }
 

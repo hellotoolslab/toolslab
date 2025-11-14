@@ -10,6 +10,7 @@ import { LabToolViewer } from '@/components/lab/LabToolViewer';
 import { LabOverview } from '@/components/lab/LabOverview';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { trackLabToolSelected } from '@/lib/analytics/helpers/eventHelpers';
+import { trackEngagement } from '@/lib/analytics';
 
 // Import della vista vuota esistente
 import LabHubContent from './LabHubContent';
@@ -37,6 +38,17 @@ export default function NewLabHubContent() {
 
     setLabVisited();
   }, [isHydrated]); // Re-run when hydration completes
+
+  // Track lab page engagement
+  useEffect(() => {
+    if (!mounted || !isHydrated) return;
+
+    const favoriteCount = getFavoriteCount();
+    trackEngagement('lab-page-viewed', {
+      favoriteCount,
+      hasFavorites: favoriteCount > 0,
+    });
+  }, [mounted, isHydrated, getFavoriteCount]);
 
   // Show welcome toast if first visit with favorites
   useEffect(() => {
