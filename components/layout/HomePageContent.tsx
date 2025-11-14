@@ -1,9 +1,10 @@
 'use client';
 
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { type Locale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
+import { trackEngagement } from '@/lib/analytics';
 
 // Eager load critical above-the-fold components
 import { HeroSection } from '@/components/home/HeroSection';
@@ -71,6 +72,13 @@ export default function HomePageContent({
 }: HomePageContentProps) {
   // Specify sections needed for homepage
   const homeSections = ['common', 'home', 'footer'];
+
+  // Track homepage engagement
+  useEffect(() => {
+    trackEngagement('homepage-viewed', {
+      locale,
+    });
+  }, []); // Run only once on mount
 
   return (
     <DictionaryProvider

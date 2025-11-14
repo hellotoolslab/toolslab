@@ -242,11 +242,20 @@ export function trackEngagement(
   metadata?: Record<string, any>
 ): void {
   try {
+    // Remove is_mobile/isMobile from metadata if present
+    const { is_mobile, isMobile, ...cleanMetadata } = metadata || {};
+
+    // Add referrer and full URL with UTM parameters
+    const referrer = typeof document !== 'undefined' ? document.referrer : '';
+    const url = typeof window !== 'undefined' ? window.location.href : '';
+
     const event = EventNormalizer.enrichEvent({
       event: 'engagement' as const,
       action,
       sessionId: '',
-      ...metadata,
+      referrer, // Where the user came from
+      url, // Full URL including UTM parameters
+      ...cleanMetadata,
     });
 
     getUmamiAdapter().track(event);
