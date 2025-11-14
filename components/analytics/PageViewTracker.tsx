@@ -233,6 +233,12 @@ export function PageViewTracker() {
     const url = pathname + (searchParams?.toString() ? `?${searchParams}` : '');
     let timeoutIds: NodeJS.Timeout[] = [];
 
+    console.log('🔍 PageViewTracker mounted', {
+      pathname,
+      isEnabled,
+      url,
+    });
+
     /**
      * Wait for Umami to be ready before tracking
      * Polls every 100ms for up to 5 seconds
@@ -243,6 +249,12 @@ export function PageViewTracker() {
 
       const checkAndTrack = () => {
         attempts++;
+
+        console.log(`🔍 Check ${attempts}:`, {
+          isEnabled,
+          windowDefined: typeof window !== 'undefined',
+          umamiDefined: typeof (window as any)?.umami !== 'undefined',
+        });
 
         // Check if Umami is ready
         if (
