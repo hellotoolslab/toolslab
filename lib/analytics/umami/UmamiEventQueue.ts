@@ -10,9 +10,7 @@ import type { AnalyticsConfig } from '../config';
 
 export interface QueueStatus {
   queueSize: number;
-  offlineQueueSize: number;
   hasActiveTimer: boolean;
-  isOnline: boolean;
 }
 
 /**
@@ -20,20 +18,12 @@ export interface QueueStatus {
  */
 export class UmamiEventQueue {
   private queue: AnalyticsEvent[] = [];
-  private offlineQueue: AnalyticsEvent[] = [];
   private flushTimer: NodeJS.Timeout | null = null;
-  private isOnline: boolean = true;
   private onFlushCallback: ((events: AnalyticsEvent[]) => void) | null = null;
 
   constructor(private config: AnalyticsConfig) {
-    if (typeof window !== 'undefined') {
-      // Listen for online/offline events
-      window.addEventListener('online', () => this.handleOnline());
-      window.addEventListener('offline', () => this.handleOffline());
-
-      // Restore offline queue from localStorage
-      this.restoreOfflineQueue();
-    }
+    // No offline queue - analytics can tolerate data loss
+    // sendBeacon provides best-effort delivery, which is sufficient
   }
 
   /**
@@ -50,15 +40,7 @@ export class UmamiEventQueue {
     event: AnalyticsEvent,
     shouldFlushImmediately: boolean = false
   ): void {
-    // If offline, add to offline queue
-    if (!this.isOnline) {
-      this.offlineQueue.push(event);
-      this.persistOfflineQueue();
-      this.log('📴 Offline - queued event', event.event);
-      return;
-    }
-
-    // Add to main queue
+    // Add to queue
     this.queue.push(event);
     this.log(
       `📦 Enqueued (${this.queue.length}/${this.config.batching.maxSize})`,
@@ -138,7 +120,11 @@ export class UmamiEventQueue {
    * NOTA: Invertito per testare se Umami riceve eventi in ordine inverso
    */
   private sortByTimestamp(events: AnalyticsEvent[]): AnalyticsEvent[] {
-    return events.sort((a, b) => b.timestamp - a.timestamp);
+    return events.sort((a, b) => {
+      const aTime = a.timestamp ?? Date.now();
+      const bTime = b.timestamp ?? Date.now();
+      return bTime - aTime;
+    });
   }
 
   /**
@@ -151,136 +137,13 @@ export class UmamiEventQueue {
   }
 
   /**
-   * Handle online event
-   */
-  private handleOnline(): void {
-    this.log('🌐 Back online, processing offline queue');
-    this.isOnline = true;
-
-    // Process offline queue
-    if (this.offlineQueue.length > 0) {
-      const events = [...this.offlineQueue];
-      this.offlineQueue = [];
-      this.clearOfflineQueue();
-
-      // Re-enqueue all offline events
-      events.forEach((event) => this.enqueue(event));
-    }
-  }
-
-  /**
-   * Handle offline event
-   */
-  private handleOffline(): void {
-    this.log('📴 Gone offline');
-    this.isOnline = false;
-  }
-
-  /**
-   * Persist offline queue to localStorage
-   */
-  private persistOfflineQueue(): void {
-    if (typeof localStorage === 'undefined') return;
-
-    try {
-      localStorage.setItem(
-        'toolslab-analytics-offline',
-        JSON.stringify(this.offlineQueue)
-      );
-    } catch (error) {
-      this.log('Failed to persist offline queue', error);
-    }
-  }
-
-  /**
-   * Restore offline queue from localStorage
-   */
-  private restoreOfflineQueue(): void {
-    if (typeof localStorage === 'undefined') return;
-
-    try {
-      const stored = localStorage.getItem('toolslab-analytics-offline');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        // Filter out events with invalid timestamps
-        const validEvents = Array.isArray(parsed)
-          ? parsed.filter((event) => this.isValidEvent(event))
-          : [];
-
-        const filtered = parsed.length - validEvents.length;
-        if (filtered > 0) {
-          this.log(
-            `⚠️ Filtered out ${filtered} corrupted events from offline queue`
-          );
-        }
-
-        this.offlineQueue = validEvents;
-        this.log('Restored offline queue', this.offlineQueue.length);
-
-        // Update localStorage if we filtered out corrupted events
-        if (filtered > 0) {
-          this.persistOfflineQueue();
-        }
-      }
-    } catch (error) {
-      this.log('Failed to restore offline queue', error);
-      // Clear corrupted data
-      this.clearOfflineQueue();
-    }
-  }
-
-  /**
-   * Clear offline queue from localStorage
-   */
-  private clearOfflineQueue(): void {
-    if (typeof localStorage === 'undefined') return;
-
-    try {
-      localStorage.removeItem('toolslab-analytics-offline');
-    } catch (error) {
-      this.log('Failed to clear offline queue', error);
-    }
-  }
-
-  /**
    * Get queue status
    */
   getStatus(): QueueStatus {
     return {
       queueSize: this.queue.length,
-      offlineQueueSize: this.offlineQueue.length,
       hasActiveTimer: this.flushTimer !== null,
-      isOnline: this.isOnline,
     };
-  }
-
-  /**
-   * Validate event has required fields and valid timestamp
-   */
-  private isValidEvent(event: any): boolean {
-    if (!event || typeof event !== 'object') {
-      return false;
-    }
-
-    // Check required fields
-    if (!event.event || !event.timestamp) {
-      return false;
-    }
-
-    // Validate timestamp
-    const timestamp = event.timestamp;
-    if (typeof timestamp !== 'number' || isNaN(timestamp)) {
-      return false;
-    }
-
-    // Check if timestamp is within reasonable range
-    // Min: 2020-01-01 (1577836800000)
-    // Max: 2100-01-01 (4102444800000)
-    if (timestamp < 1577836800000 || timestamp > 4102444800000) {
-      return false;
-    }
-
-    return true;
   }
 
   /**

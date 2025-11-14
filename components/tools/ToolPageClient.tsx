@@ -12,7 +12,7 @@ import {
   getCategoryColorClass,
 } from '@/lib/tools';
 import ToolWorkspace from './ToolWorkspace';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { trackEngagement, trackToolUse } from '@/lib/analytics';
 import {
   ChevronRight,
   Share2,
@@ -51,7 +51,6 @@ export default function ToolPageClient({
 }: ToolPageClientProps) {
   const searchParams = useSearchParams();
   const { theme } = useTheme();
-  const { trackEngagement, trackToolUse } = useUmami();
   const { createHref } = useLocalizedRouter();
   const [usageCount, setUsageCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);

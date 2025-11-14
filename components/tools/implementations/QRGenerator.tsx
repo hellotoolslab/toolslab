@@ -27,7 +27,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { trackToolUse, trackEngagement } from '@/lib/analytics';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
@@ -58,7 +58,6 @@ const contentTypeIcons: Record<QRCodeType, React.ElementType> = {
 };
 
 export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
-  const { trackToolUse, trackEngagement } = useUmami();
   const { copy: copyToClipboard } = useCopy();
 
   // Main state

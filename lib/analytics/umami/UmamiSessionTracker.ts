@@ -103,7 +103,6 @@ class UmamiSessionTracker {
       daysSinceLastVisit,
       referrer: typeof document !== 'undefined' ? document.referrer : undefined,
       entryPage: typeof window !== 'undefined' ? window.location.pathname : '/',
-      timestamp: Date.now(),
     };
 
     const enriched = EventNormalizer.enrichEvent(event);

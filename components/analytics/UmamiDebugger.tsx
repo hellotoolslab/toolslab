@@ -1,7 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useUmami } from '@/components/analytics/UmamiProvider';
+import {
+  track,
+  trackToolUse,
+  trackFavorite,
+  trackSocial,
+  trackConversion,
+  trackEngagement,
+} from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 interface EventLog {
@@ -66,14 +73,6 @@ export function UmamiDebugger() {
   const [isVisible, setIsVisible] = useState(false);
   const [events, setEvents] = useState<EventLog[]>([]);
   const [isRecording, setIsRecording] = useState(true);
-  const {
-    track,
-    trackToolUse,
-    trackFavorite,
-    trackSocial,
-    trackConversion,
-    trackEngagement,
-  } = useUmami();
 
   // Override console.log to capture Umami events
   useEffect(() => {
@@ -187,12 +186,12 @@ export function UmamiDebugger() {
       action: () =>
         trackToolUse('json-formatter', 'format', {
           success: true,
-          input_size: 150,
+          inputSize: 150,
         }),
     },
     {
       name: 'Favorite Tool',
-      action: () => trackFavorite('tool', 'json-formatter', true),
+      action: () => trackFavorite('json-formatter', 'tool', 'add', 1),
     },
     {
       name: 'Social Click',

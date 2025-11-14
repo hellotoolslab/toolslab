@@ -79,10 +79,9 @@ export class EventNormalizer {
   ): T {
     const enriched = { ...event };
 
-    // Add timestamp if not present
-    if (!enriched.timestamp) {
-      enriched.timestamp = Date.now();
-    }
+    // NOTE: We don't add timestamp here
+    // Umami automatically assigns createdAt on server when event is received
+    // Events are sent nearly real-time (1s batching), so server time is accurate
 
     // Add viewport if not present
     if (!enriched.viewport && typeof window !== 'undefined') {
@@ -213,12 +212,50 @@ export class EventNormalizer {
   }
 
   /**
-   * Get current page info
+   * Extract UTM parameters from URL
+   */
+  private static extractUTMParameters(): {
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+    utmContent?: string;
+    utmTerm?: string;
+  } {
+    if (typeof window === 'undefined') {
+      return {};
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const utm: any = {};
+
+    // Extract standard UTM parameters
+    const utmSource = params.get('utm_source');
+    const utmMedium = params.get('utm_medium');
+    const utmCampaign = params.get('utm_campaign');
+    const utmContent = params.get('utm_content');
+    const utmTerm = params.get('utm_term');
+
+    if (utmSource) utm.utmSource = utmSource;
+    if (utmMedium) utm.utmMedium = utmMedium;
+    if (utmCampaign) utm.utmCampaign = utmCampaign;
+    if (utmContent) utm.utmContent = utmContent;
+    if (utmTerm) utm.utmTerm = utmTerm;
+
+    return utm;
+  }
+
+  /**
+   * Get current page info with UTM parameters
    */
   public static getCurrentPageInfo(): {
     page: string;
     locale: string;
     referrer?: string;
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+    utmContent?: string;
+    utmTerm?: string;
   } {
     if (typeof window === 'undefined') {
       return { page: 'page:unknown', locale: 'en' };
@@ -226,8 +263,9 @@ export class EventNormalizer {
 
     const { page, locale } = this.normalizeURL(window.location.pathname);
     const referrer = this.getNormalizedReferrer();
+    const utm = this.extractUTMParameters();
 
-    return { page, locale, referrer };
+    return { page, locale, referrer, ...utm };
   }
 
   /**

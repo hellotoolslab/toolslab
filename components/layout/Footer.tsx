@@ -2,12 +2,11 @@
 
 import Link from 'next/link';
 import { Github } from 'lucide-react';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { trackConversion, trackSocial, trackEngagement } from '@/lib/analytics';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import { useDictionary } from '@/hooks/useDictionary';
 
 export function Footer() {
-  const { trackConversion, trackSocial, trackEngagement } = useUmami();
   const { createHref } = useLocalizedRouter();
   const { dictionary, loading } = useDictionary();
 
