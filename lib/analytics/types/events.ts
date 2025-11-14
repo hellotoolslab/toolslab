@@ -3,7 +3,7 @@
 export type UserLevel = 'first_time' | 'returning' | 'power';
 
 export type EventName =
-  | 'pageview'
+  | 'page_view' // Changed from 'pageview' - may conflict with Umami auto-tracking
   | 'tool.use'
   | 'tool.error'
   | 'user.copy'
@@ -45,7 +45,7 @@ export interface BaseEventMetadata {
 }
 
 export interface PageviewEvent extends BaseEventMetadata {
-  event: 'pageview';
+  event: 'page_view';
   page: string; // Normalized page ID (e.g., 'tool:json-formatter')
   referrer?: string;
   // UTM Parameters (marketing attribution)
