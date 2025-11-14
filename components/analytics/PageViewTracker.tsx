@@ -27,30 +27,20 @@ export function PageViewTracker() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    // TEMPORARILY DISABLED: Umami auto-tracking handles pageviews
+    // TODO: Re-enable with deduplication logic or use only for custom metadata
+
+    // Update session tracker only (no duplicate pageview event)
     try {
-      // Get normalized page info with UTM parameters
-      const pageInfo = EventNormalizer.getCurrentPageInfo();
-
-      // Create pageview event with all parameters
-      const event = EventNormalizer.enrichEvent({
-        event: 'pageview' as const,
-        ...pageInfo, // Includes page, locale, referrer, and UTM params
-        sessionId: '', // Will be enriched by EventNormalizer
-      });
-
-      // Track via centralized system
-      getUmamiAdapter().track(event);
-
-      // Update session tracker
       getUmamiSessionTracker()?.incrementPageView();
 
       if (process.env.NODE_ENV === 'development') {
-        console.log('📊 Pageview tracked:', pageInfo);
+        const pageInfo = EventNormalizer.getCurrentPageInfo();
+        console.log('📊 Pageview (auto-tracked by Umami):', pageInfo);
       }
     } catch (error) {
-      // Silent fail - don't break app if tracking fails
       if (process.env.NODE_ENV === 'development') {
-        console.error('❌ Pageview tracking error:', error);
+        console.error('❌ Session tracker error:', error);
       }
     }
   }, [pathname, searchParams]);
