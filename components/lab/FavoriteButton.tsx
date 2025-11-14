@@ -5,11 +5,8 @@ import { cn } from '@/lib/utils';
 import { useToolStore } from '@/lib/store/toolStore';
 import { labToasts } from '@/lib/utils/toasts';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { track, trackFavorite } from '@/lib/analytics';
 import { useHydration } from '@/lib/hooks/useHydration';
-import { getUmamiAdapter } from '@/lib/analytics/umami/UmamiSDKAdapter';
-import { getUmamiSessionTracker } from '@/lib/analytics/umami/UmamiSessionTracker';
-import { EventNormalizer } from '@/lib/analytics/core/EventNormalizer';
 
 interface FavoriteButtonProps {
   type: 'tool' | 'category';
@@ -30,7 +27,6 @@ export function FavoriteButton({
 }: FavoriteButtonProps) {
   const { isFavorite, toggleToolFavorite, toggleCategoryFavorite } =
     useToolStore();
-  const { trackFavorite, trackEngagement } = useUmami();
   const isHydrated = useHydration();
 
   const isFav = isHydrated ? isFavorite(type, id) : false;
@@ -47,7 +43,7 @@ export function FavoriteButton({
         const { favoriteTools } = useToolStore.getState();
         if (favoriteTools.length >= 50) {
           labToasts.labLimitReached('tools', 50);
-          trackEngagement('lab-limit-reached', {
+          track('lab-limit-reached', {
             type: 'tools',
             limit: 50,
             current_count: favoriteTools.length,
@@ -62,7 +58,7 @@ export function FavoriteButton({
         const { favoriteCategories } = useToolStore.getState();
         if (favoriteCategories.length >= 10) {
           labToasts.labLimitReached('categories', 10);
-          trackEngagement('lab-limit-reached', {
+          track('lab-limit-reached', {
             type: 'categories',
             limit: 10,
             current_count: favoriteCategories.length,
@@ -73,28 +69,17 @@ export function FavoriteButton({
       toggleCategoryFavorite(id);
     }
 
-    // Track favorite action using new centralized system
-    const trackingManager = getUmamiAdapter();
-    const sessionManager = getUmamiSessionTracker();
-
+    // Track favorite action using unified API
     const { favoriteTools, favoriteCategories } = useToolStore.getState();
     const totalFavorites =
       type === 'tool' ? favoriteTools.length : favoriteCategories.length;
 
-    const event = EventNormalizer.enrichEvent({
-      event: 'user.favorite' as const,
-      type,
+    trackFavorite(
       id,
-      action: wasAdded ? ('add' as const) : ('remove' as const),
-      totalFavorites: wasAdded ? totalFavorites + 1 : totalFavorites - 1,
-      timestamp: Date.now(),
-      sessionId: sessionManager?.getSessionId() || '',
-    });
-
-    trackingManager.track(event);
-
-    // Legacy tracking for backward compatibility
-    trackFavorite(type, id, wasAdded);
+      type,
+      wasAdded ? 'add' : 'remove',
+      wasAdded ? totalFavorites + 1 : totalFavorites - 1
+    );
 
     // Show toast notification
     if (wasAdded) {
