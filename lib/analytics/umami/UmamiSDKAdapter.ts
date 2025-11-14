@@ -143,14 +143,15 @@ export class UmamiSDKAdapter {
 
     const { event: eventName, timestamp, ...metadata } = event;
 
-    // Note: We don't pass timestamp to Umami
-    // Umami automatically assigns createdAt on the server when it receives the event
-    // Since events are sent almost in real-time (max 5s batching), the difference is negligible
-    // Passing custom timestamp fields (created_at, timestamp) causes "Invalid time value" errors
-
-    // Prepare event data without timestamp
+    // Prepare event data with timestamp
+    // Umami expects UNIX timestamp in SECONDS (not milliseconds)
+    // Ref: https://umami.is/docs/api - timestamp parameter (v2.17.0+)
+    // If timestamp is provided, Umami will record the event with that timestamp
+    // instead of the server's current time
     const eventData = {
       ...metadata,
+      // Convert milliseconds to seconds if timestamp exists
+      ...(timestamp ? { timestamp: Math.floor(timestamp / 1000) } : {}),
     };
 
     // Check if tab is hidden AND event is critical

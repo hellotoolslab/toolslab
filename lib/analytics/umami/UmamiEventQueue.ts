@@ -120,7 +120,11 @@ export class UmamiEventQueue {
    * NOTA: Invertito per testare se Umami riceve eventi in ordine inverso
    */
   private sortByTimestamp(events: AnalyticsEvent[]): AnalyticsEvent[] {
-    return events.sort((a, b) => b.timestamp - a.timestamp);
+    return events.sort((a, b) => {
+      const aTime = a.timestamp ?? Date.now();
+      const bTime = b.timestamp ?? Date.now();
+      return bTime - aTime;
+    });
   }
 
   /**

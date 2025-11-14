@@ -35,8 +35,12 @@ export interface BaseEventMetadata {
   viewport?: string;
   isMobile?: boolean;
 
-  // Custom metadata - but NOT timestamp!
-  // Umami assigns createdAt automatically when event is received
+  // Timestamp (optional)
+  // UNIX timestamp in milliseconds - will be converted to seconds before sending to Umami
+  // If provided, Umami will record the event with this timestamp instead of server time
+  timestamp?: number;
+
+  // Custom metadata
   [key: string]: any;
 }
 
