@@ -89,7 +89,7 @@ export const CRITICAL_EVENTS = [
 export const NON_CRITICAL_EVENTS = [
   'user.copy',
   'user.download',
-  'pageview',
+  'page_view', // Changed from 'pageview' to avoid Umami conflict
 ] as const;
 
 // PII patterns to sanitize
