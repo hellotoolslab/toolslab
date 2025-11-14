@@ -137,18 +137,14 @@ export class UmamiSDKAdapter {
 
     const { event: eventName, timestamp, ...metadata } = event;
 
-    // Validate timestamp
-    if (!this.isValidTimestamp(timestamp)) {
-      this.log(`⚠️ Invalid timestamp for event ${eventName}: ${timestamp}`);
-    }
+    // Note: We don't pass timestamp to Umami
+    // Umami automatically assigns createdAt on the server when it receives the event
+    // Since events are sent almost in real-time (max 5s batching), the difference is negligible
+    // Passing custom timestamp fields (created_at, timestamp) causes "Invalid time value" errors
 
-    // Prepare event data with validated timestamp
+    // Prepare event data without timestamp
     const eventData = {
       ...metadata,
-      // Only include created_at if timestamp is valid
-      ...(this.isValidTimestamp(timestamp) && {
-        created_at: new Date(timestamp).toISOString(),
-      }),
     };
 
     // Check if tab is hidden AND event is critical
