@@ -57,7 +57,8 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
     script.src = scriptUrl;
     script.defer = true;
     script.setAttribute('data-website-id', websiteId);
-    // Disable auto-tracking - we handle all tracking manually with custom timestamps
+    // Disable auto-tracking - we handle all tracking manually
+    // This prevents duplicate pageviews and gives us full control over event data
     script.setAttribute('data-auto-track', 'false');
 
     script.onload = () => {

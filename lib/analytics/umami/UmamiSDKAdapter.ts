@@ -168,15 +168,9 @@ export class UmamiSDKAdapter {
       return;
     }
 
-    // Special handling for pageview events
-    if (eventName === 'pageview' && 'page' in metadata) {
-      // Use normalized page identifier instead of raw URL
-      // Example: 'tool:json-formatter' instead of '/it/tools/json-formatter'
-      (window as any).umami.track(metadata.page, eventData);
-    } else {
-      // Standard event tracking - Umami SDK handles everything
-      (window as any).umami.track(eventName, eventData);
-    }
+    // Standard event tracking - Umami SDK handles everything
+    // Always use eventName as first parameter, data as second
+    (window as any).umami.track(eventName, eventData);
   }
 
   /**
