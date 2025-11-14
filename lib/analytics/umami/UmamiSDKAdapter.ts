@@ -128,6 +128,7 @@ export class UmamiSDKAdapter {
 
   /**
    * Traccia singolo evento via Umami SDK
+   * Usa sendBeacon() se la tab è hidden per garantire delivery
    */
   private trackSingleEvent(event: AnalyticsEvent): void {
     if (!this.isSDKReady()) {
@@ -142,6 +143,20 @@ export class UmamiSDKAdapter {
       created_at: timestamp, // Original event timestamp for post-analysis
     };
 
+    // Check if tab is hidden AND event is critical
+    const isTabHidden =
+      typeof document !== 'undefined' && document.hidden === true;
+    const isCritical = this.isCriticalEvent(event);
+
+    // Use sendBeacon for critical events when tab is hidden
+    if (isTabHidden && isCritical && typeof navigator !== 'undefined') {
+      this.log(
+        `📡 Using sendBeacon for critical event (tab hidden): ${eventName}`
+      );
+      this.trackWithBeacon(eventName, eventData);
+      return;
+    }
+
     // Special handling for pageview events
     if (eventName === 'pageview' && 'page' in metadata) {
       // Use normalized page identifier instead of raw URL
@@ -150,6 +165,45 @@ export class UmamiSDKAdapter {
     } else {
       // Standard event tracking - Umami SDK handles everything
       (window as any).umami.track(eventName, eventData);
+    }
+  }
+
+  /**
+   * Send event using sendBeacon API for guaranteed delivery
+   * Used when tab is hidden or page is unloading
+   */
+  private trackWithBeacon(eventName: string, data: any): void {
+    try {
+      // Get Umami endpoint from SDK
+      const endpoint =
+        typeof (window as any).umami?.endpoint === 'string'
+          ? (window as any).umami.endpoint
+          : '/api/send';
+
+      // Prepare payload in Umami format
+      const payload = JSON.stringify({
+        payload: {
+          website: (window as any).umami?.websiteId,
+          name: eventName,
+          data,
+        },
+        type: 'event',
+      });
+
+      // Send via beacon (guaranteed delivery even if page closes)
+      const sent = navigator.sendBeacon(endpoint, payload);
+
+      if (!sent) {
+        this.log(
+          `⚠️ sendBeacon failed (queue full?), falling back to umami.track()`
+        );
+        // Fallback to normal tracking
+        (window as any).umami.track(eventName, data);
+      }
+    } catch (error) {
+      this.log(`❌ sendBeacon error, falling back:`, error);
+      // Fallback to normal tracking
+      (window as any).umami.track(eventName, data);
     }
   }
 
