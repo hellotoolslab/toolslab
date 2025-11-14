@@ -17,10 +17,6 @@
   "functions": {
     "app/**/*.ts": {
       "maxDuration": 10
-    },
-    "api/convert-pdf-to-word.py": {
-      "maxDuration": 60,
-      "memory": 1024
     }
   },
   "headers": [
