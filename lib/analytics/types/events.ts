@@ -24,9 +24,6 @@ export type EventName =
   | 'social.click';
 
 export interface BaseEventMetadata {
-  // Timestamp
-  timestamp: number;
-
   // Session
   sessionId: string;
 
@@ -40,7 +37,8 @@ export interface BaseEventMetadata {
   viewport?: string;
   isMobile?: boolean;
 
-  // Custom metadata
+  // Custom metadata - but NOT timestamp!
+  // Umami assigns createdAt automatically when event is received
   [key: string]: any;
 }
 

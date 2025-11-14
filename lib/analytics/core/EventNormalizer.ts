@@ -79,10 +79,9 @@ export class EventNormalizer {
   ): T {
     const enriched = { ...event };
 
-    // Add timestamp if not present
-    if (!enriched.timestamp) {
-      enriched.timestamp = Date.now();
-    }
+    // NOTE: We don't add timestamp here
+    // Umami automatically assigns createdAt on server when event is received
+    // Events are sent nearly real-time (1s batching), so server time is accurate
 
     // Add viewport if not present
     if (!enriched.viewport && typeof window !== 'undefined') {

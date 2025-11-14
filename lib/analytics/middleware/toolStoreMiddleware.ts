@@ -96,7 +96,6 @@ export function trackToolError(
       errorType,
       errorMessage: EventNormalizer.truncate(errorMessage, 200),
       inputSize,
-      timestamp: Date.now(),
       sessionId: '',
     });
 

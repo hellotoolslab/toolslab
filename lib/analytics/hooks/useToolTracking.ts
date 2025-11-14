@@ -52,7 +52,6 @@ export function useToolTracking(toolId: string) {
             errorType: 'ProcessingError',
             errorMessage: EventNormalizer.truncate(metadata.error, 200),
             inputSize,
-            timestamp: Date.now(),
             sessionId: '',
           });
           manager.track(errorEvent);
@@ -65,7 +64,6 @@ export function useToolTracking(toolId: string) {
             outputSize,
             processingTime: metadata?.processingTime,
             success,
-            timestamp: Date.now(),
             sessionId: '',
           });
           manager.track(event);
@@ -109,7 +107,6 @@ export function useToolTracking(toolId: string) {
           errorType,
           errorMessage: EventNormalizer.truncate(errorMessage, 200),
           inputSize,
-          timestamp: Date.now(),
           sessionId: '',
         });
 
@@ -145,7 +142,6 @@ export function useToolTracking(toolId: string) {
           event: 'tool.use',
           tool: toolId,
           success: true,
-          timestamp: Date.now(),
           sessionId: '',
           ...eventData,
         });

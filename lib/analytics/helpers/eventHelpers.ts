@@ -25,7 +25,6 @@ export function trackLabVisited(params: {
     favoritesCount: params.favoritesCount,
     toolsCount: params.toolsCount,
     categoriesCount: params.categoriesCount,
-    timestamp: Date.now(),
     sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
@@ -39,7 +38,6 @@ export function trackLabVisited(params: {
 export function trackLabEmptyStateVisited(): void {
   const event: LabEmptyStateVisitedEvent = {
     event: 'lab.empty_state_visited',
-    timestamp: Date.now(),
     sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
@@ -53,7 +51,6 @@ export function trackLabEmptyStateVisited(): void {
 export function trackLabWelcomeToastShown(): void {
   const event: LabWelcomeToastShownEvent = {
     event: 'lab.welcome_toast_shown',
-    timestamp: Date.now(),
     sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
@@ -68,7 +65,6 @@ export function trackLabToolSelected(toolId: string): void {
   const event: LabToolSelectedEvent = {
     event: 'lab.tool_selected',
     toolId,
-    timestamp: Date.now(),
     sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
@@ -82,7 +78,6 @@ export function trackLabToolSelected(toolId: string): void {
 export function trackLabOverviewSelected(): void {
   const event: LabOverviewSelectedEvent = {
     event: 'lab.overview_selected',
-    timestamp: Date.now(),
     sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
@@ -98,7 +93,6 @@ export function trackSocialClick(platform: string, from?: string): void {
     event: 'social.click',
     platform,
     from,
-    timestamp: Date.now(),
     sessionId: getUmamiSessionTracker()?.getSessionId() || '',
   };
 
