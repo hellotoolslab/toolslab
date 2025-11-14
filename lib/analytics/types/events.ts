@@ -16,10 +16,7 @@ export type EventName =
   | 'chain.start'
   | 'chain.step'
   | 'chain.complete'
-  | 'lab.empty_state_visited'
-  | 'lab.welcome_toast_shown'
   | 'lab.tool_selected'
-  | 'lab.overview_selected'
   | 'social.click'
   | 'conversion'
   | 'engagement';
@@ -146,21 +143,9 @@ export interface ChainCompleteEvent extends BaseEventMetadata {
   totalDuration: number;
 }
 
-export interface LabEmptyStateVisitedEvent extends BaseEventMetadata {
-  event: 'lab.empty_state_visited';
-}
-
-export interface LabWelcomeToastShownEvent extends BaseEventMetadata {
-  event: 'lab.welcome_toast_shown';
-}
-
 export interface LabToolSelectedEvent extends BaseEventMetadata {
   event: 'lab.tool_selected';
   toolId: string;
-}
-
-export interface LabOverviewSelectedEvent extends BaseEventMetadata {
-  event: 'lab.overview_selected';
 }
 
 export interface SocialClickEvent extends BaseEventMetadata {
@@ -194,10 +179,7 @@ export type AnalyticsEvent =
   | ChainStartEvent
   | ChainStepEvent
   | ChainCompleteEvent
-  | LabEmptyStateVisitedEvent
-  | LabWelcomeToastShownEvent
   | LabToolSelectedEvent
-  | LabOverviewSelectedEvent
   | SocialClickEvent
   | ConversionEvent
   | EngagementEvent;

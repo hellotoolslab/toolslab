@@ -12,12 +12,7 @@ import { type Locale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
-import {
-  trackLabEmptyStateVisited,
-  trackLabWelcomeToastShown,
-  trackLabToolSelected,
-  trackLabOverviewSelected,
-} from '@/lib/analytics/helpers/eventHelpers';
+import { trackLabToolSelected } from '@/lib/analytics/helpers/eventHelpers';
 
 // Import della vista vuota esistente
 import LabHubContent from '../../../components/layout/LabHubContent';
@@ -47,13 +42,6 @@ function LabPageContent({ locale }: { locale: Locale }) {
 
   useEffect(() => {
     setLabVisited();
-
-    const { favoriteTools, favoriteCategories } = useToolStore.getState();
-    const favoriteCount = favoriteTools.length + favoriteCategories.length;
-
-    if (favoriteCount === 0) {
-      trackLabEmptyStateVisited();
-    }
   }, []); // Run only once on mount
 
   // Show welcome toast if first visit with favorites
@@ -65,7 +53,6 @@ function LabPageContent({ locale }: { locale: Locale }) {
     ) {
       setTimeout(() => {
         labToasts.welcomeToLab();
-        trackLabWelcomeToastShown();
       }, 1000);
     }
   }, [favoriteTools.length, favoriteCategories.length]);
@@ -112,7 +99,6 @@ function LabPageContent({ locale }: { locale: Locale }) {
 
   const handleShowOverview = () => {
     setSelectedToolId(null);
-    trackLabOverviewSelected();
   };
 
   return (

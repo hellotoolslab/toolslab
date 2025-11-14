@@ -36,7 +36,7 @@ export function track(eventName: string, data?: Record<string, any>): void {
       event: eventName as any,
       sessionId: '',
       ...data,
-    });
+    } as any);
 
     getUmamiAdapter().track(event);
     getUmamiSessionTracker()?.incrementEvent();
@@ -259,12 +259,7 @@ export function trackEngagement(
 // LAB TRACKING
 // ============================================================================
 
-export {
-  trackLabEmptyStateVisited,
-  trackLabWelcomeToastShown,
-  trackLabToolSelected,
-  trackLabOverviewSelected,
-} from './helpers/eventHelpers';
+export { trackLabToolSelected } from './helpers/eventHelpers';
 
 // ============================================================================
 // AUTO-TRACKING (for toolStore middleware)

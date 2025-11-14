@@ -30,10 +30,6 @@ import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
-import {
-  trackLabEmptyStateVisited,
-  trackLabWelcomeToastShown,
-} from '@/lib/analytics/helpers/eventHelpers';
 
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;
@@ -414,10 +410,6 @@ export default function LabHubContent() {
 
     const { favoriteTools, favoriteCategories } = useToolStore.getState();
     const favoriteCount = favoriteTools.length + favoriteCategories.length;
-
-    if (favoriteCount === 0) {
-      trackLabEmptyStateVisited();
-    }
   }, [isHydrated]); // Re-run when hydration completes
 
   // Show welcome toast if first visit with favorites
@@ -429,7 +421,6 @@ export default function LabHubContent() {
     ) {
       setTimeout(() => {
         labToasts.welcomeToLab();
-        trackLabWelcomeToastShown();
       }, 1000);
     }
   }, [favoriteTools.length, favoriteCategories.length]);

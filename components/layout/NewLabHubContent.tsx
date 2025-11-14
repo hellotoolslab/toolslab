@@ -9,12 +9,7 @@ import { LabSidebar } from '@/components/lab/LabSidebar';
 import { LabToolViewer } from '@/components/lab/LabToolViewer';
 import { LabOverview } from '@/components/lab/LabOverview';
 import { useHydration } from '@/lib/hooks/useHydration';
-import {
-  trackLabEmptyStateVisited,
-  trackLabWelcomeToastShown,
-  trackLabToolSelected,
-  trackLabOverviewSelected,
-} from '@/lib/analytics/helpers/eventHelpers';
+import { trackLabToolSelected } from '@/lib/analytics/helpers/eventHelpers';
 
 // Import della vista vuota esistente
 import LabHubContent from './LabHubContent';
@@ -41,13 +36,6 @@ export default function NewLabHubContent() {
     if (!isHydrated) return; // Wait for hydration before accessing store
 
     setLabVisited();
-
-    const { favoriteTools, favoriteCategories } = useToolStore.getState();
-    const favoriteCount = favoriteTools.length + favoriteCategories.length;
-
-    if (favoriteCount === 0) {
-      trackLabEmptyStateVisited();
-    }
   }, [isHydrated]); // Re-run when hydration completes
 
   // Show welcome toast if first visit with favorites
@@ -59,7 +47,6 @@ export default function NewLabHubContent() {
     ) {
       setTimeout(() => {
         labToasts.welcomeToLab();
-        trackLabWelcomeToastShown();
       }, 1000);
     }
   }, [favoriteTools.length, favoriteCategories.length]);
@@ -106,7 +93,6 @@ export default function NewLabHubContent() {
 
   const handleShowOverview = () => {
     setSelectedToolId(null);
-    trackLabOverviewSelected();
   };
 
   return (
