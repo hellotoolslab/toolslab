@@ -48,6 +48,12 @@ export interface PageviewEvent extends BaseEventMetadata {
   event: 'pageview';
   page: string; // Normalized page ID (e.g., 'tool:json-formatter')
   referrer?: string;
+  // UTM Parameters (marketing attribution)
+  utmSource?: string; // e.g., 'google', 'facebook', 'newsletter'
+  utmMedium?: string; // e.g., 'cpc', 'email', 'social', 'organic'
+  utmCampaign?: string; // e.g., 'summer-sale-2024'
+  utmContent?: string; // e.g., 'banner-top', 'link-footer'
+  utmTerm?: string; // e.g., 'json formatter', 'base64 encoder'
 }
 
 export interface ToolUseEvent extends BaseEventMetadata {

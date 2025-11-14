@@ -11,9 +11,16 @@ import { EventNormalizer } from '@/lib/analytics/core/EventNormalizer';
  *
  * IMPORTANT: Uses UmamiSDKAdapter for consistent tracking
  * - No polling (SDK ready check handled by adapter)
- * - Minimal data (page, locale, referrer only)
+ * - Includes: page, locale, referrer, UTM parameters
  * - Automatic batching (1s max wait)
  * - Chronological order preserved
+ *
+ * UTM Parameters tracked:
+ * - utm_source (e.g., 'google', 'facebook', 'newsletter')
+ * - utm_medium (e.g., 'cpc', 'email', 'social')
+ * - utm_campaign (e.g., 'summer-sale-2024')
+ * - utm_content (e.g., 'banner-top')
+ * - utm_term (e.g., 'json formatter')
  */
 export function PageViewTracker() {
   const pathname = usePathname();
@@ -21,15 +28,13 @@ export function PageViewTracker() {
 
   useEffect(() => {
     try {
-      // Get normalized page info
-      const { page, locale, referrer } = EventNormalizer.getCurrentPageInfo();
+      // Get normalized page info with UTM parameters
+      const pageInfo = EventNormalizer.getCurrentPageInfo();
 
-      // Create pageview event
+      // Create pageview event with all parameters
       const event = EventNormalizer.enrichEvent({
         event: 'pageview' as const,
-        page,
-        locale,
-        referrer,
+        ...pageInfo, // Includes page, locale, referrer, and UTM params
         sessionId: '', // Will be enriched by EventNormalizer
       });
 
@@ -40,7 +45,7 @@ export function PageViewTracker() {
       getUmamiSessionTracker()?.incrementPageView();
 
       if (process.env.NODE_ENV === 'development') {
-        console.log('📊 Pageview tracked:', { page, locale, referrer });
+        console.log('📊 Pageview tracked:', pageInfo);
       }
     } catch (error) {
       // Silent fail - don't break app if tracking fails
