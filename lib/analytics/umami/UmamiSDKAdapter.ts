@@ -137,10 +137,18 @@ export class UmamiSDKAdapter {
 
     const { event: eventName, timestamp, ...metadata } = event;
 
-    // Prepare event data with original timestamp
+    // Validate timestamp
+    if (!this.isValidTimestamp(timestamp)) {
+      this.log(`⚠️ Invalid timestamp for event ${eventName}: ${timestamp}`);
+    }
+
+    // Prepare event data with validated timestamp
     const eventData = {
       ...metadata,
-      created_at: timestamp, // Original event timestamp for post-analysis
+      // Only include created_at if timestamp is valid
+      ...(this.isValidTimestamp(timestamp) && {
+        created_at: new Date(timestamp).toISOString(),
+      }),
     };
 
     // Check if tab is hidden AND event is critical
@@ -299,6 +307,29 @@ export class UmamiSDKAdapter {
    */
   private isCriticalEvent(event: AnalyticsEvent): boolean {
     return CRITICAL_EVENTS.includes(event.event as any);
+  }
+
+  /**
+   * Validate timestamp value
+   */
+  private isValidTimestamp(timestamp: number | undefined): boolean {
+    if (timestamp === undefined || timestamp === null) {
+      return false;
+    }
+
+    if (isNaN(timestamp)) {
+      return false;
+    }
+
+    // Check if timestamp is within reasonable range
+    // Min: 2020-01-01 (1577836800000)
+    // Max: 2100-01-01 (4102444800000)
+    if (timestamp < 1577836800000 || timestamp > 4102444800000) {
+      this.log(`⚠️ Timestamp out of range: ${timestamp}`);
+      return false;
+    }
+
+    return true;
   }
 
   /**
