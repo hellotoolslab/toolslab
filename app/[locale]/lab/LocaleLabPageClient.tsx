@@ -13,7 +13,6 @@ import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import {
-  trackLabVisited,
   trackLabEmptyStateVisited,
   trackLabWelcomeToastShown,
   trackLabToolSelected,
@@ -54,12 +53,6 @@ function LabPageContent({ locale }: { locale: Locale }) {
 
     if (favoriteCount === 0) {
       trackLabEmptyStateVisited();
-    } else {
-      trackLabVisited({
-        favoritesCount: favoriteCount,
-        toolsCount: favoriteTools.length,
-        categoriesCount: favoriteCategories.length,
-      });
     }
   }, []); // Run only once on mount
 

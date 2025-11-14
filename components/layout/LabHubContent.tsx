@@ -31,7 +31,6 @@ import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import {
-  trackLabVisited,
   trackLabEmptyStateVisited,
   trackLabWelcomeToastShown,
 } from '@/lib/analytics/helpers/eventHelpers';
@@ -418,12 +417,6 @@ export default function LabHubContent() {
 
     if (favoriteCount === 0) {
       trackLabEmptyStateVisited();
-    } else {
-      trackLabVisited({
-        favoritesCount: favoriteCount,
-        toolsCount: favoriteTools.length,
-        categoriesCount: favoriteCategories.length,
-      });
     }
   }, [isHydrated]); // Re-run when hydration completes
 

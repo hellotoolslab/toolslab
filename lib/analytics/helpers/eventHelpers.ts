@@ -4,33 +4,12 @@ import { getUmamiAdapter } from '../umami/UmamiSDKAdapter';
 import { getUmamiSessionTracker } from '../umami/UmamiSessionTracker';
 import { EventNormalizer } from '../core/EventNormalizer';
 import type {
-  LabVisitedEvent,
   LabEmptyStateVisitedEvent,
   LabWelcomeToastShownEvent,
   LabToolSelectedEvent,
   LabOverviewSelectedEvent,
   SocialClickEvent,
 } from '../types/events';
-
-/**
- * Track lab visited event
- */
-export function trackLabVisited(params: {
-  favoritesCount: number;
-  toolsCount: number;
-  categoriesCount: number;
-}): void {
-  const event: LabVisitedEvent = {
-    event: 'lab.visited',
-    favoritesCount: params.favoritesCount,
-    toolsCount: params.toolsCount,
-    categoriesCount: params.categoriesCount,
-    sessionId: getUmamiSessionTracker()?.getSessionId() || '',
-  };
-
-  const enriched = EventNormalizer.enrichEvent(event);
-  getUmamiAdapter().track(enriched);
-}
 
 /**
  * Track lab empty state visited

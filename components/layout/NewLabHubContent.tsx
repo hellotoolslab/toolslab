@@ -10,7 +10,6 @@ import { LabToolViewer } from '@/components/lab/LabToolViewer';
 import { LabOverview } from '@/components/lab/LabOverview';
 import { useHydration } from '@/lib/hooks/useHydration';
 import {
-  trackLabVisited,
   trackLabEmptyStateVisited,
   trackLabWelcomeToastShown,
   trackLabToolSelected,
@@ -48,12 +47,6 @@ export default function NewLabHubContent() {
 
     if (favoriteCount === 0) {
       trackLabEmptyStateVisited();
-    } else {
-      trackLabVisited({
-        favoritesCount: favoriteCount,
-        toolsCount: favoriteTools.length,
-        categoriesCount: favoriteCategories.length,
-      });
     }
   }, [isHydrated]); // Re-run when hydration completes
 

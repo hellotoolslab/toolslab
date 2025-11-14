@@ -260,7 +260,6 @@ export function trackEngagement(
 // ============================================================================
 
 export {
-  trackLabVisited,
   trackLabEmptyStateVisited,
   trackLabWelcomeToastShown,
   trackLabToolSelected,

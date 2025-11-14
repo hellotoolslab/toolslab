@@ -16,7 +16,6 @@ export type EventName =
   | 'chain.start'
   | 'chain.step'
   | 'chain.complete'
-  | 'lab.visited'
   | 'lab.empty_state_visited'
   | 'lab.welcome_toast_shown'
   | 'lab.tool_selected'
@@ -147,13 +146,6 @@ export interface ChainCompleteEvent extends BaseEventMetadata {
   totalDuration: number;
 }
 
-export interface LabVisitedEvent extends BaseEventMetadata {
-  event: 'lab.visited';
-  favoritesCount: number;
-  toolsCount: number;
-  categoriesCount: number;
-}
-
 export interface LabEmptyStateVisitedEvent extends BaseEventMetadata {
   event: 'lab.empty_state_visited';
 }
@@ -202,7 +194,6 @@ export type AnalyticsEvent =
   | ChainStartEvent
   | ChainStepEvent
   | ChainCompleteEvent
-  | LabVisitedEvent
   | LabEmptyStateVisitedEvent
   | LabWelcomeToastShownEvent
   | LabToolSelectedEvent
