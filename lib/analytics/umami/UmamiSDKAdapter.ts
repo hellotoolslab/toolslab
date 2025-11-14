@@ -7,8 +7,9 @@
 
 import type { AnalyticsEvent } from '../types/events';
 import type { AnalyticsConfig } from '../config';
-import { CRITICAL_EVENTS } from '../config';
+import { CRITICAL_EVENTS, PII_PATTERNS } from '../config';
 import { UmamiEventQueue } from './UmamiEventQueue';
+import { botDetector } from '../botDetection';
 
 // Delay between sequential events (ms)
 const SEQUENTIAL_DELAY_MS = 10;
@@ -20,6 +21,7 @@ const SEQUENTIAL_DELAY_MS = 10;
 export class UmamiSDKAdapter {
   private config: AnalyticsConfig;
   private queue: UmamiEventQueue;
+  private isBot: boolean = false;
 
   constructor(config: AnalyticsConfig) {
     this.config = config;
@@ -30,12 +32,29 @@ export class UmamiSDKAdapter {
       this.sendEventsSequentially(events)
     );
 
+    // Bot detection (client-side only)
+    if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+      const detection = botDetector.detectBot(
+        navigator.userAgent,
+        document.referrer,
+        window.location.href
+      );
+      this.isBot = detection.isBot;
+
+      if (this.isBot) {
+        this.log('🤖 Bot detected, analytics disabled:', detection.reason);
+      }
+    }
+
     // Listen for page unload
     if (typeof window !== 'undefined') {
       window.addEventListener('beforeunload', () => this.handleBeforeUnload());
     }
 
-    this.log('UmamiSDKAdapter initialized', this.config);
+    this.log('UmamiSDKAdapter initialized', {
+      config: this.config,
+      isBot: this.isBot,
+    });
   }
 
   /**
@@ -44,6 +63,12 @@ export class UmamiSDKAdapter {
   track(event: AnalyticsEvent): void {
     if (!this.config.enabled) {
       this.log('Tracking disabled, ignoring event', event.event);
+      return;
+    }
+
+    // Check if bot (no tracking for bots)
+    if (this.isBot) {
+      this.log('🤖 Bot detected, skipping event', event.event);
       return;
     }
 
