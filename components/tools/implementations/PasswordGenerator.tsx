@@ -10,7 +10,7 @@ import {
   AlertTriangle,
   Zap,
 } from 'lucide-react';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { trackToolUse, trackEngagement } from '@/lib/analytics';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { BaseToolProps } from '@/lib/types/tools';
 
@@ -19,8 +19,6 @@ interface PasswordGeneratorProps extends BaseToolProps {}
 export default function PasswordGenerator({
   categoryColor,
 }: PasswordGeneratorProps) {
-  const { trackToolUse, trackEngagement } = useUmami();
-
   const [password, setPassword] = useState('');
   const [length, setLength] = useState(16);
   const [includeUppercase, setIncludeUppercase] = useState(true);

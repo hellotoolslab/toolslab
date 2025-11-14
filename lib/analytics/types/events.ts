@@ -21,7 +21,9 @@ export type EventName =
   | 'lab.welcome_toast_shown'
   | 'lab.tool_selected'
   | 'lab.overview_selected'
-  | 'social.click';
+  | 'social.click'
+  | 'conversion'
+  | 'engagement';
 
 export interface BaseEventMetadata {
   // Session
@@ -169,6 +171,17 @@ export interface SocialClickEvent extends BaseEventMetadata {
   from?: string;
 }
 
+export interface ConversionEvent extends BaseEventMetadata {
+  event: 'conversion';
+  type: string; // e.g., 'donation', 'signup'
+  from?: string; // Where conversion was triggered
+}
+
+export interface EngagementEvent extends BaseEventMetadata {
+  event: 'engagement';
+  action: string; // e.g., 'easter-egg-discovered', 'tool-page-viewed'
+}
+
 export type AnalyticsEvent =
   | PageviewEvent
   | ToolUseEvent
@@ -188,7 +201,9 @@ export type AnalyticsEvent =
   | LabWelcomeToastShownEvent
   | LabToolSelectedEvent
   | LabOverviewSelectedEvent
-  | SocialClickEvent;
+  | SocialClickEvent
+  | ConversionEvent
+  | EngagementEvent;
 
 // Event batch for sending multiple events at once
 export interface EventBatch {

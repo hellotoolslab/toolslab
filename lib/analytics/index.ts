@@ -61,13 +61,7 @@ export function track(eventName: string, data?: Record<string, any>): void {
 export function trackToolUse(
   toolId: string,
   action: string,
-  metadata?: {
-    success?: boolean;
-    inputSize?: number;
-    outputSize?: number;
-    processingTime?: number;
-    error?: string;
-  }
+  metadata?: Record<string, any>
 ): void {
   try {
     const session = getUmamiSessionTracker();
@@ -214,6 +208,45 @@ export function trackDownload(
       format,
       fileSize,
       sessionId: '',
+    });
+
+    getUmamiAdapter().track(event);
+  } catch (error) {
+    // Silent fail
+  }
+}
+
+/**
+ * Track conversion event (e.g., donation, signup)
+ */
+export function trackConversion(type: string, from?: string): void {
+  try {
+    const event = EventNormalizer.enrichEvent({
+      event: 'conversion' as const,
+      type,
+      from,
+      sessionId: '',
+    });
+
+    getUmamiAdapter().track(event);
+  } catch (error) {
+    // Silent fail
+  }
+}
+
+/**
+ * Track user engagement (e.g., easter egg, interaction)
+ */
+export function trackEngagement(
+  action: string,
+  metadata?: Record<string, any>
+): void {
+  try {
+    const event = EventNormalizer.enrichEvent({
+      event: 'engagement' as const,
+      action,
+      sessionId: '',
+      ...metadata,
     });
 
     getUmamiAdapter().track(event);
