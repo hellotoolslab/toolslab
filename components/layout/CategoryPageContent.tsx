@@ -14,6 +14,7 @@ import {
   generateCategoryStructuredData,
 } from '@/lib/category-seo';
 import { getToolById } from '@/lib/tools';
+import { trackEngagement } from '@/lib/analytics';
 import {
   ChevronRight,
   CheckCircle,
@@ -37,12 +38,24 @@ export default function CategoryPageContent({
   const category = categories.find((cat) => cat.id === categoryId);
   const seoContent = getCategorySEO(categoryId);
 
+  const tools = category ? getToolsByCategory(category.id) : [];
+  const structuredData = seoContent
+    ? generateCategoryStructuredData(seoContent)
+    : null;
+
+  // Track category page engagement - BEFORE early return
+  useEffect(() => {
+    if (!category) return;
+
+    trackEngagement('category-page-viewed', {
+      category: categoryId,
+      toolsCount: tools.length,
+    });
+  }, [categoryId, category, tools.length]);
+
   if (!category || !seoContent) {
     return <div>Category not found</div>;
   }
-
-  const tools = getToolsByCategory(category.id);
-  const structuredData = generateCategoryStructuredData(seoContent);
 
   // Helper function to get tool label
   const getToolLabelForTool = (toolId: string) => {

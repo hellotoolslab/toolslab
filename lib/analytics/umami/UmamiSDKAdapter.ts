@@ -141,18 +141,26 @@ export class UmamiSDKAdapter {
       throw new Error('Umami SDK not loaded');
     }
 
-    const { event: eventName, timestamp, ...metadata } = event;
+    const { event: eventName, timestamp, sessionId, ...metadata } = event;
 
-    // Prepare event data with timestamp
-    // Umami expects UNIX timestamp in SECONDS (not milliseconds)
-    // Ref: https://umami.is/docs/api - timestamp parameter (v2.17.0+)
-    // If timestamp is provided, Umami will record the event with that timestamp
-    // instead of the server's current time
-    const eventData = {
-      ...metadata,
-      // Convert milliseconds to seconds if timestamp exists
-      ...(timestamp ? { timestamp: Math.floor(timestamp / 1000) } : {}),
+    // Filter out internal/reserved properties that Umami doesn't need
+    // Keep only custom event data
+    const { locale, userLevel, viewport, isMobile, ...customData } =
+      metadata as any;
+
+    // Prepare event data - ONLY custom properties, no internal metadata
+    // Umami SDK handles its own session tracking, locale detection, etc.
+    const eventData: Record<string, any> = {
+      ...customData,
     };
+
+    // Add timestamp if provided (optional - Umami can auto-assign)
+    if (timestamp) {
+      eventData.timestamp = Math.floor(timestamp / 1000); // Convert ms to seconds
+    }
+
+    // Log tracking attempt (development + production for debugging)
+    console.log(`[Umami] Tracking "${eventName}"`, eventData);
 
     // Check if tab is hidden AND event is critical
     const isTabHidden =
@@ -161,16 +169,21 @@ export class UmamiSDKAdapter {
 
     // Use sendBeacon for critical events when tab is hidden
     if (isTabHidden && isCritical && typeof navigator !== 'undefined') {
-      this.log(
-        `📡 Using sendBeacon for critical event (tab hidden): ${eventName}`
-      );
+      console.log(`[Umami] Using sendBeacon for critical event: ${eventName}`);
       this.trackWithBeacon(eventName, eventData);
       return;
     }
 
     // Standard event tracking - Umami SDK handles everything
     // Always use eventName as first parameter, data as second
+    console.log(`[Umami] Calling umami.track("${eventName}", ...)`, {
+      umamiExists: typeof (window as any).umami !== 'undefined',
+      trackExists: typeof (window as any).umami?.track === 'function',
+      eventData,
+    });
+
     (window as any).umami.track(eventName, eventData);
+    console.log(`[Umami] ✅ umami.track() called successfully`);
   }
 
   /**
