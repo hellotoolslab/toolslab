@@ -16,17 +16,12 @@ export type EventName =
   | 'chain.start'
   | 'chain.step'
   | 'chain.complete'
-  | 'lab.visited'
-  | 'lab.empty_state_visited'
-  | 'lab.welcome_toast_shown'
   | 'lab.tool_selected'
-  | 'lab.overview_selected'
-  | 'social.click';
+  | 'social.click'
+  | 'conversion'
+  | 'engagement';
 
 export interface BaseEventMetadata {
-  // Timestamp
-  timestamp: number;
-
   // Session
   sessionId: string;
 
@@ -40,6 +35,11 @@ export interface BaseEventMetadata {
   viewport?: string;
   isMobile?: boolean;
 
+  // Timestamp (optional)
+  // UNIX timestamp in milliseconds - will be converted to seconds before sending to Umami
+  // If provided, Umami will record the event with this timestamp instead of server time
+  timestamp?: number;
+
   // Custom metadata
   [key: string]: any;
 }
@@ -48,6 +48,12 @@ export interface PageviewEvent extends BaseEventMetadata {
   event: 'pageview';
   page: string; // Normalized page ID (e.g., 'tool:json-formatter')
   referrer?: string;
+  // UTM Parameters (marketing attribution)
+  utmSource?: string; // e.g., 'google', 'facebook', 'newsletter'
+  utmMedium?: string; // e.g., 'cpc', 'email', 'social', 'organic'
+  utmCampaign?: string; // e.g., 'summer-sale-2024'
+  utmContent?: string; // e.g., 'banner-top', 'link-footer'
+  utmTerm?: string; // e.g., 'json formatter', 'base64 encoder'
 }
 
 export interface ToolUseEvent extends BaseEventMetadata {
@@ -141,34 +147,26 @@ export interface ChainCompleteEvent extends BaseEventMetadata {
   totalDuration: number;
 }
 
-export interface LabVisitedEvent extends BaseEventMetadata {
-  event: 'lab.visited';
-  favoritesCount: number;
-  toolsCount: number;
-  categoriesCount: number;
-}
-
-export interface LabEmptyStateVisitedEvent extends BaseEventMetadata {
-  event: 'lab.empty_state_visited';
-}
-
-export interface LabWelcomeToastShownEvent extends BaseEventMetadata {
-  event: 'lab.welcome_toast_shown';
-}
-
 export interface LabToolSelectedEvent extends BaseEventMetadata {
   event: 'lab.tool_selected';
   toolId: string;
-}
-
-export interface LabOverviewSelectedEvent extends BaseEventMetadata {
-  event: 'lab.overview_selected';
 }
 
 export interface SocialClickEvent extends BaseEventMetadata {
   event: 'social.click';
   platform: string;
   from?: string;
+}
+
+export interface ConversionEvent extends BaseEventMetadata {
+  event: 'conversion';
+  type: string; // e.g., 'donation', 'signup'
+  from?: string; // Where conversion was triggered
+}
+
+export interface EngagementEvent extends BaseEventMetadata {
+  event: 'engagement';
+  action: string; // e.g., 'easter-egg-discovered', 'tool-page-viewed'
 }
 
 export type AnalyticsEvent =
@@ -185,12 +183,10 @@ export type AnalyticsEvent =
   | ChainStartEvent
   | ChainStepEvent
   | ChainCompleteEvent
-  | LabVisitedEvent
-  | LabEmptyStateVisitedEvent
-  | LabWelcomeToastShownEvent
   | LabToolSelectedEvent
-  | LabOverviewSelectedEvent
-  | SocialClickEvent;
+  | SocialClickEvent
+  | ConversionEvent
+  | EngagementEvent;
 
 // Event batch for sending multiple events at once
 export interface EventBatch {

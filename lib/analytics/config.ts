@@ -33,13 +33,13 @@ export const defaultConfig: AnalyticsConfig = {
   enabled: process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === 'true',
 
   batching: {
-    maxSize: 10,
-    maxWait: 5000, // 5 seconds
+    maxSize: 5, // ← Reduced from 10 for faster delivery
+    maxWait: 1000, // ← Reduced from 5000ms: 1 second max wait
   },
 
   retry: {
-    maxAttempts: 3,
-    backoffMultiplier: 2, // 1s, 2s, 4s
+    maxAttempts: 0, // ← Disabled: sendBeacon is already guaranteed delivery
+    backoffMultiplier: 2, // Not used when maxAttempts = 0
   },
 
   delivery: {
@@ -79,15 +79,10 @@ export function getAnalyticsConfig(): AnalyticsConfig {
 }
 
 // Critical events that are flushed immediately (no batching delay)
-// These events are time-sensitive and must be sent ASAP to preserve chronological order
+// IMPORTANT: With 1-second batching, most events arrive quickly anyway.
+// Only session.end is truly critical because it must survive page close.
 export const CRITICAL_EVENTS = [
-  'session.start', // MUST be first event, sent immediately
-  'session.end', // MUST survive page unload
-  'session.tab_hidden', // Time-sensitive visibility tracking
-  'session.tab_visible', // Time-sensitive visibility tracking
-  'tool.use', // Important business metric
-  'tool.error', // Error tracking
-  'chain.complete', // Workflow completion
+  'session.end', // MUST survive page unload - use sendBeacon
 ] as const;
 
 // Events that can use best-effort delivery

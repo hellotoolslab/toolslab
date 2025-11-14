@@ -7,8 +7,9 @@
 
 import type { AnalyticsEvent } from '../types/events';
 import type { AnalyticsConfig } from '../config';
-import { CRITICAL_EVENTS } from '../config';
+import { CRITICAL_EVENTS, PII_PATTERNS } from '../config';
 import { UmamiEventQueue } from './UmamiEventQueue';
+import { botDetector } from '../botDetection';
 
 // Delay between sequential events (ms)
 const SEQUENTIAL_DELAY_MS = 10;
@@ -20,8 +21,7 @@ const SEQUENTIAL_DELAY_MS = 10;
 export class UmamiSDKAdapter {
   private config: AnalyticsConfig;
   private queue: UmamiEventQueue;
-  private retryQueue: Map<string, { event: AnalyticsEvent; attempts: number }> =
-    new Map();
+  private isBot: boolean = false;
 
   constructor(config: AnalyticsConfig) {
     this.config = config;
@@ -32,12 +32,29 @@ export class UmamiSDKAdapter {
       this.sendEventsSequentially(events)
     );
 
+    // Bot detection (client-side only)
+    if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+      const detection = botDetector.detectBot(
+        navigator.userAgent,
+        document.referrer,
+        window.location.href
+      );
+      this.isBot = detection.isBot;
+
+      if (this.isBot) {
+        this.log('🤖 Bot detected, analytics disabled:', detection.reason);
+      }
+    }
+
     // Listen for page unload
     if (typeof window !== 'undefined') {
       window.addEventListener('beforeunload', () => this.handleBeforeUnload());
     }
 
-    this.log('UmamiSDKAdapter initialized', this.config);
+    this.log('UmamiSDKAdapter initialized', {
+      config: this.config,
+      isBot: this.isBot,
+    });
   }
 
   /**
@@ -46,6 +63,12 @@ export class UmamiSDKAdapter {
   track(event: AnalyticsEvent): void {
     if (!this.config.enabled) {
       this.log('Tracking disabled, ignoring event', event.event);
+      return;
+    }
+
+    // Check if bot (no tracking for bots)
+    if (this.isBot) {
+      this.log('🤖 Bot detected, skipping event', event.event);
       return;
     }
 
@@ -86,15 +109,7 @@ export class UmamiSDKAdapter {
    */
   private sendEventsSequentially(events: AnalyticsEvent[]): void {
     if (!this.isSDKReady()) {
-      this.log('❌ SDK not ready, requeueing events');
-      // Add to retry queue
-      events.forEach((event) => {
-        this.retryQueue.set(this.generateEventId(event), {
-          event,
-          attempts: 0,
-        });
-      });
-      setTimeout(() => this.retryFailedEvents(), 1000);
+      this.log('❌ SDK not ready, dropping events', events.length);
       return;
     }
 
@@ -106,11 +121,7 @@ export class UmamiSDKAdapter {
           this.log(`📤 Event ${index + 1}/${events.length}: ${event.event}`);
         } catch (err) {
           this.log(`❌ Failed to send event: ${event.event}`, err);
-          // Add to retry queue
-          this.retryQueue.set(this.generateEventId(event), {
-            event,
-            attempts: 0,
-          });
+          // No retry - sendBeacon is already best-effort guaranteed delivery
         }
       }, index * SEQUENTIAL_DELAY_MS);
     });
@@ -119,11 +130,6 @@ export class UmamiSDKAdapter {
       `✅ Queued ${events.length} events for Umami SDK`,
       events.map((e) => e.event)
     );
-
-    // Schedule retry if needed
-    if (this.retryQueue.size > 0) {
-      setTimeout(() => this.retryFailedEvents(), 1000);
-    }
   }
 
   /**
@@ -137,14 +143,15 @@ export class UmamiSDKAdapter {
 
     const { event: eventName, timestamp, ...metadata } = event;
 
-    // Note: We don't pass timestamp to Umami
-    // Umami automatically assigns createdAt on the server when it receives the event
-    // Since events are sent almost in real-time (max 5s batching), the difference is negligible
-    // Passing custom timestamp fields (created_at, timestamp) causes "Invalid time value" errors
-
-    // Prepare event data without timestamp
+    // Prepare event data with timestamp
+    // Umami expects UNIX timestamp in SECONDS (not milliseconds)
+    // Ref: https://umami.is/docs/api - timestamp parameter (v2.17.0+)
+    // If timestamp is provided, Umami will record the event with that timestamp
+    // instead of the server's current time
     const eventData = {
       ...metadata,
+      // Convert milliseconds to seconds if timestamp exists
+      ...(timestamp ? { timestamp: Math.floor(timestamp / 1000) } : {}),
     };
 
     // Check if tab is hidden AND event is critical
@@ -247,48 +254,6 @@ export class UmamiSDKAdapter {
   }
 
   /**
-   * Retry failed events with exponential backoff
-   */
-  private async retryFailedEvents(): Promise<void> {
-    if (this.retryQueue.size === 0 || !this.isSDKReady()) {
-      return;
-    }
-
-    const toRetry: Array<{ event: AnalyticsEvent; attempts: number }> = [];
-
-    this.retryQueue.forEach((item, key) => {
-      if (item.attempts < this.config.retry.maxAttempts) {
-        toRetry.push(item);
-        this.retryQueue.delete(key);
-      }
-    });
-
-    for (const item of toRetry) {
-      const delay =
-        1000 * Math.pow(this.config.retry.backoffMultiplier, item.attempts);
-
-      await new Promise((resolve) => setTimeout(resolve, delay));
-
-      try {
-        this.trackSingleEvent(item.event);
-        this.log(`✅ Retry successful: ${item.event.event}`);
-      } catch (error) {
-        // Re-add to retry queue with incremented attempts
-        this.retryQueue.set(this.generateEventId(item.event), {
-          event: item.event,
-          attempts: item.attempts + 1,
-        });
-        this.log(`❌ Retry failed: ${item.event.event}`);
-      }
-    }
-
-    // Schedule next retry if needed
-    if (this.retryQueue.size > 0) {
-      setTimeout(() => this.retryFailedEvents(), 5000);
-    }
-  }
-
-  /**
    * Check if Umami SDK is ready
    */
   private isSDKReady(): boolean {
@@ -360,13 +325,6 @@ export class UmamiSDKAdapter {
   }
 
   /**
-   * Generate unique event ID
-   */
-  private generateEventId(event: AnalyticsEvent): string {
-    return `${event.event}_${event.timestamp}_${Math.random().toString(36).substring(2, 9)}`;
-  }
-
-  /**
    * Update configuration
    */
   setConfig(config: Partial<AnalyticsConfig>): void {
@@ -387,7 +345,6 @@ export class UmamiSDKAdapter {
   getStatus() {
     return {
       enabled: this.config.enabled,
-      retryQueueSize: this.retryQueue.size,
       sdkReady: this.isSDKReady(),
       ...this.queue.getStatus(),
     };

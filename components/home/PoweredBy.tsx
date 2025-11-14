@@ -1,7 +1,7 @@
 'use client';
 
 import { Github, Zap, BarChart3, CloudCog, Globe } from 'lucide-react';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { trackSocial } from '@/lib/analytics';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
 interface PoweredByServiceConfig {
@@ -57,8 +57,6 @@ function PoweredByCard({
   description,
   index,
 }: PoweredByCardProps) {
-  const { trackSocial } = useUmami();
-
   const handleClick = () => {
     trackSocial(service.id, 'powered-by-section');
   };

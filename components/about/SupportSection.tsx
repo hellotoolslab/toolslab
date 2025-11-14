@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Coffee, Server, Zap, Shield, Heart, ExternalLink } from 'lucide-react';
-import { useUmami } from '@/components/analytics/OptimizedUmamiProvider';
+import { trackConversion, trackSocial, trackEngagement } from '@/lib/analytics';
 import Link from 'next/link';
 
 const supportBenefits = [
@@ -16,7 +16,6 @@ const supportBenefits = [
 export function SupportSection() {
   const [clickCount, setClickCount] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
-  const { trackConversion, trackSocial, trackEngagement } = useUmami();
 
   const handleLogoClick = () => {
     const newCount = clickCount + 1;
