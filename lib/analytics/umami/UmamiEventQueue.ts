@@ -201,11 +201,31 @@ export class UmamiEventQueue {
     try {
       const stored = localStorage.getItem('toolslab-analytics-offline');
       if (stored) {
-        this.offlineQueue = JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        // Filter out events with invalid timestamps
+        const validEvents = Array.isArray(parsed)
+          ? parsed.filter((event) => this.isValidEvent(event))
+          : [];
+
+        const filtered = parsed.length - validEvents.length;
+        if (filtered > 0) {
+          this.log(
+            `⚠️ Filtered out ${filtered} corrupted events from offline queue`
+          );
+        }
+
+        this.offlineQueue = validEvents;
         this.log('Restored offline queue', this.offlineQueue.length);
+
+        // Update localStorage if we filtered out corrupted events
+        if (filtered > 0) {
+          this.persistOfflineQueue();
+        }
       }
     } catch (error) {
       this.log('Failed to restore offline queue', error);
+      // Clear corrupted data
+      this.clearOfflineQueue();
     }
   }
 
@@ -232,6 +252,35 @@ export class UmamiEventQueue {
       hasActiveTimer: this.flushTimer !== null,
       isOnline: this.isOnline,
     };
+  }
+
+  /**
+   * Validate event has required fields and valid timestamp
+   */
+  private isValidEvent(event: any): boolean {
+    if (!event || typeof event !== 'object') {
+      return false;
+    }
+
+    // Check required fields
+    if (!event.event || !event.timestamp) {
+      return false;
+    }
+
+    // Validate timestamp
+    const timestamp = event.timestamp;
+    if (typeof timestamp !== 'number' || isNaN(timestamp)) {
+      return false;
+    }
+
+    // Check if timestamp is within reasonable range
+    // Min: 2020-01-01 (1577836800000)
+    // Max: 2100-01-01 (4102444800000)
+    if (timestamp < 1577836800000 || timestamp > 4102444800000) {
+      return false;
+    }
+
+    return true;
   }
 
   /**
