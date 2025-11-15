@@ -1,0 +1,82 @@
+{
+  "title": "Base64 para PDF",
+  "description": "Converta strings Base64 em arquivos PDF",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 para PDF - Ferramenta Online Gratuita | ToolsLab",
+    "description": "Converta Base64 para PDF online. Decodifique Base64 e salve como PDF. Ferramenta de conversão gratuita."
+  },
+  "tagline": "Converta dados Base64 em arquivos PDF instantaneamente",
+  "pageDescription": "Converta dados codificados em Base64 para arquivos PDF com download instantâneo. Perfeito para desenvolvedores trabalhando com APIs de documentos, anexos de e-mail e fluxos de trabalho de processamento de dados. Conversão segura baseada em navegador sem uploads para servidor. Valide entrada Base64, visualize metadados PDF e baixe arquivos convertidos diretamente para seu dispositivo.",
+  "instructions": {
+    "title": "Como usar o Conversor Base64 para PDF",
+    "steps": [
+      {
+        "title": "Cole sua string Base64",
+        "description": "Copie e cole seus dados PDF codificados em Base64 na área de entrada. A ferramenta detecta automaticamente prefixos de URL de dados."
+      },
+      {
+        "title": "Valide o formato Base64",
+        "description": "A ferramenta valida automaticamente sua entrada Base64 e verifica cabeçalhos PDF válidos."
+      },
+      {
+        "title": "Defina nome de arquivo personalizado (opcional)",
+        "description": "Personalize o nome do arquivo PDF de saída conforme necessário."
+      },
+      {
+        "title": "Converta",
+        "description": "Clique em 'Converter para PDF' para processar os dados. Metadados do PDF serão exibidos se disponíveis."
+      },
+      {
+        "title": "Baixe seu PDF",
+        "description": "Clique em 'Baixar PDF' para salvar o documento convertido em seu dispositivo."
+      }
+    ],
+    "features": [
+      "Validação Base64 em tempo real",
+      "Validação de cabeçalho PDF",
+      "Extração de metadados do documento",
+      "Remoção automática de prefixo de URL de dados",
+      "Suporte a nome de arquivo personalizado",
+      "Estimativa de tamanho de arquivo",
+      "Processamento completamente seguro",
+      "Sem uploads para servidor",
+      "Funciona offline",
+      "Download direto para dispositivo"
+    ],
+    "useCases": [
+      "Converter PDFs de respostas de API",
+      "Extrair documentos PDF de dados JSON/XML",
+      "Processar anexos PDF de APIs de e-mail",
+      "Recuperar PDFs de backups Base64",
+      "Depurar dados de documento em desenvolvimento",
+      "Converter PDFs de URL de dados para arquivos",
+      "Processar faturas ou relatórios de sistemas",
+      "Extrair documentos de automação de testes"
+    ],
+    "proTips": [
+      "Dados PDF Base64 começam com 'JVBERi0' quando codificados",
+      "A ferramenta remove automaticamente prefixos de URL de dados",
+      "PDFs podem conter texto, imagens e gráficos vetoriais",
+      "Verifique o tamanho do arquivo antes de processar PDFs grandes",
+      "Use visualizador PDF separado para conteúdo completo do documento"
+    ],
+    "troubleshooting": [
+      "Erro de Base64 inválido: Verifique caracteres Base64 válidos",
+      "Nenhum cabeçalho PDF encontrado: Dados podem não ser PDF válido",
+      "Arquivo não abre: PDF pode estar corrompido na fonte",
+      "Problemas de memória: Tente PDFs menores",
+      "Download falha: Verifique permissões do navegador"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar nome do arquivo"
+      }
+    ]
+  }
+}

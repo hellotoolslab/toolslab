@@ -1,0 +1,85 @@
+{
+  "title": "Construtor de Expressões Crontab",
+  "description": "Analise, construa e valide expressões cron com construtor visual, predefinições e próximos horários de execução",
+  "placeholder": "",
+  "meta": {
+    "title": "Construtor de Crontab - Ferramenta Online Gratuita | ToolsLab",
+    "description": "Construa e valide expressões cron online. Gere crontab com construtor visual. Ferramenta gratuita de cron."
+  },
+  "tagline": "Construa e analise expressões cron com interface visual",
+  "pageDescription": "Crie e valide expressões cron usando nosso construtor visual com menus suspensos e predefinições comuns. Analise entradas crontab existentes com descrições legíveis por humanos e próximos horários de execução. Perfeito para administradores de sistemas, engenheiros DevOps e desenvolvedores agendando tarefas automatizadas e implantações.",
+  "instructions": {
+    "title": "Como usar o Construtor de Expressões Crontab",
+    "steps": [
+      {
+        "title": "Cole seu conteúdo",
+        "description": "Copie e cole seu conteúdo na área de entrada. A ferramenta aceita qualquer formato e processará imediatamente."
+      },
+      {
+        "title": "Configure opções (se disponível)",
+        "description": "Ajuste opções de formatação, indentação ou outras configurações para corresponder às suas preferências e padrões de codificação."
+      },
+      {
+        "title": "Revise a saída",
+        "description": "A ferramenta processará sua entrada e exibirá o resultado com formatação e validação adequadas."
+      },
+      {
+        "title": "Copie ou baixe o resultado",
+        "description": "Copie a saída processada para sua área de transferência para uso imediato ou baixe como arquivo para armazenamento e compartilhamento."
+      }
+    ],
+    "features": [
+      "Processamento em tempo real com resultados instantâneos",
+      "Sem limites de tamanho de arquivo para processamento baseado em navegador",
+      "Completamente seguro - todo o processamento acontece no seu navegador",
+      "Sem uploads de dados ou armazenamento no servidor",
+      "Copiar para área de transferência com um clique",
+      "Baixar resultados como arquivo",
+      "Validação de sintaxe e destaque de erros",
+      "Funciona offline após o carregamento inicial da página"
+    ],
+    "useCases": [
+      "Limpar e formatar código confuso para melhor legibilidade",
+      "Padronizar estilo de código em equipes de desenvolvimento",
+      "Depurar estruturas complexas com indentação adequada",
+      "Preparar código para documentação e revisões de código",
+      "Converter entre diferentes padrões de formatação",
+      "Validar sintaxe antes da implantação",
+      "Processar dados de fontes externas ou APIs",
+      "Gerar código pronto para produção a partir de versões de desenvolvimento"
+    ],
+    "proTips": [
+      "Use atalhos de teclado para um fluxo de trabalho mais rápido",
+      "Processe arquivos grandes em pedaços menores se o desempenho diminuir",
+      "Valide sua entrada antes de processar para detectar erros cedo",
+      "Salve configurações usadas frequentemente como padrões no seu navegador",
+      "Use o recurso de download para arquivar arquivos processados",
+      "Verifique a saída cuidadosamente antes de usar em produção"
+    ],
+    "troubleshooting": [
+      "Erros de sintaxe: Verifique se há colchetes, aspas ou ponto e vírgula faltando",
+      "Processamento falha: Certifique-se de que o formato de entrada é válido",
+      "Desempenho lento: Tente processar pedaços menores de dados",
+      "Recursos ausentes: Alguma sintaxe avançada pode exigir formatação manual",
+      "Compatibilidade do navegador: Use a versão mais recente do Chrome, Firefox ou Edge para melhores resultados"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Processar/Formatar"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo"
+      }
+    ]
+  }
+}
