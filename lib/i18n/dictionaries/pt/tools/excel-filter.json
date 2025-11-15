@@ -1,0 +1,99 @@
+{
+  "title": "Ferramenta de Filtro Excel",
+  "description": "Envie arquivos Excel e aplique filtros dinâmicos a tabelas com recursos de pesquisa, ordenação e exportação",
+  "placeholder": "Envie seu arquivo Excel para começar...",
+  "instructions": {
+    "title": "Como usar a Ferramenta de Filtro Excel",
+    "steps": [
+      {
+        "title": "Envie seu arquivo Excel",
+        "description": "Arraste e solte seu arquivo .xlsx ou .xls (até 50MB) ou clique para navegar. A ferramenta carregará instantaneamente e exibirá seus dados em formato de tabela."
+      },
+      {
+        "title": "Aplique filtros às colunas",
+        "description": "Clique em 'Adicionar Filtro' para criar filtros específicos de coluna. Escolha entre operadores de texto, numéricos e de data como contém, igual, maior que ou entre valores."
+      },
+      {
+        "title": "Pesquise e ordene dados",
+        "description": "Use a pesquisa global para encontrar dados em todas as colunas instantaneamente. Clique nos cabeçalhos de coluna para ordenar dados em ordem crescente ou decrescente."
+      },
+      {
+        "title": "Exporte resultados filtrados",
+        "description": "Exporte seus dados filtrados e ordenados em formato CSV ou Excel. Colunas ocultas serão excluídas da exportação."
+      }
+    ],
+    "features": [
+      "Envio de arquivos Excel até 50MB",
+      "Filtros dinâmicos com 13 operadores diferentes",
+      "Pesquisa global em todas as colunas",
+      "Ordenar por qualquer coluna (crescente/decrescente)",
+      "Mostrar/ocultar colunas dinamicamente",
+      "Exportar para formato CSV ou Excel",
+      "Combinar múltiplos filtros (lógica E)",
+      "Filtragem em tempo real e paginação"
+    ],
+    "useCases": [
+      "Filtrar grandes conjuntos de dados rapidamente sem abrir Excel",
+      "Compartilhar dados filtrados com membros da equipe facilmente",
+      "Limpar e preparar dados para análise",
+      "Encontrar registros específicos em múltiplas colunas",
+      "Exportar subconjuntos de dados para relatórios",
+      "Analisar dados de vendas, inventário ou clientes",
+      "Processar resultados de pesquisas e formulários de feedback",
+      "Filtrar dados de gerenciamento de projetos e listas de tarefas"
+    ],
+    "proTips": [
+      "Combine múltiplos filtros para consultas precisas de dados",
+      "Use operador 'entre' para intervalos de datas e numéricos",
+      "Oculte colunas que você não precisa antes de exportar",
+      "Clique nos cabeçalhos de coluna múltiplas vezes para alternar ordem de classificação",
+      "Use pesquisa global para buscas rápidas em todos os dados",
+      "Exporte dados filtrados para compartilhar subconjuntos específicos com outros"
+    ],
+    "troubleshooting": [
+      "Arquivo não envia: Certifique-se de que o arquivo está em formato .xlsx ou .xls e abaixo de 50MB",
+      "Nenhum dado aparecendo: Verifique se o arquivo Excel tem dados na primeira planilha",
+      "Filtro não funciona: Verifique se o valor do filtro corresponde ao tipo de dado (texto/número)",
+      "Desempenho lento: Tente filtrar dados para reduzir linhas visíveis",
+      "Exportação com colunas faltando: Verifique se as colunas estão ocultas no gerenciador de colunas"
+    ],
+    "keyboardShortcuts": []
+  },
+  "features": [
+    "Upload de arquivo Excel",
+    "Filtragem dinâmica",
+    "Pesquisa global",
+    "Exportar CSV/Excel"
+  ],
+  "meta": {
+    "title": "Ferramenta de Filtro Excel - Ferramenta Online Gratuita",
+    "description": "Envie e filtre arquivos Excel online com recursos avançados de pesquisa, ordenação e exportação. Ferramenta gratuita de filtro Excel sem necessidade de instalação. Funciona instantaneamente no seu navegador."
+  },
+  "labels": {
+    "upload": "Enviar Arquivo",
+    "filter": "Filtrar",
+    "search": "Pesquisar",
+    "export": "Exportar"
+  },
+  "messages": {
+    "uploadSuccess": "Arquivo enviado com sucesso",
+    "filterApplied": "Filtros aplicados",
+    "noData": "Nenhum dado corresponde aos seus filtros"
+  },
+  "options": {
+    "showFilters": "Mostrar Filtros",
+    "hideFilters": "Ocultar Filtros"
+  },
+  "tagline": "Filtre e analise dados Excel instantaneamente online",
+  "pageDescription": "Envie arquivos Excel e aplique filtros poderosos aos seus dados com nossa ferramenta gratuita de filtro Excel online. Pesquise entre colunas, ordene dados, oculte colunas e exporte resultados filtrados para CSV ou Excel. Perfeito para análise de dados, relatórios e manipulação rápida de dados sem instalar software. Processe arquivos de até 50MB com segurança no seu navegador.",
+  "usageTips": {
+    "title": "Dicas de Uso",
+    "tips": [
+      "Envie arquivos Excel de até 50MB de tamanho",
+      "Combine múltiplos filtros para consultas avançadas de dados",
+      "Clique nos cabeçalhos de coluna para ordenar dados crescente/decrescente",
+      "Use pesquisa global para encontrar dados em todas as colunas instantaneamente",
+      "Exporte resultados filtrados para formato CSV ou Excel"
+    ]
+  }
+}

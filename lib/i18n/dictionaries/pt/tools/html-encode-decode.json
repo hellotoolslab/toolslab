@@ -1,0 +1,88 @@
+{
+  "title": "Codificador/Decodificador HTML",
+  "description": "Converta texto para entidades HTML e decodifique entidades HTML para texto simples",
+  "placeholder": "Digite texto para codificar ou entidades HTML para decodificar...",
+  "instructions": {
+    "title": "Como usar o Codificador/Decodificador HTML",
+    "steps": [
+      {
+        "title": "Escolha modo de codificação ou decodificação",
+        "description": "Selecione 'Codificar' para converter texto em entidades HTML, ou 'Decodificar' para converter entidades HTML de volta para texto simples. A ferramenta detecta automaticamente entidades na sua entrada."
+      },
+      {
+        "title": "Selecione opções de codificação (para modo codificar)",
+        "description": "Escolha entre apenas caracteres especiais, entidades nomeadas, decimal, hexadecimal ou codificar todos os caracteres. Cada opção serve casos de uso diferentes."
+      },
+      {
+        "title": "Cole ou digite seu texto",
+        "description": "Digite o texto que você quer processar. A conversão acontece instantaneamente conforme você digita, com contagem de caracteres em tempo real e detecção de entidades."
+      },
+      {
+        "title": "Copie ou reprocesse o resultado",
+        "description": "Use o botão copiar para salvar a saída na área de transferência, ou troque entrada/saída para processar o resultado novamente com um modo diferente."
+      }
+    ],
+    "features": [
+      "Codificação e decodificação em tempo real",
+      "Múltiplos formatos de codificação (nomeado, decimal, hex)",
+      "Detecção automática de entidades HTML",
+      "Contador de caracteres para entrada e saída",
+      "Estatísticas de entidades para modo decodificar",
+      "Botão de troca para reverter processo",
+      "Templates de exemplo rápidos",
+      "Processamento 100% no lado do cliente",
+      "Nenhum dado enviado para servidores",
+      "Manipula unicode e emoji",
+      "Detecta entidades malformadas"
+    ],
+    "useCases": [
+      "Preparar texto para atributos e conteúdo HTML",
+      "Depurar código HTML que aparece como texto",
+      "Sanitizar entrada de usuário para prevenir ataques XSS",
+      "Converter trechos de código para documentação",
+      "Codificar caracteres especiais para XML/HTML",
+      "Decodificar entidades de código-fonte HTML copiado",
+      "Processar dados de formulário antes de inserção no banco de dados",
+      "Criar conteúdo seguro para templates de e-mail",
+      "Manipular caracteres internacionais em URLs",
+      "Converter HTML legado com entidades para texto simples"
+    ],
+    "proTips": [
+      "Use modo 'somente especial' para a maioria dos casos - é rápido e seguro",
+      "A ferramenta sugere automaticamente modo decodificar se encontrar entidades",
+      "Modos decimal e hex são úteis para caracteres unicode",
+      "Modo 'Codificar tudo' cria saída muito longa mas é mais seguro",
+      "Use o botão de troca para testar rapidamente ciclos de codificação/decodificação",
+      "Estatísticas de entidades ajudam a identificar HTML malformado",
+      "Entidades nomeadas são mais legíveis mas menos universais que numéricas"
+    ],
+    "troubleshooting": [
+      "Se entidades não decodificam, verifique se há ponto e vírgula faltando (;)",
+      "Aviso de entidade malformada indica entidades HTML incompletas",
+      "Use modo entidades nomeadas para melhor legibilidade no código-fonte",
+      "Texto muito longo pode deixar o navegador lento - processe em pedaços",
+      "Emoji unicode pode aparecer como entidades decimais - isto é normal",
+      "Se a saída parecer errada, tente alternar entre modos decimal e hex"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Selecionar tudo"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Codificador/Decodificador HTML - Ferramenta Online Gratuita | ToolsLab",
+    "description": "Codificador e decodificador HTML gratuito. Converta texto para entidades HTML (codificar) ou decodifique entidades HTML para texto simples. Suporta entidades nomeadas, decimais e hexadecimais. Baseado em navegador, seguro e instantâneo."
+  },
+  "tagline": "Converta texto para entidades HTML e decodifique HTML com segurança",
+  "pageDescription": "Codifique caracteres especiais para entidades HTML ou decodifique entidades de volta para texto simples. Essencial para desenvolvedores web trabalhando com HTML, XML, prevenindo ataques XSS e manipulando caracteres especiais. Suporta múltiplos formatos de codificação incluindo entidades nomeadas (&lt; &gt;), decimal (&#60;) e hexadecimal (&#x3C;). Processe texto instantaneamente no seu navegador sem uploads para servidor."
+}

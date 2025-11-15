@@ -81,7 +81,7 @@ export default function ToolHeroSection({
   }
 
   return (
-    <div className={`mb-5 ${className}`}>
+    <div className={`mb-3 md:mb-5 ${className}`}>
       {/* Inline header with icon, title, and badges */}
       <div className="mb-2 flex items-center gap-2 sm:gap-3">
         {/* Compact Icon */}
@@ -124,17 +124,17 @@ export default function ToolHeroSection({
 
       {/* Tagline/Description - use translated version if available */}
       <p
-        className={`mb-4 text-base text-gray-700 transition-all delay-100 duration-300 dark:text-gray-300 sm:text-lg ${
+        className={`mb-2 text-base text-gray-700 transition-all delay-100 duration-300 dark:text-gray-300 sm:text-lg md:mb-4 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
         }`}
       >
         {tagline}
       </p>
 
-      {/* Page Description - always show if available */}
+      {/* Page Description - hidden on mobile to show textarea */}
       {pageDescription && (
         <p
-          className={`max-w-4xl text-sm leading-relaxed text-gray-600 transition-all delay-150 duration-300 dark:text-gray-400 sm:text-base ${
+          className={`hidden max-w-4xl text-sm leading-relaxed text-gray-600 transition-all delay-150 duration-300 dark:text-gray-400 sm:text-base md:block ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
           }`}
         >

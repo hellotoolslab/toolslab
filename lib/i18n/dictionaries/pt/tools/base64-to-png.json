@@ -1,0 +1,88 @@
+{
+  "title": "Base64 para PNG",
+  "description": "Converta strings Base64 em imagens PNG",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 para PNG - Conversor Online Gratuito | ToolsLab",
+    "description": "Converta Base64 para PNG online. Decodifique Base64 e salve como imagem PNG. Ferramenta de conversão gratuita com visualização instantânea e exibição de metadados."
+  },
+  "tagline": "Converta dados Base64 em imagens PNG instantaneamente com visualização",
+  "pageDescription": "Converta dados codificados em Base64 para imagens PNG com download e visualização instantâneos. Perfeito para desenvolvedores trabalhando com APIs de imagem, anexos de e-mail e fluxos de trabalho de processamento de dados. Suporta todos os tipos de cor PNG incluindo transparência. Conversão segura baseada em navegador sem uploads para servidor. Valide entrada Base64, visualize imagens PNG com suporte a transparência, veja dimensões e metadados da imagem e baixe arquivos convertidos diretamente para seu dispositivo.",
+  "instructions": {
+    "title": "Como usar o Conversor Base64 para PNG",
+    "steps": [
+      {
+        "title": "Cole sua string Base64",
+        "description": "Copie e cole seus dados PNG codificados em Base64 na área de entrada. A ferramenta detecta automaticamente prefixos de URL de dados e os remove se presentes."
+      },
+      {
+        "title": "Valide o formato Base64",
+        "description": "A ferramenta valida automaticamente sua entrada Base64 e mostra o tamanho estimado do arquivo. Ela verifica cabeçalhos PNG válidos para garantir integridade dos dados."
+      },
+      {
+        "title": "Defina nome de arquivo personalizado (opcional)",
+        "description": "Personalize o nome do arquivo de saída se necessário. A ferramenta gera automaticamente um nome de arquivo com timestamp por padrão para fácil organização."
+      },
+      {
+        "title": "Converta e visualize",
+        "description": "Clique em 'Converter para PNG' para processar os dados. A ferramenta exibe informações do PNG incluindo dimensões, tipo de cor, profundidade de bits e fornece uma visualização instantânea com suporte a transparência antes de baixar."
+      },
+      {
+        "title": "Baixe seu PNG",
+        "description": "Clique em 'Baixar PNG' para salvar a imagem convertida em seu dispositivo. A visualização com fundo xadrez mostra a transparência corretamente."
+      }
+    ],
+    "features": [
+      "Validação Base64 em tempo real com feedback instantâneo",
+      "Suporte para todos os tipos de cor PNG (Tons de cinza, Truecolor, Indexado, com/sem Alpha)",
+      "Visualização de transparência com fundo xadrez",
+      "Detecção e remoção automática de prefixo de URL de dados",
+      "Validação de cabeçalho PNG para integridade de dados",
+      "Visualização instantânea da imagem antes do download",
+      "Exibição de dimensões e metadados da imagem (largura, altura, tipo de cor, profundidade de bits)",
+      "Suporte a nome de arquivo personalizado com geração automática",
+      "Estimativa e exibição de tamanho de arquivo",
+      "Completamente seguro - todo o processamento acontece no seu navegador",
+      "Sem uploads de dados ou armazenamento no servidor",
+      "Funciona offline após o carregamento inicial da página"
+    ],
+    "useCases": [
+      "Converter respostas de API contendo dados PNG em Base64",
+      "Extrair imagens PNG de payloads JSON ou XML",
+      "Decodificar anexos PNG de APIs de e-mail ou mensagens",
+      "Processar dados PNG de web scraping ou ferramentas de automação",
+      "Depurar dados de imagem em desenvolvimento e testes",
+      "Converter PNGs de URL de dados para arquivos baixáveis",
+      "Recuperar imagens PNG de backups codificados em Base64",
+      "Visualizar e validar transparência PNG antes de salvar",
+      "Extrair screenshots PNG de resultados de automação de testes"
+    ],
+    "proTips": [
+      "Dados PNG Base64 válidos começam com 'iVBORw0KG' quando codificados",
+      "A ferramenta remove automaticamente prefixos de URL de dados como 'data:image/png;base64,'",
+      "O fundo xadrez na visualização revela transparência em imagens PNG",
+      "Metadados mostram tipo de cor: Tons de cinza, Truecolor, ou com canal Alpha",
+      "Profundidade de bits indica precisão de cor (tipicamente 8 ou 16 bits por canal)",
+      "O formato PNG é sem perdas, preservando toda a qualidade da imagem",
+      "Alterne a visibilidade da visualização para reduzir uso de memória para arquivos grandes"
+    ],
+    "troubleshooting": [
+      "Erro de Base64 inválido: Certifique-se de que a entrada contém apenas caracteres Base64 válidos (A-Z, a-z, 0-9, +, /, =)",
+      "Nenhum cabeçalho PNG encontrado: Os dados podem ser Base64 válido mas não uma imagem PNG - verifique a fonte",
+      "Visualização não aparece: Verifique o console do navegador para erros ou tente uma imagem menor",
+      "Problemas de memória: Tente desativar a visualização para arquivos PNG muito grandes",
+      "Transparência não visível: O fundo xadrez deve tornar áreas transparentes óbvias",
+      "Cores erradas: Certifique-se de que os dados Base64 não foram corrompidos durante copiar/colar"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar nome do arquivo"
+      }
+    ]
+  }
+}

@@ -48,6 +48,36 @@
         "Mobile-friendly responsive design",
         "Regular updates with new tools and features"
       ]
+    },
+    "workflows": {
+      "title": "Common Developer Workflows",
+      "api": {
+        "title": "API Development & Testing",
+        "tools": [
+          "JSON Formatter",
+          "JWT Decoder",
+          "URL Encoder",
+          "Hash Generator"
+        ]
+      },
+      "data": {
+        "title": "Data Migration & ETL",
+        "tools": [
+          "CSV to JSON",
+          "Base64 Encoder",
+          "SQL Formatter",
+          "UUID Generator"
+        ]
+      },
+      "security": {
+        "title": "Security & Authentication",
+        "tools": [
+          "JWT Decoder",
+          "Hash Generator",
+          "Password Generator",
+          "Base64 Tools"
+        ]
+      }
     }
   }
 }
