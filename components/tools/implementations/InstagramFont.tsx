@@ -11,7 +11,6 @@ import {
   Twitter,
   Facebook,
   Sparkles,
-  Info,
 } from 'lucide-react';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
@@ -44,6 +43,24 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
   const [showAllStyles, setShowAllStyles] = useState(false);
   const [selectedPlatform, setSelectedPlatform] = useState<string>('all');
 
+  // Helper function to handle platform change with tracking
+  const handlePlatformChange = (platform: string) => {
+    setSelectedPlatform(platform);
+    trackCustom({
+      success: true,
+      metadata: {
+        action: 'filter_by_platform',
+        platform,
+        availableStyles: generatedStyles.filter((style) => {
+          if (platform === 'all') return true;
+          return style.compatibility[
+            platform as keyof FontStyle['compatibility']
+          ];
+        }).length,
+      },
+    });
+  };
+
   const isHydrated = useHydration();
   const { addToHistory, favoriteTools } = useToolStore();
   const safeFavorites = isHydrated ? favoriteTools : [];
@@ -67,9 +84,10 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
   }, [isHydrated]);
 
   const toggleFavoriteStyle = (styleId: string) => {
-    const newFavorites = localFavoriteStyles.includes(styleId)
-      ? localFavoriteStyles.filter((id) => id !== styleId)
-      : [...localFavoriteStyles, styleId];
+    const isFavoriting = !localFavoriteStyles.includes(styleId);
+    const newFavorites = isFavoriting
+      ? [...localFavoriteStyles, styleId]
+      : localFavoriteStyles.filter((id) => id !== styleId);
 
     setLocalFavoriteStyles(newFavorites);
     if (isHydrated) {
@@ -79,8 +97,18 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
       );
     }
 
+    // Find style name for tracking
+    const style = generatedStyles.find((s) => s.id === styleId);
+
+    // Track favorite/unfavorite event
     trackCustom({
       success: true,
+      metadata: {
+        action: isFavoriting ? 'favorite_font_style' : 'unfavorite_font_style',
+        styleId,
+        styleName: style?.name || 'unknown',
+        totalFavorites: newFavorites.length,
+      },
     });
   };
 
@@ -149,9 +177,30 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
       setCopiedStyleId(styleId);
       setTimeout(() => setCopiedStyleId(null), 2000);
 
-      trackCustom({ success: true });
+      // Find style name for tracking
+      const style = generatedStyles.find((s) => s.id === styleId);
+
+      // Track font copy event with detailed metadata
+      trackCustom({
+        success: true,
+        metadata: {
+          action: 'copy_font_style',
+          styleId,
+          styleName: style?.name || 'unknown',
+          textLength: text.length,
+          originalInput: input,
+          inputLength: input.length,
+        },
+      });
     } catch (err) {
       console.error('Failed to copy:', err);
+      trackCustom({
+        success: false,
+        metadata: {
+          action: 'copy_font_style',
+          error: 'clipboard_error',
+        },
+      });
     }
   };
 
@@ -183,22 +232,6 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
       </div>
 
       <div className="space-y-6 p-6">
-        {/* Info Banner */}
-        <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-950/30">
-          <div className="flex gap-3">
-            <Info className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" />
-            <div className="space-y-1 text-sm">
-              <p className="font-medium text-blue-900 dark:text-blue-100">
-                Generate stylized text using Unicode characters
-              </p>
-              <p className="text-blue-700 dark:text-blue-300">
-                These fonts work on Instagram, WhatsApp, Twitter, Facebook and
-                most social media platforms. No font installation required!
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Input Section */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
@@ -255,9 +288,9 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
           )}
         </div>
 
-        {/* Filters */}
+        {/* Filters - Hidden on mobile */}
         {generatedStyles.length > 0 && (
-          <div className="flex flex-col gap-4 rounded-lg bg-gray-50 p-4 dark:bg-gray-900 sm:flex-row sm:items-center">
+          <div className="hidden flex-col gap-4 rounded-lg bg-gray-50 p-4 dark:bg-gray-900 sm:flex-row sm:items-center md:flex">
             {/* Search */}
             <div className="flex flex-1 items-center gap-2">
               <Search className="h-4 w-4 text-gray-400" />
@@ -277,7 +310,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
               </span>
               <div className="flex gap-1">
                 <button
-                  onClick={() => setSelectedPlatform('all')}
+                  onClick={() => handlePlatformChange('all')}
                   className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
                     selectedPlatform === 'all'
                       ? 'text-white'
@@ -293,7 +326,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                   All
                 </button>
                 <button
-                  onClick={() => setSelectedPlatform('instagram')}
+                  onClick={() => handlePlatformChange('instagram')}
                   className={`rounded p-2 transition-colors ${
                     selectedPlatform === 'instagram'
                       ? 'text-white'
@@ -310,7 +343,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                   <Instagram className="h-4 w-4" />
                 </button>
                 <button
-                  onClick={() => setSelectedPlatform('whatsapp')}
+                  onClick={() => handlePlatformChange('whatsapp')}
                   className={`rounded p-2 transition-colors ${
                     selectedPlatform === 'whatsapp'
                       ? 'text-white'
@@ -327,7 +360,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                   <MessageCircle className="h-4 w-4" />
                 </button>
                 <button
-                  onClick={() => setSelectedPlatform('twitter')}
+                  onClick={() => handlePlatformChange('twitter')}
                   className={`rounded p-2 transition-colors ${
                     selectedPlatform === 'twitter'
                       ? 'text-white'
@@ -344,7 +377,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                   <Twitter className="h-4 w-4" />
                 </button>
                 <button
-                  onClick={() => setSelectedPlatform('facebook')}
+                  onClick={() => handlePlatformChange('facebook')}
                   className={`rounded p-2 transition-colors ${
                     selectedPlatform === 'facebook'
                       ? 'text-white'
