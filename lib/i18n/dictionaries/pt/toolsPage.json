@@ -48,6 +48,36 @@
         "Design responsivo compatível com dispositivos móveis",
         "Atualizações regulares com novas ferramentas e recursos"
       ]
+    },
+    "workflows": {
+      "title": "Fluxos de Trabalho Comuns para Desenvolvedores",
+      "api": {
+        "title": "Desenvolvimento e Teste de API",
+        "tools": [
+          "Formatador JSON",
+          "Decodificador JWT",
+          "Codificador de URL",
+          "Gerador de Hash"
+        ]
+      },
+      "data": {
+        "title": "Migração de Dados e ETL",
+        "tools": [
+          "CSV para JSON",
+          "Codificador Base64",
+          "Formatador SQL",
+          "Gerador de UUID"
+        ]
+      },
+      "security": {
+        "title": "Segurança e Autenticação",
+        "tools": [
+          "Decodificador JWT",
+          "Gerador de Hash",
+          "Gerador de Senha",
+          "Ferramentas Base64"
+        ]
+      }
     }
   }
 }

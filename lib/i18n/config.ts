@@ -1,7 +1,7 @@
 // Basic locale types - these should match locale-config.ts
-export type Locale = 'en' | 'it' | 'es' | 'fr' | 'de'; // Future: add new locales here when activating them
+export type Locale = 'en' | 'it' | 'es' | 'fr' | 'de' | 'pt'; // Future: add new locales here when activating them
 
-export const locales: Locale[] = ['en', 'it', 'es', 'fr', 'de'];
+export const locales: Locale[] = ['en', 'it', 'es', 'fr', 'de', 'pt'];
 export const defaultLocale: Locale = 'en';
 
 // Locales that should have URL prefix (exclude default)
@@ -15,6 +15,7 @@ export const localeNames: Record<Locale, string> = {
   es: 'Español',
   fr: 'Français',
   de: 'Deutsch',
+  pt: 'Português',
 };
 
 export const localeFlags: Record<Locale, string> = {
@@ -23,6 +24,7 @@ export const localeFlags: Record<Locale, string> = {
   es: '🇪🇸',
   fr: '🇫🇷',
   de: '🇩🇪',
+  pt: '🇵🇹',
 };
 
 // Future locales (ready to add)
