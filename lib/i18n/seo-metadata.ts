@@ -22,6 +22,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'ToolsLab - Laboratorio de Herramientas Gratuitas para Desarrolladores',
       fr: "ToolsLab - Laboratoire d'Outils Gratuits pour Développeurs",
       de: 'ToolsLab - Kostenlose Entwickler-Tools Labor',
+      pt: 'ToolsLab - Laboratório Gratuito de Ferramentas para Desenvolvedores',
     },
     descriptions: {
       en: 'Free online developer tools for JSON formatting, Base64 encoding, URL decoding, hash generation, and more. All tools work entirely in your browser with no data transmission to servers.',
@@ -29,6 +30,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'Herramientas en línea gratuitas para desarrolladores: formateo JSON, codificación Base64, decodificación URL, generación hash y más. Todas las herramientas funcionan en tu navegador sin transmisión de datos.',
       fr: 'Outils en ligne gratuits pour développeurs: formatage JSON, encodage Base64, décodage URL, génération hash et plus. Tous les outils fonctionnent dans votre navigateur sans transmission de données.',
       de: 'Kostenlose Online-Entwickler-Tools für JSON-Formatierung, Base64-Kodierung, URL-Dekodierung, Hash-Generierung und mehr. Alle Tools funktionieren vollständig in Ihrem Browser ohne Datenübertragung zu Servern.',
+      pt: 'Ferramentas online gratuitas para desenvolvedores: formatação JSON, codificação Base64, decodificação URL, geração hash e muito mais. Todas as ferramentas funcionam no seu navegador sem transmissão de dados para servidores.',
     },
     keywords: {
       en: [
@@ -102,6 +104,20 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'web tools',
         'kostenlose tools',
       ],
+      pt: [
+        'ferramentas desenvolvedor',
+        'formatador json',
+        'codificador base64',
+        'decodificador jwt',
+        'gerador uuid',
+        'gerador hash',
+        'codificador url',
+        'conversor timestamp',
+        'testador regex',
+        'ferramentas online',
+        'ferramentas web',
+        'ferramentas gratuitas',
+      ],
     },
   },
   tools: {
@@ -111,6 +127,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'Todas las Herramientas para Desarrolladores - Utilidades Online Gratuitas | ToolsLab',
       fr: 'Tous les Outils pour Développeurs - Utilitaires en Ligne Gratuits | ToolsLab',
       de: 'Alle Entwickler-Tools - Kostenlose Online-Utilities | ToolsLab',
+      pt: 'Todas as Ferramentas para Desenvolvedores - Utilitários Online Gratuitos | ToolsLab',
     },
     descriptions: {
       en: 'Discover 20+ free online tools for JSON formatting, Base64 encoding, URL decoding, hash generation, and more. All tools work entirely in your browser with no data transmission to servers. Perfect for development, debugging, and data processing workflows.',
@@ -118,6 +135,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'Descubre 20+ herramientas en línea gratuitas para formateo JSON, codificación Base64, decodificación URL, generación hash y más. Todas las herramientas funcionan completamente en tu navegador sin transmisión de datos a servidores. Perfectas para flujos de trabajo de desarrollo, depuración y procesamiento de datos.',
       fr: "Découvrez 20+ outils en ligne gratuits pour le formatage JSON, l'encodage Base64, le décodage URL, la génération hash et plus. Tous les outils fonctionnent entièrement dans votre navigateur sans transmission de données aux serveurs. Parfaits pour les flux de travail de développement, débogage et traitement de données.",
       de: 'Entdecken Sie 20+ kostenlose Online-Tools für JSON-Formatierung, Base64-Kodierung, URL-Dekodierung, Hash-Generierung und mehr. Alle Tools funktionieren vollständig in Ihrem Browser ohne Datenübertragung zu Servern. Perfekt für Entwicklungs-, Debugging- und Datenverarbeitungs-Workflows.',
+      pt: 'Descubra 20+ ferramentas online gratuitas para formatação JSON, codificação Base64, decodificação URL, geração hash e muito mais. Todas as ferramentas funcionam completamente no seu navegador sem transmissão de dados para servidores. Perfeitas para fluxos de trabalho de desenvolvimento, depuração e processamento de dados.',
     },
     keywords: {
       en: [
@@ -190,6 +208,20 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'web utilities',
         'kostenlose online tools',
       ],
+      pt: [
+        'ferramentas desenvolvedor online',
+        'utilitários desenvolvedor gratuitos',
+        'ferramentas desenvolvimento web',
+        'formatador json',
+        'codificador base64',
+        'decodificador url',
+        'gerador hash',
+        'ferramentas baseadas em navegador',
+        'utilitários desenvolvimento',
+        'ferramentas programação',
+        'utilitários web',
+        'ferramentas online gratuitas',
+      ],
     },
   },
   categories: {
@@ -199,6 +231,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'Categorías de Herramientas - Navegar por Tipo | ToolsLab',
       fr: "Catégories d'Outils - Parcourir par Type | ToolsLab",
       de: 'Tool-Kategorien - Nach Typ durchsuchen | ToolsLab',
+      pt: 'Categorias de Ferramentas - Navegar por Tipo | ToolsLab',
     },
     descriptions: {
       en: 'Browse developer tools organized by category: Data & Conversion, Encoding & Security, Text & Format, Generators, Web & Design, and Development Utilities.',
@@ -206,6 +239,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'Explora herramientas para desarrolladores organizadas por categoría: Datos & Conversión, Codificación & Seguridad, Texto & Formato, Generadores, Web & Diseño, y Utilidades de Desarrollo.',
       fr: 'Parcourez les outils pour développeurs organisés par catégorie: Données & Conversion, Encodage & Sécurité, Texte & Format, Générateurs, Web & Design, et Utilitaires de Développement.',
       de: 'Durchsuchen Sie Entwickler-Tools organisiert nach Kategorie: Daten & Konvertierung, Kodierung & Sicherheit, Text & Format, Generatoren, Web & Design und Entwicklungs-Utilities.',
+      pt: 'Navegue pelas ferramentas para desenvolvedores organizadas por categoria: Dados & Conversão, Codificação & Segurança, Texto & Formato, Geradores, Web & Design e Utilitários de Desenvolvimento.',
     },
     keywords: {
       en: [
@@ -258,6 +292,16 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'webentwicklungs tools',
         'utility kategorien',
       ],
+      pt: [
+        'categorias ferramentas',
+        'ferramentas desenvolvedor por tipo',
+        'ferramentas conversão dados',
+        'ferramentas codificação',
+        'ferramentas formatação texto',
+        'geradores código',
+        'ferramentas desenvolvimento web',
+        'categorias utilitários',
+      ],
     },
   },
   lab: {
@@ -267,6 +311,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'Mi Laboratorio de Desarrollo - Favoritos & Cadena de Herramientas | ToolsLab',
       fr: "Mon Laboratoire de Développeur - Favoris & Chaîne d'Outils | ToolsLab",
       de: 'Mein Entwickler-Labor - Favoriten & Tool-Kette | ToolsLab',
+      pt: 'Meu Laboratório de Desenvolvimento - Favoritos & Cadeia de Ferramentas | ToolsLab',
     },
     descriptions: {
       en: 'Your personal developer lab. Save your favorite tools, create custom tool chains, and streamline your development workflow with quick access to frequently used utilities.',
@@ -274,6 +319,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'Tu laboratorio personal de desarrollo. Guarda tus herramientas favoritas, crea cadenas de herramientas personalizadas y optimiza tu flujo de trabajo con acceso rápido a las utilidades más utilizadas.',
       fr: "Votre laboratoire personnel de développeur. Enregistrez vos outils favoris, créez des chaînes d'outils personnalisées et rationalisez votre flux de travail avec un accès rapide aux utilitaires fréquemment utilisés.",
       de: 'Ihr persönliches Entwickler-Labor. Speichern Sie Ihre bevorzugten Tools, erstellen Sie benutzerdefinierte Tool-Ketten und optimieren Sie Ihren Entwicklungs-Workflow mit schnellem Zugriff auf häufig verwendete Utilities.',
+      pt: 'Seu laboratório pessoal de desenvolvimento. Salve suas ferramentas favoritas, crie cadeias de ferramentas personalizadas e otimize seu fluxo de trabalho com acesso rápido aos utilitários mais utilizados.',
     },
     keywords: {
       en: [
@@ -326,6 +372,16 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'produktivität',
         'entwickler arbeitsbereich',
       ],
+      pt: [
+        'laboratório desenvolvedor',
+        'ferramentas favoritas',
+        'cadeia ferramentas',
+        'fluxo trabalho desenvolvimento',
+        'espaço trabalho pessoal',
+        'ferramentas salvas',
+        'produtividade',
+        'espaço trabalho desenvolvedor',
+      ],
     },
   },
   about: {
@@ -335,6 +391,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'Acerca de ToolsLab - La Historia de Tu Caja de Herramientas de Desarrollo',
       fr: "À Propos de ToolsLab - L'Histoire de Votre Boîte à Outils de Développeur",
       de: 'Über ToolsLab - Die Geschichte Ihrer Entwickler-Toolbox',
+      pt: 'Sobre o ToolsLab - A História da Sua Caixa de Ferramentas de Desenvolvimento',
     },
     descriptions: {
       en: 'Discover how ToolsLab evolved from a personal project to a trusted toolkit for thousands of developers worldwide. Free forever, no strings attached.',
@@ -342,6 +399,7 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
       es: 'Descubre cómo ToolsLab evolucionó de un proyecto personal a un conjunto de herramientas confiable para miles de desarrolladores en todo el mundo. Gratis para siempre, sin condiciones.',
       fr: "Découvrez comment ToolsLab a évolué d'un projet personnel à une boîte à outils fiable pour des milliers de développeurs dans le monde entier. Gratuit pour toujours, sans conditions.",
       de: 'Entdecken Sie, wie ToolsLab sich von einem persönlichen Projekt zu einem vertrauenswürdigen Toolkit für Tausende von Entwicklern weltweit entwickelt hat. Für immer kostenlos, ohne Bedingungen.',
+      pt: 'Descubra como o ToolsLab evoluiu de um projeto pessoal para um conjunto de ferramentas confiável para milhares de desenvolvedores em todo o mundo. Gratuito para sempre, sem condições.',
     },
     keywords: {
       en: [
@@ -393,6 +451,16 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
         'toolslab mission',
         'entwickler produktivität',
         'schweizer taschenmesser für entwickler',
+      ],
+      pt: [
+        'sobre toolslab',
+        'história ferramentas desenvolvedor',
+        'ferramentas desenvolvedor gratuitas',
+        'ferramentas privacidade primeiro',
+        'desenvolvedor independente',
+        'missão toolslab',
+        'produtividade desenvolvedor',
+        'canivete suíço para desenvolvedores',
       ],
     },
   },
