@@ -1,0 +1,43 @@
+{
+  "privacy": {
+    "meta": {
+      "title": "Política de Privacidade - ToolsLab | Seus Dados Permanecem Seus",
+      "description": "O ToolsLab respeita sua privacidade. Sem rastreamento, sem contas, sem coleta de dados. Todo o processamento acontece localmente no seu navegador.",
+      "ogTitle": "Política de Privacidade - ToolsLab",
+      "ogDescription": "Sua privacidade é sagrada. Não rastreamos, não criamos perfis, nem sabemos quem você é."
+    },
+    "header": {
+      "title": "Política de Privacidade",
+      "subtitle": "Seus dados permanecem seus. Sempre.",
+      "tldrTitle": "Resumo - A Verdade Simples",
+      "tldrText": "<strong>Sua privacidade é sagrada.</strong> Não rastreamos você, não criamos perfis, nem sabemos quem você é. O ToolsLab funciona como uma ferramenta de desktop no seu navegador - tudo fica no seu dispositivo."
+    },
+    "lastUpdated": "Última atualização:",
+    "sections": {
+      "zeroData": {
+        "title": "Zero Coleta de Dados Pessoais",
+        "intro": "<strong>Não coletamos, armazenamos ou processamos nenhum dado pessoal.</strong> Isso inclui:",
+        "points": {
+          "noEmail": "Sem e-mail ou informações de contato",
+          "noNames": "Sem nomes, endereços ou informações de identificação",
+          "noAccounts": "Sem contas, registros ou perfis de usuário",
+          "noCookies": "Sem cookies de rastreamento ou identificadores persistentes",
+          "noSensitive": "Sem dados sensíveis como IPs detalhados ou fingerprinting"
+        },
+        "summary": "<strong>💡 Simplesmente:</strong> Não sabemos quem você é, de onde você é, ou o que você faz com nossas ferramentas. E gostamos assim."
+      },
+      "localProcessing": {
+        "title": "Tudo Acontece no Seu Navegador",
+        "intro": "Todas as nossas ferramentas de desenvolvedor funcionam completamente <strong>client-side</strong>:",
+        "points": {
+          "json": "O JSON que você formata nunca sai do seu navegador",
+          "base64": "O Base64 que você converte é processado localmente",
+          "uuid": "Os UUIDs que você gera são criados no seu dispositivo",
+          "noServers": "Nenhum dado é enviado aos nossos servidores",
+          "offline": "Funciona offline também (uma vez que a página esteja carregada)"
+        },
+        "summary": "<strong>🔧 Pense nisso:</strong> Como usar uma ferramenta de desktop, mas no seu navegador. Nós apenas fornecemos o \"software\", seus dados nunca nos alcançam."
+      }
+    }
+  }
+}
