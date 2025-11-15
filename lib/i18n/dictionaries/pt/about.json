@@ -1,0 +1,138 @@
+{
+  "about": {
+    "hero": {
+      "title": "Sobre o ToolsLab",
+      "subtitle": "Sua Caixa de Ferramentas de Desenvolvedor, Reimaginada",
+      "badges": {
+        "free": "100% Gratuito",
+        "privacy": "Privacidade em Primeiro Lugar",
+        "noRegistration": "Sem Registro"
+      },
+      "scrollIndicator": "Role para explorar"
+    },
+    "stats": {
+      "title": "Confiado por Desenvolvedores",
+      "subtitle": "Números que contam nossa história",
+      "tools": {
+        "value": "25+",
+        "label": "Ferramentas para Desenvolvedores",
+        "description": "E crescendo diariamente"
+      },
+      "users": {
+        "value": "1000+",
+        "label": "Usuários Diários",
+        "description": "Desenvolvedores em todo o mundo"
+      },
+      "loadTime": {
+        "value": "<1s",
+        "label": "Tempo de Carregamento",
+        "description": "Ultra rápido"
+      },
+      "dataCollected": {
+        "value": "0",
+        "label": "Dados Coletados",
+        "description": "Privacidade completa"
+      }
+    },
+    "timeline": {
+      "title": "A Jornada",
+      "subtitle": "De frustração pessoal a recurso comunitário",
+      "steps": [
+        {
+          "title": "O Problema",
+          "year": "Início de 2025",
+          "description": "Dezenas de abas do navegador para conversões simples. JSON aqui, Base64 ali, UUID em outro lugar. Cada ferramenta em sites diferentes, a maioria cheia de anúncios, algumas atrás de paywalls."
+        },
+        {
+          "title": "A Ideia",
+          "year": "Início de 2025",
+          "description": "E se todas as minhas ferramentas dev essenciais vivessem em um só lugar? Interface limpa, sem registro, ultra rápido. Construí meu canivete suíço pessoal para desenvolvimento."
+        },
+        {
+          "title": "A Construção",
+          "year": "Julho de 2025",
+          "description": "Noites e fins de semana programando. Comecei com formatador JSON, adicionei codificador Base64, gerador UUID. Cada ferramenta mais rápida e limpa que as alternativas espalhadas."
+        },
+        {
+          "title": "O Lançamento",
+          "year": "Agosto de 2025",
+          "description": "Compartilhei com minha equipe. Eles adoraram. Percebi que isso poderia ajudar milhares de desenvolvedores. Tornei público, gratuito para sempre, sem compromissos."
+        },
+        {
+          "title": "O Crescimento",
+          "year": "Hoje",
+          "description": "De projeto pessoal a kit de ferramentas confiável para desenvolvedores em todo o mundo. Coleção crescente de ferramentas, todas mantendo o mesmo princípio: apenas funcionar."
+        },
+        {
+          "title": "O Futuro",
+          "year": "2025+",
+          "description": "Mais ferramentas, melhor desempenho, recursos orientados pela comunidade. Sempre gratuito, sempre privado, sempre focado na produtividade do desenvolvedor."
+        }
+      ]
+    },
+    "features": {
+      "title": "Por Que Escolher o ToolsLab?",
+      "subtitle": "Construído pensando em desenvolvedores, otimizado para seu fluxo de trabalho",
+      "items": [
+        {
+          "title": "Ultra Rápido",
+          "description": "Todo o processamento acontece no seu navegador. Sem atrasos de servidor, sem espera. As ferramentas carregam instantaneamente e funcionam na velocidade do pensamento."
+        },
+        {
+          "title": "Privacidade em Primeiro Lugar",
+          "description": "Seus dados nunca saem do seu dispositivo. Sem rastreamento, sem analytics, sem coleta de dados. Privacidade completa garantida."
+        },
+        {
+          "title": "Sempre Gratuito",
+          "description": "Sem planos premium, sem paywalls, sem custos ocultos. Ferramentas de qualidade acessíveis a todos os desenvolvedores, independente do orçamento."
+        },
+        {
+          "title": "Sem Cadastro",
+          "description": "Comece a usar as ferramentas imediatamente. Sem contas, sem e-mails de verificação, sem atrito entre você e a produtividade."
+        },
+        {
+          "title": "Modo Escuro",
+          "description": "Suave para seus olhos durante aquelas sessões de programação noturnas. Interface bonita que se adapta à sua preferência."
+        },
+        {
+          "title": "Pronto para Mobile",
+          "description": "Funciona perfeitamente em qualquer dispositivo. Mesma ótima experiência seja em desktop, tablet ou celular."
+        }
+      ]
+    },
+    "story": {
+      "quote": "Olá, sou o desenvolvedor por trás do ToolsLab. Como você, eu estava cansado de fazer malabarismos com dezenas de abas do navegador para conversões e gerações simples. Cada ferramenta em um site diferente, a maioria cheia de anúncios, algumas atrás de paywalls.\n\nEntão construí o ToolsLab - meu canivete suíço pessoal para desenvolvimento. O que começou como um projeto local rapidamente se tornou inestimável para minha equipe, e agora estou emocionado em compartilhá-lo com desenvolvedores em todo o mundo.\n\nSem pegadinhas, sem upsells. Apenas ferramentas que funcionam, construídas por um desenvolvedor que as usa todos os dias.",
+      "author": "— Criador do ToolsLab",
+      "badges": {
+        "developer": "Desenvolvedor Full Stack",
+        "enthusiast": "Entusiasta de Código Aberto"
+      }
+    },
+    "social": {
+      "title": "Conecte-se e Apoie",
+      "subtitle": "Junte-se à comunidade, contribua ou mostre seu apreço",
+      "links": [
+        {
+          "label": "Siga no X",
+          "description": "Atualizações e bastidores"
+        },
+        {
+          "label": "Marque com estrela no GitHub",
+          "description": "Contribua e dê feedback"
+        },
+        {
+          "label": "Me pague um café",
+          "description": "Apoie o projeto"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Pronto para Aumentar Sua Produtividade?",
+      "subtitle": "Junte-se a milhares de desenvolvedores que fizeram do ToolsLab seu kit de ferramentas preferido. Sem registro, sem custos, apenas produtividade pura.",
+      "buttons": {
+        "exploreTools": "Explorar Ferramentas",
+        "support": "Apoiar o Projeto"
+      }
+    }
+  }
+}

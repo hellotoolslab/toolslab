@@ -705,12 +705,12 @@ Tutti questi componenti seguono il pattern corretto:
 
 ### Sistema Centralizzato con Auto-Tracking
 
-ToolsLab usa un **sistema analytics centralizzato** che traccia automaticamente:
+ToolsLab usa un **sistema analytics centralizzato** basato su **Umami Cloud** che traccia automaticamente:
 - ✅ Tool usage (quando usi `addToHistory()`)
 - ✅ Pageview normalizzati (URL multilingua unificati)
-- ✅ Session tracking (durata accurata anche se chiudi browser)
-- ✅ Performance metrics
-- ✅ User segmentation (first-time, returning, power)
+- ✅ Session tracking (durata accurata anche se chiudi browser tramite sendBeacon)
+- ✅ Performance metrics (processing time, input/output sizes)
+- ✅ User segmentation (first-time, returning, power users)
 
 ### 🎯 Zero Boilerplate per Nuovi Tool
 
@@ -718,14 +718,22 @@ ToolsLab usa un **sistema analytics centralizzato** che traccia automaticamente:
 // ✅ Tutto quello che serve:
 addToHistory({
   id: crypto.randomUUID(),
-  tool: 'my-tool',
+  tool: 'my-tool',  // DEVE matchare ID in /lib/tools.ts
   input,
   output,
-  timestamp: Date.now(),
+  timestamp: Date.now(),  // ⚠️ QUANDO INIZIA il processing, non quando finisce!
 });
 
 // → Evento tracciato automaticamente in Umami! 🎉
 ```
+
+**Cosa succede automaticamente:**
+- ✅ Event `tool.use` inviato a Umami
+- ✅ Input/output byte sizes calcolati
+- ✅ Processing time calcolato (`Date.now() - timestamp`)
+- ✅ User level determinato (da cronologia)
+- ✅ Session ID, locale, viewport aggiunti
+- ✅ Batching automatico (5 eventi o 1 secondo)
 
 ### 📊 Cosa Viene Tracciato Automaticamente
 
@@ -745,23 +753,25 @@ addToHistory({
   tool: 'json-formatter',
   inputSize: 1024,           // bytes
   outputSize: 2048,          // bytes
-  processingTime: 45,        // milliseconds
+  processingTime: 45,        // milliseconds (Date.now() - timestamp)
   success: true,
   userLevel: 'power',        // first_time | returning | power
   locale: 'it',
   sessionId: 'abc-123',
   viewport: '1920x1080',
   isMobile: false,
+  timestamp: 1234567890,
 }
 ```
 
 ### 🛠️ Debug Panel
 
 Aggiungi `?debug=analytics` all'URL per vedere:
-- Real-time queue status
-- Session data (duration, pageviews, events)
-- Online/offline status
-- Flush queue manualmente
+- ✅ Real-time queue status (pending events, batch size)
+- ✅ Session data (duration, pageviews, events, tools used)
+- ✅ UmamiAdapter status (enabled, SDK ready)
+- ✅ Manual flush button (force send pending events)
+- ✅ Config viewer (log configuration to console)
 
 ```
 http://localhost:3000?debug=analytics
@@ -770,24 +780,74 @@ http://localhost:3000/tools/json-formatter?debug=analytics
 
 ### 🔥 Features Chiave
 
-1. **Batching**: Eventi raggruppati (max 10 eventi o 5 secondi) → 90% meno network requests
-2. **sendBeacon**: Eventi critici (tool.use, session.end) sopravvivono alla chiusura browser
-3. **Offline Queue**: Eventi salvati in localStorage quando offline
-4. **Retry Logic**: Exponential backoff (1s, 2s, 4s) per failed requests
-5. **PII Sanitization**: Auto-rimozione email, IP, carte credito da metadata
+1. **Batching Intelligente**: Eventi raggruppati (max 5 eventi o 1 secondo) → 80-90% riduzione network requests
+2. **sendBeacon Delivery**: Eventi critici (`session.end`) sopravvivono alla chiusura browser - garantito al 97% browser support
+3. **No Retry Logic**: sendBeacon fornisce già best-effort guaranteed delivery - retry logic disabilitata per evitare duplicati
+4. **PII Sanitization**: Auto-rimozione email, IP, carte credito, API keys da tutti gli eventi
+5. **Bot Detection**: Client-side detection - distingue search engines (OK) da malicious bots (bloccati)
+6. **URL Normalization**: Multilingua gestito automaticamente - nessun duplicato in Umami
 
 ### 📚 Documentazione Completa
 
-Vedi `/documentation/analytics/`:
-- **README.md** - Overview e quick reference
-- **ARCHITECTURE.md** - Design completo del sistema
-- **DEVELOPER_GUIDE.md** - Guida pratica per sviluppatori
+**Tutta la documentazione è in `/documentation/analytics/`:**
+
+| File | Descrizione |
+|------|-------------|
+| **[README.md](./documentation/analytics/README.md)** | 📖 Overview generale, quick start, features |
+| **[DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md)** | 👨‍💻 **Inizia qui!** Guida pratica per sviluppatori |
+| **[ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md)** | 🏗️ Design completo del sistema, decisioni tecniche |
+| **[PAGEVIEW_TRACKING.md](./documentation/analytics/PAGEVIEW_TRACKING.md)** | 📊 PageViewTracker, metriche avanzate, UTM |
+
+**Learning Path consigliato:**
+1. Leggi [README.md](./documentation/analytics/README.md) per overview
+2. Segui [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md) per aggiungere tool
+3. Consulta [ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md) per dettagli tecnici
 
 ### ⚠️ Importante
 
-- **NON tracciare URL raw** - usa sempre `EventNormalizer.normalizeURL()`
-- **timestamp in addToHistory** deve essere quando **inizia** il processing, non quando finisce
-- **Tool ID** deve matchare con quello in `/lib/tools.ts`
+- **timestamp in addToHistory**: DEVE essere quando **inizia** il processing, non quando finisce
+  ```typescript
+  // ✅ CORRETTO
+  const startTime = Date.now();
+  const output = processData(input);
+  addToHistory({ ..., timestamp: startTime });
+
+  // ❌ SBAGLIATO - processing time sarà ~0
+  const output = processData(input);
+  addToHistory({ ..., timestamp: Date.now() });
+  ```
+
+- **Tool ID**: DEVE matchare esattamente con l'ID in `/lib/tools.ts` (kebab-case)
+
+- **NON serve tracciare manualmente** - `addToHistory()` fa tutto automaticamente
+
+- **Debug Mode**: Usa `?debug=analytics` durante development per verificare che eventi vengano tracciati
+
+### 🔧 Configurazione
+
+```bash
+# Environment Variables (.env.local)
+
+# 🎯 MASTER SWITCH - controlla tutto!
+NEXT_PUBLIC_ANALYTICS_ENABLED=true        # true = ON, false = OFF
+
+# Required (se analytics abilitato)
+NEXT_PUBLIC_UMAMI_WEBSITE_ID=your-website-id
+NEXT_PUBLIC_UMAMI_SCRIPT_URL=https://cloud.umami.is/script.js
+
+# Optional
+NEXT_PUBLIC_UMAMI_DEBUG=true              # Enable debug logs
+NEXT_PUBLIC_ANALYTICS_BATCH_SIZE=5        # Eventi per batch (default: 5)
+NEXT_PUBLIC_ANALYTICS_FLUSH_INTERVAL=1000 # Flush interval ms (default: 1000)
+```
+
+### 🎓 Per Saperne di Più
+
+Consulta la documentazione completa per:
+- **Come tracciare eventi custom** → [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md#-advanced-custom-events-optional)
+- **Come funziona il batching** → [ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md#performance-optimizations)
+- **Troubleshooting** → [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md#-troubleshooting)
+- **API completa** → [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md#-api-reference)
 
 ## 🌍 SISTEMA MULTILINGUA (AGGIORNAMENTO DICEMBRE 2024)
 

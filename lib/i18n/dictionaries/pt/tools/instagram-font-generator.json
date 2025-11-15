@@ -1,0 +1,96 @@
+{
+  "title": "Gerador de Fontes Instagram",
+  "description": "Gere fontes Unicode estilizadas para Instagram, WhatsApp e biografias de redes sociais",
+  "placeholder": "Digite seu texto aqui... (ex: Seu Nome, Bio, Legenda)",
+  "meta": {
+    "title": "Gerador de Fontes Instagram - Gerador de Texto Chique Gratuito | ToolsLab",
+    "description": "Gere fontes Unicode estilosas para biografias do Instagram, status do WhatsApp e redes sociais. Mais de 22 estilos de fonte, verificador de compatibilidade de plataforma, contador de caracteres. Gerador de texto online gratuito."
+  },
+  "tagline": "Crie estilos de texto Unicode atraentes para seus perfis e posts em redes sociais",
+  "pageDescription": "Gerador gratuito de fontes Instagram cria texto Unicode estiloso para redes sociais. Transforme texto simples em mais de 22 estilos de fonte únicos incluindo negrito, itálico, cursivo, monoespaçado e fontes decorativas. Recursos incluem contador de caracteres em tempo real para biografias Instagram (150 caracteres) e posts (2200 caracteres), verificador de compatibilidade de plataforma (Instagram, WhatsApp, Twitter, Facebook) e funcionalidade de cópia instantânea. Perfeito para criadores de conteúdo, influenciadores e profissionais de marketing que querem se destacar com texto chique em biografias, legendas e posts. Todas as fontes funcionam nativamente em plataformas sem instalação. Baseado em navegador com privacidade completa.",
+  "instructions": {
+    "title": "Como usar o Gerador de Fontes Instagram",
+    "steps": [
+      {
+        "title": "Digite ou cole seu texto",
+        "description": "Digite o texto que você quer estilizar na caixa de entrada. Funciona com quaisquer caracteres Unicode incluindo letras, números e emojis. O contador de caracteres mostra limites para bio Instagram (150) e posts (2200)."
+      },
+      {
+        "title": "Navegue pelos estilos de fonte gerados",
+        "description": "Veja instantaneamente seu texto convertido em mais de 22 estilos de fonte diferentes. Cada estilo mostra ícones de compatibilidade de plataforma para Instagram, WhatsApp, Twitter e Facebook."
+      },
+      {
+        "title": "Filtre por plataforma ou pesquise",
+        "description": "Use filtros de plataforma para mostrar apenas fontes compatíveis com Instagram, WhatsApp, Twitter ou Facebook. Pesquise por nome de fonte para encontrar rapidamente estilos específicos como 'negrito' ou 'script'."
+      },
+      {
+        "title": "Copie e use seu texto estilizado",
+        "description": "Clique no botão copiar em qualquer estilo de fonte para copiá-lo para sua área de transferência. Depois cole diretamente na sua bio Instagram, status WhatsApp ou qualquer post de rede social."
+      }
+    ],
+    "features": [
+      "Mais de 22 estilos de fonte Unicode únicos gerados instantaneamente",
+      "Contador de caracteres em tempo real para limites do Instagram",
+      "Verificador de compatibilidade de plataforma (Instagram, WhatsApp, Twitter, Facebook)",
+      "Pesquise e filtre fontes por nome ou plataforma",
+      "Estilos favoritos para acesso rápido",
+      "Carregamento preguiçoso para desempenho otimizado",
+      "Copie estilos individuais ou todos os estilos de uma vez",
+      "Funciona com emojis, caracteres especiais e texto multilíngue",
+      "Nenhuma instalação de fonte necessária - funciona nativamente",
+      "100% baseado em navegador com privacidade completa"
+    ],
+    "useCases": [
+      "Crie biografias Instagram atraentes que se destacam",
+      "Estilize mensagens de status WhatsApp com fontes únicas",
+      "Adicione personalidade a descrições de perfil do Twitter",
+      "Torne posts do Facebook mais envolventes com texto estilizado",
+      "Crie conteúdo de marca para redes sociais",
+      "Crie nomes de usuário e nomes de exibição únicos",
+      "Destaque-se em comentários e respostas",
+      "Gere texto estético para biografias TikTok",
+      "Estilize nomes de servidor e canais Discord",
+      "Crie títulos que chamam atenção para posts sociais"
+    ],
+    "proTips": [
+      "Salve seus estilos de fonte favoritos para acesso rápido depois",
+      "Teste fontes na sua plataforma alvo antes de finalizar",
+      "Combine diferentes estilos em uma bio para efeitos criativos",
+      "Use o contador de caracteres para otimizar para o limite de 150 caracteres da bio Instagram",
+      "Fontes negrito e itálico têm melhor compatibilidade em todas as plataformas",
+      "Evite usar muitos caracteres especiais - mantenha legível",
+      "Visualize como seu texto estilizado fica com emojis",
+      "Copie todos os estilos de uma vez para testar múltiplas opções",
+      "Use filtros de plataforma para garantir compatibilidade antes de postar",
+      "Mantenha um backup do seu texto original antes de estilizar"
+    ],
+    "troubleshooting": [
+      "Texto não exibe: Alguns dispositivos mais antigos podem não suportar todas as fontes Unicode. Mantenha negrito, itálico ou monoespaçado para compatibilidade máxima.",
+      "Caracteres aparecem como caixas: Isso significa que a fonte não é suportada naquela plataforma. Use o verificador de compatibilidade de plataforma para verificar antes de postar.",
+      "Texto parece diferente em mobile vs desktop: Renderização Unicode varia ligeiramente por dispositivo. Sempre visualize no seu dispositivo alvo antes de publicar.",
+      "Instagram removendo texto estilizado: Instagram ocasionalmente bloqueia certas faixas Unicode. Se o texto desaparecer, tente um estilo de fonte diferente.",
+      "Contador de caracteres mostra vermelho: Seu texto excede limites do Instagram (150 para bio, 2200 para posts). Encurte sua mensagem ou remova caracteres extras.",
+      "Botão copiar não funciona: Certifique-se de que seu navegador permite acesso à área de transferência. Tente clicar no botão novamente ou selecione manualmente e copie o texto.",
+      "Emojis não convertem: Emojis são preservados em sua forma original - eles não precisam de conversão e funcionam em todas as plataformas.",
+      "Pesquisa não encontra fontes: Use termos simples como 'negrito', 'itálico' ou 'script'. Nomes de fontes estão em inglês."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar texto"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar estilo selecionado"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Selecionar todo texto na entrada"
+      },
+      {
+        "keys": "Escape",
+        "description": "Limpar filtros"
+      }
+    ]
+  }
+}

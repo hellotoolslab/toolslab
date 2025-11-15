@@ -1,0 +1,84 @@
+{
+  "title": "Base64 para WebP",
+  "description": "Converta strings Base64 em imagens WebP",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 para WebP - Conversor Online Gratuito | ToolsLab",
+    "description": "Converta Base64 para WebP online. Decodifique Base64 e salve como imagem WebP moderna. Conversor gratuito com visualização instantânea, suporte a transparência e análise de compressão."
+  },
+  "tagline": "Converta dados Base64 em imagens WebP modernas instantaneamente com recursos avançados",
+  "pageDescription": "Converta dados codificados em Base64 para imagens WebP com download e visualização instantâneos. Perfeito para desenvolvedores trabalhando com formatos de imagem modernos, APIs e otimização web. Suporta compressão lossy e lossless, transparência (canal alpha) e WebP animado. Conversão segura baseada em navegador sem uploads para servidor. Valide entrada Base64, visualize imagens WebP com suporte a transparência, veja tipo de compressão e metadados e baixe arquivos convertidos diretamente para seu dispositivo.",
+  "instructions": {
+    "title": "Como usar o Conversor Base64 para WebP",
+    "steps": [
+      {
+        "title": "Cole sua string Base64",
+        "description": "Copie e cole seus dados WebP codificados em Base64 na área de entrada. A ferramenta detecta automaticamente prefixos de URL de dados e os remove se presentes."
+      },
+      {
+        "title": "Valide o formato Base64",
+        "description": "A ferramenta valida automaticamente sua entrada Base64 e mostra o tamanho estimado do arquivo. Ela verifica cabeçalhos WebP válidos para garantir integridade dos dados."
+      },
+      {
+        "title": "Defina nome de arquivo personalizado (opcional)",
+        "description": "Personalize o nome do arquivo de saída se necessário. A ferramenta gera automaticamente um nome de arquivo com timestamp por padrão."
+      },
+      {
+        "title": "Converta e visualize",
+        "description": "Clique em 'Converter para WebP' para processar os dados. A ferramenta exibe tipo de compressão, transparência e metadados com visualização instantânea."
+      },
+      {
+        "title": "Baixe seu WebP",
+        "description": "Clique em 'Baixar WebP' para salvar a imagem convertida em seu dispositivo."
+      }
+    ],
+    "features": [
+      "Validação Base64 em tempo real",
+      "Suporte para compressão lossy e lossless",
+      "Detecção de transparência (canal alpha)",
+      "Suporte para WebP animado",
+      "Análise de tipo de compressão",
+      "Detecção automática de prefixo de URL de dados",
+      "Validação de cabeçalho WebP",
+      "Visualização instantânea com suporte a transparência",
+      "Exibição de metadados completos",
+      "Processamento completamente seguro no navegador",
+      "Sem uploads para servidor",
+      "Funciona offline"
+    ],
+    "useCases": [
+      "Converter respostas de API contendo dados WebP em Base64",
+      "Extrair imagens WebP de payloads modernos",
+      "Otimizar imagens web para melhor desempenho",
+      "Processar imagens de próxima geração para web",
+      "Depurar dados de imagem WebP em desenvolvimento",
+      "Converter WebPs de URL de dados para arquivos baixáveis",
+      "Analisar qualidade e tipo de compressão WebP",
+      "Validar transparência em imagens WebP"
+    ],
+    "proTips": [
+      "WebP oferece ~30% melhor compressão que JPEG para mesma qualidade",
+      "Suporta transparência como PNG mas com melhor compressão",
+      "Ideal para uso web moderno com amplo suporte de navegadores",
+      "Compressão lossless preserva qualidade perfeita da imagem",
+      "Compressão lossy reduz tamanho com perda mínima de qualidade visível"
+    ],
+    "troubleshooting": [
+      "Erro de Base64 inválido: Verifique caracteres Base64 válidos",
+      "Nenhum cabeçalho WebP encontrado: Dados podem não ser imagem WebP",
+      "Visualização não aparece: Tente imagem menor ou verifique suporte do navegador",
+      "Problemas de memória: Desative visualização para arquivos grandes",
+      "Transparência não visível: Fundo xadrez mostra áreas transparentes"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar nome do arquivo"
+      }
+    ]
+  }
+}

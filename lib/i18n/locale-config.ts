@@ -91,7 +91,6 @@ export const LOCALE_CONFIGS: Record<Locale, LocaleConfig> = {
       thousands: '.',
     },
   },
-  /*
   pt: {
     code: 'pt',
     name: 'Português',
@@ -105,6 +104,7 @@ export const LOCALE_CONFIGS: Record<Locale, LocaleConfig> = {
       thousands: ' ',
     },
   },
+  /*
   nl: {
     code: 'nl',
     name: 'Nederlands',

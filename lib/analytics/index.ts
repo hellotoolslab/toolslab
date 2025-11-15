@@ -246,14 +246,27 @@ export function trackEngagement(
     const { is_mobile, isMobile, ...cleanMetadata } = metadata || {};
 
     // Add referrer and full URL with UTM parameters
-    const referrer = typeof document !== 'undefined' ? document.referrer : '';
+    let referrer = typeof document !== 'undefined' ? document.referrer : '';
     const url = typeof window !== 'undefined' ? window.location.href : '';
+
+    // If referrer is empty, try to get utm_source from URL
+    if (!referrer && typeof window !== 'undefined') {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmSource = urlParams.get('utm_source');
+        if (utmSource) {
+          referrer = utmSource;
+        }
+      } catch (error) {
+        // Silently fail if URL parsing fails
+      }
+    }
 
     const event = EventNormalizer.enrichEvent({
       event: 'engagement' as const,
       action,
       sessionId: '',
-      referrer, // Where the user came from
+      referrer, // Where the user came from (or utm_source if referrer is empty)
       url, // Full URL including UTM parameters
       ...cleanMetadata,
     });

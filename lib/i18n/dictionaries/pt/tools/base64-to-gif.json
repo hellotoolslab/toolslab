@@ -1,0 +1,83 @@
+{
+  "title": "Base64 para GIF",
+  "description": "Converta strings Base64 em imagens GIF",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 para GIF - Conversor Online Gratuito | ToolsLab",
+    "description": "Converta Base64 para GIF online. Decodifique Base64 e salve como imagem GIF. Ferramenta de conversão gratuita com suporte a visualização para GIFs animados."
+  },
+  "tagline": "Converta dados Base64 em imagens GIF instantaneamente com visualização",
+  "pageDescription": "Converta dados codificados em Base64 para imagens GIF com download e visualização instantâneos. Perfeito para desenvolvedores trabalhando com APIs de imagem, anexos de e-mail e fluxos de trabalho de processamento de dados. Suporta formatos GIF87a e GIF89a incluindo GIFs animados. Conversão segura baseada em navegador sem uploads para servidor. Valide entrada Base64, visualize imagens GIF e baixe arquivos convertidos diretamente para seu dispositivo.",
+  "instructions": {
+    "title": "Como usar o Conversor Base64 para GIF",
+    "steps": [
+      {
+        "title": "Cole sua string Base64",
+        "description": "Copie e cole seus dados GIF codificados em Base64 na área de entrada. A ferramenta detecta automaticamente prefixos de URL de dados."
+      },
+      {
+        "title": "Valide o formato Base64",
+        "description": "A ferramenta valida automaticamente sua entrada Base64 e verifica cabeçalhos GIF válidos."
+      },
+      {
+        "title": "Defina nome de arquivo personalizado (opcional)",
+        "description": "Personalize o nome do arquivo de saída. Geração automática de timestamp está disponível."
+      },
+      {
+        "title": "Converta e visualize",
+        "description": "Clique em 'Converter para GIF' para processar. GIFs animados serão reproduzidos automaticamente na visualização."
+      },
+      {
+        "title": "Baixe seu GIF",
+        "description": "Clique em 'Baixar GIF' para salvar a imagem convertida."
+      }
+    ],
+    "features": [
+      "Validação Base64 em tempo real",
+      "Suporte para GIF87a e GIF89a",
+      "Visualização de GIFs animados",
+      "Detecção automática de animação",
+      "Remoção de prefixo de URL de dados",
+      "Validação de cabeçalho GIF",
+      "Visualização instantânea",
+      "Suporte a paleta de cores indexadas",
+      "Processamento seguro no navegador",
+      "Sem uploads para servidor",
+      "Funciona offline"
+    ],
+    "useCases": [
+      "Converter GIFs de respostas de API",
+      "Extrair GIFs animados de dados JSON/XML",
+      "Processar GIFs de APIs de mensagens",
+      "Depurar dados de GIF animado",
+      "Converter GIFs de URL de dados",
+      "Recuperar GIFs de backups Base64",
+      "Validar animações GIF",
+      "Testar GIFs em fluxos de trabalho"
+    ],
+    "proTips": [
+      "Dados GIF Base64 começam com 'R0lGOD' quando codificados",
+      "GIF suporta no máximo 256 cores (paleta indexada)",
+      "Ideal para gráficos simples e animações",
+      "Use PNG para imagens estáticas com mais cores",
+      "GIFs animados reproduzem automaticamente na visualização"
+    ],
+    "troubleshooting": [
+      "Erro de Base64 inválido: Verifique caracteres válidos",
+      "Nenhum cabeçalho GIF encontrado: Dados podem não ser GIF",
+      "Animação não reproduz: Verifique se é GIF animado válido",
+      "Visualização não aparece: Tente arquivo menor",
+      "Cores erradas: Dados podem estar corrompidos"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar nome do arquivo"
+      }
+    ]
+  }
+}
