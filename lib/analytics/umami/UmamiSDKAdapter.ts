@@ -278,6 +278,29 @@ export class UmamiSDKAdapter {
   }
 
   /**
+   * Validate timestamp value
+   */
+  private isValidTimestamp(timestamp: number | undefined): boolean {
+    if (timestamp === undefined || timestamp === null) {
+      return false;
+    }
+
+    if (isNaN(timestamp)) {
+      return false;
+    }
+
+    // Check if timestamp is within reasonable range
+    // Min: 2020-01-01 (1577836800000)
+    // Max: 2100-01-01 (4102444800000)
+    if (timestamp < 1577836800000 || timestamp > 4102444800000) {
+      this.log(`⚠️ Timestamp out of range: ${timestamp}`);
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
    * Sanitize PII from event metadata
    */
   private sanitizePII(event: AnalyticsEvent): AnalyticsEvent {
