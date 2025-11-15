@@ -1,0 +1,40 @@
+{
+  "categories": {
+    "data": {
+      "name": "Dados e Conversão",
+      "description": "Ferramentas para transformação de dados e conversão de formatos"
+    },
+    "encoding": {
+      "name": "Codificação e Segurança",
+      "description": "Ferramentas de codificação, criptografia e segurança"
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Converte dados codificados em Base64 para vários formatos de arquivo"
+    },
+    "text": {
+      "name": "Texto e Formato",
+      "description": "Ferramentas de manipulação e formatação de texto"
+    },
+    "generators": {
+      "name": "Geradores",
+      "description": "Gere vários tipos de dados e conteúdo"
+    },
+    "web": {
+      "name": "Web e Design",
+      "description": "Ferramentas de desenvolvimento web e design"
+    },
+    "dev": {
+      "name": "Utilitários Dev",
+      "description": "Utilitários e auxiliares para desenvolvedores"
+    },
+    "formatters": {
+      "name": "Formatadores",
+      "description": "Ferramentas de formatação de código e dados"
+    },
+    "pdf": {
+      "name": "Ferramentas PDF",
+      "description": "Ferramentas PDF profissionais para conversão, edição, mesclagem, divisão e otimização"
+    }
+  }
+}

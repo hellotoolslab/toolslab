@@ -1,0 +1,85 @@
+{
+  "title": "CSV para JSON",
+  "description": "Converta arquivos CSV para formato JSON",
+  "placeholder": "Cole dados CSV ou envie arquivo...",
+  "instructions": {
+    "title": "Como usar o Conversor CSV para JSON",
+    "steps": [
+      {
+        "title": "Cole ou envie seus dados CSV",
+        "description": "Copie e cole seus dados CSV na área de entrada, ou use o botão de upload de arquivo para importar um arquivo CSV do seu computador. A ferramenta detecta automaticamente delimitadores comuns."
+      },
+      {
+        "title": "Configure opções de análise",
+        "description": "Escolha seu delimitador CSV (vírgula, ponto e vírgula, tab, pipe), especifique se a primeira linha contém cabeçalhos, habilite detecção de tipo para números e booleanos, e selecione seu formato de saída JSON preferido (array, aninhado ou compacto)."
+      },
+      {
+        "title": "Revise e valide",
+        "description": "A ferramenta analisará seu CSV e exibirá estatísticas incluindo contagem de linhas, contagem de colunas e quaisquer erros de validação. Verifique a visualização para garantir que os dados sejam interpretados corretamente."
+      },
+      {
+        "title": "Copie ou baixe JSON",
+        "description": "Após conversão, copie a saída JSON para sua área de transferência com um clique ou baixe como arquivo .json para usar em suas aplicações, APIs ou bancos de dados."
+      }
+    ],
+    "features": [
+      "Detecção automática de delimitador (vírgula, ponto e vírgula, tab, pipe)",
+      "Suporte a cabeçalho personalizado e geração automática",
+      "Detecção inteligente de tipo (números, booleanos, valores nulos)",
+      "Múltiplos formatos de saída: array de objetos, objetos aninhados, formato compacto",
+      "Manipula campos entre aspas e dados CSV multilinha",
+      "Preserva caracteres especiais e codificação UTF-8",
+      "Validação em tempo real e relatório de erros",
+      "Funciona completamente offline - sem upload de dados para servidores"
+    ],
+    "useCases": [
+      "Importar dados de planilha para aplicações web e APIs",
+      "Converter exportações Excel para JSON para migrações de banco de dados",
+      "Transformar relatórios CSV em JSON para visualização de dados",
+      "Preparar dados para bancos de dados NoSQL como MongoDB",
+      "Converter exportações de analytics para formato JSON estruturado",
+      "Processar logs CSV para consumo de API",
+      "Importar catálogos de produtos de CSV para JSON",
+      "Migrar dados legados de CSV para sistemas modernos baseados em JSON"
+    ],
+    "proTips": [
+      "Habilite detecção de tipo para converter automaticamente números e booleanos",
+      "Use cabeçalhos personalizados se seu CSV não tiver linha de cabeçalho",
+      "Experimente delimitadores diferentes se a análise falhar - tab e ponto e vírgula são comuns em dados europeus",
+      "Formato compacto é ótimo para reduzir tamanho de arquivo ao transmitir dados",
+      "Formato aninhado funciona bem quando a primeira coluna é uma chave ou ID único",
+      "Opção de aparar valores remove espaços em branco - útil para limpar exportações confusas"
+    ],
+    "troubleshooting": [
+      "Colunas inconsistentes: Habilite modo estrito para detectar linhas com contagens de coluna incompatíveis",
+      "Delimitador errado: Tente auto-detecção ou selecione manualmente o delimitador correto (procure por vírgula, ponto e vírgula, tab)",
+      "Problemas de conversão de tipo: Desabilite detecção de tipo se números devem permanecer como strings",
+      "Dados faltando: Configure detecção de valor nulo para manipular campos vazios, strings 'N/A' ou 'NULL'",
+      "Arquivos grandes: Processe em pedaços menores se o desempenho do navegador degradar com arquivos acima de 10MB"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar dados CSV"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Converter para JSON"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar saída JSON"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo JSON"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Conversor CSV para JSON - Ferramenta Online Gratuita | ToolsLab",
+    "description": "Converta arquivos CSV para formato JSON online. Suporte para delimitadores e cabeçalhos personalizados. Conversor gratuito de CSV para JSON."
+  },
+  "tagline": "Converta dados CSV para formato JSON com análise inteligente",
+  "pageDescription": "Transforme arquivos CSV e dados em formato JSON com detecção automática de cabeçalho e suporte a delimitador personalizado. Perfeito para migração de dados, integração de API e processamento de planilhas. Manipula arquivos grandes com streaming, preserva tipos de dados e oferece múltiplos formatos de saída. Conversão gratuita e segura baseada em navegador sem uploads de arquivo."
+}

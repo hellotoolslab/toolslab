@@ -1,0 +1,86 @@
+{
+  "title": "Base64 para JPG",
+  "description": "Converta strings Base64 em imagens JPG/JPEG",
+  "placeholder": "",
+  "meta": {
+    "title": "Base64 para JPG - Conversor Online Gratuito | ToolsLab",
+    "description": "Converta Base64 para JPG/JPEG online. Decodifique Base64 e salve como imagem JPEG. Ferramenta de conversão gratuita com visualização instantânea e exibição de metadados de qualidade."
+  },
+  "tagline": "Converta dados Base64 em imagens JPG/JPEG instantaneamente com visualização",
+  "pageDescription": "Converta dados codificados em Base64 para imagens JPG/JPEG com download e visualização instantâneos. Perfeito para desenvolvedores trabalhando com APIs de imagem, anexos de e-mail e fluxos de trabalho de processamento de dados. Suporta estimativa de qualidade JPEG e extração de metadados. Conversão segura baseada em navegador sem uploads para servidor. Valide entrada Base64, visualize imagens JPEG, veja dimensões e informações de qualidade da imagem e baixe arquivos convertidos diretamente para seu dispositivo.",
+  "instructions": {
+    "title": "Como usar o Conversor Base64 para JPG",
+    "steps": [
+      {
+        "title": "Cole sua string Base64",
+        "description": "Copie e cole seus dados JPG codificados em Base64 na área de entrada. A ferramenta detecta automaticamente prefixos de URL de dados e os remove se presentes."
+      },
+      {
+        "title": "Valide o formato Base64",
+        "description": "A ferramenta valida automaticamente sua entrada Base64 e mostra o tamanho estimado do arquivo. Ela verifica cabeçalhos JPEG válidos para garantir integridade dos dados."
+      },
+      {
+        "title": "Defina nome de arquivo personalizado (opcional)",
+        "description": "Personalize o nome do arquivo de saída se necessário. A ferramenta gera automaticamente um nome de arquivo com timestamp por padrão para fácil organização."
+      },
+      {
+        "title": "Converta e visualize",
+        "description": "Clique em 'Converter para JPG' para processar os dados. A ferramenta exibe informações do JPEG incluindo dimensões e metadados de qualidade antes de baixar."
+      },
+      {
+        "title": "Baixe seu JPG",
+        "description": "Clique em 'Baixar JPG' para salvar a imagem convertida em seu dispositivo."
+      }
+    ],
+    "features": [
+      "Validação Base64 em tempo real com feedback instantâneo",
+      "Suporte completo para formatos JPG e JPEG",
+      "Estimativa de qualidade de compressão JPEG",
+      "Detecção e remoção automática de prefixo de URL de dados",
+      "Validação de cabeçalho JPEG para integridade de dados",
+      "Visualização instantânea da imagem antes do download",
+      "Exibição de dimensões e metadados da imagem",
+      "Suporte a nome de arquivo personalizado com geração automática",
+      "Estimativa e exibição de tamanho de arquivo",
+      "Completamente seguro - todo o processamento acontece no seu navegador",
+      "Sem uploads de dados ou armazenamento no servidor",
+      "Funciona offline após o carregamento inicial da página"
+    ],
+    "useCases": [
+      "Converter respostas de API contendo dados JPG em Base64",
+      "Extrair imagens JPEG de payloads JSON ou XML",
+      "Decodificar anexos JPG de APIs de e-mail ou mensagens",
+      "Processar dados JPEG de web scraping ou ferramentas de automação",
+      "Depurar dados de imagem em desenvolvimento e testes",
+      "Converter JPEGs de URL de dados para arquivos baixáveis",
+      "Recuperar imagens JPEG de backups codificados em Base64",
+      "Validar qualidade de imagem antes de salvar",
+      "Extrair screenshots JPEG de resultados de automação de testes"
+    ],
+    "proTips": [
+      "Dados JPG Base64 válidos começam com '/9j/' quando codificados",
+      "A ferramenta remove automaticamente prefixos de URL de dados como 'data:image/jpeg;base64,'",
+      "JPEG é um formato com perdas otimizado para fotos e imagens complexas",
+      "A qualidade de compressão afeta o tamanho e a nitidez da imagem",
+      "Use PNG para gráficos e imagens que requerem transparência",
+      "Alterne a visibilidade da visualização para reduzir uso de memória para arquivos grandes"
+    ],
+    "troubleshooting": [
+      "Erro de Base64 inválido: Certifique-se de que a entrada contém apenas caracteres Base64 válidos",
+      "Nenhum cabeçalho JPEG encontrado: Os dados podem ser Base64 válido mas não uma imagem JPEG",
+      "Visualização não aparece: Verifique o console do navegador para erros ou tente uma imagem menor",
+      "Problemas de memória: Tente desativar a visualização para arquivos JPEG muito grandes",
+      "Cores erradas: Certifique-se de que os dados Base64 não foram corrompidos durante copiar/colar"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada Base64"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar nome do arquivo"
+      }
+    ]
+  }
+}

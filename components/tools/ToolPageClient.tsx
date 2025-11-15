@@ -251,7 +251,7 @@ export default function ToolPageClient({
         </nav>
 
         {/* Tool Hero Section - Optimized spacing */}
-        <div className="mb-5 flex items-start justify-between gap-4">
+        <div className="mb-3 flex items-start justify-between gap-4 md:mb-5">
           <ToolHeroSection
             toolId={tool.id}
             toolName={t.toolName}
