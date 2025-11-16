@@ -1,0 +1,105 @@
+{
+  "title": "UTM Link Builder",
+  "description": "Erstellen Sie nachverfolgbare URLs mit UTM-Parametern für Marketing-Kampagnen und Analytics",
+  "placeholder": "https://beispiel.com/seite",
+  "meta": {
+    "title": "UTM Link Builder - Kostenloser Kampagnen-URL-Generator | ToolsLab",
+    "description": "Kostenloser UTM Link Builder für Google Analytics. Erstellen Sie nachverfolgbare URLs mit UTM-Parametern für Marketing-Kampagnen. Generieren Sie UTM-Codes, speichern Sie Vorlagen und verfolgen Sie Ihre Kampagnen über Social Media, E-Mail und Anzeigen."
+  },
+  "tagline": "Erstellen Sie nachverfolgbare Kampagnen-URLs mit UTM-Parametern für Analytics und Marketing",
+  "pageDescription": "Professioneller UTM Link Builder für Marketer und Analysten. Generieren Sie nachverfolgbare URLs mit UTM-Parametern (source, medium, campaign, term, content) für Google Analytics Tracking. Verwenden Sie Voreinstellungen für Social Media (Facebook, Twitter, LinkedIn, Instagram), E-Mail-Kampagnen und Werbung. Speichern Sie Vorlagen für wiederkehrende Kampagnen. Fügen Sie benutzerdefinierte Parameter für erweitertes Tracking hinzu. Exportieren Sie URLs im CSV-Format für Massenkampagnen. Alle Verarbeitung erfolgt in Ihrem Browser für vollständige Privatsphäre und Sicherheit.",
+  "instructions": {
+    "title": "So verwenden Sie den UTM Link Builder",
+    "steps": [
+      {
+        "title": "Geben Sie Ihre Ziel-URL ein",
+        "description": "Geben Sie die URL der Webseite ein oder fügen Sie sie ein, die Sie verfolgen möchten. Dies kann jede Landing Page, Blogartikel, Produktseite oder Website-Link sein, wo Sie Traffic messen möchten. Stellen Sie sicher, dass Sie das Protokoll (https://) einschließen. Beispiel: https://beispiel.com/sommer-sale"
+      },
+      {
+        "title": "Fügen Sie UTM-Parameter hinzu",
+        "description": "Füllen Sie die UTM-Parameter aus, um Ihre Kampagnen zu verfolgen. Source identifiziert, woher der Traffic kommt (z.B. 'facebook', 'newsletter'). Medium gibt den Marketing-Kanal an (z.B. 'social', 'email', 'cpc'). Campaign benennt Ihre spezifische Promotion (z.B. 'sommer_sale', 'produkt_launch'). Term und Content sind optional für bezahlte Suchbegriffe und A/B-Test-Varianten."
+      },
+      {
+        "title": "Verwenden Sie Voreinstellungen oder Vorlagen",
+        "description": "Sparen Sie Zeit, indem Sie integrierte Voreinstellungen für gängige Plattformen (Social Media, E-Mail, Werbung) verwenden oder eigene Vorlagen für wiederkehrende Kampagnen erstellen. Klicken Sie auf 'Presets', um Standardkonfigurationen anzuwenden, oder 'Templates', um benutzerdefinierte Parameterkombinationen für Ihre spezifischen Marketing-Workflows zu speichern und wiederzuverwenden."
+      },
+      {
+        "title": "Fügen Sie benutzerdefinierte Parameter hinzu (optional)",
+        "description": "Erweitern Sie das Tracking mit benutzerdefinierten Parametern über Standard-UTM-Tags hinaus. Fügen Sie beliebige Schlüssel-Wert-Paare hinzu, um zusätzliche Kampagnendaten zu erfassen, die spezifisch für Ihre Bedürfnisse sind. Perfekt für internes Tracking, erweiterte Segmentierung oder Integration mit benutzerdefinierten Analytics-Systemen."
+      },
+      {
+        "title": "Generieren und verwenden Sie Ihre UTM-URL",
+        "description": "Klicken Sie auf 'UTM-URL generieren', um Ihren nachverfolgbaren Link zu erstellen. Kopieren Sie ihn in die Zwischenablage, laden Sie ihn als Textdatei herunter oder testen Sie ihn direkt in einem neuen Tab. Verwenden Sie die generierte URL in Ihren Marketing-Materialien, Social-Media-Posts, E-Mail-Kampagnen oder Anzeigen-Creatives, um die Performance in Google Analytics oder Ihrer bevorzugten Analytics-Plattform zu verfolgen."
+      }
+    ],
+    "features": [
+      "Alle 5 Standard-UTM-Parameter (source, medium, campaign, term, content)",
+      "URL-Validierung mit sofortigem Feedback",
+      "Schnelle Voreinstellungen für Social-Media-Plattformen (Facebook, Twitter, LinkedIn, Instagram, YouTube)",
+      "E-Mail-Marketing-Voreinstellungen (Newsletter, Werbung, Transaktional)",
+      "Werbe-Voreinstellungen (Google Ads, Facebook Ads, Display-Netzwerke)",
+      "Content-Marketing-Voreinstellungen (Blog, Gastbeiträge, Pressemitteilungen)",
+      "Unterstützung benutzerdefinierter Parameter für erweitertes Tracking",
+      "Vorlagensystem zum Speichern und Wiederverwenden von Parameterkombinationen",
+      "Ein-Klick-Kopie in die Zwischenablage",
+      "URLs als Textdateien herunterladen",
+      "Generierte Links in neuem Tab testen",
+      "Parameterzählung und Zusammenfassung",
+      "CSV-Export für Massenkampagnen (zukünftig)",
+      "Vollständig browserbasiert - keine Serververarbeitung",
+      "Keine Datenerfassung oder Protokollierung"
+    ],
+    "useCases": [
+      "Verfolgen Sie die Performance von Social-Media-Kampagnen über mehrere Plattformen",
+      "Messen Sie Klickraten und Engagement von E-Mail-Newslettern",
+      "Unterscheiden Sie Traffic von bezahlten vs. organischen Quellen",
+      "A/B-Tests verschiedener Anzeigen-Creatives und Landing-Page-Varianten",
+      "Überwachen Sie Influencer-Marketing und Affiliate-Link-Performance",
+      "Verfolgen Sie QR-Code-Kampagnen für Print- oder Offline-Marketing",
+      "Analysieren Sie, welche E-Mail-Betreffzeilen mehr Klicks generieren",
+      "Vergleichen Sie Performance über verschiedene Marketing-Kanäle",
+      "Segmentieren Sie Traffic nach Kampagne für detaillierte ROI-Analyse",
+      "Erstellen Sie nachverfolgbare Links für Pressemitteilungen und Medienarbeit",
+      "Überwachen Sie die Effektivität von Social-Media-Werbekampagnen",
+      "Verfolgen Sie Konferenz- oder Event-Promotion-Links",
+      "Messen Sie Blog-Post-Promotion über verschiedene Kanäle",
+      "Identifizieren Sie die leistungsstärksten Content-Distributionsplattformen"
+    ],
+    "proTips": [
+      "Verwenden Sie konsistente Namenskonventionen (Kleinbuchstaben, Unterstriche statt Leerzeichen) für einfachere Analyse",
+      "Speichern Sie Vorlagen für wiederkehrende Kampagnen, um konsistentes Tracking zu gewährleisten",
+      "Füllen Sie immer mindestens source und medium aus - das ist das Minimum für aussagekräftige Analysen",
+      "Verwenden Sie beschreibende Kampagnennamen, die Datum oder Version enthalten (z.B. 'sommer_sale_2024_v2')",
+      "Testen Sie Ihre UTM-Links vor dem Start der Kampagnen, um zu überprüfen, dass die Parameter korrekt funktionieren",
+      "Kombinieren Sie mit URL-Kürzern (bit.ly, ow.ly) für sauberere Links in Social Media",
+      "Dokumentieren Sie Ihre UTM-Namensgebungsstrategie, um Konsistenz zwischen Teammitgliedern zu gewährleisten",
+      "Verwenden Sie den content-Parameter, um A/B-Test-Varianten derselben Anzeige zu unterscheiden",
+      "Erstellen Sie separate UTM-Links für jede Social-Plattform, um Performance zu vergleichen",
+      "Überprüfen Sie Google Analytics nach Kampagnenstart, um zu bestätigen, dass UTM-Daten verfolgt werden"
+    ],
+    "troubleshooting": [
+      "Ungültige URL-Fehler: Stellen Sie sicher, dass Ihre URL das Protokoll https:// oder http:// enthält",
+      "Parameter werden nicht in Analytics angezeigt: Warten Sie 24-48 Stunden, bis Daten in Google Analytics erscheinen",
+      "Sonderzeichen in Parametern: Vermeiden Sie Leerzeichen und Sonderzeichen, verwenden Sie Unterstriche oder Bindestriche",
+      "Groß-/Kleinschreibung: UTM-Parameter sind in Analytics case-sensitive - verwenden Sie Kleinbuchstaben",
+      "Fehlende Pflichtfelder: Füllen Sie mindestens URL, source und medium für korrektes Tracking aus",
+      "Vorlage wird nicht gespeichert: Stellen Sie sicher, dass Sie einen Vorlagennamen eingegeben haben, bevor Sie auf Speichern klicken",
+      "Parameter zu lang: Halten Sie Parameterwerte unter 200 Zeichen für Kompatibilität",
+      "Link funktioniert nicht beim Klicken: Testen Sie zuerst die Basis-URL ohne Parameter, um zu überprüfen, dass sie gültig ist"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+Enter",
+        "description": "UTM-URL generieren"
+      },
+      {
+        "keys": "Strg+V",
+        "description": "URL einfügen"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Generierte URL kopieren"
+      }
+    ]
+  }
+}

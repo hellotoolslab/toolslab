@@ -1,0 +1,105 @@
+{
+  "title": "Generatore Link UTM",
+  "description": "Crea URL tracciabili con parametri UTM per campagne marketing e analytics",
+  "placeholder": "https://esempio.com/pagina",
+  "meta": {
+    "title": "Generatore Link UTM - Generatore URL Campagne Gratis | ToolsLab",
+    "description": "Generatore link UTM gratuito per Google Analytics. Crea URL tracciabili con parametri UTM per campagne marketing. Genera codici UTM, salva template e traccia le tue campagne su social media, email e ads."
+  },
+  "tagline": "Crea URL di campagna tracciabili con parametri UTM per analytics e marketing",
+  "pageDescription": "Generatore link UTM professionale per marketer e analisti. Genera URL tracciabili con parametri UTM (source, medium, campaign, term, content) per il tracciamento Google Analytics. Usa preset per social media (Facebook, Twitter, LinkedIn, Instagram), campagne email e advertising. Salva template per campagne ricorrenti. Aggiungi parametri personalizzati per tracciamento avanzato. Esporta URL in formato CSV per campagne massive. Tutto il processing avviene nel browser per privacy e sicurezza complete.",
+  "instructions": {
+    "title": "Come usare il Generatore Link UTM",
+    "steps": [
+      {
+        "title": "Inserisci l'URL di destinazione",
+        "description": "Digita o incolla l'URL della pagina web che vuoi tracciare. Può essere qualsiasi landing page, articolo blog, pagina prodotto o link sito dove vuoi misurare il traffico. Assicurati di includere il protocollo (https://). Esempio: https://esempio.com/saldi-estivi"
+      },
+      {
+        "title": "Aggiungi parametri UTM",
+        "description": "Compila i parametri UTM per tracciare le tue campagne. Source identifica l'origine del traffico (es. 'facebook', 'newsletter'). Medium specifica il canale marketing (es. 'social', 'email', 'cpc'). Campaign nomina la tua promozione specifica (es. 'saldi_estivi', 'lancio_prodotto'). Term e Content sono opzionali per parole chiave ricerca a pagamento e variazioni test A/B."
+      },
+      {
+        "title": "Usa preset o template",
+        "description": "Risparmia tempo usando preset integrati per piattaforme comuni (social media, email, advertising) o crea i tuoi template per campagne ricorrenti. Clicca 'Presets' per applicare configurazioni standard, o 'Templates' per salvare e riutilizzare combinazioni parametri personalizzate per i tuoi workflow marketing specifici."
+      },
+      {
+        "title": "Aggiungi parametri personalizzati (opzionale)",
+        "description": "Estendi il tracciamento con parametri personalizzati oltre i tag UTM standard. Aggiungi qualsiasi coppia chiave-valore per catturare dati campagna aggiuntivi specifici per le tue esigenze. Perfetto per tracciamento interno, segmentazione avanzata o integrazione con sistemi analytics personalizzati."
+      },
+      {
+        "title": "Genera e usa il tuo URL UTM",
+        "description": "Clicca 'Genera URL UTM' per creare il tuo link tracciabile. Copialo negli appunti, scaricalo come file di testo o testalo direttamente in una nuova scheda. Usa l'URL generato nei tuoi materiali marketing, post social media, campagne email o creatività ads per tracciare le performance in Google Analytics o la tua piattaforma analytics preferita."
+      }
+    ],
+    "features": [
+      "Tutti i 5 parametri UTM standard (source, medium, campaign, term, content)",
+      "Validazione URL con feedback istantaneo",
+      "Preset rapidi per piattaforme social media (Facebook, Twitter, LinkedIn, Instagram, YouTube)",
+      "Preset email marketing (newsletter, promozionale, transazionale)",
+      "Preset advertising (Google Ads, Facebook Ads, reti display)",
+      "Preset content marketing (blog, guest post, comunicati stampa)",
+      "Supporto parametri personalizzati per tracciamento avanzato",
+      "Sistema template per salvare e riutilizzare combinazioni parametri",
+      "Copia negli appunti con un click",
+      "Scarica URL come file di testo",
+      "Testa i link generati in nuova scheda",
+      "Conteggio e riepilogo parametri",
+      "Esportazione CSV per campagne massive (futuro)",
+      "Completamente basato su browser - nessun processing server",
+      "Nessuna raccolta dati o logging"
+    ],
+    "useCases": [
+      "Traccia performance campagne social media su più piattaforme",
+      "Misura tassi di click-through e engagement newsletter email",
+      "Differenzia traffico da sorgenti a pagamento vs organiche",
+      "Test A/B di creatività ads diverse e variazioni landing page",
+      "Monitora performance influencer marketing e link affiliati",
+      "Traccia campagne codici QR per marketing print o offline",
+      "Analizza quali subject email generano più click",
+      "Confronta performance tra diversi canali marketing",
+      "Segmenta traffico per campagna per analisi ROI dettagliata",
+      "Crea link tracciabili per comunicati stampa e outreach media",
+      "Monitora efficacia campagne ads social media",
+      "Traccia link promozione conferenze o eventi",
+      "Misura promozione articoli blog su diversi canali",
+      "Identifica piattaforme distribuzione contenuti più performanti"
+    ],
+    "proTips": [
+      "Usa convenzioni naming consistenti (minuscolo, underscore invece di spazi) per analisi più facile",
+      "Salva template per campagne ricorrenti per garantire tracciamento consistente",
+      "Compila sempre almeno source e medium - sono il minimo per analisi significative",
+      "Usa nomi campagna descrittivi che includano data o versione (es. 'saldi_estate_2024_v2')",
+      "Testa i tuoi link UTM prima di lanciare campagne per verificare i parametri funzionino correttamente",
+      "Combina con URL shortener (bit.ly, ow.ly) per link più puliti sui social media",
+      "Documenta la tua strategia naming UTM per mantenere consistenza tra membri team",
+      "Usa parametro content per differenziare variazioni test A/B dello stesso ad",
+      "Crea link UTM separati per ogni piattaforma social per confrontare performance",
+      "Controlla Google Analytics dopo il lancio campagne per confermare il tracciamento dati UTM"
+    ],
+    "troubleshooting": [
+      "Errore URL non valido: Assicurati che l'URL includa il protocollo https:// o http://",
+      "Parametri non mostrati in Analytics: Aspetta 24-48 ore per vedere i dati in Google Analytics",
+      "Caratteri speciali nei parametri: Evita spazi e simboli speciali, usa underscore o trattini",
+      "Sensibilità maiuscole/minuscole: I parametri UTM sono case-sensitive in Analytics - usa minuscolo",
+      "Campi obbligatori mancanti: Come minimo, compila URL, source e medium per tracciamento corretto",
+      "Template non si salva: Assicurati di aver inserito un nome template prima di cliccare Salva",
+      "Parametri troppo lunghi: Mantieni valori parametri sotto 200 caratteri per compatibilità",
+      "Link non funziona quando cliccato: Testa prima l'URL base senza parametri per verificare sia valido"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Genera URL UTM"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla URL"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia URL generato"
+      }
+    ]
+  }
+}

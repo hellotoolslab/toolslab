@@ -286,10 +286,36 @@ export function processBase64Input(
         mimeType = extractMimeType(input) || undefined;
         const base64Part = input.split('base64,')[1];
 
-        if (options.urlSafe) {
-          output = decodeBase64URLSafe(base64Part);
+        // Check if it's a binary MIME type (image, audio, video, pdf, etc.)
+        const isBinaryType =
+          mimeType &&
+          (mimeType.startsWith('image/') ||
+            mimeType.startsWith('audio/') ||
+            mimeType.startsWith('video/') ||
+            mimeType.startsWith('application/pdf') ||
+            mimeType.startsWith('application/octet-stream'));
+
+        if (isBinaryType) {
+          // For binary data, don't try to decode as text - just validate and return info
+          const cleanBase64 = base64Part.replace(/\s/g, '');
+          if (!isValidBase64(cleanBase64)) {
+            throw new Error('Invalid Base64 string in Data URL');
+          }
+
+          // Calculate decoded size
+          const decodedSize = Math.floor((cleanBase64.length * 3) / 4);
+          output = `Binary data (${mimeType}, ~${(decodedSize / 1024).toFixed(2)} KB)\n\nTo view or convert this ${mimeType.split('/')[0]}, use the dedicated converter:\n- Base64 to ${mimeType.split('/')[1].toUpperCase()}\n\nBase64 length: ${cleanBase64.length} characters`;
+
+          suggestions.push(
+            `This is binary ${mimeType.split('/')[0]} data - use Base64 to ${mimeType.split('/')[1].toUpperCase()} converter for proper handling`
+          );
         } else {
-          output = decodeBase64(base64Part);
+          // Text data - decode normally
+          if (options.urlSafe) {
+            output = decodeBase64URLSafe(base64Part);
+          } else {
+            output = decodeBase64(base64Part);
+          }
         }
       } else {
         if (options.urlSafe) {

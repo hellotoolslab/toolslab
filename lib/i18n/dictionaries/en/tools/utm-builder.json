@@ -1,0 +1,105 @@
+{
+  "title": "UTM Link Builder",
+  "description": "Create trackable URLs with UTM parameters for marketing campaigns and analytics",
+  "placeholder": "https://example.com/page",
+  "meta": {
+    "title": "UTM Link Builder - Free Campaign URL Generator | ToolsLab",
+    "description": "Free UTM link builder for Google Analytics. Create trackable URLs with UTM parameters for marketing campaigns. Generate UTM codes, save templates, and track your campaigns across social media, email, and ads."
+  },
+  "tagline": "Create trackable campaign URLs with UTM parameters for analytics and marketing",
+  "pageDescription": "Professional UTM link builder for marketers and analysts. Generate trackable URLs with UTM parameters (source, medium, campaign, term, content) for Google Analytics tracking. Use presets for social media (Facebook, Twitter, LinkedIn, Instagram), email campaigns, and advertising. Save templates for recurring campaigns. Add custom parameters for advanced tracking. Export URLs in CSV format for bulk campaigns. All processing happens in your browser for complete privacy and security.",
+  "instructions": {
+    "title": "How to use UTM Link Builder",
+    "steps": [
+      {
+        "title": "Enter your destination URL",
+        "description": "Type or paste the webpage URL you want to track. This can be any landing page, blog post, product page, or website link where you want to measure traffic. Make sure to include the protocol (https://). Example: https://example.com/summer-sale"
+      },
+      {
+        "title": "Add UTM parameters",
+        "description": "Fill in the UTM parameters to track your campaigns. Source identifies where traffic originates (e.g., 'facebook', 'newsletter'). Medium specifies the marketing channel (e.g., 'social', 'email', 'cpc'). Campaign names your specific promotion (e.g., 'summer_sale', 'product_launch'). Term and Content are optional for paid search keywords and A/B testing variations."
+      },
+      {
+        "title": "Use presets or templates",
+        "description": "Save time by using built-in presets for common platforms (social media, email, advertising) or create your own templates for recurring campaigns. Click 'Presets' to apply standard configurations, or 'Templates' to save and reuse custom parameter combinations for your specific marketing workflows."
+      },
+      {
+        "title": "Add custom parameters (optional)",
+        "description": "Extend tracking with custom parameters beyond standard UTM tags. Add any key-value pair to capture additional campaign data specific to your needs. Perfect for internal tracking, advanced segmentation, or integration with custom analytics systems."
+      },
+      {
+        "title": "Generate and use your UTM URL",
+        "description": "Click 'Generate UTM URL' to create your trackable link. Copy it to clipboard, download as text file, or test it directly in a new tab. Use the generated URL in your marketing materials, social media posts, email campaigns, or ad creatives to track performance in Google Analytics or your preferred analytics platform."
+      }
+    ],
+    "features": [
+      "All 5 standard UTM parameters (source, medium, campaign, term, content)",
+      "URL validation with instant feedback",
+      "Quick presets for social media platforms (Facebook, Twitter, LinkedIn, Instagram, YouTube)",
+      "Email marketing presets (newsletter, promotional, transactional)",
+      "Advertising presets (Google Ads, Facebook Ads, display networks)",
+      "Content marketing presets (blog, guest posts, press releases)",
+      "Custom parameter support for advanced tracking",
+      "Template system to save and reuse parameter combinations",
+      "One-click copy to clipboard",
+      "Download URLs as text files",
+      "Test generated links in new tab",
+      "Parameter count and summary display",
+      "CSV export for bulk campaigns (future)",
+      "Completely browser-based - no server processing",
+      "No data collection or logging"
+    ],
+    "useCases": [
+      "Track social media campaign performance across multiple platforms",
+      "Measure email newsletter click-through rates and engagement",
+      "Differentiate traffic from paid vs. organic sources",
+      "A/B test different ad creatives and landing page variations",
+      "Monitor influencer marketing and affiliate link performance",
+      "Track QR code campaigns for print or offline marketing",
+      "Analyze which email subject lines drive more clicks",
+      "Compare performance across different marketing channels",
+      "Segment traffic by campaign for detailed ROI analysis",
+      "Create trackable links for press releases and media outreach",
+      "Monitor social media ad campaign effectiveness",
+      "Track conference or event promotion links",
+      "Measure blog post promotion across different channels",
+      "Identify best-performing content distribution platforms"
+    ],
+    "proTips": [
+      "Use consistent naming conventions (lowercase, underscores instead of spaces) for easier analysis",
+      "Save templates for recurring campaigns to ensure consistent tracking",
+      "Always fill in at least source and medium - they're the minimum for meaningful analysis",
+      "Use descriptive campaign names that include date or version (e.g., 'summer_sale_2024_v2')",
+      "Test your UTM links before launching campaigns to verify parameters work correctly",
+      "Combine with URL shorteners (bit.ly, ow.ly) for cleaner links in social media",
+      "Document your UTM naming strategy to maintain consistency across team members",
+      "Use content parameter to differentiate A/B test variations of the same ad",
+      "Create separate UTM links for each social platform to compare performance",
+      "Check Google Analytics after campaigns launch to confirm UTM data is tracking"
+    ],
+    "troubleshooting": [
+      "URL invalid error: Ensure your URL includes https:// or http:// protocol",
+      "Parameters not showing in Analytics: Wait 24-48 hours for data to appear in Google Analytics",
+      "Special characters in parameters: Avoid spaces and special symbols, use underscores or hyphens",
+      "Case sensitivity: UTM parameters are case-sensitive in Analytics - stick to lowercase",
+      "Missing required fields: At minimum, fill in URL, source, and medium for proper tracking",
+      "Template won't save: Ensure you've entered a template name before clicking Save",
+      "Parameters too long: Keep parameter values under 200 characters for compatibility",
+      "Link doesn't work when clicked: Test the base URL without parameters first to verify it's valid"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Generate UTM URL"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste URL"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy generated URL"
+      }
+    ]
+  }
+}
