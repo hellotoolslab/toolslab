@@ -290,15 +290,15 @@ export default function XmlToJsonConverter() {
             <Label htmlFor="xml-input" className="text-base font-semibold">
               XML Input
             </Label>
-            <div className="flex gap-2">
+            <div className="flex gap-1 md:gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleLoadSample}
                 className="h-8"
               >
-                <FileText className="mr-1.5 h-3.5 w-3.5" />
-                Sample
+                <FileText className="h-3.5 w-3.5 md:mr-1.5" />
+                <span className="hidden md:inline">Sample</span>
               </Button>
               <Button
                 variant="outline"
@@ -306,8 +306,8 @@ export default function XmlToJsonConverter() {
                 onClick={() => document.getElementById('file-upload')?.click()}
                 className="h-8"
               >
-                <FileUp className="mr-1.5 h-3.5 w-3.5" />
-                Upload
+                <FileUp className="h-3.5 w-3.5 md:mr-1.5" />
+                <span className="hidden md:inline">Upload</span>
               </Button>
               <input
                 id="file-upload"
@@ -388,7 +388,7 @@ export default function XmlToJsonConverter() {
                 >
                   JSON Output
                 </Label>
-                <div className="flex gap-2">
+                <div className="flex gap-1 md:gap-2">
                   <Button
                     variant="outline"
                     size="sm"
@@ -397,13 +397,13 @@ export default function XmlToJsonConverter() {
                   >
                     {copied ? (
                       <>
-                        <Check className="mr-1.5 h-3.5 w-3.5" />
-                        Copied!
+                        <Check className="h-3.5 w-3.5 md:mr-1.5" />
+                        <span className="hidden md:inline">Copied!</span>
                       </>
                     ) : (
                       <>
-                        <Copy className="mr-1.5 h-3.5 w-3.5" />
-                        Copy
+                        <Copy className="h-3.5 w-3.5 md:mr-1.5" />
+                        <span className="hidden md:inline">Copy</span>
                       </>
                     )}
                   </Button>
@@ -413,8 +413,8 @@ export default function XmlToJsonConverter() {
                     onClick={handleDownload}
                     className="h-8"
                   >
-                    <FileDown className="mr-1.5 h-3.5 w-3.5" />
-                    Download
+                    <FileDown className="h-3.5 w-3.5 md:mr-1.5" />
+                    <span className="hidden md:inline">Download</span>
                   </Button>
                 </div>
               </div>

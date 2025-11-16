@@ -426,7 +426,7 @@ export default function LocaleCategoryPageContent({
             </p>
 
             {/* SEO Description - proper separation */}
-            <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400 md:line-clamp-none">
               {locale === 'it'
                 ? `Scopri ${tools.length} strumenti professionali per ${categoryName.toLowerCase()}. Tutti gratuiti, sicuri e senza registrazione.`
                 : seoContent.description}
@@ -448,7 +448,7 @@ export default function LocaleCategoryPageContent({
             </div>
 
             {/* Use Cases - Inline */}
-            <div className="mb-4 flex flex-wrap items-center gap-1">
+            <div className="mb-4 hidden flex-wrap items-center gap-1 md:flex">
               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
                 {text.perfectFor}
               </span>
