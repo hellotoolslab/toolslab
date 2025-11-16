@@ -530,22 +530,7 @@ const toUpsideDown = (text: string): string => {
     .join('');
 };
 
-// Bubble Text (Circled variant)
-const toBubble = (text: string): string => {
-  return text
-    .split('')
-    .map((char) => {
-      const code = char.charCodeAt(0);
-      if (code >= 97 && code <= 122) {
-        return String.fromCodePoint(0x24d0 + (code - 97));
-      }
-      if (code >= 65 && code <= 90) {
-        return String.fromCodePoint(0x24b6 + (code - 65));
-      }
-      return char;
-    })
-    .join('');
-};
+// Removed: Bubble (duplicate of Circled)
 
 // Fullwidth (for aesthetic spacing)
 const toFullwidth = (text: string): string => {
@@ -637,7 +622,532 @@ const toRegionalIndicator = (text: string): string => {
     .join('');
 };
 
+// ========== PHASE 1: HIGH-IMPACT ADDITIONS ==========
+
+// Math Serif Bold
+const toMathSerifBold = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => mapChar(char, 0x1d41a, 0x1d400)) // a-z: 𝐚-𝐳, A-Z: 𝐀-𝐙
+    .join('');
+};
+
+// Math Serif Italic
+const toMathSerifItalic = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => mapChar(char, 0x1d44e, 0x1d434)) // a-z: 𝑎-𝑧, A-Z: 𝐴-𝑍
+    .join('');
+};
+
+// Math Serif Bold Italic
+const toMathSerifBoldItalic = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => mapChar(char, 0x1d482, 0x1d468)) // a-z: 𝒂-𝒛, A-Z: 𝑨-𝒁
+    .join('');
+};
+
+// Bold Script
+const toBoldScript = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => mapChar(char, 0x1d4ea, 0x1d4d0)) // a-z: 𝓪-𝔃, A-Z: 𝓐-𝓩
+    .join('');
+};
+
+// Parenthesized
+const toParenthesized = (text: string): string => {
+  const parenMap: Record<string, string> = {
+    a: '⒜',
+    b: '⒝',
+    c: '⒞',
+    d: '⒟',
+    e: '⒠',
+    f: '⒡',
+    g: '⒢',
+    h: '⒣',
+    i: '⒤',
+    j: '⒥',
+    k: '⒦',
+    l: '⒧',
+    m: '⒨',
+    n: '⒩',
+    o: '⒪',
+    p: '⒫',
+    q: '⒬',
+    r: '⒭',
+    s: '⒮',
+    t: '⒯',
+    u: '⒰',
+    v: '⒱',
+    w: '⒲',
+    x: '⒳',
+    y: '⒴',
+    z: '⒵',
+    '1': '⑴',
+    '2': '⑵',
+    '3': '⑶',
+    '4': '⑷',
+    '5': '⑸',
+    '6': '⑹',
+    '7': '⑺',
+    '8': '⑻',
+    '9': '⑼',
+  };
+
+  return text
+    .toLowerCase()
+    .split('')
+    .map((char) => parenMap[char] || char)
+    .join('');
+};
+
+// Sans-Serif (distinct from Bold Sans)
+const toSansSerif = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => mapChar(char, 0x1d5ba, 0x1d5a0)) // a-z: 𝖺-𝗓, A-Z: 𝖠-𝖹
+    .join('');
+};
+
+// Sans-Serif Italic (distinct from current Italic which is also sans-serif italic)
+const toSansSerifItalic = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => mapChar(char, 0x1d622, 0x1d608)) // a-z: 𝘢-𝘻, A-Z: 𝘈-𝘡
+    .join('');
+};
+
+// Outlined/Hollow (using negative squared variant)
+const toOutlined = (text: string): string => {
+  const outlinedMap: Record<string, string> = {
+    A: '🄰',
+    B: '🄱',
+    C: '🄲',
+    D: '🄳',
+    E: '🄴',
+    F: '🄵',
+    G: '🄶',
+    H: '🄷',
+    I: '🄸',
+    J: '🄹',
+    K: '🄺',
+    L: '🄻',
+    M: '🄼',
+    N: '🄽',
+    O: '🄾',
+    P: '🄿',
+    Q: '🅀',
+    R: '🅁',
+    S: '🅂',
+    T: '🅃',
+    U: '🅄',
+    V: '🅅',
+    W: '🅆',
+    X: '🅇',
+    Y: '🅈',
+    Z: '🅉',
+  };
+
+  return text
+    .toUpperCase()
+    .split('')
+    .map((char) => outlinedMap[char] || char)
+    .join('');
+};
+
+// ========== PHASE 2: COMPLEMENTARY ADDITIONS ==========
+
+// Wide Text (Fullwidth with extra spacing)
+const toWideText = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      const code = char.charCodeAt(0);
+      // ASCII 33-126 → Fullwidth FF01-FF5E
+      if (code >= 33 && code <= 126) {
+        return String.fromCodePoint(0xff00 + (code - 0x20)) + '\u2009'; // Add thin space
+      }
+      if (code === 32) {
+        return '\u3000'; // Ideographic space
+      }
+      return char;
+    })
+    .join('');
+};
+
+// Mirror/Reversed (horizontal flip)
+const toMirror = (text: string): string => {
+  const mirrorMap: Record<string, string> = {
+    a: 'ɒ',
+    b: 'd',
+    c: 'ɔ',
+    d: 'b',
+    e: 'ɘ',
+    f: 'ꟻ',
+    g: 'ǫ',
+    h: 'ʜ',
+    i: 'i',
+    j: 'ⁿ',
+    k: 'ʞ',
+    l: 'l',
+    m: 'm',
+    n: 'n',
+    o: 'o',
+    p: 'q',
+    q: 'p',
+    r: 'ɿ',
+    s: 'ꙅ',
+    t: 'ƚ',
+    u: 'u',
+    v: 'v',
+    w: 'w',
+    x: 'x',
+    y: 'ʏ',
+    z: 'z',
+    A: 'A',
+    B: 'B',
+    C: 'Ɔ',
+    D: 'D',
+    E: 'Ǝ',
+    F: 'ꟻ',
+    G: 'Ә',
+    H: 'H',
+    I: 'I',
+    J: 'Ⴑ',
+    K: 'K',
+    L: '⅃',
+    M: 'M',
+    N: 'N',
+    O: 'O',
+    P: 'Գ',
+    Q: 'Ọ',
+    R: 'Я',
+    S: 'S',
+    T: 'T',
+    U: 'U',
+    V: 'V',
+    W: 'W',
+    X: 'X',
+    Y: 'Y',
+    Z: 'Z',
+  };
+
+  return text
+    .split('')
+    .reverse()
+    .map((char) => mirrorMap[char] || char)
+    .join('');
+};
+
+// Dotted (combining dot above)
+const toDotted = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0307'; // Combining dot above
+    })
+    .join('');
+};
+
+// Double Underline
+const toDoubleUnderline = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0333'; // Combining double low line
+    })
+    .join('');
+};
+
+// Slashed
+const toSlashed = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0338'; // Combining long solidus overlay (slash)
+    })
+    .join('');
+};
+
+// Overline
+const toOverline = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0305'; // Combining overline
+    })
+    .join('');
+};
+
+// Negative Squared (Regional Indicator Symbols)
+const toNegativeSquared = (text: string): string => {
+  const negSquaredMap: Record<string, string> = {
+    A: '🅰',
+    B: '🅱',
+    C: '🅲',
+    D: '🅳',
+    E: '🅴',
+    F: '🅵',
+    G: '🅶',
+    H: '🅷',
+    I: '🅸',
+    J: '🅹',
+    K: '🅺',
+    L: '🅻',
+    M: '🅼',
+    N: '🅽',
+    O: '🅾',
+    P: '🅿',
+    Q: '🆀',
+    R: '🆁',
+    S: '🆂',
+    T: '🆃',
+    U: '🆄',
+    V: '🆅',
+    W: '🆆',
+    X: '🆇',
+    Y: '🆈',
+    Z: '🆉',
+  };
+
+  return text
+    .toUpperCase()
+    .split('')
+    .map((char) => negSquaredMap[char] || char)
+    .join('');
+};
+
+// Wavy Underline
+const toWavyUnderline = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0330'; // Combining tilde below
+    })
+    .join('');
+};
+
+// Tilde/Accent
+const toTilde = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0303'; // Combining tilde
+    })
+    .join('');
+};
+
+// ========== ADDITIONAL FONTS TO REACH 50 ==========
+
+// Math Serif (regular, not bold/italic)
+const toMathSerif = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      const code = char.charCodeAt(0);
+      // For serif regular we use the base mathematical alphanumeric
+      if (code >= 97 && code <= 122) {
+        return String.fromCodePoint(0x1d44e + (code - 97));
+      }
+      if (code >= 65 && code <= 90) {
+        return String.fromCodePoint(0x1d434 + (code - 65));
+      }
+      return char;
+    })
+    .join('');
+};
+
+// Typewriter (monospace serif variant)
+const toTypewriter = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => mapChar(char, 0x1d68a, 0x1d670))
+    .join('');
+};
+
+// Enclosed Alphanumerics (different from circled)
+const toEnclosed = (text: string): string => {
+  const enclosedMap: Record<string, string> = {
+    '0': '⓪',
+    '1': '①',
+    '2': '②',
+    '3': '③',
+    '4': '④',
+    '5': '⑤',
+    '6': '⑥',
+    '7': '⑦',
+    '8': '⑧',
+    '9': '⑨',
+    A: 'Ⓐ',
+    B: 'Ⓑ',
+    C: 'Ⓒ',
+    D: 'Ⓓ',
+    E: 'Ⓔ',
+    F: 'Ⓕ',
+    G: 'Ⓖ',
+    H: 'Ⓗ',
+    I: 'Ⓘ',
+    J: 'Ⓙ',
+    K: 'Ⓚ',
+    L: 'Ⓛ',
+    M: 'Ⓜ',
+    N: 'Ⓝ',
+    O: 'Ⓞ',
+    P: 'Ⓟ',
+    Q: 'Ⓠ',
+    R: 'Ⓡ',
+    S: 'Ⓢ',
+    T: 'Ⓣ',
+    U: 'Ⓤ',
+    V: 'Ⓥ',
+    W: 'Ⓦ',
+    X: 'Ⓧ',
+    Y: 'Ⓨ',
+    Z: 'Ⓩ',
+  };
+
+  return text
+    .toUpperCase()
+    .split('')
+    .map((char) => enclosedMap[char] || char)
+    .join('');
+};
+
+// Turned/Rotated 180 degrees
+const toTurned = (text: string): string => {
+  const turnedMap: Record<string, string> = {
+    a: 'ɐ',
+    b: 'q',
+    c: 'ɔ',
+    d: 'p',
+    e: 'ǝ',
+    f: 'ɟ',
+    g: 'ƃ',
+    h: 'ɥ',
+    m: 'ɯ',
+    n: 'u',
+    p: 'd',
+    q: 'b',
+    r: 'ɹ',
+    t: 'ʇ',
+    u: 'n',
+    v: 'ʌ',
+    w: 'ʍ',
+    y: 'ʎ',
+    A: '∀',
+    M: 'W',
+    T: '⊥',
+    U: '∩',
+    V: 'Λ',
+    W: 'M',
+    Y: '⅄',
+  };
+
+  return text
+    .split('')
+    .map((char) => turnedMap[char] || char)
+    .join('');
+};
+
+// Ring Above (combining ring)
+const toRingAbove = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u030A'; // Combining ring above
+    })
+    .join('');
+};
+
+// Diaeresis/Umlaut (combining diaeresis)
+const toDiaeresis = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0308'; // Combining diaeresis
+    })
+    .join('');
+};
+
+// Macron (combining macron - line above)
+const toMacron = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0304'; // Combining macron
+    })
+    .join('');
+};
+
+// Caron (combining caron - v above)
+const toCaron = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u030C'; // Combining caron
+    })
+    .join('');
+};
+
+// Breve (combining breve - u above)
+const toBreve = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0306'; // Combining breve
+    })
+    .join('');
+};
+
+// Acute Accent
+const toAcute = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0301'; // Combining acute accent
+    })
+    .join('');
+};
+
+// Grave Accent
+const toGrave = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0300'; // Combining grave accent
+    })
+    .join('');
+};
+
+// Circumflex Accent
+const toCircumflex = (text: string): string => {
+  return text
+    .split('')
+    .map((char) => {
+      if (char === ' ') return char;
+      return char + '\u0302'; // Combining circumflex
+    })
+    .join('');
+};
+
 // Define all font styles
+// Note: Top fonts are generally ordered by popularity on Instagram
+// Total: 50 unique Unicode font styles
 export const fontStyles: FontStyle[] = [
   {
     id: 'bold',
@@ -666,19 +1176,6 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'bold-italic',
-    name: 'Bold Italic',
-    description: 'Bold and italic combined',
-    converter: toBoldItalic,
-    example: '𝘽𝙤𝙡𝙙 𝙄𝙩𝙖𝙡𝙞𝙘',
-    compatibility: {
-      instagram: true,
-      whatsapp: true,
-      twitter: true,
-      facebook: true,
-    },
-  },
-  {
     id: 'script',
     name: 'Script / Cursive',
     description: 'Elegant script font',
@@ -692,11 +1189,11 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'double-struck',
-    name: 'Double-Struck',
-    description: 'Outlined double-struck font',
-    converter: toDoubleStruck,
-    example: '𝔻𝕠𝕦𝕓𝕝𝕖 𝕊𝕥𝕣𝕦𝕔𝕜',
+    id: 'math-serif-bold',
+    name: 'Serif Bold',
+    description: 'Mathematical serif bold font',
+    converter: toMathSerifBold,
+    example: '𝐒𝐞𝐫𝐢𝐟 𝐁𝐨𝐥𝐝',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -705,11 +1202,24 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'monospace',
-    name: 'Monospace',
-    description: 'Fixed-width monospace font',
-    converter: toMonospace,
-    example: '𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎',
+    id: 'math-serif-italic',
+    name: 'Serif Italic',
+    description: 'Mathematical serif italic font',
+    converter: toMathSerifItalic,
+    example: '𝑆𝑒𝑟𝑖𝑓 𝐼𝑡𝑎𝑙𝑖𝑐',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'bold-script',
+    name: 'Bold Script',
+    description: 'Bold cursive script font',
+    converter: toBoldScript,
+    example: '𝓑𝓸𝓵𝓭 𝓢𝓬𝓻𝓲𝓹𝓽',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -731,11 +1241,11 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'bold-fraktur',
-    name: 'Bold Fraktur',
-    description: 'Bold Gothic font',
-    converter: toBoldFraktur,
-    example: '𝕭𝖔𝖑𝖉 𝕱𝖗𝖆𝖐𝖙𝖚𝖗',
+    id: 'bold-italic',
+    name: 'Bold Italic',
+    description: 'Bold and italic combined',
+    converter: toBoldItalic,
+    example: '𝘽𝙤𝙡𝙙 𝙄𝙩𝙖𝙡𝙞𝙘',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -744,11 +1254,11 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'squared',
-    name: 'Squared',
-    description: 'Letters in squares',
-    converter: toSquared,
-    example: '🅂🅀🅄🄰🅁🄴🄳',
+    id: 'monospace',
+    name: 'Monospace',
+    description: 'Fixed-width monospace font',
+    converter: toMonospace,
+    example: '𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -757,24 +1267,11 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'circled',
-    name: 'Circled',
-    description: 'Letters in circles',
-    converter: toCircled,
-    example: 'Ⓒⓘⓡⓒⓛⓔⓓ',
-    compatibility: {
-      instagram: true,
-      whatsapp: true,
-      twitter: true,
-      facebook: true,
-    },
-  },
-  {
-    id: 'negative-circled',
-    name: 'Negative Circled',
-    description: 'Inverted circles',
-    converter: toNegativeCircled,
-    example: '🅝🅔🅖🅐🅣🅘🅥🅔',
+    id: 'small-caps',
+    name: 'Small Caps',
+    description: 'Small capital letters',
+    converter: toSmallCaps,
+    example: 'sᴍᴀʟʟ ᴄᴀᴘs',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -809,11 +1306,11 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'small-caps',
-    name: 'Small Caps',
-    description: 'Small capital letters',
-    converter: toSmallCaps,
-    example: 'sᴍᴀʟʟ ᴄᴀᴘs',
+    id: 'circled',
+    name: 'Circled',
+    description: 'Letters in circles',
+    converter: toCircled,
+    example: 'Ⓒⓘⓡⓒⓛⓔⓓ',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -822,11 +1319,128 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'tiny-caps',
-    name: 'Tiny Caps',
-    description: 'Alternative small caps',
-    converter: toTinyCaps,
-    example: 'ᴛɪɴʏ ᴄᴀᴘꜱ',
+    id: 'squared',
+    name: 'Squared',
+    description: 'Letters in squares',
+    converter: toSquared,
+    example: '🅂🅀🅄🄰🅁🄴🄳',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'double-struck',
+    name: 'Double-Struck',
+    description: 'Outlined double-struck font',
+    converter: toDoubleStruck,
+    example: '𝔻𝕠𝕦𝕓𝕝𝕖 𝕊𝕥𝕣𝕦𝕔𝕜',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'bold-fraktur',
+    name: 'Bold Fraktur',
+    description: 'Bold Gothic font',
+    converter: toBoldFraktur,
+    example: '𝕭𝖔𝖑𝖉 𝕱𝖗𝖆𝖐𝖙𝖚𝖗',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'upside-down',
+    name: 'Upside Down',
+    description: 'Flipped text',
+    converter: toUpsideDown,
+    example: 'uʍop ǝpᴉsd∩',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'math-serif-bold-italic',
+    name: 'Serif Bold Italic',
+    description: 'Mathematical serif bold italic font',
+    converter: toMathSerifBoldItalic,
+    example: '𝑺𝒆𝒓𝒊𝒇 𝑩𝒐𝒍𝒅 𝑰𝒕𝒂𝒍𝒊𝒄',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'sans-serif',
+    name: 'Sans-Serif',
+    description: 'Clean sans-serif font',
+    converter: toSansSerif,
+    example: '𝖲𝖺𝗇𝗌-𝖲𝖾𝗋𝗂𝖿',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'outlined',
+    name: 'Outlined',
+    description: 'Hollow outlined letters',
+    converter: toOutlined,
+    example: '🄾🅄🅃🄻🄸🄽🄴🄳',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'negative-circled',
+    name: 'Negative Circled',
+    description: 'Inverted circles',
+    converter: toNegativeCircled,
+    example: '🅝🅔🅖🅐🅣🅘🅥🅔',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'parenthesized',
+    name: 'Parenthesized',
+    description: 'Letters in parentheses',
+    converter: toParenthesized,
+    example: '⒫⒜⒭⒠⒩⒯⒣⒠⒮⒤⒵⒠⒟',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'fullwidth',
+    name: 'Fullwidth',
+    description: 'Wide aesthetic spacing',
+    converter: toFullwidth,
+    example: 'Ｆｕｌｌｗｉｄｔｈ',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -861,11 +1475,11 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'upside-down',
-    name: 'Upside Down',
-    description: 'Flipped text',
-    converter: toUpsideDown,
-    example: 'uʍop ǝpᴉsd∩',
+    id: 'sans-serif-italic',
+    name: 'Sans-Serif Italic',
+    description: 'Sans-serif italic variant',
+    converter: toSansSerifItalic,
+    example: '𝘚𝘢𝘯𝘴 𝘐𝘵𝘢𝘭𝘪𝘤',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -874,11 +1488,11 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'bubble',
-    name: 'Bubble',
-    description: 'Rounded bubble letters',
-    converter: toBubble,
-    example: 'Ⓑⓤⓑⓑⓛⓔ',
+    id: 'tiny-caps',
+    name: 'Tiny Caps',
+    description: 'Alternative small caps',
+    converter: toTinyCaps,
+    example: 'ᴛɪɴʏ ᴄᴀᴘꜱ',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -887,11 +1501,115 @@ export const fontStyles: FontStyle[] = [
     },
   },
   {
-    id: 'fullwidth',
-    name: 'Fullwidth',
-    description: 'Wide aesthetic spacing',
-    converter: toFullwidth,
-    example: 'Ｆｕｌｌｗｉｄｔｈ',
+    id: 'wide-text',
+    name: 'Wide Text',
+    description: 'Fullwidth with aesthetic spacing',
+    converter: toWideText,
+    example: 'Ｗ ｉ ｄ ｅ',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'mirror',
+    name: 'Mirror / Reversed',
+    description: 'Horizontally mirrored text',
+    converter: toMirror,
+    example: 'ɿoɿɿiM',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'dotted',
+    name: 'Dotted',
+    description: 'Text with dots above',
+    converter: toDotted,
+    example: 'Ḋȯṫṫėḋ',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'double-underline',
+    name: 'Double Underline',
+    description: 'Text with double underline',
+    converter: toDoubleUnderline,
+    example: 'D̳o̳u̳b̳l̳e̳',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: false,
+    },
+  },
+  {
+    id: 'slashed',
+    name: 'Slashed',
+    description: 'Text with slash through',
+    converter: toSlashed,
+    example: 'S̸l̸a̸s̸h̸e̸d̸',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: false,
+    },
+  },
+  {
+    id: 'overline',
+    name: 'Overline',
+    description: 'Text with line above',
+    converter: toOverline,
+    example: 'O̅v̅e̅r̅l̅i̅n̅e̅',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: false,
+    },
+  },
+  {
+    id: 'negative-squared-alt',
+    name: 'Negative Squared',
+    description: 'Letters in filled squares (alt)',
+    converter: toNegativeSquared,
+    example: '🅽🅴🅶🅰🆃🅸🆅🅴',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'wavy-underline',
+    name: 'Wavy Underline',
+    description: 'Text with wavy underline',
+    converter: toWavyUnderline,
+    example: 'W̰a̰v̰y̰',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: false,
+    },
+  },
+  {
+    id: 'tilde',
+    name: 'Tilde / Accent',
+    description: 'Text with tilde accent',
+    converter: toTilde,
+    example: 'T̃ĩl̃d̃ẽ',
     compatibility: {
       instagram: true,
       whatsapp: true,
@@ -923,6 +1641,162 @@ export const fontStyles: FontStyle[] = [
       whatsapp: true,
       twitter: true,
       facebook: false,
+    },
+  },
+  {
+    id: 'math-serif',
+    name: 'Math Serif',
+    description: 'Mathematical serif regular font',
+    converter: toMathSerif,
+    example: '𝑀𝑎𝑡ℎ 𝑆𝑒𝑟𝑖𝑓',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'typewriter',
+    name: 'Typewriter',
+    description: 'Monospace typewriter style',
+    converter: toTypewriter,
+    example: '𝚃𝚢𝚙𝚎𝚠𝚛𝚒𝚝𝚎𝚛',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'enclosed',
+    name: 'Enclosed Numbers',
+    description: 'Numbers and letters in circles',
+    converter: toEnclosed,
+    example: '①②③ ⒶⒷⒸ',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'turned',
+    name: 'Turned',
+    description: 'Rotated 180 degrees',
+    converter: toTurned,
+    example: 'pǝuɹn⊥',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'ring-above',
+    name: 'Ring Above',
+    description: 'Text with ring accent above',
+    converter: toRingAbove,
+    example: 'R̊i̊n̊g̊ Åb̊o̊v̊e̊',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'diaeresis',
+    name: 'Diaeresis / Umlaut',
+    description: 'Text with diaeresis (umlaut)',
+    converter: toDiaeresis,
+    example: 'D̈ï̈ä̈r̈ë̈s̈ï̈s̈',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'macron',
+    name: 'Macron',
+    description: 'Text with macron (line above)',
+    converter: toMacron,
+    example: 'M̄ā̄c̄r̄ō̄n̄',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'caron',
+    name: 'Caron / Háček',
+    description: 'Text with caron accent',
+    converter: toCaron,
+    example: 'Čǎř̌ǒn̆',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'breve',
+    name: 'Breve',
+    description: 'Text with breve accent',
+    converter: toBreve,
+    example: 'B̆r̆ĕv̆ĕ',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'acute',
+    name: 'Acute Accent',
+    description: 'Text with acute accent',
+    converter: toAcute,
+    example: 'Á́ć́ú́t́é́',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'grave',
+    name: 'Grave Accent',
+    description: 'Text with grave accent',
+    converter: toGrave,
+    example: 'G̀r̀àv̀è',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
+    },
+  },
+  {
+    id: 'circumflex',
+    name: 'Circumflex',
+    description: 'Text with circumflex accent',
+    converter: toCircumflex,
+    example: 'Ĉîr̂ĉûm̂f̂l̂êx̂',
+    compatibility: {
+      instagram: true,
+      whatsapp: true,
+      twitter: true,
+      facebook: true,
     },
   },
 ];

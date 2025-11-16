@@ -231,7 +231,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
         </div>
       </div>
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-3 p-6 md:space-y-6">
         {/* Input Section */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
@@ -409,7 +409,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
             </p>
             <button
               onClick={handleCopyAll}
-              className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all hover:scale-105 active:scale-95"
+              className="hidden items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all hover:scale-105 active:scale-95 md:flex"
               style={{
                 backgroundColor: `${categoryColor}20`,
                 color: categoryColor,
@@ -441,7 +441,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                 return (
                   <div
                     key={style.id}
-                    className="group relative rounded-lg border border-gray-200 bg-white p-4 transition-all hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
+                    className="group relative rounded-lg border border-gray-200 bg-white p-3 transition-all hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 md:p-4"
                   >
                     {/* Favorite Button */}
                     <button
@@ -471,33 +471,56 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
 
                     {/* Preview */}
                     <div
-                      className="mb-3 min-h-[3rem] break-words rounded-lg bg-gray-50 p-3 text-center text-lg dark:bg-gray-900"
+                      className="mb-3 min-h-[2rem] break-words rounded-lg bg-gray-50 p-2 text-center text-base dark:bg-gray-900 md:min-h-[3rem] md:p-3 md:text-lg"
                       style={{ wordBreak: 'break-word' }}
                     >
                       {style.text}
                     </div>
 
-                    {/* Compatibility Icons */}
-                    <div className="mb-3 flex items-center gap-2">
-                      <span className="text-xs text-gray-500">Works on:</span>
-                      {style.compatibility.instagram && (
-                        <Instagram className="h-3.5 w-3.5 text-pink-500" />
-                      )}
-                      {style.compatibility.whatsapp && (
-                        <MessageCircle className="h-3.5 w-3.5 text-green-500" />
-                      )}
-                      {style.compatibility.twitter && (
-                        <Twitter className="h-3.5 w-3.5 text-blue-500" />
-                      )}
-                      {style.compatibility.facebook && (
-                        <Facebook className="h-3.5 w-3.5 text-blue-600" />
-                      )}
+                    {/* Compatibility Icons & Copy Button - Mobile: Same Row */}
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-gray-500">Works on:</span>
+                        {style.compatibility.instagram && (
+                          <Instagram className="h-3.5 w-3.5 text-pink-500" />
+                        )}
+                        {style.compatibility.whatsapp && (
+                          <MessageCircle className="h-3.5 w-3.5 text-green-500" />
+                        )}
+                        {style.compatibility.twitter && (
+                          <Twitter className="h-3.5 w-3.5 text-blue-500" />
+                        )}
+                        {style.compatibility.facebook && (
+                          <Facebook className="h-3.5 w-3.5 text-blue-600" />
+                        )}
+                      </div>
+
+                      {/* Copy Button - Mobile: Compact, Desktop: Full Width Below */}
+                      <button
+                        onClick={() => handleCopyStyle(style.id, style.text)}
+                        className="flex items-center justify-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium text-white transition-all hover:scale-105 active:scale-95 md:hidden"
+                        style={{
+                          backgroundColor: isCopied ? '#10b981' : categoryColor,
+                        }}
+                      >
+                        {isCopied ? (
+                          <>
+                            <Check className="h-3.5 w-3.5" />
+                            <span>Copied</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="h-3.5 w-3.5" />
+                            <span>Copy</span>
+                          </>
+                        )}
+                      </button>
                     </div>
 
-                    {/* Copy Button */}
+                    {/* Copy Button - Desktop: Full Width */}
                     <button
                       onClick={() => handleCopyStyle(style.id, style.text)}
-                      className="flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95"
+                      className="mt-3 hidden w-full items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 md:flex"
                       style={{
                         backgroundColor: isCopied ? '#10b981' : categoryColor,
                       }}
