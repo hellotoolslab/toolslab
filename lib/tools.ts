@@ -1026,6 +1026,42 @@ export const tools: Tool[] = [
     searchVolume: 12000,
     label: '',
   },
+
+  // Social Media Tools
+  {
+    id: 'utm-builder',
+    name: 'UTM Link Builder',
+    description:
+      'Create trackable URLs with UTM parameters for marketing campaigns, analytics, and link tracking',
+    icon: '🔗',
+    route: '/tools/utm-builder',
+    categories: ['social', 'generators', 'web'],
+    keywords: [
+      'utm',
+      'link builder',
+      'url builder',
+      'utm parameters',
+      'campaign tracking',
+      'utm generator',
+      'google analytics',
+      'utm tags',
+      'marketing links',
+      'utm source',
+      'utm medium',
+      'utm campaign',
+      'link tracking',
+      'campaign url',
+      'url tracking',
+      'analytics',
+      'marketing',
+      'social media tracking',
+      'qr code',
+      'short link',
+    ],
+    isPopular: true,
+    searchVolume: 45000,
+    label: '',
+  },
 ];
 
 // Group tools by category

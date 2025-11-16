@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback, useEffect } from 'react';
+import Link from 'next/link';
 import {
   Copy,
   Download,
@@ -14,6 +15,7 @@ import {
   RefreshCw,
   Settings,
   X,
+  ExternalLink,
 } from 'lucide-react';
 import {
   processBase64Input,
@@ -25,6 +27,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 
 interface Base64ToolProps {
   categoryColor: string;
@@ -38,6 +41,9 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
   const { copied, copy } = useCopy();
   const { downloadText, downloadBase64AsBinary } = useDownload();
   const { trackUse, trackError } = useToolTracking('base64');
+  const { resultRef, scrollToResult } = useScrollToResult({
+    onlyIfNotVisible: false,
+  });
   const [fileInfo, setFileInfo] = useState<FileProcessResult | null>(null);
   const [operation, setOperation] = useState<'auto' | 'encode' | 'decode'>(
     'auto'
@@ -57,6 +63,30 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
+
+  // Helper to extract tool link from suggestion text
+  const getToolLinkFromSuggestion = useCallback(
+    (suggestion: string): string | null => {
+      const toolMappings: Record<string, string> = {
+        'Base64 to PNG': '/tools/base64-to-png',
+        'Base64 to JPG': '/tools/base64-to-jpg',
+        'Base64 to JPEG': '/tools/base64-to-jpg',
+        'Base64 to WEBP': '/tools/base64-to-webp',
+        'Base64 to GIF': '/tools/base64-to-gif',
+        'Base64 to PDF': '/tools/base64-to-pdf',
+        'JSON Formatter': '/tools/json-formatter',
+        'JWT Decoder': '/tools/jwt-decoder',
+      };
+
+      for (const [toolName, url] of Object.entries(toolMappings)) {
+        if (suggestion.includes(toolName)) {
+          return url;
+        }
+      }
+      return null;
+    },
+    []
+  );
 
   const handleProcess = useCallback(async () => {
     if (!input.trim()) {
@@ -86,6 +116,9 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
       trackUse(input, result.output, {
         success: true,
       });
+
+      // Auto-scroll to result
+      scrollToResult();
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : 'An unexpected error occurred';
@@ -101,7 +134,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
     } finally {
       setIsProcessing(false);
     }
-  }, [input, options, operation]);
+  }, [input, options, operation, trackUse, trackError, scrollToResult]);
 
   // Auto-process when input changes and operation is auto
   useEffect(() => {
@@ -487,24 +520,41 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
 
         {/* Suggestions */}
         {suggestions.length > 0 && (
-          <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-4 dark:bg-blue-950/20">
+          <div
+            ref={resultRef}
+            className="rounded-lg border border-blue-200 bg-blue-50/50 p-4 dark:bg-blue-950/20"
+          >
             <h4 className="mb-2 font-medium text-blue-900 dark:text-blue-100">
               💡 Suggestions
             </h4>
-            {suggestions.map((suggestion, index) => (
-              <p
-                key={index}
-                className="text-sm text-blue-800 dark:text-blue-200"
-              >
-                • {suggestion}
-              </p>
-            ))}
+            {suggestions.map((suggestion, index) => {
+              const toolLink = getToolLinkFromSuggestion(suggestion);
+              return (
+                <div
+                  key={index}
+                  className="mb-2 text-sm text-blue-800 last:mb-0 dark:text-blue-200"
+                >
+                  • {suggestion}
+                  {toolLink && (
+                    <Link
+                      href={toolLink}
+                      className="ml-2 inline-flex items-center gap-1 font-medium text-blue-600 underline hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                    >
+                      Open tool <ExternalLink className="h-3 w-3" />
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
 
         {/* Output Section */}
         {output && (
-          <div className="animate-slideIn space-y-2">
+          <div
+            ref={suggestions.length === 0 ? resultRef : undefined}
+            className="animate-slideIn space-y-2"
+          >
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Output
