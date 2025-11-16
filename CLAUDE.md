@@ -1,5 +1,21 @@
 # CLAUDE.md - Standard Operativi per OctoTools
 
+## 🗺️ Tool Development Roadmap
+
+**La roadmap completa per l'implementazione dei nuovi tool è disponibile in:**
+📍 **`/documentation/todo/IMPLEMENTATION_ROADMAP.md`**
+
+Questo documento contiene:
+- 87 tool da implementare organizzati per priorità (Maximum, High, Medium, Low)
+- Stime di difficoltà e tempo di sviluppo per ogni tool
+- Fasi di implementazione con timeline dettagliate
+- Proiezioni di revenue e metriche di successo
+- Tool già implementati (37) esclusi dalla roadmap
+
+**Per la pianificazione dello sviluppo, consultare sempre questo file.**
+
+---
+
 ## 🤖 Workflow di Sviluppo con Claude Code
 
 ### 1. PRIMA DI OGNI SESSIONE
@@ -1016,8 +1032,3 @@ Per informazioni dettagliate sul progetto, consulta la documentazione nella cart
 - **[Project README](./documentation/README.md)** - Overview completo del progetto e tecnologie
 
 💡 **Nota**: La documentazione in `/documentation` fornisce informazioni di alto livello e specifiche tecniche, mentre questo file CLAUDE.md contiene gli standard operativi quotidiani per lo sviluppo.
-
----
-
-_Last updated: December 2024_
-_Version: 1.1.0_
