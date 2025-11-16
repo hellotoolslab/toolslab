@@ -295,7 +295,7 @@ export function processBase64Input(
             mimeType.startsWith('application/pdf') ||
             mimeType.startsWith('application/octet-stream'));
 
-        if (isBinaryType) {
+        if (isBinaryType && mimeType) {
           // For binary data, don't try to decode as text - just validate and return info
           const cleanBase64 = base64Part.replace(/\s/g, '');
           if (!isValidBase64(cleanBase64)) {
@@ -304,10 +304,11 @@ export function processBase64Input(
 
           // Calculate decoded size
           const decodedSize = Math.floor((cleanBase64.length * 3) / 4);
-          output = `Binary data (${mimeType}, ~${(decodedSize / 1024).toFixed(2)} KB)\n\nTo view or convert this ${mimeType.split('/')[0]}, use the dedicated converter:\n- Base64 to ${mimeType.split('/')[1].toUpperCase()}\n\nBase64 length: ${cleanBase64.length} characters`;
+          const [mediaType, subType] = mimeType.split('/');
+          output = `Binary data (${mimeType}, ~${(decodedSize / 1024).toFixed(2)} KB)\n\nTo view or convert this ${mediaType}, use the dedicated converter:\n- Base64 to ${subType.toUpperCase()}\n\nBase64 length: ${cleanBase64.length} characters`;
 
           suggestions.push(
-            `This is binary ${mimeType.split('/')[0]} data - use Base64 to ${mimeType.split('/')[1].toUpperCase()} converter for proper handling`
+            `This is binary ${mediaType} data - use Base64 to ${subType.toUpperCase()} converter for proper handling`
           );
         } else {
           // Text data - decode normally
