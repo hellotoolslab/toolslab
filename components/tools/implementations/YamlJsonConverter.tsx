@@ -606,14 +606,14 @@ export default function YamlJsonConverter() {
             <CardTitle className="text-lg">
               Input ({conversionDirection === 'yaml-to-json' ? 'YAML' : 'JSON'})
             </CardTitle>
-            <div className="flex gap-2">
+            <div className="flex gap-1 md:gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => document.getElementById('file-upload')?.click()}
               >
-                <Upload className="mr-1 h-4 w-4" />
-                Upload File
+                <Upload className="h-4 w-4 md:mr-1" />
+                <span className="hidden md:inline">Upload File</span>
               </Button>
               <input
                 id="file-upload"
@@ -649,15 +649,15 @@ export default function YamlJsonConverter() {
                 : 'YAML'}
               )
             </CardTitle>
-            <div className="flex gap-2">
+            <div className="flex gap-1 md:gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleCopy}
                 disabled={!output}
               >
-                <Copy className="mr-1 h-4 w-4" />
-                Copy
+                <Copy className="h-4 w-4 md:mr-1" />
+                <span className="hidden md:inline">Copy</span>
               </Button>
               <Button
                 variant="outline"
@@ -665,8 +665,8 @@ export default function YamlJsonConverter() {
                 onClick={handleDownload}
                 disabled={!output}
               >
-                <Download className="mr-1 h-4 w-4" />
-                Download
+                <Download className="h-4 w-4 md:mr-1" />
+                <span className="hidden md:inline">Download</span>
               </Button>
               {conversionDirection === 'yaml-to-json' &&
                 output &&
@@ -678,8 +678,8 @@ export default function YamlJsonConverter() {
                       onClick={handleGenerateTypeScript}
                       disabled={!output}
                     >
-                      <FileCode className="mr-1 h-4 w-4" />
-                      TypeScript
+                      <FileCode className="h-4 w-4 md:mr-1" />
+                      <span className="hidden md:inline">TypeScript</span>
                     </Button>
                     <Button
                       variant="outline"
@@ -687,8 +687,8 @@ export default function YamlJsonConverter() {
                       onClick={handleGenerateJsonSchema}
                       disabled={!output}
                     >
-                      <FileJson className="mr-1 h-4 w-4" />
-                      Schema
+                      <FileJson className="h-4 w-4 md:mr-1" />
+                      <span className="hidden md:inline">Schema</span>
                     </Button>
                   </div>
                 )}
@@ -700,8 +700,8 @@ export default function YamlJsonConverter() {
                     size="sm"
                     onClick={handleReturnToJson}
                   >
-                    <ArrowRightLeft className="mr-1 h-4 w-4" />
-                    Back to JSON
+                    <ArrowRightLeft className="h-4 w-4 md:mr-1" />
+                    <span className="hidden md:inline">Back to JSON</span>
                   </Button>
                 )}
             </div>

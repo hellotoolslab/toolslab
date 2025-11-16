@@ -379,15 +379,15 @@ export default function JsonToCsv({
         <TabsContent value="input" className="space-y-4">
           <div className="flex items-center justify-between">
             <Label htmlFor="json-input">JSON Input</Label>
-            <div className="flex gap-2">
+            <div className="flex gap-1 md:gap-2">
               <Button
                 onClick={loadSample}
                 variant="outline"
                 size="sm"
-                className="gap-2"
+                className="gap-1 md:gap-2"
               >
                 <Wand2 className="h-4 w-4" />
-                Load Sample
+                <span className="hidden md:inline">Load Sample</span>
               </Button>
               <div>
                 <Input
@@ -401,10 +401,10 @@ export default function JsonToCsv({
                   <Button
                     variant="outline"
                     size="sm"
-                    className="cursor-pointer gap-2"
+                    className="cursor-pointer gap-1 md:gap-2"
                   >
                     <Upload className="h-4 w-4" />
-                    Upload File
+                    <span className="hidden md:inline">Upload File</span>
                   </Button>
                 </Label>
               </div>
@@ -678,24 +678,24 @@ export default function JsonToCsv({
               <>
                 <div className="flex items-center justify-between">
                   <Label>CSV Output</Label>
-                  <div className="flex gap-2">
+                  <div className="flex gap-1 md:gap-2">
                     <Button
                       onClick={handleCopy}
                       variant="outline"
                       size="sm"
-                      className="gap-2"
+                      className="gap-1 md:gap-2"
                     >
                       <Copy className="h-4 w-4" />
-                      Copy
+                      <span className="hidden md:inline">Copy</span>
                     </Button>
                     <Button
                       onClick={handleDownload}
                       variant="outline"
                       size="sm"
-                      className="gap-2"
+                      className="gap-1 md:gap-2"
                     >
                       <Download className="h-4 w-4" />
-                      Download
+                      <span className="hidden md:inline">Download</span>
                     </Button>
                   </div>
                 </div>

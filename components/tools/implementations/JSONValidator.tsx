@@ -31,6 +31,7 @@ import {
   Shield,
   Clock,
   Zap,
+  Upload,
 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
@@ -281,14 +282,14 @@ export default function JSONValidator({
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">JSON Input</h3>
-                <div className="flex gap-2">
+                <div className="flex gap-1 md:gap-2">
                   <Button variant="outline" size="sm" onClick={handleFormat}>
-                    <FileText className="mr-2 h-4 w-4" />
-                    Format
+                    <FileText className="h-4 w-4 md:mr-2" />
+                    <span className="hidden md:inline">Format</span>
                   </Button>
                   <Button variant="outline" size="sm" onClick={handleMinify}>
-                    <Zap className="mr-2 h-4 w-4" />
-                    Minify
+                    <Zap className="h-4 w-4 md:mr-2" />
+                    <span className="hidden md:inline">Minify</span>
                   </Button>
                   <input
                     type="file"
@@ -302,7 +303,8 @@ export default function JSONValidator({
                     size="sm"
                     onClick={() => fileInputRef.current?.click()}
                   >
-                    Upload File
+                    <Upload className="h-4 w-4 md:mr-2" />
+                    <span className="hidden md:inline">Upload File</span>
                   </Button>
                 </div>
               </div>

@@ -212,7 +212,7 @@ export default function JsonToTypeScript({
                 <FileCode className="h-5 w-5" />
                 JSON Input
               </CardTitle>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 md:gap-2">
                 <Badge
                   variant={jsonValidation.valid ? 'default' : 'destructive'}
                   className="text-xs"
@@ -230,8 +230,8 @@ export default function JsonToTypeScript({
                   onClick={formatJson}
                   disabled={!jsonValidation.valid}
                 >
-                  <Sparkles className="mr-2 h-4 w-4" />
-                  Format
+                  <Sparkles className="h-4 w-4 md:mr-2" />
+                  <span className="hidden md:inline">Format</span>
                 </Button>
                 <input
                   type="file"
@@ -247,8 +247,8 @@ export default function JsonToTypeScript({
                     document.getElementById('file-upload')?.click()
                   }
                 >
-                  <Upload className="mr-2 h-4 w-4" />
-                  Upload
+                  <Upload className="h-4 w-4 md:mr-2" />
+                  <span className="hidden md:inline">Upload</span>
                 </Button>
               </div>
             </div>
@@ -582,17 +582,28 @@ export default function JsonToTypeScript({
               <Settings className="h-5 w-5" />
               Configuration Options
             </CardTitle>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 md:gap-2">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setShowAdvanced(!showAdvanced)}
+                className="text-xs md:text-sm"
               >
-                {showAdvanced ? 'Hide Advanced' : 'Show Advanced'}
+                {showAdvanced ? (
+                  <>
+                    <span className="md:hidden">Hide</span>
+                    <span className="hidden md:inline">Hide Advanced</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="md:hidden">Advanced</span>
+                    <span className="hidden md:inline">Show Advanced</span>
+                  </>
+                )}
               </Button>
               <Button variant="outline" size="sm" onClick={resetOptions}>
-                <RefreshCw className="mr-2 h-4 w-4" />
-                Reset
+                <RefreshCw className="h-4 w-4 md:mr-2" />
+                <span className="hidden md:inline">Reset</span>
               </Button>
             </div>
           </div>
