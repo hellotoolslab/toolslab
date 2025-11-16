@@ -82,6 +82,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'excel-filter',
     'ai-prompt-token-counter',
     'pdf-to-word',
+    'utm-builder',
   ];
 
   const tools: Record<string, any> = {};

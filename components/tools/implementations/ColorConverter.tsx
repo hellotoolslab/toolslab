@@ -48,7 +48,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
   const { addToHistory } = useToolStore();
 
   // Main state
-  const [inputValue, setInputValue] = useState('#3B82F6');
+  const [inputValue, setInputValue] = useState('');
   const [currentColor, setCurrentColor] = useState<ColorValue | null>(null);
   const [error, setError] = useState<string>('');
   const [isProcessing, setIsProcessing] = useState(false);

@@ -89,6 +89,7 @@ const toolComponents = {
     () => import('./implementations/AITokenCounter')
   ),
   'pdf-to-word': lazy(() => import('./implementations/PdfToWord')),
+  'utm-builder': lazy(() => import('./implementations/UtmBuilder')),
   // Add more as needed
 } as const;
 
