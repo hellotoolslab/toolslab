@@ -104,12 +104,16 @@ export class BotDetector {
   }
 
   private isHeadlessBrowser(ua: string): boolean {
+    // Check for explicit headless browser indicators only
+    // ⚠️ IMPORTANT: Don't block regular Chrome/Firefox desktop browsers!
     return (
       ua.includes('headlesschrome') ||
+      ua.includes('headless') ||
       ua.includes('phantomjs') ||
-      (ua.includes('chrome') &&
-        !ua.includes('mobile') &&
-        !ua.includes('android'))
+      ua.includes('selenium') ||
+      ua.includes('webdriver') ||
+      ua.includes('playwright') ||
+      ua.includes('puppeteer')
     );
   }
 
