@@ -242,34 +242,6 @@ export default async function Image({ params }: TwitterImageProps) {
                 {categoryName}
               </div>
             </div>
-
-            {/* Popular indicator */}
-            {tool.isPopular && (
-              <div
-                style={{
-                  backgroundColor: 'rgba(245, 158, 11, 0.2)',
-                  backdropFilter: 'blur(10px)',
-                  padding: '8px 16px',
-                  borderRadius: '20px',
-                  border: '1px solid rgba(245, 158, 11, 0.4)',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                }}
-              >
-                <div style={{ fontSize: '14px' }}>⭐</div>
-                <div
-                  style={{
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: 'white',
-                  }}
-                >
-                  Popular
-                </div>
-              </div>
-            )}
           </div>
         </div>
 

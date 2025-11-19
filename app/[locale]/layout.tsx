@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
+import { generateHreflangAlternates } from '@/lib/i18n/helpers';
 
 interface LocaleLayoutProps {
   children: ReactNode;
@@ -36,10 +37,7 @@ export async function generateMetadata({
     metadataBase: new URL('https://toolslab.dev'),
     alternates: {
       canonical: locale === 'en' ? '/' : `/${locale}`,
-      languages: {
-        en: '/',
-        it: '/it',
-      },
+      languages: generateHreflangAlternates('/'),
     },
   };
 }

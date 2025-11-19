@@ -191,7 +191,7 @@ export const SearchBar = forwardRef<SearchBarRef, SearchBarProps>(
                         >
                           {tool.categories[0]}
                         </span>
-                        {tool.isPopular && (
+                        {tool.label === 'popular' && (
                           <span className="text-xs font-medium text-yellow-600 dark:text-yellow-400">
                             🔥 Popular
                           </span>

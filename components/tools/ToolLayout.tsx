@@ -96,7 +96,7 @@ export function ToolLayout({ tool, children }: ToolLayoutProps) {
                   <div className="badge badge-category">
                     {category?.name || tool.categories[0]}
                   </div>
-                  {tool.isPopular && (
+                  {tool.label === 'popular' && (
                     <div className="badge badge-popular flex items-center gap-1">
                       <TrendingUp className="h-3 w-3" />
                       Popular

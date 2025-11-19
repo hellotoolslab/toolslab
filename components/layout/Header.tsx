@@ -258,7 +258,7 @@ export function Header() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden">
-          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white/95 p-6 shadow-xl backdrop-blur-md dark:bg-gray-900/95">
+          <div className="fixed inset-y-0 right-0 w-full max-w-sm overflow-y-auto bg-white/95 p-6 shadow-xl backdrop-blur-md dark:bg-gray-900/95">
             <div className="mb-8 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <LabLogo className="h-6 w-6 text-violet-600" animated />

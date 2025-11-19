@@ -178,7 +178,7 @@ export default function ToolsHubContent({
 
     // Apply popular filter
     if (popular) {
-      result = result.filter((tool) => tool.isPopular);
+      result = result.filter((tool) => tool.label === 'popular');
     }
 
     // Apply sorting
@@ -188,8 +188,8 @@ export default function ToolsHubContent({
         break;
       case 'popular':
         result.sort((a, b) => {
-          if (a.isPopular && !b.isPopular) return -1;
-          if (!a.isPopular && b.isPopular) return 1;
+          if (a.label === 'popular' && b.label !== 'popular') return -1;
+          if (a.label !== 'popular' && b.label === 'popular') return 1;
           return (b.searchVolume || 0) - (a.searchVolume || 0);
         });
         break;
@@ -216,7 +216,7 @@ export default function ToolsHubContent({
 
   const popularTools = useMemo(() => {
     return [...tools]
-      .filter((tool) => tool.isPopular)
+      .filter((tool) => tool.label === 'popular')
       .sort((a, b) => (b.searchVolume || 0) - (a.searchVolume || 0))
       .slice(0, 6);
   }, []);

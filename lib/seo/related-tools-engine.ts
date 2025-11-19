@@ -48,7 +48,7 @@ export class RelatedToolsEngine {
       // Estimate based on popularity and category
       let estimatedLinks = 5; // baseline
 
-      if (tool.isPopular) estimatedLinks += 3;
+      if (tool.label === 'popular') estimatedLinks += 3;
       if (tool.label === 'popular') estimatedLinks += 2;
 
       // Boost tools get fewer initial links (they're orphans)
@@ -187,7 +187,7 @@ export class RelatedToolsEngine {
 
     // 4. Popular Tools Score (10%)
     const targetTool = getToolById(targetToolId);
-    if (targetTool?.isPopular) {
+    if (targetTool?.label === 'popular') {
       const popScore = weights.popular * 100;
       score += popScore;
       reasons.push('Popular tool');

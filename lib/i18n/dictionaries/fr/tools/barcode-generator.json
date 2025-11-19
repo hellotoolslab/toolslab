@@ -1,0 +1,94 @@
+{
+  "title": "Générateur de Code-Barres",
+  "description": "Générez tous les types de codes-barres - EAN, UPC, Code 128, Data Matrix et plus",
+  "placeholder": "Entrez les données à encoder...",
+  "instructions": {
+    "title": "Comment utiliser le Générateur de Code-Barres",
+    "steps": [
+      {
+        "title": "Sélectionnez le format",
+        "description": "Choisissez le type de code-barres dont vous avez besoin parmi notre liste complète de formats 1D (EAN-13, UPC-A, Code 128, ISBN) et 2D (QR Code, Data Matrix, PDF417)."
+      },
+      {
+        "title": "Entrez vos données",
+        "description": "Tapez ou collez les données que vous souhaitez encoder. L'outil valide automatiquement votre saisie selon les spécifications du format sélectionné."
+      },
+      {
+        "title": "Personnalisez l'apparence",
+        "description": "Ajustez la taille, les couleurs, les marges, la rotation et l'affichage du texte du code-barres. Utilisez le vérificateur de contraste pour assurer la lisibilité."
+      },
+      {
+        "title": "Générez et téléchargez",
+        "description": "Prévisualisez votre code en temps réel et téléchargez-le dans plusieurs formats (PNG, SVG, PDF, EPS, JPG). Utilisez le mode batch pour générer plusieurs codes depuis des fichiers CSV."
+      }
+    ],
+    "features": [
+      "Plus de 20 formats incluant EAN-13, UPC-A, Code 128, Code 39, ISBN, QR Code, Data Matrix",
+      "Validation en temps réel avec calcul automatique du checksum",
+      "Formats d'exportation multiples : PNG (72-600 DPI), SVG, PDF, EPS, JPG",
+      "Taille, couleurs, marges, rotation et texte personnalisables",
+      "Génération par lots depuis fichiers CSV/TXT avec export ZIP",
+      "Sortie prête à imprimer avec repères de coupe",
+      "Test scanner avec webcam pour vérifier la lisibilité",
+      "Concepteur d'étiquettes avec modèles",
+      "Décodeur de codes - chargez une image pour décoder des codes existants",
+      "Traitement 100% dans le navigateur - vos données ne quittent jamais votre appareil"
+    ],
+    "useCases": [
+      "Créer des étiquettes de produits pour retail et e-commerce avec EAN-13/UPC-A",
+      "Générer des codes ISBN pour livres et publications",
+      "Concevoir des étiquettes d'expédition avec Code 128 pour la logistique",
+      "Créer des systèmes de suivi d'inventaire",
+      "Générer des codes QR pour l'authentification des produits",
+      "Concevoir des étiquettes de prix pour magasins",
+      "Créer des badges d'événements avec numérotation séquentielle",
+      "Générer des étiquettes pharmaceutiques avec Pharmacode et Data Matrix"
+    ],
+    "proTips": [
+      "Utilisez le format SVG pour les codes nécessitant une mise à l'échelle sans perte de qualité",
+      "Activez les zones silencieuses (marges) - la plupart des scanners nécessitent au moins 2,5mm",
+      "Testez votre code avec le scanner intégré avant l'impression",
+      "Utilisez Code 128 pour données alphanumériques - c'est le plus efficace en espace",
+      "Pour produits retail en Europe utilisez EAN-13, aux USA/Canada utilisez UPC-A",
+      "Générez Data Matrix pour petits articles - lisible même à 2-3mm",
+      "Utilisez le mode batch avec import CSV pour générer des centaines de codes en secondes",
+      "Imprimez à résolution 300+ DPI pour qualité professionnelle"
+    ],
+    "troubleshooting": [
+      "Le scanner ne lit pas : Augmentez la taille, vérifiez zones silencieuses, assurez contraste, qualité d'impression 300+ DPI",
+      "Erreur données invalides : Chaque format a des limitations spécifiques - consultez le panneau d'information",
+      "Checksum ne correspond pas : Utilisez la fonction de calcul automatique",
+      "Code trop grand : Changez pour format plus compact (UPC-E au lieu de UPC-A)",
+      "Couleurs ne fonctionnent pas : Assurez un contraste élevé - barres sombres sur fond clair",
+      "Génération batch échoue : Vérifiez format CSV - une valeur par ligne, pas d'en-têtes, encodage UTF-8"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller données"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Générer code"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier comme image"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Télécharger code"
+      },
+      {
+        "keys": "Ctrl+P",
+        "description": "Aperçu avant impression"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Générateur de Code-Barres - Créez EAN, UPC, QR Code Gratuit | ToolsLab",
+    "description": "Générateur gratuit de codes-barres en ligne avec support pour plus de 20 formats : EAN-13, UPC-A, Code 128, ISBN, QR Code, Data Matrix. Génération par lots, design personnalisé, téléchargement immédiat PNG/SVG/PDF."
+  },
+  "tagline": "Générez des codes-barres professionnels pour retail, inventaire et expéditions avec personnalisation avancée",
+  "pageDescription": "Générateur professionnel de codes-barres avec support pour tous les formats commerciaux : 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) et 2D (QR Code, Data Matrix, PDF417, Aztec). Inclut génération par lots depuis CSV, concepteur d'étiquettes, vérification scanner, multiples formats d'exportation (PNG jusqu'à 600 DPI, SVG, PDF, EPS), personnalisation couleurs et décodeur. Parfait pour étiquettes produits retail, gestion inventaire, logistique expéditions et suivi pharmaceutique. 100% basé navigateur sans chargement données."
+}
