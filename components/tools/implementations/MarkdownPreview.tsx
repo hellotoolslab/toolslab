@@ -408,9 +408,107 @@ Try typing some **bold** or *italic* text!"
         {(viewMode === 'split' || viewMode === 'preview') && (
           <Card className="overflow-hidden">
             <CardContent className="p-0">
+              <style>{`
+                .markdown-preview {
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.6;
+                }
+                .markdown-preview h1, .markdown-preview h2, .markdown-preview h3,
+                .markdown-preview h4, .markdown-preview h5, .markdown-preview h6 {
+                  margin-top: 24px;
+                  margin-bottom: 16px;
+                  font-weight: 600;
+                  line-height: 1.25;
+                }
+                .markdown-preview h1 {
+                  font-size: 2em;
+                  border-bottom: 1px solid ${theme === 'github-dark' ? '#30363d' : '#d0d7de'};
+                  padding-bottom: 0.3em;
+                }
+                .markdown-preview h2 {
+                  font-size: 1.5em;
+                  border-bottom: 1px solid ${theme === 'github-dark' ? '#30363d' : '#d0d7de'};
+                  padding-bottom: 0.3em;
+                }
+                .markdown-preview h3 { font-size: 1.25em; }
+                .markdown-preview h4 { font-size: 1em; }
+                .markdown-preview h5 { font-size: 0.875em; }
+                .markdown-preview h6 { font-size: 0.85em; color: ${theme === 'github-dark' ? '#8b949e' : '#656d76'}; }
+                .markdown-preview a {
+                  color: ${theme === 'github-dark' ? '#58a6ff' : '#0969da'};
+                  text-decoration: none;
+                }
+                .markdown-preview a:hover { text-decoration: underline; }
+                .markdown-preview code {
+                  background-color: ${theme === 'github-dark' ? 'rgba(110,118,129,0.4)' : 'rgba(175,184,193,0.2)'};
+                  padding: 0.2em 0.4em;
+                  border-radius: 6px;
+                  font-size: 85%;
+                  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+                }
+                .markdown-preview pre {
+                  background-color: ${theme === 'github-dark' ? '#161b22' : '#f6f8fa'};
+                  padding: 16px;
+                  overflow: auto;
+                  border-radius: 6px;
+                  line-height: 1.45;
+                  margin: 0 0 16px 0;
+                }
+                .markdown-preview pre code {
+                  background-color: transparent;
+                  padding: 0;
+                  border-radius: 0;
+                  font-size: 100%;
+                }
+                .markdown-preview blockquote {
+                  padding: 0 1em;
+                  border-left: 0.25em solid ${theme === 'github-dark' ? '#30363d' : '#d0d7de'};
+                  color: ${theme === 'github-dark' ? '#8b949e' : '#656d76'};
+                  margin: 0 0 16px 0;
+                }
+                .markdown-preview ul, .markdown-preview ol {
+                  padding-left: 2em;
+                  margin: 0 0 16px 0;
+                }
+                .markdown-preview li { margin-bottom: 0.25em; }
+                .markdown-preview table {
+                  border-spacing: 0;
+                  border-collapse: collapse;
+                  width: 100%;
+                  margin-bottom: 16px;
+                }
+                .markdown-preview table th, .markdown-preview table td {
+                  padding: 6px 13px;
+                  border: 1px solid ${theme === 'github-dark' ? '#30363d' : '#d0d7de'};
+                }
+                .markdown-preview table th {
+                  font-weight: 600;
+                  background-color: ${theme === 'github-dark' ? '#161b22' : '#f6f8fa'};
+                }
+                .markdown-preview table tr:nth-child(2n) {
+                  background-color: ${theme === 'github-dark' ? '#0d1117' : '#f6f8fa'};
+                }
+                .markdown-preview img {
+                  max-width: 100%;
+                  height: auto;
+                  margin: 16px 0;
+                }
+                .markdown-preview hr {
+                  height: 0.25em;
+                  padding: 0;
+                  margin: 24px 0;
+                  background-color: ${theme === 'github-dark' ? '#30363d' : '#d0d7de'};
+                  border: 0;
+                }
+                .markdown-preview p { margin-bottom: 16px; }
+                .markdown-preview del { text-decoration: line-through; }
+                .markdown-preview strong { font-weight: 600; }
+                .markdown-preview em { font-style: italic; }
+              `}</style>
               <div
                 ref={previewRef}
-                className="prose prose-sm min-h-[600px] max-w-none overflow-auto p-6"
+                className="markdown-preview min-h-[600px] max-w-none overflow-auto p-6"
                 style={{
                   backgroundColor:
                     theme === 'github-dark' ? '#0d1117' : '#ffffff',
@@ -419,7 +517,7 @@ Try typing some **bold** or *italic* text!"
                 dangerouslySetInnerHTML={{
                   __html:
                     html ||
-                    '<p class="text-muted-foreground">Preview will appear here...</p>',
+                    '<p style="color: #6b7280;">Preview will appear here...</p>',
                 }}
               />
             </CardContent>
