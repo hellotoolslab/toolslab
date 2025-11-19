@@ -50,6 +50,7 @@ export default function MarkdownPreview() {
   const [copied, setCopied] = useState(false);
   const [showStats, setShowStats] = useState(false);
   const [lastTrackedContent, setLastTrackedContent] = useState('');
+  const [showTemplates, setShowTemplates] = useState(false);
 
   const previewRef = useRef<HTMLDivElement>(null);
   const editorRef = useRef<HTMLTextAreaElement>(null);
@@ -308,24 +309,30 @@ export default function MarkdownPreview() {
             </div>
           </div>
 
-          {/* Quick Templates */}
+          {/* Quick Templates - Collapsible */}
           <div className="mt-3 border-t pt-3">
-            <p className="mb-2 text-sm text-muted-foreground">
-              Quick Templates:
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {(Object.keys(templates) as TemplateName[]).map((name) => (
-                <Button
-                  key={name}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleLoadTemplate(name)}
-                  className="text-xs"
-                >
-                  {name.replace(/-/g, ' ')}
-                </Button>
-              ))}
-            </div>
+            <button
+              onClick={() => setShowTemplates(!showTemplates)}
+              className="flex w-full items-center justify-between text-left text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <span>Quick Templates</span>
+              <span className="text-xs">{showTemplates ? '▼' : '▶'}</span>
+            </button>
+            {showTemplates && (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {(Object.keys(templates) as TemplateName[]).map((name) => (
+                  <Button
+                    key={name}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleLoadTemplate(name)}
+                    className="text-xs"
+                  >
+                    {name.replace(/-/g, ' ')}
+                  </Button>
+                ))}
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -393,7 +400,7 @@ export default function MarkdownPreview() {
 - Auto-save
 
 Try typing some **bold** or *italic* text!"
-                className="min-h-[600px] resize-none border-0 font-mono text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="h-[600px] resize-none border-0 font-mono text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
                 style={{
                   backgroundColor:
                     theme === 'github-dark' ? '#0d1117' : '#ffffff',
@@ -508,7 +515,7 @@ Try typing some **bold** or *italic* text!"
               `}</style>
               <div
                 ref={previewRef}
-                className="markdown-preview min-h-[600px] max-w-none overflow-auto p-6"
+                className="markdown-preview h-[600px] max-w-none overflow-auto p-6"
                 style={{
                   backgroundColor:
                     theme === 'github-dark' ? '#0d1117' : '#ffffff',
