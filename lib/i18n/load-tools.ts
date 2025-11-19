@@ -68,7 +68,6 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'image-optimizer',
     'favicon-generator',
     'gradient-generator',
-    'api-tester',
     'json-validator',
     'crontab-builder',
     'list-compare',

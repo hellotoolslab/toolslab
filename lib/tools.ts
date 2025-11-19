@@ -646,17 +646,6 @@ export const tools: Tool[] = [
 
   // Dev Utilities
   {
-    id: 'api-tester',
-    name: 'API Tester',
-    description: 'Test REST APIs with custom headers and body',
-    icon: '🔧',
-    route: '/tools/api-tester',
-    categories: ['dev'],
-    keywords: ['api', 'rest', 'test', 'http', 'request'],
-    searchVolume: 6800,
-    label: 'coming-soon',
-  },
-  {
     id: 'json-validator',
     name: 'JSON Validator',
     description:

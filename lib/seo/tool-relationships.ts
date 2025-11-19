@@ -63,7 +63,7 @@ export const toolRelationships: ToolRelationships = {
       'eml-to-html',
       'curl-to-code',
     ],
-    alternatives: ['api-tester'],
+    alternatives: [],
   },
 
   'yaml-json-converter': {
@@ -117,7 +117,7 @@ export const toolRelationships: ToolRelationships = {
 
   'url-encode': {
     workflow: ['base64-encode', 'hash-generator'],
-    complementary: ['curl-to-code', 'api-tester', 'crontab-builder'],
+    complementary: ['curl-to-code', 'crontab-builder'],
     alternatives: ['jwt-decoder'],
   },
 
@@ -129,7 +129,7 @@ export const toolRelationships: ToolRelationships = {
 
   'jwt-decoder': {
     workflow: ['hash-generator', 'base64-encode', 'curl-to-code'],
-    complementary: ['json-formatter', 'api-tester', 'unix-timestamp-converter'],
+    complementary: ['json-formatter', 'unix-timestamp-converter'],
     alternatives: ['url-encode'],
   },
 
