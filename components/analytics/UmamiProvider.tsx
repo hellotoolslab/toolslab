@@ -30,14 +30,27 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
       ? `${process.env.NEXT_PUBLIC_UMAMI_HOST_URL}/script.js`
       : null);
 
-  // Enable in production OR when debug is enabled
+  // 🚨 CRITICAL: Check if running on localhost
+  const isLocalhost =
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1' ||
+      window.location.hostname.startsWith('192.168.') ||
+      window.location.hostname.startsWith('10.') ||
+      window.location.hostname.endsWith('.local'));
+
+  // Enable in production OR when debug is enabled (but NEVER on localhost)
   const isEnabled =
-    process.env.NODE_ENV === 'production' ||
-    process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true';
+    !isLocalhost &&
+    (process.env.NODE_ENV === 'production' ||
+      process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true');
 
   useEffect(() => {
     console.log('🔍 Umami Init:', {
       enabled: isEnabled,
+      isLocalhost,
+      hostname:
+        typeof window !== 'undefined' ? window.location.hostname : 'SSR',
       websiteId: websiteId ? 'SET' : 'MISSING',
       scriptUrl: scriptUrl || 'MISSING',
       nodeEnv: process.env.NODE_ENV,
@@ -46,6 +59,13 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
 
     if (initAttempted.current) return;
     initAttempted.current = true;
+
+    if (isLocalhost) {
+      console.log(
+        '🚫 Umami blocked - localhost detected (no analytics in local dev)'
+      );
+      return;
+    }
 
     if (!isEnabled || !websiteId || !scriptUrl) {
       console.warn('⚠️ Umami not loaded - missing config');

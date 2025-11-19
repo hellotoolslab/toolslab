@@ -1,0 +1,94 @@
+{
+  "title": "Barcode Generator",
+  "description": "Generate all types of barcodes - EAN, UPC, Code 128, Data Matrix and more",
+  "placeholder": "Enter data to encode...",
+  "instructions": {
+    "title": "How to use Barcode Generator",
+    "steps": [
+      {
+        "title": "Select barcode format",
+        "description": "Choose the barcode type you need from our comprehensive list of 1D (EAN-13, UPC-A, Code 128, ISBN) and 2D formats (QR Code, Data Matrix, PDF417)."
+      },
+      {
+        "title": "Enter your data",
+        "description": "Type or paste the data you want to encode. The tool automatically validates your input according to the selected format's specifications and displays real-time validation errors."
+      },
+      {
+        "title": "Customize appearance",
+        "description": "Adjust barcode size, colors, margins, rotation, and text display. Use our contrast checker to ensure your barcode is scannable in any lighting condition."
+      },
+      {
+        "title": "Generate and download",
+        "description": "Preview your barcode in real-time and download it in multiple formats (PNG, SVG, PDF, EPS, JPG). Use batch mode to generate multiple barcodes from CSV files."
+      }
+    ],
+    "features": [
+      "20+ barcode formats including EAN-13, UPC-A, Code 128, Code 39, ISBN, QR Code, Data Matrix",
+      "Real-time validation with automatic checksum calculation",
+      "Multiple export formats: PNG (72-600 DPI), SVG, PDF, EPS, JPG",
+      "Customizable size, colors, margins, rotation and text",
+      "Batch generation from CSV/TXT files with ZIP export",
+      "Print-ready output with crop marks and bleed",
+      "Scanner test using webcam to verify readability",
+      "Label designer with templates for retail, shipping and inventory",
+      "Barcode decoder - upload image to decode existing barcodes",
+      "100% client-side processing - your data never leaves your browser"
+    ],
+    "useCases": [
+      "Create product labels for retail and e-commerce with EAN-13/UPC-A",
+      "Generate ISBN barcodes for books and publications",
+      "Design shipping labels with Code 128 for logistics and warehouses",
+      "Create inventory tracking systems with batch barcode generation",
+      "Generate QR codes for product authentication and traceability",
+      "Design price tags and shelf labels for retail stores",
+      "Create event badges and tickets with sequential numbering",
+      "Generate pharmaceutical labels with Pharmacode and Data Matrix"
+    ],
+    "proTips": [
+      "Use SVG format for barcodes that need to scale to any size without quality loss",
+      "Enable quiet zones (margins) to improve scanner readability - most scanners require at least 2.5mm",
+      "Test your barcode with the built-in scanner before printing to avoid costly reprints",
+      "Use Code 128 for alphanumeric data - it's the most space-efficient 1D barcode",
+      "For retail products in Europe use EAN-13, in USA/Canada use UPC-A",
+      "Generate Data Matrix for small items - it's readable even at 2-3mm size",
+      "Use batch mode with CSV import to generate hundreds of barcodes in seconds",
+      "Print at 300+ DPI resolution for professional quality and reliable scanning"
+    ],
+    "troubleshooting": [
+      "Scanner can't read: Increase size, check quiet zones (margins), verify contrast ratio, ensure print quality is 300+ DPI",
+      "Invalid data error: Each format has specific character limitations - check the format info panel for allowed characters",
+      "Checksum mismatch: Use auto-calculate checksum feature - manual checksums often contain errors",
+      "Barcode too large for label: Switch to a more compact format (e.g., UPC-E instead of UPC-A, or Data Matrix for 2D)",
+      "Colors not working: Ensure high contrast - dark bars on light background work best. Use contrast checker tool",
+      "Batch generation fails: Check CSV format - one value per line, no headers, UTF-8 encoding"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste data to encode"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Generate barcode"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy barcode as image"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Download barcode"
+      },
+      {
+        "keys": "Ctrl+P",
+        "description": "Open print preview"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Barcode Generator - Create EAN, UPC, QR Code & More Free | ToolsLab",
+    "description": "Free online barcode generator supporting 20+ formats: EAN-13, UPC-A, Code 128, ISBN, QR Code, Data Matrix. Batch generation, custom design, instant download as PNG/SVG/PDF. No registration required."
+  },
+  "tagline": "Generate professional barcodes for retail, inventory, and shipping with advanced customization",
+  "pageDescription": "Professional barcode generator supporting all commercial formats: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) and 2D (QR Code, Data Matrix, PDF417, Aztec). Features include batch generation from CSV, label designer with templates, scanner verification, multiple export formats (PNG up to 600 DPI, SVG, PDF, EPS), color customization with contrast checker, and barcode decoder. Perfect for retail product labels, inventory management, shipping logistics, and pharmaceutical tracking. 100% browser-based with no data uploads."
+}

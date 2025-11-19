@@ -62,6 +62,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'uuid-generator',
     'password-generator',
     'qr-generator',
+    'barcode-generator',
     'color-picker',
     'color-format-converter',
     'image-optimizer',

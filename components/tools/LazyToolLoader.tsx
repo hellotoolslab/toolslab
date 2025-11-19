@@ -59,6 +59,7 @@ const toolComponents = {
   ),
   'text-diff': lazy(() => import('./implementations/TextDiff')),
   'qr-generator': lazy(() => import('./implementations/QRGenerator')),
+  'barcode-generator': lazy(() => import('./implementations/BarcodeGenerator')),
   'color-picker': lazy(() => import('./implementations/ColorPicker')),
   'json-validator': lazy(() => import('./implementations/JSONValidator')),
   'list-compare': lazy(() => import('./implementations/ListCompare')),
