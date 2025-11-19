@@ -215,3 +215,31 @@ export function getReadingTime(text: string, locale: Locale): string {
   // Default to English for all other locales (future: use dictionary)
   return minutes === 1 ? '1 min read' : `${minutes} min read`;
 }
+
+/**
+ * Generate hreflang alternates for Next.js metadata
+ * Auto-generates for ALL active locales
+ *
+ * @param path - The path without locale prefix (e.g., '/category/social')
+ * @returns Object with hreflang mappings for Next.js alternates.languages
+ */
+export function generateHreflangAlternates(
+  path: string
+): Record<string, string> {
+  const cleanPath = stripLocaleFromPath(path);
+  const baseUrl = 'https://toolslab.dev';
+  const activeLocales = getActiveLocales();
+  const alternates: Record<string, string> = {};
+
+  // Add x-default (points to default locale)
+  alternates['x-default'] =
+    `${baseUrl}${getLocalizedPath(cleanPath, defaultLocale)}`;
+
+  // Add all active locales
+  for (const locale of activeLocales) {
+    const localizedPath = getLocalizedPath(cleanPath, locale);
+    alternates[locale] = `${baseUrl}${localizedPath}`;
+  }
+
+  return alternates;
+}

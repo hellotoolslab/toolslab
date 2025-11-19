@@ -4,7 +4,10 @@ import { Suspense } from 'react';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { getPageMetadata, getKeywordsString } from '@/lib/i18n/seo-metadata';
-import { getLocalizedPath } from '@/lib/i18n/helpers';
+import {
+  getLocalizedPath,
+  generateHreflangAlternates,
+} from '@/lib/i18n/helpers';
 import ToolsHubContent from '@/components/tools/ToolsHubContent';
 
 interface LocaleToolsPageProps {
@@ -51,13 +54,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `https://toolslab.dev${getLocalizedPath('/tools', locale as Locale)}`,
-      languages: {
-        'x-default': 'https://toolslab.dev/tools',
-        en: 'https://toolslab.dev/tools',
-        it: 'https://toolslab.dev/it/tools',
-        es: 'https://toolslab.dev/es/tools',
-        fr: 'https://toolslab.dev/fr/tools',
-      },
+      languages: generateHreflangAlternates('/tools'),
     },
     robots: {
       index: true,
