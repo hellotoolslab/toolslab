@@ -113,8 +113,7 @@ function countLinksFromHomepage() {
   console.log('🏠 Checking homepage featured/popular tools...\n');
 
   // Popular and featured tools get extra visibility
-  const popularTools = tools.filter((t) => t.isPopular);
-  const featuredTools = tools.filter((t) => t.label === 'popular');
+  const popularTools = tools.filter((t) => t.label === 'popular');
 
   popularTools.forEach((tool) => {
     const linkCount = linkCounts.get(tool.id);
@@ -122,15 +121,6 @@ function countLinksFromHomepage() {
       linkCount.fromHomepage++;
       linkCount.totalLinks++;
       linkCount.linkingSources.push('Homepage: Popular section');
-    }
-  });
-
-  featuredTools.forEach((tool) => {
-    const linkCount = linkCounts.get(tool.id);
-    if (linkCount) {
-      linkCount.fromHomepage++;
-      linkCount.totalLinks++;
-      linkCount.linkingSources.push('Homepage: Featured');
     }
   });
 }

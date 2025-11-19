@@ -58,6 +58,7 @@ const toolComponents = {
     () => import('./implementations/HtmlEncodeDecode')
   ),
   'text-diff': lazy(() => import('./implementations/TextDiff')),
+  'markdown-preview': lazy(() => import('./implementations/MarkdownPreview')),
   'qr-generator': lazy(() => import('./implementations/QRGenerator')),
   'barcode-generator': lazy(() => import('./implementations/BarcodeGenerator')),
   'color-picker': lazy(() => import('./implementations/ColorPicker')),

@@ -79,9 +79,7 @@ export const DEFAULT_TOOLS: Record<string, ToolConfig> = {
     category: 'data-conversion',
     searchVolume: 165000,
     icon: 'Braces',
-    flags: {
-      isPopular: true,
-    },
+    flags: {},
     metadata: {
       lastUpdated: new Date().toISOString(),
       monthlyUsers: 50000,
@@ -104,9 +102,7 @@ export const DEFAULT_TOOLS: Record<string, ToolConfig> = {
     category: 'encoding-security',
     searchVolume: 246000,
     icon: 'Binary',
-    flags: {
-      isPopular: true,
-    },
+    flags: {},
     metadata: {
       lastUpdated: new Date().toISOString(),
       monthlyUsers: 75000,

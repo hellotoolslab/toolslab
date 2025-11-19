@@ -1,83 +1,88 @@
 {
-  "title": "Anteprima Markdown",
-  "description": "Visualizza anteprima live markdown con evidenziazione sintassi",
+  "title": "Editor e Anteprima Markdown",
+  "description": "Modifica e visualizza Markdown con rendering live, esporta in HTML/PDF e statistiche complete",
+  "placeholder": "# Inizia a scrivere il tuo markdown qui...\n\n## Funzionalità\n- GitHub Flavored Markdown\n- Anteprima live\n- Esporta in HTML/PDF\n- Salvataggio automatico\n\nProva a scrivere del testo **grassetto** o *corsivo*!",
   "meta": {
-    "title": "Anteprima Markdown - Strumento Online Gratuito | ToolsLab",
-    "description": "Anteprima markdown in tempo reale online. Editor markdown con preview live. Strumento markdown gratuito."
+    "title": "Editor e Anteprima Markdown - Strumento Online Gratuito | ToolsLab",
+    "description": "Editor e anteprima Markdown online gratuiti con rendering live, supporto GitHub Flavored Markdown, esportazione HTML/PDF, statistiche e salvataggio automatico. Perfetto per sviluppatori e scrittori."
   },
-  "tagline": "Anteprima markdown in tempo reale con rendering GitHub-flavored",
-  "pageDescription": "Editor markdown professionale con anteprima live e supporto GitHub-flavored markdown. Funzionalità evidenziazione sintassi, supporto tabelle, task list e rendering emoji. Perfetto per sviluppatori che scrivono documentazione, file README e contenuti tecnici. Export HTML con temi personalizzabili.",
+  "tagline": "Modifica, visualizza ed esporta Markdown con rendering live e statistiche complete",
+  "pageDescription": "Editor Markdown professionale con anteprima split-view, supporto GitHub Flavored Markdown, esportazione in più formati (HTML, PDF, MD), dashboard statistiche, libreria template e salvataggio automatico. Tutta l'elaborazione avviene nel tuo browser - sicuro e veloce.",
   "instructions": {
-    "title": "Come usare Anteprima Markdown",
+    "title": "Come usare l'Editor e Anteprima Markdown",
     "steps": [
       {
-        "title": "Incolla il tuo testo Markdown",
-        "description": "Copia e incolla il tuo testo Markdown nell'area di input. Lo strumento accetta qualsiasi formato e lo elaborerà immediatamente."
+        "title": "Scrivi o importa Markdown",
+        "description": "Inizia a digitare nel riquadro editor o importa un file .md esistente usando il pulsante Importa. Lo strumento salva automaticamente il tuo lavoro nel localStorage."
       },
       {
-        "title": "Configura le opzioni (se disponibile)",
-        "description": "Regola le opzioni di formattazione, indentazione o altre impostazioni per adattarle alle tue preferenze."
+        "title": "Anteprima in tempo reale",
+        "description": "Vedi il tuo contenuto formattato istantaneamente nel riquadro di anteprima. Passa tra vista split, solo editor o solo anteprima usando i pulsanti della toolbar."
       },
       {
-        "title": "Esamina l'output",
-        "description": "Lo strumento elaborerà il tuo input e mostrerà il risultato con formattazione e validazione appropriate."
+        "title": "Usa i template",
+        "description": "Inizia velocemente con template pronti per README, post blog, documentazione, note riunioni, task list e changelog."
       },
       {
-        "title": "Copia o scarica il risultato",
-        "description": "Copia il risultato elaborato negli appunti per uso immediato o scaricalo come file."
+        "title": "Visualizza statistiche",
+        "description": "Clicca il pulsante statistiche per vedere conteggio parole, caratteri, tempo di lettura, numero titoli, link, immagini e altro."
+      },
+      {
+        "title": "Esporta il tuo lavoro",
+        "description": "Scarica il tuo contenuto come Markdown (.md), HTML con stili o PDF. L'esportazione HTML include gli stili del tema per uso immediato."
       }
     ],
     "features": [
-      "Elaborazione in tempo reale con risultati istantanei",
-      "Nessun limite di dimensione per l'elaborazione basata su browser",
-      "Completamente sicuro - tutta l'elaborazione avviene nel tuo browser",
-      "Nessun caricamento dati o archiviazione server",
-      "Copia negli appunti con un clic",
-      "Scarica i risultati come file",
-      "Validazione sintassi ed evidenziazione errori",
-      "Funziona offline dopo il caricamento iniziale"
+      "Supporto GitHub Flavored Markdown (GFM) con tabelle, task list e testo barrato",
+      "Anteprima live split-view con editing sincronizzato",
+      "Esportazione in formati Markdown, HTML (con tema) e PDF",
+      "Statistiche complete: parole, caratteri, righe, tempo lettura, titoli, link, immagini",
+      "Libreria template: README, post blog, documentazione, note riunioni, task list, changelog",
+      "Supporto tema chiaro e scuro (stile GitHub)",
+      "Salvataggio automatico su localStorage - non perdere mai il tuo lavoro",
+      "Importa file .md e .txt direttamente"
     ],
     "useCases": [
-      "Pulire e formattare codice disordinato per una migliore leggibilità",
-      "Standardizzare lo stile del codice nei team di sviluppo",
-      "Debug di strutture complesse con indentazione appropriata",
-      "Preparare il codice per documentazione e code review",
-      "Convertire tra diversi standard di formattazione",
-      "Validare la sintassi prima del deploy",
-      "Elaborare dati da fonti esterne o API",
-      "Generare codice pronto per la produzione"
+      "Scrivere file README per repository GitHub",
+      "Creare post blog e articoli in Markdown",
+      "Redigere documentazione tecnica con blocchi codice e tabelle",
+      "Prendere note di riunioni con sezioni formattate",
+      "Gestire task list con checkbox",
+      "Scrivere changelog per rilasci software",
+      "Visualizzare anteprima Markdown prima di committare su Git",
+      "Convertire Markdown in PDF per condivisione"
     ],
     "proTips": [
-      "Usa le scorciatoie da tastiera per un flusso di lavoro più veloce",
-      "Elabora file di grandi dimensioni in blocchi più piccoli se le prestazioni rallentano",
-      "Valida il tuo input prima dell'elaborazione per individuare errori anticipatamente",
-      "Salva le impostazioni utilizzate frequentemente come predefinite",
-      "Usa la funzione di download per archiviare i file elaborati",
-      "Controlla attentamente l'output prima di usarlo in produzione"
+      "Usa Ctrl+B per grassetto, Ctrl+I per corsivo e Ctrl+K per link (nella maggior parte dei browser)",
+      "L'editor salva automaticamente ogni secondo - il tuo lavoro è al sicuro anche se chiudi il tab",
+      "Clicca l'icona statistiche per vedere analisi dettagliate inclusa stima tempo di lettura",
+      "Passa al tema scuro per scrittura confortevole di notte",
+      "Esporta in HTML con tema incluso per uso immediato nei siti web",
+      "Usa i template come punti di partenza e personalizzali secondo le tue necessità"
     ],
     "troubleshooting": [
-      "Errori di sintassi: controlla parentesi, virgolette o punti e virgola mancanti",
-      "Elaborazione fallita: assicurati che il formato di input sia valido",
-      "Performance lenta: prova a elaborare blocchi di dati più piccoli",
-      "Funzionalità mancanti: alcune sintassi avanzate potrebbero richiedere formattazione manuale",
-      "Compatibilità browser: usa Chrome, Firefox o Edge per risultati migliori"
+      "Anteprima non si aggiorna? Assicurati di digitare nel riquadro editor - l'anteprima si aggiorna automaticamente",
+      "Hai perso il tuo lavoro? Controlla se il salvataggio automatico funziona - salva su localStorage ogni secondo",
+      "Esportazione PDF non corretta? Assicurati che l'anteprima sia completamente renderizzata prima di esportare",
+      "Esportazione HTML senza stili? Assicurati che l'opzione 'Includi CSS' sia abilitata",
+      "Importazione non funziona? Solo file .md, .markdown e .txt sono supportati"
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Ctrl+V",
-        "description": "Incolla input"
+        "keys": "Ctrl+B / Cmd+B",
+        "description": "Testo grassetto"
       },
       {
-        "keys": "Ctrl+Enter",
-        "description": "Elabora/Formatta"
+        "keys": "Ctrl+I / Cmd+I",
+        "description": "Testo corsivo"
+      },
+      {
+        "keys": "Ctrl+K / Cmd+K",
+        "description": "Inserisci link"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copia risultato"
-      },
-      {
-        "keys": "Ctrl+S",
-        "description": "Scarica file"
+        "description": "Copia HTML"
       }
     ]
   }
