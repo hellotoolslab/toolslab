@@ -2,7 +2,10 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
-import { getLocalizedPath } from '@/lib/i18n/helpers';
+import {
+  getLocalizedPath,
+  generateHreflangAlternates,
+} from '@/lib/i18n/helpers';
 import { LocaleLabPageClient } from './LocaleLabPageClient';
 
 interface LocaleLabPageProps {
@@ -86,10 +89,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `https://toolslab.dev${getLocalizedPath('/lab', locale as Locale)}`,
-      languages: {
-        en: 'https://toolslab.dev/lab',
-        it: 'https://toolslab.dev/it/lab',
-      },
+      languages: generateHreflangAlternates('/lab'),
     },
   };
 }

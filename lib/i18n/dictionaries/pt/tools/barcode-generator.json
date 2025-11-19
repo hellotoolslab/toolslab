@@ -1,0 +1,94 @@
+{
+  "title": "Gerador de Código de Barras",
+  "description": "Gere todos os tipos de códigos de barras - EAN, UPC, Code 128, Data Matrix e mais",
+  "placeholder": "Insira dados para codificar...",
+  "instructions": {
+    "title": "Como usar o Gerador de Código de Barras",
+    "steps": [
+      {
+        "title": "Selecione o formato",
+        "description": "Escolha o tipo de código de barras de nossa lista completa de formatos 1D (EAN-13, UPC-A, Code 128, ISBN) e 2D (QR Code, Data Matrix, PDF417)."
+      },
+      {
+        "title": "Insira seus dados",
+        "description": "Digite ou cole os dados que deseja codificar. A ferramenta valida automaticamente sua entrada de acordo com as especificações do formato selecionado."
+      },
+      {
+        "title": "Personalize a aparência",
+        "description": "Ajuste tamanho, cores, margens, rotação e exibição de texto do código de barras. Use o verificador de contraste para garantir legibilidade."
+      },
+      {
+        "title": "Gere e baixe",
+        "description": "Visualize seu código em tempo real e baixe em múltiplos formatos (PNG, SVG, PDF, EPS, JPG). Use o modo batch para gerar vários códigos a partir de arquivos CSV."
+      }
+    ],
+    "features": [
+      "Mais de 20 formatos incluindo EAN-13, UPC-A, Code 128, Code 39, ISBN, QR Code, Data Matrix",
+      "Validação em tempo real com cálculo automático de checksum",
+      "Múltiplos formatos de exportação: PNG (72-600 DPI), SVG, PDF, EPS, JPG",
+      "Tamanho, cores, margens, rotação e texto personalizáveis",
+      "Geração em lote de arquivos CSV/TXT com exportação ZIP",
+      "Saída pronta para impressão com marcas de corte",
+      "Teste de scanner com webcam para verificar legibilidade",
+      "Designer de etiquetas com modelos",
+      "Decodificador de códigos - carregue imagem para decodificar códigos existentes",
+      "Processamento 100% no navegador - seus dados nunca saem do seu dispositivo"
+    ],
+    "useCases": [
+      "Criar etiquetas de produtos para varejo e e-commerce com EAN-13/UPC-A",
+      "Gerar códigos ISBN para livros e publicações",
+      "Projetar etiquetas de envio com Code 128 para logística",
+      "Criar sistemas de rastreamento de inventário",
+      "Gerar códigos QR para autenticação de produtos",
+      "Projetar etiquetas de preço para lojas",
+      "Criar crachás de eventos e ingressos com numeração sequencial",
+      "Gerar etiquetas farmacêuticas com Pharmacode e Data Matrix"
+    ],
+    "proTips": [
+      "Use formato SVG para códigos que precisam escalar sem perda de qualidade",
+      "Ative zonas silenciosas (margens) - a maioria dos scanners requer pelo menos 2,5mm",
+      "Teste seu código com o scanner integrado antes de imprimir",
+      "Use Code 128 para dados alfanuméricos - mais eficiente em espaço",
+      "Para produtos de varejo na Europa use EAN-13, nos EUA/Canadá use UPC-A",
+      "Gere Data Matrix para itens pequenos - legível mesmo em 2-3mm",
+      "Use modo batch com importação CSV para gerar centenas de códigos em segundos",
+      "Imprima com resolução 300+ DPI para qualidade profissional"
+    ],
+    "troubleshooting": [
+      "Scanner não lê: Aumente tamanho, verifique zonas silenciosas, garanta contraste, qualidade de impressão 300+ DPI",
+      "Erro de dados inválidos: Cada formato tem limitações específicas - consulte o painel de informações",
+      "Checksum não corresponde: Use função de cálculo automático",
+      "Código muito grande: Mude para formato mais compacto (UPC-E em vez de UPC-A)",
+      "Cores não funcionam: Garanta alto contraste - barras escuras em fundo claro",
+      "Geração em lote falha: Verifique formato CSV - um valor por linha, sem cabeçalhos, codificação UTF-8"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar dados"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Gerar código"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar como imagem"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar código"
+      },
+      {
+        "keys": "Ctrl+P",
+        "description": "Visualizar impressão"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Gerador de Código de Barras - Crie EAN, UPC, QR Code Grátis | ToolsLab",
+    "description": "Gerador gratuito de códigos de barras online com suporte para mais de 20 formatos: EAN-13, UPC-A, Code 128, ISBN, QR Code, Data Matrix. Geração em lote, design personalizado, download imediato PNG/SVG/PDF."
+  },
+  "tagline": "Gere códigos de barras profissionais para varejo, inventário e envios com personalização avançada",
+  "pageDescription": "Gerador profissional de códigos de barras com suporte para todos os formatos comerciais: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) e 2D (QR Code, Data Matrix, PDF417, Aztec). Inclui geração em lote de CSV, designer de etiquetas, verificação de scanner, múltiplos formatos de exportação (PNG até 600 DPI, SVG, PDF, EPS), personalização de cores e decodificador. Perfeito para etiquetas de produtos de varejo, gestão de inventário, logística de envios e rastreamento farmacêutico. 100% baseado em navegador sem upload de dados."
+}

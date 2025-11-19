@@ -5,7 +5,10 @@ import { categories } from '@/lib/tools';
 import { getCategorySEO } from '@/lib/category-seo';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
-import { getLocalizedPath } from '@/lib/i18n/helpers';
+import {
+  getLocalizedPath,
+  generateHreflangAlternates,
+} from '@/lib/i18n/helpers';
 import LocaleCategoryPageContent from '@/components/layout/LocaleCategoryPageContent';
 
 interface LocaleCategoryPageProps {
@@ -91,13 +94,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `https://toolslab.dev${getLocalizedPath(`/category/${categoryId}`, locale as Locale)}`,
-      languages: {
-        'x-default': `https://toolslab.dev/category/${categoryId}`,
-        en: `https://toolslab.dev/category/${categoryId}`,
-        it: `https://toolslab.dev/it/category/${categoryId}`,
-        es: `https://toolslab.dev/es/category/${categoryId}`,
-        fr: `https://toolslab.dev/fr/category/${categoryId}`,
-      },
+      languages: generateHreflangAlternates(`/category/${categoryId}`),
     },
   };
 }

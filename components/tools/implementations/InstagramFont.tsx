@@ -112,7 +112,10 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
     });
   };
 
-  // Generate styles when input changes
+  // Track if current input has been tracked
+  const [lastTrackedInput, setLastTrackedInput] = useState('');
+
+  // Generate styles when input changes (real-time, no debounce)
   useEffect(() => {
     if (!input.trim()) {
       setGeneratedStyles([]);
@@ -122,17 +125,27 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
     const result = generateInstagramFonts(input);
     if (result.success) {
       setGeneratedStyles(result.styles);
+    }
+  }, [input]);
 
-      // Track generation
+  // Track generation (called explicitly by user actions)
+  const trackGeneration = () => {
+    // Only track if input is different from last tracked
+    if (
+      input.trim() &&
+      input !== lastTrackedInput &&
+      generatedStyles.length > 0
+    ) {
       addToHistory({
         id: crypto.randomUUID(),
         tool: 'instagram-font-generator',
         input,
-        output: `${result.styles.length} styles generated`,
+        output: `${generatedStyles.length} styles generated`,
         timestamp: Date.now(),
       });
+      setLastTrackedInput(input);
     }
-  }, [input, addToHistory]);
+  };
 
   // Filter styles based on search and platform
   const filteredStyles = useMemo(() => {
@@ -172,6 +185,9 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
     : filteredStyles.slice(0, 10);
 
   const handleCopyStyle = async (styleId: string, text: string) => {
+    // Track generation before copy (if not already tracked)
+    trackGeneration();
+
     try {
       await navigator.clipboard.writeText(text);
       setCopiedStyleId(styleId);
@@ -205,6 +221,9 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
   };
 
   const handleCopyAll = async () => {
+    // Track generation before copy (if not already tracked)
+    trackGeneration();
+
     const allText = filteredStyles
       .map((style) => `${style.name}:\n${style.text}\n`)
       .join('\n');
@@ -273,7 +292,11 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
               borderColor: `${categoryColor}30`,
             }}
             onFocus={(e) => (e.target.style.borderColor = categoryColor)}
-            onBlur={(e) => (e.target.style.borderColor = `${categoryColor}30`)}
+            onBlur={(e) => {
+              e.target.style.borderColor = `${categoryColor}30`;
+              // Track when user leaves the input field
+              trackGeneration();
+            }}
             maxLength={MAX_CHARS_POST}
           />
           {isOverBioLimit && !isOverPostLimit && (

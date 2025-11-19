@@ -1,0 +1,94 @@
+{
+  "title": "Barcode-Generator",
+  "description": "Generiere alle Arten von Barcodes - EAN, UPC, Code 128, Data Matrix und mehr",
+  "placeholder": "Daten zum Kodieren eingeben...",
+  "instructions": {
+    "title": "So verwenden Sie den Barcode-Generator",
+    "steps": [
+      {
+        "title": "Format wählen",
+        "description": "Wählen Sie den Barcode-Typ aus unserer umfassenden Liste von 1D (EAN-13, UPC-A, Code 128, ISBN) und 2D Formaten (QR Code, Data Matrix, PDF417)."
+      },
+      {
+        "title": "Daten eingeben",
+        "description": "Geben Sie die zu kodierenden Daten ein oder fügen Sie sie ein. Das Tool validiert Ihre Eingabe automatisch gemäß den Spezifikationen des gewählten Formats."
+      },
+      {
+        "title": "Aussehen anpassen",
+        "description": "Passen Sie Größe, Farben, Ränder, Rotation und Textanzeige des Barcodes an. Verwenden Sie den Kontrast-Checker für optimale Lesbarkeit."
+      },
+      {
+        "title": "Generieren und herunterladen",
+        "description": "Sehen Sie Ihren Barcode in Echtzeit-Vorschau und laden Sie ihn in mehreren Formaten herunter (PNG, SVG, PDF, EPS, JPG). Nutzen Sie den Batch-Modus für mehrere Barcodes aus CSV-Dateien."
+      }
+    ],
+    "features": [
+      "Über 20 Formate einschließlich EAN-13, UPC-A, Code 128, Code 39, ISBN, QR Code, Data Matrix",
+      "Echtzeit-Validierung mit automatischer Prüfziffer-Berechnung",
+      "Mehrere Exportformate: PNG (72-600 DPI), SVG, PDF, EPS, JPG",
+      "Anpassbare Größe, Farben, Ränder, Rotation und Text",
+      "Batch-Generierung aus CSV/TXT-Dateien mit ZIP-Export",
+      "Druckfertiges Output mit Schnittmarken",
+      "Scanner-Test mit Webcam zur Überprüfung der Lesbarkeit",
+      "Etiketten-Designer mit Vorlagen",
+      "Barcode-Decoder - Laden Sie Bild hoch um bestehende Barcodes zu dekodieren",
+      "100% Browser-basierte Verarbeitung - Ihre Daten verlassen nie Ihr Gerät"
+    ],
+    "useCases": [
+      "Produktetiketten für Einzelhandel und E-Commerce mit EAN-13/UPC-A erstellen",
+      "ISBN-Barcodes für Bücher und Publikationen generieren",
+      "Versandetiketten mit Code 128 für Logistik gestalten",
+      "Inventar-Tracking-Systeme erstellen",
+      "QR-Codes für Produktauthentifizierung generieren",
+      "Preisetiketten für Geschäfte gestalten",
+      "Event-Badges und Tickets mit Nummerierung erstellen",
+      "Pharma-Etiketten mit Pharmacode und Data Matrix generieren"
+    ],
+    "proTips": [
+      "Verwenden Sie SVG-Format für Barcodes, die ohne Qualitätsverlust skaliert werden müssen",
+      "Aktivieren Sie Ruhezonen (Ränder) - die meisten Scanner benötigen mindestens 2,5mm",
+      "Testen Sie Ihren Barcode mit dem integrierten Scanner vor dem Drucken",
+      "Verwenden Sie Code 128 für alphanumerische Daten - platzsparendster 1D-Barcode",
+      "Für Einzelhandelsprodukte in Europa verwenden Sie EAN-13, in USA/Kanada UPC-A",
+      "Generieren Sie Data Matrix für kleine Artikel - lesbar auch bei 2-3mm",
+      "Nutzen Sie Batch-Modus mit CSV-Import für hunderte Barcodes in Sekunden",
+      "Drucken Sie mit 300+ DPI Auflösung für professionelle Qualität"
+    ],
+    "troubleshooting": [
+      "Scanner liest nicht: Größe erhöhen, Ruhezonen prüfen, Kontrast sicherstellen, Druckqualität 300+ DPI",
+      "Ungültige Daten Fehler: Jedes Format hat spezifische Einschränkungen - siehe Info-Panel",
+      "Prüfziffer stimmt nicht: Verwenden Sie automatische Berechnung",
+      "Barcode zu groß: Wechseln Sie zu kompakterem Format (UPC-E statt UPC-A)",
+      "Farben funktionieren nicht: Hohen Kontrast sicherstellen - dunkle Balken auf hellem Hintergrund",
+      "Batch-Generierung schlägt fehl: CSV-Format prüfen - ein Wert pro Zeile, keine Kopfzeilen, UTF-8 Kodierung"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Daten einfügen"
+      },
+      {
+        "keys": "Strg+Enter",
+        "description": "Barcode generieren"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Als Bild kopieren"
+      },
+      {
+        "keys": "Strg+S",
+        "description": "Barcode herunterladen"
+      },
+      {
+        "keys": "Strg+P",
+        "description": "Druckvorschau"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Barcode-Generator - Erstellen Sie EAN, UPC, QR Code Kostenlos | ToolsLab",
+    "description": "Kostenloser Online-Barcode-Generator mit Unterstützung für über 20 Formate: EAN-13, UPC-A, Code 128, ISBN, QR Code, Data Matrix. Batch-Generierung, individuelles Design, sofortiger Download als PNG/SVG/PDF."
+  },
+  "tagline": "Erstellen Sie professionelle Barcodes für Einzelhandel, Inventar und Versand mit erweiterten Anpassungen",
+  "pageDescription": "Professioneller Barcode-Generator mit Unterstützung für alle kommerziellen Formate: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) und 2D (QR Code, Data Matrix, PDF417, Aztec). Beinhaltet Batch-Generierung aus CSV, Etiketten-Designer, Scanner-Verifizierung, mehrere Exportformate (PNG bis 600 DPI, SVG, PDF, EPS), Farbanpassung und Decoder. Perfekt für Einzelhandels-Produktetiketten, Inventarverwaltung, Versandlogistik und pharmazeutisches Tracking. 100% Browser-basiert ohne Daten-Upload."
+}

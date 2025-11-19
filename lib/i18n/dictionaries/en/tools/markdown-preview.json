@@ -1,84 +1,88 @@
 {
-  "title": "Markdown Preview",
-  "description": "Live preview markdown with syntax highlighting",
-  "placeholder": "",
+  "title": "Markdown Preview & Editor",
+  "description": "Edit and preview Markdown with live rendering, export to HTML/PDF, and comprehensive statistics",
+  "placeholder": "# Start writing your markdown here...\n\n## Features\n- GitHub Flavored Markdown\n- Live preview\n- Export to HTML/PDF\n- Auto-save\n\nTry typing some **bold** or *italic* text!",
   "meta": {
-    "title": "Markdown Preview - Free Online Tool | ToolsLab",
-    "description": "Preview markdown in real-time online. Markdown editor with live preview. Free markdown tool."
+    "title": "Markdown Preview & Editor - Free Online Tool | ToolsLab",
+    "description": "Free online Markdown editor and preview tool with live rendering, GitHub Flavored Markdown support, export to HTML/PDF, statistics, and auto-save. Perfect for developers and writers."
   },
-  "tagline": "Preview markdown in real-time with GitHub-flavored rendering",
-  "pageDescription": "Professional markdown editor with live preview and GitHub-flavored markdown support. Features syntax highlighting, table support, task lists, and emoji rendering. Perfect for developers writing documentation, README files, and technical content. Export to HTML with customizable themes.",
+  "tagline": "Edit, preview and export Markdown with live rendering and comprehensive statistics",
+  "pageDescription": "Professional Markdown editor with split-view preview, GitHub Flavored Markdown support, export to multiple formats (HTML, PDF, MD), statistics dashboard, templates library, and auto-save. All processing happens in your browser - secure and fast.",
   "instructions": {
-    "title": "How to use Markdown Preview",
+    "title": "How to use the Markdown Preview & Editor",
     "steps": [
       {
-        "title": "Paste your Markdown text",
-        "description": "Copy and paste your Markdown text into the input area. The tool accepts any format and will process it immediately."
+        "title": "Write or import Markdown",
+        "description": "Start typing in the editor pane or import an existing .md file using the Import button. The tool auto-saves your work to localStorage."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Preview in real-time",
+        "description": "See your formatted content instantly in the preview pane. Switch between split view, editor-only, or preview-only modes using the toolbar buttons."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will process your input and display the result with proper formatting and validation."
+        "title": "Use templates",
+        "description": "Quickly start with ready-made templates for README, blog posts, documentation, meeting notes, task lists, and changelogs."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "View statistics",
+        "description": "Click the stats button to see word count, character count, reading time, headings count, links, images, and more."
+      },
+      {
+        "title": "Export your work",
+        "description": "Download your content as Markdown (.md), styled HTML, or PDF. HTML export includes theme styling for immediate use."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "GitHub Flavored Markdown (GFM) support with tables, task lists, and strikethrough",
+      "Live split-view preview with synchronized editing",
+      "Export to Markdown, HTML (with theme), and PDF formats",
+      "Comprehensive statistics: words, characters, lines, reading time, headings, links, images",
+      "Template library: README, blog post, documentation, meeting notes, task list, changelog",
+      "Light and dark theme support (GitHub-style)",
+      "Auto-save to localStorage - never lose your work",
+      "Import .md and .txt files directly"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Writing README files for GitHub repositories",
+      "Creating blog posts and articles in Markdown",
+      "Drafting technical documentation with code blocks and tables",
+      "Taking meeting notes with formatted sections",
+      "Managing task lists with checkboxes",
+      "Writing changelogs for software releases",
+      "Previewing Markdown before committing to Git",
+      "Converting Markdown to PDF for sharing"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Use Ctrl+B for bold, Ctrl+I for italic, and Ctrl+K for links (in most browsers)",
+      "The editor auto-saves every second - your work is safe even if you close the tab",
+      "Click the stats icon to see detailed analytics including reading time estimation",
+      "Switch to dark theme for comfortable night-time writing",
+      "Export to HTML with theme included for immediate use in websites",
+      "Use templates as starting points and customize them to your needs"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Preview not updating? Make sure you're typing in the editor pane - the preview updates automatically",
+      "Lost your work? Check if auto-save is working - it saves to localStorage every second",
+      "PDF export looks wrong? Make sure the preview is fully rendered before exporting",
+      "HTML export missing styles? Ensure 'Include CSS' option is enabled",
+      "Import not working? Only .md, .markdown, and .txt files are supported"
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Ctrl+V",
-        "description": "Paste input"
+        "keys": "Ctrl+B / Cmd+B",
+        "description": "Bold text"
       },
       {
-        "keys": "Ctrl+Enter",
-        "description": "Process/Format"
+        "keys": "Ctrl+I / Cmd+I",
+        "description": "Italic text"
+      },
+      {
+        "keys": "Ctrl+K / Cmd+K",
+        "description": "Insert link"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copy result"
-      },
-      {
-        "keys": "Ctrl+S",
-        "description": "Download file"
+        "description": "Copy HTML"
       }
     ]
   }

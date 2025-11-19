@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation';
 import CategoriesHubContentSimple from '@/components/layout/CategoriesHubContentSimple';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
-import { getLocalizedPath } from '@/lib/i18n/helpers';
+import {
+  getLocalizedPath,
+  generateHreflangAlternates,
+} from '@/lib/i18n/helpers';
 
 interface LocaleCategoriesPageProps {
   params: {
@@ -53,10 +56,7 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `https://toolslab.dev${getLocalizedPath('/categories', locale as Locale)}`,
-      languages: {
-        en: 'https://toolslab.dev/categories',
-        it: 'https://toolslab.dev/it/categories',
-      },
+      languages: generateHreflangAlternates('/categories'),
     },
   };
 }

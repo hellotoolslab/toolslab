@@ -66,6 +66,24 @@ export class UmamiSDKAdapter {
       return;
     }
 
+    // 🚨 CRITICAL: Block localhost/127.0.0.1 - NEVER track local development
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname;
+      if (
+        hostname === 'localhost' ||
+        hostname === '127.0.0.1' ||
+        hostname.startsWith('192.168.') ||
+        hostname.startsWith('10.') ||
+        hostname.endsWith('.local')
+      ) {
+        this.log(
+          '🚫 Localhost detected, skipping analytics event',
+          event.event
+        );
+        return;
+      }
+    }
+
     // Check if bot (no tracking for bots)
     if (this.isBot) {
       this.log('🤖 Bot detected, skipping event', event.event);

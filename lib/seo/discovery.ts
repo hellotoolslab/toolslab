@@ -97,10 +97,11 @@ export class ToolDiscovery {
         category: tool.categories[0],
         source: 'static-data' as const,
         exists: true, // Assume exists if in static data
-        featured: tool.isPopular,
-        popular: tool.isPopular,
+        featured: tool.label === 'popular',
+        popular: tool.label === 'popular',
         new: tool.label === 'new',
-        priority: tool.isPopular ? 0.9 : tool.label === 'new' ? 0.85 : 0.7,
+        priority:
+          tool.label === 'popular' ? 0.9 : tool.label === 'new' ? 0.85 : 0.7,
       }));
     } catch (error) {
       console.warn('Could not read static tools data:', error);

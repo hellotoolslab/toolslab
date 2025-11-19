@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { categories } from '@/lib/tools';
 import CategoryPageContent from '@/components/layout/CategoryPageContent';
 import { getCategorySEO } from '@/lib/category-seo';
+import { generateHreflangAlternates } from '@/lib/i18n/helpers';
 
 interface Props {
   params: { category: string };
@@ -40,13 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       canonical: `https://toolslab.dev/category/${params.category}`,
-      languages: {
-        'x-default': `https://toolslab.dev/category/${params.category}`,
-        en: `https://toolslab.dev/category/${params.category}`,
-        it: `https://toolslab.dev/it/category/${params.category}`,
-        es: `https://toolslab.dev/es/category/${params.category}`,
-        fr: `https://toolslab.dev/fr/category/${params.category}`,
-      },
+      languages: generateHreflangAlternates(`/category/${params.category}`),
     },
   };
 }

@@ -13,7 +13,6 @@ export interface ToolFlags {
   /** Requires Pro subscription to use */
   isPro?: boolean;
   /** Show "POPULAR" badge based on usage */
-  isPopular?: boolean;
   /** Show "TRENDING" badge based on recent analytics spike */
   isTrending?: boolean;
   /** Tool is temporarily under maintenance */

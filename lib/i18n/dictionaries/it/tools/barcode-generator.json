@@ -1,0 +1,94 @@
+{
+  "title": "Generatore di Codici a Barre",
+  "description": "Genera tutti i tipi di codici a barre - EAN, UPC, Code 128, Data Matrix e altro",
+  "placeholder": "Inserisci i dati da codificare...",
+  "instructions": {
+    "title": "Come usare il Generatore di Codici a Barre",
+    "steps": [
+      {
+        "title": "Seleziona il formato del codice",
+        "description": "Scegli il tipo di codice a barre di cui hai bisogno dalla nostra lista completa di formati 1D (EAN-13, UPC-A, Code 128, ISBN) e 2D (QR Code, Data Matrix, PDF417)."
+      },
+      {
+        "title": "Inserisci i tuoi dati",
+        "description": "Digita o incolla i dati che vuoi codificare. Lo strumento convalida automaticamente il tuo input secondo le specifiche del formato selezionato e mostra gli errori di validazione in tempo reale."
+      },
+      {
+        "title": "Personalizza l'aspetto",
+        "description": "Regola dimensioni, colori, margini, rotazione e visualizzazione del testo del codice a barre. Usa il verificatore di contrasto per assicurarti che il tuo codice sia scansionabile in qualsiasi condizione di luce."
+      },
+      {
+        "title": "Genera e scarica",
+        "description": "Visualizza il tuo codice a barre in anteprima in tempo reale e scaricalo in più formati (PNG, SVG, PDF, EPS, JPG). Usa la modalità batch per generare più codici a barre da file CSV."
+      }
+    ],
+    "features": [
+      "Oltre 20 formati di codici a barre tra cui EAN-13, UPC-A, Code 128, Code 39, ISBN, QR Code, Data Matrix",
+      "Validazione in tempo reale con calcolo automatico del checksum",
+      "Formati di esportazione multipli: PNG (72-600 DPI), SVG, PDF, EPS, JPG",
+      "Dimensioni, colori, margini, rotazione e testo personalizzabili",
+      "Generazione batch da file CSV/TXT con esportazione ZIP",
+      "Output pronto per la stampa con segni di taglio e abbondanza",
+      "Test scanner con webcam per verificare la leggibilità",
+      "Designer di etichette con template per retail, spedizioni e inventario",
+      "Decoder di codici a barre - carica immagine per decodificare codici esistenti",
+      "Elaborazione 100% lato client - i tuoi dati non lasciano mai il browser"
+    ],
+    "useCases": [
+      "Crea etichette prodotto per retail ed e-commerce con EAN-13/UPC-A",
+      "Genera codici a barre ISBN per libri e pubblicazioni",
+      "Progetta etichette di spedizione con Code 128 per logistica e magazzini",
+      "Crea sistemi di tracciamento inventario con generazione batch di codici",
+      "Genera QR code per autenticazione prodotto e tracciabilità",
+      "Progetta cartellini prezzo ed etichette scaffale per negozi",
+      "Crea badge eventi e biglietti con numerazione sequenziale",
+      "Genera etichette farmaceutiche con Pharmacode e Data Matrix"
+    ],
+    "proTips": [
+      "Usa il formato SVG per codici che devono scalare a qualsiasi dimensione senza perdita di qualità",
+      "Abilita le zone silenziose (margini) per migliorare la leggibilità dello scanner - la maggior parte richiede almeno 2,5mm",
+      "Testa il tuo codice con lo scanner integrato prima di stampare per evitare costose ristampe",
+      "Usa Code 128 per dati alfanumerici - è il codice 1D più efficiente in termini di spazio",
+      "Per prodotti retail in Europa usa EAN-13, in USA/Canada usa UPC-A",
+      "Genera Data Matrix per articoli piccoli - è leggibile anche a 2-3mm",
+      "Usa la modalità batch con importazione CSV per generare centinaia di codici in secondi",
+      "Stampa a risoluzione 300+ DPI per qualità professionale e scansione affidabile"
+    ],
+    "troubleshooting": [
+      "Lo scanner non legge: Aumenta le dimensioni, controlla le zone silenziose (margini), verifica il rapporto di contrasto, assicurati che la qualità di stampa sia 300+ DPI",
+      "Errore dati non validi: Ogni formato ha limitazioni specifiche sui caratteri - controlla il pannello info formato per i caratteri consentiti",
+      "Checksum non corrispondente: Usa la funzione di calcolo automatico checksum - i checksum manuali spesso contengono errori",
+      "Codice troppo grande per etichetta: Passa a un formato più compatto (es. UPC-E invece di UPC-A, o Data Matrix per 2D)",
+      "I colori non funzionano: Assicurati di avere alto contrasto - barre scure su sfondo chiaro funzionano meglio. Usa lo strumento di verifica contrasto",
+      "La generazione batch fallisce: Controlla il formato CSV - un valore per riga, nessuna intestazione, codifica UTF-8"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla dati da codificare"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Genera codice a barre"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia codice come immagine"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Scarica codice a barre"
+      },
+      {
+        "keys": "Ctrl+P",
+        "description": "Apri anteprima di stampa"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Generatore Codici a Barre - Crea EAN, UPC, QR Code Gratis | ToolsLab",
+    "description": "Generatore gratuito di codici a barre online con supporto per oltre 20 formati: EAN-13, UPC-A, Code 128, ISBN, QR Code, Data Matrix. Generazione batch, design personalizzato, download immediato come PNG/SVG/PDF."
+  },
+  "tagline": "Genera codici a barre professionali per retail, inventario e spedizioni con personalizzazione avanzata",
+  "pageDescription": "Generatore professionale di codici a barre con supporto per tutti i formati commerciali: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) e 2D (QR Code, Data Matrix, PDF417, Aztec). Include generazione batch da CSV, designer di etichette con template, verifica scanner, formati di esportazione multipli (PNG fino a 600 DPI, SVG, PDF, EPS), personalizzazione colori con verifica contrasto e decoder di codici. Perfetto per etichette prodotto retail, gestione inventario, logistica spedizioni e tracciamento farmaceutico. 100% basato su browser senza caricamento dati."
+}

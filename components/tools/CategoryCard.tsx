@@ -58,7 +58,7 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
                   {category.tools.length} tool
                   {category.tools.length === 1 ? '' : 's'}
                 </span>
-                {category.tools.some((tool) => tool.isPopular) && (
+                {category.tools.some((tool) => tool.label === 'popular') && (
                   <div className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400">
                     <Zap className="h-3 w-3" />
                     <span>Popular</span>
@@ -95,7 +95,7 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
                   <div className="truncate text-sm font-medium text-gray-900 dark:text-gray-100">
                     {tool.name}
                   </div>
-                  {tool.isPopular && (
+                  {tool.label === 'popular' && (
                     <div className="text-xs text-amber-600 dark:text-amber-400">
                       Popular
                     </div>

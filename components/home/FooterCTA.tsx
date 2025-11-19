@@ -8,7 +8,9 @@ import { useLocale } from '@/hooks/useLocale';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import { useState, useEffect } from 'react';
 
-const popularTools = tools.filter((tool) => tool.isPopular).slice(0, 8);
+const popularTools = tools
+  .filter((tool) => tool.label === 'popular')
+  .slice(0, 8);
 
 export function FooterCTA() {
   const { createHref } = useLocale();
