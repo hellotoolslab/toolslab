@@ -646,7 +646,7 @@ describe('QR Generator Utilities', () => {
 
       const curl = generateCurlCommand(content, options);
 
-      expect(curl).toStartWith('curl -o qrcode.png');
+      expect(curl.startsWith('curl -o qrcode.png')).toBe(true);
       expect(curl).toContain('qrserver.com');
       expect(curl).toContain('data=Test');
     });
