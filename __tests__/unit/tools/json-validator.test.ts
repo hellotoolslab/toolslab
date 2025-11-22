@@ -155,7 +155,7 @@ describe('JSON Validator', () => {
 
       test('warns about excessive nesting depth', () => {
         // Create a deeply nested object (12 levels deep)
-        let deepObj = { value: 'end' };
+        let deepObj: any = { value: 'end' };
         for (let i = 0; i < 11; i++) {
           deepObj = { level: i, nested: deepObj };
         }
@@ -292,7 +292,7 @@ describe('JSON Validator', () => {
         // Note: JSON.stringify would throw on circular references,
         // but we test the detection logic with a mock scenario
         const input = '{"a": {"b": "test"}}';
-        const result = validateJSON(input, { enableSecurity: true });
+        const result = validateJSON(input, { level: 'structural', enableSecurity: true });
 
         // This test verifies the function exists and doesn't crash
         expect(result).toBeDefined();
