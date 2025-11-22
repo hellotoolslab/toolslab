@@ -267,56 +267,35 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
     }
 
     try {
-      const result = await processSync(input, (inputText) => {
-        const newHashes: Record<string, string> = {};
-        const textToHash = salt ? `${salt}${inputText}` : inputText;
+      const result: Record<string, string> = {};
+      const textToHash = salt ? `${salt}${input}` : input;
+      const encoder = new TextEncoder();
+      const data = encoder.encode(textToHash);
 
-        // Generate hash for selected algorithm
-        const encoder = new TextEncoder();
-        const data = encoder.encode(textToHash);
-
-        if (algorithm === 'MD5') {
-          newHashes[algorithm] = md5(textToHash);
-        } else if (algorithm === 'CRC32') {
-          newHashes[algorithm] = crc32(textToHash);
-        } else {
-          // For crypto.subtle, we need to handle async in a different way
-          // This is a sync wrapper - in real implementation, you might want to use processAsync
-          throw new Error('Async crypto operations need different handling');
-        }
-
-        // Generate other common hashes synchronously
-        for (const algo of algorithms) {
-          if (algo !== algorithm) {
-            if (algo === 'MD5') {
-              newHashes[algo] = md5(textToHash);
-            } else if (algo === 'CRC32') {
-              newHashes[algo] = crc32(textToHash);
-            }
-            // Skip crypto.subtle algorithms for sync processing
-          }
-        }
-
-        return newHashes;
-      });
-
-      // For crypto.subtle algorithms, we still need async processing
-      if (['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512'].includes(algorithm)) {
-        const textToHash = salt ? `${salt}${input}` : input;
-        const encoder = new TextEncoder();
-        const data = encoder.encode(textToHash);
-
+      // Generate primary hash based on selected algorithm
+      if (algorithm === 'MD5') {
+        result[algorithm] = md5(textToHash);
+      } else if (algorithm === 'CRC32') {
+        result[algorithm] = crc32(textToHash);
+      } else if (
+        ['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512'].includes(algorithm)
+      ) {
         const hashBuffer = await crypto.subtle.digest(algorithm, data);
         const hashArray = Array.from(new Uint8Array(hashBuffer));
         const hashHex = hashArray
           .map((b) => b.toString(16).padStart(2, '0'))
           .join('');
         result[algorithm] = hashHex;
+      }
 
-        // Generate other SHA algorithms
-        for (const algo of algorithms) {
-          if (
-            algo !== algorithm &&
+      // Generate other common hashes
+      for (const algo of algorithms) {
+        if (algo !== algorithm) {
+          if (algo === 'MD5') {
+            result[algo] = md5(textToHash);
+          } else if (algo === 'CRC32') {
+            result[algo] = crc32(textToHash);
+          } else if (
             ['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512'].includes(algo)
           ) {
             const algoBuffer = await crypto.subtle.digest(algo, data);
@@ -347,9 +326,9 @@ export default function HashGenerator({ categoryColor }: HashGeneratorProps) {
         err instanceof Error ? err : new Error(String(err)),
         input.length
       );
-      // Error is handled by useToolProcessor
+      setHashes({});
     }
-  }, [input, salt, algorithms, algorithm, processSync, trackUse, trackError]);
+  }, [input, salt, algorithms, algorithm, trackCustom, trackError]);
 
   useEffect(() => {
     if (input) {
