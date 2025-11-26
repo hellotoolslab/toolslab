@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Github } from 'lucide-react';
 import { trackConversion, trackSocial, trackEngagement } from '@/lib/analytics';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
@@ -27,8 +28,9 @@ export function Footer() {
     terms: 'Terms of Service',
     support: 'Support us',
     buyMeCoffee: 'Buy us a coffee',
-    copyright: '© 2025 ToolsLab. Crafted with',
+    copyright: '© 2025 ToolsLab. All rights reserved.',
     craftedIn: 'in our digital laboratory',
+    developedBy: 'Developed by',
   };
 
   const categories = dictionary?.categories || {
@@ -270,17 +272,8 @@ export function Footer() {
         <hr className="my-8 border-t border-slate-800/50" />
 
         {/* Bottom Section - Redesigned */}
-        <div className="footer-bottom space-y-6">
-          {/* Row 1: Copyright and Crafted with love */}
-          <div className="flex flex-col items-center justify-center gap-2 text-center">
-            <p className="m-0 text-sm text-slate-500">{footer.copyright}</p>
-            <p className="m-0 flex items-center gap-2 text-sm text-slate-500">
-              <span className="inline-block text-purple-400">💜</span>
-              <span>{footer.craftedIn}</span>
-            </p>
-          </div>
-
-          {/* Row 2: Links - Centered horizontal layout */}
+        <div className="footer-bottom space-y-8">
+          {/* Row 1: Links */}
           <div className="footer-links flex flex-wrap items-center justify-center gap-6 text-sm">
             <Link
               href={createHref('/privacy')}
@@ -310,6 +303,35 @@ export function Footer() {
               </span>
               <span>{footer.support}</span>
             </a>
+          </div>
+
+          {/* Row 2: Zero State Studio branding */}
+          <div className="flex flex-col items-center justify-center gap-3 text-center">
+            <span className="text-xs uppercase tracking-wider text-slate-500">
+              {footer.developedBy}
+            </span>
+            <a
+              href="https://zerostate.studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 rounded-xl border border-slate-700/50 bg-slate-800/30 px-5 py-3 transition-all duration-300 hover:border-teal-500/30 hover:bg-slate-800/50 hover:shadow-lg hover:shadow-teal-500/10"
+            >
+              <Image
+                src="/images/ZSS_logo.png"
+                alt="Zero State Studio"
+                width={36}
+                height={36}
+                className="transition-transform duration-300 group-hover:scale-110"
+              />
+              <span className="text-base font-semibold text-slate-200 transition-colors duration-300 group-hover:text-white">
+                Zero State Studio
+              </span>
+            </a>
+          </div>
+
+          {/* Row 3: Copyright */}
+          <div className="flex flex-col items-center justify-center gap-1 text-center">
+            <p className="m-0 text-xs text-slate-600">{footer.copyright}</p>
           </div>
         </div>
       </div>
