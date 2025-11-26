@@ -325,6 +325,7 @@ export interface Dictionary {
     copyright: string;
     craftedIn: string;
     madeWith: string;
+    developedBy: string;
   };
   seo: {
     suffix: string;
