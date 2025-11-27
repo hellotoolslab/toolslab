@@ -1,0 +1,101 @@
+{
+  "title": "WhatsApp Link Generator",
+  "description": "Create WhatsApp click-to-chat links with pre-filled messages and QR codes",
+  "placeholder": "333 1234567",
+  "meta": {
+    "title": "WhatsApp Link Generator - Free Click-to-Chat URL Creator | ToolsLab",
+    "description": "Free WhatsApp link generator to create wa.me click-to-chat URLs. Generate WhatsApp links with pre-filled messages, QR codes, and country code support. Perfect for businesses, marketing, and customer support."
+  },
+  "tagline": "Generate WhatsApp click-to-chat links with pre-filled messages and instant QR codes",
+  "pageDescription": "Professional WhatsApp link generator for businesses and marketers. Create instant click-to-chat URLs (wa.me) with pre-filled messages, automatic country code detection, and downloadable QR codes. Use message templates for common business scenarios (inquiries, support, appointments). Preview your message in a mobile-style interface before sharing. Perfect for websites, business cards, social media profiles, and marketing materials. All processing happens in your browser for complete privacy - no phone numbers are stored or logged.",
+  "instructions": {
+    "title": "How to use WhatsApp Link Generator",
+    "steps": [
+      {
+        "title": "Select your country code",
+        "description": "Click the country selector dropdown and choose the country for your WhatsApp number. You can search by country name, code, or dial prefix. The tool supports 50+ countries including US (+1), UK (+44), India (+91), Brazil (+55), and many more. The country code will be automatically added to your phone number."
+      },
+      {
+        "title": "Enter the phone number",
+        "description": "Type the phone number without the country code or leading zeros. For example, if the full number is +39 333 1234567, just enter '333 1234567'. The tool accepts spaces and dashes for readability but removes them automatically when generating the link."
+      },
+      {
+        "title": "Add a pre-filled message (optional)",
+        "description": "Write a message that will appear pre-filled when someone clicks your link. This is perfect for standard inquiries, support requests, or promotional messages. Use the Templates button to quickly insert common business messages like product inquiries, appointment requests, or support tickets."
+      },
+      {
+        "title": "Generate your WhatsApp link",
+        "description": "Click 'Generate WhatsApp Link' to create your click-to-chat URL. The tool will validate your phone number and create a properly formatted wa.me link. If you included a message, it will be URL-encoded and appended to the link automatically."
+      },
+      {
+        "title": "Copy, download, or test your link",
+        "description": "Use the generated link by copying it to clipboard, downloading as a text file, or clicking 'Open WhatsApp' to test it directly. Download the QR code for print materials, business cards, or store displays. The mobile preview shows exactly how your message will appear to recipients."
+      }
+    ],
+    "features": [
+      "50+ country codes with search and flag icons",
+      "Pre-filled message support up to 4096 characters",
+      "Instant QR code generation with WhatsApp green styling",
+      "Message templates for business, personal, and marketing use cases",
+      "Mobile-style chat preview to visualize your message",
+      "Phone number validation with format guidance",
+      "One-click copy to clipboard",
+      "Download link as text file",
+      "Download QR code as PNG image",
+      "Direct 'Open WhatsApp' testing button",
+      "Clean URL generation following wa.me standards",
+      "Completely browser-based - no server processing",
+      "No phone numbers stored or logged"
+    ],
+    "useCases": [
+      "Add click-to-chat buttons on your website for instant customer support",
+      "Create WhatsApp links for business cards and printed materials",
+      "Generate QR codes for store windows, menus, and physical locations",
+      "Include chat links in email signatures for easy contact",
+      "Add WhatsApp buttons to social media profiles (Instagram, Facebook, LinkedIn)",
+      "Create pre-filled inquiry forms for product information",
+      "Set up appointment booking links with pre-written messages",
+      "Generate support ticket links with structured message templates",
+      "Create marketing campaign links with promotional messages",
+      "Share contact links in newsletters and marketing emails",
+      "Add chat links to YouTube video descriptions",
+      "Create quick-contact links for event organizers"
+    ],
+    "proTips": [
+      "Keep pre-filled messages short and professional - recipients can always add more",
+      "Use message templates as starting points and customize for your brand voice",
+      "Download QR codes at high resolution for print materials",
+      "Test your link before sharing by clicking 'Open WhatsApp'",
+      "For business use, consider WhatsApp Business for additional features",
+      "Include a call-to-action in your message like 'I would like to...'",
+      "Save frequently used phone numbers and messages for quick access",
+      "Use the mobile preview to ensure your message looks professional",
+      "Combine with UTM Builder to track WhatsApp traffic in analytics",
+      "Place QR codes at eye level in physical locations for best scanning"
+    ],
+    "troubleshooting": [
+      "Link doesn't open WhatsApp: Ensure WhatsApp is installed on the device. On desktop, WhatsApp Web must be set up.",
+      "Invalid phone number error: Remove any leading zeros and enter only digits. Country code is added automatically.",
+      "Message not appearing: Check that special characters are properly encoded. Avoid using certain symbols.",
+      "QR code not scanning: Ensure good lighting and hold phone 6-8 inches from the code. Try downloading and printing larger.",
+      "Wrong country selected: Search for your country by name or dial code in the dropdown selector.",
+      "Link works on mobile but not desktop: WhatsApp Web must be logged in on the desktop browser.",
+      "Message too long: WhatsApp pre-filled messages have a 4096 character limit. Shorten your message.",
+      "Chat opens with wrong number: Double-check the phone number format and country code selection."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Generate WhatsApp link"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy generated link"
+      },
+      {
+        "keys": "Escape",
+        "description": "Close country selector"
+      }
+    ]
+  }
+}

@@ -1034,6 +1034,35 @@ export const tools: Tool[] = [
 
   // Social Media Tools
   {
+    id: 'whatsapp-link-generator',
+    name: 'WhatsApp Link Generator',
+    description:
+      'Create WhatsApp click-to-chat links with pre-filled messages and QR codes',
+    icon: '💬',
+    route: '/tools/whatsapp-link-generator',
+    categories: ['social', 'generators'],
+    keywords: [
+      'whatsapp',
+      'link generator',
+      'wa.me',
+      'click to chat',
+      'whatsapp link',
+      'whatsapp api',
+      'chat link',
+      'whatsapp qr code',
+      'business whatsapp',
+      'whatsapp message',
+      'wa link',
+      'whatsapp shortcut',
+      'contact link',
+      'phone link',
+      'messaging',
+      'social media',
+    ],
+    searchVolume: 75000,
+    label: '',
+  },
+  {
     id: 'utm-builder',
     name: 'UTM Link Builder',
     description:
