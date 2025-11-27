@@ -63,6 +63,13 @@ export interface ToolUseEvent extends BaseEventMetadata {
   outputSize?: number; // bytes
   processingTime?: number; // milliseconds
   success: boolean;
+  // Attribution (auto-enriched by EventNormalizer)
+  referrer?: string; // e.g., 'chatgpt.com', 'google.com'
+  utmSource?: string; // e.g., 'chatgpt', 'google', 'newsletter'
+  utmMedium?: string; // e.g., 'referral', 'organic', 'social'
+  utmCampaign?: string; // e.g., 'ai-tools-2024'
+  utmContent?: string;
+  utmTerm?: string;
 }
 
 export interface ToolErrorEvent extends BaseEventMetadata {
@@ -167,6 +174,13 @@ export interface ConversionEvent extends BaseEventMetadata {
 export interface EngagementEvent extends BaseEventMetadata {
   event: 'engagement';
   action: string; // e.g., 'easter-egg-discovered', 'tool-page-viewed'
+  // Attribution (auto-enriched by EventNormalizer)
+  referrer?: string; // e.g., 'chatgpt.com', 'google.com'
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
+  utmTerm?: string;
 }
 
 export type AnalyticsEvent =

@@ -92,6 +92,9 @@ const toolComponents = {
   ),
   'pdf-to-word': lazy(() => import('./implementations/PdfToWord')),
   'utm-builder': lazy(() => import('./implementations/UtmBuilder')),
+  'whatsapp-link-generator': lazy(
+    () => import('./implementations/WhatsAppLinkGenerator')
+  ),
   // Add more as needed
 } as const;
 
