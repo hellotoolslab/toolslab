@@ -161,15 +161,10 @@ export class UmamiSDKAdapter {
 
     const { event: eventName, timestamp, sessionId, ...metadata } = event;
 
-    // Filter out internal/reserved properties that Umami doesn't need
-    // Keep only custom event data
-    const { locale, userLevel, viewport, isMobile, ...customData } =
-      metadata as any;
-
-    // Prepare event data - ONLY custom properties, no internal metadata
-    // Umami SDK handles its own session tracking, locale detection, etc.
+    // Prepare event data - include all metadata except internal sessionId
+    // We want locale, userLevel, viewport, isMobile in custom events for analysis
     const eventData: Record<string, any> = {
-      ...customData,
+      ...metadata,
     };
 
     // Add timestamp if provided (optional - Umami can auto-assign)

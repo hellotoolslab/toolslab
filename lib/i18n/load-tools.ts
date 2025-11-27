@@ -84,6 +84,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'pdf-to-word',
     'utm-builder',
     'whatsapp-link-generator',
+    'youtube-timestamp-generator',
   ];
 
   const tools: Record<string, any> = {};

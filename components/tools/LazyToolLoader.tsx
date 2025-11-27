@@ -95,6 +95,9 @@ const toolComponents = {
   'whatsapp-link-generator': lazy(
     () => import('./implementations/WhatsAppLinkGenerator')
   ),
+  'youtube-timestamp-generator': lazy(
+    () => import('./implementations/YouTubeTimestampGenerator')
+  ),
   // Add more as needed
 } as const;
 

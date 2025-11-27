@@ -1,0 +1,129 @@
+{
+  "title": "YouTube Timestamp Generator",
+  "description": "Create YouTube timestamps and chapters with automatic link generation and time conversion",
+  "placeholder": "00:00",
+  "meta": {
+    "title": "YouTube Timestamp Generator - Create Chapters & Timestamps Free | ToolsLab",
+    "description": "Free YouTube timestamp generator to create video chapters and timestamps. Generate YouTube-ready chapter descriptions with automatic time formatting, clickable links, and easy copy-paste. Perfect for content creators and video editors."
+  },
+  "tagline": "Generate YouTube chapters and timestamps with automatic link creation and time conversion",
+  "pageDescription": "Professional YouTube timestamp generator for content creators and video editors. Create formatted timestamps for video descriptions, generate YouTube Chapters for improved navigation, and convert between time formats instantly. Add timestamps with labels, import existing chapters, and export in multiple formats. Generate clickable timestamp links when you provide a video URL. Built-in time converter handles HH:MM:SS, MM:SS, and seconds formats. All processing happens in your browser for complete privacy - no video data is stored or uploaded.",
+  "videoUrlPlaceholder": "https://www.youtube.com/watch?v=...",
+  "addTimestamp": "Add Timestamp",
+  "time": "Time",
+  "label": "Label",
+  "labelPlaceholder": "Chapter title...",
+  "timestamps": "Timestamps",
+  "noTimestamps": "No timestamps yet. Add your first one!",
+  "generateChapters": "Generate Chapters",
+  "importChapters": "Import Chapters",
+  "copyChapters": "Copy Chapters",
+  "copyLinks": "Copy with Links",
+  "clear": "Clear All",
+  "delete": "Delete",
+  "edit": "Edit",
+  "save": "Save",
+  "cancel": "Cancel",
+  "chaptersFormat": "YouTube Chapters Format",
+  "linksFormat": "Timestamps with Links",
+  "videoUrl": "YouTube Video URL",
+  "optional": "(optional)",
+  "invalidTime": "Invalid time format. Use MM:SS or HH:MM:SS",
+  "invalidUrl": "Invalid YouTube URL",
+  "chaptersOutput": "Chapters Output",
+  "linksOutput": "Links Output",
+  "copied": "Copied!",
+  "importPlaceholder": "Paste chapters here (one per line)...\nExample:\n00:00 Introduction\n01:30 First Topic\n05:45 Second Topic",
+  "importButton": "Import",
+  "convertTime": "Time Converter",
+  "seconds": "Seconds",
+  "formatted": "Formatted",
+  "convert": "Convert",
+  "instructions": {
+    "title": "How to use YouTube Timestamp Generator",
+    "steps": [
+      {
+        "title": "Add your first timestamp",
+        "description": "Enter a time in MM:SS or HH:MM:SS format (e.g., 01:30 or 1:30:00) and a descriptive label for the chapter. The first chapter at 00:00 is required for YouTube Chapters to work. Click 'Add Timestamp' or press Enter to add it to your list."
+      },
+      {
+        "title": "Build your chapter list",
+        "description": "Continue adding timestamps for each section of your video. YouTube requires at least 3 chapters with the first starting at 00:00. Chapters must be at least 10 seconds apart. Edit or delete timestamps anytime using the action buttons in each row."
+      },
+      {
+        "title": "Add your video URL (optional)",
+        "description": "Paste your YouTube video URL to generate clickable timestamp links. The tool supports all YouTube URL formats including youtube.com/watch, youtu.be short links, and embed URLs. Links will include the &t= parameter for direct navigation."
+      },
+      {
+        "title": "Copy and use your chapters",
+        "description": "Click 'Copy Chapters' to copy the formatted timestamps for your video description. The format is exactly what YouTube expects: timestamp followed by title on each line. If you added a video URL, use 'Copy with Links' for clickable timestamp links."
+      },
+      {
+        "title": "Import existing chapters",
+        "description": "Have chapters from another source? Click 'Import Chapters' and paste them in the standard format (timestamp space title). The tool will parse and add them to your list automatically. Great for migrating timestamps from other videos or text files."
+      }
+    ],
+    "features": [
+      "YouTube Chapters format output (ready for video descriptions)",
+      "Automatic time sorting and formatting",
+      "Support for MM:SS and HH:MM:SS formats",
+      "Clickable timestamp link generation with video URL",
+      "Import existing chapters from text",
+      "Edit timestamps inline without losing data",
+      "Built-in time converter (seconds to formatted and vice versa)",
+      "One-click copy to clipboard",
+      "Video ID extraction from any YouTube URL format",
+      "Automatic validation of YouTube Chapters requirements",
+      "Browser-based processing - no uploads needed",
+      "Export timestamps with or without clickable links"
+    ],
+    "useCases": [
+      "Create YouTube Chapters for improved video navigation and SEO",
+      "Generate timestamp links for sharing specific video moments",
+      "Build chapter lists for podcast episodes on YouTube",
+      "Create navigation for long-form content (tutorials, courses)",
+      "Generate timestamps for educational video series",
+      "Create chapter markers for live stream VODs",
+      "Build timestamp lists for music videos with multiple tracks",
+      "Generate timestamps for conference talks and presentations",
+      "Create chapter navigation for audiobook videos",
+      "Build timestamp lists for compilation videos"
+    ],
+    "proTips": [
+      "Always start with 00:00 - YouTube requires the first chapter to begin at the start",
+      "Use descriptive but concise chapter titles (under 100 characters recommended)",
+      "Add at least 3 chapters - YouTube won't display chapters with fewer entries",
+      "Keep chapters at least 10 seconds apart for YouTube to recognize them",
+      "Include key topics in chapter titles for better search visibility",
+      "Use the time converter to quickly check duration between chapters",
+      "Import chapters from your script or outline before recording",
+      "Copy chapters to a text file as backup before publishing",
+      "Use consistent naming conventions across your video series",
+      "Add the video URL to generate shareable timestamp links for social media"
+    ],
+    "troubleshooting": [
+      "Chapters not showing on YouTube: Ensure you have at least 3 chapters, the first starts at 00:00, and chapters are at least 10 seconds apart.",
+      "Invalid time error: Use MM:SS (05:30) or HH:MM:SS (1:05:30) format. Pure seconds also work (90).",
+      "Video URL not recognized: Make sure it's a valid YouTube URL. The tool supports youtube.com/watch, youtu.be, and embed formats.",
+      "Timestamps not in order: The tool automatically sorts timestamps chronologically when generating output.",
+      "Import not working: Each chapter should be on its own line with format 'MM:SS Title' or 'HH:MM:SS Title'.",
+      "Links not appearing: Add a valid YouTube video URL to enable timestamp link generation.",
+      "Chapter titles cut off: YouTube truncates long titles. Keep them under 100 characters.",
+      "Copied but not working: Make sure to paste in the video description, not the title or tags field."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Enter",
+        "description": "Add timestamp (when in input fields)"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy (after selecting text)"
+      },
+      {
+        "keys": "Escape",
+        "description": "Cancel editing"
+      }
+    ]
+  }
+}
