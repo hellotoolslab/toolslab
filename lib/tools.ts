@@ -1095,6 +1095,34 @@ export const tools: Tool[] = [
     searchVolume: 45000,
     label: '',
   },
+  {
+    id: 'youtube-timestamp-generator',
+    name: 'YouTube Timestamp Generator',
+    description:
+      'Create YouTube timestamps and chapters with automatic link generation and time conversion',
+    icon: '⏱️',
+    route: '/tools/youtube-timestamp-generator',
+    categories: ['social', 'generators'],
+    keywords: [
+      'youtube',
+      'timestamp',
+      'chapters',
+      'youtube chapters',
+      'video timestamp',
+      'timestamp generator',
+      'youtube time',
+      'video chapters',
+      'youtube link',
+      'time converter',
+      'hh:mm:ss',
+      'video navigation',
+      'youtube creator',
+      'video description',
+      'timestamp link',
+    ],
+    searchVolume: 35000,
+    label: '',
+  },
 ];
 
 // Group tools by category
