@@ -138,6 +138,24 @@ export class EventNormalizer {
       }
     }
 
+    // Add referrer if not present
+    if (!enriched.referrer) {
+      const referrer = this.getNormalizedReferrer();
+      if (referrer) {
+        enriched.referrer = referrer;
+      }
+    }
+
+    // Add UTM parameters if not present
+    if (!enriched.utmSource) {
+      const utm = this.extractUTMParameters();
+      if (utm.utmSource) enriched.utmSource = utm.utmSource;
+      if (utm.utmMedium) enriched.utmMedium = utm.utmMedium;
+      if (utm.utmCampaign) enriched.utmCampaign = utm.utmCampaign;
+      if (utm.utmContent) enriched.utmContent = utm.utmContent;
+      if (utm.utmTerm) enriched.utmTerm = utm.utmTerm;
+    }
+
     // Merge additional context
     if (additionalContext) {
       Object.assign(enriched, additionalContext);

@@ -83,6 +83,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'ai-prompt-token-counter',
     'pdf-to-word',
     'utm-builder',
+    'whatsapp-link-generator',
   ];
 
   const tools: Record<string, any> = {};

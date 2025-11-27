@@ -1,0 +1,101 @@
+{
+  "title": "Generatore Link WhatsApp",
+  "description": "Crea link WhatsApp click-to-chat con messaggi precompilati e codici QR",
+  "placeholder": "333 1234567",
+  "meta": {
+    "title": "Generatore Link WhatsApp - Crea URL Click-to-Chat Gratis | ToolsLab",
+    "description": "Generatore di link WhatsApp gratuito per creare URL wa.me click-to-chat. Genera link WhatsApp con messaggi precompilati, codici QR e supporto prefissi internazionali. Perfetto per aziende, marketing e assistenza clienti."
+  },
+  "tagline": "Genera link WhatsApp click-to-chat con messaggi precompilati e codici QR istantanei",
+  "pageDescription": "Generatore professionale di link WhatsApp per aziende e marketer. Crea URL click-to-chat istantanei (wa.me) con messaggi precompilati, rilevamento automatico del prefisso internazionale e codici QR scaricabili. Usa template di messaggi per scenari aziendali comuni (richieste info, supporto, appuntamenti). Anteprima del messaggio in stile mobile prima della condivisione. Perfetto per siti web, biglietti da visita, profili social e materiali di marketing. Tutto il processo avviene nel browser per la massima privacy - nessun numero di telefono viene salvato o registrato.",
+  "instructions": {
+    "title": "Come usare il Generatore Link WhatsApp",
+    "steps": [
+      {
+        "title": "Seleziona il prefisso internazionale",
+        "description": "Clicca sul selettore paese e scegli la nazione del numero WhatsApp. Puoi cercare per nome paese, codice o prefisso. Lo strumento supporta oltre 50 paesi tra cui Italia (+39), USA (+1), UK (+44), Germania (+49) e molti altri. Il prefisso viene aggiunto automaticamente al numero."
+      },
+      {
+        "title": "Inserisci il numero di telefono",
+        "description": "Digita il numero di telefono senza prefisso internazionale o zeri iniziali. Ad esempio, se il numero completo e +39 333 1234567, inserisci solo '333 1234567'. Lo strumento accetta spazi e trattini per leggibilita ma li rimuove automaticamente nella generazione del link."
+      },
+      {
+        "title": "Aggiungi un messaggio precompilato (opzionale)",
+        "description": "Scrivi un messaggio che apparira precompilato quando qualcuno clicca il link. Perfetto per richieste standard, supporto clienti o messaggi promozionali. Usa il pulsante Template per inserire rapidamente messaggi aziendali comuni come richieste prodotti, prenotazioni o ticket di assistenza."
+      },
+      {
+        "title": "Genera il tuo link WhatsApp",
+        "description": "Clicca 'Genera Link WhatsApp' per creare il tuo URL click-to-chat. Lo strumento validera il numero e creera un link wa.me formattato correttamente. Se hai incluso un messaggio, verra codificato e aggiunto automaticamente al link."
+      },
+      {
+        "title": "Copia, scarica o testa il link",
+        "description": "Usa il link generato copiandolo negli appunti, scaricandolo come file di testo, o cliccando 'Apri WhatsApp' per testarlo direttamente. Scarica il codice QR per materiali stampati, biglietti da visita o vetrine. L'anteprima mobile mostra esattamente come apparira il messaggio ai destinatari."
+      }
+    ],
+    "features": [
+      "Oltre 50 prefissi internazionali con ricerca e icone bandiera",
+      "Supporto messaggi precompilati fino a 4096 caratteri",
+      "Generazione istantanea codice QR con stile verde WhatsApp",
+      "Template messaggi per uso aziendale, personale e marketing",
+      "Anteprima chat stile mobile per visualizzare il messaggio",
+      "Validazione numero telefono con guida al formato",
+      "Copia negli appunti con un click",
+      "Scarica link come file di testo",
+      "Scarica codice QR come immagine PNG",
+      "Pulsante 'Apri WhatsApp' per test diretto",
+      "Generazione URL pulita secondo standard wa.me",
+      "Completamente browser-based - nessun server coinvolto",
+      "Nessun numero telefono salvato o registrato"
+    ],
+    "useCases": [
+      "Aggiungi pulsanti click-to-chat sul tuo sito per assistenza clienti istantanea",
+      "Crea link WhatsApp per biglietti da visita e materiali stampati",
+      "Genera codici QR per vetrine, menu e location fisiche",
+      "Includi link chat nelle firme email per contatto facile",
+      "Aggiungi pulsanti WhatsApp ai profili social (Instagram, Facebook, LinkedIn)",
+      "Crea form di richiesta precompilati per informazioni prodotti",
+      "Imposta link prenotazione appuntamenti con messaggi predefiniti",
+      "Genera link ticket supporto con template messaggi strutturati",
+      "Crea link campagne marketing con messaggi promozionali",
+      "Condividi link contatto in newsletter ed email marketing",
+      "Aggiungi link chat alle descrizioni video YouTube",
+      "Crea link contatto rapido per organizzatori eventi"
+    ],
+    "proTips": [
+      "Mantieni i messaggi precompilati brevi e professionali - i destinatari possono sempre aggiungere altro",
+      "Usa i template come punto di partenza e personalizza per il tono del tuo brand",
+      "Scarica i codici QR ad alta risoluzione per materiali stampati",
+      "Testa il link prima di condividerlo cliccando 'Apri WhatsApp'",
+      "Per uso aziendale, considera WhatsApp Business per funzionalita aggiuntive",
+      "Includi una call-to-action nel messaggio come 'Vorrei informazioni su...'",
+      "Salva numeri e messaggi usati frequentemente per accesso rapido",
+      "Usa l'anteprima mobile per assicurarti che il messaggio sia professionale",
+      "Combina con UTM Builder per tracciare il traffico WhatsApp negli analytics",
+      "Posiziona i codici QR all'altezza degli occhi nelle location fisiche per una scansione ottimale"
+    ],
+    "troubleshooting": [
+      "Il link non apre WhatsApp: Assicurati che WhatsApp sia installato sul dispositivo. Su desktop, WhatsApp Web deve essere configurato.",
+      "Errore numero non valido: Rimuovi gli zeri iniziali e inserisci solo cifre. Il prefisso viene aggiunto automaticamente.",
+      "Il messaggio non appare: Verifica che i caratteri speciali siano codificati correttamente. Evita certi simboli.",
+      "Il codice QR non si scansiona: Assicura buona illuminazione e tieni il telefono a 15-20 cm dal codice. Prova a scaricarlo e stamparlo piu grande.",
+      "Paese sbagliato selezionato: Cerca il tuo paese per nome o prefisso nel selettore dropdown.",
+      "Il link funziona su mobile ma non su desktop: WhatsApp Web deve essere collegato nel browser desktop.",
+      "Messaggio troppo lungo: I messaggi precompilati WhatsApp hanno un limite di 4096 caratteri. Accorcia il messaggio.",
+      "La chat si apre con il numero sbagliato: Ricontrolla il formato del numero e la selezione del prefisso."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Invio",
+        "description": "Genera link WhatsApp"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia link generato"
+      },
+      {
+        "keys": "Esc",
+        "description": "Chiudi selettore paese"
+      }
+    ]
+  }
+}

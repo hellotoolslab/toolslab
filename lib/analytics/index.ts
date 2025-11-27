@@ -236,38 +236,21 @@ export function trackConversion(type: string, from?: string): void {
 
 /**
  * Track user engagement (e.g., easter egg, interaction)
+ * Referrer and UTM parameters are automatically enriched by EventNormalizer
  */
 export function trackEngagement(
   action: string,
   metadata?: Record<string, any>
 ): void {
   try {
-    // Remove is_mobile/isMobile from metadata if present
+    // Remove is_mobile/isMobile from metadata if present (avoid duplicates)
     const { is_mobile, isMobile, ...cleanMetadata } = metadata || {};
 
-    // Add referrer and full URL with UTM parameters
-    let referrer = typeof document !== 'undefined' ? document.referrer : '';
-    const url = typeof window !== 'undefined' ? window.location.href : '';
-
-    // If referrer is empty, try to get utm_source from URL
-    if (!referrer && typeof window !== 'undefined') {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const utmSource = urlParams.get('utm_source');
-        if (utmSource) {
-          referrer = utmSource;
-        }
-      } catch (error) {
-        // Silently fail if URL parsing fails
-      }
-    }
-
+    // Create event - referrer and UTM are auto-enriched by EventNormalizer.enrichEvent()
     const event = EventNormalizer.enrichEvent({
       event: 'engagement' as const,
       action,
       sessionId: '',
-      referrer, // Where the user came from (or utm_source if referrer is empty)
-      url, // Full URL including UTM parameters
       ...cleanMetadata,
     });
 
