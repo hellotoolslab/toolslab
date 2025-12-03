@@ -78,5 +78,15 @@
     "description": "Konvertieren Sie PDF zu Word (DOCX) online kostenlos. Bewahren Sie Formatierung, extrahieren Sie Bilder und bearbeiten Sie PDFs einfach. Unterstützt Batch-Konvertierung bis zu 10 Dateien. 100% sichere browserbasierte Konvertierung."
   },
   "tagline": "Konvertieren Sie PDF-Dateien in bearbeitbare Word-Dokumente mit bewahrter Formatierung und Bildern",
-  "pageDescription": "Transformieren Sie PDF-Dateien in bearbeitbare Word (DOCX) Dokumente während Sie ursprüngliche Formatierung, Layout und Bilder bewahren. Perfekt zum Bearbeiten von Verträgen, Extrahieren von Inhalten, Konvertieren von Berichten und Vorbereiten von Dokumenten für Zusammenarbeit. Unterstützt mehrere Konvertierungsmodi, Batch-Verarbeitung bis zu 10 Dateien und einstellbare Bildqualität. Kostenlose, sichere browserbasierte Konvertierung ohne Datei-Uploads oder Server-Speicherung. Funktioniert mit textbasierten und gescannten PDFs."
+  "pageDescription": "Transformieren Sie PDF-Dateien in bearbeitbare Word (DOCX) Dokumente während Sie ursprüngliche Formatierung, Layout und Bilder bewahren. Perfekt zum Bearbeiten von Verträgen, Extrahieren von Inhalten, Konvertieren von Berichten und Vorbereiten von Dokumenten für Zusammenarbeit. Unterstützt mehrere Konvertierungsmodi, Batch-Verarbeitung bis zu 10 Dateien und einstellbare Bildqualität. Kostenlose, sichere browserbasierte Konvertierung ohne Datei-Uploads oder Server-Speicherung. Funktioniert mit textbasierten und gescannten PDFs.",
+  "suspended": {
+    "title": "Service Vorübergehend Nicht Verfügbar",
+    "description": "Es tut uns leid, aber der PDF-zu-Word-Konvertierungsdienst wurde vorübergehend eingestellt.",
+    "whyTitle": "Warum passiert das?",
+    "whyDescription": "Dieses Tool benötigt einen dedizierten kostenpflichtigen Server, um hochwertige PDF-zu-Word-Konvertierungen durchzuführen. Der Server gehört uns und wird von uns betrieben, aber die Hosting-Kosten sind untragbar geworden. Wir mussten den Service vorübergehend einstellen, bis wir diese Kosten decken können.",
+    "helpTitle": "Helfen Sie uns, ihn wieder zu aktivieren!",
+    "helpDescription": "Ihre Unterstützung kann uns helfen, die Serverkosten zu decken und diesen Dienst wieder zu aktivieren. Jeder Beitrag, egal wie klein, macht einen Unterschied.",
+    "donateButton": "Spendieren Sie mir einen Kaffee",
+    "thanks": "Vielen Dank für Ihr Verständnis und Ihre Unterstützung!"
+  }
 }

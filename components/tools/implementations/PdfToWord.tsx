@@ -14,10 +14,13 @@ import {
   AlertTriangleIcon,
   CheckCircleIcon,
   Loader2Icon,
-  StarIcon,
 } from 'lucide-react';
 import { useToolStore } from '@/lib/store/toolStore';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
+import { BaseToolProps } from '@/lib/types/tools';
+import { ServiceSuspendedCard } from '../ServiceSuspendedCard';
+
+interface PdfToWordProps extends BaseToolProps {}
 
 interface FileWithPreview {
   file: File;
@@ -42,11 +45,14 @@ function formatFileSize(bytes: number): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
-export default function PdfToWord() {
+export default function PdfToWord({ dictionary }: PdfToWordProps) {
   const { addToHistory } = useToolStore();
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const [isConverting, setIsConverting] = useState(false);
   const [globalError, setGlobalError] = useState<string | null>(null);
+
+  // Service is suspended - show card instead of tool
+  const isServiceSuspended = true;
 
   const { resultRef, scrollToResult } = useScrollToResult({ delay: 300 });
 
@@ -298,6 +304,18 @@ export default function PdfToWord() {
       downloadFile(file);
     });
   };
+
+  // If service is suspended, only show the suspended card
+  // Use tool-specific messages if available, fallback to common messages
+  if (isServiceSuspended) {
+    const suspendedMessages =
+      dictionary?.suspended || dictionary?.common?.suspended;
+    return (
+      <div className="space-y-6">
+        <ServiceSuspendedCard messages={suspendedMessages} />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

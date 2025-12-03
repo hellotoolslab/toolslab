@@ -78,5 +78,15 @@
     "description": "Converti PDF in Word (DOCX) online gratis. Preserva la formattazione, estrai immagini e modifica PDF facilmente. Supporta conversione batch fino a 10 file. Conversione 100% sicura basata su browser."
   },
   "tagline": "Converti file PDF in documenti Word modificabili preservando formattazione e immagini",
-  "pageDescription": "Trasforma file PDF in documenti Word (DOCX) modificabili preservando formattazione, layout e immagini originali. Perfetto per modificare contratti, estrarre contenuti, convertire report e preparare documenti per collaborazione. Supporta modalità di conversione multiple, elaborazione batch fino a 10 file e qualità immagini regolabile. Conversione gratuita e sicura basata su browser senza caricamento file o archiviazione server. Funziona con PDF testuali e scansionati."
+  "pageDescription": "Trasforma file PDF in documenti Word (DOCX) modificabili preservando formattazione, layout e immagini originali. Perfetto per modificare contratti, estrarre contenuti, convertire report e preparare documenti per collaborazione. Supporta modalità di conversione multiple, elaborazione batch fino a 10 file e qualità immagini regolabile. Conversione gratuita e sicura basata su browser senza caricamento file o archiviazione server. Funziona con PDF testuali e scansionati.",
+  "suspended": {
+    "title": "Servizio Temporaneamente Non Disponibile",
+    "description": "Ci dispiace, ma il servizio di conversione da PDF a Word è stato temporaneamente sospeso.",
+    "whyTitle": "Perché sta succedendo?",
+    "whyDescription": "Questo strumento richiede un server dedicato a pagamento per eseguire conversioni PDF in Word di alta qualità. Il server è di nostra proprietà e gestito da noi, ma i costi di hosting sono diventati insostenibili. Abbiamo dovuto sospendere temporaneamente il servizio fino a quando non riusciremo a coprire queste spese.",
+    "helpTitle": "Aiutaci a riattivarlo!",
+    "helpDescription": "Il tuo supporto può aiutarci a coprire i costi del server e riattivare questo servizio. Ogni contributo, per quanto piccolo, fa la differenza.",
+    "donateButton": "Offrimi un caffè",
+    "thanks": "Grazie per la comprensione e il supporto!"
+  }
 }

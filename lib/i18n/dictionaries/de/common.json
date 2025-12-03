@@ -120,6 +120,16 @@
           "answer": "Sie können Probleme melden oder Features anfragen in unserem GitHub-Repository unter https://github.com/hellotoolslab/toolslab oder uns auf X unter https://x.com/tools_lab kontaktieren."
         }
       ]
+    },
+    "suspended": {
+      "title": "Service Vorübergehend Nicht Verfügbar",
+      "description": "Es tut uns leid, aber dieser Service wurde vorübergehend eingestellt.",
+      "whyTitle": "Warum passiert das?",
+      "whyDescription": "Dieses Tool benötigt einen dedizierten kostenpflichtigen Server zur Verarbeitung Ihrer Dateien. Der Server gehört uns und wird von uns betrieben, aber die Hosting-Kosten sind untragbar geworden. Wir mussten den Service vorübergehend einstellen, bis wir diese Kosten decken können.",
+      "helpTitle": "Helfen Sie uns, ihn wieder zu aktivieren!",
+      "helpDescription": "Ihre Unterstützung kann uns helfen, die Serverkosten zu decken und diesen Service wieder zu aktivieren. Jeder Beitrag, egal wie klein, macht einen Unterschied.",
+      "donateButton": "Spendieren Sie mir einen Kaffee",
+      "thanks": "Vielen Dank für Ihr Verständnis und Ihre Unterstützung!"
     }
   }
 }

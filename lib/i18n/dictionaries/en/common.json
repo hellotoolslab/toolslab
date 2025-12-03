@@ -120,6 +120,16 @@
           "answer": "You can report issues or request features on our GitHub repository at https://github.com/hellotoolslab/toolslab or reach out to us on X at https://x.com/tools_lab."
         }
       ]
+    },
+    "suspended": {
+      "title": "Service Temporarily Unavailable",
+      "description": "We're sorry, but this service has been temporarily suspended.",
+      "whyTitle": "Why is this happening?",
+      "whyDescription": "This tool requires a dedicated paid server to process your files. The server is owned and operated by us, but the hosting costs have become unsustainable. We've had to temporarily suspend the service until we can cover these expenses.",
+      "helpTitle": "Help us bring it back!",
+      "helpDescription": "Your support can help us cover the server costs and reactivate this service. Every contribution, no matter how small, makes a difference.",
+      "donateButton": "Buy me a coffee",
+      "thanks": "Thank you for your understanding and support!"
     }
   }
 }
