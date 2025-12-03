@@ -1,0 +1,120 @@
+{
+  "title": "Htaccess Generator",
+  "description": "Generieren Sie .htaccess-Dateien für Apache mit Weiterleitungen, Sicherheitsregeln, Caching und URL-Umschreibung",
+  "placeholder": "Konfigurieren Sie Ihre .htaccess-Einstellungen",
+  "meta": {
+    "title": "Htaccess Generator - Apache Konfigurationstool | ToolsLab",
+    "description": "Kostenloser Online .htaccess-Generator. Erstellen Sie Apache-Konfiguration mit Weiterleitungen, Sicherheits-Headern, Caching-Regeln, HTTPS-Erzwingung und mehr. Keine Programmierung erforderlich."
+  },
+  "tagline": "Generieren Sie professionelle .htaccess-Dateien für Apache-Server mit visueller Konfiguration",
+  "pageDescription": "Kostenloser Online .htaccess-Generator für Apache-Webserver. Erstellen Sie Konfigurationsdateien mit 301/302-Weiterleitungen, HTTPS-Erzwingung, Sicherheits-Headern, Browser-Caching, Gzip-Komprimierung, benutzerdefinierten Fehlerseiten und IP-Blockierung. Enthält Voreinstellungen für WordPress, SPA-Apps und Leistungsoptimierung. Perfekt für Webentwickler, Systemadministratoren und Website-Besitzer.",
+  "generate": ".htaccess Generieren",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "download": "Herunterladen",
+  "presets": "Schnelle Voreinstellungen",
+  "security": "Sicherheit",
+  "redirects": "Weiterleitungen",
+  "caching": "Caching",
+  "advanced": "Erweitert",
+  "output": "Generierte .htaccess",
+  "forceHttps": "HTTPS Erzwingen",
+  "forceHttpsDesc": "Leiten Sie allen HTTP-Verkehr auf HTTPS um",
+  "removeWww": "www Entfernen",
+  "removeWwwDesc": "www auf Version ohne www umleiten",
+  "addWww": "www Hinzufügen",
+  "addWwwDesc": "Ohne www auf Version mit www umleiten",
+  "preventDirListing": "Verzeichnisauflistung Verhindern",
+  "preventDirListingDesc": "Verzeichnisinhalte vor Besuchern verbergen",
+  "blockSensitiveFiles": "Sensible Dateien Blockieren",
+  "blockSensitiveFilesDesc": "Zugriff auf .htaccess, .env, Logs usw. blockieren",
+  "securityHeaders": "Sicherheits-Header",
+  "securityHeadersDesc": "XSS-, MIME-, Frame-Schutz-Header hinzufügen",
+  "blockXmlRpc": "XML-RPC Blockieren (WordPress)",
+  "blockXmlRpcDesc": "XML-RPC-Endpunkt aus Sicherheitsgründen deaktivieren",
+  "blockWpIncludes": "wp-includes Schützen (WordPress)",
+  "blockWpIncludesDesc": "Direkten Zugriff auf WordPress-Includes blockieren",
+  "enableCaching": "Browser-Caching Aktivieren",
+  "enableCachingDesc": "Ablauf-Header für statische Assets setzen",
+  "enableGzip": "Gzip-Komprimierung Aktivieren",
+  "enableGzipDesc": "Textbasierte Antworten komprimieren",
+  "enableBrotli": "Brotli-Komprimierung Aktivieren",
+  "enableBrotliDesc": "Moderne Komprimierung (erfordert mod_brotli)",
+  "addRedirect": "Weiterleitung Hinzufügen",
+  "from": "Von",
+  "to": "Nach",
+  "type": "Typ",
+  "errorPages": "Benutzerdefinierte Fehlerseiten",
+  "addErrorPage": "Fehlerseite Hinzufügen",
+  "errorCode": "Fehlercode",
+  "errorPath": "Seitenpfad",
+  "ipRules": "IP-Zugriffskontrolle",
+  "addIpRule": "IP-Regel Hinzufügen",
+  "ipAddress": "IP-Adresse",
+  "allow": "Erlauben",
+  "deny": "Verweigern",
+  "customRules": "Benutzerdefinierte Regeln",
+  "customRulesPlaceholder": "Fügen Sie hier Ihre benutzerdefinierten .htaccess-Regeln hinzu...",
+  "instructions": {
+    "title": "So Verwenden Sie den Htaccess Generator",
+    "steps": [
+      {
+        "title": "Wählen Sie eine Voreinstellung oder starten Sie von Grund auf",
+        "description": "Wählen Sie eine Schnellvoreinstellung wie Basis-Sicherheit, WordPress oder Leistung, um gängige Einstellungen vorzukonfigurieren, oder erstellen Sie Ihre Konfiguration von Grund auf"
+      },
+      {
+        "title": "Konfigurieren Sie die Sicherheitseinstellungen",
+        "description": "Aktivieren Sie HTTPS-Erzwingung, Verzeichnisschutz, Blockierung sensibler Dateien und Sicherheits-Header zum Schutz Ihrer Website"
+      },
+      {
+        "title": "Fügen Sie bei Bedarf Weiterleitungen hinzu",
+        "description": "Erstellen Sie 301 (permanente) oder 302 (temporäre) Weiterleitungen für verschobene Seiten, Domain-Änderungen oder URL-Umstrukturierung"
+      },
+      {
+        "title": "Richten Sie Caching und Komprimierung ein",
+        "description": "Aktivieren Sie Browser-Caching und Gzip/Brotli-Komprimierung, um die Ladegeschwindigkeit Ihrer Website zu verbessern"
+      },
+      {
+        "title": "Laden Sie die generierte Datei herunter oder kopieren Sie sie",
+        "description": "Kopieren Sie den generierten .htaccess-Code oder laden Sie ihn direkt herunter, dann laden Sie ihn in das Stammverzeichnis Ihres Webservers hoch"
+      }
+    ],
+    "features": [
+      "HTTPS erzwingen und www/ohne www Weiterleitungen",
+      "301 und 302 Weiterleitungsverwaltung",
+      "Sicherheits-Header (XSS, MIME, Frame Options)",
+      "Browser-Caching-Konfiguration mit anpassbaren Ablaufzeiten",
+      "Gzip- und Brotli-Komprimierungsunterstützung",
+      "Benutzerdefinierte Fehlerseiten (404, 500, usw.)",
+      "IP-basierte Zugriffskontrolle (erlauben/verweigern)",
+      "WordPress-spezifische Sicherheitsregeln",
+      "Voreinstellungskonfigurationen für gängige Anwendungsfälle",
+      "Echtzeit-Vorschau des generierten Codes"
+    ],
+    "useCases": [
+      "Website-Migration von HTTP zu HTTPS",
+      "Einrichtung eines ordnungsgemäßen Cachings für bessere Leistung",
+      "Schutz sensibler Dateien und Verzeichnisse",
+      "Erstellung benutzerdefinierter Fehlerseiten für bessere UX",
+      "Implementierung von URL-Weiterleitungen für SEO",
+      "Absicherung von WordPress-Installationen",
+      "Blockierung bösartiger IPs und Bots",
+      "Konfiguration des Single-Page-Application-Routings"
+    ],
+    "proTips": [
+      "Erstellen Sie immer ein Backup Ihrer bestehenden .htaccess, bevor Sie sie ersetzen",
+      "Verwenden Sie 301-Weiterleitungen für permanente Umzüge, um den SEO-Wert zu erhalten",
+      "Testen Sie Ihre Konfiguration zuerst auf einem Staging-Server",
+      "Erzwingen Sie HTTPS erst, nachdem Ihr SSL-Zertifikat ordnungsgemäß installiert ist",
+      "Die Reihenfolge der Regeln in .htaccess ist wichtig - spezifischere Regeln sollten zuerst kommen",
+      "Verwenden Sie Browser-Caching aggressiv für statische Assets, aber vorsichtig für HTML"
+    ],
+    "troubleshooting": [
+      "Wenn Sie einen 500-Fehler erhalten, prüfen Sie auf Syntaxfehler in Ihrer .htaccess-Datei",
+      "RewriteEngine muss aktiviert sein (RewriteEngine On), damit Weiterleitungen funktionieren",
+      "Stellen Sie sicher, dass mod_rewrite auf Ihrem Apache-Server aktiviert ist",
+      "Einige Shared-Hosts können bestimmte .htaccess-Direktiven einschränken",
+      "Leeren Sie den Browser-Cache nach Änderungen an Weiterleitungen, um die Auswirkungen zu sehen"
+    ]
+  }
+}

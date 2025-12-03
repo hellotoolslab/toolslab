@@ -1,0 +1,120 @@
+{
+  "title": "Generatore Htaccess",
+  "description": "Genera file .htaccess per Apache con redirect, regole di sicurezza, caching e riscrittura URL",
+  "placeholder": "Configura le impostazioni .htaccess",
+  "meta": {
+    "title": "Generatore Htaccess - Strumento Configurazione Apache | ToolsLab",
+    "description": "Generatore .htaccess online gratuito. Crea configurazioni Apache con redirect, header di sicurezza, regole di caching, forzatura HTTPS e altro. Nessuna programmazione richiesta."
+  },
+  "tagline": "Genera file .htaccess professionali per server Apache con configurazione visuale",
+  "pageDescription": "Generatore .htaccess online gratuito per server web Apache. Crea file di configurazione con redirect 301/302, forzatura HTTPS, header di sicurezza, caching browser, compressione gzip, pagine errore personalizzate e blocco IP. Include preset per WordPress, app SPA e ottimizzazione performance. Perfetto per sviluppatori web, amministratori di sistema e proprietari di siti.",
+  "generate": "Genera .htaccess",
+  "copy": "Copia",
+  "copied": "Copiato!",
+  "download": "Scarica",
+  "presets": "Preset Rapidi",
+  "security": "Sicurezza",
+  "redirects": "Redirect",
+  "caching": "Caching",
+  "advanced": "Avanzato",
+  "output": ".htaccess Generato",
+  "forceHttps": "Forza HTTPS",
+  "forceHttpsDesc": "Reindirizza tutto il traffico HTTP a HTTPS",
+  "removeWww": "Rimuovi www",
+  "removeWwwDesc": "Reindirizza www alla versione senza www",
+  "addWww": "Aggiungi www",
+  "addWwwDesc": "Reindirizza non-www alla versione con www",
+  "preventDirListing": "Previeni Listing Directory",
+  "preventDirListingDesc": "Nascondi il contenuto delle directory ai visitatori",
+  "blockSensitiveFiles": "Blocca File Sensibili",
+  "blockSensitiveFilesDesc": "Blocca accesso a .htaccess, .env, log, ecc.",
+  "securityHeaders": "Header di Sicurezza",
+  "securityHeadersDesc": "Aggiungi header protezione XSS, MIME, Frame",
+  "blockXmlRpc": "Blocca XML-RPC (WordPress)",
+  "blockXmlRpcDesc": "Disabilita endpoint XML-RPC per sicurezza",
+  "blockWpIncludes": "Proteggi wp-includes (WordPress)",
+  "blockWpIncludesDesc": "Blocca accesso diretto agli include WordPress",
+  "enableCaching": "Abilita Caching Browser",
+  "enableCachingDesc": "Imposta header di scadenza per asset statici",
+  "enableGzip": "Abilita Compressione Gzip",
+  "enableGzipDesc": "Comprimi risposte basate su testo",
+  "enableBrotli": "Abilita Compressione Brotli",
+  "enableBrotliDesc": "Compressione moderna (richiede mod_brotli)",
+  "addRedirect": "Aggiungi Redirect",
+  "from": "Da",
+  "to": "A",
+  "type": "Tipo",
+  "errorPages": "Pagine Errore Personalizzate",
+  "addErrorPage": "Aggiungi Pagina Errore",
+  "errorCode": "Codice Errore",
+  "errorPath": "Percorso Pagina",
+  "ipRules": "Controllo Accesso IP",
+  "addIpRule": "Aggiungi Regola IP",
+  "ipAddress": "Indirizzo IP",
+  "allow": "Consenti",
+  "deny": "Nega",
+  "customRules": "Regole Personalizzate",
+  "customRulesPlaceholder": "Aggiungi qui le tue regole .htaccess personalizzate...",
+  "instructions": {
+    "title": "Come Usare il Generatore Htaccess",
+    "steps": [
+      {
+        "title": "Scegli un preset o parti da zero",
+        "description": "Seleziona un preset rapido come Sicurezza Base, WordPress o Performance per preconfigurare impostazioni comuni, oppure costruisci la tua configurazione da zero"
+      },
+      {
+        "title": "Configura le impostazioni di sicurezza",
+        "description": "Abilita forzatura HTTPS, protezione directory, blocco file sensibili e header di sicurezza per proteggere il tuo sito"
+      },
+      {
+        "title": "Aggiungi redirect se necessario",
+        "description": "Crea redirect 301 (permanenti) o 302 (temporanei) per pagine spostate, cambio dominio o ristrutturazione URL"
+      },
+      {
+        "title": "Configura caching e compressione",
+        "description": "Abilita caching browser e compressione gzip/brotli per migliorare la velocità di caricamento del sito"
+      },
+      {
+        "title": "Scarica o copia il file generato",
+        "description": "Copia il codice .htaccess generato o scaricalo direttamente, poi caricalo nella directory root del tuo server web"
+      }
+    ],
+    "features": [
+      "Forza HTTPS e redirect www/non-www",
+      "Gestione redirect 301 e 302",
+      "Header di sicurezza (XSS, MIME, Frame Options)",
+      "Configurazione caching browser con tempi di scadenza personalizzabili",
+      "Supporto compressione Gzip e Brotli",
+      "Pagine errore personalizzate (404, 500, ecc.)",
+      "Controllo accesso basato su IP (consenti/nega)",
+      "Regole di sicurezza specifiche per WordPress",
+      "Configurazioni preset per casi d'uso comuni",
+      "Anteprima in tempo reale del codice generato"
+    ],
+    "useCases": [
+      "Migrazione sito da HTTP a HTTPS",
+      "Configurazione caching corretto per migliori performance",
+      "Protezione file e directory sensibili",
+      "Creazione pagine errore personalizzate per migliore UX",
+      "Implementazione redirect URL per SEO",
+      "Messa in sicurezza installazioni WordPress",
+      "Blocco IP malevoli e bot",
+      "Configurazione routing applicazioni single-page"
+    ],
+    "proTips": [
+      "Fai sempre backup del tuo .htaccess esistente prima di sostituirlo",
+      "Usa redirect 301 per spostamenti permanenti per preservare il valore SEO",
+      "Testa la configurazione su un server di staging prima",
+      "Forza HTTPS solo dopo che il certificato SSL è installato correttamente",
+      "L'ordine delle regole in .htaccess è importante - regole più specifiche devono venire prima",
+      "Usa caching browser aggressivo per asset statici ma con attenzione per HTML"
+    ],
+    "troubleshooting": [
+      "Se ottieni errore 500, controlla errori di sintassi nel file .htaccess",
+      "RewriteEngine deve essere abilitato (RewriteEngine On) perché i redirect funzionino",
+      "Assicurati che mod_rewrite sia abilitato sul tuo server Apache",
+      "Alcuni hosting condivisi potrebbero limitare certe direttive .htaccess",
+      "Svuota la cache del browser dopo modifiche ai redirect per vedere gli effetti"
+    ]
+  }
+}

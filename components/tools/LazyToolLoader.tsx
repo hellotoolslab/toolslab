@@ -99,6 +99,9 @@ const toolComponents = {
     () => import('./implementations/YouTubeTimestampGenerator')
   ),
   'chmod-calculator': lazy(() => import('./implementations/ChmodCalculator')),
+  'htaccess-generator': lazy(
+    () => import('./implementations/HtaccessGenerator')
+  ),
   // Add more as needed
 } as const;
 

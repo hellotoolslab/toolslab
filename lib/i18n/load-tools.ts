@@ -86,6 +86,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'whatsapp-link-generator',
     'youtube-timestamp-generator',
     'chmod-calculator',
+    'htaccess-generator',
   ];
 
   const tools: Record<string, any> = {};
