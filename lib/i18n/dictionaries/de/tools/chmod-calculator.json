@@ -1,0 +1,79 @@
+{
+  "title": "Chmod-Rechner",
+  "description": "Berechnen Sie Unix-Dateiberechtigungen mit visuellem Raster, Oktal- und symbolischer Notation-Konverter",
+  "placeholder": "Oktalwert eingeben (z.B. 755)",
+  "meta": {
+    "title": "Chmod-Rechner - Unix-Dateiberechtigungsrechner | ToolsLab",
+    "description": "Kostenloser Online-Chmod-Rechner. Konvertieren Sie zwischen oktalen (755, 644) und symbolischen (rwxr-xr-x) Unix-Dateiberechtigungen mit visuellem Raster, Voreinstellungen und Befehlsgenerierung."
+  },
+  "tagline": "Berechnen und konvertieren Sie Unix-Dateiberechtigungen mit visueller Oberfläche und gängigen Voreinstellungen",
+  "pageDescription": "Kostenloser Online-Chmod-Rechner für Unix/Linux-Dateiberechtigungen. Konvertieren Sie zwischen Oktalnotation (755, 644, 777) und symbolischem Format (rwxr-xr-x). Enthält interaktives Berechtigungsraster, gängige Voreinstellungen, rekursive Flag-Option und sofortige Befehlsgenerierung. Perfekt für Systemadministratoren, DevOps-Ingenieure und Linux-Benutzer, die Datei- und Verzeichnisberechtigungen verwalten.",
+  "owner": "Eigentümer",
+  "group": "Gruppe",
+  "others": "Andere",
+  "read": "Lesen",
+  "write": "Schreiben",
+  "execute": "Ausführen",
+  "octalNotation": "Oktalnotation",
+  "symbolicNotation": "Symbolische Notation",
+  "binaryRepresentation": "Binär",
+  "command": "Befehl",
+  "filename": "Dateiname",
+  "presets": "Gängige Voreinstellungen",
+  "recursive": "Rekursiv (-R)",
+  "permissionGrid": "Berechtigungsraster",
+  "results": "Ergebnisse",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "instructions": {
+    "title": "So verwenden Sie den Chmod-Rechner",
+    "steps": [
+      {
+        "title": "Berechtigungen visuell auswählen",
+        "description": "Klicken Sie auf die R (Lesen), W (Schreiben), X (Ausführen) Schaltflächen für Eigentümer, Gruppe und Andere, um Berechtigungen interaktiv festzulegen"
+      },
+      {
+        "title": "Oder Oktalwert eingeben",
+        "description": "Geben Sie einen 3-stelligen Oktalwert (z.B. 755) direkt in das Feld Oktalnotation ein, um Berechtigungen festzulegen"
+      },
+      {
+        "title": "Voreinstellungen für gängige Szenarien verwenden",
+        "description": "Klicken Sie auf eine beliebige Voreinstellungs-Schaltfläche, um schnell gängige Berechtigungskonfigurationen wie 755 für Verzeichnisse oder 644 für Dateien einzustellen"
+      },
+      {
+        "title": "Anpassen und Befehl kopieren",
+        "description": "Geben Sie den Dateinamen ein, aktivieren Sie optional den rekursiven Modus und kopieren Sie den generierten chmod-Befehl"
+      }
+    ],
+    "features": [
+      "Interaktives visuelles Berechtigungsraster mit farbcodierten Schaltflächen",
+      "Echtzeit-Konvertierung zwischen Oktal-, symbolischer und binärer Notation",
+      "10 gängige Berechtigungsvoreinstellungen mit Beschreibungen",
+      "Rekursive Flag-Option (-R) für Verzeichnisse",
+      "Unterstützung benutzerdefinierter Dateinamen für die Befehlsgenerierung",
+      "Ein-Klick-Kopieren für alle Ausgabeformate",
+      "Keine Installation erforderlich - funktioniert vollständig im Browser"
+    ],
+    "useCases": [
+      "Webserver-Dateiberechtigungen festlegen (644 für Dateien, 755 für Verzeichnisse)",
+      "Private Dateien und SSH-Schlüssel sichern (600, 700)",
+      "Unix-Berechtigungssystem visuell erlernen",
+      "Schnelle Referenz für chmod-Befehle",
+      "Linux-Dateiberechtigungen für Anfänger lehren",
+      "DevOps-Skripte und Automatisierungsdokumentation"
+    ],
+    "proTips": [
+      "755 ist der Standard für Verzeichnisse und ausführbare Skripte",
+      "644 ist der Standard für reguläre Dateien (Eigentümer kann schreiben, andere können lesen)",
+      "Verwenden Sie niemals 777 auf Produktionsservern - es ist ein Sicherheitsrisiko",
+      "Verwenden Sie 600 für sensible Dateien wie SSH-Schlüssel und Konfigurationsdateien",
+      "Das rekursive Flag (-R) wendet Berechtigungen auf alle Dateien und Unterverzeichnisse an"
+    ],
+    "troubleshooting": [
+      "Wenn ein Skript nicht ausgeführt wird, prüfen Sie, ob die Ausführungsberechtigung (x) für den entsprechenden Benutzer gesetzt ist",
+      "Fehler wegen verweigerter Berechtigung bedeuten oft, dass dem aktuellen Benutzer Lese- oder Ausführungsberechtigungen fehlen",
+      "Webdateien benötigen typischerweise 644 (Dateien) und 755 (Verzeichnisse) für korrekten Zugriff",
+      "Denken Sie daran: Verzeichnisse benötigen Ausführungsberechtigung, um zugänglich zu sein"
+    ]
+  }
+}

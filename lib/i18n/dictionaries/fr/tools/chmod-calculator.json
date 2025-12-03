@@ -1,0 +1,79 @@
+{
+  "title": "Calculateur Chmod",
+  "description": "Calculez les permissions Unix avec grille visuelle, conversion entre notation octale et symbolique",
+  "placeholder": "Entrez une valeur octale (ex. 755)",
+  "meta": {
+    "title": "Calculateur Chmod - Calculateur de Permissions de Fichiers Unix | ToolsLab",
+    "description": "Calculateur chmod en ligne gratuit. Convertissez entre permissions Unix octales (755, 644) et symboliques (rwxr-xr-x) avec grille visuelle, préréglages et génération de commandes."
+  },
+  "tagline": "Calculez et convertissez les permissions de fichiers Unix avec interface visuelle et préréglages courants",
+  "pageDescription": "Calculateur chmod en ligne gratuit pour les permissions de fichiers Unix/Linux. Convertissez entre notation octale (755, 644, 777) et format symbolique (rwxr-xr-x). Comprend une grille de permissions interactive, des préréglages courants, une option de flag récursif et une génération instantanée de commandes. Parfait pour les administrateurs système, les ingénieurs DevOps et les utilisateurs Linux gérant les permissions de fichiers et répertoires.",
+  "owner": "Propriétaire",
+  "group": "Groupe",
+  "others": "Autres",
+  "read": "Lecture",
+  "write": "Écriture",
+  "execute": "Exécution",
+  "octalNotation": "Notation Octale",
+  "symbolicNotation": "Notation Symbolique",
+  "binaryRepresentation": "Binaire",
+  "command": "Commande",
+  "filename": "Nom de Fichier",
+  "presets": "Préréglages Courants",
+  "recursive": "Récursif (-R)",
+  "permissionGrid": "Grille des Permissions",
+  "results": "Résultats",
+  "copy": "Copier",
+  "copied": "Copié !",
+  "instructions": {
+    "title": "Comment Utiliser le Calculateur Chmod",
+    "steps": [
+      {
+        "title": "Sélectionnez les permissions visuellement",
+        "description": "Cliquez sur les boutons R (Lecture), W (Écriture), X (Exécution) pour Propriétaire, Groupe et Autres pour définir les permissions de manière interactive"
+      },
+      {
+        "title": "Ou entrez la valeur octale",
+        "description": "Tapez une valeur octale à 3 chiffres (ex. 755) directement dans le champ Notation Octale pour définir les permissions"
+      },
+      {
+        "title": "Utilisez les préréglages pour les scénarios courants",
+        "description": "Cliquez sur n'importe quel bouton de préréglage pour configurer rapidement des configurations de permissions courantes comme 755 pour les répertoires ou 644 pour les fichiers"
+      },
+      {
+        "title": "Personnalisez et copiez la commande",
+        "description": "Entrez le nom du fichier, activez optionnellement le mode récursif et copiez la commande chmod générée"
+      }
+    ],
+    "features": [
+      "Grille de permissions visuelle interactive avec boutons colorés",
+      "Conversion en temps réel entre notations octale, symbolique et binaire",
+      "10 préréglages de permissions courants avec descriptions",
+      "Option de flag récursif (-R) pour les répertoires",
+      "Support de nom de fichier personnalisé pour la génération de commandes",
+      "Copie en un clic pour tous les formats de sortie",
+      "Aucune installation requise - fonctionne entièrement dans le navigateur"
+    ],
+    "useCases": [
+      "Définir les permissions de fichiers de serveur web (644 pour fichiers, 755 pour répertoires)",
+      "Sécuriser les fichiers privés et les clés SSH (600, 700)",
+      "Apprendre visuellement le système de permissions Unix",
+      "Référence rapide pour les commandes chmod",
+      "Enseigner les permissions de fichiers Linux aux débutants",
+      "Scripts DevOps et documentation d'automatisation"
+    ],
+    "proTips": [
+      "755 est le standard pour les répertoires et scripts exécutables",
+      "644 est le standard pour les fichiers réguliers (propriétaire peut écrire, autres peuvent lire)",
+      "N'utilisez jamais 777 sur les serveurs de production - c'est un risque de sécurité",
+      "Utilisez 600 pour les fichiers sensibles comme les clés SSH et fichiers de configuration",
+      "Le flag récursif (-R) applique les permissions à tous les fichiers et sous-répertoires"
+    ],
+    "troubleshooting": [
+      "Si un script ne s'exécute pas, vérifiez si la permission d'exécution (x) est définie pour l'utilisateur approprié",
+      "Les erreurs de permission refusée signifient souvent que l'utilisateur actuel manque de permissions de lecture ou d'exécution",
+      "Les fichiers web nécessitent typiquement 644 (fichiers) et 755 (répertoires) pour un accès correct",
+      "Rappelez-vous : les répertoires ont besoin de la permission d'exécution pour être accessibles"
+    ]
+  }
+}

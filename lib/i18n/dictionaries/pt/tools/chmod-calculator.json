@@ -1,0 +1,79 @@
+{
+  "title": "Calculadora Chmod",
+  "description": "Calcule permissões Unix com grade visual, conversão entre notação octal e simbólica",
+  "placeholder": "Digite valor octal (ex. 755)",
+  "meta": {
+    "title": "Calculadora Chmod - Calculadora de Permissões de Arquivos Unix | ToolsLab",
+    "description": "Calculadora chmod online gratuita. Converta entre permissões Unix octais (755, 644) e simbólicas (rwxr-xr-x) com grade visual, presets e geração de comandos."
+  },
+  "tagline": "Calcule e converta permissões de arquivos Unix com interface visual e presets comuns",
+  "pageDescription": "Calculadora chmod online gratuita para permissões de arquivos Unix/Linux. Converta entre notação octal (755, 644, 777) e formato simbólico (rwxr-xr-x). Inclui grade de permissões interativa, presets comuns, opção de flag recursivo e geração instantânea de comandos. Perfeita para administradores de sistemas, engenheiros DevOps e usuários Linux que gerenciam permissões de arquivos e diretórios.",
+  "owner": "Proprietário",
+  "group": "Grupo",
+  "others": "Outros",
+  "read": "Leitura",
+  "write": "Escrita",
+  "execute": "Execução",
+  "octalNotation": "Notação Octal",
+  "symbolicNotation": "Notação Simbólica",
+  "binaryRepresentation": "Binário",
+  "command": "Comando",
+  "filename": "Nome do Arquivo",
+  "presets": "Presets Comuns",
+  "recursive": "Recursivo (-R)",
+  "permissionGrid": "Grade de Permissões",
+  "results": "Resultados",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "instructions": {
+    "title": "Como Usar a Calculadora Chmod",
+    "steps": [
+      {
+        "title": "Selecione permissões visualmente",
+        "description": "Clique nos botões R (Leitura), W (Escrita), X (Execução) para Proprietário, Grupo e Outros para definir permissões interativamente"
+      },
+      {
+        "title": "Ou digite o valor octal",
+        "description": "Digite um valor octal de 3 dígitos (ex. 755) diretamente no campo Notação Octal para definir permissões"
+      },
+      {
+        "title": "Use presets para cenários comuns",
+        "description": "Clique em qualquer botão de preset para configurar rapidamente configurações de permissões comuns como 755 para diretórios ou 644 para arquivos"
+      },
+      {
+        "title": "Personalize e copie o comando",
+        "description": "Digite o nome do arquivo, opcionalmente habilite o modo recursivo e copie o comando chmod gerado"
+      }
+    ],
+    "features": [
+      "Grade de permissões visual interativa com botões coloridos",
+      "Conversão em tempo real entre notações octal, simbólica e binária",
+      "10 presets de permissões comuns com descrições",
+      "Opção de flag recursivo (-R) para diretórios",
+      "Suporte a nome de arquivo personalizado para geração de comandos",
+      "Cópia com um clique para todos os formatos de saída",
+      "Sem instalação necessária - funciona inteiramente no navegador"
+    ],
+    "useCases": [
+      "Definir permissões de arquivos de servidor web (644 para arquivos, 755 para diretórios)",
+      "Proteger arquivos privados e chaves SSH (600, 700)",
+      "Aprender visualmente o sistema de permissões Unix",
+      "Referência rápida para comandos chmod",
+      "Ensinar permissões de arquivos Linux para iniciantes",
+      "Scripts DevOps e documentação de automação"
+    ],
+    "proTips": [
+      "755 é o padrão para diretórios e scripts executáveis",
+      "644 é o padrão para arquivos regulares (proprietário pode escrever, outros podem ler)",
+      "Nunca use 777 em servidores de produção - é um risco de segurança",
+      "Use 600 para arquivos sensíveis como chaves SSH e arquivos de configuração",
+      "O flag recursivo (-R) aplica permissões a todos os arquivos e subdiretórios"
+    ],
+    "troubleshooting": [
+      "Se um script não executa, verifique se a permissão de execução (x) está definida para o usuário apropriado",
+      "Erros de permissão negada frequentemente significam que o usuário atual não tem permissões de leitura ou execução",
+      "Arquivos web tipicamente precisam de 644 (arquivos) e 755 (diretórios) para acesso correto",
+      "Lembre-se: diretórios precisam de permissão de execução para serem acessíveis"
+    ]
+  }
+}

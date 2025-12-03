@@ -75,5 +75,15 @@
     "description": "Converta PDF para Word (DOCX) online gratuitamente. Preserve formatação, extraia imagens e edite PDFs facilmente. Suporta conversão em lote de até 10 arquivos. Conversão 100% segura baseada em navegador."
   },
   "tagline": "Converta arquivos PDF para documentos Word editáveis com formatação e imagens preservadas",
-  "pageDescription": "Transforme arquivos PDF em documentos Word (DOCX) editáveis preservando formatação, layout e imagens originais. Perfeito para editar contratos, extrair conteúdo, converter relatórios e preparar documentos para colaboração. Suporta múltiplos modos de conversão, processamento em lote de até 10 arquivos e qualidade de imagem ajustável. Conversão gratuita e segura baseada em navegador sem uploads de arquivo ou armazenamento no servidor. Funciona com PDFs baseados em texto e digitalizados."
+  "pageDescription": "Transforme arquivos PDF em documentos Word (DOCX) editáveis preservando formatação, layout e imagens originais. Perfeito para editar contratos, extrair conteúdo, converter relatórios e preparar documentos para colaboração. Suporta múltiplos modos de conversão, processamento em lote de até 10 arquivos e qualidade de imagem ajustável. Conversão gratuita e segura baseada em navegador sem uploads de arquivo ou armazenamento no servidor. Funciona com PDFs baseados em texto e digitalizados.",
+  "suspended": {
+    "title": "Serviço Temporariamente Indisponível",
+    "description": "Lamentamos, mas o serviço de conversão de PDF para Word foi temporariamente suspenso.",
+    "whyTitle": "Por que isso está acontecendo?",
+    "whyDescription": "Esta ferramenta requer um servidor dedicado pago para realizar conversões de PDF para Word de alta qualidade. O servidor é de nossa propriedade e operado por nós, mas os custos de hospedagem se tornaram insustentáveis. Tivemos que suspender temporariamente o serviço até conseguirmos cobrir essas despesas.",
+    "helpTitle": "Ajude-nos a reativá-lo!",
+    "helpDescription": "Seu apoio pode nos ajudar a cobrir os custos do servidor e reativar este serviço. Cada contribuição, por menor que seja, faz a diferença.",
+    "donateButton": "Me pague um café",
+    "thanks": "Obrigado pela compreensão e apoio!"
+  }
 }

@@ -1,0 +1,120 @@
+{
+  "title": "Gerador Htaccess",
+  "description": "Gere arquivos .htaccess para Apache com redirecionamentos, regras de segurança, cache e reescrita de URL",
+  "placeholder": "Configure suas definições .htaccess",
+  "meta": {
+    "title": "Gerador Htaccess - Ferramenta de Configuração Apache | ToolsLab",
+    "description": "Gerador .htaccess online gratuito. Crie configuração Apache com redirecionamentos, cabeçalhos de segurança, regras de cache, forçar HTTPS e mais. Sem programação necessária."
+  },
+  "tagline": "Gere arquivos .htaccess profissionais para servidores Apache com configuração visual",
+  "pageDescription": "Gerador .htaccess online gratuito para servidores web Apache. Crie arquivos de configuração com redirecionamentos 301/302, forçar HTTPS, cabeçalhos de segurança, cache de navegador, compressão gzip, páginas de erro personalizadas e bloqueio de IP. Inclui presets para WordPress, apps SPA e otimização de performance. Perfeito para desenvolvedores web, administradores de sistemas e proprietários de sites.",
+  "generate": "Gerar .htaccess",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "download": "Baixar",
+  "presets": "Presets Rápidos",
+  "security": "Segurança",
+  "redirects": "Redirecionamentos",
+  "caching": "Cache",
+  "advanced": "Avançado",
+  "output": ".htaccess Gerado",
+  "forceHttps": "Forçar HTTPS",
+  "forceHttpsDesc": "Redirecionar todo o tráfego HTTP para HTTPS",
+  "removeWww": "Remover www",
+  "removeWwwDesc": "Redirecionar www para versão sem www",
+  "addWww": "Adicionar www",
+  "addWwwDesc": "Redirecionar sem www para versão com www",
+  "preventDirListing": "Prevenir Listagem de Diretórios",
+  "preventDirListingDesc": "Ocultar conteúdo de diretórios dos visitantes",
+  "blockSensitiveFiles": "Bloquear Arquivos Sensíveis",
+  "blockSensitiveFilesDesc": "Bloquear acesso a .htaccess, .env, logs, etc.",
+  "securityHeaders": "Cabeçalhos de Segurança",
+  "securityHeadersDesc": "Adicionar cabeçalhos de proteção XSS, MIME, Frame",
+  "blockXmlRpc": "Bloquear XML-RPC (WordPress)",
+  "blockXmlRpcDesc": "Desabilitar endpoint XML-RPC por segurança",
+  "blockWpIncludes": "Proteger wp-includes (WordPress)",
+  "blockWpIncludesDesc": "Bloquear acesso direto aos includes do WordPress",
+  "enableCaching": "Ativar Cache do Navegador",
+  "enableCachingDesc": "Definir cabeçalhos de expiração para assets estáticos",
+  "enableGzip": "Ativar Compressão Gzip",
+  "enableGzipDesc": "Comprimir respostas baseadas em texto",
+  "enableBrotli": "Ativar Compressão Brotli",
+  "enableBrotliDesc": "Compressão moderna (requer mod_brotli)",
+  "addRedirect": "Adicionar Redirecionamento",
+  "from": "De",
+  "to": "Para",
+  "type": "Tipo",
+  "errorPages": "Páginas de Erro Personalizadas",
+  "addErrorPage": "Adicionar Página de Erro",
+  "errorCode": "Código de Erro",
+  "errorPath": "Caminho da Página",
+  "ipRules": "Controle de Acesso IP",
+  "addIpRule": "Adicionar Regra IP",
+  "ipAddress": "Endereço IP",
+  "allow": "Permitir",
+  "deny": "Negar",
+  "customRules": "Regras Personalizadas",
+  "customRulesPlaceholder": "Adicione suas regras .htaccess personalizadas aqui...",
+  "instructions": {
+    "title": "Como Usar o Gerador Htaccess",
+    "steps": [
+      {
+        "title": "Escolha um preset ou comece do zero",
+        "description": "Selecione um preset rápido como Segurança Básica, WordPress ou Performance para pré-configurar definições comuns, ou construa sua configuração do zero"
+      },
+      {
+        "title": "Configure as definições de segurança",
+        "description": "Ative forçar HTTPS, proteção de diretórios, bloqueio de arquivos sensíveis e cabeçalhos de segurança para proteger seu site"
+      },
+      {
+        "title": "Adicione redirecionamentos se necessário",
+        "description": "Crie redirecionamentos 301 (permanentes) ou 302 (temporários) para páginas movidas, mudanças de domínio ou reestruturação de URLs"
+      },
+      {
+        "title": "Configure cache e compressão",
+        "description": "Ative cache do navegador e compressão gzip/brotli para melhorar a velocidade de carregamento do seu site"
+      },
+      {
+        "title": "Baixe ou copie o arquivo gerado",
+        "description": "Copie o código .htaccess gerado ou baixe-o diretamente, então faça upload para o diretório raiz do seu servidor web"
+      }
+    ],
+    "features": [
+      "Forçar HTTPS e redirecionamentos www/sem www",
+      "Gerenciamento de redirecionamentos 301 e 302",
+      "Cabeçalhos de segurança (XSS, MIME, Frame Options)",
+      "Configuração de cache do navegador com tempos de expiração personalizáveis",
+      "Suporte a compressão Gzip e Brotli",
+      "Páginas de erro personalizadas (404, 500, etc.)",
+      "Controle de acesso baseado em IP (permitir/negar)",
+      "Regras de segurança específicas para WordPress",
+      "Configurações preset para casos de uso comuns",
+      "Visualização em tempo real do código gerado"
+    ],
+    "useCases": [
+      "Migração de site de HTTP para HTTPS",
+      "Configuração de cache adequado para melhor performance",
+      "Proteção de arquivos e diretórios sensíveis",
+      "Criação de páginas de erro personalizadas para melhor UX",
+      "Implementação de redirecionamentos URL para SEO",
+      "Proteção de instalações WordPress",
+      "Bloqueio de IPs maliciosos e bots",
+      "Configuração de roteamento de aplicações de página única"
+    ],
+    "proTips": [
+      "Sempre faça backup do seu .htaccess existente antes de substituí-lo",
+      "Use redirecionamentos 301 para movimentos permanentes para preservar valor SEO",
+      "Teste sua configuração em um servidor de staging primeiro",
+      "Force HTTPS somente depois que seu certificado SSL estiver instalado corretamente",
+      "A ordem das regras em .htaccess importa - regras mais específicas devem vir primeiro",
+      "Use cache do navegador agressivamente para assets estáticos mas com cuidado para HTML"
+    ],
+    "troubleshooting": [
+      "Se você obtiver erro 500, verifique erros de sintaxe no seu arquivo .htaccess",
+      "RewriteEngine deve estar ativado (RewriteEngine On) para que redirecionamentos funcionem",
+      "Certifique-se de que mod_rewrite está ativado no seu servidor Apache",
+      "Alguns hosts compartilhados podem restringir certas diretivas .htaccess",
+      "Limpe o cache do navegador após mudanças em redirecionamentos para ver os efeitos"
+    ]
+  }
+}
