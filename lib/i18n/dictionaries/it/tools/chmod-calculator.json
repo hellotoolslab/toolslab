@@ -1,0 +1,79 @@
+{
+  "title": "Calcolatore Chmod",
+  "description": "Calcola i permessi Unix con griglia visuale, conversione tra notazione ottale e simbolica",
+  "placeholder": "Inserisci valore ottale (es. 755)",
+  "meta": {
+    "title": "Calcolatore Chmod - Calcolatore Permessi File Unix | ToolsLab",
+    "description": "Calcolatore chmod online gratuito. Converti tra permessi Unix ottali (755, 644) e simbolici (rwxr-xr-x) con griglia visuale, preset e generazione comandi."
+  },
+  "tagline": "Calcola e converti i permessi file Unix con interfaccia visuale e preset comuni",
+  "pageDescription": "Calcolatore chmod online gratuito per permessi file Unix/Linux. Converti tra notazione ottale (755, 644, 777) e formato simbolico (rwxr-xr-x). Include griglia permessi interattiva, preset comuni, opzione flag ricorsivo e generazione comandi istantanea. Perfetto per amministratori di sistema, ingegneri DevOps e utenti Linux che gestiscono permessi di file e directory.",
+  "owner": "Proprietario",
+  "group": "Gruppo",
+  "others": "Altri",
+  "read": "Lettura",
+  "write": "Scrittura",
+  "execute": "Esecuzione",
+  "octalNotation": "Notazione Ottale",
+  "symbolicNotation": "Notazione Simbolica",
+  "binaryRepresentation": "Binario",
+  "command": "Comando",
+  "filename": "Nome File",
+  "presets": "Preset Comuni",
+  "recursive": "Ricorsivo (-R)",
+  "permissionGrid": "Griglia Permessi",
+  "results": "Risultati",
+  "copy": "Copia",
+  "copied": "Copiato!",
+  "instructions": {
+    "title": "Come Usare il Calcolatore Chmod",
+    "steps": [
+      {
+        "title": "Seleziona i permessi visivamente",
+        "description": "Clicca i pulsanti R (Lettura), W (Scrittura), X (Esecuzione) per Proprietario, Gruppo e Altri per impostare i permessi interattivamente"
+      },
+      {
+        "title": "Oppure inserisci il valore ottale",
+        "description": "Digita un valore ottale a 3 cifre (es. 755) direttamente nel campo Notazione Ottale per impostare i permessi"
+      },
+      {
+        "title": "Usa i preset per scenari comuni",
+        "description": "Clicca qualsiasi pulsante preset per impostare rapidamente configurazioni di permessi comuni come 755 per directory o 644 per file"
+      },
+      {
+        "title": "Personalizza e copia il comando",
+        "description": "Inserisci il nome del file, abilita opzionalmente la modalità ricorsiva e copia il comando chmod generato"
+      }
+    ],
+    "features": [
+      "Griglia permessi visuale interattiva con pulsanti colorati",
+      "Conversione in tempo reale tra notazioni ottale, simbolica e binaria",
+      "10 preset di permessi comuni con descrizioni",
+      "Opzione flag ricorsivo (-R) per directory",
+      "Supporto nome file personalizzato per generazione comandi",
+      "Copia con un click per tutti i formati di output",
+      "Nessuna installazione richiesta - funziona interamente nel browser"
+    ],
+    "useCases": [
+      "Impostare permessi file web server (644 per file, 755 per directory)",
+      "Proteggere file privati e chiavi SSH (600, 700)",
+      "Imparare visivamente il sistema di permessi Unix",
+      "Riferimento rapido per comandi chmod",
+      "Insegnare i permessi file Linux ai principianti",
+      "Script DevOps e documentazione automazione"
+    ],
+    "proTips": [
+      "755 è lo standard per directory e script eseguibili",
+      "644 è lo standard per file regolari (proprietario può scrivere, altri possono leggere)",
+      "Non usare mai 777 su server di produzione - è un rischio sicurezza",
+      "Usa 600 per file sensibili come chiavi SSH e file di configurazione",
+      "Il flag ricorsivo (-R) applica i permessi a tutti i file e sottodirectory"
+    ],
+    "troubleshooting": [
+      "Se uno script non si esegue, controlla se il permesso di esecuzione (x) è impostato per l'utente appropriato",
+      "Errori di permesso negato spesso significano che l'utente corrente manca di permessi di lettura o esecuzione",
+      "I file web tipicamente necessitano 644 (file) e 755 (directory) per accesso corretto",
+      "Ricorda: le directory necessitano il permesso di esecuzione per essere accessibili"
+    ]
+  }
+}

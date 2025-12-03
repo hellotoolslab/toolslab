@@ -1,0 +1,79 @@
+{
+  "title": "Chmod Calculator",
+  "description": "Calculate Unix file permissions with visual grid, octal and symbolic notation converter",
+  "placeholder": "Enter octal value (e.g., 755)",
+  "meta": {
+    "title": "Chmod Calculator - Unix File Permissions Calculator | ToolsLab",
+    "description": "Free online chmod calculator. Convert between octal (755, 644) and symbolic (rwxr-xr-x) Unix file permissions with visual grid, presets, and command generation."
+  },
+  "tagline": "Calculate and convert Unix file permissions with visual interface and common presets",
+  "pageDescription": "Free online chmod calculator for Unix/Linux file permissions. Convert between octal notation (755, 644, 777) and symbolic format (rwxr-xr-x). Features interactive permission grid, common presets, recursive flag option, and instant command generation. Perfect for system administrators, DevOps engineers, and Linux users managing file and directory permissions.",
+  "owner": "Owner",
+  "group": "Group",
+  "others": "Others",
+  "read": "Read",
+  "write": "Write",
+  "execute": "Execute",
+  "octalNotation": "Octal Notation",
+  "symbolicNotation": "Symbolic Notation",
+  "binaryRepresentation": "Binary",
+  "command": "Command",
+  "filename": "Filename",
+  "presets": "Common Presets",
+  "recursive": "Recursive (-R)",
+  "permissionGrid": "Permission Grid",
+  "results": "Results",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "instructions": {
+    "title": "How to Use Chmod Calculator",
+    "steps": [
+      {
+        "title": "Select permissions visually",
+        "description": "Click the R (Read), W (Write), X (Execute) buttons for Owner, Group, and Others to set permissions interactively"
+      },
+      {
+        "title": "Or enter octal value",
+        "description": "Type a 3-digit octal value (e.g., 755) directly in the Octal Notation field to set permissions"
+      },
+      {
+        "title": "Use presets for common scenarios",
+        "description": "Click any preset button to quickly set common permission configurations like 755 for directories or 644 for files"
+      },
+      {
+        "title": "Customize and copy command",
+        "description": "Enter your filename, optionally enable recursive mode, and copy the generated chmod command"
+      }
+    ],
+    "features": [
+      "Interactive visual permission grid with color-coded buttons",
+      "Real-time conversion between octal, symbolic, and binary notations",
+      "10 common permission presets with descriptions",
+      "Recursive flag (-R) option for directories",
+      "Custom filename support for command generation",
+      "One-click copy for all output formats",
+      "No installation required - works entirely in browser"
+    ],
+    "useCases": [
+      "Setting web server file permissions (644 for files, 755 for directories)",
+      "Securing private files and SSH keys (600, 700)",
+      "Learning Unix permission system visually",
+      "Quick reference for chmod commands",
+      "Teaching Linux file permissions to beginners",
+      "DevOps scripts and automation documentation"
+    ],
+    "proTips": [
+      "755 is the standard for directories and executable scripts",
+      "644 is the standard for regular files (owner can write, others can read)",
+      "Never use 777 on production servers - it's a security risk",
+      "Use 600 for sensitive files like SSH keys and configuration files",
+      "The recursive flag (-R) applies permissions to all files and subdirectories"
+    ],
+    "troubleshooting": [
+      "If a script doesn't run, check if execute (x) permission is set for the appropriate user",
+      "Permission denied errors often mean the current user lacks read or execute permissions",
+      "Web files typically need 644 (files) and 755 (directories) for proper access",
+      "Remember: directories need execute permission to be accessible"
+    ]
+  }
+}

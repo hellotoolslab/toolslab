@@ -1,0 +1,79 @@
+{
+  "title": "Calculadora Chmod",
+  "description": "Calcula permisos Unix con cuadrícula visual, conversión entre notación octal y simbólica",
+  "placeholder": "Ingresa valor octal (ej. 755)",
+  "meta": {
+    "title": "Calculadora Chmod - Calculadora de Permisos de Archivos Unix | ToolsLab",
+    "description": "Calculadora chmod online gratuita. Convierte entre permisos Unix octales (755, 644) y simbólicos (rwxr-xr-x) con cuadrícula visual, presets y generación de comandos."
+  },
+  "tagline": "Calcula y convierte permisos de archivos Unix con interfaz visual y presets comunes",
+  "pageDescription": "Calculadora chmod online gratuita para permisos de archivos Unix/Linux. Convierte entre notación octal (755, 644, 777) y formato simbólico (rwxr-xr-x). Incluye cuadrícula de permisos interactiva, presets comunes, opción de flag recursivo y generación instantánea de comandos. Perfecta para administradores de sistemas, ingenieros DevOps y usuarios de Linux que gestionan permisos de archivos y directorios.",
+  "owner": "Propietario",
+  "group": "Grupo",
+  "others": "Otros",
+  "read": "Lectura",
+  "write": "Escritura",
+  "execute": "Ejecución",
+  "octalNotation": "Notación Octal",
+  "symbolicNotation": "Notación Simbólica",
+  "binaryRepresentation": "Binario",
+  "command": "Comando",
+  "filename": "Nombre de Archivo",
+  "presets": "Presets Comunes",
+  "recursive": "Recursivo (-R)",
+  "permissionGrid": "Cuadrícula de Permisos",
+  "results": "Resultados",
+  "copy": "Copiar",
+  "copied": "¡Copiado!",
+  "instructions": {
+    "title": "Cómo Usar la Calculadora Chmod",
+    "steps": [
+      {
+        "title": "Selecciona permisos visualmente",
+        "description": "Haz clic en los botones R (Lectura), W (Escritura), X (Ejecución) para Propietario, Grupo y Otros para establecer permisos interactivamente"
+      },
+      {
+        "title": "O ingresa el valor octal",
+        "description": "Escribe un valor octal de 3 dígitos (ej. 755) directamente en el campo Notación Octal para establecer permisos"
+      },
+      {
+        "title": "Usa presets para escenarios comunes",
+        "description": "Haz clic en cualquier botón de preset para configurar rápidamente configuraciones de permisos comunes como 755 para directorios o 644 para archivos"
+      },
+      {
+        "title": "Personaliza y copia el comando",
+        "description": "Ingresa el nombre del archivo, opcionalmente habilita el modo recursivo y copia el comando chmod generado"
+      }
+    ],
+    "features": [
+      "Cuadrícula de permisos visual interactiva con botones de colores",
+      "Conversión en tiempo real entre notaciones octal, simbólica y binaria",
+      "10 presets de permisos comunes con descripciones",
+      "Opción de flag recursivo (-R) para directorios",
+      "Soporte de nombre de archivo personalizado para generación de comandos",
+      "Copia con un clic para todos los formatos de salida",
+      "Sin instalación requerida - funciona completamente en el navegador"
+    ],
+    "useCases": [
+      "Establecer permisos de archivos de servidor web (644 para archivos, 755 para directorios)",
+      "Proteger archivos privados y claves SSH (600, 700)",
+      "Aprender visualmente el sistema de permisos Unix",
+      "Referencia rápida para comandos chmod",
+      "Enseñar permisos de archivos Linux a principiantes",
+      "Scripts DevOps y documentación de automatización"
+    ],
+    "proTips": [
+      "755 es el estándar para directorios y scripts ejecutables",
+      "644 es el estándar para archivos regulares (propietario puede escribir, otros pueden leer)",
+      "Nunca uses 777 en servidores de producción - es un riesgo de seguridad",
+      "Usa 600 para archivos sensibles como claves SSH y archivos de configuración",
+      "El flag recursivo (-R) aplica permisos a todos los archivos y subdirectorios"
+    ],
+    "troubleshooting": [
+      "Si un script no se ejecuta, verifica si el permiso de ejecución (x) está establecido para el usuario apropiado",
+      "Errores de permiso denegado a menudo significan que el usuario actual carece de permisos de lectura o ejecución",
+      "Los archivos web típicamente necesitan 644 (archivos) y 755 (directorios) para acceso correcto",
+      "Recuerda: los directorios necesitan permiso de ejecución para ser accesibles"
+    ]
+  }
+}
