@@ -220,7 +220,10 @@ export function downloadDocx(blob: Blob, originalFileName: string): void {
     );
   }
 
-  console.log(`Downloading DOCX: ${blob.size} bytes`);
+  // Debug logging only in development
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`Downloading DOCX: ${blob.size} bytes`);
+  }
 
   const fileName = originalFileName.replace(/\.pdf$/i, '_converted.docx');
   const url = URL.createObjectURL(blob);

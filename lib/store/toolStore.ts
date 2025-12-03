@@ -77,7 +77,7 @@ interface ToolOperation {
 
 interface ToolStore {
   history: ToolOperation[];
-  chainedData: any;
+  chainedData: unknown;
   userLevel: 'first_time' | 'returning' | 'power';
   proUser: boolean;
 
@@ -90,7 +90,7 @@ interface ToolStore {
 
   // Original actions
   addToHistory: (operation: ToolOperation) => void;
-  setChainedData: (data: any) => void;
+  setChainedData: (data: unknown) => void;
   getUserLevel: () => 'first_time' | 'returning' | 'power';
   clearHistory: () => void;
   getHistoryByTool: (tool: string) => ToolOperation[];
@@ -108,7 +108,13 @@ interface ToolStore {
 }
 
 // Store logic separated for reuse in both SSR and client environments
-const storeLogic: any = (set: any, get: any): ToolStore => ({
+// Using StateCreator for proper typing with persist middleware
+const storeLogic: StateCreator<
+  ToolStore,
+  [['zustand/persist', unknown]],
+  [],
+  ToolStore
+> = (set, get) => ({
   history: [],
   chainedData: null,
   userLevel: 'first_time' as const,
@@ -131,7 +137,7 @@ const storeLogic: any = (set: any, get: any): ToolStore => ({
     trackToolUsage(operation, get() as ToolStore);
   },
 
-  setChainedData: (data: any) => set({ chainedData: data }),
+  setChainedData: (data: unknown) => set({ chainedData: data }),
 
   getUserLevel: () => {
     const state = get() as ToolStore;
