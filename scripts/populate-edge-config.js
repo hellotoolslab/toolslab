@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Script per popolare Vercel Edge Config con i dati iniziali di OctoTools
+ * Script per popolare Vercel Edge Config con i dati iniziali di ToolsLab
  * Usa l'API Vercel per caricare la configurazione di default
  */
 

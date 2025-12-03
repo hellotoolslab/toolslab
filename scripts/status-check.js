@@ -29,7 +29,7 @@ function checkCommand(command, silent = false) {
   }
 }
 
-log('\n🔍 OctoTools Status Check\n', colors.bright + colors.blue);
+log('\n🔍 ToolsLab Status Check\n', colors.bright + colors.blue);
 
 // Check Node version
 const nodeVersion = process.version;

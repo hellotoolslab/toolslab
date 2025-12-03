@@ -267,6 +267,7 @@ export function Header() {
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="rounded-lg p-2 hover:bg-white/10"
+                aria-label="Close mobile menu"
               >
                 <X className="h-5 w-5" />
               </button>

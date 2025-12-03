@@ -22,8 +22,6 @@ import { ToolConfigOptions } from '@/lib/edge-config/types';
 const ALLOWED_ORIGINS = [
   'https://toolslab.dev',
   'https://www.toolslab.dev',
-  'https://octotools.org',
-  'https://www.octotools.org',
   // Development origins
   ...(process.env.NODE_ENV === 'development'
     ? ['http://localhost:3000', 'http://127.0.0.1:3000']

@@ -497,8 +497,12 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
             {/* XML Element Search Section */}
             <div className="mt-6 space-y-4 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900">
               <div className="flex items-center gap-3">
+                <label htmlFor="xml-element-search" className="sr-only">
+                  Search XML elements
+                </label>
                 <Search className="h-5 w-5 text-gray-500" />
                 <input
+                  id="xml-element-search"
                   type="text"
                   placeholder="Search elements (e.g., 'user', '@id', '//user/@name')"
                   value={searchQuery}

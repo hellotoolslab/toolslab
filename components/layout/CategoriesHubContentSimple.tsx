@@ -151,10 +151,14 @@ export default function CategoriesHubContentSimple({
             {/* Search Bar */}
             <div className="mx-auto mb-6 max-w-2xl">
               <div className="relative">
+                <label htmlFor="category-search" className="sr-only">
+                  {text.searchPlaceholder}
+                </label>
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
                   <Search className="h-5 w-5 text-gray-500" />
                 </div>
                 <input
+                  id="category-search"
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -379,6 +383,9 @@ export default function CategoriesHubContentSimple({
       {/* Categories Grid */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="sr-only">
+            {locale === 'it' ? 'Tutte le Categorie' : 'All Categories'}
+          </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredCategories.map((category, index) => {
               const getCategoryGradient = (categoryId: string) => {

@@ -706,6 +706,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                         }
                         className="ml-2 text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400"
                         title="Remove file and clear input"
+                        aria-label="Remove uploaded file"
                       >
                         ✕
                       </button>

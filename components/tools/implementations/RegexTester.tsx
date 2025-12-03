@@ -513,6 +513,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
             onClick={handleShare}
             className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
             title="Share regex"
+            aria-label="Share regex"
           >
             <Share2 className="h-4 w-4" />
           </button>
