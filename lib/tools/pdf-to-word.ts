@@ -1,21 +1,15 @@
 /**
  * PDF to Word Converter
  * Converts PDF files to editable Word (DOCX) format
+ *
+ * Uses dynamic imports for heavy libraries:
+ * - docx (~500KB) - only loaded when conversion is triggered
+ * - pdf-lib (~400KB) - only loaded when conversion is triggered
  */
 
-import {
-  Document,
-  Paragraph,
-  TextRun,
-  ImageRun,
-  Table,
-  TableRow,
-  TableCell,
-  HeadingLevel,
-  AlignmentType,
-  Packer,
-} from 'docx';
-import { PDFDocument } from 'pdf-lib';
+// Type imports (no runtime cost)
+import type { Document, Paragraph, TextRun, Packer } from 'docx';
+import type { PDFDocument } from 'pdf-lib';
 
 export interface PdfToWordOptions {
   mode?: 'preserve-layout' | 'fluid-text' | 'text-only';
@@ -62,6 +56,7 @@ async function extractTextFromPdf(pdfDoc: PDFDocument): Promise<string> {
 
 /**
  * Main function to convert PDF to Word
+ * Uses dynamic imports to load heavy libraries only when needed
  */
 export async function convertPdfToWord(
   pdfFile: File,
@@ -74,6 +69,15 @@ export async function convertPdfToWord(
       imageQuality = 'medium',
       enableOCR = false,
     } = options;
+
+    // Dynamic import heavy libraries only when conversion is triggered
+    const [docxModule, pdfLibModule] = await Promise.all([
+      import('docx'),
+      import('pdf-lib'),
+    ]);
+
+    const { Document, Paragraph, TextRun, Packer } = docxModule;
+    const { PDFDocument } = pdfLibModule;
 
     // Read PDF file with pdf-lib
     const arrayBuffer = await pdfFile.arrayBuffer();
@@ -109,7 +113,7 @@ export async function convertPdfToWord(
     const sections: any[] = [];
 
     for (const page of pages) {
-      const paragraphs: Paragraph[] = [];
+      const paragraphs: InstanceType<typeof Paragraph>[] = [];
 
       // Split text into paragraphs (simple split by double newlines or periods)
       const textParagraphs = page.text

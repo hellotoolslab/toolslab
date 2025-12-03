@@ -1,8 +1,71 @@
 'use client';
 
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+import { create, StateCreator } from 'zustand';
+import { persist, createJSONStorage, PersistOptions } from 'zustand/middleware';
 import { trackToolUsage } from '@/lib/analytics/middleware/toolStoreMiddleware';
+
+// ============================================================================
+// PERFORMANCE OPTIMIZATIONS (Dec 2024)
+// ============================================================================
+// - History limited to 50 items (was 100) to reduce localStorage size
+// - Debounced persist to batch writes and reduce sync operations
+// - chainedData excluded from persistence (temporary data)
+// ============================================================================
+
+const HISTORY_LIMIT = 50; // Reduced from 100 for better performance
+const PERSIST_DEBOUNCE_MS = 1000; // Debounce localStorage writes
+
+/**
+ * Debounced localStorage storage wrapper
+ * Batches multiple writes into a single operation to reduce sync I/O
+ */
+function createDebouncedStorage() {
+  let pendingWrite: string | null = null;
+  let writeTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  return {
+    getItem: (name: string): string | null => {
+      if (typeof window === 'undefined') return null;
+      try {
+        return localStorage.getItem(name);
+      } catch {
+        return null;
+      }
+    },
+    setItem: (name: string, value: string): void => {
+      if (typeof window === 'undefined') return;
+
+      // Store the pending value
+      pendingWrite = value;
+
+      // Clear any existing timeout
+      if (writeTimeout) {
+        clearTimeout(writeTimeout);
+      }
+
+      // Debounce the write
+      writeTimeout = setTimeout(() => {
+        if (pendingWrite !== null) {
+          try {
+            localStorage.setItem(name, pendingWrite);
+          } catch (e) {
+            // localStorage might be full or unavailable
+            console.warn('Failed to persist to localStorage:', e);
+          }
+          pendingWrite = null;
+        }
+      }, PERSIST_DEBOUNCE_MS);
+    },
+    removeItem: (name: string): void => {
+      if (typeof window === 'undefined') return;
+      try {
+        localStorage.removeItem(name);
+      } catch {
+        // Ignore errors
+      }
+    },
+  };
+}
 
 interface ToolOperation {
   id: string;
@@ -61,7 +124,7 @@ const storeLogic: any = (set: any, get: any): ToolStore => ({
   // Original actions
   addToHistory: (operation: ToolOperation) => {
     set((state: ToolStore) => ({
-      history: [operation, ...state.history].slice(0, 100), // Keep last 100 operations
+      history: [operation, ...state.history].slice(0, HISTORY_LIMIT),
     }));
 
     // 🔥 AUTO-TRACKING: Track tool usage via analytics middleware
@@ -161,13 +224,18 @@ const storeLogic: any = (set: any, get: any): ToolStore => ({
   },
 });
 
+// Create debounced storage instance (singleton)
+const debouncedStorage = createDebouncedStorage();
+
 // Create store with persist middleware - safe with client-only Header/Footer
+// Uses debounced storage to batch writes and reduce sync I/O
 export const useToolStore = create<ToolStore>()(
   persist(storeLogic, {
     name: 'toolslab-store',
-    storage: createJSONStorage(() => localStorage),
+    storage: createJSONStorage(() => debouncedStorage),
     partialize: (state) => ({
-      history: state.history,
+      // Persist only essential data (chainedData is excluded - it's temporary)
+      history: state.history.slice(0, HISTORY_LIMIT), // Ensure limit is enforced
       userLevel: state.userLevel,
       proUser: state.proUser,
       favoriteTools: state.favoriteTools,
@@ -178,3 +246,62 @@ export const useToolStore = create<ToolStore>()(
     }),
   })
 );
+
+// ============================================================================
+// ZUSTAND SELECTORS (Dec 2024)
+// ============================================================================
+// Use these selectors to subscribe to specific slices of state.
+// This prevents unnecessary re-renders when unrelated state changes.
+//
+// Usage:
+//   const favoriteTools = useToolStore(selectFavoriteTools);
+//   const history = useToolStore(selectHistory);
+//
+// Instead of:
+//   const { favoriteTools, history } = useToolStore(); // Re-renders on ANY change
+// ============================================================================
+
+// State selectors - subscribe to specific state slices
+export const selectHistory = (state: ToolStore) => state.history;
+export const selectChainedData = (state: ToolStore) => state.chainedData;
+export const selectUserLevel = (state: ToolStore) => state.userLevel;
+export const selectProUser = (state: ToolStore) => state.proUser;
+export const selectFavoriteTools = (state: ToolStore) => state.favoriteTools;
+export const selectFavoriteCategories = (state: ToolStore) =>
+  state.favoriteCategories;
+export const selectLabVisited = (state: ToolStore) => state.labVisited;
+export const selectLastLabAccess = (state: ToolStore) => state.lastLabAccess;
+export const selectFavoritesCountAtLastVisit = (state: ToolStore) =>
+  state.favoritesCountAtLastVisit;
+
+// Action selectors - get stable action references
+export const selectAddToHistory = (state: ToolStore) => state.addToHistory;
+export const selectSetChainedData = (state: ToolStore) => state.setChainedData;
+export const selectClearHistory = (state: ToolStore) => state.clearHistory;
+export const selectToggleToolFavorite = (state: ToolStore) =>
+  state.toggleToolFavorite;
+export const selectToggleCategoryFavorite = (state: ToolStore) =>
+  state.toggleCategoryFavorite;
+export const selectSetLabVisited = (state: ToolStore) => state.setLabVisited;
+
+// Computed selectors - derive values from state
+export const selectHistoryCount = (state: ToolStore) => state.history.length;
+export const selectFavoriteCount = (state: ToolStore) =>
+  state.favoriteTools.length + state.favoriteCategories.length;
+export const selectHasHistory = (state: ToolStore) => state.history.length > 0;
+export const selectHasFavorites = (state: ToolStore) =>
+  state.favoriteTools.length > 0 || state.favoriteCategories.length > 0;
+
+// Parameterized selectors - create selector with parameter
+export const createSelectIsFavoriteTool =
+  (toolId: string) => (state: ToolStore) =>
+    state.favoriteTools.includes(toolId);
+export const createSelectIsFavoriteCategory =
+  (categoryId: string) => (state: ToolStore) =>
+    state.favoriteCategories.includes(categoryId);
+export const createSelectHistoryByTool =
+  (toolId: string) => (state: ToolStore) =>
+    state.history.filter((op) => op.tool === toolId);
+
+// Type export for external use
+export type { ToolStore, ToolOperation };
