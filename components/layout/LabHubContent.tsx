@@ -156,7 +156,7 @@ function LabToolCard({
             className={cn(
               'truncate text-base font-semibold transition-colors',
               isComingSoon
-                ? 'text-gray-500 dark:text-gray-500'
+                ? 'text-gray-500 dark:text-gray-400'
                 : 'text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400'
             )}
           >
@@ -166,7 +166,7 @@ function LabToolCard({
             className={cn(
               'mt-1 line-clamp-2 text-xs leading-relaxed',
               isComingSoon
-                ? 'text-gray-500 dark:text-gray-500'
+                ? 'text-gray-500 dark:text-gray-400'
                 : 'text-gray-600 dark:text-gray-400'
             )}
           >

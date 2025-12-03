@@ -16,10 +16,14 @@ export function SearchTools() {
   const clearSearch = () => setQuery('');
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="mx-auto w-full max-w-2xl">
       <div className="relative mb-6">
+        <label htmlFor="search-tools" className="sr-only">
+          Search tools
+        </label>
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <input
+          id="search-tools"
           type="search"
           placeholder="Search tools by name, description, or keywords..."
           value={query}
@@ -29,7 +33,7 @@ export function SearchTools() {
         {query && (
           <button
             onClick={clearSearch}
-            className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Clear search"
           >
             <X className="h-4 w-4" />
@@ -44,9 +48,9 @@ export function SearchTools() {
               ? `No tools found for "${query}"`
               : `${filteredTools.length} tool${filteredTools.length === 1 ? '' : 's'} found for "${query}"`}
           </p>
-          
+
           {filteredTools.length > 0 && (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
+            <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredTools.map((tool) => (
                 <ToolCard key={tool.id} tool={tool} />
               ))}

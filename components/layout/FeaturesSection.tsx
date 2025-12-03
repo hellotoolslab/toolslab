@@ -51,7 +51,7 @@ export function FeaturesSection() {
       <div className="container-main">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold">
-            Why Developers Choose OctoTools
+            Why Developers Choose ToolsLab
           </h2>
           <p className="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-400">
             We&rsquo;ve built every tool with the same principles that guide

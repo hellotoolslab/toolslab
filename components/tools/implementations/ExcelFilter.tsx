@@ -324,7 +324,7 @@ export default function ExcelFilter({
                 </>
               )}
             </p>
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
               XLSX or XLS up to 50MB
             </p>
           </div>

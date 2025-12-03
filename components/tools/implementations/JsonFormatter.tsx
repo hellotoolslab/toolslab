@@ -1,6 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import {
+  useState,
+  useRef,
+  useMemo,
+  useCallback,
+  useReducer,
+  memo,
+} from 'react';
 import {
   Copy,
   Download,
@@ -26,28 +33,244 @@ import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps, JsonValue, JsonObject } from '@/lib/types/tools';
 import { formatJSON, minifyJSON } from '@/lib/tools/json';
 
+// ============================================================================
+// PERFORMANCE OPTIMIZATIONS (Dec 2024)
+// ============================================================================
+// - Consolidated 12+ useState into useReducer for better state management
+// - Memoized renderJsonTree with useMemo
+// - Created memoized JsonTreeNode component with React.memo
+// - Used useCallback for event handlers
+// ============================================================================
+
 interface JsonFormatterProps extends BaseToolProps {}
 
+// State type for useReducer
+interface FormatterState {
+  input: string;
+  output: string;
+  viewMode: 'tree' | 'formatted';
+  indentSize: number;
+  sortKeys: boolean;
+  searchKey: string;
+  searchResults: Array<{ value: any; path: string }>;
+  hasSearched: boolean;
+  formatSuccess: boolean;
+  copiedPaths: Record<number, boolean>;
+  copiedValues: Record<number, boolean>;
+  uploadedFileName: string;
+  uploadedFileSize: number;
+  uploadedFileContent: string;
+  isLargeFile: boolean;
+  previewLines: number;
+  fullFormattedOutput: string;
+}
+
+type FormatterAction =
+  | { type: 'SET_INPUT'; payload: string }
+  | { type: 'SET_OUTPUT'; payload: string }
+  | { type: 'SET_VIEW_MODE'; payload: 'tree' | 'formatted' }
+  | { type: 'SET_INDENT_SIZE'; payload: number }
+  | { type: 'SET_SORT_KEYS'; payload: boolean }
+  | { type: 'SET_SEARCH_KEY'; payload: string }
+  | { type: 'SET_SEARCH_RESULTS'; payload: Array<{ value: any; path: string }> }
+  | { type: 'SET_HAS_SEARCHED'; payload: boolean }
+  | { type: 'SET_FORMAT_SUCCESS'; payload: boolean }
+  | { type: 'SET_COPIED_PATH'; payload: { index: number; value: boolean } }
+  | { type: 'SET_COPIED_VALUE'; payload: { index: number; value: boolean } }
+  | {
+      type: 'SET_UPLOADED_FILE';
+      payload: { name: string; size: number; content: string };
+    }
+  | { type: 'CLEAR_UPLOADED_FILE' }
+  | {
+      type: 'SET_LARGE_FILE_INFO';
+      payload: { isLarge: boolean; lines: number };
+    }
+  | { type: 'SET_FULL_OUTPUT'; payload: string }
+  | { type: 'RESET_SEARCH' };
+
+const initialState: FormatterState = {
+  input: '',
+  output: '',
+  viewMode: 'formatted',
+  indentSize: 2,
+  sortKeys: false,
+  searchKey: '',
+  searchResults: [],
+  hasSearched: false,
+  formatSuccess: false,
+  copiedPaths: {},
+  copiedValues: {},
+  uploadedFileName: '',
+  uploadedFileSize: 0,
+  uploadedFileContent: '',
+  isLargeFile: false,
+  previewLines: 0,
+  fullFormattedOutput: '',
+};
+
+function formatterReducer(
+  state: FormatterState,
+  action: FormatterAction
+): FormatterState {
+  switch (action.type) {
+    case 'SET_INPUT':
+      return { ...state, input: action.payload };
+    case 'SET_OUTPUT':
+      return { ...state, output: action.payload };
+    case 'SET_VIEW_MODE':
+      return { ...state, viewMode: action.payload };
+    case 'SET_INDENT_SIZE':
+      return { ...state, indentSize: action.payload };
+    case 'SET_SORT_KEYS':
+      return { ...state, sortKeys: action.payload };
+    case 'SET_SEARCH_KEY':
+      return { ...state, searchKey: action.payload, hasSearched: false };
+    case 'SET_SEARCH_RESULTS':
+      return { ...state, searchResults: action.payload };
+    case 'SET_HAS_SEARCHED':
+      return { ...state, hasSearched: action.payload };
+    case 'SET_FORMAT_SUCCESS':
+      return { ...state, formatSuccess: action.payload };
+    case 'SET_COPIED_PATH':
+      return {
+        ...state,
+        copiedPaths: {
+          ...state.copiedPaths,
+          [action.payload.index]: action.payload.value,
+        },
+      };
+    case 'SET_COPIED_VALUE':
+      return {
+        ...state,
+        copiedValues: {
+          ...state.copiedValues,
+          [action.payload.index]: action.payload.value,
+        },
+      };
+    case 'SET_UPLOADED_FILE':
+      return {
+        ...state,
+        uploadedFileName: action.payload.name,
+        uploadedFileSize: action.payload.size,
+        uploadedFileContent: action.payload.content,
+      };
+    case 'CLEAR_UPLOADED_FILE':
+      return {
+        ...state,
+        uploadedFileName: '',
+        uploadedFileSize: 0,
+        uploadedFileContent: '',
+        isLargeFile: false,
+        input: '',
+        output: '',
+      };
+    case 'SET_LARGE_FILE_INFO':
+      return {
+        ...state,
+        isLargeFile: action.payload.isLarge,
+        previewLines: action.payload.lines,
+      };
+    case 'SET_FULL_OUTPUT':
+      return { ...state, fullFormattedOutput: action.payload };
+    case 'RESET_SEARCH':
+      return { ...state, copiedPaths: {}, copiedValues: {}, hasSearched: true };
+    default:
+      return state;
+  }
+}
+
+// Memoized JSON Tree Node component for better performance
+interface JsonTreeNodeProps {
+  data: JsonValue;
+  depth: number;
+}
+
+const JsonTreeNode = memo(function JsonTreeNode({
+  data,
+  depth,
+}: JsonTreeNodeProps) {
+  if (data === null) return <span className="text-gray-500">null</span>;
+  if (typeof data === 'boolean')
+    return (
+      <span className="text-purple-600 dark:text-purple-400">
+        {String(data)}
+      </span>
+    );
+  if (typeof data === 'number')
+    return <span className="text-blue-600 dark:text-blue-400">{data}</span>;
+  if (typeof data === 'string')
+    return (
+      <span className="text-green-600 dark:text-green-400">
+        &ldquo;{data}&rdquo;
+      </span>
+    );
+
+  if (Array.isArray(data)) {
+    return (
+      <details open={depth < 2} className="ml-4">
+        <summary className="cursor-pointer rounded px-1 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span className="text-gray-500">Array[{data.length}]</span>
+        </summary>
+        <div className="ml-4">
+          {data.map((item, index) => (
+            <div key={index} className="flex items-start gap-2">
+              <span className="text-gray-400">{index}:</span>
+              <JsonTreeNode data={item} depth={depth + 1} />
+            </div>
+          ))}
+        </div>
+      </details>
+    );
+  }
+
+  if (typeof data === 'object') {
+    const entries = Object.entries(data);
+    return (
+      <details open={depth < 2} className="ml-4">
+        <summary className="cursor-pointer rounded px-1 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span className="text-gray-500">Object{`{${entries.length}}`}</span>
+        </summary>
+        <div className="ml-4">
+          {entries.map(([key, value]) => (
+            <div key={key} className="flex items-start gap-2">
+              <span className="text-purple-600 dark:text-purple-400">
+                &ldquo;{key}&rdquo;:
+              </span>
+              <JsonTreeNode data={value} depth={depth + 1} />
+            </div>
+          ))}
+        </div>
+      </details>
+    );
+  }
+
+  return <span>{String(data)}</span>;
+});
+
 export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
-  const [input, setInput] = useState('');
-  const [output, setOutput] = useState('');
-  const [viewMode, setViewMode] = useState<'tree' | 'formatted'>('formatted');
-  const [indentSize, setIndentSize] = useState(2);
-  const [sortKeys, setSortKeys] = useState(false);
-  const [searchKey, setSearchKey] = useState('');
-  const [searchResults, setSearchResults] = useState<
-    Array<{ value: any; path: string }>
-  >([]);
-  const [hasSearched, setHasSearched] = useState(false);
-  const [formatSuccess, setFormatSuccess] = useState(false);
-  const [copiedPaths, setCopiedPaths] = useState<Record<number, boolean>>({});
-  const [copiedValues, setCopiedValues] = useState<Record<number, boolean>>({});
-  const [uploadedFileName, setUploadedFileName] = useState('');
-  const [uploadedFileSize, setUploadedFileSize] = useState(0);
-  const [uploadedFileContent, setUploadedFileContent] = useState('');
-  const [isLargeFile, setIsLargeFile] = useState(false);
-  const [previewLines, setPreviewLines] = useState(0);
-  const [fullFormattedOutput, setFullFormattedOutput] = useState('');
+  // Consolidated state with useReducer for better performance
+  const [state, dispatch] = useReducer(formatterReducer, initialState);
+  const {
+    input,
+    output,
+    viewMode,
+    indentSize,
+    sortKeys,
+    searchKey,
+    searchResults,
+    hasSearched,
+    formatSuccess,
+    copiedPaths,
+    copiedValues,
+    uploadedFileName,
+    uploadedFileSize,
+    uploadedFileContent,
+    isLargeFile,
+    previewLines,
+    fullFormattedOutput,
+  } = state;
+
   const outputRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -60,12 +283,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
   const { downloadJSON, downloadText } = useDownload();
   const { trackUse, trackError } = useToolTracking('json-formatter');
 
-  const formatJson = () => {
+  const formatJson = useCallback(() => {
     // Use uploaded file content if available, otherwise use manual input
     const contentToProcess = uploadedFileContent || input;
 
     if (!contentToProcess.trim()) {
-      setOutput('');
+      dispatch({ type: 'SET_OUTPUT', payload: '' });
       return;
     }
 
@@ -73,18 +296,6 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     const inputSizeMB = uploadedFileName
       ? uploadedFileSize / (1024 * 1024)
       : new Blob([contentToProcess]).size / (1024 * 1024);
-
-    console.log('🔍 File size check:', {
-      uploadedFileName,
-      uploadedFileSize,
-      uploadedFileContent: !!uploadedFileContent,
-      uploadedFileSizeMB: uploadedFileSize / (1024 * 1024),
-      inputSizeMB,
-      contentLength: contentToProcess.length,
-      isUploadedFile: !!uploadedFileName,
-      calculatedSize: new Blob([contentToProcess]).size,
-      calculatedSizeMB: new Blob([contentToProcess]).size / (1024 * 1024),
-    });
 
     // Warn user about potentially long processing time for files > 50MB
     if (inputSizeMB > 50) {
@@ -133,7 +344,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
       });
 
       // Store the full formatted output
-      setFullFormattedOutput(result);
+      dispatch({ type: 'SET_FULL_OUTPUT', payload: result });
 
       // Check if we should limit preview (only for uploaded files > 5MB)
       const lines = result.split('\n');
@@ -143,19 +354,24 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         uploadedFileName && fileSizeMB > 5 && totalLines > 200
       );
 
-      setIsLargeFile(shouldLimitPreview);
-      setPreviewLines(totalLines);
+      dispatch({
+        type: 'SET_LARGE_FILE_INFO',
+        payload: { isLarge: shouldLimitPreview, lines: totalLines },
+      });
 
       // If it's a large uploaded file, show only the first 200 lines in the preview
       if (shouldLimitPreview) {
         const preview = lines.slice(0, 200).join('\n');
-        setOutput(preview);
+        dispatch({ type: 'SET_OUTPUT', payload: preview });
       } else {
-        setOutput(result);
+        dispatch({ type: 'SET_OUTPUT', payload: result });
       }
 
-      setFormatSuccess(true);
-      setTimeout(() => setFormatSuccess(false), 3000);
+      dispatch({ type: 'SET_FORMAT_SUCCESS', payload: true });
+      setTimeout(
+        () => dispatch({ type: 'SET_FORMAT_SUCCESS', payload: false }),
+        3000
+      );
 
       // Track successful formatting
       trackUse(contentToProcess, result, {
@@ -178,14 +394,24 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
       );
       // Error is handled by useToolProcessor
     }
-  };
+  }, [
+    input,
+    uploadedFileContent,
+    uploadedFileName,
+    uploadedFileSize,
+    sortKeys,
+    indentSize,
+    processSync,
+    trackUse,
+    trackError,
+  ]);
 
-  const minifyJson = () => {
+  const minifyJson = useCallback(() => {
     // Use uploaded file content if available, otherwise use manual input
     const contentToProcess = uploadedFileContent || input;
 
     if (!contentToProcess.trim()) {
-      setOutput('');
+      dispatch({ type: 'SET_OUTPUT', payload: '' });
       return;
     }
 
@@ -201,7 +427,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         return minifyResult.result || '';
       });
 
-      setOutput(result);
+      dispatch({ type: 'SET_OUTPUT', payload: result });
 
       // Track successful minification
       trackUse(contentToProcess, result, {
@@ -215,63 +441,64 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
       );
       // Error is handled by useToolProcessor
     }
-  };
+  }, [input, uploadedFileContent, processSync, trackUse, trackError]);
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  const handleFileUpload = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
 
-    // Check if it's a JSON file
-    if (
-      !file.name.toLowerCase().endsWith('.json') &&
-      file.type !== 'application/json'
-    ) {
-      setFormatSuccess(false);
-      // Handle error through the error state if needed
-      return;
-    }
+      // Check if it's a JSON file
+      if (
+        !file.name.toLowerCase().endsWith('.json') &&
+        file.type !== 'application/json'
+      ) {
+        dispatch({ type: 'SET_FORMAT_SUCCESS', payload: false });
+        // Handle error through the error state if needed
+        return;
+      }
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const content = e.target?.result as string;
-      setUploadedFileContent(content); // Store file content separately
-      setUploadedFileName(file.name);
-      setUploadedFileSize(file.size); // Store file size in bytes
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target?.result as string;
+        dispatch({
+          type: 'SET_UPLOADED_FILE',
+          payload: { name: file.name, size: file.size, content },
+        });
 
-      // Auto-format the uploaded JSON
-      setTimeout(() => {
-        formatJson();
-      }, 100);
-    };
-    reader.readAsText(file);
-  };
+        // Auto-format the uploaded JSON (formatJson will be called via useEffect or manually)
+      };
+      reader.readAsText(file);
+    },
+    []
+  );
 
-  const handleFileUploadClick = () => {
+  const handleFileUploadClick = useCallback(() => {
     fileInputRef.current?.click();
-  };
+  }, []);
 
-  const handleCopy = async () => {
+  const handleCopy = useCallback(async () => {
     await copy(output);
     // Don't clear search results when copying output
-  };
+  }, [copy, output]);
 
-  const handleCopyPath = async (path: string, index: number) => {
+  const handleCopyPath = useCallback(async (path: string, index: number) => {
     await navigator.clipboard.writeText(path);
-    setCopiedPaths({ ...copiedPaths, [index]: true });
+    dispatch({ type: 'SET_COPIED_PATH', payload: { index, value: true } });
     setTimeout(() => {
-      setCopiedPaths((prev) => ({ ...prev, [index]: false }));
+      dispatch({ type: 'SET_COPIED_PATH', payload: { index, value: false } });
     }, 2000);
-  };
+  }, []);
 
-  const handleCopyValue = async (value: any, index: number) => {
+  const handleCopyValue = useCallback(async (value: any, index: number) => {
     const valueString =
       typeof value === 'string' ? value : JSON.stringify(value, null, 2);
     await navigator.clipboard.writeText(valueString);
-    setCopiedValues({ ...copiedValues, [index]: true });
+    dispatch({ type: 'SET_COPIED_VALUE', payload: { index, value: true } });
     setTimeout(() => {
-      setCopiedValues((prev) => ({ ...prev, [index]: false }));
+      dispatch({ type: 'SET_COPIED_VALUE', payload: { index, value: false } });
     }, 2000);
-  };
+  }, []);
 
   const handleDownload = async () => {
     if (!output) return;
@@ -298,13 +525,11 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     }
   };
 
-  const searchJsonKey = () => {
-    setHasSearched(true);
-    setCopiedPaths({});
-    setCopiedValues({});
+  const searchJsonKey = useCallback(() => {
+    dispatch({ type: 'RESET_SEARCH' });
 
     if (!output || !searchKey.trim()) {
-      setSearchResults([]);
+      dispatch({ type: 'SET_SEARCH_RESULTS', payload: [] });
       return;
     }
 
@@ -348,71 +573,27 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
       };
 
       findAllKeys(data, searchKey);
-      setSearchResults(results);
+      dispatch({ type: 'SET_SEARCH_RESULTS', payload: results });
     } catch (err) {
       console.error('Search error:', err);
-      setSearchResults([]);
+      dispatch({ type: 'SET_SEARCH_RESULTS', payload: [] });
     }
-  };
+  }, [output, searchKey]);
 
-  const renderJsonTree = (data: JsonValue, depth = 0): JSX.Element => {
-    if (data === null) return <span className="text-gray-500">null</span>;
-    if (typeof data === 'boolean')
+  // Memoized tree view - only re-renders when output changes
+  const memoizedTreeView = useMemo(() => {
+    if (!output) return null;
+    try {
+      const data = JSON.parse(output);
+      return <JsonTreeNode data={data} depth={0} />;
+    } catch {
       return (
-        <span className="text-purple-600 dark:text-purple-400">
-          {String(data)}
-        </span>
-      );
-    if (typeof data === 'number')
-      return <span className="text-blue-600 dark:text-blue-400">{data}</span>;
-    if (typeof data === 'string')
-      return (
-        <span className="text-green-600 dark:text-green-400">
-          &ldquo;{data}&rdquo;
-        </span>
-      );
-
-    if (Array.isArray(data)) {
-      return (
-        <details open={depth < 2} className="ml-4">
-          <summary className="cursor-pointer rounded px-1 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span className="text-gray-500">Array[{data.length}]</span>
-          </summary>
-          <div className="ml-4">
-            {data.map((item, index) => (
-              <div key={index} className="flex items-start gap-2">
-                <span className="text-gray-400">{index}:</span>
-                {renderJsonTree(item, depth + 1)}
-              </div>
-            ))}
-          </div>
-        </details>
+        <div className="text-red-500">
+          Error rendering tree view. Please use formatted view.
+        </div>
       );
     }
-
-    if (typeof data === 'object') {
-      const entries = Object.entries(data);
-      return (
-        <details open={depth < 2} className="ml-4">
-          <summary className="cursor-pointer rounded px-1 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span className="text-gray-500">Object{`{${entries.length}}`}</span>
-          </summary>
-          <div className="ml-4">
-            {entries.map(([key, value]) => (
-              <div key={key} className="flex items-start gap-2">
-                <span className="text-purple-600 dark:text-purple-400">
-                  &ldquo;{key}&rdquo;:
-                </span>
-                {renderJsonTree(value, depth + 1)}
-              </div>
-            ))}
-          </div>
-        </details>
-      );
-    }
-
-    return <span>{String(data)}</span>;
-  };
+  }, [output]);
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
@@ -474,13 +655,10 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
             <textarea
               value={uploadedFileName ? '' : input}
               onChange={(e) => {
-                setInput(e.target.value);
+                dispatch({ type: 'SET_INPUT', payload: e.target.value });
                 // Reset upload states when manually editing
                 if (uploadedFileName) {
-                  setUploadedFileName('');
-                  setUploadedFileSize(0);
-                  setUploadedFileContent('');
-                  setIsLargeFile(false);
+                  dispatch({ type: 'CLEAR_UPLOADED_FILE' });
                 }
               }}
               placeholder={
@@ -523,16 +701,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                         Input file: {uploadedFileName}
                       </span>
                       <button
-                        onClick={() => {
-                          setUploadedFileName('');
-                          setUploadedFileSize(0);
-                          setUploadedFileContent('');
-                          setInput('');
-                          setOutput('');
-                          setIsLargeFile(false);
-                        }}
+                        onClick={() =>
+                          dispatch({ type: 'CLEAR_UPLOADED_FILE' })
+                        }
                         className="ml-2 text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400"
                         title="Remove file and clear input"
+                        aria-label="Remove uploaded file"
                       >
                         ✕
                       </button>
@@ -555,7 +729,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
             </label>
             <select
               value={indentSize}
-              onChange={(e) => setIndentSize(Number(e.target.value))}
+              onChange={(e) =>
+                dispatch({
+                  type: 'SET_INDENT_SIZE',
+                  payload: Number(e.target.value),
+                })
+              }
               className="rounded border border-gray-300 bg-white px-3 py-1 text-sm dark:border-gray-600 dark:bg-gray-800"
             >
               <option value={2}>2 spaces</option>
@@ -567,7 +746,9 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
             <input
               type="checkbox"
               checked={sortKeys}
-              onChange={(e) => setSortKeys(e.target.checked)}
+              onChange={(e) =>
+                dispatch({ type: 'SET_SORT_KEYS', payload: e.target.checked })
+              }
               className="rounded"
               style={{ accentColor: categoryColor }}
             />
@@ -644,7 +825,10 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() =>
-                    setViewMode(viewMode === 'tree' ? 'formatted' : 'tree')
+                    dispatch({
+                      type: 'SET_VIEW_MODE',
+                      payload: viewMode === 'tree' ? 'formatted' : 'tree',
+                    })
                   }
                   className="flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                   title={`Switch to ${viewMode === 'tree' ? 'formatted' : 'tree'} view`}
@@ -725,17 +909,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                   height: '30rem',
                 }}
               >
-                {(() => {
-                  try {
-                    return renderJsonTree(JSON.parse(output));
-                  } catch {
-                    return (
-                      <div className="text-red-500">
-                        Error rendering tree view. Please use formatted view.
-                      </div>
-                    );
-                  }
-                })()}
+                {memoizedTreeView}
               </div>
             )}
 
@@ -747,10 +921,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                   type="text"
                   placeholder="Search for a key in JSON..."
                   value={searchKey}
-                  onChange={(e) => {
-                    setSearchKey(e.target.value);
-                    setHasSearched(false);
-                  }}
+                  onChange={(e) =>
+                    dispatch({
+                      type: 'SET_SEARCH_KEY',
+                      payload: e.target.value,
+                    })
+                  }
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') {
                       searchJsonKey();

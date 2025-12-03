@@ -141,7 +141,7 @@ export default function ToolPageClient({
     if (hasNativeShare && navigator.share) {
       try {
         await navigator.share({
-          title: `${tool.name} - OctoTools`,
+          title: `${tool.name} - ToolsLab`,
           text: tool.description,
           url: window.location.href,
         });

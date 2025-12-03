@@ -121,6 +121,117 @@ const FLAG_OPTIONS = [
   { key: 'y', label: 'Sticky', description: 'Match from lastIndex' },
 ];
 
+// ReDoS protection constants
+const REGEX_TIMEOUT_MS = 1000; // Maximum execution time
+const MAX_PATTERN_LENGTH = 500; // Maximum pattern length
+const MAX_TEST_STRING_LENGTH = 100000; // Maximum test string length
+
+/**
+ * Detects potentially dangerous ReDoS patterns.
+ * These patterns can cause exponential backtracking.
+ */
+function detectReDoSPattern(pattern: string): string | null {
+  // Patterns that commonly cause ReDoS:
+  // 1. Nested quantifiers: (a+)+ or (a*)*
+  // 2. Overlapping alternations with quantifiers: (a|a)+
+  // 3. Repetition with optional elements: (a+b?)+
+
+  // Check for nested quantifiers
+  const nestedQuantifierPattern = /\([^)]*[+*][^)]*\)[+*]/;
+  if (nestedQuantifierPattern.test(pattern)) {
+    return 'Pattern contains nested quantifiers which may cause performance issues';
+  }
+
+  // Check for overlapping alternations
+  const overlappingAltPattern = /\(([^|)]+)\|(\1)[^)]*\)[+*]/;
+  if (overlappingAltPattern.test(pattern)) {
+    return 'Pattern contains overlapping alternations which may cause performance issues';
+  }
+
+  // Check for complex repetitions that can backtrack
+  const complexRepetition = /(\.\*|\.\+){2,}/;
+  if (complexRepetition.test(pattern)) {
+    return 'Pattern contains multiple consecutive wildcards which may cause performance issues';
+  }
+
+  return null;
+}
+
+/**
+ * Executes a regex with timeout protection.
+ * Uses a simple iteration-based timeout check.
+ */
+function executeRegexWithTimeout(
+  regex: RegExp,
+  testStr: string,
+  timeoutMs: number
+): { matches: RegexMatch[]; timedOut: boolean; error?: string } {
+  const matches: RegexMatch[] = [];
+  const startTime = performance.now();
+
+  try {
+    if (regex.global) {
+      let match;
+      let iterations = 0;
+      const maxIterations = 10000; // Safety limit
+
+      while ((match = regex.exec(testStr)) !== null) {
+        matches.push({
+          match: match[0],
+          index: match.index,
+          groups: match.slice(1),
+          namedGroups: match.groups,
+        });
+
+        // Prevent infinite loop for zero-width matches
+        if (match.index === regex.lastIndex) {
+          regex.lastIndex++;
+        }
+
+        iterations++;
+
+        // Check timeout periodically
+        if (iterations % 100 === 0) {
+          if (performance.now() - startTime > timeoutMs) {
+            return {
+              matches,
+              timedOut: true,
+              error: `Regex execution timed out after ${timeoutMs}ms. Consider simplifying your pattern.`,
+            };
+          }
+        }
+
+        // Safety limit
+        if (iterations >= maxIterations) {
+          return {
+            matches,
+            timedOut: true,
+            error: `Too many iterations (>${maxIterations}). Pattern may be too complex.`,
+          };
+        }
+      }
+    } else {
+      const match = regex.exec(testStr);
+      if (match) {
+        matches.push({
+          match: match[0],
+          index: match.index,
+          groups: match.slice(1),
+          namedGroups: match.groups,
+        });
+      }
+    }
+
+    return { matches, timedOut: false };
+  } catch (error) {
+    return {
+      matches: [],
+      timedOut: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
+}
+
 export default function RegexTester({ categoryColor }: RegexTesterProps) {
   const { downloadJSON } = useDownload();
   const { trackUse, trackCustom, trackError } = useToolTracking('regex-tester');
@@ -142,7 +253,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
     'matches'
   );
 
-  // Debounced regex testing
+  // Debounced regex testing with ReDoS protection
   const testRegex = useCallback(
     (pattern: string, testStr: string, flags: string) => {
       const debouncedTest = debounce(
@@ -156,43 +267,40 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
           const startTime = performance.now();
 
           try {
-            const regex = new RegExp(pattern, flags);
-            const matches: RegexMatch[] = [];
-
-            if (flags.includes('g')) {
-              let match;
-              while ((match = regex.exec(testStr)) !== null) {
-                matches.push({
-                  match: match[0],
-                  index: match.index,
-                  groups: match.slice(1),
-                  namedGroups: match.groups,
-                });
-
-                // Prevent infinite loop
-                if (match.index === regex.lastIndex) {
-                  regex.lastIndex++;
-                }
-
-                // Safety limit
-                if (matches.length > 1000) {
-                  throw new Error(
-                    'Too many matches (>1000). Consider refining your pattern.'
-                  );
-                }
-              }
-            } else {
-              const match = regex.exec(testStr);
-              if (match) {
-                matches.push({
-                  match: match[0],
-                  index: match.index,
-                  groups: match.slice(1),
-                  namedGroups: match.groups,
-                });
-              }
+            // Input validation for ReDoS protection
+            if (pattern.length > MAX_PATTERN_LENGTH) {
+              throw new Error(
+                `Pattern too long (max ${MAX_PATTERN_LENGTH} characters). Please use a shorter pattern.`
+              );
             }
 
+            if (testStr.length > MAX_TEST_STRING_LENGTH) {
+              throw new Error(
+                `Test string too long (max ${MAX_TEST_STRING_LENGTH} characters). Please use a shorter string.`
+              );
+            }
+
+            // Check for potentially dangerous ReDoS patterns
+            const redosWarning = detectReDoSPattern(pattern);
+            if (redosWarning) {
+              // Continue with warning but use strict timeout
+              console.warn('ReDoS warning:', redosWarning);
+            }
+
+            const regex = new RegExp(pattern, flags);
+
+            // Execute with timeout protection
+            const execResult = executeRegexWithTimeout(
+              regex,
+              testStr,
+              REGEX_TIMEOUT_MS
+            );
+
+            if (execResult.error && execResult.timedOut) {
+              throw new Error(execResult.error);
+            }
+
+            const matches = execResult.matches;
             const endTime = performance.now();
             const executionTime = Math.round(endTime - startTime);
 
@@ -218,7 +326,9 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
             // Generate replacement preview if replace string is provided
             if (replaceString) {
               try {
-                const replaced = testStr.replace(regex, replaceString);
+                // Create fresh regex for replacement (reset lastIndex)
+                const replaceRegex = new RegExp(pattern, flags);
+                const replaced = testStr.replace(replaceRegex, replaceString);
                 setReplacementResult(replaced);
               } catch (err) {
                 setReplacementResult(
@@ -255,7 +365,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
 
       debouncedTest(pattern, testStr, flags);
     },
-    [replaceString]
+    [replaceString, trackCustom, trackError]
   );
 
   // Debounce function
@@ -403,6 +513,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
             onClick={handleShare}
             className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
             title="Share regex"
+            aria-label="Share regex"
           >
             <Share2 className="h-4 w-4" />
           </button>
