@@ -1,0 +1,120 @@
+{
+  "title": "Htaccess Generator",
+  "description": "Generate .htaccess files for Apache with redirects, security rules, caching, and URL rewriting",
+  "placeholder": "Configure your .htaccess settings",
+  "meta": {
+    "title": "Htaccess Generator - Apache Configuration Tool | ToolsLab",
+    "description": "Free online .htaccess generator. Create Apache configuration with redirects, security headers, caching rules, HTTPS forcing, and more. No coding required."
+  },
+  "tagline": "Generate professional .htaccess files for Apache servers with visual configuration",
+  "pageDescription": "Free online .htaccess generator for Apache web servers. Create configuration files with 301/302 redirects, force HTTPS, security headers, browser caching, gzip compression, custom error pages, and IP blocking. Features preset configurations for WordPress, SPA apps, and performance optimization. Perfect for web developers, system administrators, and site owners.",
+  "generate": "Generate .htaccess",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "download": "Download",
+  "presets": "Quick Presets",
+  "security": "Security",
+  "redirects": "Redirects",
+  "caching": "Caching",
+  "advanced": "Advanced",
+  "output": "Generated .htaccess",
+  "forceHttps": "Force HTTPS",
+  "forceHttpsDesc": "Redirect all HTTP traffic to HTTPS",
+  "removeWww": "Remove www",
+  "removeWwwDesc": "Redirect www to non-www version",
+  "addWww": "Add www",
+  "addWwwDesc": "Redirect non-www to www version",
+  "preventDirListing": "Prevent Directory Listing",
+  "preventDirListingDesc": "Hide directory contents from visitors",
+  "blockSensitiveFiles": "Block Sensitive Files",
+  "blockSensitiveFilesDesc": "Block access to .htaccess, .env, logs, etc.",
+  "securityHeaders": "Security Headers",
+  "securityHeadersDesc": "Add XSS, MIME, Frame protection headers",
+  "blockXmlRpc": "Block XML-RPC (WordPress)",
+  "blockXmlRpcDesc": "Disable XML-RPC endpoint for security",
+  "blockWpIncludes": "Protect wp-includes (WordPress)",
+  "blockWpIncludesDesc": "Block direct access to WordPress includes",
+  "enableCaching": "Enable Browser Caching",
+  "enableCachingDesc": "Set expiry headers for static assets",
+  "enableGzip": "Enable Gzip Compression",
+  "enableGzipDesc": "Compress text-based responses",
+  "enableBrotli": "Enable Brotli Compression",
+  "enableBrotliDesc": "Modern compression (requires mod_brotli)",
+  "addRedirect": "Add Redirect",
+  "from": "From",
+  "to": "To",
+  "type": "Type",
+  "errorPages": "Custom Error Pages",
+  "addErrorPage": "Add Error Page",
+  "errorCode": "Error Code",
+  "errorPath": "Page Path",
+  "ipRules": "IP Access Control",
+  "addIpRule": "Add IP Rule",
+  "ipAddress": "IP Address",
+  "allow": "Allow",
+  "deny": "Deny",
+  "customRules": "Custom Rules",
+  "customRulesPlaceholder": "Add your custom .htaccess rules here...",
+  "instructions": {
+    "title": "How to Use Htaccess Generator",
+    "steps": [
+      {
+        "title": "Choose a preset or start from scratch",
+        "description": "Select a quick preset like Basic Security, WordPress, or Performance to pre-configure common settings, or build your configuration from scratch"
+      },
+      {
+        "title": "Configure security settings",
+        "description": "Enable HTTPS forcing, directory protection, sensitive file blocking, and security headers to protect your website"
+      },
+      {
+        "title": "Add redirects if needed",
+        "description": "Create 301 (permanent) or 302 (temporary) redirects for moved pages, domain changes, or URL restructuring"
+      },
+      {
+        "title": "Set up caching and compression",
+        "description": "Enable browser caching and gzip/brotli compression to improve your website's loading speed"
+      },
+      {
+        "title": "Download or copy the generated file",
+        "description": "Copy the generated .htaccess code or download it directly, then upload to your web server's root directory"
+      }
+    ],
+    "features": [
+      "Force HTTPS and www/non-www redirects",
+      "301 and 302 redirect management",
+      "Security headers (XSS, MIME, Frame Options)",
+      "Browser caching configuration with customizable expiry times",
+      "Gzip and Brotli compression support",
+      "Custom error pages (404, 500, etc.)",
+      "IP-based access control (allow/deny)",
+      "WordPress-specific security rules",
+      "Preset configurations for common use cases",
+      "Real-time preview of generated code"
+    ],
+    "useCases": [
+      "Migrating website from HTTP to HTTPS",
+      "Setting up proper caching for better performance",
+      "Protecting sensitive files and directories",
+      "Creating custom error pages for better UX",
+      "Implementing URL redirects for SEO",
+      "Securing WordPress installations",
+      "Blocking malicious IPs and bots",
+      "Configuring single-page application routing"
+    ],
+    "proTips": [
+      "Always backup your existing .htaccess before replacing it",
+      "Use 301 redirects for permanent moves to preserve SEO value",
+      "Test your configuration on a staging server first",
+      "Force HTTPS only after your SSL certificate is properly installed",
+      "The order of rules in .htaccess matters - more specific rules should come first",
+      "Use browser caching aggressively for static assets but carefully for HTML"
+    ],
+    "troubleshooting": [
+      "If you get a 500 error, check for syntax errors in your .htaccess file",
+      "RewriteEngine must be enabled (RewriteEngine On) for redirects to work",
+      "Make sure mod_rewrite is enabled on your Apache server",
+      "Some shared hosts may restrict certain .htaccess directives",
+      "Clear browser cache after making redirect changes to see them take effect"
+    ]
+  }
+}

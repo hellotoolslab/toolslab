@@ -120,6 +120,16 @@
           "answer": "Puoi segnalare problemi o richiedere funzionalità sul nostro repository GitHub all'indirizzo https://github.com/hellotoolslab/toolslab o contattarci su X all'indirizzo https://x.com/tools_lab."
         }
       ]
+    },
+    "suspended": {
+      "title": "Servizio Temporaneamente Non Disponibile",
+      "description": "Ci dispiace, ma questo servizio è stato temporaneamente sospeso.",
+      "whyTitle": "Perché sta succedendo?",
+      "whyDescription": "Questo strumento richiede un server dedicato a pagamento per elaborare i tuoi file. Il server è di nostra proprietà e gestito da noi, ma i costi di hosting sono diventati insostenibili. Abbiamo dovuto sospendere temporaneamente il servizio fino a quando non riusciremo a coprire queste spese.",
+      "helpTitle": "Aiutaci a riattivarlo!",
+      "helpDescription": "Il tuo supporto può aiutarci a coprire i costi del server e riattivare questo servizio. Ogni contributo, per quanto piccolo, fa la differenza.",
+      "donateButton": "Offrimi un caffè",
+      "thanks": "Grazie per la comprensione e il supporto!"
     }
   }
 }
