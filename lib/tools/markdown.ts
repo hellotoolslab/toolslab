@@ -1,7 +1,10 @@
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+
+// Dynamic imports for heavy libraries (jsPDF ~300KB, html2canvas ~200KB)
+// These are only loaded when the user actually exports to PDF
+type JsPDF = typeof import('jspdf').default;
+type Html2Canvas = typeof import('html2canvas').default;
 
 // Configure marked for GitHub Flavored Markdown
 marked.setOptions({
@@ -198,12 +201,19 @@ export function exportToHTML(
 
 /**
  * Export preview as PDF
+ * Uses dynamic imports for jsPDF and html2canvas to reduce initial bundle size
  */
 export async function exportToPDF(
   element: HTMLElement,
   options: ExportOptions = {}
 ): Promise<{ success: boolean; blob?: Blob; error?: string }> {
   try {
+    // Dynamic import heavy libraries only when needed
+    const [{ default: jsPDF }, { default: html2canvas }] = await Promise.all([
+      import('jspdf'),
+      import('html2canvas'),
+    ]);
+
     // Capture the element as canvas
     const canvas = await html2canvas(element, {
       scale: 2,

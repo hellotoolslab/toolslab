@@ -444,6 +444,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                       <button
                         onClick={() => handleCopy(color.hex, `palette-${idx}`)}
                         className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                        aria-label={`Copy color ${color.hex}`}
                       >
                         {copiedFormat === `palette-${idx}` ? (
                           <Check className="h-3 w-3" />
@@ -628,6 +629,7 @@ function FormatCard({ label, value, onCopy, isCopied }: FormatCardProps) {
         onClick={onCopy}
         className="ml-2 flex-shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
         title="Copy to clipboard"
+        aria-label={`Copy ${label} value to clipboard`}
       >
         {isCopied ? (
           <Check className="h-4 w-4 text-green-600" />

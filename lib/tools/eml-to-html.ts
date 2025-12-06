@@ -4,30 +4,198 @@
  * Supports MIME parsing, multipart messages, attachments, and various encodings
  */
 
-// Sanitize HTML with basic regex-based sanitization
-// Safe for both SSR and client-side rendering
+import DOMPurify from 'dompurify';
+
+/**
+ * Sanitize HTML content using DOMPurify for robust XSS protection
+ * Note: DOMPurify requires a DOM environment. On server-side (SSR),
+ * we use a fallback approach or the client-side sanitization is applied.
+ */
 function sanitizeHtmlContent(html: string, removeScripts: boolean): string {
   if (!removeScripts) return html;
 
-  // Remove script tags
-  let sanitized = html.replace(
-    /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
-    ''
-  );
+  // Check if we're in a browser environment
+  if (typeof window !== 'undefined') {
+    // Client-side: Use DOMPurify with strict configuration
+    return DOMPurify.sanitize(html, {
+      // Safe tags for email content
+      ALLOWED_TAGS: [
+        // Structure
+        'html',
+        'head',
+        'body',
+        'div',
+        'span',
+        'p',
+        'br',
+        'hr',
+        // Text formatting
+        'a',
+        'b',
+        'i',
+        'u',
+        'em',
+        'strong',
+        'small',
+        'sub',
+        'sup',
+        'mark',
+        'del',
+        'ins',
+        's',
+        'strike',
+        'font',
+        // Headers
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        // Lists
+        'ul',
+        'ol',
+        'li',
+        'dl',
+        'dt',
+        'dd',
+        // Tables
+        'table',
+        'thead',
+        'tbody',
+        'tfoot',
+        'tr',
+        'th',
+        'td',
+        'caption',
+        'colgroup',
+        'col',
+        // Media (no script execution)
+        'img',
+        'picture',
+        'source',
+        'figure',
+        'figcaption',
+        // Semantic
+        'article',
+        'section',
+        'header',
+        'footer',
+        'nav',
+        'aside',
+        'main',
+        // Other
+        'blockquote',
+        'pre',
+        'code',
+        'address',
+        'center',
+        'q',
+        'cite',
+        // Style (CSS only, no JS)
+        'style',
+      ],
+      ALLOWED_ATTR: [
+        // Common attributes
+        'id',
+        'class',
+        'style',
+        'title',
+        'lang',
+        'dir',
+        // Links
+        'href',
+        'target',
+        'rel',
+        // Images
+        'src',
+        'alt',
+        'width',
+        'height',
+        'loading',
+        // Tables
+        'colspan',
+        'rowspan',
+        'cellpadding',
+        'cellspacing',
+        'border',
+        'align',
+        'valign',
+        // Font (legacy email support)
+        'color',
+        'size',
+        'face',
+        // Other
+        'name',
+        'data-*',
+      ],
+      // Explicitly forbid dangerous elements
+      FORBID_TAGS: [
+        'script',
+        'iframe',
+        'object',
+        'embed',
+        'form',
+        'input',
+        'button',
+        'textarea',
+        'select',
+      ],
+      // Forbid dangerous attributes
+      FORBID_ATTR: [
+        'onerror',
+        'onload',
+        'onclick',
+        'onmouseover',
+        'onfocus',
+        'onblur',
+      ],
+      // Allow data: URIs for inline images (common in emails)
+      ALLOW_DATA_ATTR: true,
+      // Allow safe URI schemes
+      ALLOWED_URI_REGEXP:
+        /^(?:(?:https?|mailto|tel|cid|data):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
+    });
+  } else {
+    // Server-side fallback: Use stricter regex-based sanitization
+    // This is only used during SSR; client-side will re-sanitize
+    let sanitized = html;
 
-  // Remove style tags
-  sanitized = sanitized.replace(
-    /<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi,
-    ''
-  );
+    // Remove script tags (including variants)
+    sanitized = sanitized.replace(
+      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+      ''
+    );
+    sanitized = sanitized.replace(/<script[^>]*>/gi, '');
 
-  // Remove event handlers
-  sanitized = sanitized.replace(/on\w+\s*=\s*["'][^"']*["']/gi, '');
+    // Remove iframe, object, embed, form elements
+    sanitized = sanitized.replace(
+      /<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi,
+      ''
+    );
+    sanitized = sanitized.replace(
+      /<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi,
+      ''
+    );
+    sanitized = sanitized.replace(/<embed[^>]*>/gi, '');
+    sanitized = sanitized.replace(
+      /<form\b[^<]*(?:(?!<\/form>)<[^<]*)*<\/form>/gi,
+      ''
+    );
 
-  // Remove javascript: protocol
-  sanitized = sanitized.replace(/javascript:/gi, '');
+    // Remove all event handlers (on* attributes)
+    sanitized = sanitized.replace(/\s+on\w+\s*=\s*["'][^"']*["']/gi, '');
+    sanitized = sanitized.replace(/\s+on\w+\s*=\s*[^\s>]+/gi, '');
 
-  return sanitized;
+    // Remove javascript: and vbscript: protocols
+    sanitized = sanitized.replace(/javascript\s*:/gi, 'blocked:');
+    sanitized = sanitized.replace(/vbscript\s*:/gi, 'blocked:');
+
+    // Remove expression() in CSS (IE vulnerability)
+    sanitized = sanitized.replace(/expression\s*\(/gi, 'blocked(');
+
+    return sanitized;
+  }
 }
 
 export interface EmailHeader {

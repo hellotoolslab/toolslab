@@ -1251,6 +1251,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                     onClick={useEyedropper}
                     className="rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                     title="Pick color from screen"
+                    aria-label="Pick color from screen"
                   >
                     <Pipette className="h-4 w-4" />
                   </button>
@@ -1270,6 +1271,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                   onClick={() => fileInputRef.current?.click()}
                   className="rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                   title="Extract colors from image"
+                  aria-label="Extract colors from image"
                 >
                   <Upload className="h-4 w-4" />
                 </button>

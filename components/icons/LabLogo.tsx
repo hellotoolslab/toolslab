@@ -9,7 +9,13 @@ export const LabLogo = ({
   className = 'w-8 h-8',
   animated = true,
 }: LabLogoProps) => (
-  <svg className={className} viewBox="0 0 100 100" fill="none">
+  <svg
+    className={className}
+    viewBox="0 0 100 100"
+    fill="none"
+    role="img"
+    aria-label="ToolsLab logo"
+  >
     {/* Provetta principale */}
     <rect
       x="35"

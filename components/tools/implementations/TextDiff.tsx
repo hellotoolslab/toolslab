@@ -616,6 +616,7 @@ export default function TextDiff({
                   0
               }
               title="Previous change (Shift+F3)"
+              aria-label="Previous change"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -630,6 +631,7 @@ export default function TextDiff({
                   0
               }
               title="Next change (F3)"
+              aria-label="Next change"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
@@ -640,6 +642,7 @@ export default function TextDiff({
               className="px-2"
               onClick={copyToClipboard}
               disabled={!diffResult}
+              aria-label="Copy diff to clipboard"
             >
               {copied ? (
                 <Check className="h-4 w-4" />
@@ -654,6 +657,7 @@ export default function TextDiff({
               onClick={exportAsPatch}
               disabled={!diffResult}
               title="Download as patch file"
+              aria-label="Download as patch file"
             >
               <Download className="h-4 w-4" />
             </Button>
@@ -664,6 +668,7 @@ export default function TextDiff({
               onClick={exportAsHTML}
               disabled={!diffResult}
               title="Export as HTML"
+              aria-label="Export as HTML"
             >
               <FileCode className="h-4 w-4" />
             </Button>
@@ -672,6 +677,7 @@ export default function TextDiff({
               size="sm"
               className="px-2"
               onClick={() => setIsFullscreen(!isFullscreen)}
+              aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
             >
               {isFullscreen ? (
                 <Minimize2 className="h-4 w-4" />

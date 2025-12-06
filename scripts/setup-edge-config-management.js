@@ -22,7 +22,7 @@ hai bisogno di configurare l'accesso all'API di Vercel.
    👉 https://vercel.com/account/tokens
 
 2. CREA UN ACCESS TOKEN
-   - Nome: "OctoTools Edge Config Manager"
+   - Nome: "ToolsLab Edge Config Manager"
    - Scope: Full Account
    - Expiration: No Expiration (o come preferisci)
    - Clicca "Create"

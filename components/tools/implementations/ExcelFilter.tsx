@@ -19,6 +19,8 @@ import {
   AlertCircle,
   Info,
   Check,
+  ExternalLink,
+  Sparkles,
 } from 'lucide-react';
 import {
   parseExcelFile,
@@ -286,6 +288,46 @@ export default function ExcelFilter({
 
   return (
     <div className="mx-auto w-full max-w-[1400px] space-y-6">
+      {/* Zell Banner */}
+      <a
+        href="https://zelldata.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-xl border border-cyan-200 bg-gradient-to-r from-blue-50 via-cyan-50 to-teal-50 p-4 shadow-sm transition-all duration-300 hover:border-cyan-300 hover:shadow-md dark:border-cyan-800 dark:from-blue-950/50 dark:via-cyan-950/50 dark:to-teal-950/50 dark:hover:border-cyan-700"
+      >
+        <div className="flex items-center gap-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/zelldata-logo.png"
+            alt="Zell logo"
+            className="h-14 w-14 object-contain"
+          />
+          <div>
+            <div className="flex items-center gap-2">
+              <h3 className="font-semibold text-gray-900 dark:text-white">
+                Need more powerful Excel features?
+              </h3>
+              <span className="flex items-center gap-1 rounded-full bg-cyan-100 px-2 py-0.5 text-xs font-medium text-cyan-700 dark:bg-cyan-900/50 dark:text-cyan-300">
+                <Sparkles className="h-3 w-3" />
+                New
+              </span>
+            </div>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Try{' '}
+              <span className="font-semibold text-cyan-600 dark:text-cyan-400">
+                Zell
+              </span>{' '}
+              — Advanced spreadsheet analysis, pivot tables, charts & AI-powered
+              insights
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 px-4 py-2 text-sm font-medium text-white transition-all group-hover:from-blue-600 group-hover:to-cyan-600">
+          <span>Try Zell</span>
+          <ExternalLink className="h-4 w-4" />
+        </div>
+      </a>
+
       {/* Upload Section */}
       {!excelData && (
         <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
@@ -324,7 +366,7 @@ export default function ExcelFilter({
                 </>
               )}
             </p>
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
               XLSX or XLS up to 50MB
             </p>
           </div>

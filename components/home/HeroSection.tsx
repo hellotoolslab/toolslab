@@ -232,8 +232,12 @@ export function HeroSection({
           <div className="mx-auto max-w-2xl">
             <form onSubmit={handleSearch} className="relative">
               <div className="relative">
+                <label htmlFor="hero-search" className="sr-only">
+                  Search tools
+                </label>
                 <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/60" />
                 <input
+                  id="hero-search"
                   ref={searchInputRef}
                   type="search"
                   value={searchQuery}
