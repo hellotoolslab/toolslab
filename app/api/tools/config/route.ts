@@ -15,6 +15,48 @@ import {
 } from '@/lib/edge-config/tools';
 import { ToolConfigOptions } from '@/lib/edge-config/types';
 
+/**
+ * Allowed origins for CORS
+ * Only these domains can make cross-origin requests to this API
+ */
+const ALLOWED_ORIGINS = [
+  'https://toolslab.dev',
+  'https://www.toolslab.dev',
+  // Development origins
+  ...(process.env.NODE_ENV === 'development'
+    ? ['http://localhost:3000', 'http://127.0.0.1:3000']
+    : []),
+];
+
+/**
+ * Check if an origin is allowed for CORS
+ */
+function isAllowedOrigin(origin: string | null): boolean {
+  if (!origin) return false;
+  return ALLOWED_ORIGINS.includes(origin);
+}
+
+/**
+ * Get CORS headers for a request
+ */
+function getCorsHeaders(request: NextRequest): Record<string, string> {
+  const origin = request.headers.get('origin');
+
+  // If origin is allowed, reflect it back; otherwise, don't set CORS headers
+  if (isAllowedOrigin(origin)) {
+    return {
+      'Access-Control-Allow-Origin': origin!,
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Max-Age': '86400', // 24 hours
+      Vary: 'Origin', // Important for caching
+    };
+  }
+
+  // Return empty headers if origin is not allowed
+  return {};
+}
+
 export async function GET(request: NextRequest) {
   const startTime = Date.now();
 
@@ -90,19 +132,25 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      tools,
-      categories,
-      source: responseSource,
-      responseTime,
-      timestamp: new Date().toISOString(),
-      count: tools.length,
-    });
+    const corsHeaders = getCorsHeaders(request);
+
+    return NextResponse.json(
+      {
+        success: true,
+        tools,
+        categories,
+        source: responseSource,
+        responseTime,
+        timestamp: new Date().toISOString(),
+        count: tools.length,
+      },
+      { headers: corsHeaders }
+    );
   } catch (error) {
     console.error('API /tools/config error:', error);
 
     const responseTime = Date.now() - startTime;
+    const corsHeaders = getCorsHeaders(request);
 
     return NextResponse.json(
       {
@@ -112,7 +160,7 @@ export async function GET(request: NextRequest) {
         responseTime,
         timestamp: new Date().toISOString(),
       },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
@@ -120,6 +168,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   // This endpoint could be used for updating tool configurations
   // Only available in development or with proper authentication
+  const corsHeaders = getCorsHeaders(request);
 
   if (
     process.env.NODE_ENV === 'production' &&
@@ -130,7 +179,7 @@ export async function POST(request: NextRequest) {
         success: false,
         error: 'Unauthorized',
       },
-      { status: 401 }
+      { status: 401, headers: corsHeaders }
     );
   }
 
@@ -141,11 +190,14 @@ export async function POST(request: NextRequest) {
     // For now, we'll just return a success response
     console.log('Tool config update request:', body);
 
-    return NextResponse.json({
-      success: true,
-      message: 'Configuration update received (not implemented)',
-      timestamp: new Date().toISOString(),
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        message: 'Configuration update received (not implemented)',
+        timestamp: new Date().toISOString(),
+      },
+      { headers: corsHeaders }
+    );
   } catch (error) {
     console.error('API /tools/config POST error:', error);
 
@@ -155,19 +207,25 @@ export async function POST(request: NextRequest) {
         error:
           error instanceof Error ? error.message : 'Unknown error occurred',
       },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
 
-// OPTIONS for CORS
-export async function OPTIONS() {
+// OPTIONS for CORS preflight requests
+export async function OPTIONS(request: NextRequest) {
+  const corsHeaders = getCorsHeaders(request);
+
+  // If origin is not allowed, return 403 Forbidden
+  if (Object.keys(corsHeaders).length === 0) {
+    return new NextResponse(null, {
+      status: 403,
+      statusText: 'Forbidden - Origin not allowed',
+    });
+  }
+
   return new NextResponse(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    },
+    status: 204, // No Content is more appropriate for OPTIONS
+    headers: corsHeaders,
   });
 }

@@ -1,6 +1,12 @@
 /**
  * Next.js Middleware for Edge Config Integration and VPN Compatibility
  * Handles A/B testing, feature flags, request routing, and VPN detection
+ *
+ * OPTIMIZATIONS (Dec 2024):
+ * - Pre-compiled regex patterns at module level
+ * - Increased Edge Config timeout to 200ms
+ * - Cached VPN detection patterns
+ * - Reduced header operations
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -17,8 +23,17 @@ import {
   shouldPreloadDictionary,
 } from '@/lib/i18n/section-detector';
 
+// ============================================================================
+// PRE-COMPILED PATTERNS (cached at module level for performance)
+// ============================================================================
+
 // Paths that should be processed by middleware
 const PROCESSED_PATHS = ['/tools/:path*', '/api/tools/:path*', '/'];
+
+// Pre-compiled regex patterns for PROCESSED_PATHS (created once at startup)
+const PROCESSED_PATHS_REGEX = PROCESSED_PATHS.map(
+  (path) => new RegExp(`^${path.replace(':path*', '.*')}$`)
+);
 
 // Paths that should be excluded from middleware processing
 const EXCLUDED_PATHS = [
@@ -35,21 +50,62 @@ const EXCLUDED_PATHS = [
   '/manifest.webmanifest',
 ];
 
+// Pre-compiled private IP patterns for VPN detection
+const PRIVATE_IP_PATTERNS = [
+  /^10\./, // 10.0.0.0/8
+  /^172\.(1[6-9]|2\d|3[01])\./, // 172.16.0.0/12
+  /^192\.168\./, // 192.168.0.0/16
+  /^169\.254\./, // Link-local
+  /^127\./, // Localhost
+];
+
+// Pre-compiled VPN indicator patterns
+const VPN_INDICATOR_PATTERNS = [
+  /forticlient/i,
+  /cisco/i,
+  /checkpoint/i,
+  /palo alto/i,
+  /corporate[_\s]proxy/i,
+  /company[_\s]firewall/i,
+  /enterprise[_\s]gateway/i,
+  /websense/i,
+  /bluecoat/i,
+  /mcafee[_\s]web[_\s]gateway/i,
+  /zscaler/i,
+  /netskope/i,
+];
+
+// Pre-compiled sitemap locale pattern
+const SITEMAP_LOCALE_PATTERN = /^\/sitemap-([a-z]{2})\.xml$/;
+
+// Edge Config timeout (increased from 100ms to 200ms for better success rate)
+const EDGE_CONFIG_TIMEOUT_MS = 200;
+
+// ============================================================================
+// PATH CHECKING (optimized)
+// ============================================================================
+
 function shouldProcessPath(pathname: string): boolean {
-  // Exclude specific paths
-  if (EXCLUDED_PATHS.some((path) => pathname.startsWith(path))) {
-    return false;
+  // Exclude specific paths (simple string check is faster than regex)
+  for (const excludedPath of EXCLUDED_PATHS) {
+    if (pathname.startsWith(excludedPath)) {
+      return false;
+    }
   }
 
-  // Include processed paths
-  return PROCESSED_PATHS.some((path) => {
-    const regex = new RegExp(path.replace(':path*', '.*'));
-    return regex.test(pathname);
-  });
+  // Include processed paths using pre-compiled regex
+  for (const regex of PROCESSED_PATHS_REGEX) {
+    if (regex.test(pathname)) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 /**
  * Enhanced VPN detection using multiple indicators
+ * OPTIMIZED: Uses pre-compiled patterns from module level
  */
 function detectCorporateVPN(headers: {
   forwardedFor: string | null;
@@ -66,42 +122,28 @@ function detectCorporateVPN(headers: {
     xOriginalForwardedFor,
   } = headers;
 
-  // Check for private IP ranges (RFC 1918)
-  const privateIPRanges = [
-    /^10\./, // 10.0.0.0/8
-    /^172\.(1[6-9]|2\d|3[01])\./, // 172.16.0.0/12
-    /^192\.168\./, // 192.168.0.0/16
-    /^169\.254\./, // Link-local
-    /^127\./, // Localhost
-  ];
-
-  // Common corporate VPN indicators in User-Agent
-  const vpnIndicators = [
-    /forticlient/i,
-    /cisco/i,
-    /checkpoint/i,
-    /palo alto/i,
-    /corporate[_\s]proxy/i,
-    /company[_\s]firewall/i,
-    /enterprise[_\s]gateway/i,
-    /websense/i,
-    /bluecoat/i,
-    /mcafee[_\s]web[_\s]gateway/i,
-    /zscaler/i,
-    /netskope/i,
-  ];
-
-  // Check all IP sources for private ranges
+  // Check all IP sources for private ranges (uses pre-compiled PRIVATE_IP_PATTERNS)
   const allIPs = [forwardedFor, realIP, cfConnectingIP, xOriginalForwardedFor]
     .filter(Boolean)
     .join(',');
 
-  const hasPrivateIP = privateIPRanges.some((pattern) => pattern.test(allIPs));
+  // Use for-loop for early exit optimization
+  let hasPrivateIP = false;
+  for (const pattern of PRIVATE_IP_PATTERNS) {
+    if (pattern.test(allIPs)) {
+      hasPrivateIP = true;
+      break;
+    }
+  }
 
-  // Check for VPN software indicators
-  const hasVPNIndicator = vpnIndicators.some((pattern) =>
-    pattern.test(userAgent)
-  );
+  // Check for VPN software indicators (uses pre-compiled VPN_INDICATOR_PATTERNS)
+  let hasVPNIndicator = false;
+  for (const pattern of VPN_INDICATOR_PATTERNS) {
+    if (pattern.test(userAgent)) {
+      hasVPNIndicator = true;
+      break;
+    }
+  }
 
   // Additional indicators
   const hasMultipleForwardedIPs = (forwardedFor?.split(',').length || 0) > 1;
@@ -208,7 +250,8 @@ export async function middleware(request: NextRequest) {
   }
 
   // Handle locale-specific sitemaps (e.g., /sitemap-en.xml, /sitemap-it.xml)
-  const sitemapMatch = pathname.match(/^\/sitemap-([a-z]{2})\.xml$/);
+  // Uses pre-compiled SITEMAP_LOCALE_PATTERN for performance
+  const sitemapMatch = pathname.match(SITEMAP_LOCALE_PATTERN);
   if (sitemapMatch) {
     const locale = sitemapMatch[1];
     const { locales } = await import('@/lib/i18n/config');
@@ -320,7 +363,10 @@ export async function middleware(request: NextRequest) {
     // Get Edge Config with timeout to prevent blocking
     const configPromise = getCompleteConfig();
     const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('Config timeout')), 100)
+      setTimeout(
+        () => reject(new Error('Config timeout')),
+        EDGE_CONFIG_TIMEOUT_MS
+      )
     );
 
     let config;

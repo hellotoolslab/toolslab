@@ -454,7 +454,7 @@ export default function LocaleCategoryPageContent({
               </span>
               {seoContent.useCases.map((useCase, index) => (
                 <span key={index}>
-                  <span className="text-xs text-gray-500 dark:text-gray-500">
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
                     {useCase}
                   </span>
                   {index < seoContent.useCases.length - 1 && (

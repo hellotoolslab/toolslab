@@ -120,10 +120,14 @@ export const SearchBar = forwardRef<SearchBarRef, SearchBarProps>(
     return (
       <div ref={searchRef} className={`relative ${className}`}>
         <div className="relative">
+          <label htmlFor="global-search" className="sr-only">
+            Search tools
+          </label>
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
           <input
+            id="global-search"
             ref={inputRef}
             type="text"
             value={query}
@@ -233,7 +237,7 @@ export const SearchBar = forwardRef<SearchBarRef, SearchBarProps>(
               <p className="font-medium text-gray-600 dark:text-gray-400">
                 No tools found for &ldquo;{query}&rdquo;
               </p>
-              <p className="mt-1 text-sm text-gray-500 dark:text-gray-500">
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                 Try searching with different keywords
               </p>
             </div>

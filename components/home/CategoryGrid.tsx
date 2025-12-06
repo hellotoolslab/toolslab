@@ -116,7 +116,7 @@ export function CategoryGrid({
                           {category.tools.length === 1 ? 'tool' : 'tools'}
                         </span>
 
-                        <ChevronRight className="h-5 w-5 text-gray-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gray-600 dark:text-gray-500 dark:group-hover:text-gray-300" />
+                        <ChevronRight className="h-5 w-5 text-gray-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gray-600 dark:text-gray-400 dark:group-hover:text-gray-300" />
                       </div>
                     </div>
                   </div>

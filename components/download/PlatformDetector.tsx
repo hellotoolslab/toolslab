@@ -58,7 +58,7 @@ export function PlatformDetector({ latestVersion }: PlatformDetectorProps) {
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Detected: {platformInfo.platform} ({platformInfo.architecture})
               </p>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                 Version {latestVersion}
               </p>
             </div>
@@ -122,7 +122,7 @@ export function PlatformDetector({ latestVersion }: PlatformDetectorProps) {
           <summary className="cursor-pointer text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">
             Detection details
           </summary>
-          <div className="mt-2 space-y-1 text-xs text-gray-500 dark:text-gray-500">
+          <div className="mt-2 space-y-1 text-xs text-gray-500 dark:text-gray-400">
             <p>Platform: {platformInfo.platform}</p>
             <p>Architecture: {platformInfo.architecture}</p>
             <p>User Agent: {platformInfo.userAgent.substring(0, 100)}...</p>

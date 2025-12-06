@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Script per gestire Vercel Edge Config di OctoTools
+ * Script per gestire Vercel Edge Config di ToolsLab
  * Permette di visualizzare, modificare, abilitare/disabilitare tool
  */
 
@@ -400,7 +400,7 @@ async function addTool(toolData) {
  * Menu interattivo
  */
 function showHelp() {
-  console.log('🔧 OctoTools Edge Config Manager');
+  console.log('🔧 ToolsLab Edge Config Manager');
   console.log('=================================');
   console.log('');
   console.log('📋 Commands:');

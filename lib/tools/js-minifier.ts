@@ -667,6 +667,102 @@ function performBeautification(
   return result;
 }
 
+/**
+ * Validates JavaScript syntax without executing code.
+ * Uses tokenization and bracket matching for security (no eval/Function).
+ *
+ * @param input - JavaScript code to validate
+ * @returns Object with valid status and optional error message
+ */
+function validateJSSyntax(input: string): { valid: boolean; error?: string } {
+  try {
+    const tokens = tokenize(input);
+
+    // Check for balanced brackets/parentheses/braces
+    const stack: string[] = [];
+    const pairs: Record<string, string> = {
+      '(': ')',
+      '[': ']',
+      '{': '}',
+    };
+    const closers = new Set([')', ']', '}']);
+
+    for (const token of tokens) {
+      if (token.type === 'punctuation') {
+        const char = token.value;
+
+        if (pairs[char]) {
+          stack.push(pairs[char]);
+        } else if (closers.has(char)) {
+          if (stack.length === 0) {
+            return {
+              valid: false,
+              error: `Unexpected '${char}' at position ${token.start}`,
+            };
+          }
+          const expected = stack.pop();
+          if (expected !== char) {
+            return {
+              valid: false,
+              error: `Expected '${expected}' but found '${char}' at position ${token.start}`,
+            };
+          }
+        }
+      }
+    }
+
+    if (stack.length > 0) {
+      const missing = stack.reverse().join('');
+      return {
+        valid: false,
+        error: `Unclosed bracket(s), missing: ${missing}`,
+      };
+    }
+
+    // Check for unclosed strings (tokenizer would have produced partial tokens)
+    const lastToken = tokens[tokens.length - 1];
+    if (lastToken && lastToken.type === 'string') {
+      const quote = lastToken.value[0];
+      if (!lastToken.value.endsWith(quote) || lastToken.value.length === 1) {
+        return {
+          valid: false,
+          error: `Unclosed string starting at position ${lastToken.start}`,
+        };
+      }
+    }
+
+    // Check for common syntax patterns that would be invalid
+    for (let i = 0; i < tokens.length; i++) {
+      const token = tokens[i];
+      const nextToken = tokens[i + 1];
+
+      // Check for consecutive operators (except valid combinations)
+      if (
+        token.type === 'operator' &&
+        nextToken?.type === 'operator' &&
+        !['!', '+', '-', '~'].includes(token.value) &&
+        !['!', '+', '-', '~'].includes(nextToken.value)
+      ) {
+        // Allow chained operators like !== or ===
+        const combined = token.value + nextToken.value;
+        if (!['==', '!=', '===', '!==', '&&', '||', '??'].includes(combined)) {
+          return {
+            valid: false,
+            error: `Invalid operator sequence '${token.value}${nextToken.value}' at position ${token.start}`,
+          };
+        }
+      }
+    }
+
+    return { valid: true };
+  } catch (error) {
+    return {
+      valid: false,
+      error: `Tokenization failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+    };
+  }
+}
+
 export function minifyJS(
   input: string,
   options: JSMinifyOptions = {}
@@ -678,13 +774,12 @@ export function minifyJS(
       return { success: false, error: 'No JavaScript input provided' };
     }
 
-    // Basic validation
-    try {
-      new Function(input);
-    } catch (error) {
+    // Secure syntax validation (no eval/Function execution)
+    const validation = validateJSSyntax(input);
+    if (!validation.valid) {
       return {
         success: false,
-        error: `Invalid JavaScript: ${error instanceof Error ? error.message : 'Syntax error'}`,
+        error: `Invalid JavaScript: ${validation.error || 'Syntax error'}`,
       };
     }
 
@@ -735,13 +830,12 @@ export function beautifyJS(
       return { success: false, error: 'No JavaScript input provided' };
     }
 
-    // Basic validation
-    try {
-      new Function(input);
-    } catch (error) {
+    // Secure syntax validation (no eval/Function execution)
+    const validation = validateJSSyntax(input);
+    if (!validation.valid) {
       return {
         success: false,
-        error: `Invalid JavaScript: ${error instanceof Error ? error.message : 'Syntax error'}`,
+        error: `Invalid JavaScript: ${validation.error || 'Syntax error'}`,
       };
     }
 

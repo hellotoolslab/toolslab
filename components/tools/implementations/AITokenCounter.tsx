@@ -363,6 +363,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
               onClick={() => fileInputRef.current?.click()}
               className="rounded-lg bg-gray-100 p-2 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
               title="Upload file"
+              aria-label="Upload file"
             >
               <Upload className="h-4 w-4" />
             </button>
@@ -371,6 +372,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                 onClick={handleClear}
                 className="rounded-lg bg-gray-100 p-2 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
                 title="Clear all"
+                aria-label="Clear all"
               >
                 <Trash2 className="h-4 w-4" />
               </button>
@@ -888,7 +890,7 @@ function StatCard({ label, value, icon }: StatCardProps) {
             {label}
           </div>
         </div>
-        <div className="text-gray-400 dark:text-gray-500">{icon}</div>
+        <div className="text-gray-400 dark:text-gray-400">{icon}</div>
       </div>
     </div>
   );

@@ -299,6 +299,8 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
           <button
             onClick={() => setShowOptions(!showOptions)}
             className="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+            aria-label="Toggle options"
+            aria-expanded={showOptions}
           >
             <Settings className="h-4 w-4" />
           </button>
@@ -433,7 +435,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
               <div className="ml-auto flex h-12 w-12 items-center justify-center rounded border bg-gray-100 dark:bg-gray-800">
                 <img
                   src={fileInfo.dataURL}
-                  alt="Preview"
+                  alt={`Preview of ${fileInfo.fileName}`}
                   className="h-full w-full rounded object-cover"
                   width="48"
                   height="48"
@@ -606,7 +608,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                     <div className="flex min-h-[200px] items-center justify-center">
                       <img
                         src={`data:${mimeType};base64,${input.includes('base64,') ? input.split('base64,')[1] : input}`}
-                        alt="Decoded image"
+                        alt="Decoded image from Base64 string"
                         className="max-h-64 max-w-full rounded border object-contain"
                         style={{ aspectRatio: '16/9' }}
                         onLoad={(e) => {

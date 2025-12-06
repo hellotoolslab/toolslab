@@ -624,6 +624,7 @@ export default function GradientGenerator({
                                 })
                               }
                               className="h-8 w-16 cursor-pointer border-0"
+                              aria-label={`Color stop ${index + 1} picker`}
                             />
                             <div className="flex-1">
                               <Label className="text-xs font-medium">

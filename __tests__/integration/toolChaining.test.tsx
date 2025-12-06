@@ -8,6 +8,9 @@ import { TEST_JWT, TEST_BASE64, TEST_JSON } from '../fixtures/test-data';
 const MockToolChainFlow = () => {
   const { chainedData, setChainedData, addToHistory } = useToolStore();
 
+  // Cast chainedData to string for this test component
+  const dataStr = typeof chainedData === 'string' ? chainedData : '';
+
   return (
     <div>
       <input
@@ -21,15 +24,15 @@ const MockToolChainFlow = () => {
           addToHistory({
             id: Date.now().toString(),
             tool: 'json-formatter',
-            input: chainedData,
-            output: chainedData,
+            input: dataStr,
+            output: dataStr,
             timestamp: Date.now(),
           });
         }}
       >
         Format
       </button>
-      {chainedData && chainedData.includes('eyJ') && (
+      {dataStr && dataStr.includes('eyJ') && (
         <>
           <div>JWT token detected</div>
           <button data-testid="decode-jwt">Decode JWT</button>
@@ -38,9 +41,7 @@ const MockToolChainFlow = () => {
       <input
         data-testid="jwt-input"
         value={
-          chainedData?.includes('eyJ')
-            ? chainedData.match(/eyJ[^"]+/)?.[0] || ''
-            : ''
+          dataStr?.includes('eyJ') ? dataStr.match(/eyJ[^"]+/)?.[0] || '' : ''
         }
         readOnly
       />
@@ -103,28 +104,28 @@ describe('Tool Chaining Integration', () => {
         timestamp: Date.now() + 1000,
       });
 
+      // Re-read state after mutations (Zustand getState() returns snapshot)
       const history = useToolStore.getState().history;
       expect(history).toHaveLength(2);
-      expect(history[0].tool).toBe('json-formatter');
-      expect(history[1].tool).toBe('base64-encode');
+      // Note: addToHistory adds to front of array, so newest is first
+      expect(history[0].tool).toBe('base64-encode');
+      expect(history[1].tool).toBe('json-formatter');
     });
 
     it('should pass output of one tool as input to next', () => {
-      const store = useToolStore.getState();
-
       // First tool output
       const jsonOutput = '{\n  "data": "formatted"\n}';
-      store.setChainedData(jsonOutput);
+      useToolStore.getState().setChainedData(jsonOutput);
 
-      // Second tool receives it as input
-      const chainedData = store.chainedData;
-      expect(chainedData).toBe(jsonOutput);
+      // Second tool receives it as input (re-read state after mutation)
+      expect(useToolStore.getState().chainedData).toBe(jsonOutput);
 
       // Convert to Base64
       const base64Output = Buffer.from(jsonOutput).toString('base64');
-      store.setChainedData(base64Output);
+      useToolStore.getState().setChainedData(base64Output);
 
-      expect(store.chainedData).toBe(base64Output);
+      // Re-read state after mutation
+      expect(useToolStore.getState().chainedData).toBe(base64Output);
     });
   });
 
@@ -168,8 +169,6 @@ describe('Tool Chaining Integration', () => {
 
   describe('Workspace Mode', () => {
     it('should support multiple tools in workspace', async () => {
-      const store = useToolStore.getState();
-
       // Simulate workspace with multiple tools
       const workspace = [
         { tool: 'json-formatter', position: { x: 0, y: 0 } },
@@ -178,31 +177,35 @@ describe('Tool Chaining Integration', () => {
       ];
 
       // Store workspace configuration
-      store.setChainedData({ workspace });
+      useToolStore.getState().setChainedData({ workspace });
 
-      expect(store.chainedData.workspace).toHaveLength(3);
-      expect(store.chainedData.workspace[0].tool).toBe('json-formatter');
+      // Re-read state after mutation and cast to expected type
+      const chainedData = useToolStore.getState().chainedData as {
+        workspace: Array<{ tool: string; position: { x: number; y: number } }>;
+      };
+      expect(chainedData.workspace).toHaveLength(3);
+      expect(chainedData.workspace[0].tool).toBe('json-formatter');
     });
 
     it('should maintain tool connections in workspace', () => {
-      const store = useToolStore.getState();
-
       const connections = [
         { from: 'json-formatter', to: 'jwt-decoder', dataPath: 'token' },
         { from: 'jwt-decoder', to: 'base64-encode', dataPath: 'payload' },
       ];
 
-      store.setChainedData({ connections });
+      useToolStore.getState().setChainedData({ connections });
 
-      expect(store.chainedData.connections).toHaveLength(2);
-      expect(store.chainedData.connections[0].from).toBe('json-formatter');
+      // Re-read state after mutation and cast to expected type
+      const chainedData = useToolStore.getState().chainedData as {
+        connections: Array<{ from: string; to: string; dataPath: string }>;
+      };
+      expect(chainedData.connections).toHaveLength(2);
+      expect(chainedData.connections[0].from).toBe('json-formatter');
     });
   });
 
   describe('Error Handling in Chain', () => {
     it('should handle errors gracefully in tool chain', () => {
-      const store = useToolStore.getState();
-
       // Simulate error in first tool
       const errorOperation = {
         id: '1',
@@ -213,11 +216,13 @@ describe('Tool Chaining Integration', () => {
         timestamp: Date.now(),
       };
 
-      store.addToHistory(errorOperation as any);
+      useToolStore.getState().addToHistory(errorOperation as any);
 
+      // Re-read state after mutation
+      const state = useToolStore.getState();
       // Chain should stop on error
-      expect(store.chainedData).toBeNull();
-      expect(store.history[0]).toHaveProperty('error');
+      expect(state.chainedData).toBeNull();
+      expect(state.history[0]).toHaveProperty('error');
     });
 
     it('should provide fallback suggestions on error', () => {
@@ -240,7 +245,6 @@ describe('Tool Chaining Integration', () => {
 
   describe('Batch Processing', () => {
     it('should handle batch operations efficiently', async () => {
-      const store = useToolStore.getState();
       const items = Array(100)
         .fill(null)
         .map((_, i) => ({
@@ -252,7 +256,7 @@ describe('Tool Chaining Integration', () => {
 
       // Process all items
       const results = items.map((item) => {
-        store.addToHistory({
+        useToolStore.getState().addToHistory({
           id: item.id,
           tool: 'json-formatter',
           input: item.data,
@@ -266,12 +270,13 @@ describe('Tool Chaining Integration', () => {
 
       expect(results).toHaveLength(100);
       expect(duration).toBeLessThan(1000); // Should complete within 1 second
-      expect(store.history).toHaveLength(100);
+      // History is limited to 50 items (HISTORY_LIMIT), so we expect 50 items
+      expect(useToolStore.getState().history).toHaveLength(50);
     });
   });
 
   describe('Data Persistence', () => {
-    it('should persist history across sessions', () => {
+    it('should persist history across sessions', async () => {
       const store = useToolStore.getState();
 
       // Add operations
@@ -282,6 +287,9 @@ describe('Tool Chaining Integration', () => {
         output: 'test',
         timestamp: Date.now(),
       });
+
+      // Wait for debounced storage to write (1000ms debounce + buffer)
+      await new Promise((resolve) => setTimeout(resolve, 1200));
 
       // Simulate page reload by checking localStorage
       const persistedState = localStorage.getItem('toolslab-store');
@@ -294,8 +302,9 @@ describe('Tool Chaining Integration', () => {
     it('should limit history size to prevent storage overflow', () => {
       const store = useToolStore.getState();
 
-      // Add more than limit (100) operations
-      for (let i = 0; i < 150; i++) {
+      // Add more than limit (50) operations
+      // Note: History limit was reduced from 100 to 50 for performance (Dec 2024)
+      for (let i = 0; i < 75; i++) {
         store.addToHistory({
           id: i.toString(),
           tool: 'test-tool',
@@ -305,8 +314,8 @@ describe('Tool Chaining Integration', () => {
         });
       }
 
-      // Should keep only last 100
-      expect(store.history.length).toBeLessThanOrEqual(100);
+      // Should keep only last 50 (HISTORY_LIMIT constant)
+      expect(store.history.length).toBeLessThanOrEqual(50);
     });
   });
 });
