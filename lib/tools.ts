@@ -1192,6 +1192,34 @@ export const tools: Tool[] = [
     searchVolume: 18000,
     label: '',
   },
+  {
+    id: 'lorem-ipsum-generator',
+    name: 'Lorem Ipsum Generator',
+    description:
+      'Generate placeholder text for designs, mockups, and layouts with customizable word, sentence, or paragraph count',
+    icon: '📝',
+    route: '/tools/lorem-ipsum-generator',
+    categories: ['text', 'generators'],
+    keywords: [
+      'lorem ipsum',
+      'lorem ipsum generator',
+      'placeholder text',
+      'dummy text',
+      'filler text',
+      'sample text',
+      'text generator',
+      'lipsum',
+      'blind text',
+      'greeking',
+      'mockup text',
+      'design placeholder',
+      'paragraph generator',
+      'random text',
+      'latin text',
+    ],
+    searchVolume: 12000,
+    label: '',
+  },
 ];
 
 // Group tools by category
