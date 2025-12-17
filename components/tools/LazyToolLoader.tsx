@@ -102,6 +102,9 @@ const toolComponents = {
   'htaccess-generator': lazy(
     () => import('./implementations/HtaccessGenerator')
   ),
+  'lorem-ipsum-generator': lazy(
+    () => import('./implementations/LoremIpsumGenerator')
+  ),
   // Add more as needed
 } as const;
 

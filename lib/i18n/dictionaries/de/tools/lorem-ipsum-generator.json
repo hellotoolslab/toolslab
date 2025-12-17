@@ -1,0 +1,98 @@
+{
+  "title": "Lorem Ipsum Generator",
+  "description": "Generieren Sie Platzhaltertext für Designs und Mockups",
+  "generateType": "Generieren",
+  "count": "Anzahl",
+  "variant": "Textstil",
+  "format": "Ausgabeformat",
+  "startWithLorem": "Mit \"Lorem ipsum...\" beginnen",
+  "generate": "Generieren",
+  "regenerate": "Neu generieren",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "download": "Herunterladen",
+  "result": "Generierter Text",
+  "statistics": "Statistiken",
+  "words": "Wörter",
+  "characters": "Zeichen",
+  "sentences": "Sätze",
+  "paragraphs": "Absätze",
+  "options": "Optionen",
+  "quickPresets": "Schnellvoreinstellungen",
+  "instructions": {
+    "title": "Wie man den Lorem Ipsum Generator verwendet",
+    "steps": [
+      {
+        "title": "Wählen Sie den Generierungstyp",
+        "description": "Wählen Sie, ob Sie Wörter, Sätze oder Absätze generieren möchten. Jeder Typ ist für unterschiedliche Design-Anforderungen geeignet."
+      },
+      {
+        "title": "Legen Sie die Menge fest",
+        "description": "Verwenden Sie den Schieberegler, um anzugeben, wie viel Text Sie benötigen. Sie können bis zu 500 Wörter, 50 Sätze oder 20 Absätze generieren."
+      },
+      {
+        "title": "Wählen Sie den Textstil",
+        "description": "Wählen Sie zwischen klassischem Lorem Ipsum, originalem Cicero-Text, Tech/Entwickler-Jargon, Hipster Ipsum oder Unternehmens-Buzzwords."
+      },
+      {
+        "title": "Konfigurieren Sie das Ausgabeformat",
+        "description": "Wählen Sie Klartext für einfaches Kopieren, HTML für Webseiten mit Absatz-Tags oder Markdown für Dokumentation."
+      },
+      {
+        "title": "Generieren und kopieren",
+        "description": "Klicken Sie auf Generieren, um Ihren Platzhaltertext zu erstellen, dann kopieren Sie ihn in die Zwischenablage oder laden Sie ihn als Datei herunter."
+      }
+    ],
+    "features": [
+      "Generieren Sie Wörter, Sätze oder Absätze",
+      "Mehrere Textstile einschließlich klassischem Lorem Ipsum und thematischen Varianten",
+      "HTML- und Markdown-Ausgabeformate",
+      "Schnellvoreinstellungen für gängige Mengen",
+      "Echtzeit-Statistiken für Wörter und Zeichen",
+      "Laden Sie den generierten Text als Datei herunter",
+      "Option, mit dem traditionellen \"Lorem ipsum dolor sit amet\" zu beginnen",
+      "Vollständig clientseitig - funktioniert offline"
+    ],
+    "useCases": [
+      "Füllen Sie Mockups und Wireframes mit realistischer Textdichte",
+      "Testen Sie Typografie und Schriftdarstellung",
+      "Erstellen Sie Platzhalterinhalte für Website-Vorlagen",
+      "Generieren Sie Beispieltext für Drucklayouts",
+      "Füllen Sie Datenbankfelder für Tests",
+      "Erstellen Sie Dummy-Inhalte für CMS-Demonstrationen",
+      "Testen Sie Textumbruch- und Überlaufverhalten",
+      "Prototypen für Blog-Posts und Artikel-Layouts"
+    ],
+    "proTips": [
+      "Verwenden Sie Absätze für Seitenlayouts und Sätze für kürzere UI-Elemente",
+      "Probieren Sie verschiedene Textvarianten aus, um zum Ton Ihres Projekts zu passen",
+      "Verwenden Sie das HTML-Format, wenn Sie direkt mit Webseiten arbeiten",
+      "Die Schaltfläche Neu generieren erstellt neuen zufälligen Text mit denselben Einstellungen",
+      "Schnellvoreinstellungen helfen Ihnen, gängige Mengen sofort zu generieren",
+      "Die Zeichenanzahl hilft bei der Einschätzung des Platzbedarfs"
+    ],
+    "troubleshooting": [
+      "Text wirkt repetitiv: Versuchen Sie, mehr Inhalt zu generieren oder verwenden Sie eine andere Textvariante",
+      "Benötigen spezifische Länge: Verwenden Sie den Wortzählmodus für präzise Kontrolle",
+      "HTML-Tags funktionieren nicht: Stellen Sie sicher, dass Sie das HTML-Ausgabeformat ausgewählt haben",
+      "Möchten jedes Mal anderen Text: Klicken Sie auf Neu generieren für neuen zufälligen Text",
+      "Benötigen konsistente Ergebnisse: Derselbe Seed produziert denselben Text"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+C",
+        "description": "Generierten Text kopieren"
+      },
+      {
+        "keys": "Strg+S",
+        "description": "Als Datei herunterladen"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Lorem Ipsum Generator - Kostenloses Platzhaltertext-Tool | ToolsLab",
+    "description": "Generieren Sie Lorem Ipsum Platzhaltertext für Designs, Mockups und Layouts. Erstellen Sie Wörter, Sätze oder Absätze mit mehreren Textstilen. Kostenloses Online-Tool."
+  },
+  "tagline": "Generieren Sie sofort Platzhaltertext für Designs und Mockups",
+  "pageDescription": "Erstellen Sie Lorem Ipsum Platzhaltertext für Ihre Designs, Mockups und Layouts. Generieren Sie Wörter, Sätze oder Absätze mit klassischem lateinischem Text oder thematischen Varianten wie Tech, Hipster oder Unternehmensstilen. Exportieren Sie als Klartext, HTML oder Markdown. Perfekt für Designer, Entwickler und Content-Ersteller, die realistischen Dummy-Text benötigen. Kostenlos, sicher und browserbasiert."
+}

@@ -1,0 +1,98 @@
+{
+  "title": "Generador Lorem Ipsum",
+  "description": "Genera texto de relleno para diseños y maquetas",
+  "generateType": "Generar",
+  "count": "Cantidad",
+  "variant": "Estilo de Texto",
+  "format": "Formato de Salida",
+  "startWithLorem": "Comenzar con \"Lorem ipsum...\"",
+  "generate": "Generar",
+  "regenerate": "Regenerar",
+  "copy": "Copiar",
+  "copied": "¡Copiado!",
+  "download": "Descargar",
+  "result": "Texto Generado",
+  "statistics": "Estadísticas",
+  "words": "Palabras",
+  "characters": "Caracteres",
+  "sentences": "Oraciones",
+  "paragraphs": "Párrafos",
+  "options": "Opciones",
+  "quickPresets": "Presets Rápidos",
+  "instructions": {
+    "title": "Cómo usar el Generador Lorem Ipsum",
+    "steps": [
+      {
+        "title": "Elige el tipo de generación",
+        "description": "Selecciona si quieres generar palabras, oraciones o párrafos. Cada tipo es adecuado para diferentes necesidades de diseño."
+      },
+      {
+        "title": "Establece la cantidad",
+        "description": "Usa el deslizador para especificar cuánto texto necesitas. Puedes generar hasta 500 palabras, 50 oraciones o 20 párrafos."
+      },
+      {
+        "title": "Selecciona el estilo de texto",
+        "description": "Elige entre Lorem Ipsum clásico, texto original de Cicerón, jerga Tech/Developer, Hipster Ipsum o Palabras Corporativas."
+      },
+      {
+        "title": "Configura el formato de salida",
+        "description": "Selecciona Texto Plano para copiar-pegar simple, HTML para páginas web con etiquetas de párrafo, o Markdown para documentación."
+      },
+      {
+        "title": "Genera y copia",
+        "description": "Haz clic en Generar para crear tu texto de relleno, luego cópialo al portapapeles o descárgalo como archivo."
+      }
+    ],
+    "features": [
+      "Genera palabras, oraciones o párrafos",
+      "Múltiples estilos de texto incluyendo Lorem Ipsum clásico y variantes temáticas",
+      "Formatos de salida HTML y Markdown",
+      "Presets rápidos para cantidades comunes",
+      "Estadísticas en tiempo real de palabras y caracteres",
+      "Descarga el texto generado como archivo",
+      "Opción para comenzar con el tradicional \"Lorem ipsum dolor sit amet\"",
+      "Completamente del lado del cliente - funciona sin conexión"
+    ],
+    "useCases": [
+      "Rellena maquetas y wireframes con densidad de texto realista",
+      "Prueba tipografía y renderizado de fuentes",
+      "Crea contenido de relleno para plantillas de sitios web",
+      "Genera texto de muestra para diseños de impresión",
+      "Rellena campos de base de datos para pruebas",
+      "Crea contenido ficticio para demostraciones de CMS",
+      "Prueba el comportamiento de ajuste y desbordamiento de texto",
+      "Prototipa publicaciones de blog y diseños de artículos"
+    ],
+    "proTips": [
+      "Usa párrafos para diseños de página y oraciones para elementos UI más cortos",
+      "Prueba diferentes variantes de texto para coincidir con el tono de tu proyecto",
+      "Usa el formato HTML cuando trabajes directamente con páginas web",
+      "El botón regenerar crea nuevo texto aleatorio con la misma configuración",
+      "Los presets rápidos te ayudan a generar cantidades comunes instantáneamente",
+      "El conteo de caracteres ayuda a estimar requisitos de espacio"
+    ],
+    "troubleshooting": [
+      "El texto parece repetitivo: Intenta generar más contenido o usa una variante de texto diferente",
+      "Necesitas longitud específica: Usa el modo de conteo de palabras para control preciso",
+      "Las etiquetas HTML no funcionan: Asegúrate de haber seleccionado el formato de salida HTML",
+      "Quieres texto diferente cada vez: Haz clic en Regenerar para nuevo texto aleatorio",
+      "Necesitas resultados consistentes: La misma semilla produce el mismo texto"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar texto generado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar como archivo"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Generador Lorem Ipsum - Herramienta Gratuita de Texto de Relleno | ToolsLab",
+    "description": "Genera texto de relleno Lorem Ipsum para diseños, maquetas y layouts. Crea palabras, oraciones o párrafos con múltiples estilos de texto. Herramienta online gratuita."
+  },
+  "tagline": "Genera texto de relleno instantáneamente para diseños y maquetas",
+  "pageDescription": "Crea texto de relleno Lorem Ipsum para tus diseños, maquetas y layouts. Genera palabras, oraciones o párrafos con texto latino clásico o variantes temáticas como Tech, Hipster o estilos Corporativos. Exporta como texto plano, HTML o Markdown. Perfecto para diseñadores, desarrolladores y creadores de contenido que necesitan texto ficticio realista. Gratuito, seguro y basado en navegador."
+}

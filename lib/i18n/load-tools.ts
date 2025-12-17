@@ -87,6 +87,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'youtube-timestamp-generator',
     'chmod-calculator',
     'htaccess-generator',
+    'lorem-ipsum-generator',
   ];
 
   const tools: Record<string, any> = {};

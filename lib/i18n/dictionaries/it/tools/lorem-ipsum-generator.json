@@ -1,0 +1,98 @@
+{
+  "title": "Generatore Lorem Ipsum",
+  "description": "Genera testo segnaposto per design e mockup",
+  "generateType": "Genera",
+  "count": "Quantità",
+  "variant": "Stile Testo",
+  "format": "Formato Output",
+  "startWithLorem": "Inizia con \"Lorem ipsum...\"",
+  "generate": "Genera",
+  "regenerate": "Rigenera",
+  "copy": "Copia",
+  "copied": "Copiato!",
+  "download": "Scarica",
+  "result": "Testo Generato",
+  "statistics": "Statistiche",
+  "words": "Parole",
+  "characters": "Caratteri",
+  "sentences": "Frasi",
+  "paragraphs": "Paragrafi",
+  "options": "Opzioni",
+  "quickPresets": "Preset Rapidi",
+  "instructions": {
+    "title": "Come usare il Generatore Lorem Ipsum",
+    "steps": [
+      {
+        "title": "Scegli il tipo di generazione",
+        "description": "Seleziona se vuoi generare parole, frasi o paragrafi. Ogni tipo è adatto a diverse esigenze di design."
+      },
+      {
+        "title": "Imposta la quantità",
+        "description": "Usa lo slider per specificare quanto testo ti serve. Puoi generare fino a 500 parole, 50 frasi o 20 paragrafi."
+      },
+      {
+        "title": "Seleziona lo stile del testo",
+        "description": "Scegli tra Lorem Ipsum classico, testo originale di Cicerone, gergo Tech/Developer, Hipster Ipsum o Buzzword Aziendali."
+      },
+      {
+        "title": "Configura il formato di output",
+        "description": "Seleziona Testo Semplice per copia-incolla, HTML per pagine web con tag paragrafo, o Markdown per documentazione."
+      },
+      {
+        "title": "Genera e copia",
+        "description": "Clicca Genera per creare il tuo testo segnaposto, poi copialo negli appunti o scaricalo come file."
+      }
+    ],
+    "features": [
+      "Genera parole, frasi o paragrafi",
+      "Diversi stili di testo incluso Lorem Ipsum classico e varianti tematiche",
+      "Formati di output HTML e Markdown",
+      "Preset rapidi per quantità comuni",
+      "Statistiche in tempo reale di parole e caratteri",
+      "Scarica il testo generato come file",
+      "Opzione per iniziare con il tradizionale \"Lorem ipsum dolor sit amet\"",
+      "Completamente client-side - funziona offline"
+    ],
+    "useCases": [
+      "Riempi mockup e wireframe con densità di testo realistica",
+      "Testa tipografia e rendering dei font",
+      "Crea contenuti segnaposto per template di siti web",
+      "Genera testo di esempio per layout di stampa",
+      "Riempi campi database per test",
+      "Crea contenuti fittizi per dimostrazioni CMS",
+      "Testa il comportamento di wrapping e overflow del testo",
+      "Prototipa post di blog e layout di articoli"
+    ],
+    "proTips": [
+      "Usa i paragrafi per layout di pagina e le frasi per elementi UI più brevi",
+      "Prova diverse varianti di testo per abbinare il tono del tuo progetto",
+      "Usa il formato HTML quando lavori direttamente con pagine web",
+      "Il pulsante rigenera crea nuovo testo casuale con le stesse impostazioni",
+      "I preset rapidi ti aiutano a generare quantità comuni istantaneamente",
+      "Il conteggio caratteri aiuta a stimare i requisiti di spazio"
+    ],
+    "troubleshooting": [
+      "Il testo sembra ripetitivo: Prova a generare più contenuto o usa una variante di testo diversa",
+      "Serve lunghezza specifica: Usa la modalità conteggio parole per un controllo preciso",
+      "I tag HTML non funzionano: Assicurati di aver selezionato il formato output HTML",
+      "Vuoi testo diverso ogni volta: Clicca Rigenera per nuovo testo casuale",
+      "Servono risultati consistenti: Lo stesso seed produce lo stesso testo"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia testo generato"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Scarica come file"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Generatore Lorem Ipsum - Strumento Gratuito per Testo Segnaposto | ToolsLab",
+    "description": "Genera testo segnaposto Lorem Ipsum per design, mockup e layout. Crea parole, frasi o paragrafi con diversi stili di testo. Strumento online gratuito."
+  },
+  "tagline": "Genera testo segnaposto istantaneamente per design e mockup",
+  "pageDescription": "Crea testo segnaposto Lorem Ipsum per i tuoi design, mockup e layout. Genera parole, frasi o paragrafi con testo latino classico o varianti tematiche come Tech, Hipster o stili Aziendali. Esporta come testo semplice, HTML o Markdown. Perfetto per designer, sviluppatori e creatori di contenuti che hanno bisogno di testo fittizio realistico. Gratuito, sicuro e basato su browser."
+}
