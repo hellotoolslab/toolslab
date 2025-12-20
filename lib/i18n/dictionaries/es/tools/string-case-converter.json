@@ -1,0 +1,98 @@
+{
+  "title": "Convertidor de Case de Cadenas",
+  "description": "Convierte texto entre diferentes convenciones de nomenclatura",
+  "inputLabel": "Ingresa tu texto",
+  "inputPlaceholder": "Ingresa texto a convertir (ej. myVariableName)",
+  "convert": "Convertir",
+  "results": "Conversiones",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "detectedCase": "Case detectado",
+  "words": "Palabras",
+  "batchMode": "Modo Lote",
+  "singleMode": "Modo Individual",
+  "batchPlaceholder": "Ingresa múltiples cadenas (una por línea)",
+  "targetCase": "Case Destino",
+  "batchConvert": "Convertir Todo",
+  "batchResults": "Resultados Lote",
+  "original": "Original",
+  "converted": "Convertido",
+  "copyAll": "Copiar Todo",
+  "examples": "Ejemplos Rápidos",
+  "instructions": {
+    "title": "Cómo usar el Convertidor de Case de Cadenas",
+    "steps": [
+      {
+        "title": "Ingresa tu texto",
+        "description": "Escribe o pega cualquier texto en el campo de entrada. La herramienta detecta automáticamente el formato case actual (camelCase, snake_case, etc.)."
+      },
+      {
+        "title": "Ver todas las conversiones",
+        "description": "Todas las conversiones de case se muestran instantáneamente. Ve tu texto en camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE y más."
+      },
+      {
+        "title": "Copia el formato que necesitas",
+        "description": "Pasa el cursor sobre cualquier conversión y haz clic en el botón copiar para copiar ese formato específico al portapapeles."
+      },
+      {
+        "title": "Usa modo lote para múltiples cadenas",
+        "description": "Cambia a Modo Lote para convertir múltiples cadenas a la vez. Ingresa una cadena por línea, selecciona el case destino y convierte todo junto."
+      },
+      {
+        "title": "Prueba los ejemplos",
+        "description": "Haz clic en cualquier ejemplo rápido para ver cómo diferentes formatos de entrada se convierten a todos los tipos de case."
+      }
+    ],
+    "features": [
+      "Conversión instantánea a 12 formatos de case diferentes",
+      "Detección automática del case de entrada",
+      "Conversión por lotes para múltiples cadenas",
+      "Copia con un clic para cada formato",
+      "Maneja acrónimos y caracteres especiales",
+      "División inteligente de palabras desde cualquier formato",
+      "Sin datos enviados a servidores - funciona offline",
+      "Presets de ejemplos rápidos para pruebas"
+    ],
+    "useCases": [
+      "Convertir nombres de variables entre lenguajes de programación",
+      "Transformar clases CSS a variables JavaScript",
+      "Convertir nombres de columnas de base de datos a campos API",
+      "Generar nomenclatura consistente para refactorización",
+      "Convertir nombres de archivos a nombres de clases o funciones",
+      "Transformar constantes entre diferentes estándares de codificación",
+      "Preparar texto para URL slugs o rutas de archivos",
+      "Estandarizar convenciones de nomenclatura en un codebase"
+    ],
+    "proTips": [
+      "La herramienta detecta automáticamente tu formato de entrada - solo empieza a escribir",
+      "Usa modo lote cuando renombres múltiples variables o constantes",
+      "Acrónimos como 'XML' o 'API' se manejan inteligentemente",
+      "Funciona con frases de múltiples palabras, no solo nombres de variables",
+      "Copia resultados directamente a tu editor de código",
+      "La visualización 'Palabras' muestra cómo se analizó tu entrada"
+    ],
+    "troubleshooting": [
+      "División de palabras inesperada: Verifica separadores mixtos en tu entrada",
+      "Acrónimos divididos incorrectamente: La herramienta intenta detectar secuencias en mayúsculas como palabras únicas",
+      "Números no incluidos: Los números se preservan pero pueden afectar la detección de palabras",
+      "Caracteres especiales eliminados: Solo caracteres alfanuméricos se convierten",
+      "Resultados vacíos: Asegúrate de que tu entrada contenga al menos una palabra válida"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar texto del portapapeles"
+      },
+      {
+        "keys": "Clic en icono copiar",
+        "description": "Copiar formato específico"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertidor de Case de Cadenas - Herramienta Online Gratuita | ToolsLab",
+    "description": "Convierte texto entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE y más. Convertidor de case de cadenas online gratuito para desarrolladores. Funciona offline, sin datos enviados a servidores."
+  },
+  "tagline": "Convierte texto entre camelCase, snake_case, kebab-case y más instantáneamente",
+  "pageDescription": "Transforma texto entre diferentes convenciones de nomenclatura con este Convertidor de Case de Cadenas online gratuito. Convierte instantáneamente entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case y más. Perfecto para desarrolladores que necesitan convertir nombres de variables, clases o constantes entre diferentes lenguajes de programación y estándares de codificación. Incluye conversión por lotes, detección automática de case y copia con un clic. Seguro, basado en navegador y funciona completamente offline."
+}

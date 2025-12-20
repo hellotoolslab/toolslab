@@ -1,0 +1,98 @@
+{
+  "title": "Conversor de Case de Strings",
+  "description": "Converter texto entre diferentes convenções de nomenclatura",
+  "inputLabel": "Digite seu texto",
+  "inputPlaceholder": "Digite o texto para converter (ex. myVariableName)",
+  "convert": "Converter",
+  "results": "Conversões",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "detectedCase": "Case detectado",
+  "words": "Palavras",
+  "batchMode": "Modo Lote",
+  "singleMode": "Modo Individual",
+  "batchPlaceholder": "Digite múltiplas strings (uma por linha)",
+  "targetCase": "Case Destino",
+  "batchConvert": "Converter Tudo",
+  "batchResults": "Resultados Lote",
+  "original": "Original",
+  "converted": "Convertido",
+  "copyAll": "Copiar Tudo",
+  "examples": "Exemplos Rápidos",
+  "instructions": {
+    "title": "Como usar o Conversor de Case de Strings",
+    "steps": [
+      {
+        "title": "Digite seu texto",
+        "description": "Digite ou cole qualquer texto no campo de entrada. A ferramenta detecta automaticamente o formato case atual (camelCase, snake_case, etc.)."
+      },
+      {
+        "title": "Ver todas as conversões",
+        "description": "Todas as conversões de case são exibidas instantaneamente. Veja seu texto em camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE e mais."
+      },
+      {
+        "title": "Copie o formato que precisa",
+        "description": "Passe o mouse sobre qualquer conversão e clique no botão copiar para copiar esse formato específico para a área de transferência."
+      },
+      {
+        "title": "Use modo lote para múltiplas strings",
+        "description": "Mude para Modo Lote para converter múltiplas strings de uma vez. Digite uma string por linha, selecione o case destino e converta tudo junto."
+      },
+      {
+        "title": "Experimente os exemplos",
+        "description": "Clique em qualquer exemplo rápido para ver como diferentes formatos de entrada são convertidos para todos os tipos de case."
+      }
+    ],
+    "features": [
+      "Conversão instantânea para 12 formatos de case diferentes",
+      "Detecção automática do case de entrada",
+      "Conversão em lote para múltiplas strings",
+      "Cópia com um clique para cada formato",
+      "Lida com acrônimos e caracteres especiais",
+      "Divisão inteligente de palavras de qualquer formato",
+      "Nenhum dado enviado para servidores - funciona offline",
+      "Presets de exemplos rápidos para testes"
+    ],
+    "useCases": [
+      "Converter nomes de variáveis entre linguagens de programação",
+      "Transformar classes CSS em variáveis JavaScript",
+      "Converter nomes de colunas de banco de dados em campos API",
+      "Gerar nomenclatura consistente para refatoração",
+      "Converter nomes de arquivos em nomes de classes ou funções",
+      "Transformar constantes entre diferentes padrões de codificação",
+      "Preparar texto para URL slugs ou caminhos de arquivos",
+      "Padronizar convenções de nomenclatura em um codebase"
+    ],
+    "proTips": [
+      "A ferramenta detecta automaticamente seu formato de entrada - apenas comece a digitar",
+      "Use modo lote quando renomear múltiplas variáveis ou constantes",
+      "Acrônimos como 'XML' ou 'API' são tratados inteligentemente",
+      "Funciona com frases de múltiplas palavras, não apenas nomes de variáveis",
+      "Copie resultados diretamente para seu editor de código",
+      "A exibição 'Palavras' mostra como sua entrada foi analisada"
+    ],
+    "troubleshooting": [
+      "Divisão de palavras inesperada: Verifique separadores mistos na sua entrada",
+      "Acrônimos divididos incorretamente: A ferramenta tenta detectar sequências em maiúsculas como palavras únicas",
+      "Números não incluídos: Números são preservados mas podem afetar a detecção de palavras",
+      "Caracteres especiais removidos: Apenas caracteres alfanuméricos são convertidos",
+      "Resultados vazios: Certifique-se de que sua entrada contém pelo menos uma palavra válida"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar texto da área de transferência"
+      },
+      {
+        "keys": "Clique no ícone copiar",
+        "description": "Copiar formato específico"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Conversor de Case de Strings - Ferramenta Online Gratuita | ToolsLab",
+    "description": "Converter texto entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE e mais. Conversor de case de strings online gratuito para desenvolvedores. Funciona offline, nenhum dado enviado para servidores."
+  },
+  "tagline": "Converter texto entre camelCase, snake_case, kebab-case e mais instantaneamente",
+  "pageDescription": "Transforme texto entre diferentes convenções de nomenclatura com este Conversor de Case de Strings online gratuito. Converta instantaneamente entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case e mais. Perfeito para desenvolvedores que precisam converter nomes de variáveis, classes ou constantes entre diferentes linguagens de programação e padrões de codificação. Inclui conversão em lote, detecção automática de case e cópia com um clique. Seguro, baseado em navegador e funciona completamente offline."
+}

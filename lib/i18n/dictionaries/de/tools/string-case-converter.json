@@ -1,0 +1,98 @@
+{
+  "title": "String-Case-Konverter",
+  "description": "Text zwischen verschiedenen Namenskonventionen konvertieren",
+  "inputLabel": "Text eingeben",
+  "inputPlaceholder": "Text zum Konvertieren eingeben (z.B. myVariableName)",
+  "convert": "Konvertieren",
+  "results": "Konvertierungen",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "detectedCase": "Erkannter Case",
+  "words": "Wörter",
+  "batchMode": "Batch-Modus",
+  "singleMode": "Einzelmodus",
+  "batchPlaceholder": "Mehrere Strings eingeben (einer pro Zeile)",
+  "targetCase": "Ziel-Case",
+  "batchConvert": "Alle Konvertieren",
+  "batchResults": "Batch-Ergebnisse",
+  "original": "Original",
+  "converted": "Konvertiert",
+  "copyAll": "Alle Kopieren",
+  "examples": "Schnelle Beispiele",
+  "instructions": {
+    "title": "So verwenden Sie den String-Case-Konverter",
+    "steps": [
+      {
+        "title": "Text eingeben",
+        "description": "Geben Sie beliebigen Text in das Eingabefeld ein oder fügen Sie ihn ein. Das Tool erkennt automatisch das aktuelle Case-Format (camelCase, snake_case, usw.)."
+      },
+      {
+        "title": "Alle Konvertierungen anzeigen",
+        "description": "Alle Case-Konvertierungen werden sofort angezeigt. Sehen Sie Ihren Text in camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE und mehr."
+      },
+      {
+        "title": "Das benötigte Format kopieren",
+        "description": "Bewegen Sie den Mauszeiger über eine Konvertierung und klicken Sie auf die Kopierschaltfläche, um dieses spezifische Format in die Zwischenablage zu kopieren."
+      },
+      {
+        "title": "Batch-Modus für mehrere Strings verwenden",
+        "description": "Wechseln Sie zum Batch-Modus, um mehrere Strings gleichzeitig zu konvertieren. Geben Sie einen String pro Zeile ein, wählen Sie den Ziel-Case und konvertieren Sie alles auf einmal."
+      },
+      {
+        "title": "Beispiele ausprobieren",
+        "description": "Klicken Sie auf ein schnelles Beispiel, um zu sehen, wie verschiedene Eingabeformate in alle Case-Typen konvertiert werden."
+      }
+    ],
+    "features": [
+      "Sofortige Konvertierung in 12 verschiedene Case-Formate",
+      "Automatische Erkennung des Eingabe-Case",
+      "Batch-Konvertierung für mehrere Strings",
+      "Ein-Klick-Kopieren für jedes Format",
+      "Behandelt Akronyme und Sonderzeichen",
+      "Intelligente Worttrennung aus jedem Format",
+      "Keine Daten an Server gesendet - funktioniert offline",
+      "Schnelle Beispiel-Presets zum Testen"
+    ],
+    "useCases": [
+      "Variablennamen zwischen Programmiersprachen konvertieren",
+      "CSS-Klassen in JavaScript-Variablen umwandeln",
+      "Datenbank-Spaltennamen in API-Feldnamen konvertieren",
+      "Konsistente Benennung für Refactoring generieren",
+      "Dateinamen in Klassen- oder Funktionsnamen konvertieren",
+      "Konstanten zwischen verschiedenen Codierungsstandards transformieren",
+      "Text für URL-Slugs oder Dateipfade vorbereiten",
+      "Namenskonventionen in einer Codebase standardisieren"
+    ],
+    "proTips": [
+      "Das Tool erkennt automatisch Ihr Eingabeformat - beginnen Sie einfach zu tippen",
+      "Verwenden Sie den Batch-Modus beim Umbenennen mehrerer Variablen oder Konstanten",
+      "Akronyme wie 'XML' oder 'API' werden intelligent behandelt",
+      "Funktioniert mit Mehrwort-Phrasen, nicht nur Variablennamen",
+      "Kopieren Sie Ergebnisse direkt in Ihren Code-Editor",
+      "Die 'Wörter'-Anzeige zeigt, wie Ihre Eingabe analysiert wurde"
+    ],
+    "troubleshooting": [
+      "Unerwartete Worttrennung: Prüfen Sie auf gemischte Trennzeichen in Ihrer Eingabe",
+      "Akronyme falsch getrennt: Das Tool versucht, Großbuchstabensequenzen als einzelne Wörter zu erkennen",
+      "Zahlen nicht enthalten: Zahlen werden beibehalten, können aber die Worterkennung beeinflussen",
+      "Sonderzeichen entfernt: Nur alphanumerische Zeichen werden konvertiert",
+      "Leere Ergebnisse: Stellen Sie sicher, dass Ihre Eingabe mindestens ein gültiges Wort enthält"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Text aus Zwischenablage einfügen"
+      },
+      {
+        "keys": "Klick auf Kopier-Symbol",
+        "description": "Spezifisches Format kopieren"
+      }
+    ]
+  },
+  "meta": {
+    "title": "String-Case-Konverter - Kostenloses Online-Tool | ToolsLab",
+    "description": "Text zwischen camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE und mehr konvertieren. Kostenloser Online-String-Case-Konverter für Entwickler. Funktioniert offline, keine Daten an Server gesendet."
+  },
+  "tagline": "Text zwischen camelCase, snake_case, kebab-case und mehr sofort konvertieren",
+  "pageDescription": "Transformieren Sie Text zwischen verschiedenen Namenskonventionen mit diesem kostenlosen Online-String-Case-Konverter. Konvertieren Sie sofort zwischen camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case und mehr. Perfekt für Entwickler, die Variablen-, Klassen- oder Konstantennamen zwischen verschiedenen Programmiersprachen und Codierungsstandards konvertieren müssen. Enthält Batch-Konvertierung, automatische Case-Erkennung und Ein-Klick-Kopieren. Sicher, browserbasiert und funktioniert vollständig offline."
+}
