@@ -88,6 +88,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'chmod-calculator',
     'htaccess-generator',
     'lorem-ipsum-generator',
+    'string-case-converter',
   ];
 
   const tools: Record<string, any> = {};

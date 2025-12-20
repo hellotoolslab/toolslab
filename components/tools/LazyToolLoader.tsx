@@ -105,6 +105,9 @@ const toolComponents = {
   'lorem-ipsum-generator': lazy(
     () => import('./implementations/LoremIpsumGenerator')
   ),
+  'string-case-converter': lazy(
+    () => import('./implementations/StringCaseConverter')
+  ),
   // Add more as needed
 } as const;
 

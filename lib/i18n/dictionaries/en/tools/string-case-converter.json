@@ -1,0 +1,98 @@
+{
+  "title": "String Case Converter",
+  "description": "Convert text between different naming conventions",
+  "inputLabel": "Enter your text",
+  "inputPlaceholder": "Enter text to convert (e.g., myVariableName)",
+  "convert": "Convert",
+  "results": "Conversions",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "detectedCase": "Detected case",
+  "words": "Words",
+  "batchMode": "Batch Mode",
+  "singleMode": "Single Mode",
+  "batchPlaceholder": "Enter multiple strings (one per line)",
+  "targetCase": "Target Case",
+  "batchConvert": "Convert All",
+  "batchResults": "Batch Results",
+  "original": "Original",
+  "converted": "Converted",
+  "copyAll": "Copy All",
+  "examples": "Quick Examples",
+  "instructions": {
+    "title": "How to use String Case Converter",
+    "steps": [
+      {
+        "title": "Enter your text",
+        "description": "Type or paste any text in the input field. The tool automatically detects the current case format (camelCase, snake_case, etc.)."
+      },
+      {
+        "title": "View all conversions",
+        "description": "All case conversions are displayed instantly. See your text in camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and more."
+      },
+      {
+        "title": "Copy the format you need",
+        "description": "Hover over any conversion and click the copy button to copy that specific format to your clipboard."
+      },
+      {
+        "title": "Use batch mode for multiple strings",
+        "description": "Switch to Batch Mode to convert multiple strings at once. Enter one string per line, select the target case, and convert all at once."
+      },
+      {
+        "title": "Try the examples",
+        "description": "Click on any quick example to see how different input formats are converted to all case types."
+      }
+    ],
+    "features": [
+      "Instant conversion to 12 different case formats",
+      "Automatic input case detection",
+      "Batch conversion for multiple strings",
+      "One-click copy for each format",
+      "Handles acronyms and special characters",
+      "Smart word splitting from any input format",
+      "No data sent to servers - works offline",
+      "Quick example presets for testing"
+    ],
+    "useCases": [
+      "Convert variable names between programming languages",
+      "Transform CSS class names to JavaScript variables",
+      "Convert database column names to API field names",
+      "Generate consistent naming for code refactoring",
+      "Convert file names to class or function names",
+      "Transform constants between different coding standards",
+      "Prepare text for URL slugs or file paths",
+      "Standardize naming conventions across a codebase"
+    ],
+    "proTips": [
+      "The tool automatically detects your input format - just start typing",
+      "Use batch mode when renaming multiple variables or constants",
+      "Acronyms like 'XML' or 'API' are handled intelligently",
+      "Works with multi-word phrases, not just variable names",
+      "Copy results directly into your code editor",
+      "The 'Words' display shows how your input was parsed"
+    ],
+    "troubleshooting": [
+      "Unexpected word splits: Check for mixed separators in your input",
+      "Acronyms splitting wrong: The tool tries to detect uppercase sequences as single words",
+      "Numbers not included: Numbers are preserved but may affect word detection",
+      "Special characters removed: Only alphanumeric characters are converted",
+      "Empty results: Ensure your input contains at least one valid word"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste text from clipboard"
+      },
+      {
+        "keys": "Click copy icon",
+        "description": "Copy specific format"
+      }
+    ]
+  },
+  "meta": {
+    "title": "String Case Converter - Free Online Tool | ToolsLab",
+    "description": "Convert text between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE and more. Free online string case converter for developers. Works offline, no data sent to servers."
+  },
+  "tagline": "Convert text between camelCase, snake_case, kebab-case and more instantly",
+  "pageDescription": "Transform text between different naming conventions with this free online String Case Converter. Instantly convert between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case, and more. Perfect for developers who need to convert variable names, class names, or constants between different programming languages and coding standards. Features batch conversion, automatic case detection, and one-click copy. Secure, browser-based, and works completely offline."
+}
