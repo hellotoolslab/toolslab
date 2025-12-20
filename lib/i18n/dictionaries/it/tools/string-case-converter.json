@@ -1,0 +1,98 @@
+{
+  "title": "Convertitore di Case Stringhe",
+  "description": "Converti testo tra diverse convenzioni di nomenclatura",
+  "inputLabel": "Inserisci il testo",
+  "inputPlaceholder": "Inserisci il testo da convertire (es. myVariableName)",
+  "convert": "Converti",
+  "results": "Conversioni",
+  "copy": "Copia",
+  "copied": "Copiato!",
+  "detectedCase": "Case rilevato",
+  "words": "Parole",
+  "batchMode": "Modalità Batch",
+  "singleMode": "Modalità Singola",
+  "batchPlaceholder": "Inserisci più stringhe (una per riga)",
+  "targetCase": "Case di Destinazione",
+  "batchConvert": "Converti Tutto",
+  "batchResults": "Risultati Batch",
+  "original": "Originale",
+  "converted": "Convertito",
+  "copyAll": "Copia Tutto",
+  "examples": "Esempi Rapidi",
+  "instructions": {
+    "title": "Come usare il Convertitore di Case Stringhe",
+    "steps": [
+      {
+        "title": "Inserisci il testo",
+        "description": "Digita o incolla qualsiasi testo nel campo di input. Lo strumento rileva automaticamente il formato case corrente (camelCase, snake_case, ecc.)."
+      },
+      {
+        "title": "Visualizza tutte le conversioni",
+        "description": "Tutte le conversioni case vengono visualizzate istantaneamente. Vedi il testo in camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE e altro."
+      },
+      {
+        "title": "Copia il formato desiderato",
+        "description": "Passa sopra qualsiasi conversione e clicca il pulsante copia per copiare quel formato specifico negli appunti."
+      },
+      {
+        "title": "Usa la modalità batch per più stringhe",
+        "description": "Passa alla Modalità Batch per convertire più stringhe contemporaneamente. Inserisci una stringa per riga, seleziona il case di destinazione e converti tutto insieme."
+      },
+      {
+        "title": "Prova gli esempi",
+        "description": "Clicca su qualsiasi esempio rapido per vedere come diversi formati di input vengono convertiti in tutti i tipi di case."
+      }
+    ],
+    "features": [
+      "Conversione istantanea in 12 diversi formati case",
+      "Rilevamento automatico del case di input",
+      "Conversione batch per più stringhe",
+      "Copia con un click per ogni formato",
+      "Gestisce acronimi e caratteri speciali",
+      "Divisione intelligente delle parole da qualsiasi formato",
+      "Nessun dato inviato ai server - funziona offline",
+      "Preset di esempi rapidi per test"
+    ],
+    "useCases": [
+      "Convertire nomi di variabili tra linguaggi di programmazione",
+      "Trasformare classi CSS in variabili JavaScript",
+      "Convertire nomi colonne database in nomi campi API",
+      "Generare nomenclatura consistente per refactoring",
+      "Convertire nomi file in nomi classi o funzioni",
+      "Trasformare costanti tra diversi standard di codifica",
+      "Preparare testo per URL slug o percorsi file",
+      "Standardizzare convenzioni di nomenclatura in un codebase"
+    ],
+    "proTips": [
+      "Lo strumento rileva automaticamente il formato di input - inizia a digitare",
+      "Usa la modalità batch quando rinomini più variabili o costanti",
+      "Acronimi come 'XML' o 'API' vengono gestiti intelligentemente",
+      "Funziona con frasi multi-parola, non solo nomi variabili",
+      "Copia i risultati direttamente nel tuo editor di codice",
+      "La visualizzazione 'Parole' mostra come il tuo input è stato analizzato"
+    ],
+    "troubleshooting": [
+      "Divisione parole inaspettata: Controlla separatori misti nel tuo input",
+      "Acronimi divisi male: Lo strumento cerca di rilevare sequenze maiuscole come parole singole",
+      "Numeri non inclusi: I numeri vengono preservati ma possono influenzare il rilevamento parole",
+      "Caratteri speciali rimossi: Solo caratteri alfanumerici vengono convertiti",
+      "Risultati vuoti: Assicurati che il tuo input contenga almeno una parola valida"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla testo dagli appunti"
+      },
+      {
+        "keys": "Click icona copia",
+        "description": "Copia formato specifico"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertitore di Case Stringhe - Strumento Online Gratuito | ToolsLab",
+    "description": "Converti testo tra camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE e altro. Convertitore di case stringhe online gratuito per sviluppatori. Funziona offline, nessun dato inviato ai server."
+  },
+  "tagline": "Converti testo tra camelCase, snake_case, kebab-case e altro istantaneamente",
+  "pageDescription": "Trasforma il testo tra diverse convenzioni di nomenclatura con questo Convertitore di Case Stringhe online gratuito. Converti istantaneamente tra camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case e altro. Perfetto per sviluppatori che devono convertire nomi di variabili, classi o costanti tra diversi linguaggi di programmazione e standard di codifica. Include conversione batch, rilevamento automatico del case e copia con un click. Sicuro, basato su browser e funziona completamente offline."
+}

@@ -1220,6 +1220,38 @@ export const tools: Tool[] = [
     searchVolume: 12000,
     label: '',
   },
+  {
+    id: 'string-case-converter',
+    name: 'String Case Converter',
+    description:
+      'Convert text between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and more',
+    icon: '🔤',
+    route: '/tools/string-case-converter',
+    categories: ['text', 'dev'],
+    keywords: [
+      'string case converter',
+      'case converter',
+      'camelCase',
+      'PascalCase',
+      'snake_case',
+      'kebab-case',
+      'CONSTANT_CASE',
+      'SCREAMING_SNAKE_CASE',
+      'Title Case',
+      'Sentence case',
+      'lowercase',
+      'uppercase',
+      'text transform',
+      'variable naming',
+      'code formatting',
+      'naming convention',
+      'string transformation',
+      'text case',
+      'convert case',
+    ],
+    searchVolume: 11000,
+    label: '',
+  },
 ];
 
 // Group tools by category

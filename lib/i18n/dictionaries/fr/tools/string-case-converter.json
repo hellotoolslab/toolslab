@@ -1,0 +1,98 @@
+{
+  "title": "Convertisseur de Casse de Chaînes",
+  "description": "Convertir du texte entre différentes conventions de nommage",
+  "inputLabel": "Entrez votre texte",
+  "inputPlaceholder": "Entrez le texte à convertir (ex. myVariableName)",
+  "convert": "Convertir",
+  "results": "Conversions",
+  "copy": "Copier",
+  "copied": "Copié !",
+  "detectedCase": "Casse détectée",
+  "words": "Mots",
+  "batchMode": "Mode Lot",
+  "singleMode": "Mode Simple",
+  "batchPlaceholder": "Entrez plusieurs chaînes (une par ligne)",
+  "targetCase": "Casse Cible",
+  "batchConvert": "Tout Convertir",
+  "batchResults": "Résultats Lot",
+  "original": "Original",
+  "converted": "Converti",
+  "copyAll": "Tout Copier",
+  "examples": "Exemples Rapides",
+  "instructions": {
+    "title": "Comment utiliser le Convertisseur de Casse de Chaînes",
+    "steps": [
+      {
+        "title": "Entrez votre texte",
+        "description": "Tapez ou collez n'importe quel texte dans le champ de saisie. L'outil détecte automatiquement le format de casse actuel (camelCase, snake_case, etc.)."
+      },
+      {
+        "title": "Voir toutes les conversions",
+        "description": "Toutes les conversions de casse sont affichées instantanément. Voyez votre texte en camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE et plus."
+      },
+      {
+        "title": "Copiez le format dont vous avez besoin",
+        "description": "Survolez n'importe quelle conversion et cliquez sur le bouton copier pour copier ce format spécifique dans le presse-papiers."
+      },
+      {
+        "title": "Utilisez le mode lot pour plusieurs chaînes",
+        "description": "Passez en Mode Lot pour convertir plusieurs chaînes à la fois. Entrez une chaîne par ligne, sélectionnez la casse cible et convertissez tout ensemble."
+      },
+      {
+        "title": "Essayez les exemples",
+        "description": "Cliquez sur n'importe quel exemple rapide pour voir comment différents formats d'entrée sont convertis en tous les types de casse."
+      }
+    ],
+    "features": [
+      "Conversion instantanée en 12 formats de casse différents",
+      "Détection automatique de la casse d'entrée",
+      "Conversion par lots pour plusieurs chaînes",
+      "Copie en un clic pour chaque format",
+      "Gère les acronymes et caractères spéciaux",
+      "Découpage intelligent des mots depuis n'importe quel format",
+      "Aucune donnée envoyée aux serveurs - fonctionne hors ligne",
+      "Préréglages d'exemples rapides pour les tests"
+    ],
+    "useCases": [
+      "Convertir les noms de variables entre langages de programmation",
+      "Transformer les classes CSS en variables JavaScript",
+      "Convertir les noms de colonnes de base de données en champs API",
+      "Générer une nomenclature cohérente pour le refactoring",
+      "Convertir les noms de fichiers en noms de classes ou fonctions",
+      "Transformer les constantes entre différents standards de codage",
+      "Préparer du texte pour les URL slugs ou chemins de fichiers",
+      "Standardiser les conventions de nommage dans un codebase"
+    ],
+    "proTips": [
+      "L'outil détecte automatiquement votre format d'entrée - commencez simplement à taper",
+      "Utilisez le mode lot lorsque vous renommez plusieurs variables ou constantes",
+      "Les acronymes comme 'XML' ou 'API' sont gérés intelligemment",
+      "Fonctionne avec des phrases de plusieurs mots, pas seulement des noms de variables",
+      "Copiez les résultats directement dans votre éditeur de code",
+      "L'affichage 'Mots' montre comment votre entrée a été analysée"
+    ],
+    "troubleshooting": [
+      "Découpage de mots inattendu : Vérifiez les séparateurs mixtes dans votre entrée",
+      "Acronymes mal découpés : L'outil essaie de détecter les séquences en majuscules comme mots uniques",
+      "Nombres non inclus : Les nombres sont préservés mais peuvent affecter la détection des mots",
+      "Caractères spéciaux supprimés : Seuls les caractères alphanumériques sont convertis",
+      "Résultats vides : Assurez-vous que votre entrée contient au moins un mot valide"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller le texte du presse-papiers"
+      },
+      {
+        "keys": "Clic sur l'icône copier",
+        "description": "Copier un format spécifique"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertisseur de Casse de Chaînes - Outil en Ligne Gratuit | ToolsLab",
+    "description": "Convertir du texte entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE et plus. Convertisseur de casse de chaînes en ligne gratuit pour développeurs. Fonctionne hors ligne, aucune donnée envoyée aux serveurs."
+  },
+  "tagline": "Convertir du texte entre camelCase, snake_case, kebab-case et plus instantanément",
+  "pageDescription": "Transformez du texte entre différentes conventions de nommage avec ce Convertisseur de Casse de Chaînes en ligne gratuit. Convertissez instantanément entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case et plus. Parfait pour les développeurs qui doivent convertir des noms de variables, classes ou constantes entre différents langages de programmation et standards de codage. Inclut la conversion par lots, la détection automatique de casse et la copie en un clic. Sécurisé, basé sur navigateur et fonctionne complètement hors ligne."
+}
