@@ -1,0 +1,86 @@
+{
+  "title": "Binar zu Text Konverter",
+  "description": "Konvertiere Binarzahlen zu Text und umgekehrt mit Unterstutzung fur ASCII, UTF-8 und Hexadezimalformate",
+  "placeholder": "Gib Binar, Hexadezimal oder Text zum Konvertieren ein...",
+  "instructions": {
+    "title": "Wie man den Binar zu Text Konverter verwendet",
+    "steps": [
+      {
+        "title": "Wahle den Konvertierungstyp",
+        "description": "Wahle die Konvertierungsrichtung: Binar zu Text, Text zu Binar, Hex zu Text, Text zu Hex, Binar zu Hex, oder Hex zu Binar."
+      },
+      {
+        "title": "Gib deine Eingabe ein",
+        "description": "Fuge dein Binar (z.B. 01001000 01100101), Hexadezimal (z.B. 48 65 6C), oder Klartext entsprechend der gewahlten Konvertierung ein."
+      },
+      {
+        "title": "Sieh sofortige Ergebnisse",
+        "description": "Die Konvertierung erfolgt automatisch wahrend du tippst. Ergebnisse erscheinen sofort mit Byte-Zahlstatistiken."
+      },
+      {
+        "title": "Kopiere oder tausche das Ergebnis",
+        "description": "Benutze den Kopieren-Button um die Ausgabe zu speichern, oder tausche Eingabe/Ausgabe um die umgekehrte Konvertierung sofort durchzufuhren."
+      }
+    ],
+    "features": [
+      "Bidirektionale Echtzeit-Konvertierung",
+      "Unterstutzung fur Binar, Hexadezimal und Text",
+      "Automatische Erkennung des Eingabeformats",
+      "Option fur leerzeichengetrennte Ausgabe",
+      "UTF-8 Zeichenunterstutzung",
+      "Byte-Zahlstatistiken",
+      "Tausch-Button fur schnelle umgekehrte Konvertierung",
+      "Schnelle Beispielvorlagen",
+      "100% clientseitige Verarbeitung",
+      "Keine Daten an Server gesendet"
+    ],
+    "useCases": [
+      "Binardaten aus Netzwerkpaketen dekodieren",
+      "ASCII-Kunst in Binardarstellung konvertieren",
+      "Binardateiinhalte debuggen",
+      "Das binare Zahlensystem lernen",
+      "Hexadezimale Farbcodes konvertieren",
+      "Binarprotokolldaten analysieren",
+      "Bildungszwecke fur Informatik",
+      "Maschinencode in lesbares Format konvertieren",
+      "Binarstrings von APIs verarbeiten",
+      "CTF-Herausforderungen und Ratsel"
+    ],
+    "proTips": [
+      "Binareingabe kann leerzeichengetrennt (01001000 01100101) oder durchgehend (0100100001100101) sein",
+      "Hex-Eingabe unterstutzt 0x-Prafix (0x48656C6C6F) oder leerzeichengetrennt (48 65 6C 6C 6F)",
+      "Benutze den Tausch-Button um Hin-und-Ruckkonvertierung schnell zu verifizieren",
+      "Das Tool erkennt automatisch ob deine Eingabe wie Binar, Hex oder Text aussieht",
+      "Jedes ASCII-Zeichen verwendet genau 8 Bits (1 Byte)",
+      "UTF-8 Zeichen konnen je nach Zeichen 1-4 Bytes verwenden"
+    ],
+    "troubleshooting": [
+      "Wenn die Binarkonvertierung fehlschlagt, stelle sicher dass nur 0en und 1en vorhanden sind",
+      "Hex-Werte mussen gultige Zeichen verwenden (0-9 und A-F)",
+      "Ungultige Zeichen zeigen eine Fehlermeldung",
+      "Sehr lange Eingaben konnen einen Moment zur Verarbeitung brauchen",
+      "Nicht-ASCII-Zeichen werden mit UTF-8-Kodierung konvertiert",
+      "Stelle sicher dass die Binareingabelange durch 8 teilbar ist fur korrekte Zeichenkonvertierung"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg+V",
+        "description": "Eingabe einfugen"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Ergebnis kopieren"
+      },
+      {
+        "keys": "Strg+A",
+        "description": "Alles auswahlen"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Binar zu Text Konverter - Kostenloses Online-Tool | ToolsLab",
+    "description": "Kostenloser Binar zu Text Konverter. Konvertiere Binar zu ASCII-Text, Text zu Binar, Hex zu Text und mehr. Unterstutzt UTF-8, sofortige Konvertierung, browserbasiert und sicher."
+  },
+  "tagline": "Konvertiere Binar zu Text und dekodiere Binardaten sofort",
+  "pageDescription": "Konvertiere Binarzahlen in lesbaren Text und kodiere Text in Binardarstellung. Unterstutzt ASCII, UTF-8 und Hexadezimalformate. Enthalt bidirektionale Konvertierung zwischen Binar, Hex und Text mit automatischer Erkennung, Byte-Statistiken und sofortigen Ergebnissen. 100% browserbasiert ohne Server-Uploads."
+}

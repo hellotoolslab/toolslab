@@ -1252,6 +1252,35 @@ export const tools: Tool[] = [
     searchVolume: 11000,
     label: '',
   },
+  {
+    id: 'binary-to-text',
+    name: 'Binary to Text Converter',
+    description:
+      'Convert binary numbers to text and vice versa with support for ASCII, UTF-8, and hex formats',
+    icon: '🔢',
+    route: '/tools/binary-to-text',
+    categories: ['encoding', 'data'],
+    keywords: [
+      'binary to text',
+      'text to binary',
+      'binary converter',
+      'binary decoder',
+      'binary encoder',
+      'ascii binary',
+      'binary string',
+      'binary code',
+      'binary translation',
+      '01 to text',
+      'binary ascii converter',
+      'binary to ascii',
+      'ascii to binary',
+      'hex to binary',
+      'binary to hex',
+      'utf-8 binary',
+    ],
+    searchVolume: 6500,
+    label: '',
+  },
 ];
 
 // Group tools by category

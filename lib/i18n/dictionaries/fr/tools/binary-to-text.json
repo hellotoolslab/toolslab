@@ -1,0 +1,86 @@
+{
+  "title": "Convertisseur Binaire en Texte",
+  "description": "Convertissez les nombres binaires en texte et vice versa avec support pour ASCII, UTF-8 et formats hexadecimaux",
+  "placeholder": "Entrez du binaire, hexadecimal ou texte a convertir...",
+  "instructions": {
+    "title": "Comment utiliser le Convertisseur Binaire en Texte",
+    "steps": [
+      {
+        "title": "Selectionnez le type de conversion",
+        "description": "Choisissez la direction de conversion: Binaire vers Texte, Texte vers Binaire, Hex vers Texte, Texte vers Hex, Binaire vers Hex, ou Hex vers Binaire."
+      },
+      {
+        "title": "Entrez votre saisie",
+        "description": "Collez ou tapez votre binaire (ex. 01001000 01100101), hexadecimal (ex. 48 65 6C), ou texte brut selon la conversion selectionnee."
+      },
+      {
+        "title": "Visualisez les resultats instantanes",
+        "description": "La conversion se fait automatiquement pendant que vous tapez. Les resultats apparaissent immediatement avec les statistiques de comptage d'octets."
+      },
+      {
+        "title": "Copiez ou echangez le resultat",
+        "description": "Utilisez le bouton copier pour sauvegarder la sortie, ou echangez entree/sortie pour effectuer la conversion inverse instantanement."
+      }
+    ],
+    "features": [
+      "Conversion bidirectionnelle en temps reel",
+      "Support binaire, hexadecimal et texte",
+      "Detection automatique du format d'entree",
+      "Option de sortie separee par espaces",
+      "Support des caracteres UTF-8",
+      "Statistiques de comptage d'octets",
+      "Bouton d'echange pour conversion inverse rapide",
+      "Modeles d'exemples rapides",
+      "Traitement 100% cote client",
+      "Aucune donnee envoyee aux serveurs"
+    ],
+    "useCases": [
+      "Decoder les donnees binaires des paquets reseau",
+      "Convertir l'art ASCII en representation binaire",
+      "Deboguer le contenu des fichiers binaires",
+      "Apprendre le systeme numerique binaire",
+      "Convertir les codes couleur hexadecimaux",
+      "Analyser les donnees de protocoles binaires",
+      "Objectifs educatifs en informatique",
+      "Convertir le code machine en format lisible",
+      "Traiter les chaines binaires des APIs",
+      "Defis CTF et puzzles"
+    ],
+    "proTips": [
+      "L'entree binaire peut etre separee par espaces (01001000 01100101) ou continue (0100100001100101)",
+      "L'entree hex supporte le prefixe 0x (0x48656C6C6F) ou separee par espaces (48 65 6C 6C 6F)",
+      "Utilisez le bouton d'echange pour verifier rapidement la conversion aller-retour",
+      "L'outil detecte automatiquement si votre entree ressemble a du binaire, hex ou texte",
+      "Chaque caractere ASCII utilise exactement 8 bits (1 octet)",
+      "Les caracteres UTF-8 peuvent utiliser 1-4 octets selon le caractere"
+    ],
+    "troubleshooting": [
+      "Si la conversion binaire echoue, assurez-vous que seuls des 0 et 1 sont presents",
+      "Les valeurs hex doivent utiliser des caracteres valides (0-9 et A-F)",
+      "Les caracteres invalides afficheront un message d'erreur",
+      "Les entrees tres longues peuvent prendre un moment a traiter",
+      "Les caracteres non-ASCII sont convertis en utilisant l'encodage UTF-8",
+      "Assurez-vous que la longueur de l'entree binaire est divisible par 8 pour une conversion correcte des caracteres"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entree"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le resultat"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Tout selectionner"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertisseur Binaire en Texte - Outil en Ligne Gratuit | ToolsLab",
+    "description": "Convertisseur binaire en texte gratuit. Convertissez binaire en texte ASCII, texte en binaire, hex en texte et plus. Supporte UTF-8, conversion instantanee, base sur navigateur et securise."
+  },
+  "tagline": "Convertissez binaire en texte et decodez les donnees binaires instantanement",
+  "pageDescription": "Convertissez les nombres binaires en texte lisible et encodez le texte en representation binaire. Supporte les formats ASCII, UTF-8 et hexadecimal. Inclut la conversion bidirectionnelle entre binaire, hex et texte avec auto-detection, statistiques d'octets et resultats instantanes. 100% base sur navigateur sans telechargement vers le serveur."
+}

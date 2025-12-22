@@ -1,0 +1,86 @@
+{
+  "title": "Conversor Binario para Texto",
+  "description": "Converta numeros binarios para texto e vice-versa com suporte para ASCII, UTF-8 e formatos hexadecimais",
+  "placeholder": "Digite binario, hexadecimal ou texto para converter...",
+  "instructions": {
+    "title": "Como usar o Conversor Binario para Texto",
+    "steps": [
+      {
+        "title": "Selecione o tipo de conversao",
+        "description": "Escolha a direcao da conversao: Binario para Texto, Texto para Binario, Hex para Texto, Texto para Hex, Binario para Hex, ou Hex para Binario."
+      },
+      {
+        "title": "Insira sua entrada",
+        "description": "Cole ou digite seu binario (ex. 01001000 01100101), hexadecimal (ex. 48 65 6C), ou texto simples de acordo com a conversao selecionada."
+      },
+      {
+        "title": "Veja os resultados instantaneos",
+        "description": "A conversao acontece automaticamente enquanto voce digita. Os resultados aparecem imediatamente com estatisticas de contagem de bytes."
+      },
+      {
+        "title": "Copie ou troque o resultado",
+        "description": "Use o botao copiar para salvar a saida, ou troque entrada/saida para realizar a conversao inversa instantaneamente."
+      }
+    ],
+    "features": [
+      "Conversao bidirecional em tempo real",
+      "Suporte para binario, hexadecimal e texto",
+      "Auto-deteccao do formato de entrada",
+      "Opcao de saida separada por espacos",
+      "Suporte a caracteres UTF-8",
+      "Estatisticas de contagem de bytes",
+      "Botao de troca para conversao inversa rapida",
+      "Templates de exemplos rapidos",
+      "Processamento 100% do lado do cliente",
+      "Nenhum dado enviado para servidores"
+    ],
+    "useCases": [
+      "Decodificar dados binarios de pacotes de rede",
+      "Converter arte ASCII para representacao binaria",
+      "Debugar conteudos de arquivos binarios",
+      "Aprender o sistema numerico binario",
+      "Converter codigos de cor hexadecimais",
+      "Analisar dados de protocolos binarios",
+      "Propositos educacionais de ciencia da computacao",
+      "Converter codigo de maquina para formato legivel",
+      "Processar strings binarias de APIs",
+      "Desafios CTF e puzzles"
+    ],
+    "proTips": [
+      "A entrada binaria pode ser separada por espacos (01001000 01100101) ou continua (0100100001100101)",
+      "A entrada hex suporta prefixo 0x (0x48656C6C6F) ou separada por espacos (48 65 6C 6C 6F)",
+      "Use o botao de troca para verificar rapidamente a conversao de ida e volta",
+      "A ferramenta auto-detecta se sua entrada parece binario, hex ou texto",
+      "Cada caractere ASCII usa exatamente 8 bits (1 byte)",
+      "Caracteres UTF-8 podem usar 1-4 bytes dependendo do caractere"
+    ],
+    "troubleshooting": [
+      "Se a conversao binaria falhar, certifique-se de que apenas 0s e 1s estao presentes",
+      "Valores hex devem usar caracteres validos (0-9 e A-F)",
+      "Caracteres invalidos mostrarao uma mensagem de erro",
+      "Entradas muito longas podem levar um momento para processar",
+      "Caracteres nao-ASCII sao convertidos usando codificacao UTF-8",
+      "Certifique-se de que o comprimento da entrada binaria seja divisivel por 8 para conversao correta de caracteres"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Selecionar tudo"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Conversor Binario para Texto - Ferramenta Online Gratuita | ToolsLab",
+    "description": "Conversor binario para texto gratuito. Converta binario para texto ASCII, texto para binario, hex para texto e mais. Suporta UTF-8, conversao instantanea, baseado em navegador e seguro."
+  },
+  "tagline": "Converta binario para texto e decodifique dados binarios instantaneamente",
+  "pageDescription": "Converta numeros binarios para texto legivel e codifique texto para representacao binaria. Suporta formatos ASCII, UTF-8 e hexadecimal. Inclui conversao bidirecional entre binario, hex e texto com auto-deteccao, estatisticas de bytes e resultados instantaneos. 100% baseado em navegador sem uploads para o servidor."
+}
