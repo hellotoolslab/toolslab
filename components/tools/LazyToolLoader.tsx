@@ -108,6 +108,7 @@ const toolComponents = {
   'string-case-converter': lazy(
     () => import('./implementations/StringCaseConverter')
   ),
+  'binary-to-text': lazy(() => import('./implementations/BinaryToText')),
   // Add more as needed
 } as const;
 

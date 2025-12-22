@@ -1,0 +1,86 @@
+{
+  "title": "Convertitore Binario a Testo",
+  "description": "Converti numeri binari in testo e viceversa con supporto per ASCII, UTF-8 e formati esadecimali",
+  "placeholder": "Inserisci binario, esadecimale o testo da convertire...",
+  "instructions": {
+    "title": "Come usare il Convertitore Binario a Testo",
+    "steps": [
+      {
+        "title": "Seleziona il tipo di conversione",
+        "description": "Scegli la direzione di conversione: Binario a Testo, Testo a Binario, Hex a Testo, Testo a Hex, Binario a Hex, o Hex a Binario."
+      },
+      {
+        "title": "Inserisci il tuo input",
+        "description": "Incolla o digita il tuo binario (es. 01001000 01100101), esadecimale (es. 48 65 6C), o testo normale in base alla conversione selezionata."
+      },
+      {
+        "title": "Visualizza i risultati istantanei",
+        "description": "La conversione avviene automaticamente mentre digiti. I risultati appaiono immediatamente con statistiche sul conteggio dei byte."
+      },
+      {
+        "title": "Copia o scambia il risultato",
+        "description": "Usa il pulsante copia per salvare l'output, o scambia input/output per eseguire la conversione inversa istantaneamente."
+      }
+    ],
+    "features": [
+      "Conversione bidirezionale in tempo reale",
+      "Supporto binario, esadecimale e testo",
+      "Rilevamento automatico del formato input",
+      "Opzione output separato da spazi",
+      "Supporto caratteri UTF-8",
+      "Statistiche conteggio byte",
+      "Pulsante scambio per conversione inversa rapida",
+      "Template di esempi rapidi",
+      "Elaborazione 100% lato client",
+      "Nessun dato inviato ai server"
+    ],
+    "useCases": [
+      "Decodificare dati binari da pacchetti di rete",
+      "Convertire ASCII art in rappresentazione binaria",
+      "Debug contenuti file binari",
+      "Imparare il sistema numerico binario",
+      "Convertire codici colore esadecimali",
+      "Analizzare dati di protocolli binari",
+      "Scopi educativi per informatica",
+      "Convertire codice macchina in formato leggibile",
+      "Elaborare stringhe binarie da API",
+      "Challenge CTF e puzzle"
+    ],
+    "proTips": [
+      "L'input binario puo essere separato da spazi (01001000 01100101) o continuo (0100100001100101)",
+      "L'input hex supporta il prefisso 0x (0x48656C6C6F) o separato da spazi (48 65 6C 6C 6F)",
+      "Usa il pulsante scambio per verificare rapidamente la conversione andata e ritorno",
+      "Lo strumento rileva automaticamente se il tuo input sembra binario, hex o testo",
+      "Ogni carattere ASCII usa esattamente 8 bit (1 byte)",
+      "I caratteri UTF-8 possono usare 1-4 byte a seconda del carattere"
+    ],
+    "troubleshooting": [
+      "Se la conversione binaria fallisce, assicurati che siano presenti solo 0 e 1",
+      "I valori hex devono usare caratteri validi (0-9 e A-F)",
+      "Caratteri non validi mostreranno un messaggio di errore",
+      "Input molto lunghi potrebbero richiedere un momento per l'elaborazione",
+      "I caratteri non-ASCII vengono convertiti usando la codifica UTF-8",
+      "Assicurati che la lunghezza dell'input binario sia divisibile per 8 per una corretta conversione dei caratteri"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia risultato"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleziona tutto"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertitore Binario a Testo - Strumento Online Gratuito | ToolsLab",
+    "description": "Convertitore binario a testo gratuito. Converti binario in testo ASCII, testo in binario, hex in testo e altro. Supporta UTF-8, conversione istantanea, basato su browser e sicuro."
+  },
+  "tagline": "Converti binario in testo e decodifica dati binari istantaneamente",
+  "pageDescription": "Converti numeri binari in testo leggibile e codifica testo in rappresentazione binaria. Supporta formati ASCII, UTF-8 ed esadecimale. Include conversione bidirezionale tra binario, hex e testo con rilevamento automatico, statistiche byte e risultati istantanei. 100% basato su browser senza upload al server."
+}

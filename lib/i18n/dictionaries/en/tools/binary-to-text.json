@@ -1,0 +1,86 @@
+{
+  "title": "Binary to Text Converter",
+  "description": "Convert binary numbers to text and vice versa with support for ASCII, UTF-8, and hex formats",
+  "placeholder": "Enter binary, hexadecimal, or text to convert...",
+  "instructions": {
+    "title": "How to use Binary to Text Converter",
+    "steps": [
+      {
+        "title": "Select conversion type",
+        "description": "Choose the conversion direction: Binary to Text, Text to Binary, Hex to Text, Text to Hex, Binary to Hex, or Hex to Binary."
+      },
+      {
+        "title": "Enter your input",
+        "description": "Paste or type your binary (e.g., 01001000 01100101), hexadecimal (e.g., 48 65 6C), or plain text depending on your selected conversion."
+      },
+      {
+        "title": "View instant results",
+        "description": "The conversion happens automatically as you type. Results appear immediately with byte count statistics."
+      },
+      {
+        "title": "Copy or swap the result",
+        "description": "Use the copy button to save the output, or swap input/output to perform reverse conversion instantly."
+      }
+    ],
+    "features": [
+      "Real-time bidirectional conversion",
+      "Binary, hexadecimal, and text support",
+      "Auto-detection of input format",
+      "Space-separated output option",
+      "UTF-8 character support",
+      "Byte count statistics",
+      "Swap button for quick reverse conversion",
+      "Quick example templates",
+      "100% client-side processing",
+      "No data sent to servers"
+    ],
+    "useCases": [
+      "Decode binary data from network packets",
+      "Convert ASCII art to binary representation",
+      "Debug binary file contents",
+      "Learn binary number system",
+      "Convert hexadecimal color codes",
+      "Analyze binary protocol data",
+      "Educational purposes for computer science",
+      "Convert machine code to readable format",
+      "Process binary strings from APIs",
+      "CTF challenges and puzzles"
+    ],
+    "proTips": [
+      "Binary input can be space-separated (01001000 01100101) or continuous (0100100001100101)",
+      "Hex input supports 0x prefix (0x48656C6C6F) or space-separated (48 65 6C 6C 6F)",
+      "Use the swap button to quickly verify round-trip conversion",
+      "The tool auto-detects if your input looks like binary, hex, or text",
+      "Each ASCII character uses exactly 8 bits (1 byte)",
+      "UTF-8 characters may use 1-4 bytes depending on the character"
+    ],
+    "troubleshooting": [
+      "If binary conversion fails, ensure only 0s and 1s are present",
+      "Hex values must use valid characters (0-9 and A-F)",
+      "Invalid characters will show an error message",
+      "Very long inputs may take a moment to process",
+      "Non-ASCII characters are converted using UTF-8 encoding",
+      "Ensure binary input length is divisible by 8 for proper character conversion"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy result"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Select all"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Binary to Text Converter - Free Online Tool | ToolsLab",
+    "description": "Free binary to text converter. Convert binary to ASCII text, text to binary, hex to text, and more. Supports UTF-8, instant conversion, browser-based and secure."
+  },
+  "tagline": "Convert binary to text and decode binary data instantly",
+  "pageDescription": "Convert binary numbers to readable text and encode text to binary representation. Supports ASCII, UTF-8, and hexadecimal formats. Features bidirectional conversion between binary, hex, and text with auto-detection, byte statistics, and instant results. 100% browser-based with no server uploads."
+}

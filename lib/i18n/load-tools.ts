@@ -89,6 +89,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'htaccess-generator',
     'lorem-ipsum-generator',
     'string-case-converter',
+    'binary-to-text',
   ];
 
   const tools: Record<string, any> = {};
