@@ -1,0 +1,114 @@
+{
+  "title": "JavaScript Object to JSON",
+  "description": "Convierte objetos JavaScript a JSON válido con detección de referencias circulares, manejo de funciones y soporte BigInt",
+  "placeholder": "Pega tu objeto JavaScript aquí...\n\nEjemplo:\n{\n  name: 'Juan',\n  age: 30,\n  isActive: true,\n  tags: ['developer', 'javascript']\n}",
+  "instructions": {
+    "title": "Cómo usar el convertidor JavaScript Object to JSON",
+    "steps": [
+      {
+        "title": "Pega tu objeto JavaScript",
+        "description": "Ingresa tu objeto JavaScript en el área de entrada. La herramienta acepta objetos con claves sin comillas, comillas simples, comas finales y otra sintaxis específica de JS."
+      },
+      {
+        "title": "Configura las opciones de conversión",
+        "description": "Elige cómo manejar valores especiales como funciones, undefined, BigInt, referencias circulares y selecciona tu estilo de indentación preferido."
+      },
+      {
+        "title": "Convierte a JSON",
+        "description": "Haz clic en el botón Convertir para transformar tu objeto JavaScript en formato JSON válido y conforme a los estándares."
+      },
+      {
+        "title": "Copia o descarga el resultado",
+        "description": "Copia el JSON válido al portapapeles para uso inmediato o descárgalo como archivo .json para almacenamiento y compartir."
+      }
+    ],
+    "features": [
+      "Maneja claves sin comillas y cadenas con comillas simples",
+      "Detecta y reporta referencias circulares",
+      "Conversión de BigInt a cadena o número",
+      "Manejo de valores de función y undefined",
+      "Soporte de comas finales",
+      "Formato elegante con indentación personalizable",
+      "Advertencias de validación para valores no compatibles con JSON",
+      "Procesamiento 100% del lado del cliente - tus datos nunca salen de tu navegador"
+    ],
+    "useCases": [
+      "Convertir objetos de configuración JavaScript a formato JSON",
+      "Preparar payloads de solicitudes API desde objetos JS",
+      "Depurar y validar estructuras de objetos",
+      "Transformar salida de console.log a JSON válido",
+      "Convertir objetos copiados de DevTools del navegador a JSON",
+      "Sanear objetos JavaScript para almacenamiento",
+      "Generar fixtures JSON desde datos de prueba JS",
+      "Convertir exports de módulos Node.js a configuraciones JSON"
+    ],
+    "proTips": [
+      "Usa la opción 'Mostrar advertencias' para ver qué valores no pudieron ser convertidos",
+      "Los valores BigInt pueden convertirse a cadenas para preservar la precisión",
+      "Las funciones se eliminan por defecto pero pueden convertirse a cadenas '[Function]'",
+      "Las referencias circulares se detectan y reportan con su ruta",
+      "Copia objetos directamente desde DevTools del navegador y pégalos aquí",
+      "Usa el modo compacto para salida minificada adecuada para APIs"
+    ],
+    "troubleshooting": [
+      "Error de sintaxis: Verifica comas, corchetes o caracteres inválidos faltantes",
+      "Referencia circular: El objeto se referencia a sí mismo - revisa la ruta reportada",
+      "Error BigInt: Habilita la conversión de BigInt a cadena en opciones",
+      "Función en objeto: Habilita el manejo de funciones o elimina las funciones manualmente",
+      "Valores undefined: Elige si mantener como null o eliminar completamente"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Convertir a JSON"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar archivo JSON"
+      }
+    ]
+  },
+  "features": [
+    "Detección de referencias circulares",
+    "Soporte BigInt",
+    "Manejo de funciones",
+    "Formato elegante"
+  ],
+  "meta": {
+    "title": "Convertidor JavaScript Object to JSON - Herramienta Online Gratis | OctoTools",
+    "description": "Convierte objetos JavaScript a JSON válido online. Maneja referencias circulares, BigInt, funciones y valores undefined. Convertidor gratuito, seguro, basado en navegador sin carga de datos."
+  },
+  "labels": {
+    "input": "Objeto JavaScript",
+    "output": "Salida JSON",
+    "indentSize": "Tamaño de Indentación",
+    "handleFunctions": "Manejar Funciones",
+    "handleUndefined": "Manejar Undefined",
+    "handleBigInt": "Manejar BigInt",
+    "showWarnings": "Mostrar Advertencias",
+    "compactOutput": "Salida Compacta"
+  },
+  "messages": {
+    "converted": "Objeto JavaScript convertido a JSON exitosamente",
+    "invalidInput": "Sintaxis de objeto JavaScript inválida",
+    "circularRef": "Referencia circular detectada",
+    "copied": "JSON copiado al portapapeles",
+    "downloaded": "Archivo JSON descargado"
+  },
+  "options": {
+    "remove": "Eliminar",
+    "toString": "Convertir a cadena",
+    "toNull": "Convertir a null",
+    "keep": "Mantener"
+  },
+  "tagline": "Convierte objetos JavaScript a JSON válido instantáneamente con manejo inteligente",
+  "pageDescription": "Transforma objetos JavaScript a formato JSON válido con nuestro convertidor online gratuito. Maneja automáticamente claves sin comillas, comillas simples, comas finales, referencias circulares, valores BigInt y funciones. Perfecto para desarrolladores que convierten salida de consola, archivos de configuración o datos de prueba a JSON. Procesamiento seguro del lado del cliente sin carga de datos."
+}

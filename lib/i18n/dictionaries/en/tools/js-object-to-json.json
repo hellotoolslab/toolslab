@@ -1,0 +1,114 @@
+{
+  "title": "JavaScript Object to JSON",
+  "description": "Convert JavaScript objects to valid JSON with circular reference detection, function handling, and BigInt support",
+  "placeholder": "Paste your JavaScript object here...\n\nExample:\n{\n  name: 'John',\n  age: 30,\n  isActive: true,\n  tags: ['developer', 'javascript']\n}",
+  "instructions": {
+    "title": "How to use JavaScript Object to JSON Converter",
+    "steps": [
+      {
+        "title": "Paste your JavaScript object",
+        "description": "Enter your JavaScript object literal in the input area. The tool accepts objects with unquoted keys, single quotes, trailing commas, and other JS-specific syntax."
+      },
+      {
+        "title": "Configure conversion options",
+        "description": "Choose how to handle special values like functions, undefined, BigInt, circular references, and select your preferred indentation style."
+      },
+      {
+        "title": "Convert to JSON",
+        "description": "Click the Convert button to transform your JavaScript object into valid, standards-compliant JSON format."
+      },
+      {
+        "title": "Copy or download result",
+        "description": "Copy the valid JSON to your clipboard for immediate use or download it as a .json file for storage and sharing."
+      }
+    ],
+    "features": [
+      "Handles unquoted keys and single-quoted strings",
+      "Detects and reports circular references",
+      "BigInt conversion to string or number",
+      "Function and undefined value handling",
+      "Trailing comma support",
+      "Pretty print with customizable indentation",
+      "Validation warnings for non-JSON compatible values",
+      "100% client-side processing - your data never leaves your browser"
+    ],
+    "useCases": [
+      "Convert JavaScript config objects to JSON format",
+      "Prepare API request payloads from JS objects",
+      "Debug and validate object structures",
+      "Transform console.log output to valid JSON",
+      "Convert browser DevTools copied objects to JSON",
+      "Sanitize JavaScript objects for storage",
+      "Generate JSON fixtures from JS test data",
+      "Convert Node.js module exports to JSON configs"
+    ],
+    "proTips": [
+      "Use the 'Show warnings' option to see what values couldn't be converted",
+      "BigInt values can be converted to strings to preserve precision",
+      "Functions are removed by default but can be converted to '[Function]' strings",
+      "Circular references are detected and reported with their path",
+      "Copy objects directly from browser DevTools and paste here",
+      "Use compact mode for minified output suitable for APIs"
+    ],
+    "troubleshooting": [
+      "Syntax error: Check for missing commas, brackets, or invalid characters",
+      "Circular reference: The object references itself - review the reported path",
+      "BigInt error: Enable BigInt to string conversion in options",
+      "Function in object: Enable function handling or remove functions manually",
+      "Undefined values: Choose whether to keep as null or remove entirely"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste input"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Convert to JSON"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy result"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Download JSON file"
+      }
+    ]
+  },
+  "features": [
+    "Circular reference detection",
+    "BigInt support",
+    "Function handling",
+    "Pretty printing"
+  ],
+  "meta": {
+    "title": "JavaScript Object to JSON Converter - Free Online Tool | OctoTools",
+    "description": "Convert JavaScript objects to valid JSON online. Handle circular references, BigInt, functions, and undefined values. Free, secure, browser-based converter with no data uploads."
+  },
+  "labels": {
+    "input": "JavaScript Object",
+    "output": "JSON Output",
+    "indentSize": "Indent Size",
+    "handleFunctions": "Handle Functions",
+    "handleUndefined": "Handle Undefined",
+    "handleBigInt": "Handle BigInt",
+    "showWarnings": "Show Warnings",
+    "compactOutput": "Compact Output"
+  },
+  "messages": {
+    "converted": "JavaScript object converted to JSON successfully",
+    "invalidInput": "Invalid JavaScript object syntax",
+    "circularRef": "Circular reference detected",
+    "copied": "JSON copied to clipboard",
+    "downloaded": "JSON file downloaded"
+  },
+  "options": {
+    "remove": "Remove",
+    "toString": "Convert to string",
+    "toNull": "Convert to null",
+    "keep": "Keep as-is"
+  },
+  "tagline": "Convert JavaScript objects to valid JSON instantly with smart handling",
+  "pageDescription": "Transform JavaScript object literals into valid JSON format with our free online converter. Automatically handles unquoted keys, single quotes, trailing commas, circular references, BigInt values, and functions. Perfect for developers converting console output, config files, or test data to JSON. Secure client-side processing with no data uploads."
+}
