@@ -90,6 +90,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'lorem-ipsum-generator',
     'string-case-converter',
     'binary-to-text',
+    'js-object-to-json',
   ];
 
   const tools: Record<string, any> = {};
