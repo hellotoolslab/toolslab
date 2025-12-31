@@ -1,0 +1,114 @@
+{
+  "title": "JavaScript Object to JSON",
+  "description": "Konvertieren Sie JavaScript-Objekte in gültiges JSON mit Erkennung zirkulärer Referenzen, Funktionsbehandlung und BigInt-Unterstützung",
+  "placeholder": "Fügen Sie Ihr JavaScript-Objekt hier ein...\n\nBeispiel:\n{\n  name: 'Hans',\n  age: 30,\n  isActive: true,\n  tags: ['developer', 'javascript']\n}",
+  "instructions": {
+    "title": "So verwenden Sie den JavaScript Object to JSON Konverter",
+    "steps": [
+      {
+        "title": "Fügen Sie Ihr JavaScript-Objekt ein",
+        "description": "Geben Sie Ihr JavaScript-Objekt in den Eingabebereich ein. Das Tool akzeptiert Objekte mit Schlüsseln ohne Anführungszeichen, einfachen Anführungszeichen, abschließenden Kommas und anderer JS-spezifischer Syntax."
+      },
+      {
+        "title": "Konfigurieren Sie die Konvertierungsoptionen",
+        "description": "Wählen Sie, wie spezielle Werte wie Funktionen, undefined, BigInt, zirkuläre Referenzen behandelt werden sollen, und wählen Sie Ihren bevorzugten Einrückungsstil."
+      },
+      {
+        "title": "In JSON konvertieren",
+        "description": "Klicken Sie auf die Schaltfläche Konvertieren, um Ihr JavaScript-Objekt in ein gültiges, standardkonformes JSON-Format zu transformieren."
+      },
+      {
+        "title": "Ergebnis kopieren oder herunterladen",
+        "description": "Kopieren Sie das gültige JSON in die Zwischenablage zur sofortigen Verwendung oder laden Sie es als .json-Datei zum Speichern und Teilen herunter."
+      }
+    ],
+    "features": [
+      "Behandelt Schlüssel ohne Anführungszeichen und Zeichenketten mit einfachen Anführungszeichen",
+      "Erkennt und meldet zirkuläre Referenzen",
+      "BigInt-Konvertierung in String oder Zahl",
+      "Behandlung von Funktions- und undefined-Werten",
+      "Unterstützung für abschließende Kommas",
+      "Formatierung mit anpassbarer Einrückung",
+      "Validierungswarnungen für nicht JSON-kompatible Werte",
+      "100% clientseitige Verarbeitung - Ihre Daten verlassen niemals Ihren Browser"
+    ],
+    "useCases": [
+      "JavaScript-Konfigurationsobjekte in JSON-Format konvertieren",
+      "API-Anfrage-Payloads aus JS-Objekten vorbereiten",
+      "Objektstrukturen debuggen und validieren",
+      "console.log-Ausgabe in gültiges JSON transformieren",
+      "Aus Browser-DevTools kopierte Objekte in JSON konvertieren",
+      "JavaScript-Objekte für die Speicherung bereinigen",
+      "JSON-Fixtures aus JS-Testdaten generieren",
+      "Node.js-Modulexporte in JSON-Konfigurationen konvertieren"
+    ],
+    "proTips": [
+      "Verwenden Sie die Option 'Warnungen anzeigen', um zu sehen, welche Werte nicht konvertiert werden konnten",
+      "BigInt-Werte können in Strings konvertiert werden, um die Präzision zu erhalten",
+      "Funktionen werden standardmäßig entfernt, können aber in '[Function]'-Strings konvertiert werden",
+      "Zirkuläre Referenzen werden erkannt und mit ihrem Pfad gemeldet",
+      "Kopieren Sie Objekte direkt aus Browser-DevTools und fügen Sie sie hier ein",
+      "Verwenden Sie den kompakten Modus für minimierte Ausgabe, die für APIs geeignet ist"
+    ],
+    "troubleshooting": [
+      "Syntaxfehler: Prüfen Sie auf fehlende Kommas, Klammern oder ungültige Zeichen",
+      "Zirkuläre Referenz: Das Objekt verweist auf sich selbst - überprüfen Sie den gemeldeten Pfad",
+      "BigInt-Fehler: Aktivieren Sie die BigInt-zu-String-Konvertierung in den Optionen",
+      "Funktion im Objekt: Aktivieren Sie die Funktionsbehandlung oder entfernen Sie Funktionen manuell",
+      "Undefined-Werte: Wählen Sie, ob als null behalten oder vollständig entfernen"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Eingabe einfügen"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "In JSON konvertieren"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Ergebnis kopieren"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "JSON-Datei herunterladen"
+      }
+    ]
+  },
+  "features": [
+    "Erkennung zirkulärer Referenzen",
+    "BigInt-Unterstützung",
+    "Funktionsbehandlung",
+    "Elegante Formatierung"
+  ],
+  "meta": {
+    "title": "JavaScript Object to JSON Konverter - Kostenloses Online-Tool | OctoTools",
+    "description": "Konvertieren Sie JavaScript-Objekte online in gültiges JSON. Behandeln Sie zirkuläre Referenzen, BigInt, Funktionen und undefined-Werte. Kostenloser, sicherer, browserbasierter Konverter ohne Daten-Upload."
+  },
+  "labels": {
+    "input": "JavaScript-Objekt",
+    "output": "JSON-Ausgabe",
+    "indentSize": "Einrückungsgröße",
+    "handleFunctions": "Funktionen behandeln",
+    "handleUndefined": "Undefined behandeln",
+    "handleBigInt": "BigInt behandeln",
+    "showWarnings": "Warnungen anzeigen",
+    "compactOutput": "Kompakte Ausgabe"
+  },
+  "messages": {
+    "converted": "JavaScript-Objekt erfolgreich in JSON konvertiert",
+    "invalidInput": "Ungültige JavaScript-Objektsyntax",
+    "circularRef": "Zirkuläre Referenz erkannt",
+    "copied": "JSON in Zwischenablage kopiert",
+    "downloaded": "JSON-Datei heruntergeladen"
+  },
+  "options": {
+    "remove": "Entfernen",
+    "toString": "In String konvertieren",
+    "toNull": "In null konvertieren",
+    "keep": "Beibehalten"
+  },
+  "tagline": "Konvertieren Sie JavaScript-Objekte sofort mit intelligenter Behandlung in gültiges JSON",
+  "pageDescription": "Transformieren Sie JavaScript-Objektliterale mit unserem kostenlosen Online-Konverter in gültiges JSON-Format. Behandelt automatisch Schlüssel ohne Anführungszeichen, einfache Anführungszeichen, abschließende Kommas, zirkuläre Referenzen, BigInt-Werte und Funktionen. Perfekt für Entwickler, die Konsolenausgabe, Konfigurationsdateien oder Testdaten in JSON konvertieren. Sichere clientseitige Verarbeitung ohne Daten-Upload."
+}

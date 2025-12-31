@@ -1281,6 +1281,34 @@ export const tools: Tool[] = [
     searchVolume: 6500,
     label: '',
   },
+  {
+    id: 'js-object-to-json',
+    name: 'JavaScript Object to JSON',
+    description:
+      'Convert JavaScript objects to valid JSON with circular reference detection, function handling, and BigInt support',
+    icon: '🔄',
+    route: '/tools/js-object-to-json',
+    categories: ['data', 'dev'],
+    keywords: [
+      'javascript to json',
+      'js object to json',
+      'object to json',
+      'json converter',
+      'javascript object converter',
+      'js to json online',
+      'convert js to json',
+      'json stringify',
+      'object serialization',
+      'circular reference',
+      'bigint json',
+      'function to json',
+      'undefined json',
+      'javascript parser',
+      'json generator',
+    ],
+    searchVolume: 8500,
+    label: '',
+  },
 ];
 
 // Group tools by category

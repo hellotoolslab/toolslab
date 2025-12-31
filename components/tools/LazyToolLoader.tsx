@@ -109,6 +109,7 @@ const toolComponents = {
     () => import('./implementations/StringCaseConverter')
   ),
   'binary-to-text': lazy(() => import('./implementations/BinaryToText')),
+  'js-object-to-json': lazy(() => import('./implementations/JsObjectToJson')),
   // Add more as needed
 } as const;
 
