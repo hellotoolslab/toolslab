@@ -500,7 +500,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                       {style.text}
                     </div>
 
-                    {/* Compatibility Icons & Copy Button - Mobile: Same Row */}
+                    {/* Compatibility Icons & Copy Button - Same Row for both Mobile and Desktop */}
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-gray-500">Works on:</span>
@@ -518,48 +518,27 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                         )}
                       </div>
 
-                      {/* Copy Button - Mobile: Compact, Desktop: Full Width Below */}
+                      {/* Copy Button - Inline for both Mobile and Desktop */}
                       <button
                         onClick={() => handleCopyStyle(style.id, style.text)}
-                        className="flex items-center justify-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium text-white transition-all hover:scale-105 active:scale-95 md:hidden"
+                        className="flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-white transition-all hover:scale-105 active:scale-95 md:px-4 md:py-2 md:text-sm"
                         style={{
                           backgroundColor: isCopied ? '#10b981' : categoryColor,
                         }}
                       >
                         {isCopied ? (
                           <>
-                            <Check className="h-3.5 w-3.5" />
+                            <Check className="h-3.5 w-3.5 md:h-4 md:w-4" />
                             <span>Copied</span>
                           </>
                         ) : (
                           <>
-                            <Copy className="h-3.5 w-3.5" />
+                            <Copy className="h-3.5 w-3.5 md:h-4 md:w-4" />
                             <span>Copy</span>
                           </>
                         )}
                       </button>
                     </div>
-
-                    {/* Copy Button - Desktop: Full Width */}
-                    <button
-                      onClick={() => handleCopyStyle(style.id, style.text)}
-                      className="mt-3 hidden w-full items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 md:flex"
-                      style={{
-                        backgroundColor: isCopied ? '#10b981' : categoryColor,
-                      }}
-                    >
-                      {isCopied ? (
-                        <>
-                          <Check className="h-4 w-4" />
-                          Copied!
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="h-4 w-4" />
-                          Copy
-                        </>
-                      )}
-                    </button>
                   </div>
                 );
               })}

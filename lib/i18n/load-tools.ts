@@ -79,6 +79,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'unix-timestamp-converter',
     'eml-to-html',
     'instagram-font-generator',
+    'linkedin-post-formatter',
     'excel-filter',
     'ai-prompt-token-counter',
     'pdf-to-word',
@@ -91,6 +92,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'string-case-converter',
     'binary-to-text',
     'js-object-to-json',
+    'bcrypt-hash-generator',
   ];
 
   const tools: Record<string, any> = {};

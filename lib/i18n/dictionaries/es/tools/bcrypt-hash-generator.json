@@ -1,0 +1,85 @@
+{
+  "title": "Generador de Hash Bcrypt",
+  "description": "Genera y verifica hashes bcrypt de contraseñas con factor de costo configurable",
+  "placeholder": "Introduce la contraseña a hashear...",
+  "instructions": {
+    "title": "Cómo usar el Generador de Hash Bcrypt",
+    "steps": [
+      {
+        "title": "Introduce tu contraseña",
+        "description": "Escribe o pega la contraseña que quieres hashear en el campo de entrada. La contraseña puede ser cualquier cadena de caracteres."
+      },
+      {
+        "title": "Selecciona el factor de costo (rounds)",
+        "description": "Elige un factor de costo entre 4 y 12. Valores más altos son más seguros pero tardan más en computar. 10 es recomendado para la mayoría de aplicaciones."
+      },
+      {
+        "title": "Genera el hash",
+        "description": "Haz clic en el botón Generar para crear un hash bcrypt. Cada generación produce un hash único debido al salt aleatorio."
+      },
+      {
+        "title": "Verifica un hash (opcional)",
+        "description": "Para verificar una contraseña contra un hash existente, introduce ambos valores y haz clic en Verificar. La herramienta confirmará si coinciden."
+      },
+      {
+        "title": "Copia el resultado",
+        "description": "Copia el hash generado para usarlo en la base de datos o archivo de configuración de tu aplicación."
+      }
+    ],
+    "features": [
+      "Genera hashes bcrypt con factor de costo configurable (4-12 rounds)",
+      "Verifica contraseñas contra hashes bcrypt existentes",
+      "Generación automática de salt para cada hash",
+      "Muestra componentes de salt y hash por separado",
+      "Visualización en tiempo real del tiempo de hashing",
+      "Generación por lotes para pruebas",
+      "Procesamiento 100% del lado del cliente - las contraseñas nunca salen de tu navegador",
+      "Copia el hash al portapapeles con un clic"
+    ],
+    "useCases": [
+      "Genera hashes seguros de contraseñas para almacenamiento en base de datos",
+      "Verifica contraseñas de usuario durante pruebas de autenticación",
+      "Prueba el rendimiento de bcrypt con diferentes factores de costo",
+      "Genera datos de prueba para entornos de desarrollo y QA",
+      "Audita hashes de contraseñas existentes para cumplimiento de seguridad",
+      "Aprende cómo funciona bcrypt con desglose visual de salt y hash",
+      "Compara tiempos de hashing entre diferentes factores de costo",
+      "Crea hashes seguros para claves API y tokens"
+    ],
+    "proTips": [
+      "Usa factor de costo 10 o superior para contraseñas en producción",
+      "Cada hash es único incluso para la misma contraseña debido a los salts aleatorios",
+      "Factores de costo más altos aumentan exponencialmente el tiempo (cada +1 duplica el tiempo)",
+      "Nunca almacenes contraseñas en texto plano - siempre usa bcrypt o algoritmos similares",
+      "La salida de 60 caracteres incluye identificador de algoritmo, costo, salt y hash",
+      "Prueba el rendimiento de tu aplicación con el factor de costo elegido antes del despliegue"
+    ],
+    "troubleshooting": [
+      "Generación lenta: Reduce el factor de costo para hashing más rápido (pero menos seguro)",
+      "Falla la verificación: Asegúrate de comparar exactamente la misma contraseña (sensible a mayúsculas)",
+      "Hashes diferentes para misma contraseña: Esto es esperado - bcrypt usa salts aleatorios",
+      "El navegador se congela: Factores de costo muy altos (12+) pueden congelar temporalmente el navegador",
+      "Problemas de formato: Los hashes bcrypt válidos siempre comienzan con $2a$, $2b$ o $2y$"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Generar hash"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar contraseña"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Generador de Hash Bcrypt - Herramienta Online Gratuita | ToolsLab",
+    "description": "Genera y verifica hashes bcrypt de contraseñas online. Generador bcrypt gratuito con factor de costo configurable, visualización de salt y verificación de hash. Procesamiento seguro del lado del cliente."
+  },
+  "tagline": "Genera hashes bcrypt seguros para contraseñas con rounds configurables",
+  "pageDescription": "Genera y verifica hashes bcrypt de contraseñas con factor de costo configurable para almacenamiento seguro. Perfecto para desarrolladores construyendo sistemas de autenticación, probando seguridad de contraseñas y aprendiendo sobre encriptación bcrypt. Incluye rounds ajustables (4-12), generación automática de salt, verificación de hash y comparación de tiempos. Todo el procesamiento ocurre localmente en tu navegador - tus contraseñas nunca salen de tu dispositivo."
+}

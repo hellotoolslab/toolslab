@@ -1,0 +1,100 @@
+{
+  "title": "Formatador de Posts do LinkedIn",
+  "description": "Formate posts do LinkedIn com negrito, itálico e caracteres especiais usando Unicode para maior engajamento",
+  "placeholder": "Digite ou cole seu post do LinkedIn aqui...",
+  "meta": {
+    "title": "Formatador de Posts do LinkedIn - Gerador de Negrito e Itálico Grátis | ToolsLab",
+    "description": "Formate posts do LinkedIn com negrito, itálico, sublinhado e marcadores usando Unicode. Aumente o engajamento com formatação profissional. Ferramenta online gratuita com contador de caracteres e preview ao vivo."
+  },
+  "tagline": "Crie posts de LinkedIn envolventes com negrito, itálico e formatação profissional",
+  "pageDescription": "Formatador de posts do LinkedIn gratuito ajuda você a criar posts envolventes com negrito, itálico, sublinhado e formatação especial usando caracteres Unicode. Inclui contador de caracteres em tempo real (limite 3.000), marcadores e listas numeradas, otimizador de espaçamento de linhas e preview desktop/mobile. Perfeito para criadores do LinkedIn, profissionais e marketers que querem aumentar o engajamento em 60%. Toda a formatação funciona nativamente no LinkedIn sem ferramentas especiais. Baseado em navegador com privacidade completa.",
+  "instructions": {
+    "title": "Como usar o Formatador de Posts do LinkedIn",
+    "steps": [
+      {
+        "title": "Escreva ou cole seu post",
+        "description": "Digite o texto do seu post do LinkedIn na área de entrada. O contador de caracteres mostra seu progresso em direção ao limite de 3.000 caracteres do LinkedIn."
+      },
+      {
+        "title": "Selecione o texto para formatar",
+        "description": "Destaque o texto que você quer formatar. Você pode selecionar palavras individuais, frases ou parágrafos inteiros."
+      },
+      {
+        "title": "Aplique estilos de formatação",
+        "description": "Clique nos botões de formatação para aplicar negrito, itálico, sublinhado ou tachado. Adicione marcadores ou listas numeradas para melhor legibilidade."
+      },
+      {
+        "title": "Preview e copie",
+        "description": "Visualize como seu post ficará no desktop e mobile. Quando estiver satisfeito, copie o texto formatado e cole diretamente no LinkedIn."
+      }
+    ],
+    "features": [
+      "Formatação de texto em negrito usando caracteres Unicode",
+      "Estilos itálico e itálico serif",
+      "Opções de sublinhado e tachado",
+      "Marcadores e listas numeradas",
+      "Contador de caracteres em tempo real (limite 3.000)",
+      "Preview desktop e mobile",
+      "Otimizador de espaçamento de linhas",
+      "Templates de formatação rápida",
+      "Suporte a integração de emojis",
+      "100% baseado em navegador com privacidade completa"
+    ],
+    "useCases": [
+      "Crie posts de LinkedIn que chamam atenção",
+      "Formate conteúdo de liderança de pensamento",
+      "Estruture vagas de emprego com seções claras",
+      "Destaque pontos-chave em anúncios",
+      "Crie listas e resumos com aparência profissional",
+      "Formate depoimentos e recomendações",
+      "Estruture estudos de caso e histórias de sucesso",
+      "Crie introduções envolventes para enquetes",
+      "Formate anúncios de eventos",
+      "Destaque conquistas e marcos"
+    ],
+    "proTips": [
+      "Use negrito com moderação para frases-chave - demais reduz o impacto",
+      "Comece posts com um gancho em negrito para chamar atenção",
+      "Use marcadores para listas de 3+ itens",
+      "Mantenha parágrafos curtos (2-3 linhas máx) para legibilidade mobile",
+      "Adicione quebras de linha entre seções para respiro visual",
+      "Combine negrito e itálico para hierarquia de ênfase",
+      "Visualize no mobile - a maioria dos usuários do LinkedIn navega pelo celular",
+      "Use listas numeradas para passos sequenciais ou rankings",
+      "Salve formatos frequentes como templates",
+      "Teste diferentes estilos de formatação para ver o que ressoa com sua audiência"
+    ],
+    "troubleshooting": [
+      "Formatação não aparece: Certifique-se de copiar o texto formatado, não o original. Os caracteres Unicode carregam a formatação.",
+      "Texto aparece diferente no LinkedIn: Alguns estilos Unicode renderizam ligeiramente diferentes em vários dispositivos. Negrito e itálico são mais consistentes.",
+      "Limite de caracteres excedido: O LinkedIn tem limite de 3.000 caracteres. Formatação Unicode não adiciona caracteres extras.",
+      "Formatação removida após postar: O LinkedIn ocasionalmente remove certas faixas Unicode. Use negrito e itálico padrão para melhores resultados.",
+      "Preview difere do post real: O preview é uma aproximação. A renderização do LinkedIn pode variar ligeiramente.",
+      "Marcadores não alinhados: Use estilos de marcador consistentes. Misturar marcadores Unicode pode causar problemas de alinhamento.",
+      "Preview mobile impreciso: A renderização mobile real depende do dispositivo e versão do app. O preview mostra a aparência geral.",
+      "Botão copiar não funciona: Certifique-se de que seu navegador permite acesso à área de transferência. Tente selecionar e copiar manualmente."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+B",
+        "description": "Negrito no texto selecionado"
+      },
+      {
+        "keys": "Ctrl+I",
+        "description": "Itálico no texto selecionado"
+      },
+      {
+        "keys": "Ctrl+U",
+        "description": "Sublinhado no texto selecionado"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar texto formatado"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Selecionar todo o texto"
+      }
+    ]
+  }
+}
