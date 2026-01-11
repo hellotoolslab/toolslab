@@ -138,12 +138,9 @@ export class EventNormalizer {
       }
     }
 
-    // Add referrer if not present
+    // Add referrer if not present (always has a value: 'direct', 'internal', or hostname)
     if (!enriched.referrer) {
-      const referrer = this.getNormalizedReferrer();
-      if (referrer) {
-        enriched.referrer = referrer;
-      }
+      enriched.referrer = this.getNormalizedReferrer();
     }
 
     // Add UTM parameters if not present
@@ -197,23 +194,37 @@ export class EventNormalizer {
   }
 
   /**
-   * Get referrer domain (without full URL for privacy)
+   * Get referrer with explicit categorization
+   *
+   * Returns:
+   * - 'direct' - No referrer (direct access, bookmark, app, privacy settings)
+   * - 'internal' - Navigation from another page on the same site
+   * - hostname - External referrer domain (e.g., 'google.com', 'chatgpt.com')
    */
-  public static getNormalizedReferrer(): string | undefined {
+  public static getNormalizedReferrer(): string {
     if (typeof document === 'undefined') {
-      return undefined;
+      return 'direct';
     }
 
     const referrer = document.referrer;
     if (!referrer) {
-      return undefined;
+      return 'direct';
     }
 
     try {
       const url = new URL(referrer);
+
+      // Check if referrer is from the same site (internal navigation)
+      if (
+        typeof window !== 'undefined' &&
+        url.hostname === window.location.hostname
+      ) {
+        return 'internal';
+      }
+
       return url.hostname;
     } catch {
-      return undefined;
+      return 'direct';
     }
   }
 
@@ -268,7 +279,7 @@ export class EventNormalizer {
   public static getCurrentPageInfo(): {
     page: string;
     locale: string;
-    referrer?: string;
+    referrer: string;
     utmSource?: string;
     utmMedium?: string;
     utmCampaign?: string;
@@ -276,7 +287,7 @@ export class EventNormalizer {
     utmTerm?: string;
   } {
     if (typeof window === 'undefined') {
-      return { page: 'page:unknown', locale: 'en' };
+      return { page: 'page:unknown', locale: 'en', referrer: 'direct' };
     }
 
     const { page, locale } = this.normalizeURL(window.location.pathname);

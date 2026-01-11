@@ -110,6 +110,12 @@ const toolComponents = {
   ),
   'binary-to-text': lazy(() => import('./implementations/BinaryToText')),
   'js-object-to-json': lazy(() => import('./implementations/JsObjectToJson')),
+  'bcrypt-hash-generator': lazy(
+    () => import('./implementations/BcryptHashGenerator')
+  ),
+  'linkedin-post-formatter': lazy(
+    () => import('./implementations/LinkedInPostFormatter')
+  ),
   // Add more as needed
 } as const;
 

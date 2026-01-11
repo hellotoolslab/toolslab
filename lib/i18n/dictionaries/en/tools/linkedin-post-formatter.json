@@ -1,0 +1,100 @@
+{
+  "title": "LinkedIn Post Formatter",
+  "description": "Format LinkedIn posts with bold, italic, and special characters using Unicode for increased engagement",
+  "placeholder": "Type or paste your LinkedIn post here...",
+  "meta": {
+    "title": "LinkedIn Post Formatter - Free Bold & Italic Text Generator | ToolsLab",
+    "description": "Format LinkedIn posts with bold, italic, underline, and bullet points using Unicode. Increase engagement with professional formatting. Free online tool with character counter and live preview."
+  },
+  "tagline": "Create engaging LinkedIn posts with bold, italic, and professional formatting",
+  "pageDescription": "Free LinkedIn post formatter helps you create engaging posts with bold, italic, underline, and special formatting using Unicode characters. Features include real-time character counter (3,000 limit), bullet points and numbering, line spacing optimizer, and desktop/mobile preview. Perfect for LinkedIn creators, professionals, and marketers who want to increase engagement by 60%. All formatting works natively on LinkedIn without any special tools. Browser-based with complete privacy.",
+  "instructions": {
+    "title": "How to use LinkedIn Post Formatter",
+    "steps": [
+      {
+        "title": "Write or paste your post",
+        "description": "Enter your LinkedIn post text in the input area. The character counter shows your progress toward LinkedIn's 3,000 character limit."
+      },
+      {
+        "title": "Select text to format",
+        "description": "Highlight the text you want to format. You can select individual words, sentences, or entire paragraphs."
+      },
+      {
+        "title": "Apply formatting styles",
+        "description": "Click the formatting buttons to apply bold, italic, underline, or strikethrough. Add bullet points or numbered lists for better readability."
+      },
+      {
+        "title": "Preview and copy",
+        "description": "Preview how your post will look on desktop and mobile. When satisfied, copy the formatted text and paste it directly into LinkedIn."
+      }
+    ],
+    "features": [
+      "Bold text formatting using Unicode characters",
+      "Italic and serif italic styles",
+      "Underline and strikethrough options",
+      "Bullet points and numbered lists",
+      "Real-time character counter (3,000 limit)",
+      "Desktop and mobile preview",
+      "Line spacing optimizer",
+      "Quick formatting templates",
+      "Emoji integration support",
+      "100% browser-based with complete privacy"
+    ],
+    "useCases": [
+      "Create attention-grabbing LinkedIn posts",
+      "Format thought leadership content",
+      "Structure job postings with clear sections",
+      "Highlight key points in announcements",
+      "Create professional-looking lists and summaries",
+      "Format testimonials and recommendations",
+      "Structure case studies and success stories",
+      "Create engaging poll introductions",
+      "Format event announcements",
+      "Highlight achievements and milestones"
+    ],
+    "proTips": [
+      "Use bold sparingly for key phrases - too much reduces impact",
+      "Start posts with a hook in bold to grab attention",
+      "Use bullet points for lists of 3+ items",
+      "Keep paragraphs short (2-3 lines max) for mobile readability",
+      "Add line breaks between sections for visual breathing room",
+      "Combine bold and italic for emphasis hierarchy",
+      "Preview on mobile - most LinkedIn users browse on phones",
+      "Use numbered lists for sequential steps or rankings",
+      "Save frequently used formats as templates",
+      "Test different formatting styles to see what resonates with your audience"
+    ],
+    "troubleshooting": [
+      "Formatting not appearing: Ensure you're copying the formatted text, not the original. The Unicode characters carry the formatting.",
+      "Text looks different on LinkedIn: Some Unicode styles render slightly different across devices. Bold and italic are most consistent.",
+      "Character count exceeded: LinkedIn has a 3,000 character limit. Unicode formatting doesn't add extra characters.",
+      "Formatting removed after posting: LinkedIn occasionally strips certain Unicode ranges. Stick to standard bold and italic for best results.",
+      "Preview differs from actual post: Preview is an approximation. LinkedIn's rendering may vary slightly.",
+      "Bullet points not aligned: Use consistent bullet styles. Mixing Unicode bullets may cause alignment issues.",
+      "Mobile preview not accurate: Actual mobile rendering depends on device and app version. Preview shows general appearance.",
+      "Copy button not working: Ensure your browser allows clipboard access. Try selecting and copying manually."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+B",
+        "description": "Bold selected text"
+      },
+      {
+        "keys": "Ctrl+I",
+        "description": "Italicize selected text"
+      },
+      {
+        "keys": "Ctrl+U",
+        "description": "Underline selected text"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy formatted text"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Select all text"
+      }
+    ]
+  }
+}

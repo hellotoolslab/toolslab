@@ -1,0 +1,85 @@
+{
+  "title": "Bcrypt Hash Generator",
+  "description": "Generieren und verifizieren Sie bcrypt-Passwort-Hashes mit konfigurierbarem Kostenfaktor",
+  "placeholder": "Passwort zum Hashen eingeben...",
+  "instructions": {
+    "title": "So verwenden Sie den Bcrypt Hash Generator",
+    "steps": [
+      {
+        "title": "Geben Sie Ihr Passwort ein",
+        "description": "Tippen oder fügen Sie das Passwort, das Sie hashen möchten, in das Eingabefeld ein. Das Passwort kann eine beliebige Zeichenkette sein."
+      },
+      {
+        "title": "Wählen Sie den Kostenfaktor (Rounds)",
+        "description": "Wählen Sie einen Kostenfaktor zwischen 4 und 12. Höhere Werte sind sicherer, benötigen aber mehr Rechenzeit. 10 wird für die meisten Anwendungen empfohlen."
+      },
+      {
+        "title": "Generieren Sie den Hash",
+        "description": "Klicken Sie auf die Schaltfläche Generieren, um einen bcrypt-Hash zu erstellen. Jede Generierung erzeugt aufgrund des zufälligen Salts einen eindeutigen Hash."
+      },
+      {
+        "title": "Verifizieren Sie einen Hash (optional)",
+        "description": "Um ein Passwort gegen einen bestehenden Hash zu verifizieren, geben Sie beide Werte ein und klicken Sie auf Verifizieren. Das Tool bestätigt, ob sie übereinstimmen."
+      },
+      {
+        "title": "Kopieren Sie das Ergebnis",
+        "description": "Kopieren Sie den generierten Hash zur Verwendung in der Datenbank oder Konfigurationsdatei Ihrer Anwendung."
+      }
+    ],
+    "features": [
+      "Generieren Sie bcrypt-Hashes mit konfigurierbarem Kostenfaktor (4-12 Rounds)",
+      "Verifizieren Sie Passwörter gegen bestehende bcrypt-Hashes",
+      "Automatische Salt-Generierung für jeden Hash",
+      "Zeigen Sie Salt- und Hash-Komponenten separat an",
+      "Echtzeit-Anzeige der Hashing-Zeit",
+      "Batch-Hash-Generierung für Tests",
+      "100% clientseitige Verarbeitung - Passwörter verlassen niemals Ihren Browser",
+      "Hash mit einem Klick in die Zwischenablage kopieren"
+    ],
+    "useCases": [
+      "Generieren Sie sichere Passwort-Hashes für die Datenbankspeicherung",
+      "Verifizieren Sie Benutzerpasswörter während Authentifizierungstests",
+      "Testen Sie die bcrypt-Leistung mit verschiedenen Kostenfaktoren",
+      "Generieren Sie Testdaten für Entwicklungs- und QA-Umgebungen",
+      "Prüfen Sie bestehende Passwort-Hashes auf Sicherheitskonformität",
+      "Lernen Sie, wie bcrypt funktioniert, mit visueller Salt- und Hash-Aufschlüsselung",
+      "Vergleichen Sie Hashing-Zeiten zwischen verschiedenen Kostenfaktoren",
+      "Erstellen Sie sichere Hashes für API-Schlüssel und Tokens"
+    ],
+    "proTips": [
+      "Verwenden Sie Kostenfaktor 10 oder höher für Produktionspasswörter",
+      "Jeder Hash ist aufgrund zufälliger Salts eindeutig, auch für dasselbe Passwort",
+      "Höhere Kostenfaktoren erhöhen die Zeit exponentiell (jedes +1 verdoppelt die Zeit)",
+      "Speichern Sie niemals Klartext-Passwörter - verwenden Sie immer bcrypt oder ähnliche Algorithmen",
+      "Die 60-Zeichen-Ausgabe enthält Algorithmus-Kennung, Kosten, Salt und Hash",
+      "Testen Sie die Leistung Ihrer Anwendung mit dem gewählten Kostenfaktor vor dem Deployment"
+    ],
+    "troubleshooting": [
+      "Langsame Generierung: Reduzieren Sie den Kostenfaktor für schnelleres Hashing (aber weniger Sicherheit)",
+      "Hash-Verifizierung fehlgeschlagen: Stellen Sie sicher, dass Sie exakt dasselbe Passwort vergleichen (Groß-/Kleinschreibung beachten)",
+      "Verschiedene Hashes für dasselbe Passwort: Das ist erwartet - bcrypt verwendet zufällige Salts",
+      "Browser friert ein: Sehr hohe Kostenfaktoren (12+) können den Browser vorübergehend einfrieren",
+      "Hash-Format-Probleme: Gültige bcrypt-Hashes beginnen immer mit $2a$, $2b$ oder $2y$"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Hash generieren"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Ergebnis kopieren"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Passwort einfügen"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Bcrypt Hash Generator - Kostenloses Online-Tool | ToolsLab",
+    "description": "Generieren und verifizieren Sie bcrypt-Passwort-Hashes online. Kostenloser bcrypt-Generator mit konfigurierbarem Kostenfaktor, Salt-Anzeige und Hash-Verifizierung. Sichere clientseitige Verarbeitung."
+  },
+  "tagline": "Generieren Sie sichere bcrypt-Passwort-Hashes mit konfigurierbaren Rounds",
+  "pageDescription": "Generieren und verifizieren Sie bcrypt-Passwort-Hashes mit konfigurierbarem Kostenfaktor für sichere Passwortspeicherung. Perfekt für Entwickler, die Authentifizierungssysteme erstellen, Passwortsicherheit testen und bcrypt-Verschlüsselung lernen. Enthält einstellbare Rounds (4-12), automatische Salt-Generierung, Hash-Verifizierung und Zeitvergleich. Die gesamte Verarbeitung erfolgt lokal in Ihrem Browser - Ihre Passwörter verlassen niemals Ihr Gerät."
+}

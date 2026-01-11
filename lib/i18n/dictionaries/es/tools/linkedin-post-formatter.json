@@ -1,0 +1,100 @@
+{
+  "title": "Formateador de Posts de LinkedIn",
+  "description": "Formatea posts de LinkedIn con negrita, cursiva y caracteres especiales usando Unicode para mayor engagement",
+  "placeholder": "Escribe o pega tu post de LinkedIn aquí...",
+  "meta": {
+    "title": "Formateador de Posts de LinkedIn - Generador de Negrita y Cursiva Gratis | ToolsLab",
+    "description": "Formatea posts de LinkedIn con negrita, cursiva, subrayado y viñetas usando Unicode. Aumenta el engagement con formato profesional. Herramienta online gratuita con contador de caracteres y vista previa en vivo."
+  },
+  "tagline": "Crea posts de LinkedIn atractivos con negrita, cursiva y formato profesional",
+  "pageDescription": "Formateador de posts de LinkedIn gratuito te ayuda a crear posts atractivos con negrita, cursiva, subrayado y formato especial usando caracteres Unicode. Incluye contador de caracteres en tiempo real (límite 3.000), viñetas y listas numeradas, optimizador de espaciado de líneas y vista previa desktop/móvil. Perfecto para creadores de LinkedIn, profesionales y marketers que quieren aumentar el engagement en un 60%. Todo el formato funciona nativamente en LinkedIn sin herramientas especiales. Basado en navegador con privacidad completa.",
+  "instructions": {
+    "title": "Cómo usar el Formateador de Posts de LinkedIn",
+    "steps": [
+      {
+        "title": "Escribe o pega tu post",
+        "description": "Ingresa el texto de tu post de LinkedIn en el área de entrada. El contador de caracteres muestra tu progreso hacia el límite de 3.000 caracteres de LinkedIn."
+      },
+      {
+        "title": "Selecciona el texto a formatear",
+        "description": "Resalta el texto que quieres formatear. Puedes seleccionar palabras individuales, oraciones o párrafos completos."
+      },
+      {
+        "title": "Aplica estilos de formato",
+        "description": "Haz clic en los botones de formato para aplicar negrita, cursiva, subrayado o tachado. Añade viñetas o listas numeradas para mejor legibilidad."
+      },
+      {
+        "title": "Vista previa y copia",
+        "description": "Previsualiza cómo se verá tu post en desktop y móvil. Cuando estés satisfecho, copia el texto formateado y pégalo directamente en LinkedIn."
+      }
+    ],
+    "features": [
+      "Formato de texto en negrita usando caracteres Unicode",
+      "Estilos cursiva y cursiva serif",
+      "Opciones de subrayado y tachado",
+      "Viñetas y listas numeradas",
+      "Contador de caracteres en tiempo real (límite 3.000)",
+      "Vista previa desktop y móvil",
+      "Optimizador de espaciado de líneas",
+      "Plantillas de formato rápido",
+      "Soporte de integración de emojis",
+      "100% basado en navegador con privacidad completa"
+    ],
+    "useCases": [
+      "Crea posts de LinkedIn que capturan la atención",
+      "Formatea contenido de liderazgo de pensamiento",
+      "Estructura ofertas de trabajo con secciones claras",
+      "Resalta puntos clave en anuncios",
+      "Crea listas y resúmenes de aspecto profesional",
+      "Formatea testimonios y recomendaciones",
+      "Estructura casos de estudio e historias de éxito",
+      "Crea introducciones atractivas para encuestas",
+      "Formatea anuncios de eventos",
+      "Destaca logros y hitos"
+    ],
+    "proTips": [
+      "Usa negrita con moderación para frases clave - demasiado reduce el impacto",
+      "Comienza posts con un gancho en negrita para captar la atención",
+      "Usa viñetas para listas de 3+ elementos",
+      "Mantén párrafos cortos (2-3 líneas máx) para legibilidad móvil",
+      "Añade saltos de línea entre secciones para respiro visual",
+      "Combina negrita y cursiva para jerarquía de énfasis",
+      "Previsualiza en móvil - la mayoría de usuarios de LinkedIn navegan desde el teléfono",
+      "Usa listas numeradas para pasos secuenciales o rankings",
+      "Guarda formatos frecuentes como plantillas",
+      "Prueba diferentes estilos de formato para ver qué resuena con tu audiencia"
+    ],
+    "troubleshooting": [
+      "El formato no aparece: Asegúrate de copiar el texto formateado, no el original. Los caracteres Unicode llevan el formato.",
+      "El texto se ve diferente en LinkedIn: Algunos estilos Unicode se renderizan ligeramente diferente en varios dispositivos. Negrita y cursiva son más consistentes.",
+      "Límite de caracteres excedido: LinkedIn tiene un límite de 3.000 caracteres. El formato Unicode no añade caracteres extra.",
+      "Formato eliminado después de publicar: LinkedIn ocasionalmente elimina ciertos rangos Unicode. Usa negrita y cursiva estándar para mejores resultados.",
+      "La vista previa difiere del post real: La vista previa es una aproximación. El renderizado de LinkedIn puede variar ligeramente.",
+      "Viñetas no alineadas: Usa estilos de viñeta consistentes. Mezclar viñetas Unicode puede causar problemas de alineación.",
+      "Vista previa móvil no precisa: El renderizado móvil real depende del dispositivo y versión de la app. La vista previa muestra la apariencia general.",
+      "Botón copiar no funciona: Asegúrate de que tu navegador permita acceso al portapapeles. Intenta seleccionar y copiar manualmente."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+B",
+        "description": "Negrita texto seleccionado"
+      },
+      {
+        "keys": "Ctrl+I",
+        "description": "Cursiva texto seleccionado"
+      },
+      {
+        "keys": "Ctrl+U",
+        "description": "Subrayar texto seleccionado"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar texto formateado"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleccionar todo el texto"
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "title": "LinkedIn Post Formatierer",
+  "description": "Formatiere LinkedIn Posts mit Fett, Kursiv und Sonderzeichen mit Unicode für mehr Engagement",
+  "placeholder": "Schreibe oder füge deinen LinkedIn Post hier ein...",
+  "meta": {
+    "title": "LinkedIn Post Formatierer - Kostenloser Fett & Kursiv Generator | ToolsLab",
+    "description": "Formatiere LinkedIn Posts mit Fett, Kursiv, Unterstrichen und Aufzählungen mit Unicode. Erhöhe das Engagement mit professioneller Formatierung. Kostenloses Online-Tool mit Zeichenzähler und Live-Vorschau."
+  },
+  "tagline": "Erstelle ansprechende LinkedIn Posts mit Fett, Kursiv und professioneller Formatierung",
+  "pageDescription": "Kostenloser LinkedIn Post Formatierer hilft dir, ansprechende Posts mit Fett, Kursiv, Unterstrichen und Spezialformatierung mit Unicode-Zeichen zu erstellen. Enthält Echtzeit-Zeichenzähler (3.000 Limit), Aufzählungen und nummerierte Listen, Zeilenabstand-Optimierer und Desktop/Mobile Vorschau. Perfekt für LinkedIn Creator, Professionals und Marketer, die das Engagement um 60% steigern wollen. Alle Formatierungen funktionieren nativ auf LinkedIn ohne spezielle Tools. Browser-basiert mit vollständiger Privatsphäre.",
+  "instructions": {
+    "title": "So verwendest du den LinkedIn Post Formatierer",
+    "steps": [
+      {
+        "title": "Schreibe oder füge deinen Post ein",
+        "description": "Gib deinen LinkedIn Post-Text im Eingabebereich ein. Der Zeichenzähler zeigt deinen Fortschritt zum 3.000-Zeichen-Limit von LinkedIn."
+      },
+      {
+        "title": "Wähle den zu formatierenden Text",
+        "description": "Markiere den Text, den du formatieren möchtest. Du kannst einzelne Wörter, Sätze oder ganze Absätze auswählen."
+      },
+      {
+        "title": "Wende Formatierungsstile an",
+        "description": "Klicke auf die Formatierungsschaltflächen für Fett, Kursiv, Unterstrichen oder Durchgestrichen. Füge Aufzählungen oder nummerierte Listen für bessere Lesbarkeit hinzu."
+      },
+      {
+        "title": "Vorschau und Kopieren",
+        "description": "Sieh dir die Vorschau an, wie dein Post auf Desktop und Mobile aussehen wird. Wenn du zufrieden bist, kopiere den formatierten Text und füge ihn direkt in LinkedIn ein."
+      }
+    ],
+    "features": [
+      "Fetttext-Formatierung mit Unicode-Zeichen",
+      "Kursiv und Serif-Kursiv Stile",
+      "Unterstrichen und Durchgestrichen Optionen",
+      "Aufzählungen und nummerierte Listen",
+      "Echtzeit-Zeichenzähler (3.000 Limit)",
+      "Desktop und Mobile Vorschau",
+      "Zeilenabstand-Optimierer",
+      "Schnelle Formatierungsvorlagen",
+      "Emoji-Integration Support",
+      "100% Browser-basiert mit vollständiger Privatsphäre"
+    ],
+    "useCases": [
+      "Erstelle aufmerksamkeitsstarke LinkedIn Posts",
+      "Formatiere Thought Leadership Content",
+      "Strukturiere Stellenausschreibungen mit klaren Abschnitten",
+      "Hebe Schlüsselpunkte in Ankündigungen hervor",
+      "Erstelle professionell aussehende Listen und Zusammenfassungen",
+      "Formatiere Testimonials und Empfehlungen",
+      "Strukturiere Case Studies und Erfolgsgeschichten",
+      "Erstelle ansprechende Umfrage-Einleitungen",
+      "Formatiere Veranstaltungsankündigungen",
+      "Hebe Erfolge und Meilensteine hervor"
+    ],
+    "proTips": [
+      "Verwende Fett sparsam für Schlüsselphrasen - zu viel reduziert die Wirkung",
+      "Starte Posts mit einem fetten Hook, um Aufmerksamkeit zu erregen",
+      "Verwende Aufzählungen für Listen mit 3+ Elementen",
+      "Halte Absätze kurz (max 2-3 Zeilen) für mobile Lesbarkeit",
+      "Füge Zeilenumbrüche zwischen Abschnitten für visuellen Freiraum ein",
+      "Kombiniere Fett und Kursiv für Betonungshierarchie",
+      "Schau dir die Mobile-Vorschau an - die meisten LinkedIn-Nutzer browsen auf dem Handy",
+      "Verwende nummerierte Listen für sequenzielle Schritte oder Rankings",
+      "Speichere häufig verwendete Formate als Vorlagen",
+      "Teste verschiedene Formatierungsstile, um zu sehen, was bei deiner Zielgruppe ankommt"
+    ],
+    "troubleshooting": [
+      "Formatierung erscheint nicht: Stelle sicher, dass du den formatierten Text kopierst, nicht das Original. Die Unicode-Zeichen tragen die Formatierung.",
+      "Text sieht auf LinkedIn anders aus: Einige Unicode-Stile werden auf verschiedenen Geräten leicht unterschiedlich dargestellt. Fett und Kursiv sind am konsistentesten.",
+      "Zeichenlimit überschritten: LinkedIn hat ein 3.000-Zeichen-Limit. Unicode-Formatierung fügt keine zusätzlichen Zeichen hinzu.",
+      "Formatierung nach dem Posten entfernt: LinkedIn entfernt gelegentlich bestimmte Unicode-Bereiche. Verwende Standard-Fett und -Kursiv für beste Ergebnisse.",
+      "Vorschau unterscheidet sich vom tatsächlichen Post: Die Vorschau ist eine Annäherung. LinkedIns Darstellung kann leicht variieren.",
+      "Aufzählungspunkte nicht ausgerichtet: Verwende konsistente Aufzählungsstile. Das Mischen von Unicode-Aufzählungen kann Ausrichtungsprobleme verursachen.",
+      "Mobile Vorschau ungenau: Die tatsächliche mobile Darstellung hängt vom Gerät und der App-Version ab. Die Vorschau zeigt das allgemeine Erscheinungsbild.",
+      "Kopieren-Button funktioniert nicht: Stelle sicher, dass dein Browser Zwischenablage-Zugriff erlaubt. Versuche manuell auszuwählen und zu kopieren."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+B",
+        "description": "Ausgewählten Text fett"
+      },
+      {
+        "keys": "Ctrl+I",
+        "description": "Ausgewählten Text kursiv"
+      },
+      {
+        "keys": "Ctrl+U",
+        "description": "Ausgewählten Text unterstreichen"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Formatierten Text kopieren"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Gesamten Text auswählen"
+      }
+    ]
+  }
+}

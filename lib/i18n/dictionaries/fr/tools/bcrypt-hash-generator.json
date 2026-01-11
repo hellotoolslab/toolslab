@@ -1,0 +1,85 @@
+{
+  "title": "Générateur de Hash Bcrypt",
+  "description": "Générez et vérifiez les hashes bcrypt de mots de passe avec facteur de coût configurable",
+  "placeholder": "Entrez le mot de passe à hasher...",
+  "instructions": {
+    "title": "Comment utiliser le Générateur de Hash Bcrypt",
+    "steps": [
+      {
+        "title": "Entrez votre mot de passe",
+        "description": "Tapez ou collez le mot de passe que vous souhaitez hasher dans le champ de saisie. Le mot de passe peut être n'importe quelle chaîne de caractères."
+      },
+      {
+        "title": "Sélectionnez le facteur de coût (rounds)",
+        "description": "Choisissez un facteur de coût entre 4 et 12. Des valeurs plus élevées sont plus sécurisées mais prennent plus de temps. 10 est recommandé pour la plupart des applications."
+      },
+      {
+        "title": "Générez le hash",
+        "description": "Cliquez sur le bouton Générer pour créer un hash bcrypt. Chaque génération produit un hash unique grâce au sel aléatoire."
+      },
+      {
+        "title": "Vérifiez un hash (optionnel)",
+        "description": "Pour vérifier un mot de passe par rapport à un hash existant, entrez les deux valeurs et cliquez sur Vérifier. L'outil confirmera s'ils correspondent."
+      },
+      {
+        "title": "Copiez le résultat",
+        "description": "Copiez le hash généré pour l'utiliser dans la base de données ou le fichier de configuration de votre application."
+      }
+    ],
+    "features": [
+      "Générez des hashes bcrypt avec facteur de coût configurable (4-12 rounds)",
+      "Vérifiez les mots de passe par rapport aux hashes bcrypt existants",
+      "Génération automatique du sel pour chaque hash",
+      "Affichez les composants sel et hash séparément",
+      "Affichage en temps réel du temps de hachage",
+      "Génération par lots pour les tests",
+      "Traitement 100% côté client - les mots de passe ne quittent jamais votre navigateur",
+      "Copiez le hash dans le presse-papiers en un clic"
+    ],
+    "useCases": [
+      "Générez des hashes sécurisés pour le stockage des mots de passe en base de données",
+      "Vérifiez les mots de passe utilisateur pendant les tests d'authentification",
+      "Testez les performances de bcrypt avec différents facteurs de coût",
+      "Générez des données de test pour les environnements de développement et QA",
+      "Auditez les hashes de mots de passe existants pour la conformité sécurité",
+      "Apprenez comment fonctionne bcrypt avec la décomposition visuelle sel/hash",
+      "Comparez les temps de hachage entre différents facteurs de coût",
+      "Créez des hashes sécurisés pour les clés API et tokens"
+    ],
+    "proTips": [
+      "Utilisez un facteur de coût 10 ou supérieur pour les mots de passe en production",
+      "Chaque hash est unique même pour le même mot de passe grâce aux sels aléatoires",
+      "Les facteurs de coût plus élevés augmentent exponentiellement le temps (chaque +1 double le temps)",
+      "Ne stockez jamais les mots de passe en clair - utilisez toujours bcrypt ou algorithmes similaires",
+      "La sortie de 60 caractères inclut l'identifiant d'algorithme, le coût, le sel et le hash",
+      "Testez les performances de votre application avec le facteur de coût choisi avant le déploiement"
+    ],
+    "troubleshooting": [
+      "Génération lente: Réduisez le facteur de coût pour un hachage plus rapide (mais moins sécurisé)",
+      "Échec de vérification: Assurez-vous de comparer exactement le même mot de passe (sensible à la casse)",
+      "Hashes différents pour même mot de passe: C'est normal - bcrypt utilise des sels aléatoires",
+      "Le navigateur se fige: Des facteurs de coût très élevés (12+) peuvent geler temporairement le navigateur",
+      "Problèmes de format: Les hashes bcrypt valides commencent toujours par $2a$, $2b$ ou $2y$"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Générer le hash"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le résultat"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller le mot de passe"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Générateur de Hash Bcrypt - Outil en Ligne Gratuit | ToolsLab",
+    "description": "Générez et vérifiez les hashes bcrypt de mots de passe en ligne. Générateur bcrypt gratuit avec facteur de coût configurable, affichage du sel et vérification de hash. Traitement sécurisé côté client."
+  },
+  "tagline": "Générez des hashes bcrypt sécurisés pour mots de passe avec rounds configurables",
+  "pageDescription": "Générez et vérifiez les hashes bcrypt de mots de passe avec facteur de coût configurable pour un stockage sécurisé. Parfait pour les développeurs construisant des systèmes d'authentification, testant la sécurité des mots de passe et apprenant le chiffrement bcrypt. Inclut rounds ajustables (4-12), génération automatique de sel, vérification de hash et comparaison de temps. Tout le traitement se fait localement dans votre navigateur - vos mots de passe ne quittent jamais votre appareil."
+}
