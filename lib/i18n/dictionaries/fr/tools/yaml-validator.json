@@ -1,0 +1,90 @@
+{
+  "title": "Validateur YAML",
+  "description": "Validez la syntaxe YAML avec des messages d'erreur détaillés et des numéros de ligne",
+  "placeholder": "Collez votre YAML ici pour le valider...",
+  "meta": {
+    "title": "Validateur YAML - Vérificateur de Syntaxe YAML en Ligne Gratuit | ToolsLab",
+    "description": "Validez la syntaxe YAML en ligne avec des messages d'erreur détaillés, des numéros de ligne et le support de YAML 1.1 et 1.2. Outil gratuit pour Kubernetes, Docker Compose et fichiers de configuration."
+  },
+  "tagline": "Validez instantanément la syntaxe YAML avec des rapports d'erreurs détaillés",
+  "pageDescription": "Validateur YAML en ligne gratuit qui vérifie votre syntaxe YAML et signale les erreurs avec des numéros de ligne exacts. Supporte les spécifications YAML 1.1 et 1.2, valide les manifestes Kubernetes, fichiers Docker Compose, workflows GitHub Actions et toute configuration YAML. Inclut la coloration syntaxique, la détection de clés en double, le formatage et la visualisation de structure. Basé sur navigateur avec confidentialité complète - vos données ne quittent jamais votre appareil.",
+  "instructions": {
+    "title": "Comment utiliser le Validateur YAML",
+    "steps": [
+      {
+        "title": "Collez votre YAML",
+        "description": "Entrez ou collez votre contenu YAML dans la zone de saisie. Le validateur accepte tout YAML valide, y compris les fichiers multi-documents."
+      },
+      {
+        "title": "Cliquez sur Valider",
+        "description": "Cliquez sur le bouton Valider pour vérifier votre syntaxe YAML. La validation se fait instantanément dans votre navigateur."
+      },
+      {
+        "title": "Examinez les résultats",
+        "description": "Si valide, vous verrez un message de succès avec la structure analysée. Si invalide, vous obtiendrez des messages d'erreur détaillés avec numéros de ligne."
+      },
+      {
+        "title": "Corrigez et re-validez",
+        "description": "Utilisez les informations d'erreur pour corriger les problèmes dans votre YAML, puis validez à nouveau jusqu'à ce que toutes les erreurs soient résolues."
+      }
+    ],
+    "features": [
+      "Validation instantanée de la syntaxe YAML",
+      "Messages d'erreur détaillés avec numéros de ligne",
+      "Support des spécifications YAML 1.1 et 1.2",
+      "Support YAML multi-documents",
+      "Détection des clés en double",
+      "Visualisation de la structure",
+      "Formatage pretty print",
+      "Modèles YAML d'exemple",
+      "Copier la sortie formatée",
+      "100% basé sur navigateur avec confidentialité complète"
+    ],
+    "useCases": [
+      "Validez les manifestes Kubernetes avant le déploiement",
+      "Vérifiez les fichiers Docker Compose pour les erreurs de syntaxe",
+      "Vérifiez les fichiers de workflow GitHub Actions",
+      "Validez les playbooks Ansible",
+      "Vérifiez les configurations de pipelines CI/CD",
+      "Vérifiez les spécifications OpenAPI/Swagger",
+      "Validez les valeurs de charts Helm",
+      "Déboguez les erreurs dans les fichiers de configuration",
+      "Apprenez la syntaxe YAML avec un retour instantané",
+      "Assurez-vous que les fichiers de config sont correctement formatés"
+    ],
+    "proTips": [
+      "Utilisez une indentation cohérente (2 ou 4 espaces, jamais de tabs)",
+      "Mettez entre guillemets les chaînes qui commencent par des caractères spéciaux",
+      "Utilisez la vue structure pour comprendre les données imbriquées",
+      "Vérifiez les clés en double qui peuvent causer des bugs silencieux",
+      "Validez avant de commiter dans le contrôle de version",
+      "Utilisez la syntaxe multi-documents (---) pour les configs liées",
+      "Faites attention aux deux-points suivis d'espaces",
+      "Valeurs booléennes: utilisez true/false, pas yes/no pour la clarté"
+    ],
+    "troubleshooting": [
+      "Erreur d'indentation: YAML utilise des espaces, pas des tabs. Vérifiez que l'indentation est cohérente dans tout le fichier.",
+      "Fin de flux inattendue: Signifie généralement des guillemets ou crochets non fermés. Vérifiez que les paires correspondent.",
+      "Clé en double: La même clé apparaît deux fois dans un mapping. Renommez ou supprimez le doublon.",
+      "Mauvaise indentation d'une entrée mapping: Les éléments enfants doivent être plus indentés que les parents.",
+      "Impossible de trouver ':' attendu: Deux-points manquants après une clé. Ajoutez ': ' après le nom de la clé.",
+      "Entrées de séquence block non autorisées dans ce contexte: Vérifiez que les éléments de liste sont correctement indentés.",
+      "Les clés implicites doivent être sur une seule ligne: Les clés longues doivent utiliser la notation explicite avec '?'.",
+      "Caractère tab dans l'indentation: Remplacez les tabs par des espaces (généralement 2 par niveau)."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Valider YAML"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller le contenu"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Tout sélectionner"
+      }
+    ]
+  }
+}

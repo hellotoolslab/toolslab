@@ -1,0 +1,90 @@
+{
+  "title": "YAML Validator",
+  "description": "Validate YAML syntax with detailed error messages and line numbers",
+  "placeholder": "Paste your YAML here to validate...",
+  "meta": {
+    "title": "YAML Validator - Free Online YAML Syntax Checker | ToolsLab",
+    "description": "Validate YAML syntax online with detailed error messages, line numbers, and support for YAML 1.1 and 1.2. Free tool for Kubernetes, Docker Compose, and config files."
+  },
+  "tagline": "Validate YAML syntax instantly with detailed error reporting",
+  "pageDescription": "Free online YAML validator checks your YAML syntax and reports errors with exact line numbers. Supports YAML 1.1 and 1.2 specifications, validates Kubernetes manifests, Docker Compose files, GitHub Actions workflows, and any YAML configuration. Features include syntax highlighting, duplicate key detection, pretty formatting, and structure visualization. Browser-based with complete privacy - your data never leaves your device.",
+  "instructions": {
+    "title": "How to use YAML Validator",
+    "steps": [
+      {
+        "title": "Paste your YAML",
+        "description": "Enter or paste your YAML content in the input area. The validator accepts any valid YAML including multi-document files."
+      },
+      {
+        "title": "Click Validate",
+        "description": "Click the Validate button to check your YAML syntax. Validation happens instantly in your browser."
+      },
+      {
+        "title": "Review results",
+        "description": "If valid, you'll see a success message with parsed structure. If invalid, you'll get detailed error messages with line numbers."
+      },
+      {
+        "title": "Fix and re-validate",
+        "description": "Use the error information to fix issues in your YAML, then validate again until all errors are resolved."
+      }
+    ],
+    "features": [
+      "Instant YAML syntax validation",
+      "Detailed error messages with line numbers",
+      "Support for YAML 1.1 and 1.2 specifications",
+      "Multi-document YAML support",
+      "Duplicate key detection",
+      "Structure visualization",
+      "Pretty print formatting",
+      "Sample YAML templates",
+      "Copy formatted output",
+      "100% browser-based with complete privacy"
+    ],
+    "useCases": [
+      "Validate Kubernetes manifests before deployment",
+      "Check Docker Compose files for syntax errors",
+      "Verify GitHub Actions workflow files",
+      "Validate Ansible playbooks",
+      "Check CI/CD pipeline configurations",
+      "Verify OpenAPI/Swagger specifications",
+      "Validate Helm chart values",
+      "Debug configuration file errors",
+      "Learn YAML syntax with instant feedback",
+      "Ensure config files are properly formatted"
+    ],
+    "proTips": [
+      "Use consistent indentation (2 or 4 spaces, never tabs)",
+      "Quote strings that start with special characters",
+      "Use the structure view to understand nested data",
+      "Check for duplicate keys which can cause silent bugs",
+      "Validate before committing to version control",
+      "Use multi-document syntax (---) for related configs",
+      "Pay attention to colons followed by spaces",
+      "Boolean values: use true/false, not yes/no for clarity"
+    ],
+    "troubleshooting": [
+      "Indentation error: YAML uses spaces, not tabs. Check that indentation is consistent throughout the file.",
+      "Unexpected end of stream: Usually means unclosed quotes or brackets. Check for matching pairs.",
+      "Duplicate key: Same key appears twice in a mapping. Rename or remove the duplicate.",
+      "Bad indentation of a mapping entry: Child elements must be indented more than parents.",
+      "Could not find expected ':': Missing colon after a key. Add ': ' after the key name.",
+      "Block sequence entries not allowed in this context: Check that list items are properly indented.",
+      "Implicit keys need to be on a single line: Long keys should use explicit notation with '?'.",
+      "Tab character in indentation: Replace tabs with spaces (usually 2 per level)."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Validate YAML"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste content"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Select all"
+      }
+    ]
+  }
+}
