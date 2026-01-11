@@ -1,0 +1,100 @@
+{
+  "title": "Formateur de Posts LinkedIn",
+  "description": "Formatez vos posts LinkedIn avec gras, italique et caractères spéciaux en Unicode pour plus d'engagement",
+  "placeholder": "Tapez ou collez votre post LinkedIn ici...",
+  "meta": {
+    "title": "Formateur de Posts LinkedIn - Générateur de Gras et Italique Gratuit | ToolsLab",
+    "description": "Formatez vos posts LinkedIn avec gras, italique, souligné et puces en Unicode. Augmentez l'engagement avec un formatage professionnel. Outil en ligne gratuit avec compteur de caractères et aperçu en direct."
+  },
+  "tagline": "Créez des posts LinkedIn engageants avec gras, italique et formatage professionnel",
+  "pageDescription": "Formateur de posts LinkedIn gratuit vous aide à créer des posts engageants avec gras, italique, souligné et formatage spécial en utilisant des caractères Unicode. Comprend un compteur de caractères en temps réel (limite 3.000), puces et listes numérotées, optimiseur d'espacement des lignes et aperçu desktop/mobile. Parfait pour les créateurs LinkedIn, professionnels et marketeurs qui veulent augmenter l'engagement de 60%. Tout le formatage fonctionne nativement sur LinkedIn sans outils spéciaux. Basé sur navigateur avec confidentialité complète.",
+  "instructions": {
+    "title": "Comment utiliser le Formateur de Posts LinkedIn",
+    "steps": [
+      {
+        "title": "Écrivez ou collez votre post",
+        "description": "Entrez le texte de votre post LinkedIn dans la zone de saisie. Le compteur de caractères montre votre progression vers la limite de 3.000 caractères de LinkedIn."
+      },
+      {
+        "title": "Sélectionnez le texte à formater",
+        "description": "Surlignez le texte que vous voulez formater. Vous pouvez sélectionner des mots individuels, des phrases ou des paragraphes entiers."
+      },
+      {
+        "title": "Appliquez les styles de formatage",
+        "description": "Cliquez sur les boutons de formatage pour appliquer gras, italique, souligné ou barré. Ajoutez des puces ou listes numérotées pour une meilleure lisibilité."
+      },
+      {
+        "title": "Aperçu et copie",
+        "description": "Prévisualisez l'apparence de votre post sur desktop et mobile. Une fois satisfait, copiez le texte formaté et collez-le directement dans LinkedIn."
+      }
+    ],
+    "features": [
+      "Formatage de texte en gras avec caractères Unicode",
+      "Styles italique et italique serif",
+      "Options souligné et barré",
+      "Puces et listes numérotées",
+      "Compteur de caractères en temps réel (limite 3.000)",
+      "Aperçu desktop et mobile",
+      "Optimiseur d'espacement des lignes",
+      "Modèles de formatage rapide",
+      "Support d'intégration d'emojis",
+      "100% basé sur navigateur avec confidentialité complète"
+    ],
+    "useCases": [
+      "Créez des posts LinkedIn qui captent l'attention",
+      "Formatez du contenu de leadership éclairé",
+      "Structurez les offres d'emploi avec des sections claires",
+      "Mettez en évidence les points clés dans les annonces",
+      "Créez des listes et résumés d'aspect professionnel",
+      "Formatez témoignages et recommandations",
+      "Structurez études de cas et histoires de succès",
+      "Créez des introductions engageantes pour les sondages",
+      "Formatez les annonces d'événements",
+      "Mettez en valeur réalisations et jalons"
+    ],
+    "proTips": [
+      "Utilisez le gras avec parcimonie pour les phrases clés - trop réduit l'impact",
+      "Commencez les posts avec une accroche en gras pour capter l'attention",
+      "Utilisez les puces pour les listes de 3+ éléments",
+      "Gardez les paragraphes courts (2-3 lignes max) pour la lisibilité mobile",
+      "Ajoutez des sauts de ligne entre les sections pour de l'espace visuel",
+      "Combinez gras et italique pour une hiérarchie d'emphase",
+      "Prévisualisez sur mobile - la plupart des utilisateurs LinkedIn naviguent sur téléphone",
+      "Utilisez les listes numérotées pour les étapes séquentielles ou classements",
+      "Enregistrez les formats fréquents comme modèles",
+      "Testez différents styles de formatage pour voir ce qui résonne avec votre audience"
+    ],
+    "troubleshooting": [
+      "Le formatage n'apparaît pas: Assurez-vous de copier le texte formaté, pas l'original. Les caractères Unicode portent le formatage.",
+      "Le texte apparaît différemment sur LinkedIn: Certains styles Unicode s'affichent légèrement différemment selon les appareils. Gras et italique sont les plus cohérents.",
+      "Limite de caractères dépassée: LinkedIn a une limite de 3.000 caractères. Le formatage Unicode n'ajoute pas de caractères supplémentaires.",
+      "Formatage supprimé après publication: LinkedIn supprime parfois certaines plages Unicode. Utilisez gras et italique standard pour de meilleurs résultats.",
+      "L'aperçu diffère du post réel: L'aperçu est une approximation. Le rendu de LinkedIn peut varier légèrement.",
+      "Puces non alignées: Utilisez des styles de puces cohérents. Mélanger les puces Unicode peut causer des problèmes d'alignement.",
+      "Aperçu mobile imprécis: Le rendu mobile réel dépend de l'appareil et de la version de l'app. L'aperçu montre l'apparence générale.",
+      "Bouton copier ne fonctionne pas: Assurez-vous que votre navigateur autorise l'accès au presse-papiers. Essayez de sélectionner et copier manuellement."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+B",
+        "description": "Gras le texte sélectionné"
+      },
+      {
+        "keys": "Ctrl+I",
+        "description": "Italique le texte sélectionné"
+      },
+      {
+        "keys": "Ctrl+U",
+        "description": "Souligner le texte sélectionné"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le texte formaté"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Sélectionner tout le texte"
+      }
+    ]
+  }
+}

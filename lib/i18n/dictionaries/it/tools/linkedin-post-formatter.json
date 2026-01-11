@@ -1,0 +1,100 @@
+{
+  "title": "Formattatore Post LinkedIn",
+  "description": "Formatta i post LinkedIn con grassetto, corsivo e caratteri speciali usando Unicode per aumentare l'engagement",
+  "placeholder": "Scrivi o incolla il tuo post LinkedIn qui...",
+  "meta": {
+    "title": "Formattatore Post LinkedIn - Generatore Grassetto e Corsivo Gratis | ToolsLab",
+    "description": "Formatta i post LinkedIn con grassetto, corsivo, sottolineato ed elenchi puntati usando Unicode. Aumenta l'engagement con formattazione professionale. Strumento online gratuito con contatore caratteri e anteprima live."
+  },
+  "tagline": "Crea post LinkedIn coinvolgenti con grassetto, corsivo e formattazione professionale",
+  "pageDescription": "Formattatore post LinkedIn gratuito ti aiuta a creare post coinvolgenti con grassetto, corsivo, sottolineato e formattazione speciale usando caratteri Unicode. Include contatore caratteri in tempo reale (limite 3.000), elenchi puntati e numerati, ottimizzatore spaziatura righe e anteprima desktop/mobile. Perfetto per creator LinkedIn, professionisti e marketer che vogliono aumentare l'engagement del 60%. Tutta la formattazione funziona nativamente su LinkedIn senza strumenti speciali. Basato su browser con privacy completa.",
+  "instructions": {
+    "title": "Come usare il Formattatore Post LinkedIn",
+    "steps": [
+      {
+        "title": "Scrivi o incolla il tuo post",
+        "description": "Inserisci il testo del tuo post LinkedIn nell'area di input. Il contatore caratteri mostra il progresso verso il limite di 3.000 caratteri di LinkedIn."
+      },
+      {
+        "title": "Seleziona il testo da formattare",
+        "description": "Evidenzia il testo che vuoi formattare. Puoi selezionare singole parole, frasi o interi paragrafi."
+      },
+      {
+        "title": "Applica gli stili di formattazione",
+        "description": "Clicca sui pulsanti di formattazione per applicare grassetto, corsivo, sottolineato o barrato. Aggiungi elenchi puntati o numerati per una migliore leggibilità."
+      },
+      {
+        "title": "Anteprima e copia",
+        "description": "Visualizza l'anteprima di come apparirà il tuo post su desktop e mobile. Quando sei soddisfatto, copia il testo formattato e incollalo direttamente su LinkedIn."
+      }
+    ],
+    "features": [
+      "Formattazione grassetto usando caratteri Unicode",
+      "Stili corsivo e corsivo serif",
+      "Opzioni sottolineato e barrato",
+      "Elenchi puntati e numerati",
+      "Contatore caratteri in tempo reale (limite 3.000)",
+      "Anteprima desktop e mobile",
+      "Ottimizzatore spaziatura righe",
+      "Template di formattazione rapida",
+      "Supporto integrazione emoji",
+      "100% basato su browser con privacy completa"
+    ],
+    "useCases": [
+      "Crea post LinkedIn che catturano l'attenzione",
+      "Formatta contenuti di thought leadership",
+      "Struttura annunci di lavoro con sezioni chiare",
+      "Evidenzia punti chiave negli annunci",
+      "Crea liste e riassunti dall'aspetto professionale",
+      "Formatta testimonianze e raccomandazioni",
+      "Struttura case study e storie di successo",
+      "Crea introduzioni coinvolgenti per i sondaggi",
+      "Formatta annunci di eventi",
+      "Evidenzia traguardi e risultati"
+    ],
+    "proTips": [
+      "Usa il grassetto con parsimonia per frasi chiave - troppo riduce l'impatto",
+      "Inizia i post con un hook in grassetto per catturare l'attenzione",
+      "Usa elenchi puntati per liste di 3+ elementi",
+      "Mantieni i paragrafi corti (2-3 righe max) per la leggibilità mobile",
+      "Aggiungi interruzioni di riga tra le sezioni per respiro visivo",
+      "Combina grassetto e corsivo per una gerarchia di enfasi",
+      "Visualizza l'anteprima su mobile - la maggior parte degli utenti LinkedIn naviga dal telefono",
+      "Usa liste numerate per passaggi sequenziali o classifiche",
+      "Salva i formati usati frequentemente come template",
+      "Testa diversi stili di formattazione per vedere cosa risuona con il tuo pubblico"
+    ],
+    "troubleshooting": [
+      "La formattazione non appare: Assicurati di copiare il testo formattato, non l'originale. I caratteri Unicode portano la formattazione.",
+      "Il testo appare diverso su LinkedIn: Alcuni stili Unicode si renderizzano leggermente diversi sui vari dispositivi. Grassetto e corsivo sono più consistenti.",
+      "Limite caratteri superato: LinkedIn ha un limite di 3.000 caratteri. La formattazione Unicode non aggiunge caratteri extra.",
+      "Formattazione rimossa dopo la pubblicazione: LinkedIn occasionalmente rimuove certi range Unicode. Usa grassetto e corsivo standard per i migliori risultati.",
+      "L'anteprima differisce dal post reale: L'anteprima è un'approssimazione. Il rendering di LinkedIn può variare leggermente.",
+      "Elenchi puntati non allineati: Usa stili di bullet consistenti. Mescolare bullet Unicode può causare problemi di allineamento.",
+      "Anteprima mobile non accurata: Il rendering mobile reale dipende dal dispositivo e dalla versione dell'app. L'anteprima mostra l'aspetto generale.",
+      "Pulsante copia non funziona: Assicurati che il browser permetta l'accesso alla clipboard. Prova a selezionare e copiare manualmente."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+B",
+        "description": "Grassetto testo selezionato"
+      },
+      {
+        "keys": "Ctrl+I",
+        "description": "Corsivo testo selezionato"
+      },
+      {
+        "keys": "Ctrl+U",
+        "description": "Sottolinea testo selezionato"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia testo formattato"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleziona tutto il testo"
+      }
+    ]
+  }
+}

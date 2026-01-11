@@ -1,0 +1,85 @@
+{
+  "title": "Bcrypt Hash Generator",
+  "description": "Generate and verify bcrypt password hashes with configurable cost factor",
+  "placeholder": "Enter password to hash...",
+  "instructions": {
+    "title": "How to use Bcrypt Hash Generator",
+    "steps": [
+      {
+        "title": "Enter your password",
+        "description": "Type or paste the password you want to hash into the input field. The password can be any string of characters."
+      },
+      {
+        "title": "Select cost factor (rounds)",
+        "description": "Choose a cost factor between 4 and 12. Higher values are more secure but take longer to compute. 10 is recommended for most applications."
+      },
+      {
+        "title": "Generate the hash",
+        "description": "Click the Generate button to create a bcrypt hash. Each generation produces a unique hash due to the random salt."
+      },
+      {
+        "title": "Verify a hash (optional)",
+        "description": "To verify a password against an existing hash, enter both values and click Verify. The tool will confirm if they match."
+      },
+      {
+        "title": "Copy the result",
+        "description": "Copy the generated hash to use in your application's database or configuration file."
+      }
+    ],
+    "features": [
+      "Generate bcrypt hashes with configurable cost factor (4-12 rounds)",
+      "Verify passwords against existing bcrypt hashes",
+      "Automatic salt generation for each hash",
+      "Display salt and hash components separately",
+      "Real-time hash generation timing display",
+      "Batch hash generation for testing purposes",
+      "100% client-side processing - passwords never leave your browser",
+      "Copy hash to clipboard with one click"
+    ],
+    "useCases": [
+      "Generate secure password hashes for database storage",
+      "Verify user passwords during authentication testing",
+      "Test bcrypt implementation performance with different cost factors",
+      "Generate test data for development and QA environments",
+      "Audit existing password hashes for security compliance",
+      "Learn how bcrypt works with visual salt and hash breakdown",
+      "Compare hashing times across different cost factors",
+      "Create secure hashes for API keys and tokens"
+    ],
+    "proTips": [
+      "Use cost factor 10 or higher for production passwords",
+      "Each hash is unique even for the same password due to random salts",
+      "Higher cost factors exponentially increase computation time (each +1 doubles time)",
+      "Never store plain-text passwords - always use bcrypt or similar algorithms",
+      "The 60-character output includes algorithm identifier, cost, salt, and hash",
+      "Test your application's performance with your chosen cost factor before deployment"
+    ],
+    "troubleshooting": [
+      "Slow generation: Reduce cost factor for faster hashing (but less security)",
+      "Hash verification fails: Ensure you're comparing the exact same password (case-sensitive)",
+      "Different hashes for same password: This is expected - bcrypt uses random salts",
+      "Browser freezes: Very high cost factors (12+) may temporarily freeze the browser",
+      "Hash format issues: Valid bcrypt hashes always start with $2a$, $2b$, or $2y$"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Generate hash"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy result"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste password"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Bcrypt Hash Generator - Free Online Password Hasher | ToolsLab",
+    "description": "Generate and verify bcrypt password hashes online. Free bcrypt generator with configurable cost factor, salt display, and hash verification. Secure client-side processing."
+  },
+  "tagline": "Generate secure bcrypt password hashes with configurable rounds",
+  "pageDescription": "Generate and verify bcrypt password hashes with configurable cost factor for secure password storage. Perfect for developers building authentication systems, testing password security, and learning about bcrypt encryption. Features adjustable rounds (4-12), automatic salt generation, hash verification, and timing comparison. All processing happens locally in your browser - your passwords never leave your device."
+}

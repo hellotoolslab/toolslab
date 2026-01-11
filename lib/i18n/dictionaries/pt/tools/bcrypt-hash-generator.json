@@ -1,0 +1,85 @@
+{
+  "title": "Gerador de Hash Bcrypt",
+  "description": "Gere e verifique hashes bcrypt de senhas com fator de custo configurável",
+  "placeholder": "Digite a senha para hashear...",
+  "instructions": {
+    "title": "Como usar o Gerador de Hash Bcrypt",
+    "steps": [
+      {
+        "title": "Digite sua senha",
+        "description": "Digite ou cole a senha que você deseja hashear no campo de entrada. A senha pode ser qualquer sequência de caracteres."
+      },
+      {
+        "title": "Selecione o fator de custo (rounds)",
+        "description": "Escolha um fator de custo entre 4 e 12. Valores mais altos são mais seguros mas levam mais tempo. 10 é recomendado para a maioria das aplicações."
+      },
+      {
+        "title": "Gere o hash",
+        "description": "Clique no botão Gerar para criar um hash bcrypt. Cada geração produz um hash único devido ao salt aleatório."
+      },
+      {
+        "title": "Verifique um hash (opcional)",
+        "description": "Para verificar uma senha contra um hash existente, insira ambos os valores e clique em Verificar. A ferramenta confirmará se eles correspondem."
+      },
+      {
+        "title": "Copie o resultado",
+        "description": "Copie o hash gerado para usar no banco de dados ou arquivo de configuração da sua aplicação."
+      }
+    ],
+    "features": [
+      "Gere hashes bcrypt com fator de custo configurável (4-12 rounds)",
+      "Verifique senhas contra hashes bcrypt existentes",
+      "Geração automática de salt para cada hash",
+      "Exiba componentes de salt e hash separadamente",
+      "Exibição em tempo real do tempo de hashing",
+      "Geração em lote para testes",
+      "Processamento 100% do lado do cliente - senhas nunca saem do seu navegador",
+      "Copie o hash para a área de transferência com um clique"
+    ],
+    "useCases": [
+      "Gere hashes seguros de senhas para armazenamento em banco de dados",
+      "Verifique senhas de usuário durante testes de autenticação",
+      "Teste o desempenho do bcrypt com diferentes fatores de custo",
+      "Gere dados de teste para ambientes de desenvolvimento e QA",
+      "Audite hashes de senhas existentes para conformidade de segurança",
+      "Aprenda como o bcrypt funciona com decomposição visual de salt e hash",
+      "Compare tempos de hashing entre diferentes fatores de custo",
+      "Crie hashes seguros para chaves de API e tokens"
+    ],
+    "proTips": [
+      "Use fator de custo 10 ou superior para senhas em produção",
+      "Cada hash é único mesmo para a mesma senha devido aos salts aleatórios",
+      "Fatores de custo mais altos aumentam exponencialmente o tempo (cada +1 dobra o tempo)",
+      "Nunca armazene senhas em texto simples - sempre use bcrypt ou algoritmos similares",
+      "A saída de 60 caracteres inclui identificador de algoritmo, custo, salt e hash",
+      "Teste o desempenho da sua aplicação com o fator de custo escolhido antes do deploy"
+    ],
+    "troubleshooting": [
+      "Geração lenta: Reduza o fator de custo para hashing mais rápido (mas menos seguro)",
+      "Falha na verificação: Certifique-se de comparar exatamente a mesma senha (sensível a maiúsculas)",
+      "Hashes diferentes para mesma senha: Isso é esperado - bcrypt usa salts aleatórios",
+      "Navegador congela: Fatores de custo muito altos (12+) podem congelar temporariamente o navegador",
+      "Problemas de formato: Hashes bcrypt válidos sempre começam com $2a$, $2b$ ou $2y$"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Gerar hash"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar senha"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Gerador de Hash Bcrypt - Ferramenta Online Gratuita | ToolsLab",
+    "description": "Gere e verifique hashes bcrypt de senhas online. Gerador bcrypt gratuito com fator de custo configurável, exibição de salt e verificação de hash. Processamento seguro do lado do cliente."
+  },
+  "tagline": "Gere hashes bcrypt seguros para senhas com rounds configuráveis",
+  "pageDescription": "Gere e verifique hashes bcrypt de senhas com fator de custo configurável para armazenamento seguro. Perfeito para desenvolvedores construindo sistemas de autenticação, testando segurança de senhas e aprendendo sobre criptografia bcrypt. Inclui rounds ajustáveis (4-12), geração automática de salt, verificação de hash e comparação de tempo. Todo o processamento acontece localmente no seu navegador - suas senhas nunca saem do seu dispositivo."
+}
