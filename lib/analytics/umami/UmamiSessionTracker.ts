@@ -4,12 +4,7 @@
 // - Tab visibility tracking
 // - Session metadata and history
 
-import type {
-  SessionStartEvent,
-  SessionTabHiddenEvent,
-  SessionTabVisibleEvent,
-  SessionEndEvent,
-} from '../types/events';
+import type { SessionStartEvent, SessionEndEvent } from '../types/events';
 import { getUmamiAdapter } from './UmamiSDKAdapter';
 import { EventNormalizer } from '../core/EventNormalizer';
 
@@ -182,76 +177,6 @@ class UmamiSessionTracker {
   }
 
   /**
-   * Send session.tab_hidden event
-   */
-  private sendTabHidden(): void {
-    if (!this.sessionData) return;
-
-    const now = Date.now();
-    const visibleDuration = now - this.sessionData.lastVisibleTime;
-
-    const event: SessionTabHiddenEvent = {
-      event: 'session.tab_hidden',
-      sessionId: this.sessionData.sessionId,
-      visibleDuration,
-      currentPage:
-        typeof window !== 'undefined' ? window.location.pathname : '/',
-      timestamp: now,
-    };
-
-    const enriched = EventNormalizer.enrichEvent(event);
-    getUmamiAdapter().track(enriched);
-
-    // Update session data
-    this.sessionData.lastHiddenTime = now;
-    this.sessionData.tabHiddenCount++;
-  }
-
-  /**
-   * Send session.tab_visible event
-   */
-  private sendTabVisible(): void {
-    if (!this.sessionData) {
-      console.warn('[SessionTracker] sendTabVisible: no sessionData');
-      return;
-    }
-
-    if (!this.sessionData.lastHiddenTime) {
-      console.warn('[SessionTracker] sendTabVisible: no lastHiddenTime', {
-        sessionId: this.sessionData.sessionId,
-        lastHiddenTime: this.sessionData.lastHiddenTime,
-      });
-      return;
-    }
-
-    const now = Date.now();
-    const hiddenDuration = now - this.sessionData.lastHiddenTime;
-
-    const event: SessionTabVisibleEvent = {
-      event: 'session.tab_visible',
-      sessionId: this.sessionData.sessionId,
-      hiddenDuration,
-      currentPage:
-        typeof window !== 'undefined' ? window.location.pathname : '/',
-      timestamp: now,
-    };
-
-    console.log('[SessionTracker] Sending session.tab_visible', {
-      hiddenDuration,
-      lastHiddenTime: this.sessionData.lastHiddenTime,
-      now,
-    });
-
-    const enriched = EventNormalizer.enrichEvent(event);
-    getUmamiAdapter().track(enriched);
-
-    // Update session data
-    this.sessionData.totalHiddenDuration += hiddenDuration;
-    this.sessionData.lastVisibleTime = now;
-    this.sessionData.lastHiddenTime = null;
-  }
-
-  /**
    * Send session end event
    */
   private sendSessionEnd(): void {
@@ -298,22 +223,36 @@ class UmamiSessionTracker {
 
   /**
    * Handle page hidden (user switched tab or minimized)
+   * Updates internal state only - no event sent to reduce analytics noise
    */
   private handlePageHidden(): void {
-    // Send tab_hidden event (user switched tab, NOT closing)
-    this.sendTabHidden();
+    if (!this.sessionData) return;
+
+    const now = Date.now();
+    // Update internal tracking state (used for activeDuration calculation in session.end)
+    this.sessionData.lastHiddenTime = now;
+    this.sessionData.tabHiddenCount++;
   }
 
   /**
    * Handle page visible (user returned)
+   * Updates internal state only - no event sent to reduce analytics noise
    */
   private handlePageVisible(): void {
-    if (this.sessionData) {
-      this.sessionData.lastActivity = Date.now();
+    if (!this.sessionData) return;
 
-      // Send tab_visible event (user returned to tab)
-      this.sendTabVisible();
+    const now = Date.now();
+    this.sessionData.lastActivity = now;
+
+    // Calculate hidden duration and update totals (used for activeDuration in session.end)
+    if (this.sessionData.lastHiddenTime) {
+      const hiddenDuration = now - this.sessionData.lastHiddenTime;
+      this.sessionData.totalHiddenDuration += hiddenDuration;
     }
+
+    // Reset visibility state
+    this.sessionData.lastVisibleTime = now;
+    this.sessionData.lastHiddenTime = null;
   }
 
   /**
