@@ -116,14 +116,13 @@ export class UmamiEventQueue {
   }
 
   /**
-   * Ordina eventi per timestamp (INVERSO - dal più recente al più vecchio)
-   * NOTA: Invertito per testare se Umami riceve eventi in ordine inverso
+   * Ordina eventi per timestamp (cronologico - dal più vecchio al più recente)
    */
   private sortByTimestamp(events: AnalyticsEvent[]): AnalyticsEvent[] {
     return events.sort((a, b) => {
       const aTime = a.timestamp ?? Date.now();
       const bTime = b.timestamp ?? Date.now();
-      return bTime - aTime;
+      return aTime - bTime; // Ordine cronologico: oldest first
     });
   }
 
