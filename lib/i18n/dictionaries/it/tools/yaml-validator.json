@@ -1,0 +1,90 @@
+{
+  "title": "Validatore YAML",
+  "description": "Valida la sintassi YAML con messaggi di errore dettagliati e numeri di riga",
+  "placeholder": "Incolla qui il tuo YAML per validarlo...",
+  "meta": {
+    "title": "Validatore YAML - Controllo Sintassi YAML Online Gratuito | ToolsLab",
+    "description": "Valida la sintassi YAML online con messaggi di errore dettagliati, numeri di riga e supporto per YAML 1.1 e 1.2. Strumento gratuito per Kubernetes, Docker Compose e file di configurazione."
+  },
+  "tagline": "Valida istantaneamente la sintassi YAML con report dettagliati degli errori",
+  "pageDescription": "Validatore YAML online gratuito che controlla la sintassi YAML e riporta errori con numeri di riga esatti. Supporta le specifiche YAML 1.1 e 1.2, valida manifest Kubernetes, file Docker Compose, workflow GitHub Actions e qualsiasi configurazione YAML. Include evidenziazione della sintassi, rilevamento chiavi duplicate, formattazione e visualizzazione della struttura. Basato su browser con privacy completa - i tuoi dati non lasciano mai il dispositivo.",
+  "instructions": {
+    "title": "Come usare il Validatore YAML",
+    "steps": [
+      {
+        "title": "Incolla il tuo YAML",
+        "description": "Inserisci o incolla il contenuto YAML nell'area di input. Il validatore accetta qualsiasi YAML valido inclusi file multi-documento."
+      },
+      {
+        "title": "Clicca Valida",
+        "description": "Clicca il pulsante Valida per controllare la sintassi YAML. La validazione avviene istantaneamente nel tuo browser."
+      },
+      {
+        "title": "Esamina i risultati",
+        "description": "Se valido, vedrai un messaggio di successo con la struttura analizzata. Se non valido, otterrai messaggi di errore dettagliati con numeri di riga."
+      },
+      {
+        "title": "Correggi e ri-valida",
+        "description": "Usa le informazioni sugli errori per correggere i problemi nel tuo YAML, poi valida di nuovo finché tutti gli errori non sono risolti."
+      }
+    ],
+    "features": [
+      "Validazione istantanea della sintassi YAML",
+      "Messaggi di errore dettagliati con numeri di riga",
+      "Supporto per specifiche YAML 1.1 e 1.2",
+      "Supporto YAML multi-documento",
+      "Rilevamento chiavi duplicate",
+      "Visualizzazione della struttura",
+      "Formattazione pretty print",
+      "Template YAML di esempio",
+      "Copia output formattato",
+      "100% basato su browser con privacy completa"
+    ],
+    "useCases": [
+      "Valida manifest Kubernetes prima del deploy",
+      "Controlla file Docker Compose per errori di sintassi",
+      "Verifica file workflow GitHub Actions",
+      "Valida playbook Ansible",
+      "Controlla configurazioni pipeline CI/CD",
+      "Verifica specifiche OpenAPI/Swagger",
+      "Valida valori chart Helm",
+      "Debug errori nei file di configurazione",
+      "Impara la sintassi YAML con feedback istantaneo",
+      "Assicurati che i file di config siano formattati correttamente"
+    ],
+    "proTips": [
+      "Usa indentazione consistente (2 o 4 spazi, mai tab)",
+      "Metti tra virgolette le stringhe che iniziano con caratteri speciali",
+      "Usa la vista struttura per capire i dati annidati",
+      "Controlla le chiavi duplicate che possono causare bug silenziosi",
+      "Valida prima di committare nel version control",
+      "Usa la sintassi multi-documento (---) per config correlate",
+      "Fai attenzione ai due punti seguiti da spazi",
+      "Valori booleani: usa true/false, non yes/no per chiarezza"
+    ],
+    "troubleshooting": [
+      "Errore di indentazione: YAML usa spazi, non tab. Verifica che l'indentazione sia consistente in tutto il file.",
+      "Fine stream inaspettata: Di solito significa virgolette o parentesi non chiuse. Controlla che le coppie corrispondano.",
+      "Chiave duplicata: La stessa chiave appare due volte in un mapping. Rinomina o rimuovi il duplicato.",
+      "Indentazione errata di un elemento mapping: Gli elementi figli devono essere indentati più dei genitori.",
+      "Impossibile trovare ':' atteso: Mancano i due punti dopo una chiave. Aggiungi ': ' dopo il nome della chiave.",
+      "Elementi sequenza block non permessi in questo contesto: Verifica che gli elementi lista siano correttamente indentati.",
+      "Le chiavi implicite devono essere su una singola riga: Le chiavi lunghe dovrebbero usare la notazione esplicita con '?'.",
+      "Carattere tab nell'indentazione: Sostituisci i tab con spazi (di solito 2 per livello)."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Valida YAML"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla contenuto"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleziona tutto"
+      }
+    ]
+  }
+}

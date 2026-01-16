@@ -150,6 +150,7 @@
     "@types/crypto-js": "^4.2.2",
     "@types/dompurify": "^3.0.5",
     "@types/jest": "^30.0.0",
+    "@types/js-yaml": "^4.0.9",
     "@types/jszip": "^3.4.0",
     "@types/papaparse": "^5.3.14",
     "@types/react": "^18.3.11",

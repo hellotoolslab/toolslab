@@ -1,0 +1,90 @@
+{
+  "title": "Validador YAML",
+  "description": "Valide a sintaxe YAML com mensagens de erro detalhadas e números de linha",
+  "placeholder": "Cole seu YAML aqui para validar...",
+  "meta": {
+    "title": "Validador YAML - Verificador de Sintaxe YAML Online Grátis | ToolsLab",
+    "description": "Valide a sintaxe YAML online com mensagens de erro detalhadas, números de linha e suporte para YAML 1.1 e 1.2. Ferramenta gratuita para Kubernetes, Docker Compose e arquivos de configuração."
+  },
+  "tagline": "Valide a sintaxe YAML instantaneamente com relatórios de erros detalhados",
+  "pageDescription": "Validador YAML online gratuito verifica sua sintaxe YAML e reporta erros com números de linha exatos. Suporta especificações YAML 1.1 e 1.2, valida manifestos Kubernetes, arquivos Docker Compose, workflows GitHub Actions e qualquer configuração YAML. Inclui destaque de sintaxe, detecção de chaves duplicadas, formatação e visualização de estrutura. Baseado em navegador com privacidade completa - seus dados nunca saem do seu dispositivo.",
+  "instructions": {
+    "title": "Como usar o Validador YAML",
+    "steps": [
+      {
+        "title": "Cole seu YAML",
+        "description": "Digite ou cole seu conteúdo YAML na área de entrada. O validador aceita qualquer YAML válido incluindo arquivos multi-documento."
+      },
+      {
+        "title": "Clique em Validar",
+        "description": "Clique no botão Validar para verificar sua sintaxe YAML. A validação acontece instantaneamente no seu navegador."
+      },
+      {
+        "title": "Revise os resultados",
+        "description": "Se válido, você verá uma mensagem de sucesso com a estrutura analisada. Se inválido, receberá mensagens de erro detalhadas com números de linha."
+      },
+      {
+        "title": "Corrija e re-valide",
+        "description": "Use as informações de erro para corrigir problemas no seu YAML, depois valide novamente até que todos os erros sejam resolvidos."
+      }
+    ],
+    "features": [
+      "Validação instantânea de sintaxe YAML",
+      "Mensagens de erro detalhadas com números de linha",
+      "Suporte para especificações YAML 1.1 e 1.2",
+      "Suporte YAML multi-documento",
+      "Detecção de chaves duplicadas",
+      "Visualização de estrutura",
+      "Formatação pretty print",
+      "Templates YAML de exemplo",
+      "Copiar saída formatada",
+      "100% baseado em navegador com privacidade completa"
+    ],
+    "useCases": [
+      "Valide manifestos Kubernetes antes do deploy",
+      "Verifique arquivos Docker Compose por erros de sintaxe",
+      "Verifique arquivos de workflow GitHub Actions",
+      "Valide playbooks Ansible",
+      "Verifique configurações de pipelines CI/CD",
+      "Verifique especificações OpenAPI/Swagger",
+      "Valide valores de charts Helm",
+      "Debug de erros em arquivos de configuração",
+      "Aprenda sintaxe YAML com feedback instantâneo",
+      "Garanta que arquivos de config estejam formatados corretamente"
+    ],
+    "proTips": [
+      "Use indentação consistente (2 ou 4 espaços, nunca tabs)",
+      "Coloque entre aspas strings que começam com caracteres especiais",
+      "Use a visualização de estrutura para entender dados aninhados",
+      "Verifique chaves duplicadas que podem causar bugs silenciosos",
+      "Valide antes de fazer commit no controle de versão",
+      "Use sintaxe multi-documento (---) para configs relacionadas",
+      "Preste atenção aos dois-pontos seguidos de espaços",
+      "Valores booleanos: use true/false, não yes/no para clareza"
+    ],
+    "troubleshooting": [
+      "Erro de indentação: YAML usa espaços, não tabs. Verifique se a indentação é consistente em todo o arquivo.",
+      "Fim de stream inesperado: Geralmente significa aspas ou colchetes não fechados. Verifique se os pares correspondem.",
+      "Chave duplicada: A mesma chave aparece duas vezes em um mapping. Renomeie ou remova o duplicado.",
+      "Indentação ruim de uma entrada mapping: Elementos filhos devem ser mais indentados que os pais.",
+      "Não foi possível encontrar ':' esperado: Faltam dois-pontos após uma chave. Adicione ': ' após o nome da chave.",
+      "Entradas de sequência block não permitidas neste contexto: Verifique se os elementos de lista estão corretamente indentados.",
+      "Chaves implícitas precisam estar em uma única linha: Chaves longas devem usar notação explícita com '?'.",
+      "Caractere tab na indentação: Substitua tabs por espaços (geralmente 2 por nível)."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Validar YAML"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar conteúdo"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Selecionar tudo"
+      }
+    ]
+  }
+}

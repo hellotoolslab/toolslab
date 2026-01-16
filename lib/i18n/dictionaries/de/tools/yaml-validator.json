@@ -1,0 +1,90 @@
+{
+  "title": "YAML-Validator",
+  "description": "Validieren Sie YAML-Syntax mit detaillierten Fehlermeldungen und Zeilennummern",
+  "placeholder": "Fügen Sie Ihr YAML hier ein, um es zu validieren...",
+  "meta": {
+    "title": "YAML-Validator - Kostenloser Online YAML-Syntax-Checker | ToolsLab",
+    "description": "Validieren Sie YAML-Syntax online mit detaillierten Fehlermeldungen, Zeilennummern und Unterstützung für YAML 1.1 und 1.2. Kostenloses Tool für Kubernetes, Docker Compose und Konfigurationsdateien."
+  },
+  "tagline": "Validieren Sie YAML-Syntax sofort mit detaillierten Fehlerberichten",
+  "pageDescription": "Kostenloser Online-YAML-Validator überprüft Ihre YAML-Syntax und meldet Fehler mit genauen Zeilennummern. Unterstützt YAML 1.1 und 1.2 Spezifikationen, validiert Kubernetes-Manifeste, Docker Compose-Dateien, GitHub Actions-Workflows und jede YAML-Konfiguration. Funktionen umfassen Syntax-Highlighting, Erkennung doppelter Schlüssel, Pretty-Formatierung und Strukturvisualisierung. Browser-basiert mit vollständiger Privatsphäre - Ihre Daten verlassen nie Ihr Gerät.",
+  "instructions": {
+    "title": "So verwenden Sie den YAML-Validator",
+    "steps": [
+      {
+        "title": "Fügen Sie Ihr YAML ein",
+        "description": "Geben Sie Ihren YAML-Inhalt in den Eingabebereich ein oder fügen Sie ihn ein. Der Validator akzeptiert jedes gültige YAML, einschließlich Multi-Dokument-Dateien."
+      },
+      {
+        "title": "Klicken Sie auf Validieren",
+        "description": "Klicken Sie auf die Schaltfläche Validieren, um Ihre YAML-Syntax zu überprüfen. Die Validierung erfolgt sofort in Ihrem Browser."
+      },
+      {
+        "title": "Überprüfen Sie die Ergebnisse",
+        "description": "Bei Gültigkeit sehen Sie eine Erfolgsmeldung mit geparster Struktur. Bei Ungültigkeit erhalten Sie detaillierte Fehlermeldungen mit Zeilennummern."
+      },
+      {
+        "title": "Korrigieren und erneut validieren",
+        "description": "Verwenden Sie die Fehlerinformationen, um Probleme in Ihrem YAML zu beheben, dann validieren Sie erneut, bis alle Fehler behoben sind."
+      }
+    ],
+    "features": [
+      "Sofortige YAML-Syntax-Validierung",
+      "Detaillierte Fehlermeldungen mit Zeilennummern",
+      "Unterstützung für YAML 1.1 und 1.2 Spezifikationen",
+      "Multi-Dokument-YAML-Unterstützung",
+      "Erkennung doppelter Schlüssel",
+      "Strukturvisualisierung",
+      "Pretty-Print-Formatierung",
+      "Beispiel-YAML-Vorlagen",
+      "Formatierte Ausgabe kopieren",
+      "100% browser-basiert mit vollständiger Privatsphäre"
+    ],
+    "useCases": [
+      "Validieren Sie Kubernetes-Manifeste vor dem Deployment",
+      "Überprüfen Sie Docker Compose-Dateien auf Syntaxfehler",
+      "Verifizieren Sie GitHub Actions-Workflow-Dateien",
+      "Validieren Sie Ansible-Playbooks",
+      "Überprüfen Sie CI/CD-Pipeline-Konfigurationen",
+      "Verifizieren Sie OpenAPI/Swagger-Spezifikationen",
+      "Validieren Sie Helm-Chart-Werte",
+      "Debuggen Sie Fehler in Konfigurationsdateien",
+      "Lernen Sie YAML-Syntax mit sofortigem Feedback",
+      "Stellen Sie sicher, dass Config-Dateien richtig formatiert sind"
+    ],
+    "proTips": [
+      "Verwenden Sie konsistente Einrückung (2 oder 4 Leerzeichen, niemals Tabs)",
+      "Setzen Sie Strings in Anführungszeichen, die mit Sonderzeichen beginnen",
+      "Verwenden Sie die Strukturansicht, um verschachtelte Daten zu verstehen",
+      "Prüfen Sie auf doppelte Schlüssel, die stille Bugs verursachen können",
+      "Validieren Sie vor dem Commit in die Versionskontrolle",
+      "Verwenden Sie Multi-Dokument-Syntax (---) für verwandte Configs",
+      "Achten Sie auf Doppelpunkte gefolgt von Leerzeichen",
+      "Boolesche Werte: Verwenden Sie true/false, nicht yes/no für Klarheit"
+    ],
+    "troubleshooting": [
+      "Einrückungsfehler: YAML verwendet Leerzeichen, keine Tabs. Überprüfen Sie, ob die Einrückung in der gesamten Datei konsistent ist.",
+      "Unerwartetes Ende des Streams: Bedeutet meist nicht geschlossene Anführungszeichen oder Klammern. Prüfen Sie, ob die Paare übereinstimmen.",
+      "Doppelter Schlüssel: Derselbe Schlüssel erscheint zweimal in einem Mapping. Benennen Sie um oder entfernen Sie das Duplikat.",
+      "Falsche Einrückung eines Mapping-Eintrags: Kind-Elemente müssen mehr eingerückt sein als Eltern.",
+      "Erwartetes ':' nicht gefunden: Fehlender Doppelpunkt nach einem Schlüssel. Fügen Sie ': ' nach dem Schlüsselnamen hinzu.",
+      "Block-Sequenz-Einträge in diesem Kontext nicht erlaubt: Überprüfen Sie, ob Listen-Elemente richtig eingerückt sind.",
+      "Implizite Schlüssel müssen auf einer einzelnen Zeile sein: Lange Schlüssel sollten explizite Notation mit '?' verwenden.",
+      "Tab-Zeichen in Einrückung: Ersetzen Sie Tabs durch Leerzeichen (normalerweise 2 pro Ebene)."
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+Enter",
+        "description": "YAML validieren"
+      },
+      {
+        "keys": "Ctrl+V",
+        "description": "Inhalt einfügen"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Alles auswählen"
+      }
+    ]
+  }
+}

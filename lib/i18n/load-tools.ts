@@ -76,6 +76,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'css-minifier',
     'js-minifier',
     'yaml-json-converter',
+    'yaml-validator',
     'unix-timestamp-converter',
     'eml-to-html',
     'instagram-font-generator',
