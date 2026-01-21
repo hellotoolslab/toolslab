@@ -4,7 +4,7 @@
   "placeholder": "",
   "meta": {
     "title": "JSON zu TypeScript - Kostenloses Online-Tool | ToolsLab",
-    "description": "Generieren TypeScript interfaces von JSON online. Kostenlos JSON zu TypeScript converter."
+    "description": "Generieren Sie TypeScript-Interfaces aus JSON online kostenlos. Intelligente Typerkennung, optionale Eigenschaften und verschachtelte Interfaces. Perfekt für API-Entwicklung."
   },
   "tagline": "Generieren TypeScript interfaces von JSON mit smart eingeben inference",
   "pageDescription": "Advanced JSON zu TypeScript converter mit smart eingeben inference, optional properties und nested interface support. Konvertieren API responses, configuration objects und complex JSON structures zu production-ready TypeScript interfaces. Features union types, enum Erkennung, date parsing, custom naming conventions und readonly options. Includes Zod schema Generierung, validation code und mock Daten generators. Perfect für TypeScript developers building eingeben-safe applications mit external APIs.",
