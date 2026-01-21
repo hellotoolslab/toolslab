@@ -23,9 +23,9 @@ export async function GET(
     const dictionary = await getDictionary(locale, sections);
 
     // Determine cache duration based on request type
-    // Section-specific requests have longer cache (less likely to change)
-    const maxAge = sections ? 7200 : 3600; // 2h vs 1h
-    const staleWhileRevalidate = sections ? 172800 : 86400; // 2d vs 1d
+    // Translations only change on deploy, so long cache is safe
+    const maxAge = sections ? 86400 : 86400; // 24h
+    const staleWhileRevalidate = sections ? 604800 : 604800; // 7 days
 
     // Return with cache headers for performance
     return NextResponse.json(dictionary, {
