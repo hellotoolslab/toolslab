@@ -4,7 +4,7 @@
   "placeholder": "",
   "meta": {
     "title": "JSON para TypeScript - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Gere interfaces TypeScript a partir de JSON online. Conversor gratuito de JSON para TypeScript."
+    "description": "Gere interfaces TypeScript a partir de JSON online grátis. Inferência inteligente de tipos, propriedades opcionais e interfaces aninhadas. Perfeito para desenvolvimento de APIs."
   },
   "tagline": "Gere interfaces TypeScript a partir de JSON com inferência de tipo inteligente",
   "pageDescription": "Conversor avançado de JSON para TypeScript com inferência de tipo inteligente, propriedades opcionais e suporte a interfaces aninhadas. Converta respostas de API, objetos de configuração e estruturas JSON complexas para interfaces TypeScript prontas para produção. Recursos incluem tipos union, detecção de enum, análise de data, convenções de nomenclatura personalizadas e opções readonly. Inclui geração de schema Zod, código de validação e geradores de dados mock. Perfeito para desenvolvedores TypeScript construindo aplicações type-safe com APIs externas.",

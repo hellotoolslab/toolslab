@@ -4,7 +4,7 @@
   "placeholder": "",
   "meta": {
     "title": "Farbwähler - Kostenloses Online-Tool | ToolsLab",
-    "description": "Pick Farben online. Konvertieren zwischen HEX, RGB, HSL. Kostenlos Farbe Wähler Tool."
+    "description": "Wählen Sie Farben online kostenlos. Konvertieren zwischen HEX, RGB, HSL, CMYK. WCAG-Kontrastprüfung und Palette-Generator. Export für CSS und Tailwind."
   },
   "tagline": "Pick Farben mit Kontrast Prüfer und Palette Generator",
   "pageDescription": "Professioneller Farbe Wähler für Entwickler und designers mit HEX, RGB, HSL, HSV, CMYK und LAB Formate. Generieren Farbe Paletten, prüfen WCAG Kontrast ratios, simulate Farbe blindness und exportieren zu CSS, Tailwind, Material Design. Features eyedropper API, gradient Generator und Design system Integration. Kostenlos browserbasiert Tool mit Barrierefreiheit Konformität checking.",
