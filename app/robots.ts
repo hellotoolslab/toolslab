@@ -1,7 +1,10 @@
 // app/robots.ts
+// OPTIMIZED: Removed Edge Runtime - now generates statically at build time
 import { MetadataRoute } from 'next';
 
-export const runtime = 'edge';
+// Force static generation at build time
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://toolslab.dev';
@@ -180,8 +183,7 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: [
-      `${baseUrl}/sitemap-index.xml`,
-      // `${baseUrl}/sitemap-tools.xml`,
+      `${baseUrl}/sitemap.xml`, // Uses Next.js built-in sitemap (static generation)
     ],
   };
 }
