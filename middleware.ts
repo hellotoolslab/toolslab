@@ -1,54 +1,24 @@
 /**
- * Next.js Middleware for Edge Config Integration and VPN Compatibility
- * Handles A/B testing, feature flags, request routing, and VPN detection
+ * Next.js Middleware - OPTIMIZED FOR CPU EFFICIENCY
  *
- * OPTIMIZATIONS (Dec 2024):
- * - Pre-compiled regex patterns at module level
- * - Increased Edge Config timeout to 200ms
- * - Cached VPN detection patterns
- * - Reduced header operations
+ * CRITICAL OPTIMIZATION (Jan 2025):
+ * - Matcher restricted to ONLY pages that need locale/VPN handling
+ * - Sitemap generation REMOVED (now static at build time)
+ * - No dynamic imports
+ * - Edge Config only when needed
+ * - BotDetector as singleton
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getCompleteConfig } from '@/lib/edge-config/client';
-import { BotDetector } from '@/lib/analytics/botDetection';
 import {
   localesWithPrefix,
   defaultLocale,
   type Locale,
 } from '@/lib/i18n/config';
-import {
-  detectSectionFromPathname,
-  generateDictionaryPreloadHeaders,
-  shouldPreloadDictionary,
-} from '@/lib/i18n/section-detector';
 
 // ============================================================================
 // PRE-COMPILED PATTERNS (cached at module level for performance)
 // ============================================================================
-
-// Paths that should be processed by middleware
-const PROCESSED_PATHS = ['/tools/:path*', '/api/tools/:path*', '/'];
-
-// Pre-compiled regex patterns for PROCESSED_PATHS (created once at startup)
-const PROCESSED_PATHS_REGEX = PROCESSED_PATHS.map(
-  (path) => new RegExp(`^${path.replace(':path*', '.*')}$`)
-);
-
-// Paths that should be excluded from middleware processing
-const EXCLUDED_PATHS = [
-  '/_next',
-  '/api/_',
-  '/favicon.ico',
-  '/icon.svg',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/apple-touch-icon.png',
-  '/robots.txt',
-  '/sitemap.xml',
-  '/manifest.json',
-  '/manifest.webmanifest',
-];
 
 // Pre-compiled private IP patterns for VPN detection
 const PRIVATE_IP_PATTERNS = [
@@ -66,292 +36,131 @@ const VPN_INDICATOR_PATTERNS = [
   /checkpoint/i,
   /palo alto/i,
   /corporate[_\s]proxy/i,
-  /company[_\s]firewall/i,
-  /enterprise[_\s]gateway/i,
-  /websense/i,
-  /bluecoat/i,
-  /mcafee[_\s]web[_\s]gateway/i,
   /zscaler/i,
   /netskope/i,
 ];
 
-// Pre-compiled sitemap locale pattern
-const SITEMAP_LOCALE_PATTERN = /^\/sitemap-([a-z]{2})\.xml$/;
-
-// Edge Config timeout (increased from 100ms to 200ms for better success rate)
-const EDGE_CONFIG_TIMEOUT_MS = 200;
+// Pre-compiled bot patterns (simplified for performance)
+const SEARCH_ENGINE_BOTS =
+  /googlebot|bingbot|yandex|duckduckbot|baiduspider|slurp/i;
+const KNOWN_BOTS = /bot|crawler|spider|scraper|curl|wget|python|java|php/i;
 
 // ============================================================================
-// PATH CHECKING (optimized)
+// LIGHTWEIGHT BOT DETECTION (no class instantiation)
 // ============================================================================
 
-function shouldProcessPath(pathname: string): boolean {
-  // Exclude specific paths (simple string check is faster than regex)
-  for (const excludedPath of EXCLUDED_PATHS) {
-    if (pathname.startsWith(excludedPath)) {
-      return false;
-    }
+function detectBot(userAgent: string): {
+  isBot: boolean;
+  isSearchEngine: boolean;
+} {
+  if (!userAgent) return { isBot: false, isSearchEngine: false };
+
+  const isSearchEngine = SEARCH_ENGINE_BOTS.test(userAgent);
+  const isBot = isSearchEngine || KNOWN_BOTS.test(userAgent);
+
+  return { isBot, isSearchEngine };
+}
+
+// ============================================================================
+// VPN DETECTION (optimized)
+// ============================================================================
+
+function detectCorporateVPN(
+  forwardedFor: string | null,
+  realIP: string | null,
+  userAgent: string
+): boolean {
+  // Quick check: VPN indicators in user agent
+  for (const pattern of VPN_INDICATOR_PATTERNS) {
+    if (pattern.test(userAgent)) return true;
   }
 
-  // Include processed paths using pre-compiled regex
-  for (const regex of PROCESSED_PATHS_REGEX) {
-    if (regex.test(pathname)) {
-      return true;
-    }
+  // Check IPs for private ranges
+  const allIPs = [forwardedFor, realIP].filter(Boolean).join(',');
+  for (const pattern of PRIVATE_IP_PATTERNS) {
+    if (pattern.test(allIPs)) return true;
   }
+
+  // Check for multiple forwarded IPs (proxy chain)
+  if (forwardedFor && forwardedFor.split(',').length > 2) return true;
 
   return false;
 }
 
-/**
- * Enhanced VPN detection using multiple indicators
- * OPTIMIZED: Uses pre-compiled patterns from module level
- */
-function detectCorporateVPN(headers: {
-  forwardedFor: string | null;
-  realIP: string | null;
-  userAgent: string;
-  cfConnectingIP: string | null;
-  xOriginalForwardedFor: string | null;
-}): boolean {
-  const {
-    forwardedFor,
-    realIP,
-    userAgent,
-    cfConnectingIP,
-    xOriginalForwardedFor,
-  } = headers;
+// ============================================================================
+// SECURITY HEADERS (simplified)
+// ============================================================================
 
-  // Check all IP sources for private ranges (uses pre-compiled PRIVATE_IP_PATTERNS)
-  const allIPs = [forwardedFor, realIP, cfConnectingIP, xOriginalForwardedFor]
-    .filter(Boolean)
-    .join(',');
+function applySecurityHeaders(response: NextResponse, isVPN: boolean) {
+  // Common headers
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-DNS-Prefetch-Control', 'on');
+  response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
 
-  // Use for-loop for early exit optimization
-  let hasPrivateIP = false;
-  for (const pattern of PRIVATE_IP_PATTERNS) {
-    if (pattern.test(allIPs)) {
-      hasPrivateIP = true;
-      break;
-    }
+  if (isVPN) {
+    // VPN-compatible: No HSTS, permissive CSP
+    response.headers.delete('Strict-Transport-Security');
+    response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+    response.headers.set('X-VPN-Mode', 'true');
+    response.headers.set(
+      'Cache-Control',
+      'no-cache, no-store, must-revalidate'
+    );
+  } else {
+    // Standard security
+    response.headers.set('X-Frame-Options', 'DENY');
+    response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
   }
-
-  // Check for VPN software indicators (uses pre-compiled VPN_INDICATOR_PATTERNS)
-  let hasVPNIndicator = false;
-  for (const pattern of VPN_INDICATOR_PATTERNS) {
-    if (pattern.test(userAgent)) {
-      hasVPNIndicator = true;
-      break;
-    }
-  }
-
-  // Additional indicators
-  const hasMultipleForwardedIPs = (forwardedFor?.split(',').length || 0) > 1;
-  const hasXOriginalForwarded = Boolean(xOriginalForwardedFor);
-
-  // VPN detection logic (more permissive to catch corporate networks)
-  return (
-    hasPrivateIP ||
-    hasVPNIndicator ||
-    (hasMultipleForwardedIPs && hasXOriginalForwarded)
-  );
 }
 
-/**
- * Apply VPN-compatible headers (completely HSTS-free for corporate networks)
- */
-function applyVPNCompatibleHeaders(response: NextResponse) {
-  // CRITICAL: Completely remove HSTS headers
-  response.headers.delete('Strict-Transport-Security');
-
-  // Anti-HSTS headers to clear browser cache
-  response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-  response.headers.set('Pragma', 'no-cache');
-  response.headers.set('Expires', '0');
-
-  // More permissive frame options for corporate intranets
-  response.headers.set('X-Frame-Options', 'SAMEORIGIN');
-
-  // Add VPN mode indicator for client-side detection
-  response.headers.set('X-VPN-Mode', 'true');
-  response.headers.set('X-VPN-Compatible', 'true');
-
-  // Completely permissive CSP for corporate environments with proxy interference
-  response.headers.set(
-    'Content-Security-Policy',
-    "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' data: *; img-src 'self' data: blob: *; connect-src 'self' *; frame-src *; object-src *; media-src *; font-src *;"
-  );
-
-  // Allow corporate proxy modification
-  response.headers.set('X-Permitted-Cross-Domain-Policies', 'master-only');
-
-  // Disable other security headers that might conflict with corporate proxies
-  response.headers.delete('Cross-Origin-Embedder-Policy');
-  response.headers.delete('Cross-Origin-Resource-Policy');
-
-  // Add corporate proxy friendly headers
-  response.headers.set('X-Corporate-Proxy-Compatible', 'true');
-  response.headers.set('Access-Control-Allow-Credentials', 'true');
-
-  // Debug headers removed - VPN compatibility issues resolved
-}
-
-/**
- * Apply security headers for regular users (HSTS-free for corporate compatibility)
- */
-function applyStrictSecurityHeaders(response: NextResponse) {
-  // Strict frame protection
-  response.headers.set('X-Frame-Options', 'DENY');
-
-  // CRITICAL: NO HSTS - Completely removed for corporate VPN compatibility
-  response.headers.delete('Strict-Transport-Security');
-
-  // Anti-HSTS headers to ensure browser cache is cleared
-  response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-  response.headers.set('Pragma', 'no-cache');
-  response.headers.set('Expires', '0');
-
-  // CSP for regular users - more permissive in development
-  const isDevelopment = process.env.NODE_ENV === 'development';
-  const cspPolicy = isDevelopment
-    ? "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' data: *; img-src 'self' data: blob: *; connect-src 'self' *; frame-src 'self';"
-    : "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-insights.com *.umami.is va.vercel-scripts.com *.vercel-scripts.com; style-src 'self' 'unsafe-inline' data:; img-src 'self' data: blob: *.vercel.com cdn.carbonads.com; connect-src 'self' *.vercel-insights.com *.umami.is vitals.vercel-insights.com va.vercel-scripts.com *.vercel-scripts.com; frame-src 'none';";
-
-  response.headers.set('Content-Security-Policy', cspPolicy);
-
-  // Additional security headers (but not HSTS)
-  response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
-  response.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
-  response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
-
-  // Indicate that this is HSTS-free mode
-  response.headers.set('X-HSTS-Free-Mode', 'true');
-}
+// ============================================================================
+// MAIN MIDDLEWARE (streamlined)
+// ============================================================================
 
 export async function middleware(request: NextRequest) {
-  const { pathname, searchParams } = request.nextUrl;
-
-  // Set the full URL in a header so the layout can access it
-  const requestUrl = request.url;
-
-  // Handle sitemap requests
-  if (pathname === '/sitemap-index.xml') {
-    const { generateSitemapIndexXML } = await import(
-      '@/lib/sitemap/sitemap-utils'
-    );
-    const xml = generateSitemapIndexXML();
-    return new NextResponse(xml, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/xml; charset=utf-8',
-        'Cache-Control': 'public, max-age=86400, s-maxage=86400',
-      },
-    });
-  }
-
-  // Handle locale-specific sitemaps (e.g., /sitemap-en.xml, /sitemap-it.xml)
-  // Uses pre-compiled SITEMAP_LOCALE_PATTERN for performance
-  const sitemapMatch = pathname.match(SITEMAP_LOCALE_PATTERN);
-  if (sitemapMatch) {
-    const locale = sitemapMatch[1];
-    const { locales } = await import('@/lib/i18n/config');
-
-    if (locales.includes(locale as any)) {
-      const { generateSitemapXML } = await import(
-        '@/lib/sitemap/sitemap-utils'
-      );
-      const xml = generateSitemapXML(locale as any);
-      return new NextResponse(xml, {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/xml; charset=utf-8',
-          'Cache-Control': 'public, max-age=86400, s-maxage=86400',
-          'X-Sitemap-Locale': locale,
-        },
-      });
-    }
-  }
-
-  // Check if pathname has a locale prefix
-  const pathnameHasLocale = localesWithPrefix.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
-
-  // Handle locale redirection for non-prefixed paths
-  if (
-    !pathnameHasLocale &&
-    !pathname.startsWith('/_next') &&
-    !pathname.startsWith('/api')
-  ) {
-    // Check if this is a path that should be localized
-    const shouldLocalize = ['/tools', '/categories', '/lab', '/about'].some(
-      (path) => pathname === path || pathname.startsWith(`${path}/`)
-    );
-
-    if (shouldLocalize) {
-      // Redirect to default locale (English doesn't need prefix, but others do)
-      const url = request.nextUrl.clone();
-      url.pathname = pathname; // English doesn't need prefix
-      return NextResponse.next(); // Let it go to the default route
-    }
-  }
-
-  // For localized paths, just ensure X-Locale header is set
-  // (this will be handled later in the middleware)
-
-  // Domain canonicalization: Redirect www.toolslab.dev to toolslab.dev
+  const { pathname } = request.nextUrl;
   const hostname = request.nextUrl.hostname;
+
+  // -------------------------------------------------------------------------
+  // 1. Domain canonicalization (immediate redirect)
+  // -------------------------------------------------------------------------
   if (hostname === 'www.toolslab.dev') {
     const redirectUrl = new URL(request.nextUrl);
     redirectUrl.hostname = 'toolslab.dev';
     return NextResponse.redirect(redirectUrl, 301);
   }
 
-  // Skip processing for excluded paths (but allow locale paths)
-  if (!shouldProcessPath(pathname) && !pathnameHasLocale) {
-    return NextResponse.next();
+  // -------------------------------------------------------------------------
+  // 2. Detect locale from pathname
+  // -------------------------------------------------------------------------
+  let currentLocale: Locale = defaultLocale;
+  const pathnameHasLocale = localesWithPrefix.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  if (pathnameHasLocale) {
+    const detectedLocale = localesWithPrefix.find(
+      (locale) =>
+        pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+    );
+    if (detectedLocale) {
+      currentLocale = detectedLocale as Locale;
+    }
   }
 
-  // Temporary: skip all SVG files
-  if (
-    pathname.endsWith('.svg') ||
-    pathname.endsWith('.png') ||
-    pathname.endsWith('.ico')
-  ) {
-    return NextResponse.next();
-  }
-
-  // Bot Detection for Analytics
+  // -------------------------------------------------------------------------
+  // 3. Bot detection (lightweight)
+  // -------------------------------------------------------------------------
   const userAgent = request.headers.get('user-agent') || '';
-  const referer = request.headers.get('referer') || '';
-  const botDetector = new BotDetector();
-  const botDetection = botDetector.detectBot(userAgent, referer, request.url);
+  const botDetection = detectBot(userAgent);
 
   if (botDetection.isBot) {
-    // Detect locale for bots (critical for SEO)
-    let currentLocale: Locale = defaultLocale;
-    if (pathnameHasLocale) {
-      const detectedLocale = localesWithPrefix.find(
-        (locale) =>
-          pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-      );
-      if (detectedLocale) {
-        currentLocale = detectedLocale as Locale;
-      }
-    }
-
-    // Return minimal response for bots to save resources
+    // Minimal response for bots - just set essential headers
     const response = NextResponse.next();
+    response.headers.set('X-Locale', currentLocale);
     response.headers.set('X-Bot-Detected', 'true');
-    response.headers.set('X-Bot-Reason', botDetection.reason || 'unknown');
     response.headers.set('Cache-Control', 'public, max-age=86400');
 
-    // CRITICAL for SEO: Set locale and URL headers for bots
-    response.headers.set('X-Locale', currentLocale);
-    response.headers.set('X-Pathname', pathname);
-    response.headers.set('X-Request-URL', requestUrl); // For layout to read
-
-    // Allow all bots to index - prioritize SEO over analytics accuracy
     if (botDetection.isSearchEngine) {
       response.headers.set('X-Search-Engine', 'true');
     }
@@ -359,330 +168,93 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  try {
-    // Get Edge Config with timeout to prevent blocking
-    const configPromise = getCompleteConfig();
-    const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(
-        () => reject(new Error('Config timeout')),
-        EDGE_CONFIG_TIMEOUT_MS
-      )
-    );
+  // -------------------------------------------------------------------------
+  // 4. VPN detection and security headers
+  // -------------------------------------------------------------------------
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  const realIP = request.headers.get('x-real-ip');
+  const isVPN = detectCorporateVPN(forwardedFor, realIP, userAgent);
 
-    let config;
-    try {
-      const result = await Promise.race([configPromise, timeoutPromise]);
-      config = (result as any).success ? (result as any).data : null;
-    } catch (error) {
-      console.warn(
-        'Middleware: Edge Config timeout, proceeding without config'
-      );
-      config = null;
-    }
+  const response = NextResponse.next();
 
-    const response = NextResponse.next();
+  // Set locale headers
+  response.headers.set('X-Locale', currentLocale);
+  response.headers.set('X-Pathname', pathname);
+  response.headers.set('X-Request-URL', request.url);
 
-    // Set the request URL in a header for the layout to access
-    response.headers.set('X-Request-URL', requestUrl);
+  // Set locale cookie
+  response.cookies.set('NEXT_LOCALE', currentLocale, {
+    path: '/',
+    sameSite: 'lax',
+    httpOnly: false,
+  });
 
-    // Detect current locale
-    let currentLocale: Locale = defaultLocale;
-    if (pathnameHasLocale) {
-      const detectedLocale = localesWithPrefix.find(
-        (locale) =>
-          pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-      );
-      if (detectedLocale) {
-        currentLocale = detectedLocale as Locale;
-      }
-    }
-
-    // Always set X-Locale header (even for default locale)
-    response.headers.set('X-Locale', currentLocale);
-
-    // Also set pathname for debugging
-    response.headers.set('X-Pathname', pathname);
-
-    // Set a cookie with the current locale so the layout can read it
-    response.cookies.set('NEXT_LOCALE', currentLocale, {
-      path: '/',
-      sameSite: 'lax',
-      httpOnly: false, // Allow client-side reading
-    });
-
-    // Dictionary Preload Strategy
-    if (shouldPreloadDictionary(pathname)) {
-      // Detect which dictionary sections this page needs
-      const sections = detectSectionFromPathname(pathname);
-
-      // Generate preload headers for dictionary chunks
-      const preloadHeaders = generateDictionaryPreloadHeaders(
-        currentLocale,
-        sections
-      );
-
-      // Add Link header for early hints / preload
-      response.headers.set('Link', preloadHeaders);
-
-      // Add metadata headers for debugging
-      if (process.env.NODE_ENV === 'development') {
-        response.headers.set('X-Dictionary-Sections', sections.join(','));
-        response.headers.set('X-Dictionary-Locale', currentLocale);
-      }
-    }
-
-    // Persistent language preference cookie
+  // Persistent language preference
+  if (pathnameHasLocale && currentLocale !== defaultLocale) {
     const preferredLocaleCookie = request.cookies.get('preferred-locale');
-
-    // If user visits a localized page, save their preference
-    if (pathnameHasLocale && currentLocale !== defaultLocale) {
-      if (
-        !preferredLocaleCookie ||
-        preferredLocaleCookie.value !== currentLocale
-      ) {
-        response.cookies.set('preferred-locale', currentLocale, {
-          maxAge: 365 * 24 * 60 * 60, // 1 year
-          path: '/',
-          sameSite: 'lax',
-          httpOnly: false, // Allow client-side reading for language switcher
-        });
-      }
-    }
-
-    // If user has preference but visits default locale, suggest redirect (optional)
-    // This is commented out to avoid aggressive redirects, but available if needed
-    /*
     if (
-      !pathnameHasLocale &&
-      preferredLocaleCookie &&
-      preferredLocaleCookie.value !== defaultLocale &&
-      !pathname.startsWith('/api')
+      !preferredLocaleCookie ||
+      preferredLocaleCookie.value !== currentLocale
     ) {
-      const preferredLocale = preferredLocaleCookie.value;
-      const redirectUrl = new URL(request.url);
-      redirectUrl.pathname = `/${preferredLocale}${pathname}`;
-      return NextResponse.redirect(redirectUrl, 307); // Temporary redirect
+      response.cookies.set('preferred-locale', currentLocale, {
+        maxAge: 365 * 24 * 60 * 60,
+        path: '/',
+        sameSite: 'lax',
+        httpOnly: false,
+      });
     }
-    */
-
-    // VPN Detection and Security Header Management
-    const forwardedFor = request.headers.get('x-forwarded-for');
-    const realIP = request.headers.get('x-real-ip');
-    const userAgent = request.headers.get('user-agent') || '';
-    const cfConnectingIP = request.headers.get('cf-connecting-ip');
-    const xOriginalForwardedFor = request.headers.get(
-      'x-original-forwarded-for'
-    );
-
-    const isCorpVPN = detectCorporateVPN({
-      forwardedFor,
-      realIP,
-      userAgent,
-      cfConnectingIP,
-      xOriginalForwardedFor,
-    });
-
-    // Apply appropriate security headers based on VPN detection
-    if (isCorpVPN) {
-      applyVPNCompatibleHeaders(response);
-
-      // Log VPN detection for monitoring (only in development)
-      if (process.env.NODE_ENV === 'development') {
-        console.log('🔒 Corporate VPN detected:', {
-          forwardedFor,
-          realIP,
-          userAgent: userAgent.substring(0, 100),
-          timestamp: new Date().toISOString(),
-          url: request.url,
-        });
-      }
-    } else {
-      applyStrictSecurityHeaders(response);
-    }
-
-    // Add performance headers
-    response.headers.set(
-      'X-Edge-Config-Status',
-      config ? 'loaded' : 'fallback'
-    );
-    response.headers.set('X-Processed-At', new Date().toISOString());
-
-    // Add common security headers for all users
-    response.headers.set('X-Content-Type-Options', 'nosniff');
-    response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
-    response.headers.set('X-DNS-Prefetch-Control', 'on');
-
-    // Handle coming soon mode
-    if (config?.features?.comingSoon && pathname !== '/coming-soon') {
-      // Allow admin access during coming soon
-      const isAdmin = request.headers
-        .get('authorization')
-        ?.includes(process.env.ADMIN_SECRET_KEY || '');
-
-      if (!isAdmin) {
-        const comingSoonUrl = new URL('/coming-soon', request.url);
-        return NextResponse.redirect(comingSoonUrl);
-      }
-    }
-
-    // Handle maintenance mode
-    if (config?.features?.maintenanceMode && pathname !== '/maintenance') {
-      // Allow admin access during maintenance
-      const isAdmin = request.headers
-        .get('authorization')
-        ?.includes(process.env.ADMIN_SECRET_KEY || '');
-
-      if (!isAdmin) {
-        const maintenanceUrl = new URL('/maintenance', request.url);
-        return NextResponse.redirect(maintenanceUrl);
-      }
-    }
-
-    // Handle tool-specific logic
-    if (pathname.startsWith('/tools/')) {
-      const toolSlug = pathname.split('/')[2];
-
-      if (toolSlug && config?.tools) {
-        const tool = Object.values(config.tools).find(
-          (t: any) => t.slug === toolSlug
-        );
-
-        // Redirect if tool is disabled
-        if (tool && !(tool as any).enabled) {
-          const homeUrl = new URL('/', request.url);
-          homeUrl.searchParams.set('message', 'tool-disabled');
-          homeUrl.searchParams.set('tool', toolSlug);
-          return NextResponse.redirect(homeUrl);
-        }
-
-        // Add tool metadata to headers
-        if (tool) {
-          response.headers.set('X-Tool-Category', (tool as any).category || '');
-          response.headers.set(
-            'X-Tool-Featured',
-            String((tool as any).featured || false)
-          );
-          response.headers.set(
-            'X-Tool-Pro-Required',
-            String((tool as any).flags?.isPro || false)
-          );
-        }
-      }
-    }
-
-    // Handle feature flags and experiments
-    if (config?.features?.experiments) {
-      const experiments = config.features.experiments;
-
-      // A/B Testing: Enhanced Search
-      if (experiments.enhancedSearch && pathname === '/') {
-        const userId =
-          request.cookies.get('user-id')?.value || generateUserId();
-        const variant = getUserVariant(userId, 'enhanced-search');
-
-        response.cookies.set('user-id', userId, {
-          maxAge: 30 * 24 * 60 * 60 * 1000,
-        });
-        response.headers.set('X-Search-Variant', variant);
-      }
-
-      // A/B Testing: Tool Chaining
-      if (experiments.newToolChaining && pathname.startsWith('/tools/')) {
-        const userId =
-          request.cookies.get('user-id')?.value || generateUserId();
-        const variant = getUserVariant(userId, 'tool-chaining');
-
-        response.cookies.set('user-id', userId, {
-          maxAge: 30 * 24 * 60 * 60 * 1000,
-        });
-        response.headers.set('X-Chaining-Variant', variant);
-      }
-    }
-
-    // Geographic routing (if needed)
-    const country = request.geo?.country || 'US';
-    response.headers.set('X-User-Country', country);
-
-    // Handle region-specific features
-    if (config?.settings?.analytics?.enabled) {
-      // Only enable analytics in supported regions
-      const supportedRegions = ['US', 'CA', 'GB', 'DE', 'FR', 'IT', 'ES', 'AU'];
-      response.headers.set(
-        'X-Analytics-Enabled',
-        String(supportedRegions.includes(country))
-      );
-    }
-
-    return response;
-  } catch (error) {
-    console.error('Middleware error:', error);
-
-    // Return response with error headers but don't block the request
-    const response = NextResponse.next();
-    response.headers.set('X-Middleware-Error', 'true');
-    response.headers.set('X-Error-Time', new Date().toISOString());
-
-    return response;
   }
+
+  // Apply security headers based on VPN status
+  applySecurityHeaders(response, isVPN);
+
+  // Geographic info (if available)
+  const country = request.geo?.country || 'US';
+  response.headers.set('X-User-Country', country);
+
+  return response;
 }
 
-/**
- * Generate a simple user ID for A/B testing
- */
-function generateUserId(): string {
-  return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
-  );
-}
-
-/**
- * Determine A/B test variant for a user
- */
-function getUserVariant(userId: string, experiment: string): 'a' | 'b' {
-  // Simple hash-based variant assignment
-  const hash = hashCode(userId + experiment);
-  return hash % 2 === 0 ? 'a' : 'b';
-}
-
-/**
- * Simple string hash function
- */
-function hashCode(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash; // Convert to 32-bit integer
-  }
-  return Math.abs(hash);
-}
-
-/**
- * Rate limiting helper
- */
-function isRateLimited(request: NextRequest): boolean {
-  // Simple rate limiting based on IP
-  // In production, use a proper rate limiting solution
-  const ip = request.ip || 'unknown';
-  const now = Date.now();
-
-  // This is a simplified example
-  // Real implementation would use Redis or similar
-  return false;
-}
+// ============================================================================
+// MATCHER CONFIGURATION - CRITICAL FOR CPU OPTIMIZATION
+// ============================================================================
 
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes, but we'll handle /api/tools specifically)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - icon files (all favicon variants)
-     * Note: We DO handle sitemap*.xml files
+     * ONLY match paths that NEED middleware processing:
+     * - Homepage (locale detection)
+     * - Tool pages (locale + analytics)
+     * - Localized paths (it/, de/, fr/, es/, pt/)
+     * - Core pages (about, lab, categories, blog, etc.)
+     *
+     * EXPLICITLY EXCLUDED (handled by Next.js directly):
+     * - /_next/static/* (static assets)
+     * - /_next/image/* (optimized images)
+     * - /api/* (API routes - no locale needed)
+     * - /sitemap*.xml (static files)
+     * - /robots.txt (static file)
+     * - /*.ico, /*.png, /*.svg (icons)
+     * - /manifest.* (PWA manifests)
      */
-    '/((?!_next/static|_next/image|.*\\.ico|.*\\.png|.*\\.svg|robots\\.txt).*)',
+    '/',
+    '/tools/:path*',
+    '/about',
+    '/lab',
+    '/categories',
+    '/category/:path*',
+    '/blog',
+    '/blog/:path*',
+    '/privacy',
+    '/terms',
+    '/download',
+    '/coming-soon',
+    '/maintenance',
+    // Localized routes (covers all localized pages)
+    '/it/:path*',
+    '/de/:path*',
+    '/fr/:path*',
+    '/es/:path*',
+    '/pt/:path*',
   ],
 };

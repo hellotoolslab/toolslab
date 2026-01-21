@@ -58,9 +58,10 @@ const nextConfig = {
     return config;
   },
 
-  // Redirects da www a non-www
+  // Redirects
   async redirects() {
     return [
+      // www to non-www
       {
         source: '/:path*',
         has: [
@@ -71,6 +72,17 @@ const nextConfig = {
         ],
         destination: 'https://toolslab.dev/:path*',
         permanent: true, // 301 redirect
+      },
+      // Old sitemap URLs to new static sitemap (CPU optimization)
+      {
+        source: '/sitemap-index.xml',
+        destination: '/sitemap.xml',
+        permanent: true,
+      },
+      {
+        source: '/sitemap-:locale.xml',
+        destination: '/sitemap.xml',
+        permanent: true,
       },
     ];
   },

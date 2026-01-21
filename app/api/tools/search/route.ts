@@ -49,14 +49,23 @@ export async function GET(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
-    return NextResponse.json({
-      success: true,
-      results,
-      query,
-      count: results.length,
-      responseTime,
-      timestamp: new Date().toISOString(),
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        results,
+        query,
+        count: results.length,
+        responseTime,
+        timestamp: new Date().toISOString(),
+      },
+      {
+        headers: {
+          // Cache search results for 5 minutes (reduces CPU for repeated queries)
+          'Cache-Control':
+            'public, max-age=300, s-maxage=300, stale-while-revalidate=600',
+        },
+      }
+    );
   } catch (error) {
     console.error('API /tools/search error:', error);
 
