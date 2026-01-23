@@ -241,7 +241,14 @@ function addMissingQuotes(input: string): string {
         j++;
       }
 
-      if (j < result.length && result[j] !== '"' && result[j] !== '}') {
+      if (
+        j < result.length &&
+        result[j] !== '"' &&
+        result[j] !== '}' &&
+        result[j] !== '{' &&
+        result[j] !== '[' &&
+        result[j] !== ']'
+      ) {
         // Found unquoted key, find the key name
         let key = '';
         while (
