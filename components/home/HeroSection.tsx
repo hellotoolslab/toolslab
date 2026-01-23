@@ -41,7 +41,6 @@ export function HeroSection({
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [placeholderText, setPlaceholderText] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
   const [particles, setParticles] = useState<
     Array<{ left: string; top: string; delay: string; duration: string }>
   >([]);
@@ -103,43 +102,40 @@ export function HeroSection({
     const tryText = dictionary?.common?.actions?.copy || 'Try';
     const targetText = `${tryText} '${localizedPlaceholders[currentPlaceholder]}'...`;
     let currentIndex = 0;
+    let timer: NodeJS.Timeout;
+    let phase: 'typing' | 'pausing' | 'erasing' = 'typing';
 
-    if (isTyping) {
-      const typingInterval = setInterval(() => {
+    const tick = () => {
+      if (phase === 'typing') {
         if (currentIndex <= targetText.length) {
           setPlaceholderText(targetText.slice(0, currentIndex));
           currentIndex++;
+          timer = setTimeout(tick, 50);
         } else {
-          clearInterval(typingInterval);
-          setTimeout(() => {
-            setIsTyping(false);
-          }, 2000);
+          phase = 'pausing';
+          timer = setTimeout(tick, 2000);
         }
-      }, 50);
-
-      return () => clearInterval(typingInterval);
-    } else {
-      const erasingInterval = setInterval(() => {
-        if (placeholderText.length > 0) {
-          setPlaceholderText(placeholderText.slice(0, -1));
+      } else if (phase === 'pausing') {
+        phase = 'erasing';
+        currentIndex = targetText.length;
+        tick();
+      } else if (phase === 'erasing') {
+        if (currentIndex > 0) {
+          currentIndex--;
+          setPlaceholderText(targetText.slice(0, currentIndex));
+          timer = setTimeout(tick, 30);
         } else {
-          clearInterval(erasingInterval);
           setCurrentPlaceholder(
             (prev) => (prev + 1) % localizedPlaceholders.length
           );
-          setIsTyping(true);
         }
-      }, 30);
+      }
+    };
 
-      return () => clearInterval(erasingInterval);
-    }
-  }, [
-    currentPlaceholder,
-    isTyping,
-    placeholderText,
-    localizedPlaceholders,
-    dictionary,
-  ]);
+    tick();
+
+    return () => clearTimeout(timer);
+  }, [currentPlaceholder, localizedPlaceholders, dictionary]);
 
   const searchResults =
     searchQuery.length > 0 ? searchTools(searchQuery).slice(0, 5) : [];
