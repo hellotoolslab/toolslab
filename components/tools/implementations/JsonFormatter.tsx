@@ -379,13 +379,29 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         processingTime: Date.now() - Date.now(), // processSync already measures this
       });
 
-      // Auto-scroll to output
+      // Auto-scroll to output with slow smooth animation
       setTimeout(() => {
-        outputRef.current?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }, 100);
+        if (!outputRef.current) return;
+        const target =
+          outputRef.current.getBoundingClientRect().top + window.scrollY - 20;
+        const start = window.scrollY;
+        const distance = target - start;
+        const duration = 800;
+        let startTime: number | null = null;
+
+        const easeInOutCubic = (t: number) =>
+          t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+        const step = (timestamp: number) => {
+          if (!startTime) startTime = timestamp;
+          const elapsed = timestamp - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          window.scrollTo(0, start + distance * easeInOutCubic(progress));
+          if (progress < 1) requestAnimationFrame(step);
+        };
+
+        requestAnimationFrame(step);
+      }, 150);
     } catch (err) {
       // Track error
       trackError(
@@ -759,24 +775,24 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-2.5">
           <button
             onClick={formatJson}
             disabled={(!input && !uploadedFileName) || isProcessing}
-            className="flex items-center gap-2 rounded-lg px-5 py-2.5 font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
             style={{
               backgroundColor: categoryColor,
-              boxShadow: `0 4px 12px ${categoryColor}40`,
+              boxShadow: `0 3px 10px ${categoryColor}40`,
             }}
           >
             {isProcessing ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
                 Processing...
               </>
             ) : (
               <>
-                <Maximize2 className="h-4 w-4" />
+                <Maximize2 className="h-3.5 w-3.5" />
                 Format
               </>
             )}
@@ -784,13 +800,13 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
           <button
             onClick={minifyJson}
             disabled={(!input && !uploadedFileName) || isProcessing}
-            className="flex items-center gap-2 rounded-lg border-2 px-5 py-2.5 font-medium transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex items-center gap-1.5 rounded-lg border-2 px-4 py-2 text-sm font-medium transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
             style={{
               borderColor: categoryColor,
               color: categoryColor,
             }}
           >
-            <Minimize2 className="h-4 w-4" />
+            <Minimize2 className="h-3.5 w-3.5" />
             Minify
           </button>
         </div>
