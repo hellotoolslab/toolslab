@@ -172,13 +172,7 @@ export default function robots(): MetadataRoute.Robots {
       // Specific paths for tools
       {
         userAgent: '*',
-        allow: [
-          '/tools/',
-          '/blog/',
-          '/api/tools/config',
-          '/api/health',
-          '/api/sitemap',
-        ],
+        allow: ['/tools/', '/blog/'],
         disallow: ['/api/*'],
       },
     ],
