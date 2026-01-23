@@ -247,7 +247,7 @@ export function HeroSection({
                     setTimeout(() => setIsSearchFocused(false), 200)
                   }
                   placeholder={placeholderText}
-                  className="h-14 w-full rounded-2xl border border-white/20 bg-white/10 pl-12 pr-4 text-lg text-white placeholder-white/50 backdrop-blur-md transition-all duration-200 focus:border-white/40 focus:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/20"
+                  className={`h-14 w-full rounded-2xl border border-white/20 bg-white/10 pl-12 pr-4 text-lg text-white placeholder-white/50 backdrop-blur-md transition-all duration-200 focus:border-white/40 focus:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/20 ${searchQuery ? 'caret-white' : 'caret-transparent'}`}
                   suppressHydrationWarning
                 />
               </div>
