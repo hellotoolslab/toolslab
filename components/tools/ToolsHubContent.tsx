@@ -229,11 +229,11 @@ export default function ToolsHubContent({
     } else {
       params.delete(key);
     }
-    replace(`/tools?${params.toString()}`);
+    replace(`/tools?${params.toString()}`, { scroll: false });
   };
 
   const clearAllFilters = () => {
-    replace('/tools');
+    replace('/tools', { scroll: false });
   };
 
   // Show loading skeleton on first mount

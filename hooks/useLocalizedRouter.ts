@@ -106,18 +106,21 @@ export function useLocalizedRouter() {
    * Replace with current locale
    */
   const replace = useCallback(
-    (path: string, preserveQuery = false): void => {
+    (
+      path: string,
+      options?: { preserveQuery?: boolean; scroll?: boolean }
+    ): void => {
       let targetPath = createHref(path);
 
       // Preserve query parameters if requested
-      if (preserveQuery && typeof window !== 'undefined') {
+      if (options?.preserveQuery && typeof window !== 'undefined') {
         const search = window.location.search;
         if (search) {
           targetPath += search;
         }
       }
 
-      router.replace(targetPath);
+      router.replace(targetPath, { scroll: options?.scroll ?? true });
     },
     [createHref, router]
   );
