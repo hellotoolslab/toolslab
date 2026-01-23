@@ -379,29 +379,13 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         processingTime: Date.now() - Date.now(), // processSync already measures this
       });
 
-      // Auto-scroll to output with slow smooth animation
+      // Auto-scroll to output
       setTimeout(() => {
-        if (!outputRef.current) return;
-        const target =
-          outputRef.current.getBoundingClientRect().top + window.scrollY - 20;
-        const start = window.scrollY;
-        const distance = target - start;
-        const duration = 1400;
-        let startTime: number | null = null;
-
-        const easeInOutCubic = (t: number) =>
-          t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-        const step = (timestamp: number) => {
-          if (!startTime) startTime = timestamp;
-          const elapsed = timestamp - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          window.scrollTo(0, start + distance * easeInOutCubic(progress));
-          if (progress < 1) requestAnimationFrame(step);
-        };
-
-        requestAnimationFrame(step);
-      }, 150);
+        outputRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 100);
     } catch (err) {
       // Track error
       trackError(
