@@ -42,7 +42,7 @@ const AnalyticsDebugPanel = dynamic(
 
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { UpdateNotification } from '@/components/UpdateNotification';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+// import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import { cn } from '@/lib/utils';
 import { HtmlLangUpdater } from '@/components/HtmlLangUpdater';
@@ -228,7 +228,7 @@ export default async function RootLayout({
             <AnalyticsDebugPanel />
           </ThemeProvider>
         </UmamiProvider>
-        <SpeedInsights />
+        {/* <SpeedInsights /> */}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
