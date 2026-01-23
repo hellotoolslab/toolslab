@@ -386,7 +386,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
           outputRef.current.getBoundingClientRect().top + window.scrollY - 20;
         const start = window.scrollY;
         const distance = target - start;
-        const duration = 800;
+        const duration = 1400;
         let startTime: number | null = null;
 
         const easeInOutCubic = (t: number) =>
