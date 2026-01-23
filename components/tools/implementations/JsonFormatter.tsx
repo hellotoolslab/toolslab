@@ -607,7 +607,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         </div>
       </div>
 
-      <div className="relative space-y-6 p-6">
+      <div className="relative space-y-4 p-4">
         {/* Processing Overlay */}
         {isProcessing && !uploadedFileName && (
           <div className="absolute inset-0 z-10 flex items-center justify-center rounded-xl bg-white/80 backdrop-blur-sm dark:bg-gray-800/80">
@@ -722,7 +722,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         </div>
 
         {/* Options */}
-        <div className="flex flex-wrap items-center gap-4 rounded-lg bg-gray-50 p-4 dark:bg-gray-900">
+        <div className="flex flex-wrap items-center gap-3 rounded-lg bg-gray-50 px-4 py-2.5 dark:bg-gray-900">
           <div className="flex items-center gap-2">
             <label className="text-sm text-gray-600 dark:text-gray-400">
               Indent:
@@ -759,24 +759,24 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-2.5">
           <button
             onClick={formatJson}
             disabled={(!input && !uploadedFileName) || isProcessing}
-            className="flex items-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
             style={{
               backgroundColor: categoryColor,
-              boxShadow: `0 4px 12px ${categoryColor}40`,
+              boxShadow: `0 3px 10px ${categoryColor}40`,
             }}
           >
             {isProcessing ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
                 Processing...
               </>
             ) : (
               <>
-                <Maximize2 className="h-4 w-4" />
+                <Maximize2 className="h-3.5 w-3.5" />
                 Format
               </>
             )}
@@ -784,13 +784,13 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
           <button
             onClick={minifyJson}
             disabled={(!input && !uploadedFileName) || isProcessing}
-            className="flex items-center gap-2 rounded-lg border-2 px-6 py-3 font-medium transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex items-center gap-1.5 rounded-lg border-2 px-4 py-2 text-sm font-medium transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
             style={{
               borderColor: categoryColor,
               color: categoryColor,
             }}
           >
-            <Minimize2 className="h-4 w-4" />
+            <Minimize2 className="h-3.5 w-3.5" />
             Minify
           </button>
         </div>
