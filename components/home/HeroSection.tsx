@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Search, ArrowRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -49,7 +49,7 @@ export function HeroSection({
   const { createHref } = useLocale();
 
   // Get localized placeholders or fall back to English
-  const getLocalizedPlaceholders = () => {
+  const localizedPlaceholders = useMemo(() => {
     if (!dictionary) return placeholders;
 
     return [
@@ -64,9 +64,7 @@ export function HeroSection({
         'hash generator',
       dictionary.tools['url-encoder']?.title?.toLowerCase() || 'url encoder',
     ];
-  };
-
-  const localizedPlaceholders = getLocalizedPlaceholders();
+  }, [dictionary]);
 
   // Get localized popular searches
   const getPopularSearches = () => {
