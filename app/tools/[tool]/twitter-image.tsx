@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 import { getToolById, categories } from '@/lib/tools';
 
 export const runtime = 'edge';
+export const revalidate = 86400; // Cache for 24h - tool data only changes on deploy
 export const alt = 'ToolsLab Tool';
 export const size = { width: 1200, height: 600 }; // Twitter card dimensions
 export const contentType = 'image/png';
@@ -16,29 +17,27 @@ export default async function Image({ params }: TwitterImageProps) {
   if (!tool) {
     // Fallback image for non-existent tools
     return new ImageResponse(
-      (
-        <div
-          style={{
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)',
-            fontFamily: 'system-ui',
-            color: 'white',
-          }}
-        >
-          <div style={{ fontSize: '100px', marginBottom: '24px' }}>🧪</div>
-          <div style={{ fontSize: '42px', fontWeight: '800' }}>
-            Tool Not Found
-          </div>
-          <div style={{ fontSize: '20px', marginTop: '16px', opacity: 0.8 }}>
-            ToolsLab - Developer Tools
-          </div>
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)',
+          fontFamily: 'system-ui',
+          color: 'white',
+        }}
+      >
+        <div style={{ fontSize: '100px', marginBottom: '24px' }}>🧪</div>
+        <div style={{ fontSize: '42px', fontWeight: '800' }}>
+          Tool Not Found
         </div>
-      ),
+        <div style={{ fontSize: '20px', marginTop: '16px', opacity: 0.8 }}>
+          ToolsLab - Developer Tools
+        </div>
+      </div>,
       { ...size }
     );
   }
@@ -83,225 +82,223 @@ export default async function Image({ params }: TwitterImageProps) {
   const labelInfo = getLabelInfo(tool.label || '');
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
+        fontFamily: 'system-ui',
+        position: 'relative',
+      }}
+    >
+      {/* Background Pattern */}
       <div
         style={{
-          height: '100%',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
-          fontFamily: 'system-ui',
-          position: 'relative',
-        }}
-      >
-        {/* Background Pattern */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `
               radial-gradient(circle at 150px 150px, rgba(255,255,255,0.1) 2px, transparent 0),
               radial-gradient(circle at 300px 300px, rgba(255,255,255,0.05) 2px, transparent 0)
             `,
-            backgroundSize: '80px 80px',
-          }}
-        />
+          backgroundSize: '80px 80px',
+        }}
+      />
 
-        {/* Header with ToolsLab branding */}
+      {/* Header with ToolsLab branding */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '30px',
+          left: '40px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+        }}
+      >
+        <div style={{ fontSize: '28px' }}>🧪</div>
+        <div
+          style={{
+            fontSize: '18px',
+            fontWeight: '700',
+            color: 'rgba(255, 255, 255, 0.9)',
+          }}
+        >
+          ToolsLab
+        </div>
+      </div>
+
+      {/* Label Badge */}
+      {labelInfo && (
         <div
           style={{
             position: 'absolute',
             top: '30px',
-            left: '40px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
+            right: '40px',
+            backgroundColor: labelInfo.bg,
+            color: labelInfo.color,
+            padding: '6px 12px',
+            borderRadius: '16px',
+            fontSize: '12px',
+            fontWeight: '700',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
           }}
         >
-          <div style={{ fontSize: '28px' }}>🧪</div>
-          <div
-            style={{
-              fontSize: '18px',
-              fontWeight: '700',
-              color: 'rgba(255, 255, 255, 0.9)',
-            }}
-          >
-            ToolsLab
-          </div>
+          {labelInfo.text}
+        </div>
+      )}
+
+      {/* Main Content */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          zIndex: 1,
+          maxWidth: '800px',
+          padding: '0 40px',
+        }}
+      >
+        {/* Tool Icon */}
+        <div
+          style={{
+            fontSize: '100px',
+            marginBottom: '20px',
+            filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))',
+          }}
+        >
+          {tool.icon}
         </div>
 
-        {/* Label Badge */}
-        {labelInfo && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '30px',
-              right: '40px',
-              backgroundColor: labelInfo.bg,
-              color: labelInfo.color,
-              padding: '6px 12px',
-              borderRadius: '16px',
-              fontSize: '12px',
-              fontWeight: '700',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            {labelInfo.text}
-          </div>
-        )}
+        {/* Tool Name */}
+        <div
+          style={{
+            fontSize: tool.name.length > 20 ? '42px' : '56px',
+            fontWeight: '800',
+            color: 'white',
+            textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+            marginBottom: '12px',
+            letterSpacing: '-1px',
+            lineHeight: '1.1',
+          }}
+        >
+          {tool.name}
+        </div>
 
-        {/* Main Content */}
+        {/* Tool Description */}
+        <div
+          style={{
+            fontSize: '20px',
+            fontWeight: '500',
+            color: 'rgba(255, 255, 255, 0.9)',
+            textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+            marginBottom: '24px',
+            lineHeight: '1.3',
+            maxWidth: '700px',
+          }}
+        >
+          {tool.description}
+        </div>
+
+        {/* Category and Features */}
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
+            gap: '16px',
             alignItems: 'center',
             justifyContent: 'center',
-            textAlign: 'center',
-            zIndex: 1,
-            maxWidth: '800px',
-            padding: '0 40px',
+            flexWrap: 'wrap',
           }}
         >
-          {/* Tool Icon */}
+          {/* Category Badge */}
           <div
             style={{
-              fontSize: '100px',
-              marginBottom: '20px',
-              filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))',
-            }}
-          >
-            {tool.icon}
-          </div>
-
-          {/* Tool Name */}
-          <div
-            style={{
-              fontSize: tool.name.length > 20 ? '42px' : '56px',
-              fontWeight: '800',
-              color: 'white',
-              textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-              marginBottom: '12px',
-              letterSpacing: '-1px',
-              lineHeight: '1.1',
-            }}
-          >
-            {tool.name}
-          </div>
-
-          {/* Tool Description */}
-          <div
-            style={{
-              fontSize: '20px',
-              fontWeight: '500',
-              color: 'rgba(255, 255, 255, 0.9)',
-              textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-              marginBottom: '24px',
-              lineHeight: '1.3',
-              maxWidth: '700px',
-            }}
-          >
-            {tool.description}
-          </div>
-
-          {/* Category and Features */}
-          <div
-            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(10px)',
+              padding: '8px 16px',
+              borderRadius: '20px',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
               display: 'flex',
-              gap: '16px',
               alignItems: 'center',
-              justifyContent: 'center',
-              flexWrap: 'wrap',
+              gap: '6px',
             }}
           >
-            {/* Category Badge */}
+            <div style={{ fontSize: '16px' }}>{primaryCategory?.icon}</div>
             <div
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                backdropFilter: 'blur(10px)',
-                padding: '8px 16px',
-                borderRadius: '20px',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
+                fontSize: '14px',
+                fontWeight: '600',
+                color: 'white',
               }}
             >
-              <div style={{ fontSize: '16px' }}>{primaryCategory?.icon}</div>
-              <div
-                style={{
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  color: 'white',
-                }}
-              >
-                {categoryName}
-              </div>
+              {categoryName}
             </div>
           </div>
         </div>
-
-        {/* Bottom Features - adjusted for smaller height */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '30px',
-            left: '40px',
-            right: '40px',
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '30px',
-            fontSize: '14px',
-            color: 'rgba(255, 255, 255, 0.8)',
-            fontWeight: '500',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <div>🚀</div>
-            <div>Fast & Free</div>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <div>🔒</div>
-            <div>Secure</div>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <div>📱</div>
-            <div>Works Offline</div>
-          </div>
-        </div>
-
-        {/* Decorative Elements - adjusted for smaller height */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '40px',
-            right: '150px',
-            width: '80px',
-            height: '80px',
-            borderRadius: '50%',
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '2px solid rgba(255, 255, 255, 0.1)',
-          }}
-        />
-
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '90px',
-            left: '80px',
-            width: '50px',
-            height: '50px',
-            borderRadius: '50%',
-            background: 'rgba(255, 255, 255, 0.08)',
-            border: '2px solid rgba(255, 255, 255, 0.15)',
-          }}
-        />
       </div>
-    ),
+
+      {/* Bottom Features - adjusted for smaller height */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '30px',
+          left: '40px',
+          right: '40px',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '30px',
+          fontSize: '14px',
+          color: 'rgba(255, 255, 255, 0.8)',
+          fontWeight: '500',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div>🚀</div>
+          <div>Fast & Free</div>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div>🔒</div>
+          <div>Secure</div>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div>📱</div>
+          <div>Works Offline</div>
+        </div>
+      </div>
+
+      {/* Decorative Elements - adjusted for smaller height */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '40px',
+          right: '150px',
+          width: '80px',
+          height: '80px',
+          borderRadius: '50%',
+          background: 'rgba(255, 255, 255, 0.05)',
+          border: '2px solid rgba(255, 255, 255, 0.1)',
+        }}
+      />
+
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '90px',
+          left: '80px',
+          width: '50px',
+          height: '50px',
+          borderRadius: '50%',
+          background: 'rgba(255, 255, 255, 0.08)',
+          border: '2px solid rgba(255, 255, 255, 0.15)',
+        }}
+      />
+    </div>,
     { ...size }
   );
 }

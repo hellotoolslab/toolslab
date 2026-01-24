@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 import { getToolById, categories } from '@/lib/tools';
 
 export const runtime = 'edge';
+export const revalidate = 86400; // Cache for 24h - tool data only changes on deploy
 export const alt = 'ToolsLab Tool';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
@@ -15,29 +16,27 @@ export default async function Image({ params }: OpenGraphImageProps) {
 
   if (!tool) {
     return new ImageResponse(
-      (
-        <div
-          style={{
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
-            fontFamily: 'system-ui',
-            color: 'white',
-          }}
-        >
-          <div style={{ fontSize: '120px', marginBottom: '24px' }}>❌</div>
-          <div style={{ fontSize: '48px', fontWeight: '800' }}>
-            Tool Not Found
-          </div>
-          <div style={{ fontSize: '24px', marginTop: '16px', opacity: 0.8 }}>
-            ToolsLab - Developer Tools
-          </div>
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
+          fontFamily: 'system-ui',
+          color: 'white',
+        }}
+      >
+        <div style={{ fontSize: '120px', marginBottom: '24px' }}>❌</div>
+        <div style={{ fontSize: '48px', fontWeight: '800' }}>
+          Tool Not Found
         </div>
-      ),
+        <div style={{ fontSize: '24px', marginTop: '16px', opacity: 0.8 }}>
+          ToolsLab - Developer Tools
+        </div>
+      </div>,
       { ...size }
     );
   }
@@ -63,92 +62,88 @@ export default async function Image({ params }: OpenGraphImageProps) {
     categoryColors.data;
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
+        fontFamily: 'system-ui',
+        color: 'white',
+      }}
+    >
       <div
         style={{
-          height: '100%',
-          width: '100%',
+          position: 'absolute',
+          top: '40px',
+          left: '60px',
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
-          background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
-          fontFamily: 'system-ui',
-          color: 'white',
+          gap: '12px',
         }}
       >
+        <div style={{ fontSize: '32px' }}>🧪</div>
+        <div style={{ fontSize: '20px', fontWeight: '700' }}>ToolsLab</div>
+      </div>
+
+      <div style={{ fontSize: '120px', marginBottom: '24px' }}>{tool.icon}</div>
+      <div
+        style={{
+          fontSize: '56px',
+          fontWeight: '800',
+          marginBottom: '16px',
+          textAlign: 'center',
+        }}
+      >
+        {tool.name}
+      </div>
+      <div
+        style={{
+          fontSize: '20px',
+          marginBottom: '24px',
+          textAlign: 'center',
+          maxWidth: '800px',
+        }}
+      >
+        {tool.description}
+      </div>
+
+      {primaryCategory && (
         <div
           style={{
-            position: 'absolute',
-            top: '40px',
-            left: '60px',
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            padding: '12px 20px',
+            borderRadius: '24px',
             display: 'flex',
             alignItems: 'center',
-            gap: '12px',
+            gap: '8px',
           }}
         >
-          <div style={{ fontSize: '32px' }}>🧪</div>
-          <div style={{ fontSize: '20px', fontWeight: '700' }}>ToolsLab</div>
-        </div>
-
-        <div style={{ fontSize: '120px', marginBottom: '24px' }}>
-          {tool.icon}
-        </div>
-        <div
-          style={{
-            fontSize: '56px',
-            fontWeight: '800',
-            marginBottom: '16px',
-            textAlign: 'center',
-          }}
-        >
-          {tool.name}
-        </div>
-        <div
-          style={{
-            fontSize: '20px',
-            marginBottom: '24px',
-            textAlign: 'center',
-            maxWidth: '800px',
-          }}
-        >
-          {tool.description}
-        </div>
-
-        {primaryCategory && (
-          <div
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.2)',
-              padding: '12px 20px',
-              borderRadius: '24px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-            }}
-          >
-            <div style={{ fontSize: '20px' }}>{primaryCategory.icon}</div>
-            <div style={{ fontSize: '16px', fontWeight: '600' }}>
-              {primaryCategory.name}
-            </div>
+          <div style={{ fontSize: '20px' }}>{primaryCategory.icon}</div>
+          <div style={{ fontSize: '16px', fontWeight: '600' }}>
+            {primaryCategory.name}
           </div>
-        )}
-
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '40px',
-            display: 'flex',
-            gap: '30px',
-            fontSize: '16px',
-            opacity: 0.8,
-          }}
-        >
-          <div>🚀 Fast & Free</div>
-          <div>🔒 Secure</div>
-          <div>📱 Works Offline</div>
         </div>
+      )}
+
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '40px',
+          display: 'flex',
+          gap: '30px',
+          fontSize: '16px',
+          opacity: 0.8,
+        }}
+      >
+        <div>🚀 Fast & Free</div>
+        <div>🔒 Secure</div>
+        <div>📱 Works Offline</div>
       </div>
-    ),
+    </div>,
     { ...size }
   );
 }

@@ -58,184 +58,180 @@ export async function GET(request: NextRequest) {
     }
 
     return new ImageResponse(
-      (
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#0F172A',
+          backgroundImage: bgGradient,
+          position: 'relative',
+        }}
+      >
+        {/* Background Pattern */}
         <div
           style={{
-            height: '100%',
-            width: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%)
+              `,
+          }}
+        />
+
+        {/* Main Content Container */}
+        <div
+          style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#0F172A',
-            backgroundImage: bgGradient,
-            position: 'relative',
+            textAlign: 'center',
+            zIndex: 1,
+            maxWidth: '900px',
+            padding: '0 40px',
           }}
         >
-          {/* Background Pattern */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundImage: `
-                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%)
-              `,
-            }}
-          />
-
-          {/* Main Content Container */}
+          {/* Logo/Icon */}
           <div
             style={{
               display: 'flex',
-              flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-              zIndex: 1,
-              maxWidth: '900px',
-              padding: '0 40px',
+              marginBottom: '32px',
             }}
           >
-            {/* Logo/Icon */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginBottom: '32px',
-              }}
+            <svg
+              width="80"
+              height="80"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <svg
-                width="80"
-                height="80"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d={iconPath} />
-              </svg>
-              <span
-                style={{
-                  color: 'white',
-                  fontSize: '48px',
-                  marginLeft: '20px',
-                  fontWeight: 'bold',
-                  fontFamily: 'system-ui, sans-serif',
-                }}
-              >
-                ToolsLab
-              </span>
-            </div>
-
-            {/* Main Title */}
-            <h1
+              <path d={iconPath} />
+            </svg>
+            <span
               style={{
-                fontSize: toolSlug ? '64px' : '72px',
+                color: 'white',
+                fontSize: '48px',
+                marginLeft: '20px',
                 fontWeight: 'bold',
-                color: 'white',
-                margin: '0 0 16px 0',
-                lineHeight: 1.1,
                 fontFamily: 'system-ui, sans-serif',
-                textShadow: '0 4px 8px rgba(0,0,0,0.3)',
               }}
             >
-              {title}
-            </h1>
-
-            {/* Subtitle */}
-            <p
-              style={{
-                fontSize: '32px',
-                color: 'rgba(255, 255, 255, 0.9)',
-                margin: '0 0 32px 0',
-                lineHeight: 1.3,
-                fontFamily: 'system-ui, sans-serif',
-                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-              }}
-            >
-              {subtitle}
-            </p>
-
-            {/* Features Row */}
-            <div
-              style={{
-                display: 'flex',
-                gap: '48px',
-                alignItems: 'center',
-                fontSize: '24px',
-                color: 'white',
-                fontFamily: 'system-ui, sans-serif',
-                fontWeight: '600',
-              }}
-            >
-              <div
-                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-              >
-                <span>⚡</span>
-                <span>Instant</span>
-              </div>
-              <div
-                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-              >
-                <span>🔒</span>
-                <span>Private</span>
-              </div>
-              <div
-                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-              >
-                <span>✨</span>
-                <span>Free</span>
-              </div>
-            </div>
+              ToolsLab
+            </span>
           </div>
 
-          {/* Bottom URL */}
+          {/* Main Title */}
+          <h1
+            style={{
+              fontSize: toolSlug ? '64px' : '72px',
+              fontWeight: 'bold',
+              color: 'white',
+              margin: '0 0 16px 0',
+              lineHeight: 1.1,
+              fontFamily: 'system-ui, sans-serif',
+              textShadow: '0 4px 8px rgba(0,0,0,0.3)',
+            }}
+          >
+            {title}
+          </h1>
+
+          {/* Subtitle */}
+          <p
+            style={{
+              fontSize: '32px',
+              color: 'rgba(255, 255, 255, 0.9)',
+              margin: '0 0 32px 0',
+              lineHeight: 1.3,
+              fontFamily: 'system-ui, sans-serif',
+              textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+            }}
+          >
+            {subtitle}
+          </p>
+
+          {/* Features Row */}
+          <div
+            style={{
+              display: 'flex',
+              gap: '48px',
+              alignItems: 'center',
+              fontSize: '24px',
+              color: 'white',
+              fontFamily: 'system-ui, sans-serif',
+              fontWeight: '600',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span>⚡</span>
+              <span>Instant</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span>🔒</span>
+              <span>Private</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span>✨</span>
+              <span>Free</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom URL */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '40px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            color: 'rgba(255, 255, 255, 0.8)',
+            fontSize: '20px',
+            fontFamily: 'Inter, sans-serif',
+          }}
+        >
+          toolslab.dev
+        </div>
+
+        {/* Quality Badge */}
+        {(toolSlug || categorySlug) && (
           <div
             style={{
               position: 'absolute',
-              bottom: '40px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              color: 'rgba(255, 255, 255, 0.8)',
-              fontSize: '20px',
-              fontFamily: 'Inter, sans-serif',
+              top: '40px',
+              right: '40px',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              backdropFilter: 'blur(10px)',
+              padding: '12px 24px',
+              borderRadius: '25px',
+              color: 'white',
+              fontSize: '18px',
+              fontWeight: '600',
+              fontFamily: 'system-ui, sans-serif',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
             }}
           >
-            toolslab.dev
+            Professional Quality
           </div>
-
-          {/* Quality Badge */}
-          {(toolSlug || categorySlug) && (
-            <div
-              style={{
-                position: 'absolute',
-                top: '40px',
-                right: '40px',
-                backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                backdropFilter: 'blur(10px)',
-                padding: '12px 24px',
-                borderRadius: '25px',
-                color: 'white',
-                fontSize: '18px',
-                fontWeight: '600',
-                fontFamily: 'system-ui, sans-serif',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-              }}
-            >
-              Professional Quality
-            </div>
-          )}
-        </div>
-      ),
+        )}
+      </div>,
       {
         width: 1200,
         height: 630,
+        headers: {
+          'Cache-Control':
+            'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800',
+        },
       }
     );
   } catch (error) {
@@ -243,23 +239,21 @@ export async function GET(request: NextRequest) {
 
     // Fallback simple image
     return new ImageResponse(
-      (
-        <div
-          style={{
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#1a202c',
-            color: 'white',
-          }}
-        >
-          <h1 style={{ fontSize: '72px', fontWeight: 'bold' }}>ToolsLab</h1>
-          <p style={{ fontSize: '32px' }}>Professional Developer Tools</p>
-        </div>
-      ),
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#1a202c',
+          color: 'white',
+        }}
+      >
+        <h1 style={{ fontSize: '72px', fontWeight: 'bold' }}>ToolsLab</h1>
+        <p style={{ fontSize: '32px' }}>Professional Developer Tools</p>
+      </div>,
       {
         width: 1200,
         height: 630,
