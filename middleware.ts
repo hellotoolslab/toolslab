@@ -1,20 +1,17 @@
 /**
  * Next.js Middleware - OPTIMIZED FOR CPU EFFICIENCY
  *
- * CRITICAL OPTIMIZATION (Jan 2025):
- * - Matcher restricted to ONLY pages that need locale/VPN handling
- * - Sitemap generation REMOVED (now static at build time)
- * - No dynamic imports
- * - Edge Config only when needed
- * - BotDetector as singleton
+ * OPTIMIZATIONS (Jan 2025):
+ * - VPN detection cached via cookie (12 regex only on first visit, 1h TTL)
+ * - Locale detection via direct if/else (no loop/callbacks)
+ * - Static security headers moved to next.config.js
+ * - Locale cookie skipped if already correct
+ * - Removed unused headers (X-Pathname, X-User-Country)
+ * - Bot path: early return with minimal processing
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  localesWithPrefix,
-  defaultLocale,
-  type Locale,
-} from '@/lib/i18n/config';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
 
 // ============================================================================
 // PRE-COMPILED PATTERNS (cached at module level for performance)
@@ -88,27 +85,22 @@ function detectCorporateVPN(
 }
 
 // ============================================================================
-// SECURITY HEADERS (simplified)
+// VPN-CONDITIONAL HEADERS (static headers moved to next.config.js)
 // ============================================================================
 
-function applySecurityHeaders(response: NextResponse, isVPN: boolean) {
-  // Common headers
-  response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('X-DNS-Prefetch-Control', 'on');
-  response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
-
+function applyVPNHeaders(response: NextResponse, isVPN: boolean) {
+  // Static headers (X-Content-Type-Options, X-DNS-Prefetch-Control,
+  // Referrer-Policy, X-Frame-Options) are now in next.config.js.
+  // Middleware only handles VPN-conditional overrides.
   if (isVPN) {
-    // VPN-compatible: No HSTS, permissive CSP
     response.headers.delete('Strict-Transport-Security');
-    response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+    response.headers.set('X-Frame-Options', 'SAMEORIGIN'); // Override config's DENY
     response.headers.set('X-VPN-Mode', 'true');
     response.headers.set(
       'Cache-Control',
       'no-cache, no-store, must-revalidate'
     );
   } else {
-    // Standard security
-    response.headers.set('X-Frame-Options', 'DENY');
     response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
   }
 }
@@ -131,21 +123,26 @@ export async function middleware(request: NextRequest) {
   }
 
   // -------------------------------------------------------------------------
-  // 2. Detect locale from pathname
+  // 2. Detect locale from pathname (direct checks, no loop/callbacks)
   // -------------------------------------------------------------------------
   let currentLocale: Locale = defaultLocale;
-  const pathnameHasLocale = localesWithPrefix.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
+  let pathnameHasLocale = false;
 
-  if (pathnameHasLocale) {
-    const detectedLocale = localesWithPrefix.find(
-      (locale) =>
-        pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-    );
-    if (detectedLocale) {
-      currentLocale = detectedLocale as Locale;
-    }
+  if (pathname.startsWith('/it/') || pathname === '/it') {
+    currentLocale = 'it';
+    pathnameHasLocale = true;
+  } else if (pathname.startsWith('/es/') || pathname === '/es') {
+    currentLocale = 'es';
+    pathnameHasLocale = true;
+  } else if (pathname.startsWith('/fr/') || pathname === '/fr') {
+    currentLocale = 'fr';
+    pathnameHasLocale = true;
+  } else if (pathname.startsWith('/de/') || pathname === '/de') {
+    currentLocale = 'de';
+    pathnameHasLocale = true;
+  } else if (pathname.startsWith('/pt/') || pathname === '/pt') {
+    currentLocale = 'pt';
+    pathnameHasLocale = true;
   }
 
   // -------------------------------------------------------------------------
@@ -169,33 +166,51 @@ export async function middleware(request: NextRequest) {
   }
 
   // -------------------------------------------------------------------------
-  // 4. VPN detection and security headers
+  // 4. VPN detection (cookie-cached to avoid regex on every request)
   // -------------------------------------------------------------------------
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  const realIP = request.headers.get('x-real-ip');
-  const isVPN = detectCorporateVPN(forwardedFor, realIP, userAgent);
+  const vpnCookie = request.cookies.get('vpn-mode');
+  let isVPN: boolean;
+
+  if (vpnCookie !== undefined) {
+    // Cached result: skip all regex checks
+    isVPN = vpnCookie.value === 'true';
+  } else {
+    // First visit: run full detection
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    const realIP = request.headers.get('x-real-ip');
+    isVPN = detectCorporateVPN(forwardedFor, realIP, userAgent);
+  }
 
   const response = NextResponse.next();
 
-  // Set locale headers
+  // Cache VPN detection result for 8 hours (typical work day)
+  if (vpnCookie === undefined) {
+    response.cookies.set('vpn-mode', String(isVPN), {
+      path: '/',
+      sameSite: 'lax',
+      httpOnly: true,
+      maxAge: 28800,
+    });
+  }
+
+  // Set essential headers (X-Request-URL used by app/layout.tsx for SSR locale)
   response.headers.set('X-Locale', currentLocale);
-  response.headers.set('X-Pathname', pathname);
   response.headers.set('X-Request-URL', request.url);
 
-  // Set locale cookie
-  response.cookies.set('NEXT_LOCALE', currentLocale, {
-    path: '/',
-    sameSite: 'lax',
-    httpOnly: false,
-  });
+  // Set locale cookie (skip if already correct to reduce response size)
+  const existingLocale = request.cookies.get('NEXT_LOCALE');
+  if (existingLocale?.value !== currentLocale) {
+    response.cookies.set('NEXT_LOCALE', currentLocale, {
+      path: '/',
+      sameSite: 'lax',
+      httpOnly: false,
+    });
+  }
 
-  // Persistent language preference
+  // Persistent language preference (only for non-default locales)
   if (pathnameHasLocale && currentLocale !== defaultLocale) {
     const preferredLocaleCookie = request.cookies.get('preferred-locale');
-    if (
-      !preferredLocaleCookie ||
-      preferredLocaleCookie.value !== currentLocale
-    ) {
+    if (preferredLocaleCookie?.value !== currentLocale) {
       response.cookies.set('preferred-locale', currentLocale, {
         maxAge: 365 * 24 * 60 * 60,
         path: '/',
@@ -205,12 +220,8 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Apply security headers based on VPN status
-  applySecurityHeaders(response, isVPN);
-
-  // Geographic info (if available)
-  const country = request.geo?.country || 'US';
-  response.headers.set('X-User-Country', country);
+  // Apply VPN-conditional headers (static security headers are in next.config.js)
+  applyVPNHeaders(response, isVPN);
 
   return response;
 }
