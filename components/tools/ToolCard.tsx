@@ -89,14 +89,6 @@ export function ToolCard({
 
   return (
     <CardWrapper>
-      {/* Category color border top */}
-      <div
-        className="absolute left-0 right-0 top-0 h-1 rounded-t-xl opacity-80"
-        style={{
-          background: `linear-gradient(90deg, ${getCategoryColor(tool.categories[0])}, transparent)`,
-        }}
-      />
-
       {/* Header Section - Fixed Height */}
       <div className="relative flex-shrink-0 p-6 pb-4">
         {/* Favorite Button */}
@@ -139,7 +131,7 @@ export function ToolCard({
         <div className="mb-4">
           <h3
             className={cn(
-              'mb-2 text-lg font-bold leading-tight',
+              'mb-2 text-lg font-semibold leading-tight',
               labelInfo.isComingSoon
                 ? 'text-gray-500 dark:text-gray-400'
                 : 'text-gray-900 dark:text-gray-100'
@@ -149,13 +141,13 @@ export function ToolCard({
           </h3>
           <div
             className={cn(
-              'inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium',
-              labelInfo.isComingSoon && 'opacity-60'
+              'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium',
+              labelInfo.isComingSoon && 'opacity-50'
             )}
             style={{
-              backgroundColor: `${getCategoryColor(tool.categories[0])}15`,
+              backgroundColor: `${getCategoryColor(tool.categories[0])}10`,
               color: getCategoryColor(tool.categories[0]),
-              borderColor: `${getCategoryColor(tool.categories[0])}30`,
+              opacity: labelInfo.isComingSoon ? 0.5 : 0.8,
             }}
           >
             {translatedCategory}
@@ -176,18 +168,18 @@ export function ToolCard({
             : translatedTool.description}
         </p>
 
-        {/* Keywords - Bottom section */}
+        {/* Keywords - Bottom section with reduced opacity */}
         {tool.keywords && tool.keywords.length > 0 && (
-          <div className="mt-auto">
+          <div className="mt-auto pt-2 opacity-60">
             <div className="flex flex-wrap gap-1.5">
               {tool.keywords.slice(0, 4).map((keyword) => (
                 <span
                   key={keyword}
                   className={cn(
-                    'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium transition-colors',
+                    'inline-flex items-center rounded px-2 py-0.5 text-xs transition-colors',
                     labelInfo.isComingSoon
-                      ? 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                      ? 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-500'
+                      : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
                   )}
                 >
                   {keyword}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import { useDictionary } from '@/hooks/useDictionary';
@@ -13,7 +13,6 @@ import {
   type Tool,
 } from '@/lib/tools';
 import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
-import { SearchBar } from '@/components/SearchBar';
 import {
   Search,
   Filter,
@@ -31,6 +30,20 @@ import {
   CheckCircle2,
   X,
 } from 'lucide-react';
+
+// Category colors mapping
+const categoryColors: Record<string, string> = {
+  data: '#0EA5E9',
+  encoding: '#10B981',
+  base64: '#14B8A6',
+  text: '#8B5CF6',
+  generators: '#F97316',
+  web: '#EC4899',
+  dev: '#F59E0B',
+  formatters: '#6366F1',
+  social: '#F43F5E',
+  pdf: '#EF4444',
+};
 
 type SortOption = 'alphabetical' | 'popular' | 'recent' | 'category';
 
@@ -253,7 +266,7 @@ export default function ToolsHubContent({
 
           {/* Content skeleton */}
           <div className="container mx-auto px-4 py-12">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
@@ -269,12 +282,12 @@ export default function ToolsHubContent({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-      {/* Header Section */}
+      {/* Header Section - Compact */}
       <section className="relative border-b border-gray-200 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-500 dark:border-gray-700">
-        <div className="container mx-auto px-4 py-16 sm:py-20">
+        <div className="container mx-auto px-4 py-8 sm:py-10">
           <div className="mx-auto max-w-4xl text-center">
             {/* Breadcrumbs */}
-            <nav className="mb-5 flex justify-center" aria-label="Breadcrumb">
+            <nav className="mb-3 flex justify-center" aria-label="Breadcrumb">
               <ol className="flex items-center space-x-2 text-sm text-white/80">
                 <li>
                   <Link
@@ -294,21 +307,20 @@ export default function ToolsHubContent({
             </nav>
 
             {/* Main heading */}
-            <h1 className="mb-4 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            <h1 className="mb-2 text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
               {t.header.title}
             </h1>
 
-            {/* Subtitle */}
-            <p className="mb-3 text-lg text-white/90">{t.header.subtitle}</p>
-
-            {/* Count + Description */}
-            <p className="mb-8 text-base text-white/80">
-              <span className="font-semibold text-white">{totalTools}+</span>{' '}
-              {t.header.description}
+            {/* Subtitle + Count */}
+            <p className="mb-4 text-base text-white/90">
+              {t.header.subtitle}{' '}
+              <span className="font-semibold text-white">
+                ({totalTools}+ {t.trust.tools})
+              </span>
             </p>
 
             {/* Trust badges */}
-            <div className="mb-8 flex flex-wrap items-center justify-center gap-4 text-sm text-white/90">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/90">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-white" />
                 <span>{t.trust.freeForever}</span>
@@ -318,58 +330,47 @@ export default function ToolsHubContent({
                 <span>{t.trust.privacyFirst}</span>
               </div>
             </div>
-
-            {/* Search bar */}
-            <div className="mx-auto max-w-2xl">
-              <SearchBar placeholder={t.search.placeholder} />
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Filters Section */}
+      {/* Filters Section with Search */}
       <section className="sticky top-16 z-10 border-b border-gray-200 bg-white/95 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/95">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {/* Category filter */}
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <button
-                onClick={() => updateFilters('category', '')}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                  !categoryFilter || categoryFilter === 'all'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                }`}
-              >
-                {t.filters.all}
-              </button>
-              {categories.map((category) => (
+          {/* Search bar + Sort row */}
+          <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            {/* Search bar - filters tools in real-time */}
+            <div className="relative w-full sm:max-w-md">
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <Search className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => updateFilters('search', e.target.value)}
+                placeholder={t.search.placeholder}
+                className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-10 text-gray-900 placeholder-gray-500 transition-colors duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+              />
+              {search && (
                 <button
-                  key={category.id}
-                  onClick={() => updateFilters('category', category.id)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                    categoryFilter === category.id
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                  }`}
+                  onClick={() => updateFilters('search', '')}
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                 >
-                  {dictionary?.categories?.[category.id]?.name || category.name}
+                  <X className="h-5 w-5" />
                 </button>
-              ))}
+              )}
             </div>
 
-            {/* Sort and view options */}
+            {/* Sort dropdown with icon */}
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {t.filters.sortBy}
-                </span>
+                <Filter className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                 <select
                   value={sort}
                   onChange={(e) =>
                     updateFilters('sort', e.target.value as SortOption)
                   }
-                  className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-400"
+                  className="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:border-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:border-gray-500 dark:focus:border-blue-400"
                 >
                   <option value="popular">{t.filters.mostPopular}</option>
                   <option value="alphabetical">{t.filters.alphabetical}</option>
@@ -380,13 +381,59 @@ export default function ToolsHubContent({
               {(search || categoryFilter || popular) && (
                 <button
                   onClick={clearAllFilters}
-                  className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                  className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                 >
                   <X className="h-4 w-4" />
                   {t.filters.clearFilters}
                 </button>
               )}
             </div>
+          </div>
+
+          {/* Category filters with counters and category colors */}
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => updateFilters('category', '')}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                !categoryFilter || categoryFilter === 'all'
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+              }`}
+            >
+              {t.filters.all}
+              <span
+                className={`ml-1.5 ${!categoryFilter || categoryFilter === 'all' ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'}`}
+              >
+                ({totalTools})
+              </span>
+            </button>
+            {categories.map((category) => {
+              const categoryToolCount = tools.filter((tool) =>
+                tool.categories.includes(category.id)
+              ).length;
+              const isActive = categoryFilter === category.id;
+              const color = categoryColors[category.id] || '#3B82F6';
+
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => updateFilters('category', category.id)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                    isActive
+                      ? 'text-white shadow-md'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                  style={isActive ? { backgroundColor: color } : undefined}
+                >
+                  {dictionary?.categories?.[category.id]?.name || category.name}
+                  <span
+                    className={`ml-1.5 ${isActive ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'}`}
+                  >
+                    ({categoryToolCount})
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -407,7 +454,7 @@ export default function ToolsHubContent({
                 </span>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {recentTools.map((tool) => (
                 <ToolCardWrapper key={tool.id} tool={tool} />
               ))}
@@ -429,7 +476,7 @@ export default function ToolsHubContent({
                 </span>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {popularTools.map((tool) => (
                 <ToolCardWrapper key={tool.id} tool={tool} />
               ))}
@@ -465,7 +512,7 @@ export default function ToolsHubContent({
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {filteredTools.map((tool) => (
                 <ToolCardWrapper key={tool.id} tool={tool} />
               ))}
