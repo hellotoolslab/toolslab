@@ -137,6 +137,31 @@ const nextConfig = {
           },
         ],
       },
+      // PWA manifest - cache for 7 days (rarely changes)
+      {
+        source: '/manifest.webmanifest',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=604800, stale-while-revalidate=86400',
+          },
+          {
+            key: 'Content-Type',
+            value: 'application/manifest+json',
+          },
+        ],
+      },
+      // Favicons and icons - cache for 6 months
+      {
+        source:
+          '/(favicon.ico|favicon.svg|apple-touch-icon.png|favicon-:size.png|icon-:size.png)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=15552000, stale-while-revalidate=86400',
+          },
+        ],
+      },
       {
         source: '/:path*',
         headers: [
