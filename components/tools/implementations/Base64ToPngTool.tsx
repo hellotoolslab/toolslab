@@ -83,7 +83,7 @@ export default function Base64ToPngTool({
     cleanBase64 = cleanBase64.replace(/\s+/g, '');
 
     const isValid = isValidBase64(cleanBase64);
-    const estimatedSize = isValid ? estimateDecodedSize(cleanBase64.length) : 0;
+    const estimatedSize = isValid ? estimateDecodedSize(cleanBase64) : 0;
 
     setValidationInfo({
       isValid,
