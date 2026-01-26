@@ -7,7 +7,7 @@ import { UmamiProvider } from '@/components/analytics/UmamiProvider';
 import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import dynamic from 'next/dynamic';
-import { headers, cookies } from 'next/headers';
+import { headers } from 'next/headers';
 import { getLocaleFromPathname } from '@/lib/i18n/locale-detector';
 
 // Disable SSR for components that use stores to prevent hydration mismatch
@@ -153,31 +153,19 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Get locale for SSR - critical for SEO and user experience
+  // Get locale from URL for correct <html lang> attribute (critical for SEO)
+  // This makes the page "dynamic" but CDN caching is handled by Cache-Control headers
   const headersList = await headers();
-
-  let locale = 'en'; // default
-
-  // Get the request URL from middleware
   const requestUrl = headersList.get('x-request-url');
 
+  let locale = 'en';
   if (requestUrl) {
     try {
       const url = new URL(requestUrl);
       locale = getLocaleFromPathname(url.pathname);
-      console.log(
-        '🌐 SSR Layout - URL:',
-        requestUrl,
-        '| pathname:',
-        url.pathname,
-        '| locale:',
-        locale
-      );
-    } catch (e) {
-      console.error('Failed to parse request URL:', e);
+    } catch {
+      // Fallback to English on error
     }
-  } else {
-    console.warn('⚠️ No x-request-url header found, defaulting to en');
   }
 
   return (

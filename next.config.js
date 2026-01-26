@@ -90,21 +90,22 @@ const nextConfig = {
   // Headers personalizzati
   async headers() {
     return [
-      // Tool pages - aggressive caching (24 hours browser, 7 days CDN)
+      // Tool pages - 24h CDN cache (aligned with ISR revalidate)
+      // After 24h: stale-while-revalidate serves old content while fetching new
       {
         source: '/tools/:tool',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, s-maxage=604800, stale-while-revalidate=86400',
+            value: 'public, s-maxage=86400, stale-while-revalidate=3600',
           },
           {
             key: 'CDN-Cache-Control',
-            value: 'public, max-age=604800',
+            value: 'public, max-age=86400',
           },
           {
             key: 'Cloudflare-CDN-Cache-Control',
-            value: 'max-age=604800',
+            value: 'max-age=86400',
           },
         ],
       },
@@ -114,15 +115,15 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, s-maxage=604800, stale-while-revalidate=86400',
+            value: 'public, s-maxage=86400, stale-while-revalidate=3600',
           },
           {
             key: 'CDN-Cache-Control',
-            value: 'public, max-age=604800',
+            value: 'public, max-age=86400',
           },
           {
             key: 'Cloudflare-CDN-Cache-Control',
-            value: 'max-age=604800',
+            value: 'max-age=86400',
           },
         ],
       },
