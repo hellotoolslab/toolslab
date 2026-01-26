@@ -157,6 +157,9 @@ export async function middleware(request: NextRequest) {
     response.headers.set('X-Locale', currentLocale);
     response.headers.set('X-Bot-Detected', 'true');
     response.headers.set('Cache-Control', 'public, max-age=86400');
+    // CRITICAL: Set X-Request-URL for bots too - needed for correct HTML lang attribute
+    // Without this, SSR renders <html lang="en"> even on localized pages, causing hreflang mismatch
+    response.headers.set('X-Request-URL', request.url);
 
     if (botDetection.isSearchEngine) {
       response.headers.set('X-Search-Engine', 'true');
