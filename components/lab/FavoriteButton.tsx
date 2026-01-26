@@ -89,20 +89,33 @@ export function FavoriteButton({
     }
   };
 
+  // Increased icon sizes for better visibility
   const sizeClasses = {
-    sm: 'w-4 h-4',
-    md: 'w-5 h-5',
-    lg: 'w-6 h-6',
+    sm: 'w-5 h-5',
+    md: 'w-6 h-6',
+    lg: 'w-7 h-7',
+  };
+
+  // Button padding based on size
+  const paddingClasses = {
+    sm: 'p-1.5',
+    md: 'p-2',
+    lg: 'p-2.5',
   };
 
   return (
     <button
       onClick={handleToggle}
       className={cn(
-        'group relative inline-flex items-center gap-1.5 transition-all',
+        'group relative inline-flex items-center gap-1.5 transition-all duration-200',
         'hover:scale-110 active:scale-95',
         'focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2',
-        'cursor-pointer rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-800',
+        'cursor-pointer rounded-full',
+        paddingClasses[size],
+        // Enhanced hover background
+        'bg-transparent hover:bg-amber-100 dark:hover:bg-amber-900/30',
+        // Border for better visibility
+        'border border-transparent hover:border-amber-200 dark:hover:border-amber-700',
         className
       )}
       title={isFav ? 'Remove from Lab' : 'Add to Lab'}
@@ -121,10 +134,10 @@ export function FavoriteButton({
           <Star
             className={cn(
               sizeClasses[size],
-              'transition-colors',
+              'transition-colors duration-200',
               isFav
-                ? 'fill-amber-500 text-amber-500'
-                : 'text-gray-400 hover:text-amber-500 group-hover:text-amber-500'
+                ? 'fill-amber-500 text-amber-500 drop-shadow-sm'
+                : 'text-gray-500 hover:text-amber-500 group-hover:text-amber-500 dark:text-gray-400'
             )}
           />
         </motion.div>
