@@ -7,6 +7,13 @@ import { loadToolTranslation } from '@/lib/i18n/load-tools';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
+// ISR: Revalidate tool pages every 24 hours (86400 seconds)
+// Tools don't change frequently, so aggressive caching is safe
+export const revalidate = 86400;
+
+// Force static generation at build time for all tools
+export const dynamicParams = false;
+
 interface ToolPageProps {
   params: {
     tool: string;
