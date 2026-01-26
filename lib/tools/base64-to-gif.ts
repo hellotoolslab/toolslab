@@ -3,45 +3,47 @@
  * Converts Base64 encoded data to GIF image files for download
  */
 
+import {
+  sanitizeBase64Input,
+  isValidBase64,
+  estimateDecodedSize,
+  formatFileSize,
+  downloadBlob,
+  exceedsMaxSize,
+  MAX_BASE64_INPUT_SIZE,
+} from './base64-common';
+
+export type { SanitizeResult } from './base64-common';
+export {
+  isValidBase64,
+  estimateDecodedSize,
+  formatFileSize,
+  downloadBlob,
+  sanitizeBase64Input,
+};
+
 export interface Base64ToGifResult {
   success: boolean;
   error?: string;
   gifBlob?: Blob;
   fileSize?: number;
   fileName?: string;
+  corrections?: string[];
+  wrongFormat?: { detected: string; expected: string };
   metadata?: {
     isGif: boolean;
     hasValidHeader: boolean;
     estimatedSize: number;
     version?: 'GIF87a' | 'GIF89a';
+    width?: number;
+    height?: number;
+    frameCount?: number;
   };
 }
 
 export interface Base64ToGifOptions {
   fileName?: string;
   validateGifHeader?: boolean;
-}
-
-/**
- * Validates if a string is valid Base64
- */
-export function isValidBase64(str: string): boolean {
-  if (!str || str.length === 0) {
-    return false;
-  }
-
-  // Remove whitespace and newlines
-  const cleanStr = str.replace(/\s+/g, '');
-
-  // Check if string contains only valid Base64 characters
-  const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
-  if (!base64Regex.test(cleanStr)) {
-    return false;
-  }
-
-  // Base64 padding is optional, so we don't strictly require length % 4 === 0
-  // Just verify it's reasonable (padding can be omitted)
-  return true;
 }
 
 /**
@@ -52,22 +54,18 @@ export function isGifData(uint8Array: Uint8Array): {
   version?: 'GIF87a' | 'GIF89a';
 } {
   // GIF files start with "GIF87a" or "GIF89a"
-  // GIF87a: [71, 73, 70, 56, 55, 97]
-  // GIF89a: [71, 73, 70, 56, 57, 97]
   const gifHeader = [71, 73, 70]; // "GIF"
 
   if (uint8Array.length < 6) {
     return { isGif: false };
   }
 
-  // Check "GIF" prefix
   for (let i = 0; i < gifHeader.length; i++) {
     if (uint8Array[i] !== gifHeader[i]) {
       return { isGif: false };
     }
   }
 
-  // Check version
   if (uint8Array[3] === 56 && uint8Array[4] === 57 && uint8Array[5] === 97) {
     return { isGif: true, version: 'GIF89a' };
   }
@@ -80,6 +78,38 @@ export function isGifData(uint8Array: Uint8Array): {
 }
 
 /**
+ * Counts the number of image frames in a GIF
+ * Each frame starts with an Image Descriptor (byte 0x2C)
+ */
+export function countGifFrames(uint8Array: Uint8Array): number {
+  let frameCount = 0;
+  // Start after the header (13 bytes: 6 header + 7 logical screen descriptor)
+  for (let i = 13; i < uint8Array.length; i++) {
+    if (uint8Array[i] === 0x2c) {
+      frameCount++;
+    }
+  }
+  return Math.max(frameCount, 1); // At least 1 frame if valid GIF
+}
+
+/**
+ * Extracts GIF dimensions from Logical Screen Descriptor (bytes 6-9, little-endian)
+ */
+export function extractGifDimensions(uint8Array: Uint8Array): {
+  width?: number;
+  height?: number;
+} {
+  if (uint8Array.length < 10) {
+    return {};
+  }
+
+  const width = uint8Array[6] | (uint8Array[7] << 8);
+  const height = uint8Array[8] | (uint8Array[9] << 8);
+
+  return { width, height };
+}
+
+/**
  * Extracts basic metadata from GIF bytes
  */
 export function extractGifMetadata(uint8Array: Uint8Array): {
@@ -87,40 +117,64 @@ export function extractGifMetadata(uint8Array: Uint8Array): {
   hasValidHeader: boolean;
   estimatedSize: number;
   version?: 'GIF87a' | 'GIF89a';
+  width?: number;
+  height?: number;
+  frameCount?: number;
 } {
   const { isGif, version } = isGifData(uint8Array);
   const hasValidHeader = isGif;
   const estimatedSize = uint8Array.length;
+  const dimensions = extractGifDimensions(uint8Array);
+  const frameCount = isGif ? countGifFrames(uint8Array) : undefined;
 
   return {
     isGif,
     hasValidHeader,
     estimatedSize,
     version,
+    width: dimensions.width,
+    height: dimensions.height,
+    frameCount,
   };
 }
 
 /**
- * Converts Base64 string to GIF file
+ * Converts Base64 string to GIF file with auto-correction of common input errors
  */
 export function base64ToGif(
   base64Data: string,
   options: Base64ToGifOptions = {}
 ): Base64ToGifResult {
   try {
-    // Clean input data
-    let cleanBase64 = base64Data.trim();
-
-    // Remove data URL prefix if present
-    if (cleanBase64.startsWith('data:')) {
-      const commaIndex = cleanBase64.indexOf(',');
-      if (commaIndex !== -1) {
-        cleanBase64 = cleanBase64.substring(commaIndex + 1);
-      }
+    // Check size limit
+    if (exceedsMaxSize(base64Data)) {
+      return {
+        success: false,
+        error: `Input too large. Maximum size is ${formatFileSize(MAX_BASE64_INPUT_SIZE)}.`,
+      };
     }
 
-    // Remove whitespace and newlines
-    cleanBase64 = cleanBase64.replace(/\s+/g, '');
+    // Sanitize input with auto-corrections
+    const {
+      cleaned: cleanBase64,
+      corrections,
+      detectedFormat,
+    } = sanitizeBase64Input(base64Data);
+
+    // Check for wrong format (only when header validation is enabled)
+    if (
+      options.validateGifHeader !== false &&
+      detectedFormat &&
+      detectedFormat !== 'unknown' &&
+      detectedFormat !== 'gif'
+    ) {
+      return {
+        success: false,
+        error: `This data appears to be a ${detectedFormat.toUpperCase()} image, not GIF.`,
+        corrections: corrections.length > 0 ? corrections : undefined,
+        wrongFormat: { detected: detectedFormat, expected: 'gif' },
+      };
+    }
 
     // Validate Base64 format
     if (!isValidBase64(cleanBase64)) {
@@ -128,33 +182,26 @@ export function base64ToGif(
         success: false,
         error:
           'Invalid Base64 format. Please ensure your data contains only valid Base64 characters.',
+        corrections: corrections.length > 0 ? corrections : undefined,
       };
     }
 
-    // Decode Base64 to binary data using proper method
-    let uint8Array: Uint8Array;
+    // Decode Base64 to binary data
+    let binaryString: string;
     try {
-      if (typeof window !== 'undefined' && typeof window.atob === 'function') {
-        // Browser environment - use atob with proper binary conversion
-        const binaryString = atob(cleanBase64);
-        const buffer = new ArrayBuffer(binaryString.length);
-        uint8Array = new Uint8Array(buffer);
-        for (let i = 0; i < binaryString.length; i++) {
-          // Use bitwise AND to ensure we only get the lower 8 bits
-          // This handles characters with codes > 255 correctly
-          uint8Array[i] = binaryString.charCodeAt(i) & 0xff;
-        }
-      } else {
-        // Node.js environment fallback
-        const buffer = Buffer.from(cleanBase64, 'base64');
-        uint8Array = new Uint8Array(buffer);
-      }
+      binaryString = atob(cleanBase64);
     } catch (error) {
       return {
         success: false,
         error:
           'Failed to decode Base64 data. The data may be corrupted or incomplete.',
+        corrections: corrections.length > 0 ? corrections : undefined,
       };
+    }
+
+    const uint8Array = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      uint8Array[i] = binaryString.charCodeAt(i) & 0xff;
     }
 
     // Extract metadata
@@ -167,11 +214,12 @@ export function base64ToGif(
         error:
           'The decoded data does not appear to be a valid GIF file. GIF files should start with "GIF87a" or "GIF89a" header.',
         metadata,
+        corrections: corrections.length > 0 ? corrections : undefined,
       };
     }
 
-    // Create GIF blob - create a copy of the bytes
-    const gifBlob = new Blob([uint8Array.slice()], { type: 'image/gif' });
+    // Create GIF blob
+    const gifBlob = new Blob([uint8Array], { type: 'image/gif' });
 
     // Generate filename
     const fileName = options.fileName || `image_${Date.now()}.gif`;
@@ -182,6 +230,7 @@ export function base64ToGif(
       fileSize: uint8Array.length,
       fileName,
       metadata,
+      corrections: corrections.length > 0 ? corrections : undefined,
     };
   } catch (error) {
     return {
@@ -192,46 +241,4 @@ export function base64ToGif(
           : 'An unexpected error occurred during conversion.',
     };
   }
-}
-
-/**
- * Downloads a blob as a file
- */
-export function downloadBlob(blob: Blob, fileName: string): void {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-/**
- * Formats file size in human readable format
- */
-export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 Bytes';
-
-  const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-}
-
-/**
- * Estimates Base64 decoded size
- */
-export function estimateDecodedSize(base64String: string): number {
-  // Remove whitespace
-  const cleanString = base64String.replace(/\s+/g, '');
-
-  // Each Base64 character represents 6 bits, so 4 characters = 3 bytes
-  // Account for padding
-  const paddingCount = (cleanString.match(/=/g) || []).length;
-  const base64Length = cleanString.length;
-
-  return Math.floor((base64Length * 3) / 4) - paddingCount;
 }

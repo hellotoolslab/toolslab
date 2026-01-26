@@ -1,3 +1,22 @@
+import {
+  sanitizeBase64Input,
+  isValidBase64,
+  estimateDecodedSize,
+  formatFileSize,
+  downloadBlob,
+  exceedsMaxSize,
+  MAX_BASE64_INPUT_SIZE,
+} from './base64-common';
+
+export type { SanitizeResult } from './base64-common';
+export {
+  isValidBase64,
+  estimateDecodedSize,
+  formatFileSize,
+  downloadBlob,
+  sanitizeBase64Input,
+};
+
 export interface Base64ToPngOptions {
   fileName?: string;
   validatePngHeader?: boolean;
@@ -9,28 +28,14 @@ export interface Base64ToPngResult {
   error?: string;
   fileName?: string;
   fileSize?: number;
+  corrections?: string[];
+  wrongFormat?: { detected: string; expected: string };
   metadata?: {
     width?: number;
     height?: number;
     colorType?: string;
     bitDepth?: number;
   };
-}
-
-/**
- * Validates if a string is valid Base64 format
- */
-export function isValidBase64(str: string): boolean {
-  if (!str || str.length === 0) {
-    return false;
-  }
-
-  // Remove whitespace
-  const cleanStr = str.replace(/\s+/g, '');
-
-  // Check if it's valid Base64 characters
-  const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
-  return base64Regex.test(cleanStr);
 }
 
 /**
@@ -48,30 +53,20 @@ export function isPngData(uint8Array: Uint8Array): {
     return { isPng: false };
   }
 
-  // Check PNG signature
   for (let i = 0; i < 8; i++) {
     if (uint8Array[i] !== pngSignature[i]) {
       return { isPng: false };
     }
   }
 
-  // Try to extract basic metadata from IHDR chunk (if present)
-  if (uint8Array.length >= 24) {
+  if (uint8Array.length >= 26) {
     const bitDepth = uint8Array[24];
     const colorTypeValue = uint8Array[25];
-
-    const colorTypes: { [key: number]: string } = {
-      0: 'Grayscale',
-      2: 'Truecolor',
-      3: 'Indexed',
-      4: 'Grayscale with Alpha',
-      6: 'Truecolor with Alpha',
-    };
 
     return {
       isPng: true,
       bitDepth,
-      colorType: colorTypes[colorTypeValue] || 'Unknown',
+      colorType: getColorTypeName(colorTypeValue),
     };
   }
 
@@ -79,7 +74,22 @@ export function isPngData(uint8Array: Uint8Array): {
 }
 
 /**
- * Extracts PNG metadata from binary data
+ * PNG color type mapping
+ */
+const COLOR_TYPES: Record<number, string> = {
+  0: 'Grayscale',
+  2: 'Truecolor',
+  3: 'Indexed',
+  4: 'Grayscale with Alpha',
+  6: 'Truecolor with Alpha',
+};
+
+function getColorTypeName(value: number): string {
+  return COLOR_TYPES[value] || 'Unknown';
+}
+
+/**
+ * Extracts PNG metadata from binary data using DataView for correct unsigned reads
  */
 export function extractPngMetadata(uint8Array: Uint8Array) {
   const metadata: {
@@ -89,42 +99,30 @@ export function extractPngMetadata(uint8Array: Uint8Array) {
     colorType?: string;
   } = {};
 
-  // PNG IHDR chunk starts at byte 12 (after signature and chunk length)
-  if (uint8Array.length >= 24) {
-    // Width (4 bytes, big-endian)
-    metadata.width =
-      (uint8Array[16] << 24) |
-      (uint8Array[17] << 16) |
-      (uint8Array[18] << 8) |
-      uint8Array[19];
+  // PNG IHDR chunk: signature(8) + chunk_length(4) + "IHDR"(4) + width(4) + height(4) + bitDepth(1) + colorType(1)
+  if (uint8Array.length >= 26) {
+    const view = new DataView(
+      uint8Array.buffer,
+      uint8Array.byteOffset,
+      uint8Array.byteLength
+    );
 
-    // Height (4 bytes, big-endian)
-    metadata.height =
-      (uint8Array[20] << 24) |
-      (uint8Array[21] << 16) |
-      (uint8Array[22] << 8) |
-      uint8Array[23];
+    // Width and Height (4 bytes each, big-endian, unsigned)
+    metadata.width = view.getUint32(16);
+    metadata.height = view.getUint32(20);
 
     // Bit depth
     metadata.bitDepth = uint8Array[24];
 
     // Color type
-    const colorTypeValue = uint8Array[25];
-    const colorTypes: { [key: number]: string } = {
-      0: 'Grayscale',
-      2: 'Truecolor',
-      3: 'Indexed',
-      4: 'Grayscale with Alpha',
-      6: 'Truecolor with Alpha',
-    };
-    metadata.colorType = colorTypes[colorTypeValue] || 'Unknown';
+    metadata.colorType = getColorTypeName(uint8Array[25]);
   }
 
   return metadata;
 }
 
 /**
- * Converts Base64 string to PNG Blob
+ * Converts Base64 string to PNG Blob with auto-correction of common input errors
  */
 export function base64ToPng(
   base64Data: string,
@@ -134,15 +132,34 @@ export function base64ToPng(
     const { fileName = `png-${Date.now()}.png`, validatePngHeader = true } =
       options;
 
-    // Clean Base64 string
-    let cleanBase64 = base64Data.trim().replace(/\s+/g, '');
+    // Check size limit
+    if (exceedsMaxSize(base64Data)) {
+      return {
+        success: false,
+        error: `Input too large. Maximum size is ${formatFileSize(MAX_BASE64_INPUT_SIZE)}.`,
+      };
+    }
 
-    // Remove data URL prefix if present
-    if (cleanBase64.startsWith('data:')) {
-      const commaIndex = cleanBase64.indexOf(',');
-      if (commaIndex !== -1) {
-        cleanBase64 = cleanBase64.substring(commaIndex + 1);
-      }
+    // Sanitize input with auto-corrections
+    const {
+      cleaned: cleanBase64,
+      corrections,
+      detectedFormat,
+    } = sanitizeBase64Input(base64Data);
+
+    // Check for wrong format (only when header validation is enabled)
+    if (
+      validatePngHeader &&
+      detectedFormat &&
+      detectedFormat !== 'unknown' &&
+      detectedFormat !== 'png'
+    ) {
+      return {
+        success: false,
+        error: `This data appears to be a ${detectedFormat.toUpperCase()} image, not PNG.`,
+        corrections: corrections.length > 0 ? corrections : undefined,
+        wrongFormat: { detected: detectedFormat, expected: 'png' },
+      };
     }
 
     // Validate Base64 format
@@ -150,6 +167,7 @@ export function base64ToPng(
       return {
         success: false,
         error: 'Invalid Base64 format',
+        corrections: corrections.length > 0 ? corrections : undefined,
       };
     }
 
@@ -169,6 +187,7 @@ export function base64ToPng(
           success: false,
           error:
             'Data does not appear to be a PNG image. Please check your Base64 string.',
+          corrections: corrections.length > 0 ? corrections : undefined,
         };
       }
     }
@@ -185,6 +204,7 @@ export function base64ToPng(
       fileName,
       fileSize: uint8Array.length,
       metadata,
+      corrections: corrections.length > 0 ? corrections : undefined,
     };
   } catch (error) {
     return {
@@ -195,40 +215,4 @@ export function base64ToPng(
           : 'Failed to convert Base64 to PNG',
     };
   }
-}
-
-/**
- * Format file size to human-readable string
- */
-export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 Bytes';
-
-  const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
-}
-
-/**
- * Estimate decoded size from Base64 string length
- */
-export function estimateDecodedSize(base64Length: number): number {
-  // Base64 encoding increases size by ~33%
-  // So decoded size is roughly 3/4 of encoded size
-  return Math.floor((base64Length * 3) / 4);
-}
-
-/**
- * Helper function to download a blob as a file
- */
-export function downloadBlob(blob: Blob, filename: string): void {
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
 }
