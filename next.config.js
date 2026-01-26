@@ -12,8 +12,8 @@ const nextConfig = {
   cleanDistDir: true,
   distDir: '.next',
 
-  // Disabilita features che possono creare problemi di cache
-  generateEtags: false,
+  // Abilita ETags per caching efficiente
+  generateEtags: true,
   poweredByHeader: false,
   compress: true,
 
@@ -90,6 +90,52 @@ const nextConfig = {
   // Headers personalizzati
   async headers() {
     return [
+      // Tool pages - aggressive caching (24 hours browser, 7 days CDN)
+      {
+        source: '/tools/:tool',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=604800, stale-while-revalidate=86400',
+          },
+          {
+            key: 'CDN-Cache-Control',
+            value: 'public, max-age=604800',
+          },
+          {
+            key: 'Cloudflare-CDN-Cache-Control',
+            value: 'max-age=604800',
+          },
+        ],
+      },
+      // Localized tool pages - same caching
+      {
+        source: '/:locale/tools/:tool',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=604800, stale-while-revalidate=86400',
+          },
+          {
+            key: 'CDN-Cache-Control',
+            value: 'public, max-age=604800',
+          },
+          {
+            key: 'Cloudflare-CDN-Cache-Control',
+            value: 'max-age=604800',
+          },
+        ],
+      },
+      // Static assets - immutable caching
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
       {
         source: '/:path*',
         headers: [
