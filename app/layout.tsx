@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
+import Script from 'next/script';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { UmamiProvider } from '@/components/analytics/UmamiProvider';
 import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import dynamic from 'next/dynamic';
-import { headers, cookies } from 'next/headers';
+import { headers } from 'next/headers';
 import { getLocaleFromPathname } from '@/lib/i18n/locale-detector';
 
 // Disable SSR for components that use stores to prevent hydration mismatch
@@ -183,6 +184,9 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        {/* DNS prefetch for faster subsequent requests */}
+        <link rel="dns-prefetch" href="https://toolslab.dev" />
+        <link rel="preconnect" href="https://toolslab.dev" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -196,14 +200,6 @@ export default async function RootLayout({
           `,
           }}
         />
-        {process.env.NODE_ENV === 'production' &&
-          process.env.NEXT_PUBLIC_AHREFS_KEY && (
-            <script
-              src="https://analytics.ahrefs.com/analytics.js"
-              data-key={process.env.NEXT_PUBLIC_AHREFS_KEY}
-              async
-            />
-          )}
       </head>
       <body
         className={cn(
@@ -230,6 +226,15 @@ export default async function RootLayout({
         </UmamiProvider>
         {/* <SpeedInsights /> */}
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        {/* Ahrefs Analytics - loaded after page is interactive */}
+        {process.env.NODE_ENV === 'production' &&
+          process.env.NEXT_PUBLIC_AHREFS_KEY && (
+            <Script
+              src="https://analytics.ahrefs.com/analytics.js"
+              data-key={process.env.NEXT_PUBLIC_AHREFS_KEY}
+              strategy="lazyOnload"
+            />
+          )}
       </body>
     </html>
   );
