@@ -3,8 +3,8 @@
   "description": "Convierte cadenas Base64 en archivos PDF",
   "placeholder": "Pega la cadena Base64...",
   "meta": {
-    "title": "Base64 a PDF - Herramienta Online Gratuita | ToolsLab",
-    "description": "Convierte cadenas Base64 en archivos PDF online gratis. Decodifica datos Base64 de APIs, emails o bases de datos y descarga como PDF. Procesamiento seguro en el navegador."
+    "title": "Base64 a PDF - Herramienta Online Gratuita",
+    "description": "Convierta cadenas Base64 en archivos PDF online. Decodifique datos Base64 y descargue como PDF. Herramienta gratuita con procesamiento seguro en el navegador."
   },
   "tagline": "Converti dati Base64 in file PDF istantaneamente",
   "pageDescription": "Converti dati codificati Base64 in file PDF con download istantaneo. Perfetto per sviluppatori che lavorano con API documenti, allegati email e workflow elaborazione dati. Conversione sicura basata su browser senza caricamenti server. Valida input Base64, visualizza metadata PDF e scarica file convertiti direttamente sul tuo dispositivo.",

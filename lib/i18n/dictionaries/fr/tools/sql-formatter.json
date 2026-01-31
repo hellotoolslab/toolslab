@@ -87,7 +87,7 @@
   "tagline": "Formatez et embellissez les requêtes SQL avec coloration syntaxique",
   "pageDescription": "Formatez et embellissez les requêtes SQL avec indentation appropriée, mise en évidence des mots-clés et validation de syntaxe. Parfait pour les développeurs de bases de données, les analystes de données et l'optimisation SQL. Prend en charge plusieurs dialectes SQL (MySQL, PostgreSQL, SQLite) avec des options de formatage personnalisables. Formateur SQL gratuit et sécurisé basé sur navigateur sans téléchargement de données.",
   "meta": {
-    "title": "Formateur SQL - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Formatez et embellissez les requêtes SQL en ligne. Support pour plusieurs dialectes SQL. Outil formateur SQL gratuit."
+    "title": "Formateur SQL - Outil en Ligne Gratuit",
+    "description": "Formatez et embellissez les requêtes SQL en ligne avec coloration syntaxique. Support MySQL, PostgreSQL, SQLite et autres dialectes. Outil SQL gratuit en ligne."
   }
 }

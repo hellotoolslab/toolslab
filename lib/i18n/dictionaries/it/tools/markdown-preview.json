@@ -3,8 +3,8 @@
   "description": "Modifica e visualizza Markdown con rendering live, esporta in HTML/PDF e statistiche complete",
   "placeholder": "# Inizia a scrivere il tuo markdown qui...\n\n## Funzionalità\n- GitHub Flavored Markdown\n- Anteprima live\n- Esporta in HTML/PDF\n- Salvataggio automatico\n\nProva a scrivere del testo **grassetto** o *corsivo*!",
   "meta": {
-    "title": "Editor e Anteprima Markdown - Strumento Online Gratuito | ToolsLab",
-    "description": "Editor e anteprima Markdown online gratuiti con rendering live, supporto GitHub Flavored Markdown, esportazione HTML/PDF, statistiche e salvataggio automatico. Perfetto per sviluppatori e scrittori."
+    "title": "Editor Markdown - Anteprima Live",
+    "description": "Scrivi e visualizza Markdown in tempo reale con rendering live e supporto GitHub Markdown. Esporta in HTML o PDF con statistiche. Editor online gratuito."
   },
   "tagline": "Modifica, visualizza ed esporta Markdown con rendering live e statistiche complete",
   "pageDescription": "Editor Markdown professionale con anteprima split-view, supporto GitHub Flavored Markdown, esportazione in più formati (HTML, PDF, MD), dashboard statistiche, libreria template e salvataggio automatico. Tutta l'elaborazione avviene nel tuo browser - sicuro e veloce.",

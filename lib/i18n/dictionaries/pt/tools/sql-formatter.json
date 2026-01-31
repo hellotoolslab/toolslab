@@ -58,15 +58,27 @@
       "Compatibilidade do navegador: Use a versão mais recente do Chrome, Firefox ou Edge para melhores resultados"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada" },
-      { "keys": "Ctrl+Enter", "description": "Processar/Formatar" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado" },
-      { "keys": "Ctrl+S", "description": "Baixar arquivo" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Processar/Formatar"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo"
+      }
     ]
   },
   "meta": {
-    "title": "Formatador SQL - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Formate e embeleze consultas SQL online. Suporte para múltiplos dialetos SQL. Ferramenta gratuita de formatação SQL."
+    "title": "Formatador SQL - Ferramenta Online Gratuita",
+    "description": "Formate e embeleze consultas SQL online com destaque de sintaxe. Suporte para MySQL, PostgreSQL, SQLite e outros dialetos SQL. Ferramenta SQL gratuita online."
   },
   "tagline": "Formate e embeleze consultas SQL com destaque de sintaxe",
   "pageDescription": "Formate e embeleze consultas SQL com indentação adequada, destaque de palavras-chave e validação de sintaxe. Perfeito para desenvolvedores de banco de dados, analistas de dados e otimização SQL. Suporta múltiplos dialetos SQL (MySQL, PostgreSQL, SQLite) com opções de formatação personalizáveis. Formatador SQL gratuito e seguro baseado em navegador sem uploads de dados."

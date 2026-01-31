@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useTheme } from 'next-themes';
@@ -28,6 +28,7 @@ import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { FAQModal } from '@/components/ui/faq-modal';
 import ToolHowToUse from './ToolHowToUse';
 import ToolHeroSection from './ToolHeroSection';
+import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
 
 interface ToolPageClientProps {
   toolId: string;
@@ -85,6 +86,48 @@ export default function ToolPageClient({
   }, [toolId, initialInput]); // Removed trackEngagement from deps
 
   const tool = getToolById(toolId);
+
+  // Memoize related tools to avoid recalculating on every render
+  const relatedTools = useMemo(() => {
+    if (!tool) return [];
+    const smartRelatedIds = getSmartRelatedTools(toolId, 4);
+
+    if (smartRelatedIds && smartRelatedIds.length > 0) {
+      const relatedToolObjects = smartRelatedIds
+        .map((id: string) => tools.find((t) => t.id === id))
+        .filter(
+          (t: (typeof tools)[0] | undefined): t is (typeof tools)[0] =>
+            t !== undefined && t.label !== 'coming-soon'
+        );
+
+      if (relatedToolObjects.length > 0) {
+        return relatedToolObjects;
+      }
+    }
+
+    // Fallback: Get tools from same category
+    return tools
+      .filter(
+        (t) =>
+          t.categories.includes(tool.categories[0]) &&
+          t.id !== tool.id &&
+          t.label !== 'coming-soon'
+      )
+      .slice(0, 4);
+  }, [toolId, tool]);
+
+  // Memoize same-category tools
+  const sameCategoryTools = useMemo(() => {
+    if (!tool) return [];
+    return tools
+      .filter(
+        (t) =>
+          t.categories.includes(tool.categories[0]) &&
+          t.id !== tool.id &&
+          t.label !== 'coming-soon'
+      )
+      .slice(0, 6);
+  }, [toolId, tool]);
 
   if (!tool) {
     return <div>Tool not found</div>;
@@ -166,55 +209,6 @@ export default function ToolPageClient({
       // Show toast notification
     }
   };
-
-  // Get related tools using the intelligent relationship system
-  const getRelatedTools = () => {
-    // First try to use the smart relationship system
-    const { getSmartRelatedTools } = require('@/lib/seo/related-tools-engine');
-    const smartRelatedIds = getSmartRelatedTools(toolId, 4);
-
-    if (smartRelatedIds && smartRelatedIds.length > 0) {
-      // Map IDs to full tool objects
-      const relatedToolObjects = smartRelatedIds
-        .map((id: string) => tools.find((t) => t.id === id))
-        .filter(
-          (t: (typeof tools)[0] | undefined): t is (typeof tools)[0] =>
-            t !== undefined && t.label !== 'coming-soon'
-        );
-
-      if (relatedToolObjects.length > 0) {
-        return relatedToolObjects;
-      }
-    }
-
-    // Fallback: Get tools from same category
-    let filteredTools = tools.filter(
-      (t) =>
-        t.categories.includes(tool.categories[0]) &&
-        t.id !== tool.id &&
-        t.label !== 'coming-soon'
-    );
-
-    return filteredTools.slice(0, 4);
-  };
-
-  const relatedTools = getRelatedTools();
-
-  // Get all tools from same primary category
-  const getSameCategoryTools = () => {
-    // Get all tools from same primary category excluding only current tool
-    const categoryTools = tools.filter(
-      (t) =>
-        t.categories.includes(tool.categories[0]) &&
-        t.id !== tool.id &&
-        t.label !== 'coming-soon'
-    );
-
-    // Return up to 6 tools from the same category
-    return categoryTools.slice(0, 6);
-  };
-
-  const sameCategoryTools = getSameCategoryTools();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">

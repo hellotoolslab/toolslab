@@ -2,8 +2,8 @@
   "title": "Text Diff Checker",
   "description": "Confronta file e codice con funzionalità avanzate di diff ed evidenziazione della sintassi",
   "meta": {
-    "title": "Text Diff Checker - Strumento Online Gratuito | ToolsLab",
-    "description": "Confronta testo e file online con evidenziazione delle differenze. Strumento diff gratuito per sviluppatori."
+    "title": "Text Diff Checker - Strumento Online Gratuito",
+    "description": "Confronta due testi affiancati e trova differenze con evidenziazione riga per riga o per carattere. Rileva aggiunte e cancellazioni. Strumento diff gratuito."
   },
   "tagline": "Confronta file e codice con visualizzazione diff professionale",
   "pageDescription": "Strumento confronto testo professionale con evidenziazione sintassi, generazione patch e viste diff affiancate. Confronta file codice, documenti e testo con differenze riga per riga, tracciamento modifiche e output diff unificato. Funzionalità patch stile Git, opzioni whitespace ed export HTML/PDF. Perfetto per sviluppatori che revisionano modifiche codice.",

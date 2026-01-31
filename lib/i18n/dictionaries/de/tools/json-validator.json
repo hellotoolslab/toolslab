@@ -3,8 +3,8 @@
   "description": "Validate JSON syntax und structure",
   "placeholder": "",
   "meta": {
-    "title": "JSON-Validator - Kostenloses Online-Tool | ToolsLab",
-    "description": "Validate JSON online. Prüfen JSON syntax und structure. Kostenlos JSON validator."
+    "title": "JSON-Validator - Syntax prüfen",
+    "description": "JSON-Syntax und -Struktur online validieren. Detaillierte Fehlermeldungen mit Zeilennummern. Fehlerhafte JSON-Daten schnell debuggen. Kostenloses Tool."
   },
   "tagline": "Validate JSON mit advanced schema support und Fehler Erkennung",
   "pageDescription": "Advanced JSON validator mit JSON Schema support, real-time Fehler reporting und security audit. Validate API responses, configuration files und Daten structures mit Draft 7/2019-09/2020-12 schema support. Features syntax highlighting, detailed Fehler diagnostics, performance metrics und security vulnerability Erkennung. Perfect für Entwickler und API testing.",

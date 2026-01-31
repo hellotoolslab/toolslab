@@ -3,8 +3,8 @@
   "description": "Visualização ao vivo de markdown com destaque de sintaxe",
   "placeholder": "",
   "meta": {
-    "title": "Visualização Markdown - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Visualize markdown em tempo real online. Editor markdown com visualização ao vivo. Ferramenta gratuita de markdown."
+    "title": "Editor Markdown - Visualização",
+    "description": "Escreva e visualize Markdown em tempo real com renderização live e suporte GitHub Markdown. Exporte para HTML ou PDF com estatísticas. Editor online gratuito."
   },
   "tagline": "Visualize markdown em tempo real com renderização estilo GitHub",
   "pageDescription": "Editor markdown profissional com visualização ao vivo e suporte a markdown estilo GitHub. Recursos incluem destaque de sintaxe, suporte a tabelas, listas de tarefas e renderização de emoji. Perfeito para desenvolvedores escrevendo documentação, arquivos README e conteúdo técnico. Exporte para HTML com temas personalizáveis.",
@@ -64,10 +64,22 @@
       "Compatibilidade do navegador: Use a versão mais recente do Chrome, Firefox ou Edge para melhores resultados"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada" },
-      { "keys": "Ctrl+Enter", "description": "Processar/Formatar" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado" },
-      { "keys": "Ctrl+S", "description": "Baixar arquivo" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Processar/Formatar"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo"
+      }
     ]
   }
 }

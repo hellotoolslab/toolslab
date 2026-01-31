@@ -80,8 +80,8 @@
     ]
   },
   "meta": {
-    "title": "HTML Encoder/Decoder - Kostenloses Online-Tool | ToolsLab",
-    "description": "Kostenloser HTML-Encoder und -Decoder. Konvertieren Sie Text in HTML-Entitäten (kodieren) oder dekodieren Sie HTML-Entitäten in Klartext. Unterstützt benannte, dezimale und hexadezimale Entitäten. Browserbasiert, sicher und sofort."
+    "title": "HTML-Encoder & Decoder - Online",
+    "description": "Text in HTML-Entitäten kodieren oder HTML-Entitäten in Klartext dekodieren. Benannte, dezimale und hexadezimale Entitäten. Sicheres, browserbasiertes Tool."
   },
   "tagline": "Konvertieren Sie Text in HTML-Entitäten und dekodieren Sie HTML sicher",
   "pageDescription": "Kodieren Sie Sonderzeichen in HTML-Entitäten oder dekodieren Sie Entitäten zurück in Klartext. Unverzichtbar für Webentwickler, die mit HTML, XML arbeiten, XSS-Angriffe verhindern und Sonderzeichen handhaben. Unterstützt mehrere Kodierungsformate einschließlich benannter Entitäten (&lt; &gt;), Dezimal (&#60;) und Hexadezimal (&#x3C;). Verarbeiten Sie Text sofort in Ihrem Browser ohne Server-Uploads."

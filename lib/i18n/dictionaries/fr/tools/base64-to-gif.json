@@ -3,8 +3,8 @@
   "description": "Convertir des chaînes Base64 en images GIF",
   "placeholder": "",
   "meta": {
-    "title": "Base64 vers GIF - Convertisseur en ligne gratuit | ToolsLab",
-    "description": "Convertir Base64 en GIF en ligne. Décoder Base64 et enregistrer en tant qu'image GIF. Outil de conversion gratuit avec support de prévisualisation pour les GIF animés."
+    "title": "Base64 vers GIF - Convertisseur",
+    "description": "Convertissez Base64 en GIF en ligne. Décodez Base64 et enregistrez en image GIF animée. Outil de conversion gratuit avec aperçu et support des animations GIF."
   },
   "tagline": "Convertissez instantanément des données Base64 en images GIF avec prévisualisation",
   "pageDescription": "Convertissez des données encodées en Base64 en images GIF avec téléchargement et prévisualisation instantanés. Parfait pour les développeurs travaillant avec des API d'images, des pièces jointes d'e-mails et des flux de traitement de données. Prend en charge les formats GIF87a et GIF89a, y compris les GIF animés. Conversion sécurisée basée sur le navigateur sans téléchargements vers le serveur. Validez l'entrée Base64, prévisualisez les images GIF et téléchargez les fichiers convertis directement sur votre appareil.",

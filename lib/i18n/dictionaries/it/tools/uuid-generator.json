@@ -76,8 +76,8 @@
     ]
   },
   "meta": {
-    "title": "Generatore UUID - Strumento Online Gratuito | ToolsLab",
-    "description": "Genera UUID casuali online. Supporto per versioni UUID v1, v4 e v5. Generatore UUID gratuito con generazione in blocco."
+    "title": "Generatore UUID - Strumento Online Gratuito",
+    "description": "Genera UUID casuali online. Supporto per versioni v1, v4 e v5 con generazione in blocco, validazione e opzioni formato. Generatore UUID gratuito e istantaneo."
   },
   "tagline": "Genera UUID e GUID univoci istantaneamente online",
   "pageDescription": "Genera identificatori UUID v1 e v4 per database, API e applicazioni. Crea UUID singoli o generazione massiva fino a 1000 con formattazione personalizzabile. Perfetto per sviluppatori che costruiscono sistemi distribuiti, schemi database e sistemi identificazione univoca. Gratuito, sicuro e generazione basata su browser."

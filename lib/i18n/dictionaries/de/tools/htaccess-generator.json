@@ -3,8 +3,8 @@
   "description": "Generieren Sie .htaccess-Dateien für Apache mit Weiterleitungen, Sicherheitsregeln, Caching und URL-Umschreibung",
   "placeholder": "Konfigurieren Sie Ihre .htaccess-Einstellungen",
   "meta": {
-    "title": "Htaccess Generator - Apache Konfigurationstool | ToolsLab",
-    "description": "Kostenloser Online .htaccess-Generator. Erstellen Sie Apache-Konfiguration mit Weiterleitungen, Sicherheits-Headern, Caching-Regeln, HTTPS-Erzwingung und mehr. Keine Programmierung erforderlich."
+    "title": ".htaccess-Generator - Kostenlos",
+    "description": "Apache .htaccess-Konfiguration online erstellen. Weiterleitungen, Sicherheits-Header, Caching-Regeln und HTTPS-Erzwingung. Keine Programmierkenntnisse nötig."
   },
   "tagline": "Generieren Sie professionelle .htaccess-Dateien für Apache-Server mit visueller Konfiguration",
   "pageDescription": "Kostenloser Online .htaccess-Generator für Apache-Webserver. Erstellen Sie Konfigurationsdateien mit 301/302-Weiterleitungen, HTTPS-Erzwingung, Sicherheits-Headern, Browser-Caching, Gzip-Komprimierung, benutzerdefinierten Fehlerseiten und IP-Blockierung. Enthält Voreinstellungen für WordPress, SPA-Apps und Leistungsoptimierung. Perfekt für Webentwickler, Systemadministratoren und Website-Besitzer.",

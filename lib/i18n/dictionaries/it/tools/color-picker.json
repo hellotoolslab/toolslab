@@ -2,8 +2,8 @@
   "title": "Color Picker",
   "description": "Scegli e converti colori tra formati HEX, RGB, HSL",
   "meta": {
-    "title": "Color Picker - Strumento Online Gratuito | ToolsLab",
-    "description": "Seleziona colori online. Converti tra HEX, RGB, HSL. Color picker gratuito."
+    "title": "Color Picker - Strumento Online Gratuito",
+    "description": "Seleziona colori con il color picker interattivo. Converti tra formati HEX, RGB e HSL istantaneamente. Estrai colori e salva i preferiti. Strumento gratuito."
   },
   "tagline": "Scegli colori con controllo contrasto e generatore palette",
   "pageDescription": "Color picker professionale per sviluppatori e designer con formati HEX, RGB, HSL, HSV, CMYK e LAB. Genera palette colori, controlla rapporti contrasto WCAG, simula daltonismo ed export CSS, Tailwind, Material Design. Funzionalità API eyedropper, generatore gradienti e integrazione design system. Strumento gratuito basato su browser con controllo conformità accessibilità.",

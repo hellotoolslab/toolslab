@@ -3,8 +3,8 @@
   "description": "Convert cURL commands to code in various programming languages",
   "placeholder": "",
   "meta": {
-    "title": "cURL to Code Converter - Free Online Tool | ToolsLab",
-    "description": "Convert cURL to code online. Generate code snippets from curl commands. Free cURL converter."
+    "title": "cURL to Code Converter - Free Online Tool",
+    "description": "Convert cURL commands to Python, JavaScript, Go, PHP, and more languages. Generate ready-to-use HTTP request code snippets. Free online cURL converter tool."
   },
   "tagline": "Convert cURL commands to production-ready code in any programming language",
   "pageDescription": "Free cURL to code converter transforms cURL commands into production-ready code for JavaScript, Python, Go, Java, PHP, Ruby and 15+ languages. Features automatic error handling, type inference, async/await support and best practices integration. Perfect for API developers converting documentation examples, debugging network requests and building SDK clients. Supports all cURL flags, authentication methods, multipart uploads and generates unit tests. Secure browser-based conversion with no data upload.",

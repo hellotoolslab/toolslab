@@ -2,8 +2,8 @@
   "title": "Convertitore YAML/JSON",
   "description": "Converti tra formati YAML e JSON in entrambe le direzioni",
   "meta": {
-    "title": "Convertitore YAML/JSON - Strumento Online Gratuito | ToolsLab",
-    "description": "Converti YAML in JSON e viceversa online gratis. Perfetto per config Kubernetes, Docker Compose e CI/CD. Validazione in tempo reale e supporto multi-documento."
+    "title": "Convertitore YAML/JSON - Online",
+    "description": "Converti tra JSON e YAML online con output pulito e leggibile. Supporto per strutture nidificate e array. Conversione bidirezionale. Strumento gratuito online."
   },
   "tagline": "Converti YAML in JSON e viceversa con funzionalità validazione avanzate",
   "pageDescription": "Convertitore YAML in JSON gratuito con conversione bidirezionale, supporto multi-documento e risoluzione anchor. Converti config Kubernetes, file Docker Compose, pipeline CI/CD e specifiche Swagger istantaneamente. Funzionalità validazione in tempo reale, evidenziazione sintassi, preservazione tipi e gestione commenti. Supporta YAML 1.2 con anchor, alias, chiavi merge e tag personalizzati. Export interfacce TypeScript e JSON Schema. Perfetto per DevOps engineer, sviluppatori che lavorano con file configurazione e documentazione API.",

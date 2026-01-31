@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "CSV to JSON Converter - Free Online Tool | ToolsLab",
-    "description": "Convert CSV files to JSON format online. Support for custom delimiters and headers. Free CSV to JSON converter."
+    "title": "CSV to JSON Converter - Free Online Tool",
+    "description": "Convert CSV files to JSON format online with support for custom delimiters, headers, and nested structures. Handles large files. Free CSV to JSON converter."
   },
   "tagline": "Convert CSV data to JSON format with smart parsing",
   "pageDescription": "Transform CSV files and data into JSON format with automatic header detection and custom delimiter support. Perfect for data migration, API integration, and spreadsheet processing. Handles large files with streaming, preserves data types, and offers multiple output formats. Free, secure browser-based conversion with no file uploads."

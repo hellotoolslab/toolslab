@@ -3,8 +3,8 @@
   "description": "Compare multiple lists to find differences, intersections, and unions with advanced operations",
   "placeholder": "",
   "meta": {
-    "title": "List Compare - Free Online Comparison | ToolsLab",
-    "description": "Compare lists online. Find differences, intersections and unions. Free list comparison tool with advanced operations."
+    "title": "List Compare - Free Online Comparison",
+    "description": "Compare two lists online to find differences, intersections, unions, and unique items. Sort, deduplicate, and export results. Free list comparison tool."
   },
   "tagline": "Compare multiple lists with advanced diff and set operations",
   "pageDescription": "Professional list comparison tool with set operations (union, intersection, difference), fuzzy matching and developer-friendly output formats. Compare up to 10 lists simultaneously with intelligent algorithms for package dependencies, git files, API endpoints and data analysis. Features Venn diagrams, regex matching, duplicate detection and export to JSON, CSV, SQL. Perfect for developers, data analysts and system administrators managing lists, arrays and datasets.",

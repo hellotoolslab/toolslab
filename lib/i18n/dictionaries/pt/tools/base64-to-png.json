@@ -3,8 +3,8 @@
   "description": "Converta strings Base64 em imagens PNG",
   "placeholder": "",
   "meta": {
-    "title": "Base64 para PNG - Conversor Online Gratuito | ToolsLab",
-    "description": "Converta Base64 para PNG online. Decodifique Base64 e salve como imagem PNG. Ferramenta de conversão gratuita com visualização instantânea e exibição de metadados."
+    "title": "Base64 para PNG - Conversor Online Gratuito",
+    "description": "Converta Base64 para PNG online. Decodifique Base64 e salve como imagem PNG. Ferramenta de conversão gratuita com visualização instantânea e metadados."
   },
   "tagline": "Converta dados Base64 em imagens PNG instantaneamente com visualização",
   "pageDescription": "Converta dados codificados em Base64 para imagens PNG com download e visualização instantâneos. Perfeito para desenvolvedores trabalhando com APIs de imagem, anexos de e-mail e fluxos de trabalho de processamento de dados. Suporta todos os tipos de cor PNG incluindo transparência. Conversão segura baseada em navegador sem uploads para servidor. Valide entrada Base64, visualize imagens PNG com suporte a transparência, veja dimensões e metadados da imagem e baixe arquivos convertidos diretamente para seu dispositivo.",

@@ -3,8 +3,8 @@
   "description": "Choisissez et convertissez les couleurs entre formats HEX, RGB, HSL",
   "placeholder": "Choisissez une couleur...",
   "meta": {
-    "title": "Sélecteur de Couleurs - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Sélectionnez les couleurs en ligne. Convertissez entre HEX, RGB, HSL. Sélecteur de couleurs gratuit."
+    "title": "Sélecteur de Couleurs - Outil en Ligne Gratuit",
+    "description": "Sélectionnez des couleurs avec le sélecteur interactif. Conversion instantanée entre HEX, RGB et HSL. Extrayez et sauvegardez vos couleurs. Outil gratuit."
   },
   "tagline": "Scegli colori con controllo contrasto e generatore palette",
   "pageDescription": "Color picker professionale per sviluppatori e designer con formati HEX, RGB, HSL, HSV, CMYK e LAB. Genera palette colori, controlla rapporti contrasto WCAG, simula daltonismo ed export CSS, Tailwind, Material Design. Funzionalità API eyedropper, generatore gradienti e integrazione design system. Strumento gratuito basato su browser con controllo conformità accessibilità.",

@@ -3,8 +3,8 @@
   "description": "Visualiza vista previa en vivo de markdown con resaltado de sintaxis",
   "placeholder": "Pega tu Markdown...",
   "meta": {
-    "title": "Vista Previa Markdown - Herramienta Online Gratuita | ToolsLab",
-    "description": "Vista previa markdown en tiempo real en línea. Editor markdown con vista previa en vivo. Herramienta markdown gratuita."
+    "title": "Editor Markdown - Vista Previa",
+    "description": "Escriba y visualice Markdown en tiempo real con renderizado live y soporte GitHub Markdown. Exporte a HTML o PDF con estadísticas. Editor gratuito en línea."
   },
   "tagline": "Vista previa markdown en tiempo real con renderizado GitHub-flavored",
   "pageDescription": "Editor markdown profesional con vista previa en vivo y soporte GitHub-flavored markdown. Características resaltado de sintaxis, soporte tablas, listas de tareas y renderizado emoji. Perfecto para desarrolladores escribiendo documentación, archivos README y contenido técnico. Export HTML con temas personalizables.",

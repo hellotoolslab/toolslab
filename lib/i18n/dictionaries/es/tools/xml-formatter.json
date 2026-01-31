@@ -3,8 +3,8 @@
   "description": "Formatea, valida y minifica documentos XML con resaltado de sintaxis y soporte XPath",
   "placeholder": "Pega tu XML...",
   "meta": {
-    "title": "Formateador XML - Herramienta Online Gratuita | ToolsLab",
-    "description": "Formatea y valida XML en línea. Minifica documentos XML con soporte XPath. Formateador XML gratuito."
+    "title": "Formateador XML - Herramienta Online Gratuita",
+    "description": "Formatee y valide XML en línea con resaltado de sintaxis y soporte XPath. Minifique o formatee documentos XML con sangría personalizada. Herramienta gratis."
   },
   "tagline": "Formatta, valida e minimizza XML con ricerca XPath e supporto namespace",
   "pageDescription": "Formatter XML professionale con validazione sintassi, abbellimento e minimizzazione. Funzionalità ricerca XPath, analisi namespace e visualizzazione struttura. Perfetto per SOAP, RSS, SVG e file configurazione. Gestisce documenti XML grandi in modo efficiente con validazione in tempo reale ed evidenziazione errori. Elaborazione XML gratuita e sicura basata su browser.",

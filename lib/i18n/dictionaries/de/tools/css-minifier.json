@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "CSS-Minimierer - Kostenloses Online-Tool | ToolsLab",
-    "description": "Minimieren und komprimieren CSS-Code online. Dateigröße reduzieren und Ladegeschwindigkeit verbessern. Kostenlos CSS minifier Tool."
+    "title": "CSS-Minifier - Online Komprimierung",
+    "description": "CSS-Code online minimieren und komprimieren. Dateigröße reduzieren und Ladegeschwindigkeit verbessern. Leerzeichen und Kommentare entfernen. Kostenloses Tool."
   },
   "tagline": "Minimieren und optimieren CSS Dateien sofort für schnellere Websites",
   "pageDescription": "Professioneller CSS Minimierer und Verschönerer, der die Dateigröße um bis zu 60% reduziert und dabei die Funktionalität bewahrt. Bietet erweiterte Optimierungsoptionen wie Farbkomprimierung, Regel-Zusammenführung, Vendor-Prefix-Behandlung und Media-Query-Optimierung. Verarbeiten CSS sofort in Ihrem Browser mit vollständiger Privatsphäre - keine Daten werden an Server gesendet. Perfekt zur Optimierung von Stylesheets für Produktions-Deployments mit Unterstützung für CSS3, CSS4 und moderne Eigenschaften."

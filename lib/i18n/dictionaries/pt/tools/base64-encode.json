@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Decodificador Base64 - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Decodifique strings Base64 para texto ou baixe como arquivos. Decodificador Base64 online gratuito. Funciona instantaneamente no seu navegador."
+    "title": "Encoder/Decoder Base64 - Online",
+    "description": "Codifique texto em Base64 ou decodifique strings Base64 em texto online. Suporte para arquivos, UTF-8 e dados binários. Ferramenta Base64 gratuita e segura."
   },
   "tagline": "Codifique e decodifique arquivos e texto Base64 instantaneamente",
   "pageDescription": "Codificador e decodificador Base64 gratuito para texto, imagens e arquivos até 50MB. Perfeito para desenvolvedores web incorporando imagens em HTML/CSS, transmissão de dados de API e anexos de e-mail. Interface de arrastar e soltar com processamento seguro baseado em navegador. Baixe arquivos decodificados diretamente ou copie strings codificadas para a área de transferência."

@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Générateur de Hachage - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Générez des hachages MD5, SHA-1, SHA-256 et SHA-512 en ligne. Générateur de hachage gratuit pour texte et fichiers."
+    "title": "Générateur de Hachage - Outil en Ligne Gratuit",
+    "description": "Générez des hachages MD5, SHA-1, SHA-256 et SHA-512 pour texte et fichiers en ligne. Vérifiez l'intégrité des données instantanément. Outil de hachage gratuit."
   },
   "tagline": "Generate secure MD5, SHA256 and SHA512 hashes",
   "pageDescription": "Generate cryptographic hash values using MD5, SHA-1, SHA-256, and SHA-512 algorithms. Perfect for password hashing, file integrity verification, and security auditing. Real-time hash generation with one-click copying. All processing happens locally in your browser for maximum security and privacy."

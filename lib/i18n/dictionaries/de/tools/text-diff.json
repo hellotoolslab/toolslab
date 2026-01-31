@@ -76,8 +76,8 @@
     ]
   },
   "meta": {
-    "title": "Diff Prüfer - Kostenloses Online-Tool | ToolsLab",
-    "description": "Compare two texts und find differences online. Line-by-line comparison mit highlighting. Kostenlos diff Prüfer."
+    "title": "Text-Vergleich - Unterschiede finden",
+    "description": "Zwei Texte nebeneinander vergleichen und Unterschiede mit Zeilen- oder Zeichenhervorhebung finden. Hinzufügungen und Löschungen erkennen. Kostenloses Diff-Tool."
   },
   "tagline": "Compare files und code mit professional diff visualization",
   "pageDescription": "Professioneller text comparison Tool mit Syntax-Highlighting, patch Generierung, und side-by-side diff views. Compare code files, documents, und text mit line-by-line differences, change tracking, und unified diff output. Features Git-style patches, whitespace options, und exportieren zu HTML/PDF. Perfect für Entwickler reviewing code changes."

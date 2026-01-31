@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Convertitore JSON in CSV - Strumento Online Gratuito | ToolsLab",
-    "description": "Converti dati JSON in formato CSV online. Appiattisci oggetti e array nidificati. Convertitore JSON in CSV gratuito."
+    "title": "Convertitore JSON in CSV - Online",
+    "description": "Converti dati JSON in formato CSV online. Appiattisci oggetti e array nidificati con mappatura colonne personalizzabile. Convertitore JSON a CSV gratuito."
   },
   "tagline": "Converti JSON in CSV con formattazione avanzata e mappatura colonne",
   "pageDescription": "Convertitore JSON in CSV gratuito con appiattimento avanzato, mappatura colonne e opzioni formattazione. Trasforma array JSON, oggetti nidificati e strutture dati complesse in file CSV compatibili Excel. Funzionalità ordinamento colonne drag-and-drop, delimitatori personalizzati, configurazione intestazioni e anteprima in tempo reale. Perfetto per export dati, conversione risposte API e integrazione fogli di calcolo. Elaborazione sicura basata su browser senza caricamento file."

@@ -3,8 +3,8 @@
   "description": "Converti stringhe Base64 in immagini JPG/JPEG",
   "placeholder": "",
   "meta": {
-    "title": "Base64 a JPG - Convertitore Online Gratuito | ToolsLab",
-    "description": "Converti Base64 in JPG/JPEG online. Decodifica Base64 e salva come immagine JPEG. Strumento gratuito con anteprima istantanea e visualizzazione metadati qualità."
+    "title": "Base64 a JPG - Convertitore Online Gratuito",
+    "description": "Converti Base64 in JPG/JPEG online. Decodifica Base64 e salva come immagine JPEG. Strumento gratuito con anteprima istantanea e metadati di qualità."
   },
   "tagline": "Converti dati Base64 in immagini JPG/JPEG istantaneamente con anteprima",
   "pageDescription": "Converti dati codificati in Base64 in immagini JPG/JPEG con download e anteprima istantanei. Perfetto per sviluppatori che lavorano con API di immagini, allegati email e flussi di elaborazione dati. Supporta la stima della qualità JPEG e l'estrazione dei metadati. Conversione sicura basata su browser senza caricamenti su server. Valida l'input Base64, visualizza l'anteprima delle immagini JPEG, visualizza dimensioni e informazioni sulla qualità dell'immagine, e scarica i file convertiti direttamente sul tuo dispositivo.",

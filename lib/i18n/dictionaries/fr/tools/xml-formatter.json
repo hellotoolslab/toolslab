@@ -3,8 +3,8 @@
   "description": "Formatez, validez et minifiez les documents XML avec coloration syntaxique et support XPath",
   "placeholder": "Collez votre XML...",
   "meta": {
-    "title": "Formateur XML - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Formatez et validez XML en ligne. Minifiez les documents XML avec support XPath. Formateur XML gratuit."
+    "title": "Formateur XML - Outil en Ligne Gratuit",
+    "description": "Formatez, validez et minifiez des documents XML en ligne avec coloration syntaxique et support XPath. Indentation personnalisable. Outil XML en ligne."
   },
   "tagline": "Formatta, valida e minimizza XML con ricerca XPath e supporto namespace",
   "pageDescription": "Formatter XML professionale con validazione sintassi, abbellimento e minimizzazione. Funzionalità ricerca XPath, analisi namespace e visualizzazione struttura. Perfetto per SOAP, RSS, SVG e file configurazione. Gestisce documenti XML grandi in modo efficiente con validazione in tempo reale ed evidenziazione errori. Elaborazione XML gratuita e sicura basata su browser.",

@@ -3,8 +3,8 @@
   "description": "Convierte archivos de email EML a HTML con extracción de encabezados, manejo de adjuntos y renderizado multi-vista",
   "placeholder": "Carga un archivo EML o pega el contenido EML aquí...",
   "meta": {
-    "title": "Convertidor EML a HTML - Visualizador de Email Gratuito | ToolsLab",
-    "description": "Convierte archivos de email EML a HTML instantáneamente. Analiza encabezados de email, extrae adjuntos y visualiza contenido de email con nuestro visualizador EML gratuito. Soporta MIME, RFC822, mensajes multipart y todos los principales clientes de email."
+    "title": "Conversor EML a HTML - Visor Email",
+    "description": "Convierta archivos email EML a HTML al instante. Analice encabezados, extraiga adjuntos y visualice contenido. Soporte MIME y RFC822. Visor EML gratuito online."
   },
   "tagline": "Convierte archivos de email EML a HTML con análisis avanzado y renderizado multi-vista",
   "pageDescription": "Convertidor profesional EML a HTML con análisis MIME, extracción de encabezados, manejo de adjuntos y sanitización de seguridad. Convierte emails de Outlook, Thunderbird, Apple Mail y otros clientes. Características: vista raw, HTML renderizado, tabla de encabezados, vista de código fuente y extracción de adjuntos. Perfecto para migración de email, análisis de plantillas, forense y archivo. Soporta quoted-printable, codificación base64, mensajes multipart, imágenes inline y todos los estándares RFC822/2822.",

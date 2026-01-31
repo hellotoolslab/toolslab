@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "QR Code Generator - Free Online Tool | ToolsLab",
-    "description": "Generate QR codes online for text, URLs, WiFi, and more. Customize size and download as image. Free QR generator."
+    "title": "QR Code Generator - Free Online Tool",
+    "description": "Generate QR codes for URLs, text, WiFi, vCards, and more. Customize colors, size, and error correction. Download as PNG or SVG. Free QR code generator."
   },
   "tagline": "Generate advanced QR codes with logos, batch processing and developer tools",
   "pageDescription": "Professional QR code generator with logo embedding, WiFi/vCard creation, and batch processing. Features SVG export, API integration, error correction levels, and size optimization. Perfect for developers building authentication systems, contact sharing, and marketing campaigns. Supports URL, email, SMS, geo-location, and crypto addresses with real-time validation."

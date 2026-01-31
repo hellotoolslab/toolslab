@@ -1,39 +1,39 @@
 {
   "title": "Gerador de Timestamps YouTube",
-  "description": "Crie timestamps e capitulos do YouTube com geracao automatica de links e conversao de tempo",
+  "description": "Crie timestamps e capítulos do YouTube com geração automática de links e conversão de tempo",
   "placeholder": "00:00",
   "meta": {
-    "title": "Gerador de Timestamps YouTube - Crie Capitulos Gratis | ToolsLab",
-    "description": "Gerador de timestamps do YouTube gratuito para criar capitulos de video. Gere descricoes de capitulos prontas para o YouTube com formatacao automatica de tempo, links clicaveis e copia-cola facil. Perfeito para criadores de conteudo e editores de video."
+    "title": "Gerador Timestamps YouTube",
+    "description": "Crie capítulos e timestamps YouTube com formatação automática de tempo. Links clicáveis para descrições de vídeo. Ferramenta gratuita para criadores."
   },
-  "tagline": "Gere capitulos e timestamps do YouTube com criacao automatica de links e conversao de tempo",
-  "pageDescription": "Gerador profissional de timestamps do YouTube para criadores de conteudo e editores de video. Crie timestamps formatados para descricoes de video, gere Capitulos do YouTube para navegacao melhorada e converta entre formatos de tempo instantaneamente. Adicione timestamps com rotulos, importe capitulos existentes e exporte em multiplos formatos. Gere links de timestamp clicaveis quando voce fornece uma URL de video. O conversor de tempo integrado lida com formatos HH:MM:SS, MM:SS e segundos. Todo o processamento acontece no seu navegador para privacidade completa - nenhum dado de video e armazenado ou carregado.",
+  "tagline": "Gere capítulos e timestamps do YouTube com criacao automática de links e conversão de tempo",
+  "pageDescription": "Gerador profissional de timestamps do YouTube para criadores de conteúdo e editores de vídeo. Crie timestamps formatados para descrições de vídeo, gere Capítulos do YouTube para navegação melhorada e converta entre formatos de tempo instantaneamente. Adicione timestamps com rotulos, importe capítulos existentes e exporte em multiplos formatos. Gere links de timestamp clicáveis quando voce fornece uma URL de vídeo. O conversor de tempo integrado lida com formatos HH:MM:SS, MM:SS e segundos. Todo o processamento acontece no seu navegador para privacidade completa - nenhum dado de vídeo é armazenado ou carregado.",
   "videoUrlPlaceholder": "https://www.youtube.com/watch?v=...",
   "addTimestamp": "Adicionar Timestamp",
   "time": "Tempo",
-  "label": "Rotulo",
-  "labelPlaceholder": "Titulo do capitulo...",
+  "label": "Rótulo",
+  "labelPlaceholder": "Título do capitulo...",
   "timestamps": "Timestamps",
   "noTimestamps": "Nenhum timestamp ainda. Adicione o primeiro!",
-  "generateChapters": "Gerar Capitulos",
-  "importChapters": "Importar Capitulos",
-  "copyChapters": "Copiar Capitulos",
+  "generateChapters": "Gerar Capítulos",
+  "importChapters": "Importar Capítulos",
+  "copyChapters": "Copiar Capítulos",
   "copyLinks": "Copiar com Links",
   "clear": "Limpar Tudo",
   "delete": "Excluir",
   "edit": "Editar",
   "save": "Salvar",
   "cancel": "Cancelar",
-  "chaptersFormat": "Formato Capitulos YouTube",
+  "chaptersFormat": "Formato Capítulos YouTube",
   "linksFormat": "Timestamps com Links",
-  "videoUrl": "URL Video YouTube",
+  "videoUrl": "URL Vídeo YouTube",
   "optional": "(opcional)",
-  "invalidTime": "Formato de tempo invalido. Use MM:SS ou HH:MM:SS",
-  "invalidUrl": "URL do YouTube invalida",
-  "chaptersOutput": "Saida de Capitulos",
-  "linksOutput": "Saida de Links",
+  "invalidTime": "Formato de tempo inválido. Use MM:SS ou HH:MM:SS",
+  "invalidUrl": "URL do YouTube inválida",
+  "chaptersOutput": "Saída de Capítulos",
+  "linksOutput": "Saída de Links",
   "copied": "Copiado!",
-  "importPlaceholder": "Cole os capitulos aqui (um por linha)...\nExemplo:\n00:00 Introducao\n01:30 Primeiro Topico\n05:45 Segundo Topico",
+  "importPlaceholder": "Cole os capítulos aqui (um por linha)...\nExemplo:\n00:00 Introdução\n01:30 Primeiro Tópico\n05:45 Segundo Tópico",
   "importButton": "Importar",
   "convertTime": "Conversor de Tempo",
   "seconds": "Segundos",
@@ -44,72 +44,72 @@
     "steps": [
       {
         "title": "Adicione seu primeiro timestamp",
-        "description": "Digite um tempo no formato MM:SS ou HH:MM:SS (ex. 01:30 ou 1:30:00) e um rotulo descritivo para o capitulo. O primeiro capitulo em 00:00 e necessario para que os Capitulos do YouTube funcionem. Clique em 'Adicionar Timestamp' ou pressione Enter para adiciona-lo a sua lista."
+        "description": "Digite um tempo no formato MM:SS ou HH:MM:SS (ex. 01:30 ou 1:30:00) e um rótulo descritivo para o capitulo. O primeiro capitulo em 00:00 é necessário para que os Capítulos do YouTube funcionem. Clique em 'Adicionar Timestamp' ou pressione Enter para adiciona-lo a sua lista."
       },
       {
-        "title": "Construa sua lista de capitulos",
-        "description": "Continue adicionando timestamps para cada secao do seu video. O YouTube requer pelo menos 3 capitulos com o primeiro comecando em 00:00. Os capitulos devem estar separados por pelo menos 10 segundos. Edite ou exclua timestamps a qualquer momento usando os botoes de acao em cada linha."
+        "title": "Construa sua lista de capítulos",
+        "description": "Continue adicionando timestamps para cada seção do seu vídeo. O YouTube requer pelo menos 3 capítulos com o primeiro comecando em 00:00. Os capítulos devem estar separados por pelo menos 10 segundos. Edite ou exclua timestamps a qualquer momento usando os botões de ação em cada linha."
       },
       {
-        "title": "Adicione a URL do seu video (opcional)",
-        "description": "Cole a URL do seu video do YouTube para gerar links de timestamp clicaveis. A ferramenta suporta todos os formatos de URL do YouTube incluindo youtube.com/watch, links curtos youtu.be e URLs embed. Os links incluirao o parametro &t= para navegacao direta."
+        "title": "Adicione a URL do seu vídeo (opcional)",
+        "description": "Cole a URL do seu vídeo do YouTube para gerar links de timestamp clicáveis. A ferramenta suporta todos os formatos de URL do YouTube incluindo youtube.com/watch, links curtos youtu.be e URLs embed. Os links incluirao o parametro &t= para navegação direta."
       },
       {
-        "title": "Copie e use seus capitulos",
-        "description": "Clique em 'Copiar Capitulos' para copiar os timestamps formatados para a descricao do seu video. O formato e exatamente o que o YouTube espera: timestamp seguido do titulo em cada linha. Se voce adicionou uma URL de video, use 'Copiar com Links' para links de timestamp clicaveis."
+        "title": "Copie e use seus capítulos",
+        "description": "Clique em 'Copiar Capítulos' para copiar os timestamps formatados para a descrição do seu vídeo. O formato e exatamente o que o YouTube espera: timestamp seguido do título em cada linha. Se voce adicionou uma URL de vídeo, use 'Copiar com Links' para links de timestamp clicáveis."
       },
       {
-        "title": "Importe capitulos existentes",
-        "description": "Tem capitulos de outra fonte? Clique em 'Importar Capitulos' e cole-os no formato padrao (timestamp espaco titulo). A ferramenta analisara e adicionara a sua lista automaticamente. Otimo para migrar timestamps de outros videos ou arquivos de texto."
+        "title": "Importe capítulos existentes",
+        "description": "Tem capítulos de outra fonte? Clique em 'Importar Capítulos' e cole-os no formato padrão (timestamp espaço título). A ferramenta analisará e adicionará a sua lista automaticamente. Ótimo para migrar timestamps de outros vídeos ou arquivos de texto."
       }
     ],
     "features": [
-      "Saida no formato Capitulos YouTube (pronto para descricoes de video)",
-      "Ordenacao e formatacao automatica de tempo",
+      "Saída no formato Capítulos YouTube (pronto para descrições de vídeo)",
+      "Ordenação e formatação automática de tempo",
       "Suporte para formatos MM:SS e HH:MM:SS",
-      "Geracao de links de timestamp clicaveis com URL de video",
-      "Importar capitulos existentes de texto",
+      "Geração de links de timestamp clicáveis com URL de vídeo",
+      "Importar capítulos existentes de texto",
       "Editar timestamps inline sem perder dados",
       "Conversor de tempo integrado (segundos para formatado e vice-versa)",
-      "Copia para area de transferencia com um clique",
-      "Extracao de ID de video de qualquer formato de URL do YouTube",
-      "Validacao automatica dos requisitos de Capitulos do YouTube",
-      "Processamento no navegador - nenhum upload necessario",
-      "Exportar timestamps com ou sem links clicaveis"
+      "Copia para área de transferência com um clique",
+      "Extração de ID de vídeo de qualquer formato de URL do YouTube",
+      "Validação automática dos requisitos de Capítulos do YouTube",
+      "Processamento no navegador - nenhum upload necessário",
+      "Exportar timestamps com ou sem links clicáveis"
     ],
     "useCases": [
-      "Crie Capitulos do YouTube para navegacao de video e SEO melhorados",
-      "Gere links de timestamp para compartilhar momentos especificos do video",
-      "Construa listas de capitulos para episodios de podcast no YouTube",
-      "Crie navegacao para conteudo longo (tutoriais, cursos)",
-      "Gere timestamps para series de videos educacionais",
+      "Crie Capítulos do YouTube para navegação de vídeo e SEO melhorados",
+      "Gere links de timestamp para compartilhar momentos especificos do vídeo",
+      "Construa listas de capítulos para episodios de podcast no YouTube",
+      "Crie navegação para conteúdo longo (tutoriais, cursos)",
+      "Gere timestamps para séries de vídeos educacionais",
       "Crie marcadores de capitulo para VODs de transmissoes ao vivo",
-      "Construa listas de timestamps para videos musicais com multiplas faixas",
-      "Gere timestamps para conferencias e apresentacoes",
-      "Crie navegacao de capitulos para videos de audiolivros",
-      "Construa listas de timestamps para videos de compilacao"
+      "Construa listas de timestamps para vídeos musicais com múltiplas faixas",
+      "Gere timestamps para conferencias e apresentações",
+      "Crie navegação de capítulos para vídeos de audiolivros",
+      "Construa listas de timestamps para vídeos de compilação"
     ],
     "proTips": [
       "Sempre comece com 00:00 - o YouTube exige que o primeiro capitulo comece no inicio",
-      "Use titulos de capitulo descritivos mas concisos (menos de 100 caracteres recomendado)",
-      "Adicione pelo menos 3 capitulos - o YouTube nao exibira capitulos com menos entradas",
-      "Mantenha os capitulos separados por pelo menos 10 segundos para que o YouTube os reconheca",
-      "Inclua topicos-chave nos titulos dos capitulos para melhor visibilidade de pesquisa",
-      "Use o conversor de tempo para verificar rapidamente a duracao entre capitulos",
-      "Importe capitulos do seu roteiro ou esboço antes de gravar",
-      "Copie os capitulos para um arquivo de texto como backup antes de publicar",
-      "Use convencoes de nomenclatura consistentes em sua serie de videos",
-      "Adicione a URL do video para gerar links de timestamp compartilhaveis nas redes sociais"
+      "Use títulos de capitulo descritivos mas concisos (menos de 100 caracteres recomendado)",
+      "Adicione pelo menos 3 capítulos - o YouTube não exibirá capítulos com menos entradas",
+      "Mantenha os capítulos separados por pelo menos 10 segundos para que o YouTube os reconheça",
+      "Inclua tópicos-chave nos títulos dos capítulos para melhor visibilidade de pesquisa",
+      "Use o conversor de tempo para verificar rapidamente a duracao entre capítulos",
+      "Importe capítulos do seu roteiro ou esboço antes de gravar",
+      "Copie os capítulos para um arquivo de texto como backup antes de publicar",
+      "Use convenções de nomenclatura consistentes em sua serie de vídeos",
+      "Adicione a URL do vídeo para gerar links de timestamp compartilháveis nas redes sociais"
     ],
     "troubleshooting": [
-      "Capitulos nao aparecem no YouTube: Certifique-se de ter pelo menos 3 capitulos, o primeiro comeca em 00:00 e os capitulos estao separados por pelo menos 10 segundos.",
-      "Erro de tempo invalido: Use o formato MM:SS (05:30) ou HH:MM:SS (1:05:30). Segundos puros tambem funcionam (90).",
-      "URL de video nao reconhecida: Certifique-se de que e uma URL valida do YouTube. A ferramenta suporta youtube.com/watch, youtu.be e formatos embed.",
-      "Timestamps nao em ordem: A ferramenta ordena automaticamente os timestamps cronologicamente ao gerar a saida.",
-      "Importacao nao funciona: Cada capitulo deve estar em sua propria linha com formato 'MM:SS Titulo' ou 'HH:MM:SS Titulo'.",
-      "Links nao aparecem: Adicione uma URL de video do YouTube valida para habilitar a geracao de links de timestamp.",
-      "Titulos de capitulos cortados: O YouTube trunca titulos longos. Mantenha-os abaixo de 100 caracteres.",
-      "Copiado mas nao funciona: Certifique-se de colar na descricao do video, nao no titulo ou campo de tags."
+      "Capítulos não aparecem no YouTube: Certifique-se de ter pelo menos 3 capítulos, o primeiro começa em 00:00 e os capítulos estão separados por pelo menos 10 segundos.",
+      "Erro de tempo inválido: Use o formato MM:SS (05:30) ou HH:MM:SS (1:05:30). Segundos puros também funcionam (90).",
+      "URL de vídeo não reconhecida: Certifique-se de que e uma URL válida do YouTube. A ferramenta suporta youtube.com/watch, youtu.be e formatos embed.",
+      "Timestamps não em ordem: A ferramenta ordena automaticamente os timestamps cronologicamente ao gerar a saída.",
+      "Importação não funciona: Cada capitulo deve estar em sua própria linha com formato 'MM:SS Título' ou 'HH:MM:SS Título'.",
+      "Links não aparecem: Adicione uma URL de vídeo do YouTube válida para habilitar a geração de links de timestamp.",
+      "Títulos de capítulos cortados: O YouTube trunca títulos longos. Mantenha-os abaixo de 100 caracteres.",
+      "Copiado mas não funciona: Certifique-se de colar na descrição do vídeo, não no título ou campo de tags."
     ],
     "keyboardShortcuts": [
       {
@@ -122,7 +122,7 @@
       },
       {
         "keys": "Escape",
-        "description": "Cancelar edicao"
+        "description": "Cancelar edição"
       }
     ]
   }

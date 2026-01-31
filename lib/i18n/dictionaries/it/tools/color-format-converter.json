@@ -3,8 +3,8 @@
   "description": "Converti colori tra formati HEX, RGB, HSL, HSV e CMYK con generazione palette",
   "placeholder": "Inserisci colore (HEX, RGB, HSL, HSV, CMYK o nome)",
   "meta": {
-    "title": "Convertitore Formato Colori - HEX a RGB, HSL, HSV, CMYK | ToolsLab",
-    "description": "Convertitore formato colori gratuito. Converti tra HEX, RGB, HSL, HSV e CMYK. Genera palette di colori, controlla il contrasto, crea tinte e sfumature. Perfetto per web designer e sviluppatori."
+    "title": "Convertitore Colori - HEX RGB HSL",
+    "description": "Converti colori tra HEX, RGB, HSL, HSV e CMYK. Genera palette, verifica contrasto e crea tinte e sfumature. Strumento gratuito per web designer e sviluppatori."
   },
   "tagline": "Converti colori tra formati con generatore palette e controllo contrasto",
   "pageDescription": "Convertitore professionale di formati colore per designer e sviluppatori. Converti senza problemi tra formati HEX, RGB, HSL, HSV e CMYK. Genera palette di colori armoniose con schemi complementari, analoghi, triadici e tetradici. Crea tinte e sfumature per qualsiasi colore. Verifica la conformità del contrasto WCAG per l'accessibilità. Esporta i colori come variabili CSS, SCSS o JSON. Salva la cronologia dei colori e riutilizza rapidamente i colori recenti. Tutta l'elaborazione avviene nel tuo browser per la massima privacy.",

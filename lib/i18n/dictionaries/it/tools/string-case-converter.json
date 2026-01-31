@@ -90,8 +90,8 @@
     ]
   },
   "meta": {
-    "title": "Convertitore di Case Stringhe - Strumento Online Gratuito | ToolsLab",
-    "description": "Converti testo tra camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE e altro. Convertitore di case stringhe online gratuito per sviluppatori. Funziona offline, nessun dato inviato ai server."
+    "title": "Convertitore Case Stringhe - Online",
+    "description": "Converti testo tra camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE e altri. Convertitore case online per sviluppatori. Funziona anche offline."
   },
   "tagline": "Converti testo tra camelCase, snake_case, kebab-case e altro istantaneamente",
   "pageDescription": "Trasforma il testo tra diverse convenzioni di nomenclatura con questo Convertitore di Case Stringhe online gratuito. Converti istantaneamente tra camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case e altro. Perfetto per sviluppatori che devono convertire nomi di variabili, classi o costanti tra diversi linguaggi di programmazione e standard di codifica. Include conversione batch, rilevamento automatico del case e copia con un click. Sicuro, basato su browser e funziona completamente offline."

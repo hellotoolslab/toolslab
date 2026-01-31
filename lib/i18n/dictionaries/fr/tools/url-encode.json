@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Décodeur URL - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Décodez le texte encodé en URL en ligne. Convertissez les paramètres URL en texte lisible. Outil décodeur URL gratuit."
+    "title": "Décodeur URL - Outil en Ligne Gratuit",
+    "description": "Encodez et décodez des URL en ligne. Convertissez les caractères spéciaux en encodage pourcentage ou décodez les paramètres URL. Outil encoder/decoder gratuit."
   },
   "tagline": "Encode and decode URLs and query parameters safely",
   "pageDescription": "URL encode and decode components and query parameters for web development. Handle special characters, spaces, and international text in URLs safely. Perfect for API developers, web forms, and HTTP request handling. Supports percent-encoding standards with real-time conversion and validation."

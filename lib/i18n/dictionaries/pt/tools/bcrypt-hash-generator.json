@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Gerador de Hash Bcrypt - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Gere e verifique hashes bcrypt de senhas online. Gerador bcrypt gratuito com fator de custo configurável, exibição de salt e verificação de hash. Processamento seguro do lado do cliente."
+    "title": "Gerador Hash Bcrypt - Gratuito",
+    "description": "Gere e verifique hashes bcrypt de senhas online. Fator de custo configurável, exibição de salt e verificação de hash. Processamento seguro do lado do cliente."
   },
   "tagline": "Gere hashes bcrypt seguros para senhas com rounds configuráveis",
   "pageDescription": "Gere e verifique hashes bcrypt de senhas com fator de custo configurável para armazenamento seguro. Perfeito para desenvolvedores construindo sistemas de autenticação, testando segurança de senhas e aprendendo sobre criptografia bcrypt. Inclui rounds ajustáveis (4-12), geração automática de salt, verificação de hash e comparação de tempo. Todo o processamento acontece localmente no seu navegador - suas senhas nunca saem do seu dispositivo."

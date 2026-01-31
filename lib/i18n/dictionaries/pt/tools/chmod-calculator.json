@@ -3,8 +3,8 @@
   "description": "Calcule permissões Unix com grade visual, conversão entre notação octal e simbólica",
   "placeholder": "Digite valor octal (ex. 755)",
   "meta": {
-    "title": "Calculadora Chmod - Calculadora de Permissões de Arquivos Unix | ToolsLab",
-    "description": "Calculadora chmod online gratuita. Converta entre permissões Unix octais (755, 644) e simbólicas (rwxr-xr-x) com grade visual, presets e geração de comandos."
+    "title": "Calculadora Chmod - Permissões Unix",
+    "description": "Calcule permissões de arquivos Unix online. Converta entre formatos octais (755, 644) e simbólicos com grade visual. Calculadora chmod gratuita online."
   },
   "tagline": "Calcule e converta permissões de arquivos Unix com interface visual e presets comuns",
   "pageDescription": "Calculadora chmod online gratuita para permissões de arquivos Unix/Linux. Converta entre notação octal (755, 644, 777) e formato simbólico (rwxr-xr-x). Inclui grade de permissões interativa, presets comuns, opção de flag recursivo e geração instantânea de comandos. Perfeita para administradores de sistemas, engenheiros DevOps e usuários Linux que gerenciam permissões de arquivos e diretórios.",

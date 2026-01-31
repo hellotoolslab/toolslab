@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "SQL Formatter - Free Online Tool | ToolsLab",
-    "description": "Format and beautify SQL queries online. Support for multiple SQL dialects. Free SQL formatter tool."
+    "title": "SQL Formatter - Free Online Tool",
+    "description": "Format and beautify SQL queries online with syntax highlighting. Support for MySQL, PostgreSQL, SQLite, and more dialects. Free SQL formatter and beautifier."
   },
   "tagline": "Format and beautify SQL queries with syntax highlighting",
   "pageDescription": "Format and beautify SQL queries with proper indentation, keyword highlighting, and syntax validation. Perfect for database developers, data analysts, and SQL optimization. Supports multiple SQL dialects (MySQL, PostgreSQL, SQLite) with customizable formatting options. Free, secure browser-based SQL formatter with no data uploads."
