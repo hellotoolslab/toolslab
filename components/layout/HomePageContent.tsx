@@ -1,6 +1,7 @@
 'use client';
 
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { type Locale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
@@ -11,41 +12,56 @@ import { HeroSection } from '@/components/home/HeroSection';
 import { CategoryGrid } from '@/components/home/CategoryGrid';
 import { PoweredBy } from '@/components/home/PoweredBy';
 
-// Lazy load below-the-fold components for better performance
-const FeaturedTools = lazy(() =>
-  import('@/components/home/FeaturedTools').then((mod) => ({
-    default: mod.FeaturedTools,
-  }))
+// Lazy load below-the-fold components using next/dynamic
+// (React.lazy doesn't handle SSR chunk resolution reliably in Next.js)
+const FeaturedTools = dynamic(
+  () =>
+    import('@/components/home/FeaturedTools').then((mod) => ({
+      default: mod.FeaturedTools,
+    })),
+  { ssr: false }
 );
-const TrustMetrics = lazy(() =>
-  import('@/components/home/TrustMetrics').then((mod) => ({
-    default: mod.TrustMetrics,
-  }))
+const TrustMetrics = dynamic(
+  () =>
+    import('@/components/home/TrustMetrics').then((mod) => ({
+      default: mod.TrustMetrics,
+    })),
+  { ssr: false }
 );
-const WhyToolsLab = lazy(() =>
-  import('@/components/home/WhyToolsLab').then((mod) => ({
-    default: mod.WhyToolsLab,
-  }))
+const WhyToolsLab = dynamic(
+  () =>
+    import('@/components/home/WhyToolsLab').then((mod) => ({
+      default: mod.WhyToolsLab,
+    })),
+  { ssr: false }
 );
-const InteractiveDemo = lazy(() =>
-  import('@/components/home/InteractiveDemo').then((mod) => ({
-    default: mod.InteractiveDemo,
-  }))
+const InteractiveDemo = dynamic(
+  () =>
+    import('@/components/home/InteractiveDemo').then((mod) => ({
+      default: mod.InteractiveDemo,
+    })),
+  { ssr: false }
 );
-const ToolDiscovery = lazy(() =>
-  import('@/components/home/ToolDiscovery').then((mod) => ({
-    default: mod.ToolDiscovery,
-  }))
+const ToolDiscovery = dynamic(
+  () =>
+    import('@/components/home/ToolDiscovery').then((mod) => ({
+      default: mod.ToolDiscovery,
+    })),
+  { ssr: false }
 );
-const SEOContent = lazy(() =>
-  import('@/components/home/SEOContent').then((mod) => ({
-    default: mod.SEOContent,
-  }))
+const SEOContent = dynamic(
+  () =>
+    import('@/components/home/SEOContent').then((mod) => ({
+      default: mod.SEOContent,
+    })),
+  { ssr: false }
 );
-const FooterCTA = lazy(() =>
-  import('@/components/home/FooterCTA').then((mod) => ({
-    default: mod.FooterCTA,
-  }))
+const FooterCTA = dynamic(
+  () =>
+    import('@/components/home/FooterCTA').then((mod) => ({
+      default: mod.FooterCTA,
+    })),
+  { ssr: false }
 );
 
 // Loading placeholder for lazy components
