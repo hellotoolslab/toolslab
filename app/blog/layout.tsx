@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import './blog.css';
 
 export const metadata: Metadata = {
@@ -25,6 +26,13 @@ export const metadata: Metadata = {
     title: 'ToolsLab Blog - Developer Guides & Tutorials',
     description: 'Expert guides, tutorials, and best practices for developers.',
     images: ['/og-blog.png'],
+  },
+  alternates: {
+    canonical: 'https://toolslab.dev/blog',
+    languages: generateHreflangAlternates({
+      pageType: 'static',
+      path: 'blog',
+    }),
   },
 };
 

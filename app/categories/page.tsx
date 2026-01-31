@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import CategoriesHubContentSimple from '@/components/layout/CategoriesHubContentSimple';
+import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 export const metadata: Metadata = {
   title: 'Developer Tool Categories - Browse by Functionality',
@@ -22,6 +23,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://toolslab.dev/categories',
+    languages: generateHreflangAlternates({
+      pageType: 'static',
+      path: 'categories',
+    }),
   },
 };
 
