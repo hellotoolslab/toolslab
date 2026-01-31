@@ -15,14 +15,18 @@ export function generateCacheKey(locale: Locale, sections?: string[]): string {
 export abstract class BaseDictionaryLoader {
   protected fullDictionaryCache: Map<Locale, Dictionary>;
   protected sectionCache: Map<string, Dictionary>;
+  // In-flight request deduplication: reuse the same promise for concurrent calls
+  private inflightRequests: Map<string, Promise<Dictionary>>;
 
   constructor() {
     this.fullDictionaryCache = new Map<Locale, Dictionary>();
     this.sectionCache = new Map<string, Dictionary>();
+    this.inflightRequests = new Map<string, Promise<Dictionary>>();
   }
 
   /**
    * Main loading method - uses cache or calls abstract loader
+   * Deduplicates concurrent requests for the same locale+sections
    */
   async load(locale: Locale, sections?: string[]): Promise<Dictionary> {
     const cacheKey = generateCacheKey(locale, sections);
@@ -37,17 +41,31 @@ export abstract class BaseDictionaryLoader {
       return this.fullDictionaryCache.get(locale)!;
     }
 
-    // Load from source (server file or client API)
-    const dictionary = await this.loadFromSource(locale, sections);
-
-    // Cache appropriately
-    if (sections) {
-      this.sectionCache.set(cacheKey, dictionary);
-    } else {
-      this.fullDictionaryCache.set(locale, dictionary);
+    // Deduplicate: if a request for this key is already in-flight, reuse it
+    if (this.inflightRequests.has(cacheKey)) {
+      return this.inflightRequests.get(cacheKey)!;
     }
 
-    return dictionary;
+    // Start new request and track it
+    const request = this.loadFromSource(locale, sections)
+      .then((dictionary) => {
+        // Cache the result
+        if (sections) {
+          this.sectionCache.set(cacheKey, dictionary);
+        } else {
+          this.fullDictionaryCache.set(locale, dictionary);
+        }
+        // Remove from in-flight tracking
+        this.inflightRequests.delete(cacheKey);
+        return dictionary;
+      })
+      .catch((error) => {
+        this.inflightRequests.delete(cacheKey);
+        throw error;
+      });
+
+    this.inflightRequests.set(cacheKey, request);
+    return request;
   }
 
   /**
