@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Convertisseur CSV vers JSON - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Convertissez les fichiers CSV au format JSON en ligne. Support pour délimiteurs personnalisés et en-têtes. Convertisseur CSV vers JSON gratuit."
+    "title": "Convertisseur CSV vers JSON",
+    "description": "Convertissez des fichiers CSV en format JSON en ligne. Support des délimiteurs personnalisés, en-têtes et structures imbriquées. Convertisseur CSV gratuit."
   },
   "tagline": "Convertissez les données CSV au format JSON avec analyse intelligente",
   "pageDescription": "Transformez les fichiers CSV au format JSON avec détection automatique des en-têtes et support des délimiteurs personnalisés. Parfait pour la migration de données, l'intégration d'API et le traitement de feuilles de calcul. Gère les fichiers volumineux avec streaming, préserve les types de données et offre plusieurs formats de sortie. Conversion gratuite et sécurisée basée sur navigateur sans téléchargement de fichiers."

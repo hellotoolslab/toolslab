@@ -76,8 +76,8 @@
     ]
   },
   "meta": {
-    "title": "Vérificateur de Différences - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Comparez deux textes et trouvez les différences en ligne. Comparaison ligne par ligne avec mise en évidence. Vérificateur de différences gratuit."
+    "title": "Comparateur Différences - En Ligne",
+    "description": "Comparez deux textes côte à côte et trouvez les différences avec surlignage ligne par ligne ou par caractère. Détectez ajouts et suppressions. Outil gratuit."
   },
   "tagline": "Compare files and code with professional diff visualization",
   "pageDescription": "Professional text comparison tool with syntax highlighting, patch generation, and side-by-side diff views. Compare code files, documents, and text with line-by-line differences, change tracking, and unified diff output. Features Git-style patches, whitespace options, and export to HTML/PDF. Perfect for developers reviewing code changes."

@@ -2,8 +2,8 @@
   "title": "Costruttore Espressioni Crontab",
   "description": "Analizza, costruisci e valida espressioni cron con costruttore visuale, preset e prossime esecuzioni",
   "meta": {
-    "title": "Costruttore Crontab - Strumento Online Gratuito | ToolsLab",
-    "description": "Costruisci e valida espressioni cron online. Genera crontab con costruttore visuale. Strumento cron gratuito."
+    "title": "Costruttore Crontab - Strumento Online Gratuito",
+    "description": "Costruisci e valida espressioni cron con editor visuale. Genera pianificazioni crontab con descrizioni leggibili e orari esecuzione. Strumento cron gratuito."
   },
   "tagline": "Costruisci e analizza espressioni cron con interfaccia visuale",
   "pageDescription": "Crea e valida espressioni cron usando il nostro builder visuale con menu dropdown e preset comuni. Analizza entry crontab esistenti con descrizioni leggibili e prossimi tempi esecuzione. Perfetto per amministratori sistema, DevOps engineer e sviluppatori che schedulano task automatizzati e deployment.",

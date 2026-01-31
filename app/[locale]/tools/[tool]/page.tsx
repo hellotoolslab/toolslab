@@ -108,9 +108,27 @@ export async function generateMetadata({
     'toolslab',
   ];
 
-  const metaTitle =
-    toolDict?.meta?.title ||
-    `${toolDict?.title || tool.name} - ${locale === 'it' ? 'Strumento Online Gratuito' : 'Free Online Tool'} | ToolsLab`;
+  const getLocalizedSubtitle = (loc: string) => {
+    switch (loc) {
+      case 'it':
+        return 'Strumento Online Gratuito';
+      case 'es':
+        return 'Herramienta Online Gratuita';
+      case 'fr':
+        return 'Outil en Ligne Gratuit';
+      case 'de':
+        return 'Kostenloses Online-Tool';
+      case 'pt':
+        return 'Ferramenta Online Gratuita';
+      default:
+        return 'Free Online Tool';
+    }
+  };
+
+  const rawMetaTitle = toolDict?.meta?.title;
+  const metaTitle = rawMetaTitle
+    ? rawMetaTitle.replace(/\s*\|\s*(?:ToolsLab|OctoTools)\s*$/, '')
+    : `${toolDict?.title || tool.name} - ${getLocalizedSubtitle(locale)}`;
   const metaDescription =
     toolDict?.meta?.description || toolDict?.description || tool.description;
 

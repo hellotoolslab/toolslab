@@ -67,12 +67,15 @@
         "keys": "Arrastar e Soltar",
         "description": "Solte arquivos PDF para enviar"
       },
-      { "keys": "Clicar", "description": "Navegar e selecionar arquivos" }
+      {
+        "keys": "Clicar",
+        "description": "Navegar e selecionar arquivos"
+      }
     ]
   },
   "meta": {
-    "title": "Conversor PDF para Word - Ferramenta Online Gratuita PDF para DOCX | ToolsLab",
-    "description": "Converta PDF para Word (DOCX) online gratuitamente. Preserve formatação, extraia imagens e edite PDFs facilmente. Suporta conversão em lote de até 10 arquivos. Conversão 100% segura baseada em navegador."
+    "title": "Conversor PDF para Word - Grátis",
+    "description": "Converta PDF para Word (DOCX) online gratuitamente. Preserve formatação, extraia imagens e edite PDFs facilmente. Conversão segura diretamente no navegador."
   },
   "tagline": "Converta arquivos PDF para documentos Word editáveis com formatação e imagens preservadas",
   "pageDescription": "Transforme arquivos PDF em documentos Word (DOCX) editáveis preservando formatação, layout e imagens originais. Perfeito para editar contratos, extrair conteúdo, converter relatórios e preparar documentos para colaboração. Suporta múltiplos modos de conversão, processamento em lote de até 10 arquivos e qualidade de imagem ajustável. Conversão gratuita e segura baseada em navegador sem uploads de arquivo ou armazenamento no servidor. Funciona com PDFs baseados em texto e digitalizados.",

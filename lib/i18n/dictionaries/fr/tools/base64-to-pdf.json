@@ -3,8 +3,8 @@
   "description": "Convertissez les chaînes Base64 en fichiers PDF",
   "placeholder": "Collez la chaîne Base64...",
   "meta": {
-    "title": "Base64 vers PDF - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Convertissez Base64 en PDF en ligne. Décodez Base64 et enregistrez comme PDF. Convertisseur gratuit."
+    "title": "Base64 vers PDF - Outil en Ligne Gratuit",
+    "description": "Convertissez des chaînes Base64 en fichiers PDF en ligne. Décodez Base64 et téléchargez comme PDF instantanément. Convertisseur gratuit dans le navigateur."
   },
   "tagline": "Converti dati Base64 in file PDF istantaneamente",
   "pageDescription": "Converti dati codificati Base64 in file PDF con download istantaneo. Perfetto per sviluppatori che lavorano con API documenti, allegati email e workflow elaborazione dati. Conversione sicura basata su browser senza caricamenti server. Valida input Base64, visualizza metadata PDF e scarica file convertiti direttamente sul tuo dispositivo.",

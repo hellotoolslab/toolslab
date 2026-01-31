@@ -3,8 +3,8 @@
   "description": "Convertissez des chaînes Base64 en images WebP",
   "placeholder": "",
   "meta": {
-    "title": "Base64 vers WebP - Convertisseur en Ligne Gratuit | ToolsLab",
-    "description": "Convertissez Base64 en WebP en ligne. Décodez Base64 et enregistrez en image WebP moderne. Convertisseur gratuit avec aperçu instantané, support de transparence et analyse de compression."
+    "title": "Base64 vers WebP - Convertisseur",
+    "description": "Convertissez Base64 en WebP en ligne. Décodez Base64 et enregistrez en image WebP moderne. Convertisseur gratuit avec aperçu, transparence et compression."
   },
   "tagline": "Convertissez instantanément des données Base64 en images WebP modernes avec des fonctionnalités avancées",
   "pageDescription": "Convertissez des données encodées en Base64 en images WebP avec téléchargement et aperçu instantanés. Parfait pour les développeurs travaillant avec des formats d'images modernes, des APIs et l'optimisation web. Prend en charge la compression lossy et lossless, la transparence (canal alpha) et le WebP animé. Conversion sécurisée basée sur le navigateur sans téléchargements sur serveur. Validez l'entrée Base64, prévisualisez les images WebP avec support de transparence, affichez le type de compression et les métadonnées, et téléchargez les fichiers convertis directement sur votre appareil.",

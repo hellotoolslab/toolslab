@@ -80,8 +80,8 @@
     ]
   },
   "meta": {
-    "title": "Codificador/Decodificador HTML - Herramienta Online Gratuita | ToolsLab",
-    "description": "Codificador y decodificador HTML gratuito. Convierte texto a entidades HTML (codificar) o decodifica entidades HTML a texto plano. Soporta entidades con nombre, decimales y hexadecimales. Basado en navegador, seguro e instantáneo."
+    "title": "Encoder/Decoder HTML - Online",
+    "description": "Codifique texto en entidades HTML o decodifique entidades HTML a texto plano. Soporte para entidades nombradas, decimales y hexadecimales. Herramienta segura."
   },
   "tagline": "Convierte texto a entidades HTML y decodifica HTML de forma segura",
   "pageDescription": "Codifica caracteres especiales a entidades HTML o decodifica entidades a texto plano. Esencial para desarrolladores web trabajando con HTML, XML, prevención de ataques XSS y manejo de caracteres especiales. Soporta múltiples formatos de codificación incluyendo entidades con nombre (&lt; &gt;), decimales (&#60;) y hexadecimales (&#x3C;). Procesa texto instantáneamente en tu navegador sin cargas al servidor."

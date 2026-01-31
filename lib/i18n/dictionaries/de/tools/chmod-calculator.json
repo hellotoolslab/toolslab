@@ -3,8 +3,8 @@
   "description": "Berechnen Sie Unix-Dateiberechtigungen mit visuellem Raster, Oktal- und symbolischer Notation-Konverter",
   "placeholder": "Oktalwert eingeben (z.B. 755)",
   "meta": {
-    "title": "Chmod-Rechner - Unix-Dateiberechtigungsrechner | ToolsLab",
-    "description": "Kostenloser Online-Chmod-Rechner. Konvertieren Sie zwischen oktalen (755, 644) und symbolischen (rwxr-xr-x) Unix-Dateiberechtigungen mit visuellem Raster, Voreinstellungen und Befehlsgenerierung."
+    "title": "Chmod-Rechner - Unix-Berechtigungen",
+    "description": "Unix-Dateiberechtigungen online berechnen. Zwischen oktalen (755, 644) und symbolischen Formaten konvertieren. Visuelles Raster und Voreinstellungen. Kostenlos."
   },
   "tagline": "Berechnen und konvertieren Sie Unix-Dateiberechtigungen mit visueller Oberfläche und gängigen Voreinstellungen",
   "pageDescription": "Kostenloser Online-Chmod-Rechner für Unix/Linux-Dateiberechtigungen. Konvertieren Sie zwischen Oktalnotation (755, 644, 777) und symbolischem Format (rwxr-xr-x). Enthält interaktives Berechtigungsraster, gängige Voreinstellungen, rekursive Flag-Option und sofortige Befehlsgenerierung. Perfekt für Systemadministratoren, DevOps-Ingenieure und Linux-Benutzer, die Datei- und Verzeichnisberechtigungen verwalten.",

@@ -93,8 +93,10 @@ export default function Base64ToWebpTool({
     });
   }, []);
 
+  // Debounced validation to reduce INP
   useEffect(() => {
-    validateInput(input);
+    const timeoutId = setTimeout(() => validateInput(input), 300);
+    return () => clearTimeout(timeoutId);
   }, [input, validateInput]);
 
   const handleProcess = useCallback(async () => {

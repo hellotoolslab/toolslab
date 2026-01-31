@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Bcrypt Hash Generator - Free Online Password Hasher | ToolsLab",
-    "description": "Generate and verify bcrypt password hashes online. Free bcrypt generator with configurable cost factor, salt display, and hash verification. Secure client-side processing."
+    "title": "Bcrypt Hash Generator - Free",
+    "description": "Generate and verify bcrypt password hashes online. Configurable cost factor, salt display, and hash verification. Free, secure client-side bcrypt tool."
   },
   "tagline": "Generate secure bcrypt password hashes with configurable rounds",
   "pageDescription": "Generate and verify bcrypt password hashes with configurable cost factor for secure password storage. Perfect for developers building authentication systems, testing password security, and learning about bcrypt encryption. Features adjustable rounds (4-12), automatic salt generation, hash verification, and timing comparison. All processing happens locally in your browser - your passwords never leave your device."

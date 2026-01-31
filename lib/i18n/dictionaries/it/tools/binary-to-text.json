@@ -78,8 +78,8 @@
     ]
   },
   "meta": {
-    "title": "Convertitore Binario a Testo - Strumento Online Gratuito | ToolsLab",
-    "description": "Convertitore binario a testo gratuito. Converti binario in testo ASCII, testo in binario, hex in testo e altro. Supporta UTF-8, conversione istantanea, basato su browser e sicuro."
+    "title": "Convertitore Binario a Testo",
+    "description": "Converti binario in testo ASCII, testo in binario, hex in testo e altri formati. Supporto UTF-8 con conversione istantanea. Strumento gratuito nel browser."
   },
   "tagline": "Converti binario in testo e decodifica dati binari istantaneamente",
   "pageDescription": "Converti numeri binari in testo leggibile e codifica testo in rappresentazione binaria. Supporta formati ASCII, UTF-8 ed esadecimale. Include conversione bidirezionale tra binario, hex e testo con rilevamento automatico, statistiche byte e risultati istantanei. 100% basato su browser senza upload al server."

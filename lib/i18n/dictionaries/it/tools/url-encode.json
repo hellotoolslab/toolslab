@@ -2,8 +2,8 @@
   "title": "Codificatore/Decodificatore URL",
   "description": "Codifica e decodifica componenti URL e parametri query",
   "meta": {
-    "title": "Codificatore/Decodificatore URL - Strumento Online Gratuito | ToolsLab",
-    "description": "Codifica e decodifica URL online. Converti componenti URL e parametri query. Strumento URL encode gratuito."
+    "title": "Encoder/Decoder URL - Online",
+    "description": "Codifica e decodifica URL online. Converti caratteri speciali in formato percentuale o parametri URL in testo leggibile. Strumento encoder/decoder URL gratuito."
   },
   "tagline": "Codifica e decodifica URL e parametri query in sicurezza",
   "pageDescription": "Codifica e decodifica componenti URL e parametri query per sviluppo web. Gestisci caratteri speciali, spazi e testo internazionale in URL in sicurezza. Perfetto per sviluppatori API, form web e gestione richieste HTTP. Supporta standard percent-encoding con conversione e validazione in tempo reale.",

@@ -3,8 +3,8 @@
   "description": "Convert XML documents to JSON format with attribute handling, namespace support, and smart array detection",
   "placeholder": "Paste your XML here...",
   "meta": {
-    "title": "XML to JSON Converter - Free Online Tool | ToolsLab",
-    "description": "Convert XML to JSON online with smart array detection, namespace support, and attribute handling. Free XML to JSON converter with CDATA support and type conversion."
+    "title": "XML to JSON Converter - Free Online Tool",
+    "description": "Convert XML to JSON online with smart array detection, namespace support, and attribute handling. CDATA support and type conversion included. Free converter."
   },
   "tagline": "Convert XML documents to JSON format with advanced parsing and flexible output options",
   "pageDescription": "Professional XML to JSON converter with smart array detection, namespace handling, and flexible attribute modes. Features CDATA preservation, automatic type conversion, and pretty print formatting. Perfect for API integration, data transformation, and converting SOAP/RSS feeds. Handles complex XML structures with mixed content efficiently. Free and secure browser-based conversion.",

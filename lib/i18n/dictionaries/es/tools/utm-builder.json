@@ -3,8 +3,8 @@
   "description": "Crea URLs rastreables con parámetros UTM para campañas de marketing y analytics",
   "placeholder": "https://ejemplo.com/pagina",
   "meta": {
-    "title": "Constructor de Enlaces UTM - Generador de URL de Campaña Gratis | ToolsLab",
-    "description": "Constructor de enlaces UTM gratuito para Google Analytics. Crea URLs rastreables con parámetros UTM para campañas de marketing. Genera códigos UTM, guarda plantillas y rastrea tus campañas en redes sociales, email y anuncios."
+    "title": "Constructor Links UTM - Campañas",
+    "description": "Cree links UTM para Google Analytics. Genere URLs rastreables con parámetros UTM para campañas en redes sociales, email y publicidad. Herramienta UTM gratuita."
   },
   "tagline": "Crea URLs de campaña rastreables con parámetros UTM para analytics y marketing",
   "pageDescription": "Constructor de enlaces UTM profesional para marketers y analistas. Genera URLs rastreables con parámetros UTM (source, medium, campaign, term, content) para seguimiento de Google Analytics. Usa presets para redes sociales (Facebook, Twitter, LinkedIn, Instagram), campañas de email y publicidad. Guarda plantillas para campañas recurrentes. Agrega parámetros personalizados para seguimiento avanzado. Exporta URLs en formato CSV para campañas masivas. Todo el procesamiento ocurre en tu navegador para privacidad y seguridad completas.",

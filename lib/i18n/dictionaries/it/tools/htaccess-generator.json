@@ -3,8 +3,8 @@
   "description": "Genera file .htaccess per Apache con redirect, regole di sicurezza, caching e riscrittura URL",
   "placeholder": "Configura le impostazioni .htaccess",
   "meta": {
-    "title": "Generatore Htaccess - Strumento Configurazione Apache | ToolsLab",
-    "description": "Generatore .htaccess online gratuito. Crea configurazioni Apache con redirect, header di sicurezza, regole di caching, forzatura HTTPS e altro. Nessuna programmazione richiesta."
+    "title": "Generatore .htaccess - Apache",
+    "description": "Genera configurazioni .htaccess per Apache online. Redirect, header sicurezza, regole caching e HTTPS. Nessuna programmazione richiesta. Strumento gratuito."
   },
   "tagline": "Genera file .htaccess professionali per server Apache con configurazione visuale",
   "pageDescription": "Generatore .htaccess online gratuito per server web Apache. Crea file di configurazione con redirect 301/302, forzatura HTTPS, header di sicurezza, caching browser, compressione gzip, pagine errore personalizzate e blocco IP. Include preset per WordPress, app SPA e ottimizzazione performance. Perfetto per sviluppatori web, amministratori di sistema e proprietari di siti.",

@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "CSS Minifier - Free Online Tool | ToolsLab",
-    "description": "Minify and compress CSS code online. Reduce file size and improve loading speed. Free CSS minifier tool."
+    "title": "CSS Minifier - Free Online Tool",
+    "description": "Minify and compress CSS code online to reduce file size and improve page load speed. Remove whitespace and optimize selectors. Free CSS minifier tool."
   },
   "tagline": "Minify and optimize CSS files instantly for faster websites",
   "pageDescription": "Professional CSS minifier and beautifier that reduces file size by up to 60% while preserving functionality. Features advanced optimization options including color compression, rule merging, vendor prefix handling, and media query optimization. Process CSS instantly in your browser with complete privacy - no data is sent to servers. Perfect for optimizing stylesheets for production deployment with support for CSS3, CSS4, and modern properties."

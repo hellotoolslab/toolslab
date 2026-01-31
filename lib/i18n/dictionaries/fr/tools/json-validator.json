@@ -3,8 +3,8 @@
   "description": "Validez la syntaxe et la structure JSON",
   "placeholder": "Collez votre JSON...",
   "meta": {
-    "title": "Validateur JSON - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Validez JSON en ligne gratuitement. Vérifiez la syntaxe, la structure et le support JSON Schema. Rapport d'erreurs en temps réel. Traitement sécurisé dans le navigateur."
+    "title": "Validateur JSON - Outil en Ligne Gratuit",
+    "description": "Validez JSON en ligne. Vérifiez la syntaxe, la structure et le support JSON Schema. Rapport d'erreurs en temps réel et coloration syntaxique. Outil gratuit."
   },
   "tagline": "Valida JSON con supporto schema avanzato e rilevamento errori",
   "pageDescription": "Validatore JSON avanzato con supporto JSON Schema, reporting errori in tempo reale e audit sicurezza. Valida risposte API, file configurazione e strutture dati con supporto schema Draft 7/2019-09/2020-12. Funzionalità evidenziazione sintassi, diagnostica errori dettagliata, metriche performance e rilevamento vulnerabilità sicurezza. Perfetto per sviluppatori e test API.",

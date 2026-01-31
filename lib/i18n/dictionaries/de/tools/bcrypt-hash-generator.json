@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Bcrypt Hash Generator - Kostenloses Online-Tool | ToolsLab",
-    "description": "Generieren und verifizieren Sie bcrypt-Passwort-Hashes online. Kostenloser bcrypt-Generator mit konfigurierbarem Kostenfaktor, Salt-Anzeige und Hash-Verifizierung. Sichere clientseitige Verarbeitung."
+    "title": "Bcrypt-Hash-Generator - Kostenlos",
+    "description": "Bcrypt-Passwort-Hashes online erstellen und verifizieren. Konfigurierbarer Kostenfaktor, Salt-Anzeige und Hash-Prüfung. Sichere clientseitige Verarbeitung."
   },
   "tagline": "Generieren Sie sichere bcrypt-Passwort-Hashes mit konfigurierbaren Rounds",
   "pageDescription": "Generieren und verifizieren Sie bcrypt-Passwort-Hashes mit konfigurierbarem Kostenfaktor für sichere Passwortspeicherung. Perfekt für Entwickler, die Authentifizierungssysteme erstellen, Passwortsicherheit testen und bcrypt-Verschlüsselung lernen. Enthält einstellbare Rounds (4-12), automatische Salt-Generierung, Hash-Verifizierung und Zeitvergleich. Die gesamte Verarbeitung erfolgt lokal in Ihrem Browser - Ihre Passwörter verlassen niemals Ihr Gerät."

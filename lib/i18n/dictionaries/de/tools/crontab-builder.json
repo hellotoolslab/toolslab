@@ -3,8 +3,8 @@
   "description": "Parsen, erstellen und validieren Cron-Ausdrücke mit visuellem Builder, Vorlagen und nächsten Ausführungszeiten",
   "placeholder": "",
   "meta": {
-    "title": "Crontab-Ausdrucks-Builder - Kostenloses Online-Tool | ToolsLab",
-    "description": "Erstellen und validieren Cron-Ausdrücke online. Generieren crontab mit visuellem Builder. Kostenlos cron Tool."
+    "title": "Crontab-Builder - Kostenlos Online",
+    "description": "Cron-Ausdrücke mit dem visuellen Editor erstellen und validieren. Lesbare Beschreibungen und nächste Ausführungszeiten anzeigen. Kostenloses Cron-Builder-Tool."
   },
   "tagline": "Erstellen und parsen Cron-Ausdrücke mit visueller Oberfläche",
   "pageDescription": "Erstellen und validieren Cron-Ausdrücke mit unserem visuellen Builder mit Dropdown-Menüs und gängigen Vorlagen. Vorhandene parsen Crontab-Einträge mit menschenlesbaren Beschreibungen und nächsten Ausführungszeiten. Perfekt für Systemadministratoren, DevOps-Ingenieure und Entwickler, die automatisierte Aufgaben und Deployments planen.",

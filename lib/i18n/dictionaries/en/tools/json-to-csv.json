@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "JSON to CSV Converter - Free Online Tool | ToolsLab",
-    "description": "Convert JSON data to CSV format online. Flatten nested objects and arrays. Free JSON to CSV converter."
+    "title": "JSON to CSV Converter - Free Online Tool",
+    "description": "Convert JSON data to CSV format online. Flatten nested objects and arrays with customizable column mapping and delimiter options. Free JSON to CSV converter."
   },
   "tagline": "Convert JSON to CSV with advanced formatting and column mapping",
   "pageDescription": "Free JSON to CSV converter with advanced flattening, column mapping, and formatting options. Transform JSON arrays, nested objects, and complex data structures into Excel-compatible CSV files. Features drag-and-drop column ordering, custom delimiters, header configuration, and real-time preview. Perfect for data export, API response conversion, and spreadsheet integration. Secure browser-based processing with no file uploads."

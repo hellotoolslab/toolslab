@@ -83,8 +83,8 @@
     "Pretty printing"
   ],
   "meta": {
-    "title": "JavaScript Object to JSON Converter - Free Online Tool | OctoTools",
-    "description": "Convert JavaScript objects to valid JSON online. Handle circular references, BigInt, functions, and undefined values. Free, secure, browser-based converter with no data uploads."
+    "title": "JS to JSON Converter - Free Tool",
+    "description": "Convert JavaScript objects to valid JSON online. Handle circular references, BigInt, functions, and undefined values. Free, secure, browser-based converter."
   },
   "labels": {
     "input": "JavaScript Object",

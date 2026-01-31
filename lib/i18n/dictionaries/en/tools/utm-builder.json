@@ -3,8 +3,8 @@
   "description": "Create trackable URLs with UTM parameters for marketing campaigns and analytics",
   "placeholder": "https://example.com/page",
   "meta": {
-    "title": "UTM Link Builder - Free Campaign URL Generator | ToolsLab",
-    "description": "Free UTM link builder for Google Analytics. Create trackable URLs with UTM parameters for marketing campaigns. Generate UTM codes, save templates, and track your campaigns across social media, email, and ads."
+    "title": "UTM Link Builder - Free Campaign URL Generator",
+    "description": "Build trackable UTM links for Google Analytics campaigns. Create URLs with UTM parameters for social media, email, and ads tracking. Free UTM link builder tool."
   },
   "tagline": "Create trackable campaign URLs with UTM parameters for analytics and marketing",
   "pageDescription": "Professional UTM link builder for marketers and analysts. Generate trackable URLs with UTM parameters (source, medium, campaign, term, content) for Google Analytics tracking. Use presets for social media (Facebook, Twitter, LinkedIn, Instagram), email campaigns, and advertising. Save templates for recurring campaigns. Add custom parameters for advanced tracking. Export URLs in CSV format for bulk campaigns. All processing happens in your browser for complete privacy and security.",

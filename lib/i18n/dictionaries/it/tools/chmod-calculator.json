@@ -3,8 +3,8 @@
   "description": "Calcola i permessi Unix con griglia visuale, conversione tra notazione ottale e simbolica",
   "placeholder": "Inserisci valore ottale (es. 755)",
   "meta": {
-    "title": "Calcolatore Chmod - Calcolatore Permessi File Unix | ToolsLab",
-    "description": "Calcolatore chmod online gratuito. Converti tra permessi Unix ottali (755, 644) e simbolici (rwxr-xr-x) con griglia visuale, preset e generazione comandi."
+    "title": "Calcolatore Chmod - Permessi Unix",
+    "description": "Calcola permessi file Unix online. Converti tra formato ottale (755, 644) e simbolico con griglia visuale e generazione comandi. Calcolatore chmod gratuito."
   },
   "tagline": "Calcola e converti i permessi file Unix con interfaccia visuale e preset comuni",
   "pageDescription": "Calcolatore chmod online gratuito per permessi file Unix/Linux. Converti tra notazione ottale (755, 644, 777) e formato simbolico (rwxr-xr-x). Include griglia permessi interattiva, preset comuni, opzione flag ricorsivo e generazione comandi istantanea. Perfetto per amministratori di sistema, ingegneri DevOps e utenti Linux che gestiscono permessi di file e directory.",

@@ -3,8 +3,8 @@
   "description": "Generate custom CSS gradients with visual editor",
   "placeholder": "",
   "meta": {
-    "title": "CSS Gradient Generator - Free Online Tool | ToolsLab",
-    "description": "Create CSS gradients online. Generate custom gradient code. Free gradient generator tool."
+    "title": "CSS Gradient Generator - Free Online Tool",
+    "description": "Create CSS gradients with a visual editor. Generate linear, radial, and conic gradients with custom colors and stops. Copy CSS code instantly. Free online tool."
   },
   "tagline": "Create beautiful CSS gradients with visual editor and presets",
   "pageDescription": "Professional CSS gradient generator with linear, radial and conic gradients. Create beautiful backgrounds with visual color stop editor, preset collections and real-time preview. Export as CSS, Tailwind classes and SVG. Features drag-and-drop interface, color harmony generator and browser compatibility. Perfect for web designers and developers creating modern UI backgrounds.",

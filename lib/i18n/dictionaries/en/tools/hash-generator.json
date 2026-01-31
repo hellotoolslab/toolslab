@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Hash Generator - Free Online Tool | ToolsLab",
-    "description": "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes online. Free hash generator for text and files."
+    "title": "Hash Generator - Free Online Tool",
+    "description": "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes for text and files online. Verify data integrity with instant hash computation. Free, browser-based tool."
   },
   "tagline": "Generate secure MD5, SHA256 and SHA512 hashes",
   "pageDescription": "Generate cryptographic hash values using MD5, SHA-1, SHA-256, and SHA-512 algorithms. Perfect for password hashing, file integrity verification, and security auditing. Real-time hash generation with one-click copying. All processing happens locally in your browser for maximum security and privacy."

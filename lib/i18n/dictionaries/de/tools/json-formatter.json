@@ -83,8 +83,8 @@
     "Minification"
   ],
   "meta": {
-    "title": "JSON-Formatierer - Kostenloses Online-Tool | ToolsLab",
-    "description": "Formatieren, validieren und verschönern JSON-Daten mit Syntax-Highlighting. Kostenlos online JSON formatter mit no registration required. Works instantly in Ihre browser."
+    "title": "JSON-Formatter - Online formatieren",
+    "description": "JSON-Daten online formatieren, validieren und verschönern. Syntax-Highlighting und Baumansicht für übersichtliche Darstellung. Kostenloses Formatierungstool."
   },
   "labels": {
     "indentSize": "Indent Size",

@@ -80,8 +80,8 @@
     ]
   },
   "meta": {
-    "title": "HTML Encoder/Decoder - Free Online Tool | ToolsLab",
-    "description": "Free HTML encoder and decoder. Convert text to HTML entities (encode) or decode HTML entities to plain text. Supports named, decimal, and hexadecimal entities. Browser-based, secure, and instant."
+    "title": "HTML Encoder/Decoder - Free Online Tool",
+    "description": "Encode text to HTML entities or decode HTML entities to plain text. Support for named, decimal, and hexadecimal entities. Free, secure, browser-based HTML tool."
   },
   "tagline": "Convert text to HTML entities and decode HTML safely",
   "pageDescription": "Encode special characters to HTML entities or decode entities back to plain text. Essential for web developers working with HTML, XML, preventing XSS attacks, and handling special characters. Supports multiple encoding formats including named entities (&lt; &gt;), decimal (&#60;), and hexadecimal (&#x3C;). Process text instantly in your browser with no server uploads."

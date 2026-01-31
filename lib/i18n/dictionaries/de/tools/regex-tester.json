@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Regex-Tester - Kostenloses Online-Tool | ToolsLab",
-    "description": "Testen und debug regular expressions online. Unterstützung für multiple regex flags. Kostenlos regex tester mit abgleichen highlighting."
+    "title": "Regex-Tester - Online Debugger",
+    "description": "Reguläre Ausdrücke online testen und debuggen. Echtzeit-Hervorhebung von Treffern und Gruppenerfassung. Mehrere Regex-Flags unterstützt. Kostenloses Tool."
   },
   "tagline": "Testen und debug regular expressions mit live matching",
   "pageDescription": "Testen regular expressions mit real-time matching und highlighting. Debug regex patterns mit live feedback, capture group details, und abgleichen positions. Perfect für Entwickler validating email addresses, parsing Daten, und building text processing applications. Supports global, case-insensitive, und multiline flags."
