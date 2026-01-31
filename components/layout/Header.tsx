@@ -14,11 +14,12 @@ import {
   Info,
   BookOpen,
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, memo } from 'react';
 import { categories } from '@/lib/tools';
 import { cn } from '@/lib/utils';
 import { LabLogo } from '@/components/icons/LabLogo';
-import { useToolStore } from '@/lib/store/toolStore';
+import { useToolStore, selectNewFavoritesCount } from '@/lib/store/toolStore';
+import { useHydration } from '@/lib/hooks/useHydration';
 import { GitHubStars } from '@/components/ui/github-stars';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import { useDictionarySection } from '@/hooks/useDictionary';
@@ -30,7 +31,8 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const { getNewFavoritesCount } = useToolStore();
+  const newFavoritesCount = useToolStore(selectNewFavoritesCount);
+  const isHydrated = useHydration();
   const { locale, createHref } = useLocalizedRouter();
   const { data: common } = useDictionarySection('common');
 
@@ -69,8 +71,9 @@ export function Header() {
     <>
       <header
         className={cn(
-          'sticky top-0 z-50 w-full border-b border-gray-200/40 bg-white/75 backdrop-blur-md transition-all duration-300 dark:border-gray-800/40 dark:bg-gray-900/75',
-          isScrolled && 'bg-white/90 shadow-lg dark:bg-gray-900/90'
+          'sticky top-0 z-50 w-full border-b border-gray-200/40 bg-white/95 transition-all duration-300 dark:border-gray-800/40 dark:bg-gray-900/95 md:bg-white/75 md:backdrop-blur-md md:dark:bg-gray-900/75',
+          isScrolled &&
+            'bg-white/95 shadow-lg dark:bg-gray-900/95 md:bg-white/90 md:dark:bg-gray-900/90'
         )}
       >
         <div className="container mx-auto flex h-16 max-w-7xl items-center px-6">
@@ -128,9 +131,9 @@ export function Header() {
               </button>
 
               {/* Dropdown */}
-              <div className="invisible absolute left-0 top-full z-50 mt-2 w-64 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+              <div className="pointer-events-none invisible absolute left-0 top-full z-50 mt-2 w-64 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
                 <div
-                  className="rounded-xl border border-gray-200/40 bg-white/95 p-4 shadow-xl backdrop-blur-md dark:border-gray-800/40 dark:bg-gray-900/95"
+                  className="rounded-xl border border-gray-200/40 bg-white p-4 shadow-xl dark:border-gray-800/40 dark:bg-gray-900 md:bg-white/95 md:backdrop-blur-md md:dark:bg-gray-900/95"
                   role="menu"
                   aria-label="Categories navigation menu"
                 >
@@ -192,9 +195,9 @@ export function Header() {
             >
               <Beaker className="mr-1 h-4 w-4" />
               The Lab
-              {mounted && getNewFavoritesCount() > 0 && (
+              {mounted && isHydrated && newFavoritesCount > 0 && (
                 <span className="ml-1 rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
-                  {getNewFavoritesCount()}
+                  {newFavoritesCount}
                 </span>
               )}
             </Link>
@@ -228,8 +231,8 @@ export function Header() {
               {common?.nav?.about || 'About'}
             </Link>
 
-            {/* GitHub Stars */}
-            <GitHubStars className="hidden sm:flex" />
+            {/* GitHub Stars - rendered after mount to keep off critical path */}
+            {mounted && <GitHubStars className="hidden sm:flex" />}
 
             {/* Language Switcher */}
             <LanguageSwitcher currentLocale={locale} />
@@ -305,9 +308,9 @@ export function Header() {
               >
                 <Beaker className="h-5 w-5" />
                 <span>The Lab</span>
-                {mounted && getNewFavoritesCount() > 0 && (
+                {mounted && isHydrated && newFavoritesCount > 0 && (
                   <span className="ml-auto rounded-full bg-violet-500 px-2 py-0.5 text-xs text-white">
-                    {getNewFavoritesCount()}
+                    {newFavoritesCount}
                   </span>
                 )}
               </Link>

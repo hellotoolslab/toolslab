@@ -7,6 +7,7 @@ import { useTheme } from 'next-themes';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import {
   tools,
+  toolsMap,
   getToolById,
   categories,
   getCategoryColorClass,
@@ -64,12 +65,16 @@ export default function ToolPageClient({
   // Extract initial input from search params
   const initialInput = searchParams?.get('input') || undefined;
 
+  // Use matchMedia for zero-cost, event-based mobile detection
   useEffect(() => {
-    // Check if mobile
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    const mql = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
 
+  useEffect(() => {
     // Simulate usage count
     setUsageCount(Math.floor(Math.random() * 5000) + 1000);
 
@@ -81,9 +86,7 @@ export default function ToolPageClient({
         // Note: referrer and url are automatically added by trackEngagement()
       });
     }
-
-    return () => window.removeEventListener('resize', checkMobile);
-  }, [toolId, initialInput]); // Removed trackEngagement from deps
+  }, [toolId, initialInput]);
 
   const tool = getToolById(toolId);
 
@@ -94,7 +97,7 @@ export default function ToolPageClient({
 
     if (smartRelatedIds && smartRelatedIds.length > 0) {
       const relatedToolObjects = smartRelatedIds
-        .map((id: string) => tools.find((t) => t.id === id))
+        .map((id: string) => toolsMap.get(id))
         .filter(
           (t: (typeof tools)[0] | undefined): t is (typeof tools)[0] =>
             t !== undefined && t.label !== 'coming-soon'

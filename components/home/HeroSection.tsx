@@ -201,7 +201,7 @@ export function HeroSection({
         <div className="mx-auto max-w-7xl">
           {/* Trust badge */}
           <div className="mb-8 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 md:backdrop-blur-sm">
               <Sparkles className="h-4 w-4 text-yellow-300" />
               <span className="text-sm font-medium text-white">
                 {dictionary?.home?.hero?.subtitle ||
@@ -244,14 +244,14 @@ export function HeroSection({
                     setTimeout(() => setIsSearchFocused(false), 200)
                   }
                   placeholder=""
-                  className="h-14 w-full rounded-2xl border border-white/20 bg-white/10 pl-12 pr-4 text-lg text-white placeholder-white/50 caret-transparent backdrop-blur-md transition-all duration-200 focus:border-white/40 focus:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/20"
+                  className="h-14 w-full rounded-2xl border border-white/20 bg-white/20 pl-12 pr-4 text-lg text-white placeholder-white/50 caret-transparent transition-all duration-200 focus:border-white/40 focus:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/20 md:bg-white/10 md:backdrop-blur-md"
                   suppressHydrationWarning
                 />
               </div>
 
               {/* Search suggestions dropdown */}
               {isSearchFocused && searchResults.length > 0 && (
-                <div className="absolute left-0 right-0 top-full z-[99999] mt-2 rounded-xl border border-white/20 bg-white/95 p-2 shadow-2xl backdrop-blur-md">
+                <div className="absolute left-0 right-0 top-full z-[99999] mt-2 rounded-xl border border-white/20 bg-white p-2 shadow-2xl md:bg-white/95 md:backdrop-blur-md">
                   {searchResults.map((tool) => (
                     <button
                       key={tool.id}
@@ -282,7 +282,7 @@ export function HeroSection({
                 <button
                   key={search.query}
                   onClick={() => handlePopularSearch(search.query)}
-                  className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/20"
+                  className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-white transition-all hover:border-white/40 hover:bg-white/20 md:backdrop-blur-sm"
                 >
                   {search.label}
                 </button>

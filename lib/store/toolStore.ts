@@ -297,6 +297,13 @@ export const selectFavoriteCount = (state: ToolStore) =>
 export const selectHasHistory = (state: ToolStore) => state.history.length > 0;
 export const selectHasFavorites = (state: ToolStore) =>
   state.favoriteTools.length > 0 || state.favoriteCategories.length > 0;
+export const selectNewFavoritesCount = (state: ToolStore) =>
+  Math.max(
+    0,
+    state.favoriteTools.length +
+      state.favoriteCategories.length -
+      state.favoritesCountAtLastVisit
+  );
 
 // Parameterized selectors - create selector with parameter
 export const createSelectIsFavoriteTool =
