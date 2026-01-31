@@ -37,13 +37,8 @@ export function HeroSection({
   locale = defaultLocale,
   dictionary,
 }: HeroSectionProps) {
-  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [placeholderText, setPlaceholderText] = useState('');
-  const [particles, setParticles] = useState<
-    Array<{ left: string; top: string; delay: string; duration: string }>
-  >([]);
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { createHref } = useLocale();
@@ -83,30 +78,37 @@ export function HeroSection({
     ];
   };
 
-  // Generate particles only on client side to avoid hydration mismatch
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: 20 }, () => ({
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 10}s`,
-        duration: `${10 + Math.random() * 20}s`,
-      }))
-    );
-  }, []);
+  // Deterministic particles - no useEffect/setState needed
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 10 }, (_, i) => ({
+        left: `${(i * 37 + 13) % 100}%`,
+        top: `${(i * 53 + 7) % 100}%`,
+        delay: `${(i * 1.3) % 10}s`,
+        duration: `${10 + ((i * 2.7) % 20)}s`,
+      })),
+    []
+  );
 
-  // Typewriter effect for placeholder
+  // Typewriter effect via direct DOM manipulation - no re-renders
   useEffect(() => {
+    const input = searchInputRef.current;
+    if (!input) return;
+
     const tryText = dictionary?.common?.actions?.copy || 'Try';
-    const targetText = `${tryText} '${localizedPlaceholders[currentPlaceholder]}'...`;
+    let currentPlaceholderIndex = 0;
     let currentIndex = 0;
     let timer: NodeJS.Timeout;
     let phase: 'typing' | 'pausing' | 'erasing' = 'typing';
 
+    const getTargetText = () =>
+      `${tryText} '${localizedPlaceholders[currentPlaceholderIndex]}'...`;
+
     const tick = () => {
+      const targetText = getTargetText();
       if (phase === 'typing') {
         if (currentIndex <= targetText.length) {
-          setPlaceholderText(targetText.slice(0, currentIndex));
+          input.placeholder = targetText.slice(0, currentIndex);
           currentIndex++;
           timer = setTimeout(tick, 50);
         } else {
@@ -120,12 +122,13 @@ export function HeroSection({
       } else if (phase === 'erasing') {
         if (currentIndex > 0) {
           currentIndex--;
-          setPlaceholderText(targetText.slice(0, currentIndex));
+          input.placeholder = targetText.slice(0, currentIndex);
           timer = setTimeout(tick, 30);
         } else {
-          setCurrentPlaceholder(
-            (prev) => (prev + 1) % localizedPlaceholders.length
-          );
+          currentPlaceholderIndex =
+            (currentPlaceholderIndex + 1) % localizedPlaceholders.length;
+          phase = 'typing';
+          timer = setTimeout(tick, 50);
         }
       }
     };
@@ -133,7 +136,7 @@ export function HeroSection({
     tick();
 
     return () => clearTimeout(timer);
-  }, [currentPlaceholder, localizedPlaceholders, dictionary]);
+  }, [localizedPlaceholders, dictionary]);
 
   const searchResults =
     searchQuery.length > 0 ? searchTools(searchQuery).slice(0, 5) : [];
@@ -240,7 +243,7 @@ export function HeroSection({
                   onBlur={() =>
                     setTimeout(() => setIsSearchFocused(false), 200)
                   }
-                  placeholder={placeholderText}
+                  placeholder=""
                   className="h-14 w-full rounded-2xl border border-white/20 bg-white/10 pl-12 pr-4 text-lg text-white placeholder-white/50 caret-transparent backdrop-blur-md transition-all duration-200 focus:border-white/40 focus:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/20"
                   suppressHydrationWarning
                 />

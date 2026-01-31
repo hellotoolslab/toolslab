@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import {
   Database,
   Lock,
@@ -76,12 +75,7 @@ export function CategoryGrid({
               ] || 'from-gray-500 to-gray-600';
 
             return (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
+              <div key={category.id}>
                 <Link
                   href={createHref(`/category/${category.id}`)}
                   className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800"
@@ -138,7 +132,7 @@ export function CategoryGrid({
                     )}
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             );
           })}
         </div>

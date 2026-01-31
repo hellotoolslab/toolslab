@@ -10,28 +10,8 @@ import { ToastProvider } from '@/components/providers/ToastProvider';
 import dynamic from 'next/dynamic';
 import { headers } from 'next/headers';
 import { getLocaleFromPathname } from '@/lib/i18n/locale-detector';
-
-// Disable SSR for components that use stores to prevent hydration mismatch
-const Header = dynamic(
-  () =>
-    import('@/components/layout/Header').then((mod) => ({
-      default: mod.Header,
-    })),
-  {
-    ssr: false,
-    loading: () => <div className="h-16" />, // Placeholder height
-  }
-);
-
-const Footer = dynamic(
-  () =>
-    import('@/components/layout/Footer').then((mod) => ({
-      default: mod.Footer,
-    })),
-  {
-    ssr: false,
-  }
-);
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 
 // Analytics Debug Panel (only in development)
 const AnalyticsDebugPanel = dynamic(
@@ -164,8 +144,22 @@ export default async function RootLayout({
     try {
       const url = new URL(requestUrl);
       locale = getLocaleFromPathname(url.pathname);
-    } catch {
-      // Fallback to English on error
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(
+          '🌐 SSR Layout - URL:',
+          requestUrl,
+          '| pathname:',
+          url.pathname,
+          '| locale:',
+          locale
+        );
+      }
+    } catch (e) {
+      console.error('Failed to parse request URL:', e);
+    }
+  } else {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('⚠️ No x-request-url header found, defaulting to en');
     }
   }
 
@@ -180,13 +174,6 @@ export default async function RootLayout({
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
-        />
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-            body { font-family: system-ui, -apple-system, sans-serif; }
-          `,
-          }}
         />
       </head>
       <body
