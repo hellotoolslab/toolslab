@@ -90,8 +90,8 @@
     ]
   },
   "meta": {
-    "title": "Convertidor de Case de Cadenas - Herramienta Online Gratuita | ToolsLab",
-    "description": "Convierte texto entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE y más. Convertidor de case de cadenas online gratuito para desarrolladores. Funciona offline, sin datos enviados a servidores."
+    "title": "Conversor Case Cadenas - Online",
+    "description": "Convierta texto entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE y más. Conversor de case online para desarrolladores. Funciona sin conexión."
   },
   "tagline": "Convierte texto entre camelCase, snake_case, kebab-case y más instantáneamente",
   "pageDescription": "Transforma texto entre diferentes convenciones de nomenclatura con este Convertidor de Case de Cadenas online gratuito. Convierte instantáneamente entre camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case y más. Perfecto para desarrolladores que necesitan convertir nombres de variables, clases o constantes entre diferentes lenguajes de programación y estándares de codificación. Incluye conversión por lotes, detección automática de case y copia con un clic. Seguro, basado en navegador y funciona completamente offline."

@@ -3,8 +3,8 @@
   "description": "Live preview markdown mit Syntax-Highlighting",
   "placeholder": "",
   "meta": {
-    "title": "Markdown-Vorschau - Kostenloses Online-Tool | ToolsLab",
-    "description": "Markdown-Vorschau in Echtzeit online kostenlos. GitHub-Flavored Markdown mit Syntax-Highlighting, Tabellen und Emoji-Support. Export als HTML."
+    "title": "Markdown-Editor - Live-Vorschau",
+    "description": "Markdown schreiben und in Echtzeit mit Live-Rendering und GitHub-Markdown-Unterstützung anzeigen. Export als HTML oder PDF. Kostenloses Online-Editor-Tool."
   },
   "tagline": "Preview markdown in real-time mit GitHub-flavored rendering",
   "pageDescription": "Professioneller markdown editor mit live preview und GitHub-flavored markdown support. Features syntax highlighting, table support, task lists, und emoji rendering. Perfect für Entwickler writing Dokumentation, README files, und technical content. Exportieren zu HTML mit customizable Themen.",

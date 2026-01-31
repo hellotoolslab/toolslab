@@ -3,8 +3,8 @@
   "description": "Format, validate und minify XML documents mit Syntax-Highlighting und XPath support",
   "placeholder": "",
   "meta": {
-    "title": "XML-Formatierer - Kostenloses Online-Tool | ToolsLab",
-    "description": "Formatieren und validieren Sie XML online kostenlos. Minifizierung, XPath-Suche und Namespace-Analyse. Perfekt für SOAP, RSS und Konfigurationsdateien."
+    "title": "XML-Formatter - Online formatieren",
+    "description": "XML-Dokumente online formatieren, verschönern und validieren. Syntax-Highlighting und XPath-Unterstützung. Benutzerdefinierte Einrückung. Kostenloses Tool."
   },
   "tagline": "Format, validate und minify XML mit XPath search und namespace support",
   "pageDescription": "Professioneller XML formatter mit syntax validation, beautification und minification. Features XPath search, namespace analysis und structure visualization. Perfect für SOAP, RSS, SVG und configuration files. Handles large XML documents efficiently mit real-time validation und Fehler highlighting. Kostenlos und secure browserbasiert XML processing.",

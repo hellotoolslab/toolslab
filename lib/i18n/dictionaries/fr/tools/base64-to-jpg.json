@@ -3,8 +3,8 @@
   "description": "Convertissez des chaînes Base64 en images JPG/JPEG",
   "placeholder": "",
   "meta": {
-    "title": "Base64 vers JPG - Convertisseur en Ligne Gratuit | ToolsLab",
-    "description": "Convertissez Base64 en JPG/JPEG en ligne. Décodez Base64 et enregistrez en image JPEG. Outil de conversion gratuit avec aperçu instantané et affichage des métadonnées de qualité."
+    "title": "Base64 vers JPG - Convertisseur",
+    "description": "Convertissez Base64 en JPG/JPEG en ligne. Décodez Base64 et enregistrez en image JPEG. Outil gratuit avec aperçu instantané et métadonnées de qualité."
   },
   "tagline": "Convertissez instantanément des données Base64 en images JPG/JPEG avec aperçu",
   "pageDescription": "Convertissez des données encodées en Base64 en images JPG/JPEG avec téléchargement et aperçu instantanés. Parfait pour les développeurs travaillant avec des API d'images, des pièces jointes d'e-mails et des flux de traitement de données. Prend en charge l'estimation de la qualité JPEG et l'extraction de métadonnées. Conversion sécurisée basée sur le navigateur sans téléchargements sur serveur. Validez l'entrée Base64, prévisualisez les images JPEG, affichez les dimensions et informations de qualité de l'image, et téléchargez les fichiers convertis directement sur votre appareil.",

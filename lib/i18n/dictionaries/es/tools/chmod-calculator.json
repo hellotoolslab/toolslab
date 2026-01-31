@@ -3,8 +3,8 @@
   "description": "Calcula permisos Unix con cuadrícula visual, conversión entre notación octal y simbólica",
   "placeholder": "Ingresa valor octal (ej. 755)",
   "meta": {
-    "title": "Calculadora Chmod - Calculadora de Permisos de Archivos Unix | ToolsLab",
-    "description": "Calculadora chmod online gratuita. Convierte entre permisos Unix octales (755, 644) y simbólicos (rwxr-xr-x) con cuadrícula visual, presets y generación de comandos."
+    "title": "Calculadora Chmod - Permisos Unix",
+    "description": "Calcule permisos Unix online. Convierta entre permisos octales (755, 644) y simbólicos con cuadrícula visual y generación de comandos. Calculadora gratuita."
   },
   "tagline": "Calcula y convierte permisos de archivos Unix con interfaz visual y presets comunes",
   "pageDescription": "Calculadora chmod online gratuita para permisos de archivos Unix/Linux. Convierte entre notación octal (755, 644, 777) y formato simbólico (rwxr-xr-x). Incluye cuadrícula de permisos interactiva, presets comunes, opción de flag recursivo y generación instantánea de comandos. Perfecta para administradores de sistemas, ingenieros DevOps y usuarios de Linux que gestionan permisos de archivos y directorios.",

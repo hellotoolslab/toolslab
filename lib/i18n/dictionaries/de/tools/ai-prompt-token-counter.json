@@ -3,8 +3,8 @@
   "description": "Count tokens für AI prompts across GPT-4, Claude, Llama models mit accurate cost estimation",
   "placeholder": "Eingeben Ihre prompt oder einfügen text hier ein...",
   "meta": {
-    "title": "AI-Prompt-Token-Zähler - Kostenloses Online-Tool | ToolsLab",
-    "description": "Kostenlos AI token counter und cost calculator. Count tokens für GPT-4, GPT-3.5, Claude, Llama, Gemini, und Mistral models. Estimate API costs, optimize prompts, und compare models. Perfect für prompt engineers und AI developers."
+    "title": "KI-Token-Zähler - GPT-4 & Claude",
+    "description": "Zählen Sie Token und berechnen Sie API-Kosten für GPT-4, Claude, Llama, Gemini und Mistral. Optimieren Sie Prompts und vergleichen Sie Preise. Kostenlos."
   },
   "tagline": "Count tokens und estimate costs across GPT-4, Claude, Llama, und more AI models",
   "pageDescription": "Professioneller AI token counter für prompt engineers und developers. Accurately count tokens für OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini, und Mistral models. Get detailed cost estimates mit latest API pricing, compare token counts across alle models, und optimize Ihre prompts zu reduce tokens und costs. Features real-time token counting, context window tracking, batch analysis, prompt optimization suggestions, und comprehensive cost projections. Speichern Ihre analysis Verlauf und exportieren results as JSON. All processing happens locally in Ihre browser für maximum privacy und speed.",

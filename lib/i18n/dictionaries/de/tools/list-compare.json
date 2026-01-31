@@ -3,8 +3,8 @@
   "description": "Mehrere Listen vergleichen, um Unterschiede, Schnittmengen und Vereinigungen mit erweiterten Operationen zu finden",
   "placeholder": "",
   "meta": {
-    "title": "Listen-Vergleich - Kostenloses Online-Tool | ToolsLab",
-    "description": "Listen online vergleichen. Unterschiede, Schnittmengen und Vereinigungen finden. Kostenloses Listen-Vergleichs-Tool mit erweiterten Operationen."
+    "title": "Listen-Vergleich - Online Tool",
+    "description": "Zwei Listen online vergleichen: Unterschiede, Schnittmengen und Vereinigungen finden. Sortieren, Duplikate entfernen und exportieren. Kostenloses Tool."
   },
   "tagline": "Mehrere Listen mit erweiterten Diff- und Mengenoperationen vergleichen",
   "pageDescription": "Professionelles Listen-Vergleichs-Tool mit Mengenoperationen (Vereinigung, Schnittmenge, Differenz), Fuzzy-Matching und entwicklerfreundlichen Ausgabeformaten. Vergleichen Sie bis zu 10 Listen gleichzeitig mit intelligenten Algorithmen für Paketabhängigkeiten, Git-Dateien, API-Endpunkte und Datenanalyse. Funktionen: Venn-Diagramme, Regex-Matching, Duplikat-Erkennung und Export nach JSON, CSV, SQL. Perfekt für Entwickler, Datenanalysten und Systemadministratoren, die Listen, Arrays und Datensätze verwalten.",

@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Minificateur JavaScript - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Minifiez et compressez le code JavaScript en ligne. Réduisez la taille du fichier pour un chargement plus rapide. Outil minificateur JS gratuit."
+    "title": "Minificateur JavaScript - En Ligne",
+    "description": "Minifiez et compressez du code JavaScript en ligne. Réduisez la taille des fichiers et améliorez la vitesse de chargement. Supprimez espaces et commentaires."
   },
   "tagline": "Minify and optimize JavaScript code with ES6+ support and source maps",
   "pageDescription": "Professional JavaScript minifier and beautifier with ES2024+ support, reducing bundle size by up to 70% while maintaining functionality. Features advanced optimizations including dead code elimination, variable renaming, function inlining, and tree shaking simulation. Generate source maps for debugging, apply varying compression levels, and maintain modern JavaScript compatibility. Process code securely in your browser with no server uploads - perfect for production optimization and webpack alternative processing."

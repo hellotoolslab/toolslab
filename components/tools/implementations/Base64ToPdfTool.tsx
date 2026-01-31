@@ -158,9 +158,10 @@ export default function Base64ToPdfTool({
     setPreviewUrl(null);
   }, [previewUrl]);
 
-  // Validate input on change
+  // Validate input on change (debounced to reduce INP)
   useEffect(() => {
-    validateInput(input);
+    const timeoutId = setTimeout(() => validateInput(input), 300);
+    return () => clearTimeout(timeoutId);
   }, [input, validateInput]);
 
   // Auto-generate filename with timestamp

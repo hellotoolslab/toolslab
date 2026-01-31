@@ -3,8 +3,8 @@
   "description": "Générez des fichiers .htaccess pour Apache avec redirections, règles de sécurité, mise en cache et réécriture d'URL",
   "placeholder": "Configurez vos paramètres .htaccess",
   "meta": {
-    "title": "Générateur Htaccess - Outil de Configuration Apache | ToolsLab",
-    "description": "Générateur .htaccess en ligne gratuit. Créez une configuration Apache avec redirections, en-têtes de sécurité, règles de cache, forçage HTTPS et plus. Aucune programmation requise."
+    "title": "Générateur .htaccess - Apache",
+    "description": "Générez une configuration .htaccess pour Apache en ligne. Redirections, en-têtes sécurité, cache et HTTPS. Aucune programmation requise. Outil gratuit."
   },
   "tagline": "Générez des fichiers .htaccess professionnels pour serveurs Apache avec configuration visuelle",
   "pageDescription": "Générateur .htaccess en ligne gratuit pour serveurs web Apache. Créez des fichiers de configuration avec redirections 301/302, forçage HTTPS, en-têtes de sécurité, cache navigateur, compression gzip, pages d'erreur personnalisées et blocage IP. Inclut des préréglages pour WordPress, apps SPA et optimisation des performances. Parfait pour les développeurs web, administrateurs système et propriétaires de sites.",

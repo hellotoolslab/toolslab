@@ -83,8 +83,8 @@
     "Minification"
   ],
   "meta": {
-    "title": "Formateur JSON - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Formatez, validez et embellissez les données JSON avec coloration syntaxique. Formateur JSON en ligne gratuit sans inscription requise. Fonctionne instantanément dans votre navigateur."
+    "title": "Formateur JSON - Outil en Ligne Gratuit",
+    "description": "Formatez, validez et embellissez les données JSON avec coloration syntaxique. Formateur JSON en ligne gratuit sans inscription. Fonctionne dans le navigateur."
   },
   "labels": {
     "indentSize": "Taille d'Indentation",

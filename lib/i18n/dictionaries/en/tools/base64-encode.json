@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Base64 Decoder - Free Online Tool | ToolsLab",
-    "description": "Decode Base64 strings to text or download as files. Free online Base64 decoder. Works instantly in your browser."
+    "title": "Base64 Decoder - Free Online Tool",
+    "description": "Encode text to Base64 or decode Base64 strings to plain text online. Support for files, UTF-8, and binary data. Free, secure Base64 encoder and decoder."
   },
   "tagline": "Encode and decode Base64 files and text instantly",
   "pageDescription": "Free Base64 encoder and decoder for text, images, and files up to 50MB. Perfect for web developers embedding images in HTML/CSS, API data transmission, and email attachments. Drag-and-drop interface with secure browser-based processing. Download decoded files directly or copy encoded strings to clipboard."

@@ -61,18 +61,6 @@ export function useScrollToResult(options: ScrollToResultOptions = {}) {
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   /**
-   * Check if an element is visible in the viewport
-   */
-  const isElementVisible = useCallback((element: HTMLElement): boolean => {
-    const rect = element.getBoundingClientRect();
-    const windowHeight =
-      window.innerHeight || document.documentElement.clientHeight;
-
-    // Element is visible if at least partially in viewport
-    return rect.top < windowHeight && rect.bottom > 0;
-  }, []);
-
-  /**
    * Scroll to the result element
    */
   const scrollToResult = useCallback(() => {
@@ -84,15 +72,18 @@ export function useScrollToResult(options: ScrollToResultOptions = {}) {
     scrollTimeoutRef.current = setTimeout(() => {
       if (!resultRef.current) return;
 
+      // Read getBoundingClientRect once to avoid layout thrashing
+      const rect = resultRef.current.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
       // Check if we should scroll
-      if (onlyIfNotVisible && isElementVisible(resultRef.current)) {
+      if (onlyIfNotVisible && rect.top < windowHeight && rect.bottom > 0) {
         return;
       }
 
-      // Calculate target position with offset
-      const elementTop =
-        resultRef.current.getBoundingClientRect().top + window.pageYOffset;
-      const targetPosition = elementTop - offset;
+      // Calculate target position with offset (reuse rect)
+      const targetPosition = rect.top + window.pageYOffset - offset;
 
       // Scroll to target
       window.scrollTo({
@@ -100,7 +91,7 @@ export function useScrollToResult(options: ScrollToResultOptions = {}) {
         behavior,
       });
     }, delay);
-  }, [behavior, delay, offset, onlyIfNotVisible, isElementVisible]);
+  }, [behavior, delay, offset, onlyIfNotVisible]);
 
   /**
    * Cleanup timeout on unmount

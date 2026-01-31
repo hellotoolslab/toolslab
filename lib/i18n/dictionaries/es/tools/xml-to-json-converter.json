@@ -3,8 +3,8 @@
   "description": "Convierte documentos XML a formato JSON con manejo de atributos, soporte de espacios de nombres y detección inteligente de arrays",
   "placeholder": "Pega tu XML aquí...",
   "meta": {
-    "title": "Convertidor XML a JSON - Herramienta Gratuita Online | ToolsLab",
-    "description": "Convierte XML a JSON online con detección inteligente de arrays, soporte de espacios de nombres y manejo de atributos. Convertidor gratuito XML a JSON con soporte CDATA y conversión de tipos."
+    "title": "Conversor XML a JSON - Online",
+    "description": "Convierta XML a JSON online con detección de arrays, soporte de espacios de nombres y gestión de atributos. Soporte CDATA y conversión tipos. Gratis."
   },
   "tagline": "Convierte documentos XML a formato JSON con análisis avanzado y opciones de salida flexibles",
   "pageDescription": "Convertidor profesional de XML a JSON con detección inteligente de arrays, manejo de espacios de nombres y modos de atributos flexibles. Incluye preservación de CDATA, conversión automática de tipos y formateo pretty print. Perfecto para integración de APIs, transformación de datos y conversión de feeds SOAP/RSS. Maneja estructuras XML complejas con contenido mixto de manera eficiente. Gratuito y seguro, todo en el navegador.",

@@ -3,8 +3,8 @@
   "description": "Create YouTube timestamps and chapters with automatic link generation and time conversion",
   "placeholder": "00:00",
   "meta": {
-    "title": "YouTube Timestamp Generator - Create Chapters & Timestamps Free | ToolsLab",
-    "description": "Free YouTube timestamp generator to create video chapters and timestamps. Generate YouTube-ready chapter descriptions with automatic time formatting, clickable links, and easy copy-paste. Perfect for content creators and video editors."
+    "title": "YouTube Timestamp Generator",
+    "description": "Create YouTube video chapters and timestamps with automatic time formatting. Generate clickable links for video descriptions. Free tool for content creators."
   },
   "tagline": "Generate YouTube chapters and timestamps with automatic link creation and time conversion",
   "pageDescription": "Professional YouTube timestamp generator for content creators and video editors. Create formatted timestamps for video descriptions, generate YouTube Chapters for improved navigation, and convert between time formats instantly. Add timestamps with labels, import existing chapters, and export in multiple formats. Generate clickable timestamp links when you provide a video URL. Built-in time converter handles HH:MM:SS, MM:SS, and seconds formats. All processing happens in your browser for complete privacy - no video data is stored or uploaded.",

@@ -3,8 +3,8 @@
   "description": "Base64-Strings in GIF-Bilder konvertieren",
   "placeholder": "",
   "meta": {
-    "title": "Base64 zu GIF - Kostenloser Online-Konverter | ToolsLab",
-    "description": "Base64 online zu GIF konvertieren. Base64 dekodieren und als GIF-Bild speichern. Kostenloses Konverter-Tool mit Vorschau-Unterstützung für animierte GIFs."
+    "title": "Base64 zu GIF Konverter - Online",
+    "description": "Base64-Zeichenketten in GIF-Dateien online konvertieren. Base64-Daten dekodieren und animierte GIF-Bilder herunterladen. Kostenloses, sicheres Browser-Tool."
   },
   "tagline": "Base64-Daten sofort mit Vorschau in GIF-Bilder konvertieren",
   "pageDescription": "Konvertieren Sie Base64-codierte Daten in GIF-Bilder mit sofortigem Download und Vorschau. Perfekt für Entwickler, die mit Bild-APIs, E-Mail-Anhängen und Datenverarbeitungs-Workflows arbeiten. Unterstützt sowohl GIF87a- als auch GIF89a-Formate einschließlich animierter GIFs. Sichere browser-basierte Konvertierung ohne Server-Uploads. Validieren Sie Base64-Eingaben, zeigen Sie GIF-Bilder in der Vorschau an und laden Sie konvertierte Dateien direkt auf Ihr Gerät herunter.",

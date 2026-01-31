@@ -79,7 +79,7 @@
     ]
   },
   "meta": {
-    "title": "Decodificatore JWT - Strumento Online Gratuito | ToolsLab",
+    "title": "Decodificatore JWT - Strumento Online Gratuito",
     "description": "Decodifica e valida JSON Web Token (JWT) online. Ispeziona header, payload e firma. Strumento decodificatore JWT gratuito."
   }
 }

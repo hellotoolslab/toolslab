@@ -3,8 +3,8 @@
   "description": "Conte tokens para prompts de IA em modelos GPT-4, Claude, Llama com estimativa precisa de custos",
   "placeholder": "Digite seu prompt ou cole o texto aqui...",
   "meta": {
-    "title": "Contador de Tokens IA - Calculadora de Tokens GPT-4, Claude, Llama | ToolsLab",
-    "description": "Contador de tokens IA e calculadora de custos gratuito. Conte tokens para modelos GPT-4, GPT-3.5, Claude, Llama, Gemini e Mistral. Estime custos de API, otimize prompts e compare modelos. Perfeito para engenheiros de prompt e desenvolvedores IA."
+    "title": "Contador Tokens IA - GPT-4 Claude",
+    "description": "Conte tokens e estime custos API para GPT-4, Claude, Llama, Gemini e Mistral. Otimize prompts e compare preços. Contador de tokens IA gratuito online."
   },
   "tagline": "Conte tokens e estime custos em modelos GPT-4, Claude, Llama e mais IA",
   "pageDescription": "Contador de tokens IA profissional para engenheiros de prompt e desenvolvedores. Conte tokens com precisão para OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini e modelos Mistral. Obtenha estimativas detalhadas de custo com preços de API mais recentes, compare contagens de tokens em todos os modelos e otimize seus prompts para reduzir tokens e custos. Recursos incluem contagem de tokens em tempo real, rastreamento de janela de contexto, análise em lote, sugestões de otimização de prompt e projeções de custo abrangentes. Salve seu histórico de análise e exporte resultados como JSON. Todo o processamento acontece localmente no seu navegador para máxima privacidade e velocidade.",

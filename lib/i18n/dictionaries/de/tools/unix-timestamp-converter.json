@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "Unix-Timestamp-Konverter - Kostenloses Online-Tool | ToolsLab",
-    "description": "Konvertieren zwischen Unix timestamp und date online. Unterstützung für milliseconds und timezones. Kostenlos timestamp converter."
+    "title": "Unix-Timestamp-Konverter - Online",
+    "description": "Zwischen Unix-Zeitstempeln und lesbaren Datumsangaben konvertieren. Millisekunden, Sekunden und verschiedene Zeitzonen unterstützt. Kostenloses Konverter-Tool."
   },
   "tagline": "Konvertieren Unix timestamps zu human dates mit timezone support",
   "pageDescription": "Professioneller Unix timestamp converter mit timezone support, batch processing, und code Generierung. Konvertieren epoch time zu readable dates und vice versa mit real-time validation. Features multiple date Formate, relative time calculations, developer code examples, und timezone-aware conversions. Perfect für Entwickler working mit APIs, databases, logs, und system integrations. Supports seconds und milliseconds mit IANA timezone database."

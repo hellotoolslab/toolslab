@@ -3,8 +3,8 @@
   "description": "Converta documentos XML para formato JSON com manipulação de atributos, suporte a namespace e detecção inteligente de arrays",
   "placeholder": "Cole seu XML aqui...",
   "meta": {
-    "title": "Conversor XML para JSON - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Converta XML para JSON online com detecção inteligente de arrays, suporte a namespace e manipulação de atributos. Conversor gratuito de XML para JSON com suporte CDATA e conversão de tipo."
+    "title": "Conversor XML para JSON - Online",
+    "description": "Converta XML para JSON online com detecção de arrays, suporte a namespace e manipulação de atributos. Suporte CDATA e conversão de tipo. Ferramenta gratuita."
   },
   "tagline": "Converta documentos XML para formato JSON com análise avançada e opções de saída flexíveis",
   "pageDescription": "Conversor profissional de XML para JSON com detecção inteligente de arrays, manipulação de namespace e modos flexíveis de atributos. Recursos incluem preservação de CDATA, conversão automática de tipo e formatação pretty print. Perfeito para integração de API, transformação de dados e conversão de feeds SOAP/RSS. Manipula estruturas XML complexas com conteúdo misto eficientemente. Conversão gratuita e segura baseada em navegador.",
@@ -69,10 +69,22 @@
       "Arquivos grandes lentos: Desabilite pretty print e processe em pedaços menores se necessário"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada XML" },
-      { "keys": "Ctrl+Enter", "description": "Converter para JSON" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado JSON" },
-      { "keys": "Ctrl+S", "description": "Baixar arquivo JSON" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada XML"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Converter para JSON"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado JSON"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo JSON"
+      }
     ]
   }
 }

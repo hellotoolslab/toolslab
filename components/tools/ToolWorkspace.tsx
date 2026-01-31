@@ -160,12 +160,13 @@ export default function ToolWorkspace({
 
   // Keyboard shortcuts
   useEffect(() => {
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
     const handleKeyDown = (event: KeyboardEvent) => {
-      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
       const isCtrlCmd = isMac ? event.metaKey : event.ctrlKey;
+      if (!isCtrlCmd) return;
 
       // Cmd/Ctrl + Enter - Process
-      if (isCtrlCmd && event.key === 'Enter') {
+      if (event.key === 'Enter') {
         event.preventDefault();
         if (input.trim() && !isProcessing) {
           handleProcess();
@@ -173,7 +174,7 @@ export default function ToolWorkspace({
       }
 
       // Cmd/Ctrl + Shift + C - Copy output
-      if (isCtrlCmd && event.shiftKey && event.key === 'C') {
+      if (event.shiftKey && event.key === 'C') {
         event.preventDefault();
         if (output) {
           handleCopy();
@@ -181,13 +182,13 @@ export default function ToolWorkspace({
       }
 
       // Cmd/Ctrl + Shift + V - Paste to input
-      if (isCtrlCmd && event.shiftKey && event.key === 'V') {
+      if (event.shiftKey && event.key === 'V') {
         event.preventDefault();
         handlePaste();
       }
 
       // Cmd/Ctrl + Shift + R - Clear/Reset
-      if (isCtrlCmd && event.shiftKey && event.key === 'R') {
+      if (event.shiftKey && event.key === 'R') {
         event.preventDefault();
         handleClear();
       }

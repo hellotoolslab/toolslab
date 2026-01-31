@@ -3,8 +3,8 @@
   "description": "Konvertieren EML email files zu HTML mit header extraction, attachment handling, und multi-anzeigen rendering",
   "placeholder": "Upload an EML file oder einfügen EML content hier ein...",
   "meta": {
-    "title": "EML zu HTML Converter - Kostenloses Online-Tool | ToolsLab",
-    "description": "Konvertieren EML email files zu HTML instantly. Parse email headers, extract attachments, und anzeigen email content mit our free EML viewer. Supports MIME, RFC822, multipart messages, und alle major email clients."
+    "title": "EML zu HTML Konverter - Online",
+    "description": "EML-E-Mail-Dateien sofort in HTML konvertieren. Header analysieren, Anhänge extrahieren und E-Mail-Inhalte anzeigen. MIME- und RFC822-Unterstützung. Kostenlos."
   },
   "tagline": "Konvertieren EML email files zu HTML mit advanced parsing und multi-anzeigen rendering",
   "pageDescription": "Professioneller EML zu HTML converter mit MIME parsing, header extraction, attachment handling, und security sanitization. Konvertieren emails von Outlook, Thunderbird, Apple Mail, und other clients. Features include raw anzeigen, rendered HTML anzeigen, headers table, source anzeigen, und attachment extraction. Perfect für email migration, template analysis, forensics, und archiving. Supports quoted-printable, base64 encoding, multipart messages, inline images, und alle RFC822/2822 Standards.",

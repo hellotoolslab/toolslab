@@ -58,15 +58,27 @@
       "Compatibilidade do navegador: Use a versão mais recente do Chrome, Firefox ou Edge para melhores resultados"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada" },
-      { "keys": "Ctrl+Enter", "description": "Processar/Formatar" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado" },
-      { "keys": "Ctrl+S", "description": "Baixar arquivo" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Processar/Formatar"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo"
+      }
     ]
   },
   "meta": {
-    "title": "Conversor de Timestamp Unix - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Converta entre timestamp Unix e data online. Suporte para milissegundos e fusos horários. Conversor de timestamp gratuito."
+    "title": "Conversor Timestamp Unix - Online",
+    "description": "Converta entre timestamps Unix e datas legíveis online. Suporte para milissegundos, segundos e múltiplos fusos horários. Conversor de timestamp gratuito online."
   },
   "tagline": "Converta timestamps Unix para datas legíveis com suporte a fusos horários",
   "pageDescription": "Conversor profissional de timestamp Unix com suporte a fusos horários, processamento em lote e geração de código. Converta tempo epoch para datas legíveis e vice-versa com validação em tempo real. Recursos incluem múltiplos formatos de data, cálculos de tempo relativo, exemplos de código para desenvolvedores e conversões conscientes de fuso horário. Perfeito para desenvolvedores trabalhando com APIs, bancos de dados, logs e integrações de sistemas. Suporta segundos e milissegundos com banco de dados de fusos horários IANA."

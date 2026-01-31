@@ -2,8 +2,8 @@
   "title": "Confronto Liste",
   "description": "Confronta due liste per trovare differenze, intersezioni e unioni",
   "meta": {
-    "title": "Confronto Liste - Strumento Online Gratuito | ToolsLab",
-    "description": "Confronta liste online. Trova differenze, intersezioni e unioni. Strumento confronto liste gratuito."
+    "title": "Confronto Liste - Strumento Online Gratuito",
+    "description": "Confronta due liste online per trovare differenze, intersezioni e unioni. Ordina, rimuovi duplicati ed esporta risultati. Strumento di confronto liste gratuito."
   },
   "tagline": "Confronta liste multiple con diff avanzato e operazioni set",
   "pageDescription": "Strumento confronto liste professionale con operazioni set (unione, intersezione, differenza), matching fuzzy e formati output developer-friendly. Confronta fino a 10 liste simultaneamente con algoritmi intelligenti per dipendenze pacchetti, file git, endpoint API e analisi dati. Funzionalità diagrammi Venn, matching regex, rilevamento duplicati ed export JSON, CSV, SQL. Perfetto per sviluppatori, data analyst e amministratori sistema che gestiscono liste, array e dataset.",

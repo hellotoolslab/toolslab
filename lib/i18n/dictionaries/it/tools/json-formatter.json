@@ -85,8 +85,8 @@
     "Minimizzazione"
   ],
   "meta": {
-    "title": "JSON Formatter - Strumento Online Gratuito | ToolsLab",
-    "description": "Formatta, valida e abbellisce dati JSON con evidenziazione della sintassi. JSON Formatter online gratuito senza registrazione. Funziona istantaneamente nel browser."
+    "title": "JSON Formatter - Strumento Online Gratuito",
+    "description": "Formatta, valida e abbellisci dati JSON con evidenziazione sintassi e vista ad albero. Strumento JSON Formatter online gratuito. Funziona nel browser."
   },
   "labels": {
     "indentSize": "Dimensione rientro",

@@ -3,7 +3,7 @@
   "description": "Compare múltiplas listas para encontrar diferenças, interseções e uniões com operações avançadas",
   "placeholder": "",
   "meta": {
-    "title": "Comparar Listas - Comparação Online Gratuita | ToolsLab",
+    "title": "Comparar Listas - Comparação Online Gratuita",
     "description": "Compare listas online. Encontre diferenças, interseções e uniões. Ferramenta gratuita de comparação de listas com operações avançadas."
   },
   "tagline": "Compare múltiplas listas com diff avançado e operações de conjunto",
@@ -64,10 +64,22 @@
       "Compatibilidade do navegador: Use a versão mais recente do Chrome, Firefox ou Edge para melhores resultados"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada" },
-      { "keys": "Ctrl+Enter", "description": "Processar/Formatar" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado" },
-      { "keys": "Ctrl+S", "description": "Baixar arquivo" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Processar/Formatar"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo"
+      }
     ]
   }
 }

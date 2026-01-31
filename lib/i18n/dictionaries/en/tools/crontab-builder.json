@@ -3,8 +3,8 @@
   "description": "Parse, build and validate cron expressions with visual builder, presets and next execution times",
   "placeholder": "",
   "meta": {
-    "title": "Crontab Builder - Free Online Tool | ToolsLab",
-    "description": "Build and validate cron expressions online. Generate crontab with visual builder. Free cron tool."
+    "title": "Crontab Builder - Free Online Tool",
+    "description": "Build and validate cron expressions with a visual editor. Generate crontab schedules with human-readable descriptions and next run times. Free cron builder."
   },
   "tagline": "Build and parse cron expressions with visual interface",
   "pageDescription": "Create and validate cron expressions using our visual builder with dropdown menus and common presets. Parse existing crontab entries with human-readable descriptions and next execution times. Perfect for system administrators, DevOps engineers and developers scheduling automated tasks and deployments.",

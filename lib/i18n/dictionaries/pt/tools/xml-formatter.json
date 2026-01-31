@@ -3,8 +3,8 @@
   "description": "Formate, valide e minifique documentos XML com destaque de sintaxe e suporte XPath",
   "placeholder": "",
   "meta": {
-    "title": "Formatador XML - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Formate e valide XML online grátis. Minificação, pesquisa XPath e análise de namespace. Perfeito para SOAP, RSS e arquivos de configuração. Processamento seguro no navegador."
+    "title": "Formatador XML - Ferramenta Online Gratuita",
+    "description": "Formate e valide XML online com minificação, pesquisa XPath e análise de namespace. Para SOAP, RSS e configuração. Ferramenta gratuita e segura no navegador."
   },
   "tagline": "Formate, valide e minifique XML com pesquisa XPath e suporte a namespaces",
   "pageDescription": "Formatador XML profissional com validação de sintaxe, embelezamento e minificação. Recursos incluem pesquisa XPath, análise de namespace e visualização de estrutura. Perfeito para SOAP, RSS, SVG e arquivos de configuração. Manipula documentos XML grandes eficientemente com validação em tempo real e destaque de erros. Processamento XML gratuito e seguro baseado em navegador.",
@@ -64,10 +64,22 @@
       "Compatibilidade do navegador: Use a versão mais recente do Chrome, Firefox ou Edge para melhores resultados"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada" },
-      { "keys": "Ctrl+Enter", "description": "Processar/Formatar" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado" },
-      { "keys": "Ctrl+S", "description": "Baixar arquivo" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Processar/Formatar"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo"
+      }
     ]
   }
 }

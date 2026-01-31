@@ -77,8 +77,8 @@
     ]
   },
   "meta": {
-    "title": "JWT Decoder - Free Online Tool | ToolsLab",
-    "description": "Decode and validate JSON Web Tokens (JWT) online. Inspect header, payload, and signature. Free JWT decoder tool."
+    "title": "JWT Decoder - Free Online Tool",
+    "description": "Decode and inspect JSON Web Tokens (JWT) online. View header, payload, and verify signatures with claim analysis. Free, secure, browser-based JWT decoder."
   },
   "tagline": "Decode and analyze JWT tokens with security validation instantly",
   "pageDescription": "Professional JWT decoder with claims analysis, security validation, and expiration checking. Decode JSON Web Tokens safely with detailed header, payload, and signature information. Perfect for debugging authentication issues, analyzing token claims, and validating JWT security. Supports all JWT algorithms with real-time security recommendations and time-based claim analysis."

@@ -57,15 +57,27 @@
       "Compatibilidade do navegador: Use a versão mais recente do Chrome, Firefox ou Edge para melhores resultados"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada" },
-      { "keys": "Ctrl+Enter", "description": "Processar/Formatar" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado" },
-      { "keys": "Ctrl+S", "description": "Baixar arquivo" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Processar/Formatar"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo"
+      }
     ]
   },
   "meta": {
-    "title": "Verificador de Diferenças - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Compare dois textos e encontre diferenças online. Comparação linha por linha com destaque. Verificador de diferenças gratuito."
+    "title": "Comparador de Diferenças - Online",
+    "description": "Compare dois textos lado a lado e encontre diferenças com destaque linha a linha ou por caractere. Detecte adições e exclusões. Ferramenta diff gratuita."
   },
   "tagline": "Compare arquivos e código com visualização profissional de diferenças",
   "pageDescription": "Ferramenta profissional de comparação de texto com destaque de sintaxe, geração de patch e visualizações de diff lado a lado. Compare arquivos de código, documentos e texto com diferenças linha por linha, rastreamento de mudanças e saída diff unificada. Recursos incluem patches estilo Git, opções de espaço em branco e exportação para HTML/PDF. Perfeito para desenvolvedores revisando mudanças de código."

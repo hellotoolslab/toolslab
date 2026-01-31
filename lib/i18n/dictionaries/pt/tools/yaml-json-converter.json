@@ -58,15 +58,27 @@
       "Compatibilidade do navegador: Use a versão mais recente do Chrome, Firefox ou Edge para melhores resultados"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada" },
-      { "keys": "Ctrl+Enter", "description": "Processar/Formatar" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado" },
-      { "keys": "Ctrl+S", "description": "Baixar arquivo" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Processar/Formatar"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo"
+      }
     ]
   },
   "meta": {
-    "title": "Conversor JSON para YAML - Ferramenta Online Gratuita | ToolsLab",
-    "description": "Converta JSON para formato YAML online. Saída YAML limpa e legível. Conversor gratuito de JSON para YAML."
+    "title": "Conversor JSON para YAML - Online",
+    "description": "Converta entre JSON e YAML online com saída limpa e legível. Suporte para estruturas aninhadas e arrays. Conversão bidirecional. Ferramenta gratuita online."
   },
   "tagline": "Converta YAML para JSON e vice-versa com recursos avançados de validação",
   "pageDescription": "Conversor gratuito de YAML para JSON com conversão bidirecional, suporte multi-documento e resolução de âncoras. Converta configurações Kubernetes, arquivos Docker Compose, pipelines CI/CD e especificações Swagger instantaneamente. Recursos incluem validação em tempo real, destaque de sintaxe, preservação de tipo e manipulação de comentários. Suporta YAML 1.2 com âncoras, aliases, chaves de merge e tags personalizadas. Exporte para interfaces TypeScript e JSON Schema. Perfeito para engenheiros DevOps, desenvolvedores trabalhando com arquivos de configuração e documentação de API."

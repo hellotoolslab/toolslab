@@ -76,8 +76,8 @@
     ]
   },
   "meta": {
-    "title": "UUID-Generator - Kostenloses Online-Tool | ToolsLab",
-    "description": "Zufällig generieren UUIDs online. Unterstützung für v1, v4, und v5 UUID versions. Kostenlos UUID Generator mit bulk Generierung."
+    "title": "UUID-Generator - Online erstellen",
+    "description": "Zufällige UUIDs online generieren. Unterstützung für v1, v4 und v5 mit Massenerzeugung, Validierung und Formatierungsoptionen. Kostenloses UUID-Generator-Tool."
   },
   "tagline": "Generieren unique UUIDs und GUIDs instantly online",
   "pageDescription": "Generieren UUID v1 und v4 identifiers für databases, APIs, und applications. Erstellen single UUIDs oder bulk generieren up zu 1000 mit customizable formatting. Perfect für Entwickler building distributed Systeme, database schemas, und unique identification Systeme. Kostenlos, secure, und browserbasiert Generierung."

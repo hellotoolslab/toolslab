@@ -3,8 +3,8 @@
   "description": "Valide a sintaxe YAML com mensagens de erro detalhadas e números de linha",
   "placeholder": "Cole seu YAML aqui para validar...",
   "meta": {
-    "title": "Validador YAML - Verificador de Sintaxe YAML Online Grátis | ToolsLab",
-    "description": "Valide a sintaxe YAML online com mensagens de erro detalhadas, números de linha e suporte para YAML 1.1 e 1.2. Ferramenta gratuita para Kubernetes, Docker Compose e arquivos de configuração."
+    "title": "Validador YAML - Sintaxe Online",
+    "description": "Valide sintaxe YAML online com mensagens de erro detalhadas, números de linha e suporte YAML 1.1 e 1.2. Para Kubernetes, Docker Compose e configuração. Grátis."
   },
   "tagline": "Valide a sintaxe YAML instantaneamente com relatórios de erros detalhados",
   "pageDescription": "Validador YAML online gratuito verifica sua sintaxe YAML e reporta erros com números de linha exatos. Suporta especificações YAML 1.1 e 1.2, valida manifestos Kubernetes, arquivos Docker Compose, workflows GitHub Actions e qualquer configuração YAML. Inclui destaque de sintaxe, detecção de chaves duplicadas, formatação e visualização de estrutura. Baseado em navegador com privacidade completa - seus dados nunca saem do seu dispositivo.",

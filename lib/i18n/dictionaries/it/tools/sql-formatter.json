@@ -85,8 +85,8 @@
     ]
   },
   "meta": {
-    "title": "SQL Formatter - Strumento Online Gratuito | ToolsLab",
-    "description": "Formatta e abbellisce query SQL online. Supporto per più dialetti SQL. Strumento SQL Formatter gratuito."
+    "title": "SQL Formatter - Strumento Online Gratuito",
+    "description": "Formatta e abbellisci query SQL online con evidenziazione sintassi. Supporto per MySQL, PostgreSQL, SQLite e altri dialetti SQL. Strumento Formatter gratuito."
   },
   "tagline": "Formatta e abbellisci query SQL con evidenziazione sintassi",
   "pageDescription": "Formatta e abbellisci query SQL con indentazione corretta, evidenziazione keyword e validazione sintassi. Perfetto per sviluppatori database, data analyst e ottimizzazione SQL. Supporta dialetti SQL multipli (MySQL, PostgreSQL, SQLite) con opzioni formattazione personalizzabili. Formatter SQL gratuito e sicuro basato su browser senza caricamento dati."

@@ -83,8 +83,8 @@
     "Formatage élégant"
   ],
   "meta": {
-    "title": "Convertisseur JavaScript Object to JSON - Outil en Ligne Gratuit | OctoTools",
-    "description": "Convertissez des objets JavaScript en JSON valide en ligne. Gérez les références circulaires, BigInt, fonctions et valeurs undefined. Convertisseur gratuit, sécurisé, basé sur navigateur sans téléchargement de données."
+    "title": "Convertisseur JS vers JSON - En Ligne",
+    "description": "Convertissez des objets JavaScript en JSON valide en ligne. Gérez références circulaires, BigInt, fonctions et undefined. Convertisseur gratuit et sécurisé."
   },
   "labels": {
     "input": "Objet JavaScript",

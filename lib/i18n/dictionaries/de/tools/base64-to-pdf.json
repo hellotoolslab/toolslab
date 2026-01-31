@@ -3,8 +3,8 @@
   "description": "Konvertieren Base64 strings zu PDF files",
   "placeholder": "",
   "meta": {
-    "title": "Base64 zu PDF - Kostenloses Online-Tool | ToolsLab",
-    "description": "Konvertieren Base64 zu PDF online. Dekodieren Base64 und speichern as PDF. Kostenlos converter Tool."
+    "title": "Base64 zu PDF Konverter - Online",
+    "description": "Base64-Zeichenketten in PDF-Dateien online konvertieren. Base64-Daten dekodieren und als PDF-Dokument herunterladen. Kostenloses Browser-Tool mit Vorschau."
   },
   "tagline": "Konvertieren Base64 Daten zu PDF files instantly",
   "pageDescription": "Konvertieren Sie Base64-kodierte Daten zu PDF-Dateien mit sofortigem Download. Perfekt für Entwickler, die mit Dokument-APIs, E-Mail-Anhängen und Datenverarbeitungs-Workflows arbeiten. Sichere browserbasierte Konvertierung ohne Server-Uploads. Validieren Sie Base64-Eingaben, sehen Sie PDF-Metadaten in der Vorschau und laden Sie konvertierte Dateien direkt auf Ihr Gerät herunter.",

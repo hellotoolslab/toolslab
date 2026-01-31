@@ -80,8 +80,8 @@
     ]
   },
   "meta": {
-    "title": "Encodeur/Décodeur HTML - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Encodeur et décodeur HTML gratuit. Convertir le texte en entités HTML (encoder) ou décoder les entités HTML en texte brut. Supporte les entités nommées, décimales et hexadécimales. Basé sur navigateur, sécurisé et instantané."
+    "title": "Encodeur/Décodeur HTML - Outil en Ligne Gratuit",
+    "description": "Encodez du texte en entités HTML ou décodez entités HTML en texte brut. Support entités nommées, décimales et hexadécimales. Outil sécurisé en ligne."
   },
   "tagline": "Convertir le texte en entités HTML et décoder HTML en toute sécurité",
   "pageDescription": "Encoder les caractères spéciaux en entités HTML ou décoder les entités en texte brut. Essentiel pour les développeurs web travaillant avec HTML, XML, prévention des attaques XSS et gestion des caractères spéciaux. Supporte plusieurs formats d'encodage incluant les entités nommées (&lt; &gt;), décimales (&#60;) et hexadécimales (&#x3C;). Traiter le texte instantanément dans votre navigateur sans téléchargements serveur."

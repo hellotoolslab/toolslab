@@ -66,8 +66,8 @@
     "Esporta CSV/Excel"
   ],
   "meta": {
-    "title": "Strumento Filtro Excel - Strumento Online Gratuito",
-    "description": "Carica e filtra file Excel online con funzionalità avanzate di ricerca, ordinamento ed esportazione. Strumento filtro Excel gratuito senza installazione richiesta. Funziona istantaneamente nel tuo browser."
+    "title": "Filtro Excel - Strumento Online",
+    "description": "Carica e filtra file Excel online con ricerca avanzata, ordinamento ed esportazione. Strumento filtro Excel gratuito senza installazione. Funziona nel browser."
   },
   "labels": {
     "upload": "Carica File",

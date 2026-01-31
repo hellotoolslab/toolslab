@@ -3,8 +3,8 @@
   "description": "Convertissez JSON en interfaces TypeScript",
   "placeholder": "Collez votre JSON...",
   "meta": {
-    "title": "JSON vers TypeScript - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Générez des interfaces TypeScript depuis JSON en ligne. Convertisseur JSON to TypeScript gratuit."
+    "title": "JSON vers TypeScript - Outil en Ligne Gratuit",
+    "description": "Générez des interfaces TypeScript depuis JSON en ligne. Objets imbriqués, tableaux et propriétés optionnelles. Convertisseur gratuit JSON vers TypeScript."
   },
   "tagline": "Genera interfacce TypeScript da JSON con inferenza tipi intelligente",
   "pageDescription": "Convertitore JSON a TypeScript avanzato con inferenza tipi intelligente, proprietà opzionali e supporto interfacce nidificate. Converti risposte API, oggetti configurazione e strutture JSON complesse in interfacce TypeScript production-ready. Funzionalità tipi union, rilevamento enum, parsing date, convenzioni naming personalizzate e opzioni immutabili. Include generazione schema Zod, codice validazione e generatori dati mock. Perfetto per sviluppatori TypeScript che costruiscono applicazioni type-safe con API esterne.",

@@ -3,8 +3,8 @@
   "description": "Visualisez l'aperçu en direct de markdown avec coloration syntaxique",
   "placeholder": "Collez votre Markdown...",
   "meta": {
-    "title": "Aperçu Markdown - Outil en Ligne Gratuit | ToolsLab",
-    "description": "Aperçu markdown en temps réel en ligne. Éditeur markdown avec aperçu en direct. Outil markdown gratuit."
+    "title": "Aperçu Markdown - Outil en Ligne Gratuit",
+    "description": "Écrivez et visualisez du Markdown en temps réel avec rendu live et support GitHub Markdown. Exportez en HTML ou PDF avec statistiques. Éditeur en ligne gratuit."
   },
   "tagline": "Aperçu markdown en temps réel avec rendu GitHub-flavored",
   "pageDescription": "Éditeur markdown professionnel avec aperçu en direct et support GitHub-flavored markdown. Fonctionnalités coloration syntaxique, support tableaux, listes de tâches et rendu emoji. Parfait pour développeurs écrivant documentation, fichiers README et contenu technique. Export HTML avec thèmes personnalisables.",
