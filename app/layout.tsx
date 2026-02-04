@@ -162,7 +162,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         {/* DNS prefetch for faster subsequent requests */}
         <link rel="dns-prefetch" href="https://toolslab.dev" />
