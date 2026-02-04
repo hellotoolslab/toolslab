@@ -105,9 +105,6 @@ export default function ToolWorkspace({
     const startTime = performance.now();
 
     try {
-      // Simulate processing for now
-      await new Promise((resolve) => setTimeout(resolve, 300));
-
       // Tool-specific processing would go here
       let result = '';
       switch (tool.slug) {
@@ -158,7 +155,30 @@ export default function ToolWorkspace({
     await copy(output);
   }, [output, copy]);
 
-  // Keyboard shortcuts
+  // Stable refs for keyboard handler to avoid re-adding listener
+  const inputRefValue = useRef(input);
+  const outputRefValue = useRef(output);
+  const isProcessingRef = useRef(isProcessing);
+  const handleProcessRef = useRef(handleProcess);
+  const handleCopyRef = useRef(handleCopy);
+
+  useEffect(() => {
+    inputRefValue.current = input;
+  }, [input]);
+  useEffect(() => {
+    outputRefValue.current = output;
+  }, [output]);
+  useEffect(() => {
+    isProcessingRef.current = isProcessing;
+  }, [isProcessing]);
+  useEffect(() => {
+    handleProcessRef.current = handleProcess;
+  }, [handleProcess]);
+  useEffect(() => {
+    handleCopyRef.current = handleCopy;
+  }, [handleCopy]);
+
+  // Keyboard shortcuts - listener added once, reads from refs
   useEffect(() => {
     const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -168,16 +188,16 @@ export default function ToolWorkspace({
       // Cmd/Ctrl + Enter - Process
       if (event.key === 'Enter') {
         event.preventDefault();
-        if (input.trim() && !isProcessing) {
-          handleProcess();
+        if (inputRefValue.current.trim() && !isProcessingRef.current) {
+          handleProcessRef.current();
         }
       }
 
       // Cmd/Ctrl + Shift + C - Copy output
       if (event.shiftKey && event.key === 'C') {
         event.preventDefault();
-        if (output) {
-          handleCopy();
+        if (outputRefValue.current) {
+          handleCopyRef.current();
         }
       }
 
@@ -196,7 +216,7 @@ export default function ToolWorkspace({
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [input, output, isProcessing, handleCopy, handleProcess]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDownload = async () => {
     if (!output) return;

@@ -1515,8 +1515,11 @@ export function getToolsByCategory(categoryId: string): Tool[] {
     });
 }
 
+// O(1) lookup map for tools by ID
+export const toolsMap = new Map<string, Tool>(tools.map((t) => [t.id, t]));
+
 export function getToolById(id: string): Tool | undefined {
-  return tools.find((tool) => tool.id === id);
+  return toolsMap.get(id);
 }
 
 export function getCategoryColorClass(categoryColor: string): string {
