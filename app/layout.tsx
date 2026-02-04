@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
 import Script from 'next/script';
+import { headers } from 'next/headers';
+import { getLocaleFromPathname } from '@/lib/i18n/locale-detector';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { UmamiProvider } from '@/components/analytics/UmamiProvider';
@@ -127,7 +129,7 @@ export const metadata: Metadata = {
   category: 'technology',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
