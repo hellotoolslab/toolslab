@@ -132,10 +132,37 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Default to "en" for static rendering - HtmlLangUpdater corrects it client-side
-  // This avoids await headers() which forces dynamic rendering and blocks streaming SSR
+  // Get locale from URL for correct <html lang> attribute (critical for SEO)
+  // This makes the page "dynamic" but CDN caching is handled by Cache-Control headers
+  const headersList = await headers();
+  const requestUrl = headersList.get('x-request-url');
+
+  let locale = 'en';
+  if (requestUrl) {
+    try {
+      const url = new URL(requestUrl);
+      locale = getLocaleFromPathname(url.pathname);
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(
+          '🌐 SSR Layout - URL:',
+          requestUrl,
+          '| pathname:',
+          url.pathname,
+          '| locale:',
+          locale
+        );
+      }
+    } catch (e) {
+      console.error('Failed to parse request URL:', e);
+    }
+  } else {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('⚠️ No x-request-url header found, defaulting to en');
+    }
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         {/* DNS prefetch for faster subsequent requests */}
         <link rel="dns-prefetch" href="https://toolslab.dev" />

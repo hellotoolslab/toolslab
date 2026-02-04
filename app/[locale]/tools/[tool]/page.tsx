@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { tools, getToolById, categories } from '@/lib/tools';
 import { generateToolSchema } from '@/lib/tool-schema';
@@ -7,6 +8,13 @@ import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
+
+// ISR: Revalidate tool pages every 24 hours (86400 seconds)
+// Tools don't change frequently, so aggressive caching is safe
+export const revalidate = 86400;
+
+// Force static generation at build time for all tools
+export const dynamicParams = false;
 
 interface LocaleToolPageProps {
   params: {
@@ -314,12 +322,18 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localizedSchema) }}
       />
-      <ToolPageClient
-        toolId={toolId}
-        locale={locale as Locale}
-        dictionary={dict}
-        toolTranslations={toolTranslations}
-      />
+      <Suspense
+        fallback={
+          <div className="min-h-screen animate-pulse bg-gray-50 dark:bg-gray-900" />
+        }
+      >
+        <ToolPageClient
+          toolId={toolId}
+          locale={locale as Locale}
+          dictionary={dict}
+          toolTranslations={toolTranslations}
+        />
+      </Suspense>
     </>
   );
 }
