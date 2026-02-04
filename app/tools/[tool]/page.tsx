@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { tools, getToolById, categories } from '@/lib/tools';
 import { generateToolSchema } from '@/lib/tool-schema';
@@ -177,12 +178,18 @@ export default async function ToolPage({ params }: ToolPageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}
-      <ToolPageClient
-        toolId={params.tool}
-        locale="en"
-        dictionary={dict}
-        toolTranslations={toolTranslations}
-      />
+      <Suspense
+        fallback={
+          <div className="min-h-screen animate-pulse bg-gray-50 dark:bg-gray-900" />
+        }
+      >
+        <ToolPageClient
+          toolId={params.tool}
+          locale="en"
+          dictionary={dict}
+          toolTranslations={toolTranslations}
+        />
+      </Suspense>
     </>
   );
 }
