@@ -1,6 +1,8 @@
 // JSON to TypeScript Converter - Core Logic
 // Intelligent type inference and TypeScript interface generation
 
+import { pythonToJson } from './json-formatter';
+
 // Type definitions for configuration
 export interface JsonToTypeScriptOptions {
   // Naming conventions
@@ -345,21 +347,27 @@ export function convertJsonToTypeScript(
     let jsonData: any;
     try {
       jsonData = JSON.parse(jsonInput);
-    } catch (error) {
-      return {
-        success: false,
-        error: `Invalid JSON: ${error instanceof Error ? error.message : 'Parse error'}`,
-        interfaces: '',
-        detectedTypes: [],
-        circularReferences: [],
-        warnings: [],
-        stats: {
-          interfaceCount: 0,
-          propertyCount: 0,
-          depth: 0,
-          processingTime: 0,
-        },
-      };
+    } catch {
+      // Fallback: try converting Python dict syntax to JSON
+      try {
+        const converted = pythonToJson(jsonInput);
+        jsonData = JSON.parse(converted);
+      } catch (error) {
+        return {
+          success: false,
+          error: `Invalid JSON: ${error instanceof Error ? error.message : 'Parse error'}`,
+          interfaces: '',
+          detectedTypes: [],
+          circularReferences: [],
+          warnings: [],
+          stats: {
+            interfaceCount: 0,
+            propertyCount: 0,
+            depth: 0,
+            processingTime: 0,
+          },
+        };
+      }
     }
 
     // Initialize processing context
@@ -1165,7 +1173,13 @@ export function validateJsonInput(input: string): {
   formatted?: string;
 } {
   try {
-    const parsed = JSON.parse(input);
+    let parsed: any;
+    try {
+      parsed = JSON.parse(input);
+    } catch {
+      const converted = pythonToJson(input);
+      parsed = JSON.parse(converted);
+    }
     const formatted = JSON.stringify(parsed, null, 2);
     return { valid: true, formatted };
   } catch (error) {

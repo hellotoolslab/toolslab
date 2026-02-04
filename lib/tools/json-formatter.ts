@@ -16,7 +16,7 @@ function isIdentChar(ch: string | undefined): boolean {
  * Convert Python dict-like syntax to valid JSON.
  * Handles: single quotes → double quotes, True → true, False → false, None → null
  */
-function pythonToJson(input: string): string {
+export function pythonToJson(input: string): string {
   let result = '';
   let i = 0;
 
