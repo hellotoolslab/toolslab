@@ -1,0 +1,76 @@
+{
+  "title": "GIF in PDF",
+  "description": "Converti immagini GIF in formato PDF preservando la qualità con dimensioni pagina personalizzate",
+  "placeholder": "Trascina immagini GIF o clicca per caricare...",
+  "instructions": {
+    "title": "Come usare il Convertitore GIF in PDF",
+    "steps": [
+      {
+        "title": "Carica immagini GIF",
+        "description": "Trascina più immagini GIF nell'area di caricamento. Per GIF animate, viene usato il primo frame nel PDF."
+      },
+      {
+        "title": "Riordina le immagini GIF",
+        "description": "Usa i pulsanti freccia su/giù per riorganizzare le immagini GIF nell'ordine desiderato."
+      },
+      {
+        "title": "Configura impostazioni PDF",
+        "description": "Clicca l'icona delle impostazioni per scegliere dimensione pagina, modalità adattamento, margini e nome file."
+      },
+      {
+        "title": "Genera e scarica PDF",
+        "description": "Clicca Genera PDF per creare il documento. Ogni immagine GIF diventa una pagina nel PDF."
+      }
+    ],
+    "features": [
+      "Converti più GIF in un unico PDF",
+      "Supporto GIF statiche e animate",
+      "Primo frame estratto da GIF animate",
+      "Riordina con pulsanti freccia",
+      "Dimensioni pagina: A4, Letter, A3, Legal, Tabloid, Personalizzata",
+      "Modalità adattamento: contenere, coprire, riempire, nessuno",
+      "Margini regolabili 0-100pt",
+      "Nome file personalizzato",
+      "Anteprima miniature GIF",
+      "Elaborazione sicura nel browser",
+      "Nessun limite caricamento",
+      "Batch processing illimitato"
+    ],
+    "useCases": [
+      "Crea presentazioni PDF da animazioni GIF",
+      "Converti collezione meme GIF in archivio PDF",
+      "Combina grafica GIF in formato documento",
+      "Unisci illustrazioni GIF per materiali stampa",
+      "Crea manuali da tutorial GIF",
+      "Converti storyboard GIF animati in PDF",
+      "Prepara contenuti GIF per distribuzione",
+      "Archivia collezioni GIF in PDF"
+    ],
+    "proTips": [
+      "Solo primo frame di GIF animate convertito",
+      "Usa 'Contenere' per preservare proporzioni GIF",
+      "Scegli 'Coprire' per riempire pagina",
+      "Margini a 0 per GIF a vivo",
+      "Dimensione 'Personalizzata' per abbinare GIF",
+      "Considera convertire GIF animate in video"
+    ],
+    "troubleshooting": [
+      "GIF non si carica: Verifica estensione .gif",
+      "Solo primo frame: GIF animate usano primo frame",
+      "Qualità scarsa: Usa GIF alta risoluzione",
+      "Immagini ritagliate: Prova 'Contenere'",
+      "File grande: GIF possono essere grandi",
+      "Immagine distorta: Evita 'Riempire'"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Trascina e Rilascia", "description": "Rilascia file GIF" },
+      { "keys": "Click", "description": "Seleziona file GIF" }
+    ]
+  },
+  "meta": {
+    "title": "Convertitore GIF in PDF - Strumento Online Gratuito | Converti GIF in PDF",
+    "description": "Converti GIF in PDF online gratis. Combina più GIF in un PDF. Supporta GIF animate (primo frame). Dimensioni pagina personalizzate. Convertitore sicuro browser."
+  },
+  "tagline": "Converti immagini GIF in PDF preservando qualità con dimensioni pagina e layout personalizzati",
+  "pageDescription": "Trasforma immagini GIF in documenti PDF professionali con controllo completo su dimensioni pagina, modalità adattamento e margini. Funziona con GIF statiche e animate (primo frame usato). Perfetto per presentazioni, documentazione, archivi meme e manuali da file GIF. Supporta GIF illimitate, batch processing, riordino e dimensioni personalizzate. Conversione gratuita sicura nel browser. Mantiene qualità GIF nell'output PDF."
+}

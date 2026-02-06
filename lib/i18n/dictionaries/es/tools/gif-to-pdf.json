@@ -1,0 +1,75 @@
+{
+  "title": "GIF a PDF",
+  "description": "Convierte imágenes GIF a formato PDF preservando calidad con tamaños página personalizados",
+  "placeholder": "Arrastra GIF o haz clic...",
+  "instructions": {
+    "title": "Cómo usar Convertidor GIF a PDF",
+    "steps": [
+      {
+        "title": "Sube GIF",
+        "description": "Arrastra GIF. GIF animadas usan primer frame."
+      },
+      {
+        "title": "Reordena GIF",
+        "description": "Usa flechas para reorganizar."
+      },
+      {
+        "title": "Configura PDF",
+        "description": "Elige tamaño, ajuste, márgenes."
+      },
+      {
+        "title": "Genera PDF",
+        "description": "Cada GIF se convierte en página."
+      }
+    ],
+    "features": [
+      "Múltiples GIF a un PDF",
+      "GIF estáticas y animadas",
+      "Primer frame extraído",
+      "Reordena con flechas",
+      "A4, Letter, A3, Legal, Tabloid, Personalizado",
+      "Modos: contener, cubrir, rellenar, ninguno",
+      "Márgenes 0-100pt",
+      "Nombre personalizado",
+      "Miniaturas",
+      "Navegador seguro",
+      "Sin límites",
+      "Batch ilimitado"
+    ],
+    "useCases": [
+      "Presentaciones PDF de animaciones GIF",
+      "Convierte colección memes GIF",
+      "Combina gráficos GIF",
+      "Fusiona ilustraciones GIF",
+      "Manuales de tutoriales GIF",
+      "Storyboards GIF animados a PDF",
+      "Contenido GIF para distribución",
+      "Archiva colecciones GIF"
+    ],
+    "proTips": [
+      "Solo primer frame GIF animadas",
+      "Usa Contener para proporciones",
+      "Márgenes 0 para sangrado",
+      "Personalizado para igualar GIF",
+      "Considera video para animadas"
+    ],
+    "troubleshooting": [
+      "GIF no carga: Verifica .gif",
+      "Solo primer frame: Animadas usan frame 1",
+      "Calidad baja: GIF alta resolución",
+      "Recortadas: Prueba Contener",
+      "Archivo grande: Comprime GIF",
+      "Distorsionada: Evita Rellenar"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Arrastrar", "description": "Suelta GIF" },
+      { "keys": "Clic", "description": "Selecciona GIF" }
+    ]
+  },
+  "meta": {
+    "title": "Convertidor GIF a PDF - Herramienta Gratis",
+    "description": "Convierte GIF a PDF online gratis. Combina GIF en PDF. Soporta animadas (primer frame). Seguro navegador."
+  },
+  "tagline": "Convierte GIF a PDF preservando calidad con tamaños página personalizados",
+  "pageDescription": "Transforma GIF en PDF profesionales con control total. Funciona con GIF estáticas y animadas (primer frame). Perfecto para presentaciones, documentación, archivos memes. Conversión gratuita segura navegador. Mantiene calidad GIF."
+}

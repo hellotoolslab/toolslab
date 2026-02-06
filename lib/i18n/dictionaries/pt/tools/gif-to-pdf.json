@@ -1,0 +1,66 @@
+{
+  "title": "GIF para PDF",
+  "description": "Converta imagens GIF para formato PDF preservando qualidade com tamanhos página personalizados",
+  "placeholder": "Arraste GIF ou clique...",
+  "instructions": {
+    "title": "Conversor GIF para PDF",
+    "steps": [
+      {
+        "title": "Carregar GIF",
+        "description": "Arraste GIF. Animadas: primeiro quadro."
+      },
+      { "title": "Reordenar GIF", "description": "Setas para reorganizar." },
+      { "title": "Configurar PDF", "description": "Tamanho, ajuste, margens." },
+      { "title": "Gerar PDF", "description": "Cada GIF = página." }
+    ],
+    "features": [
+      "Múltiplas GIF em um PDF",
+      "GIF estáticas e animadas",
+      "Primeiro quadro extraído",
+      "Reordene com setas",
+      "A4, Letter, A3, Legal, Tabloid, Personalizado",
+      "Modos: conter, cobrir, preencher, nenhum",
+      "Margens 0-100pt",
+      "Nome personalizado",
+      "Miniaturas",
+      "Navegador seguro",
+      "Sem limites",
+      "Batch ilimitado"
+    ],
+    "useCases": [
+      "Apresentações PDF de animações GIF",
+      "Coleção memes GIF em PDF",
+      "Combine gráficos GIF",
+      "Mescle ilustrações GIF",
+      "Manuais de tutoriais GIF",
+      "Storyboards GIF animados",
+      "Conteúdo GIF para distribuição",
+      "Arquive coleções GIF"
+    ],
+    "proTips": [
+      "Apenas primeiro quadro GIF animadas",
+      "Conter para proporções",
+      "Margens 0 para sangrado",
+      "Personalizado para igualar GIF",
+      "Considere vídeo para animadas"
+    ],
+    "troubleshooting": [
+      "GIF não carrega: Verifique .gif",
+      "Apenas primeiro quadro: Animadas quadro 1",
+      "Má qualidade: Alta resolução",
+      "Cortadas: Tente Conter",
+      "Arquivo grande: Comprima GIF",
+      "Distorcida: Evite Preencher"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Arrastar e Soltar", "description": "Solte GIF" },
+      { "keys": "Clique", "description": "Selecione GIF" }
+    ]
+  },
+  "meta": {
+    "title": "Conversor GIF para PDF - Ferramenta Grátis",
+    "description": "Converta GIF para PDF gratuitamente. Combine GIF em PDF. Suporta animadas (primeiro quadro). Seguro."
+  },
+  "tagline": "Converta GIF para PDF preservando qualidade com tamanhos página personalizados",
+  "pageDescription": "Transforme GIF em PDF profissionais com controle total. Funciona com GIF estáticas e animadas (primeiro quadro). Perfeito apresentações, documentação, arquivos memes. Conversão gratuita segura. Mantém qualidade GIF."
+}

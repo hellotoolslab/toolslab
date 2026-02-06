@@ -1,0 +1,66 @@
+{
+  "title": "PNG para PDF",
+  "description": "Converta imagens PNG para formato PDF com suporte transparência e opções página personalizadas",
+  "placeholder": "Arraste PNG ou clique...",
+  "instructions": {
+    "title": "Conversor PNG para PDF",
+    "steps": [
+      {
+        "title": "Carregar PNG",
+        "description": "Arraste PNG. Transparência preservada."
+      },
+      { "title": "Reordenar PNG", "description": "Setas para reorganizar." },
+      { "title": "Configurar PDF", "description": "Tamanho, ajuste, margens." },
+      { "title": "Gerar PDF", "description": "Cada PNG = página." }
+    ],
+    "features": [
+      "Múltiplas PNG em um PDF",
+      "Suporte transparência completo",
+      "Reordene com setas",
+      "A4, Letter, A3, Legal, Tabloid, Personalizado",
+      "Modos: conter, cobrir, preencher, nenhum",
+      "Margens 0-100pt",
+      "Nome personalizado",
+      "Miniaturas",
+      "Navegador seguro",
+      "Sem limites",
+      "Batch ilimitado",
+      "Mantém transparência PNG"
+    ],
+    "useCases": [
+      "Portfólios PNG transparentes",
+      "Capturas PNG em PDF",
+      "Combine logos PNG",
+      "Mescle assets PNG",
+      "Spec sheets mockups PNG",
+      "Ícones PNG em PDF",
+      "Relatórios PNG",
+      "Arquive gráficos PNG"
+    ],
+    "proTips": [
+      "Transparência PNG automática",
+      "Conter para proporções",
+      "Margens 0 para sangrado",
+      "Personalizado para igualar PNG",
+      "Reordene antes"
+    ],
+    "troubleshooting": [
+      "PNG não carrega: Verifique .png",
+      "Má qualidade: Alta resolução",
+      "Transparência perdida: Use PNG",
+      "Cortadas: Tente Conter",
+      "Arquivo grande: PNG grandes",
+      "Distorcida: Evite Preencher"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Arrastar e Soltar", "description": "Solte PNG" },
+      { "keys": "Clique", "description": "Selecione PNG" }
+    ]
+  },
+  "meta": {
+    "title": "Conversor PNG para PDF - Ferramenta Grátis",
+    "description": "Converta PNG para PDF gratuitamente com transparência. Combine PNG em PDF. Seguro navegador."
+  },
+  "tagline": "Converta PNG para PDF com transparência e layout personalizado",
+  "pageDescription": "Transforme PNG em PDF profissionais preservando transparência. Controle total páginas, ajustes, margens. Perfeito portfolios design, documentação gráfica transparente. Conversão gratuita segura. Mantém transparência PNG e alta qualidade."
+}

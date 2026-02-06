@@ -1,0 +1,82 @@
+{
+  "title": "Bild zu PDF",
+  "description": "Konvertieren Sie mehrere Bilder (JPG, PNG, GIF, WebP) in ein einzelnes PDF-Dokument",
+  "placeholder": "Bilder ziehen oder zum Hochladen klicken...",
+  "instructions": {
+    "title": "So verwenden Sie den Bild-zu-PDF-Konverter",
+    "steps": [
+      {
+        "title": "Laden Sie Ihre Bilder hoch",
+        "description": "Ziehen Sie mehrere Bilder in den Hochladebereich oder klicken Sie, um Dateien von Ihrem Computer auszuwählen. Unterstützt JPG-, PNG-, GIF- und WebP-Formate."
+      },
+      {
+        "title": "Ordnen Sie Bilder neu an",
+        "description": "Verwenden Sie die Pfeil-nach-oben/unten-Tasten, um Bilder in der gewünschten Reihenfolge neu anzuordnen. Die Reihenfolge bestimmt, wie Seiten im endgültigen PDF-Dokument erscheinen."
+      },
+      {
+        "title": "Konfigurieren Sie PDF-Einstellungen",
+        "description": "Klicken Sie auf das Einstellungssymbol, um Seitengröße (A4, Letter, A3 usw.), Anpassungsmodus (enthalten, abdecken, füllen), Ränder und Ausgabedateiname zu wählen. Einstellungen gelten für alle Bilder."
+      },
+      {
+        "title": "Erstellen und herunterladen Sie das PDF",
+        "description": "Klicken Sie auf PDF erstellen, um Ihr Dokument zu erstellen. Nach Abschluss laden Sie die PDF-Datei auf Ihr Gerät herunter. Jedes Bild wird eine Seite im PDF."
+      }
+    ],
+    "features": [
+      "Konvertieren Sie mehrere Bilder in ein einzelnes PDF",
+      "Unterstützung für JPG-, PNG-, GIF- und WebP-Formate",
+      "Ordnen Sie Bilder mit Pfeiltasten neu an",
+      "Mehrere Seitengrößen (A4, Letter, A3, Legal, Tabloid, Benutzerdefiniert)",
+      "Flexible Anpassungsmodi (enthalten, abdecken, füllen, keine)",
+      "Einstellbare Ränder (0-100pt)",
+      "Unterstützung für benutzerdefinierten Dateinamen",
+      "Vorschau-Miniaturansichten für alle Bilder",
+      "Vollständig sicher - Verarbeitung im Browser",
+      "Keine Upload-Limits oder Dateibeschränkungen",
+      "Stapelverarbeitung unbegrenzter Bilder",
+      "Erhält Bildqualität in PDF-Ausgabe"
+    ],
+    "useCases": [
+      "Erstellen Sie PDF-Portfolios aus mehreren Fotos",
+      "Konvertieren Sie gescannte Dokumente in eine einzelne PDF-Datei",
+      "Kombinieren Sie Screenshots zu einem Präsentationsdokument",
+      "Fügen Sie Produktbilder zur Katalogerstellung zusammen",
+      "Erstellen Sie Fotoalben im PDF-Format",
+      "Konvertieren Sie Design-Mockups in teilbares PDF",
+      "Bereiten Sie bildbasierte Berichte und Dokumentation vor",
+      "Archivieren Sie Fotos im universellen PDF-Format"
+    ],
+    "proTips": [
+      "Verwenden Sie den Modus 'Enthalten', um Bildproportionen beizubehalten",
+      "Wählen Sie 'Abdecken', um die gesamte Seite mit Bildern zu füllen (kann zuschneiden)",
+      "Setzen Sie Ränder auf 0 für randabfallende Bildseiten",
+      "Verwenden Sie 'Benutzerdefinierte' Seitengröße, um Ihren Bildabmessungen zu entsprechen",
+      "Fügen Sie Ränder für bessere Druckformatierung hinzu",
+      "Ordnen Sie Bilder vor dem Erstellen neu an, um Zeit zu sparen"
+    ],
+    "troubleshooting": [
+      "Bild lädt nicht: Überprüfen Sie das Dateiformat (nur JPG, PNG, GIF, WebP)",
+      "Schlechte Qualität: Verwenden Sie höher aufgelöste Quellbilder",
+      "Bilder zugeschnitten: Versuchen Sie den Modus 'Enthalten' anstelle von 'Abdecken'",
+      "Große Dateigröße: Reduzieren Sie die Bildauflösung vor dem Hochladen",
+      "PDF-Erstellung fehlgeschlagen: Versuchen Sie weniger Bilder oder kleinere Dateigrößen",
+      "Bild verzerrt: Vermeiden Sie den Modus 'Füllen', es sei denn, Dehnung ist gewünscht"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ziehen & Ablegen",
+        "description": "Bilder zum Hochladen ablegen"
+      },
+      {
+        "keys": "Klicken",
+        "description": "Durchsuchen und Dateien auswählen"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Bild-zu-PDF-Konverter - Kostenloses Online-Tool",
+    "description": "Konvertieren Sie JPG-, PNG-, GIF-, WebP-Bilder kostenlos online in PDF. Kombinieren Sie mehrere Bilder in einem PDF. Benutzerdefinierte Seitengrößen, Anpassungsmodi und Ränder. Sicherer browserbasierter Konverter."
+  },
+  "tagline": "Konvertieren Sie mehrere Bilder in ein einzelnes PDF-Dokument mit benutzerdefinierten Seitengrößen und Layout-Optionen",
+  "pageDescription": "Transformieren Sie mehrere Bilder (JPG, PNG, GIF, WebP) in professionelle PDF-Dokumente mit vollständiger Kontrolle über Seitengrößen, Anpassungsmodi und Ränder. Perfekt zum Erstellen von Fotoalben, Dokumentation, Portfolios und Präsentationen. Unterstützt unbegrenzte Bilder, Stapelverarbeitung, Neuanordnung und benutzerdefinierte Seitenabmessungen. Kostenlose, sichere browserbasierte Konvertierung ohne Uploads oder Speicherung. Erhält hohe Bildqualität in PDF-Ausgabe."
+}

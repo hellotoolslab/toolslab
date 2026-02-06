@@ -1,0 +1,82 @@
+{
+  "title": "GIF to PDF",
+  "description": "Convert GIF images to PDF format preserving quality with custom page sizes",
+  "placeholder": "Drag & drop GIF images or click to upload...",
+  "instructions": {
+    "title": "How to use GIF to PDF Converter",
+    "steps": [
+      {
+        "title": "Upload GIF images",
+        "description": "Drag and drop multiple GIF images into the upload area, or click to browse and select files from your computer. For animated GIFs, the first frame will be used in the PDF."
+      },
+      {
+        "title": "Reorder your GIF images",
+        "description": "Use the up/down arrow buttons to rearrange GIF images in your desired order. The sequence determines how pages will appear in the final PDF document."
+      },
+      {
+        "title": "Configure PDF settings",
+        "description": "Click the settings icon to choose page size (A4, Letter, A3, Legal, Tabloid, Custom), image fit mode (contain, cover, fill, none), margins (0-100pt), and output filename."
+      },
+      {
+        "title": "Generate and download PDF",
+        "description": "Click Generate PDF to create your document. Once processing completes, download the PDF file to your device. Each GIF image becomes one page in the final PDF."
+      }
+    ],
+    "features": [
+      "Convert multiple GIF images to single PDF",
+      "Support for both static and animated GIF files",
+      "First frame extracted from animated GIFs",
+      "Reorder images with intuitive arrow buttons",
+      "Multiple page sizes: A4, Letter, A3, Legal, Tabloid, Custom",
+      "Flexible fit modes: contain, cover, fill, none",
+      "Adjustable margins from 0 to 100 points",
+      "Custom filename support",
+      "Preview thumbnails for all GIF images",
+      "Completely secure - all processing in browser",
+      "No upload limits or file restrictions",
+      "Batch processing of unlimited GIF files"
+    ],
+    "useCases": [
+      "Create PDF presentations from GIF animations",
+      "Convert GIF memes collection to PDF archive",
+      "Combine GIF graphics into document format",
+      "Merge GIF illustrations for print materials",
+      "Create instruction manuals from GIF tutorials",
+      "Convert animated GIF storyboards to PDF",
+      "Prepare GIF-based content for distribution",
+      "Archive GIF collections in universal PDF format"
+    ],
+    "proTips": [
+      "Only the first frame of animated GIFs is converted to PDF",
+      "Use 'Contain' fit mode to preserve GIF aspect ratios",
+      "Choose 'Cover' to fill entire page (may crop GIF edges)",
+      "Set margins to 0 for full-bleed GIF pages",
+      "Use 'Custom' page size to match your GIF dimensions",
+      "Consider converting animated GIFs to video format instead"
+    ],
+    "troubleshooting": [
+      "GIF not loading: Verify file has .gif extension",
+      "Only first frame shown: Animated GIFs use only first frame",
+      "Poor quality: Use higher resolution GIF source images",
+      "Images cropped: Try 'Contain' fit mode instead of 'Cover'",
+      "Large file size: GIF files can be large - consider compression",
+      "Image distorted: Avoid 'Fill' mode unless stretching is desired"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Drag & Drop",
+        "description": "Drop GIF files to upload"
+      },
+      {
+        "keys": "Click",
+        "description": "Browse and select GIF files"
+      }
+    ]
+  },
+  "meta": {
+    "title": "GIF to PDF Converter - Free Online Tool | Convert GIF to PDF",
+    "description": "Convert GIF images to PDF online for free. Combine multiple GIF files into one PDF. Supports animated GIFs (first frame). Custom page sizes and margins. Secure browser-based converter."
+  },
+  "tagline": "Convert GIF images to PDF preserving quality with custom page sizes and layout options",
+  "pageDescription": "Transform GIF images into professional PDF documents with full control over page sizes, fit modes, and margins. Works with both static and animated GIF files (first frame used). Perfect for creating presentations, documentation, meme archives, and instruction manuals from GIF files. Supports unlimited GIF images, batch processing, reordering, and custom page dimensions. Free, secure browser-based conversion with no uploads or storage. Maintains GIF image quality in PDF output."
+}
