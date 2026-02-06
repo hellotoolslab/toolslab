@@ -1,0 +1,72 @@
+{
+  "title": "JPG zu PDF",
+  "description": "Konvertieren Sie JPG und JPEG in PDF mit benutzerdefinierten Seitengrößen und Layout-Optionen",
+  "placeholder": "JPG ziehen oder klicken...",
+  "instructions": {
+    "title": "JPG zu PDF Konverter",
+    "steps": [
+      {
+        "title": "JPG/JPEG hochladen",
+        "description": "Ziehen Sie JPG oder JPEG. Unterstützt .jpg und .jpeg."
+      },
+      {
+        "title": "Bilder neu anordnen",
+        "description": "Pfeiltasten zum Reorganisieren von JPG."
+      },
+      {
+        "title": "PDF konfigurieren",
+        "description": "Größe, Anpassung, Ränder wählen."
+      },
+      { "title": "PDF erstellen", "description": "Jedes JPG wird eine Seite." }
+    ],
+    "features": [
+      "Mehrere JPG/JPEG in ein PDF",
+      "Support .jpg und .jpeg",
+      "Mit Pfeilen neu anordnen",
+      "A4, Letter, A3, Legal, Tabloid, Benutzerdefiniert",
+      "Modi: enthalten, abdecken, füllen, keine",
+      "Ränder 0-100pt",
+      "Benutzerdefinierter Name",
+      "Miniaturansichten",
+      "Sicherer Browser",
+      "Keine Limits",
+      "Unbegrenzter Batch",
+      "Erhält JPG-Qualität"
+    ],
+    "useCases": [
+      "PDF-Portfolios aus JPG-Fotos",
+      "Gescannte JPG in PDF konvertieren",
+      "JPG-Screenshots kombinieren",
+      "JPG-Produktbilder fusionieren",
+      "Fotoalben aus JPG erstellen",
+      "JPG-Mockups in PDF konvertieren",
+      "JPG-Berichte vorbereiten",
+      "JPG-Fotos archivieren"
+    ],
+    "proTips": [
+      "Verwenden Sie Enthalten für JPG-Proportionen",
+      "Wählen Sie Abdecken zum Füllen",
+      "Ränder 0 für randabfallende JPG",
+      "Benutzerdefiniert für JPG-Abmessungen",
+      "Vor Erstellen neu anordnen"
+    ],
+    "troubleshooting": [
+      "JPG lädt nicht: Überprüfen Sie .jpg oder .jpeg",
+      "Schlechte Qualität: Hochauflösende JPG verwenden",
+      "Bilder zugeschnitten: Versuchen Sie Enthalten",
+      "Große Datei: JPG komprimieren",
+      "Erstellung fehlgeschlagen: Weniger JPG",
+      "Bild verzerrt: Vermeiden Sie Füllen"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ziehen & Ablegen", "description": "JPG ablegen" },
+      { "keys": "Klicken", "description": "JPG auswählen" }
+    ]
+  },
+  "meta": {
+    "title": "JPG zu PDF Konverter - Kostenloses Tool",
+    "description": "Konvertieren Sie JPG und JPEG kostenlos online in PDF. Kombinieren Sie JPG in ein PDF. Sicherer Browser-Konverter."
+  },
+  "tagline": "Konvertieren Sie JPG und JPEG in PDF mit benutzerdefinierten Seitengrößen und professionellen Layout-Optionen",
+  "pageDescription": "Transformieren Sie JPG und JPEG in professionelle PDF-Dokumente mit vollständiger Kontrolle über Seitengrößen, Anpassungsmodi und Ränder. Perfekt für Fotoalben, Dokumentation, Portfolios von JPG-Dateien. Unterstützt unbegrenzte JPG, Stapelverarbeitung, Neuanordnung. Kostenlose sichere browserbasierte Konvertierung. Erhält hohe JPG-Qualität."
+}

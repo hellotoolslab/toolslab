@@ -1,0 +1,82 @@
+{
+  "title": "JPG to PDF",
+  "description": "Convert JPG and JPEG images to PDF format with custom page sizes and layout options",
+  "placeholder": "Drag & drop JPG images or click to upload...",
+  "instructions": {
+    "title": "How to use JPG to PDF Converter",
+    "steps": [
+      {
+        "title": "Upload JPG/JPEG images",
+        "description": "Drag and drop multiple JPG or JPEG images into the upload area, or click to browse and select files from your computer. Supports both .jpg and .jpeg file extensions."
+      },
+      {
+        "title": "Reorder your images",
+        "description": "Use the up/down arrow buttons to rearrange JPG images in your desired order. The sequence determines how pages will appear in the final PDF document."
+      },
+      {
+        "title": "Configure PDF settings",
+        "description": "Click the settings icon to choose page size (A4, Letter, A3, Legal, Tabloid, Custom), image fit mode (contain, cover, fill, none), margins (0-100pt), and output filename."
+      },
+      {
+        "title": "Generate and download PDF",
+        "description": "Click Generate PDF to create your document. Once processing completes, download the PDF file to your device. Each JPG image becomes one page in the final PDF."
+      }
+    ],
+    "features": [
+      "Convert multiple JPG/JPEG images to single PDF",
+      "Support for both .jpg and .jpeg file extensions",
+      "Reorder images with intuitive arrow buttons",
+      "Multiple page sizes: A4, Letter, A3, Legal, Tabloid, Custom",
+      "Flexible fit modes: contain, cover, fill, none",
+      "Adjustable margins from 0 to 100 points",
+      "Custom filename support",
+      "Preview thumbnails for all JPG images",
+      "Completely secure - all processing in browser",
+      "No upload limits or file restrictions",
+      "Batch processing of unlimited JPG files",
+      "Maintains high image quality in PDF output"
+    ],
+    "useCases": [
+      "Create PDF portfolios from JPG photo collections",
+      "Convert scanned documents (JPG) to single PDF file",
+      "Combine multiple JPG screenshots into presentation",
+      "Merge JPG product images for catalog creation",
+      "Create photo albums from JPG pictures in PDF format",
+      "Convert JPG design mockups to shareable PDF",
+      "Prepare image-based reports from JPG scans",
+      "Archive JPG photos in universal PDF format"
+    ],
+    "proTips": [
+      "Use 'Contain' fit mode to preserve JPG aspect ratios without cropping",
+      "Choose 'Cover' to fill entire page (may crop edges of JPG images)",
+      "Set margins to 0 for full-bleed JPG pages",
+      "Use 'Custom' page size to match your JPG dimensions exactly",
+      "Add margins for better print formatting of JPG documents",
+      "Reorder JPG images before generating to save time"
+    ],
+    "troubleshooting": [
+      "JPG not loading: Verify file has .jpg or .jpeg extension",
+      "Poor quality: Use higher resolution JPG source images",
+      "Images cropped: Try 'Contain' fit mode instead of 'Cover'",
+      "Large file size: Compress JPG images before uploading",
+      "PDF generation failed: Try fewer JPG images or smaller file sizes",
+      "Image distorted: Avoid 'Fill' mode unless stretching is desired"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Drag & Drop",
+        "description": "Drop JPG files to upload"
+      },
+      {
+        "keys": "Click",
+        "description": "Browse and select JPG files"
+      }
+    ]
+  },
+  "meta": {
+    "title": "JPG to PDF Converter - Free Online Tool | Convert JPEG to PDF",
+    "description": "Convert JPG and JPEG images to PDF online for free. Combine multiple JPG files into one PDF. Custom page sizes, fit modes, and margins. Secure browser-based converter. No limits."
+  },
+  "tagline": "Convert JPG and JPEG images to PDF with custom page sizes and professional layout options",
+  "pageDescription": "Transform JPG and JPEG images into professional PDF documents with full control over page sizes, fit modes, and margins. Perfect for creating photo albums, documentation, portfolios, and presentations from JPG files. Supports unlimited JPG images, batch processing, reordering, and custom page dimensions. Free, secure browser-based conversion with no uploads or storage. Maintains high JPG image quality in PDF output. Works with both .jpg and .jpeg file extensions."
+}

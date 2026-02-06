@@ -1,0 +1,82 @@
+{
+  "title": "Immagini in PDF",
+  "description": "Converti più immagini (JPG, PNG, GIF, WebP) in un singolo documento PDF",
+  "placeholder": "Trascina le immagini o clicca per caricare...",
+  "instructions": {
+    "title": "Come usare il Convertitore Immagini in PDF",
+    "steps": [
+      {
+        "title": "Carica le tue immagini",
+        "description": "Trascina più immagini nell'area di caricamento o clicca per selezionare i file dal tuo computer. Supporta i formati JPG, PNG, GIF e WebP."
+      },
+      {
+        "title": "Riordina le immagini",
+        "description": "Usa i pulsanti freccia su/giù per riorganizzare le immagini nell'ordine desiderato. L'ordine determina come le pagine appariranno nel documento PDF finale."
+      },
+      {
+        "title": "Configura le impostazioni PDF",
+        "description": "Clicca l'icona delle impostazioni per scegliere la dimensione della pagina (A4, Letter, A3, ecc.), la modalità di adattamento (contenere, coprire, riempire), i margini e il nome del file. Le impostazioni si applicano a tutte le immagini."
+      },
+      {
+        "title": "Genera e scarica il PDF",
+        "description": "Clicca Genera PDF per creare il tuo documento. Una volta completato, scarica il file PDF sul tuo dispositivo. Ogni immagine diventa una pagina nel PDF."
+      }
+    ],
+    "features": [
+      "Converti più immagini in un unico PDF",
+      "Supporto per formati JPG, PNG, GIF e WebP",
+      "Riordina le immagini con pulsanti freccia",
+      "Dimensioni pagina multiple (A4, Letter, A3, Legal, Tabloid, Personalizzata)",
+      "Modalità di adattamento flessibili (contenere, coprire, riempire, nessuno)",
+      "Margini regolabili (0-100pt)",
+      "Supporto per nome file personalizzato",
+      "Anteprima miniature per tutte le immagini",
+      "Completamente sicuro - elaborazione nel browser",
+      "Nessun limite di caricamento o restrizione sui file",
+      "Elaborazione in batch di immagini illimitate",
+      "Mantiene la qualità dell'immagine nell'output PDF"
+    ],
+    "useCases": [
+      "Crea portfolio PDF da più foto",
+      "Converti documenti scansionati in un unico file PDF",
+      "Combina screenshot in documento di presentazione",
+      "Unisci immagini di prodotti per creazione cataloghi",
+      "Crea album fotografici in formato PDF",
+      "Converti mockup di design in PDF condivisibile",
+      "Prepara report e documentazione basati su immagini",
+      "Archivia foto in formato PDF universale"
+    ],
+    "proTips": [
+      "Usa la modalità 'Contenere' per preservare le proporzioni delle immagini",
+      "Scegli 'Coprire' per riempire l'intera pagina con le immagini (può ritagliare)",
+      "Imposta i margini a 0 per pagine immagine a vivo",
+      "Usa dimensione pagina 'Personalizzata' per abbinare le dimensioni delle tue immagini",
+      "Aggiungi margini per una migliore formattazione di stampa",
+      "Riordina le immagini prima di generare per risparmiare tempo"
+    ],
+    "troubleshooting": [
+      "Immagine non si carica: Verifica il formato file (solo JPG, PNG, GIF, WebP)",
+      "Qualità scarsa: Usa immagini sorgente ad alta risoluzione",
+      "Immagini ritagliate: Prova la modalità 'Contenere' invece di 'Coprire'",
+      "File di grandi dimensioni: Riduci la risoluzione dell'immagine prima del caricamento",
+      "Generazione PDF fallita: Prova con meno immagini o dimensioni file più piccole",
+      "Immagine distorta: Evita la modalità 'Riempire' a meno che lo stiramento sia desiderato"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Trascina e Rilascia",
+        "description": "Rilascia le immagini per caricare"
+      },
+      {
+        "keys": "Click",
+        "description": "Sfoglia e seleziona i file"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertitore Immagini in PDF - Strumento Online Gratuito",
+    "description": "Converti immagini JPG, PNG, GIF, WebP in PDF online gratis. Combina più immagini in un PDF. Dimensioni pagina personalizzate, modalità di adattamento e margini. Convertitore sicuro basato su browser."
+  },
+  "tagline": "Converti più immagini in un singolo documento PDF con dimensioni pagina e opzioni di layout personalizzate",
+  "pageDescription": "Trasforma più immagini (JPG, PNG, GIF, WebP) in documenti PDF professionali con controllo completo su dimensioni pagina, modalità di adattamento e margini. Perfetto per creare album fotografici, documentazione, portfolio e presentazioni. Supporta immagini illimitate, elaborazione in batch, riordino e dimensioni pagina personalizzate. Conversione gratuita e sicura basata su browser senza caricamenti o archiviazione. Mantiene alta qualità delle immagini nell'output PDF."
+}

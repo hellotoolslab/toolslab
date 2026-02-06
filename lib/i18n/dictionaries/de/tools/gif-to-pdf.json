@@ -1,0 +1,72 @@
+{
+  "title": "GIF zu PDF",
+  "description": "Konvertieren Sie GIF in PDF unter Beibehaltung der Qualität mit benutzerdefinierten Seitengrößen",
+  "placeholder": "GIF ziehen oder klicken...",
+  "instructions": {
+    "title": "GIF zu PDF Konverter",
+    "steps": [
+      {
+        "title": "GIF hochladen",
+        "description": "Ziehen Sie GIF. Animiert: erster Frame."
+      },
+      {
+        "title": "GIF neu anordnen",
+        "description": "Pfeile zum Reorganisieren."
+      },
+      {
+        "title": "PDF konfigurieren",
+        "description": "Größe, Anpassung, Ränder."
+      },
+      { "title": "PDF erstellen", "description": "Jedes GIF = Seite." }
+    ],
+    "features": [
+      "Mehrere GIF in ein PDF",
+      "Statische und animierte GIF",
+      "Erster Frame extrahiert",
+      "Mit Pfeilen neu anordnen",
+      "A4, Letter, A3, Legal, Tabloid, Benutzerdefiniert",
+      "Modi: enthalten, abdecken, füllen, keine",
+      "Ränder 0-100pt",
+      "Benutzerdefinierter Name",
+      "Miniaturansichten",
+      "Sicherer Browser",
+      "Keine Limits",
+      "Unbegrenzter Batch"
+    ],
+    "useCases": [
+      "PDF-Präsentationen aus GIF-Animationen",
+      "GIF-Meme-Sammlung in PDF",
+      "GIF-Grafiken kombinieren",
+      "GIF-Illustrationen fusionieren",
+      "Anleitungen aus GIF-Tutorials",
+      "Animierte GIF-Storyboards in PDF",
+      "GIF-Inhalte für Verteilung",
+      "GIF-Sammlungen archivieren"
+    ],
+    "proTips": [
+      "Nur erster Frame animierter GIF",
+      "Enthalten für Proportionen",
+      "Ränder 0 für randabfallend",
+      "Benutzerdefiniert für GIF-Abmessungen",
+      "Erwägen Sie Video für animierte"
+    ],
+    "troubleshooting": [
+      "GIF lädt nicht: Überprüfen Sie .gif",
+      "Nur erster Frame: Animierte Frame 1",
+      "Schlechte Qualität: Hochauflösende GIF",
+      "Zugeschnitten: Versuchen Sie Enthalten",
+      "Große Datei: GIF komprimieren",
+      "Verzerrt: Vermeiden Sie Füllen"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ziehen & Ablegen", "description": "GIF ablegen" },
+      { "keys": "Klicken", "description": "GIF auswählen" }
+    ]
+  },
+  "meta": {
+    "title": "GIF zu PDF Konverter - Kostenloses Tool",
+    "description": "Konvertieren Sie GIF kostenlos online in PDF. Kombinieren Sie GIF in PDF. Unterstützt animierte (erster Frame). Sicher."
+  },
+  "tagline": "Konvertieren Sie GIF in PDF unter Beibehaltung der Qualität mit benutzerdefinierten Seitengrößen",
+  "pageDescription": "Transformieren Sie GIF in professionelle PDF-Dokumente mit vollständiger Kontrolle. Funktioniert mit statischen und animierten GIF (erster Frame). Perfekt für Präsentationen, Dokumentation, Meme-Archive. Kostenlose sichere Konvertierung. Erhält GIF-Qualität."
+}

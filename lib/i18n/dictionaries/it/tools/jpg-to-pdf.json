@@ -1,0 +1,76 @@
+{
+  "title": "JPG in PDF",
+  "description": "Converti immagini JPG e JPEG in formato PDF con dimensioni pagina e opzioni di layout personalizzate",
+  "placeholder": "Trascina immagini JPG o clicca per caricare...",
+  "instructions": {
+    "title": "Come usare il Convertitore JPG in PDF",
+    "steps": [
+      {
+        "title": "Carica immagini JPG/JPEG",
+        "description": "Trascina più immagini JPG o JPEG nell'area di caricamento o clicca per selezionare i file dal tuo computer. Supporta entrambe le estensioni .jpg e .jpeg."
+      },
+      {
+        "title": "Riordina le immagini",
+        "description": "Usa i pulsanti freccia su/giù per riorganizzare le immagini JPG nell'ordine desiderato. La sequenza determina come le pagine appariranno nel PDF finale."
+      },
+      {
+        "title": "Configura impostazioni PDF",
+        "description": "Clicca l'icona delle impostazioni per scegliere dimensione pagina, modalità di adattamento, margini e nome file."
+      },
+      {
+        "title": "Genera e scarica PDF",
+        "description": "Clicca Genera PDF per creare il documento. Una volta completato, scarica il file PDF. Ogni immagine JPG diventa una pagina nel PDF."
+      }
+    ],
+    "features": [
+      "Converti più immagini JPG/JPEG in un unico PDF",
+      "Supporto per estensioni .jpg e .jpeg",
+      "Riordina immagini con pulsanti freccia",
+      "Dimensioni pagina: A4, Letter, A3, Legal, Tabloid, Personalizzata",
+      "Modalità adattamento: contenere, coprire, riempire, nessuno",
+      "Margini regolabili 0-100pt",
+      "Nome file personalizzato",
+      "Anteprima miniature",
+      "Elaborazione nel browser - sicuro",
+      "Nessun limite di caricamento",
+      "Elaborazione batch illimitata",
+      "Mantiene alta qualità JPG"
+    ],
+    "useCases": [
+      "Crea portfolio PDF da collezioni foto JPG",
+      "Converti documenti scansionati JPG in PDF",
+      "Combina screenshot JPG in presentazione",
+      "Unisci immagini prodotto JPG per cataloghi",
+      "Crea album fotografici da immagini JPG",
+      "Converti mockup JPG in PDF condivisibile",
+      "Prepara report da scansioni JPG",
+      "Archivia foto JPG in formato PDF"
+    ],
+    "proTips": [
+      "Usa 'Contenere' per preservare proporzioni JPG",
+      "Scegli 'Coprire' per riempire pagina (può ritagliare)",
+      "Imposta margini a 0 per JPG a vivo",
+      "Usa dimensione 'Personalizzata' per abbinare dimensioni JPG",
+      "Aggiungi margini per migliore formattazione stampa",
+      "Riordina JPG prima di generare"
+    ],
+    "troubleshooting": [
+      "JPG non si carica: Verifica estensione .jpg o .jpeg",
+      "Qualità scarsa: Usa JPG ad alta risoluzione",
+      "Immagini ritagliate: Prova 'Contenere' invece di 'Coprire'",
+      "File grande: Comprimi JPG prima di caricare",
+      "Generazione fallita: Prova meno JPG o file più piccoli",
+      "Immagine distorta: Evita 'Riempire'"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Trascina e Rilascia", "description": "Rilascia file JPG" },
+      { "keys": "Click", "description": "Seleziona file JPG" }
+    ]
+  },
+  "meta": {
+    "title": "Convertitore JPG in PDF - Strumento Online Gratuito | Converti JPEG in PDF",
+    "description": "Converti JPG e JPEG in PDF online gratis. Combina più file JPG in un PDF. Dimensioni pagina personalizzate, modalità adattamento e margini. Convertitore sicuro browser. Nessun limite."
+  },
+  "tagline": "Converti immagini JPG e JPEG in PDF con dimensioni pagina e opzioni di layout professionali",
+  "pageDescription": "Trasforma immagini JPG e JPEG in documenti PDF professionali con controllo completo su dimensioni pagina, modalità adattamento e margini. Perfetto per creare album fotografici, documentazione, portfolio e presentazioni da file JPG. Supporta immagini JPG illimitate, elaborazione batch, riordino e dimensioni pagina personalizzate. Conversione gratuita e sicura nel browser senza caricamenti. Mantiene alta qualità JPG nell'output PDF. Funziona con estensioni .jpg e .jpeg."
+}
