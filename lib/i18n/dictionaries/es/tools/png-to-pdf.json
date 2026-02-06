@@ -1,0 +1,75 @@
+{
+  "title": "PNG a PDF",
+  "description": "Convierte imágenes PNG a formato PDF con soporte transparencia y opciones página personalizadas",
+  "placeholder": "Arrastra PNG o haz clic...",
+  "instructions": {
+    "title": "Cómo usar Convertidor PNG a PDF",
+    "steps": [
+      {
+        "title": "Sube PNG",
+        "description": "Arrastra PNG. Transparencia preservada."
+      },
+      {
+        "title": "Reordena PNG",
+        "description": "Usa flechas para reorganizar."
+      },
+      {
+        "title": "Configura PDF",
+        "description": "Elige tamaño, ajuste, márgenes."
+      },
+      {
+        "title": "Genera PDF",
+        "description": "Cada PNG se convierte en página."
+      }
+    ],
+    "features": [
+      "Múltiples PNG a un PDF",
+      "Soporte transparencia completo",
+      "Reordena con flechas",
+      "A4, Letter, A3, Legal, Tabloid, Personalizado",
+      "Modos: contener, cubrir, rellenar, ninguno",
+      "Márgenes 0-100pt",
+      "Nombre personalizado",
+      "Miniaturas",
+      "Navegador seguro",
+      "Sin límites",
+      "Batch ilimitado",
+      "Mantiene transparencia PNG"
+    ],
+    "useCases": [
+      "Portfolio PNG con transparencia",
+      "Screenshots PNG a PDF",
+      "Combina logos PNG",
+      "Fusiona assets PNG",
+      "Spec sheets mockups PNG",
+      "Iconos PNG a PDF",
+      "Informes PNG",
+      "Archiva gráficos PNG"
+    ],
+    "proTips": [
+      "Transparencia PNG automática",
+      "Usa Contener para proporciones",
+      "Márgenes 0 para PNG sangrado",
+      "Personalizado para igualar PNG",
+      "Reordena antes generar"
+    ],
+    "troubleshooting": [
+      "PNG no carga: Verifica .png",
+      "Calidad baja: PNG alta resolución",
+      "Transparencia perdida: Usa PNG no JPG",
+      "Recortadas: Prueba Contener",
+      "Archivo grande: PNG grandes",
+      "Distorsionada: Evita Rellenar"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Arrastrar", "description": "Suelta PNG" },
+      { "keys": "Clic", "description": "Selecciona PNG" }
+    ]
+  },
+  "meta": {
+    "title": "Convertidor PNG a PDF - Herramienta Gratis",
+    "description": "Convierte PNG a PDF online gratis con transparencia. Combina PNG en un PDF. Seguro navegador."
+  },
+  "tagline": "Convierte PNG a PDF con transparencia y diseño personalizado",
+  "pageDescription": "Transforma PNG en PDF profesionales preservando transparencia. Control total sobre páginas, ajustes y márgenes. Perfecto para portfolios diseño, documentación gráfica transparente, presentaciones. Conversión gratuita segura navegador. Mantiene transparencia PNG y calidad alta."
+}

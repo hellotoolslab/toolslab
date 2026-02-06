@@ -91,6 +91,10 @@ const toolComponents = {
     () => import('./implementations/AITokenCounter')
   ),
   'pdf-to-word': lazy(() => import('./implementations/PdfToWord')),
+  'image-to-pdf': lazy(() => import('./implementations/ImageToPdfTool')),
+  'jpg-to-pdf': lazy(() => import('./implementations/JpgToPdfTool')),
+  'png-to-pdf': lazy(() => import('./implementations/PngToPdfTool')),
+  'gif-to-pdf': lazy(() => import('./implementations/GifToPdfTool')),
   'utm-builder': lazy(() => import('./implementations/UtmBuilder')),
   'whatsapp-link-generator': lazy(
     () => import('./implementations/WhatsAppLinkGenerator')

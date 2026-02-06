@@ -1,0 +1,82 @@
+{
+  "title": "Image to PDF",
+  "description": "Convert multiple images (JPG, PNG, GIF, WebP) into a single PDF document",
+  "placeholder": "Drag & drop images or click to upload...",
+  "instructions": {
+    "title": "How to use Image to PDF Converter",
+    "steps": [
+      {
+        "title": "Upload your images",
+        "description": "Drag and drop multiple images into the upload area, or click to browse and select files from your computer. Supports JPG, PNG, GIF, and WebP formats."
+      },
+      {
+        "title": "Reorder images",
+        "description": "Use the up/down arrow buttons to rearrange images in your desired order. The order determines how pages appear in the final PDF document."
+      },
+      {
+        "title": "Configure PDF settings",
+        "description": "Click the settings icon to choose page size (A4, Letter, A3, etc.), fit mode (contain, cover, fill), margins, and output filename. Settings apply to all images."
+      },
+      {
+        "title": "Generate and download PDF",
+        "description": "Click Generate PDF to create your document. Once complete, download the PDF file to your device. Each image becomes one page in the PDF."
+      }
+    ],
+    "features": [
+      "Convert multiple images to single PDF",
+      "Support for JPG, PNG, GIF, and WebP formats",
+      "Reorder images with arrow buttons",
+      "Multiple page sizes (A4, Letter, A3, Legal, Tabloid, Custom)",
+      "Flexible fit modes (contain, cover, fill, none)",
+      "Adjustable margins (0-100pt)",
+      "Custom filename support",
+      "Preview thumbnails for all images",
+      "Completely secure - all processing in browser",
+      "No upload limits or file restrictions",
+      "Batch processing of unlimited images",
+      "Maintains image quality in PDF output"
+    ],
+    "useCases": [
+      "Create PDF portfolios from multiple photos",
+      "Convert scanned documents to single PDF file",
+      "Combine screenshots into presentation document",
+      "Merge product images for catalog creation",
+      "Create photo albums in PDF format",
+      "Convert design mockups to shareable PDF",
+      "Prepare image-based reports and documentation",
+      "Archive photos in universal PDF format"
+    ],
+    "proTips": [
+      "Use 'Contain' fit mode to preserve image aspect ratios",
+      "Choose 'Cover' to fill entire page with images (may crop)",
+      "Set margins to 0 for full-bleed image pages",
+      "Use 'Custom' page size to match your image dimensions",
+      "Add margins for better print formatting",
+      "Reorder images before generating to save time"
+    ],
+    "troubleshooting": [
+      "Image not loading: Check file format (JPG, PNG, GIF, WebP only)",
+      "Poor quality: Use higher resolution source images",
+      "Images cropped: Try 'Contain' fit mode instead of 'Cover'",
+      "Large file size: Reduce image resolution before uploading",
+      "PDF generation failed: Try fewer images or smaller file sizes",
+      "Image distorted: Avoid 'Fill' mode unless stretching is desired"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Drag & Drop",
+        "description": "Drop images to upload"
+      },
+      {
+        "keys": "Click",
+        "description": "Browse and select files"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Image to PDF Converter - Free Online Tool",
+    "description": "Convert JPG, PNG, GIF, WebP images to PDF online for free. Combine multiple images into one PDF. Custom page sizes, fit modes, and margins. Secure browser-based converter."
+  },
+  "tagline": "Convert multiple images into a single PDF document with custom page sizes and layout options",
+  "pageDescription": "Transform multiple images (JPG, PNG, GIF, WebP) into professional PDF documents with full control over page sizes, fit modes, and margins. Perfect for creating photo albums, documentation, portfolios, and presentations. Supports unlimited images, batch processing, reordering, and custom page dimensions. Free, secure browser-based conversion with no uploads or storage. Maintains high image quality in PDF output."
+}

@@ -1,0 +1,72 @@
+{
+  "title": "PNG zu PDF",
+  "description": "Konvertieren Sie PNG in PDF mit Transparenzunterstützung und benutzerdefinierten Seitenoptionen",
+  "placeholder": "PNG ziehen oder klicken...",
+  "instructions": {
+    "title": "PNG zu PDF Konverter",
+    "steps": [
+      {
+        "title": "PNG hochladen",
+        "description": "Ziehen Sie PNG. Transparenz erhalten."
+      },
+      {
+        "title": "PNG neu anordnen",
+        "description": "Pfeile zum Reorganisieren."
+      },
+      {
+        "title": "PDF konfigurieren",
+        "description": "Größe, Anpassung, Ränder."
+      },
+      { "title": "PDF erstellen", "description": "Jedes PNG = eine Seite." }
+    ],
+    "features": [
+      "Mehrere PNG in ein PDF",
+      "Vollständige Transparenzunterstützung",
+      "Mit Pfeilen neu anordnen",
+      "A4, Letter, A3, Legal, Tabloid, Benutzerdefiniert",
+      "Modi: enthalten, abdecken, füllen, keine",
+      "Ränder 0-100pt",
+      "Benutzerdefinierter Name",
+      "Miniaturansichten",
+      "Sicherer Browser",
+      "Keine Limits",
+      "Unbegrenzter Batch",
+      "Erhält PNG-Transparenz"
+    ],
+    "useCases": [
+      "PDF-Portfolios aus transparenten PNG",
+      "PNG-Screenshots in PDF",
+      "PNG-Logos kombinieren",
+      "PNG-Assets fusionieren",
+      "Spec-Sheets aus PNG-Mockups",
+      "Transparente PNG-Icons in PDF",
+      "PNG-Berichte",
+      "PNG-Grafiken archivieren"
+    ],
+    "proTips": [
+      "PNG-Transparenz automatisch erhalten",
+      "Enthalten für Proportionen",
+      "Ränder 0 für randabfallende PNG",
+      "Benutzerdefiniert für PNG-Abmessungen",
+      "Vor Erstellen neu anordnen"
+    ],
+    "troubleshooting": [
+      "PNG lädt nicht: Überprüfen Sie .png",
+      "Schlechte Qualität: Hochauflösende PNG",
+      "Transparenz verloren: PNG verwenden",
+      "Zugeschnitten: Versuchen Sie Enthalten",
+      "Große Datei: PNG können groß sein",
+      "Verzerrt: Vermeiden Sie Füllen"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ziehen & Ablegen", "description": "PNG ablegen" },
+      { "keys": "Klicken", "description": "PNG auswählen" }
+    ]
+  },
+  "meta": {
+    "title": "PNG zu PDF Konverter - Kostenloses Tool",
+    "description": "Konvertieren Sie PNG kostenlos online in PDF mit Transparenz. Kombinieren Sie PNG in PDF. Sicherer Browser."
+  },
+  "tagline": "Konvertieren Sie PNG in PDF mit Transparenzunterstützung und benutzerdefiniertem Layout",
+  "pageDescription": "Transformieren Sie PNG in professionelle PDF-Dokumente unter Beibehaltung von Transparenz. Vollständige Kontrolle über Seiten, Anpassungen, Ränder. Perfekt für Design-Portfolios, Dokumentation mit transparenter Grafik. Kostenlose sichere Konvertierung. Erhält PNG-Transparenz und hohe Qualität."
+}

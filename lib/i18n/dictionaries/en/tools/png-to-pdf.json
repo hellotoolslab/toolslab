@@ -1,0 +1,82 @@
+{
+  "title": "PNG to PDF",
+  "description": "Convert PNG images to PDF format with transparency support and custom page options",
+  "placeholder": "Drag & drop PNG images or click to upload...",
+  "instructions": {
+    "title": "How to use PNG to PDF Converter",
+    "steps": [
+      {
+        "title": "Upload PNG images",
+        "description": "Drag and drop multiple PNG images into the upload area, or click to browse and select files from your computer. Transparency in PNG files is preserved during conversion."
+      },
+      {
+        "title": "Reorder your PNG images",
+        "description": "Use the up/down arrow buttons to rearrange PNG images in your desired order. The sequence determines how pages will appear in the final PDF document."
+      },
+      {
+        "title": "Configure PDF settings",
+        "description": "Click the settings icon to choose page size (A4, Letter, A3, Legal, Tabloid, Custom), image fit mode (contain, cover, fill, none), margins (0-100pt), and output filename."
+      },
+      {
+        "title": "Generate and download PDF",
+        "description": "Click Generate PDF to create your document. Once processing completes, download the PDF file to your device. Each PNG image becomes one page in the final PDF."
+      }
+    ],
+    "features": [
+      "Convert multiple PNG images to single PDF",
+      "Full transparency support for PNG files",
+      "Reorder images with intuitive arrow buttons",
+      "Multiple page sizes: A4, Letter, A3, Legal, Tabloid, Custom",
+      "Flexible fit modes: contain, cover, fill, none",
+      "Adjustable margins from 0 to 100 points",
+      "Custom filename support",
+      "Preview thumbnails for all PNG images",
+      "Completely secure - all processing in browser",
+      "No upload limits or file restrictions",
+      "Batch processing of unlimited PNG files",
+      "Maintains PNG transparency and quality in PDF"
+    ],
+    "useCases": [
+      "Create PDF portfolios from PNG graphics with transparency",
+      "Convert PNG screenshots to single PDF document",
+      "Combine PNG logos and graphics into presentation",
+      "Merge PNG design assets for client delivery",
+      "Create design spec sheets from PNG mockups",
+      "Convert transparent PNG icons to PDF format",
+      "Prepare PNG-based reports and documentation",
+      "Archive PNG graphics in universal PDF format"
+    ],
+    "proTips": [
+      "PNG transparency is automatically preserved in the PDF output",
+      "Use 'Contain' fit mode to preserve PNG aspect ratios",
+      "Choose 'Cover' to fill entire page (may crop PNG edges)",
+      "Set margins to 0 for full-bleed transparent PNG pages",
+      "Use 'Custom' page size to match your PNG dimensions exactly",
+      "Reorder PNG images before generating to save time"
+    ],
+    "troubleshooting": [
+      "PNG not loading: Verify file has .png extension",
+      "Poor quality: Use higher resolution PNG source images",
+      "Transparency lost: Ensure using PNG format (not JPG)",
+      "Images cropped: Try 'Contain' fit mode instead of 'Cover'",
+      "Large file size: PNG files can be large - consider compression",
+      "Image distorted: Avoid 'Fill' mode unless stretching is desired"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Drag & Drop",
+        "description": "Drop PNG files to upload"
+      },
+      {
+        "keys": "Click",
+        "description": "Browse and select PNG files"
+      }
+    ]
+  },
+  "meta": {
+    "title": "PNG to PDF Converter - Free Online Tool | Convert PNG to PDF",
+    "description": "Convert PNG images to PDF online for free with transparency support. Combine multiple PNG files into one PDF. Custom page sizes, fit modes, and margins. Secure browser-based converter."
+  },
+  "tagline": "Convert PNG images to PDF with transparency support and custom page layout options",
+  "pageDescription": "Transform PNG images into professional PDF documents while preserving transparency and quality. Full control over page sizes, fit modes, and margins. Perfect for creating design portfolios, documentation with transparent graphics, presentations, and technical spec sheets from PNG files. Supports unlimited PNG images, batch processing, reordering, and custom page dimensions. Free, secure browser-based conversion with no uploads or storage. Maintains PNG transparency and high image quality in PDF output."
+}
