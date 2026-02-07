@@ -2,39 +2,43 @@
   "categories": {
     "data": {
       "name": "Dati e Conversione",
-      "description": "Strumenti per trasformazione dati e conversione formati"
+      "description": "Trasforma e formatta dati tra JSON, CSV, XML, Base64 e altri formati con strumenti professionali. Elabora file fino a 50MB con validazione in tempo reale, evidenziazione sintassi e elaborazione sicura nel browser. Perfetti per debugging API, migrazione dati e gestione configurazioni."
     },
     "encoding": {
       "name": "Codifica e Sicurezza",
-      "description": "Strumenti di codifica, crittografia e sicurezza"
+      "description": "Strumenti professionali di codifica e sicurezza per sviluppatori. Gestisci Base64, codifica URL, token JWT, algoritmi di hashing e crittografia con standard di sicurezza di livello militare. Essenziali per sviluppo web, sicurezza API e gestione password."
     },
     "base64": {
       "name": "Strumenti Base64",
-      "description": "Converti dati codificati in Base64 in vari formati di file"
+      "description": "Strumenti professionali di conversione Base64 per sviluppatori. Decodifica stringhe Base64 e convertile in documenti PDF, immagini GIF, file PNG e altri formati con anteprima istantanea. Perfetti per debugging API, recupero dati e elaborazione allegati email."
     },
     "text": {
       "name": "Testo e Formato",
-      "description": "Strumenti per manipolazione e formattazione testo"
+      "description": "Strumenti completi di manipolazione e formattazione testo per scrittori e sviluppatori. Trasforma, analizza e formatta testo con potenti utilità inclusi convertitori di maiuscole/minuscole, contatori di testo, tester regex ed elaboratori markdown. Perfetti per editing contenuti e documentazione codice."
     },
     "generators": {
       "name": "Generatori",
-      "description": "Genera vari tipi di dati e contenuti"
+      "description": "Strumenti generatori professionali per creare UUID, password, lorem ipsum, dati di test e identificatori univoci. Utilità essenziali per sviluppatori, designer e QA engineer. Crea GUID, password sicure, dati mock e contenuti placeholder istantaneamente."
     },
     "web": {
       "name": "Web e Design",
-      "description": "Strumenti per sviluppo web e design"
+      "description": "Strumenti completi di sviluppo web e design per creare, ottimizzare e testare applicazioni web. Da generatori favicon a convertitori colore, da formattatori CSS a validatori HTML. Perfetti per sviluppatori front-end, designer UI/UX e webmaster."
     },
     "dev": {
       "name": "Utilità Sviluppatori",
-      "description": "Utilità e helper per sviluppatori"
+      "description": "Utilità sviluppatore essenziali e strumenti di programmazione per flussi di sviluppo software moderni. Da formattatori SQL a tester regex, da builder espressioni cron a checker diff. Tutti gli strumenti includono evidenziazione sintassi, validazione ed elaborazione in tempo reale."
     },
     "formatters": {
       "name": "Formatters",
-      "description": "Strumenti per formattazione codice e dati"
+      "description": "Strumenti professionali di formattazione e beautification codice per tutti i linguaggi di programmazione principali. Formatta istantaneamente query SQL, oggetti JSON, documenti XML, markup HTML e fogli di stile CSS con corretta indentazione ed evidenziazione sintassi."
     },
     "pdf": {
       "name": "Strumenti PDF",
-      "description": "Strumenti professionali per PDF: conversione, modifica, unione, divisione e ottimizzazione"
+      "description": "Strumenti PDF professionali per conversione documenti, editing, unione, divisione e ottimizzazione. Converti file PDF in Word (DOCX), Excel, immagini e altri formati con preservazione alta fedeltà della formattazione. Perfetti per gestione documenti e flussi digitali."
+    },
+    "social": {
+      "name": "Social Media",
+      "description": "Strumenti social media professionali per creatori di contenuti, influencer e marketer. Genera font Unicode stilizzati per bio Instagram, stati WhatsApp, post Twitter e contenuti Facebook. Crea stili di testo accattivanti e font fantasiosi che funzionano su tutte le piattaforme social."
     }
   }
 }

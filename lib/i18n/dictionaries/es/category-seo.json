@@ -1,0 +1,444 @@
+{
+  "data": {
+    "h1Title": "Herramientas de Datos y Conversión",
+    "tagline": "Kit de herramientas completo para transformación de datos sin problemas",
+    "description": "Transforma y formatea datos entre JSON, CSV, XML, Base64 y más con herramientas de nivel profesional diseñadas para desarrolladores, analistas de datos y administradores de sistemas. Procesa archivos de hasta 50MB con validación en tiempo real, resaltado de sintaxis y procesamiento seguro basado en navegador. Nuestras herramientas de conversión de datos manejan transformaciones complejas con precisión, soportando estructuras anidadas, delimitadores personalizados y estándares de codificación. Perfectas para depuración de API, migración de datos, conversión de formatos de archivo y flujos de gestión de configuración.",
+    "benefits": [
+      "Conversión instantánea entre más de 10 formatos de datos",
+      "Validación en tiempo real y detección de errores",
+      "Procesa archivos grandes hasta 50MB localmente",
+      "Tus datos nunca salen de tu navegador",
+      "Resaltado de sintaxis para mejor legibilidad"
+    ],
+    "useCases": [
+      "Depuración y prueba de API",
+      "Proyectos de migración de datos",
+      "Gestión de archivos de configuración",
+      "Análisis de archivos de registro",
+      "Importación/exportación de bases de datos"
+    ],
+    "keywords": [
+      "conversión de datos",
+      "formateador json",
+      "csv a json",
+      "convertidor xml",
+      "codificador base64",
+      "transformación de datos",
+      "convertidor de archivos",
+      "herramientas api"
+    ],
+    "faqs": [
+      {
+        "question": "¿Qué formatos de archivo puedo convertir?",
+        "answer": "Nuestras herramientas soportan formatos JSON, CSV, XML, YAML, Base64 y texto plano con detección automática y validación."
+      },
+      {
+        "question": "¿Hay un límite de tamaño de archivo?",
+        "answer": "Puedes procesar archivos de hasta 50MB directamente en tu navegador. Todo el procesamiento ocurre localmente para máxima velocidad y privacidad."
+      },
+      {
+        "question": "¿Qué tan seguro es el proceso de conversión?",
+        "answer": "Todas las conversiones ocurren localmente en tu navegador. Tus datos nunca salen de tu dispositivo, garantizando completa privacidad y seguridad."
+      }
+    ],
+    "metaDescription": "Herramientas profesionales de conversión de datos para JSON, CSV, XML, Base64 y más. Transforma, valida y formatea datos instantáneamente en tu navegador. Gratis, seguro, sin registro."
+  },
+  "encoding": {
+    "h1Title": "Herramientas de Codificación y Seguridad",
+    "tagline": "Utilidades seguras de codificación, decodificación y criptografía",
+    "description": "Herramientas profesionales de codificación y seguridad para desarrolladores y profesionales de seguridad. Maneja Base64, codificación URL, tokens JWT, algoritmos de hash y cifrado con estándares de seguridad de grado militar. Nuestras herramientas basadas en navegador aseguran que tus datos sensibles nunca salgan de tu dispositivo mientras proporcionan operaciones instantáneas de codificación, decodificación y criptografía. Esenciales para desarrollo web, seguridad API, gestión de contraseñas y flujos de transmisión de datos segura.",
+    "benefits": [
+      "Soporte para todos los estándares principales de codificación",
+      "Generación y validación segura de tokens JWT",
+      "Múltiples algoritmos de hash (SHA, MD5, bcrypt)",
+      "Codificación/decodificación en tiempo real",
+      "Arquitectura de conocimiento cero"
+    ],
+    "useCases": [
+      "Depuración de tokens JWT",
+      "Configuración de autenticación API",
+      "Hash de contraseñas",
+      "Codificación de parámetros URL",
+      "Pruebas de seguridad"
+    ],
+    "keywords": [
+      "codificador base64",
+      "decodificador jwt",
+      "codificador url",
+      "generador hash",
+      "herramientas cifrado",
+      "utilidades seguridad",
+      "validación token",
+      "criptografía"
+    ],
+    "faqs": [
+      {
+        "question": "¿Son estas herramientas seguras para datos sensibles?",
+        "answer": "Sí, todas las operaciones de codificación y hash se ejecutan completamente en tu navegador. Ningún dato se transmite a nuestros servidores."
+      },
+      {
+        "question": "¿Qué algoritmos de hash soportan?",
+        "answer": "Soportamos SHA-256, SHA-512, MD5, bcrypt y otros algoritmos estándar de la industria para diversas necesidades de seguridad."
+      },
+      {
+        "question": "¿Puedo validar tokens JWT de cualquier proveedor?",
+        "answer": "Sí, nuestro decodificador JWT funciona con tokens de cualquier proveedor y soporta todos los algoritmos de firma estándar."
+      }
+    ],
+    "metaDescription": "Herramientas seguras de codificación y criptografía para Base64, JWT, codificación URL y hash. Utilidades de seguridad profesionales para desarrolladores. Gratis, privado, basado en navegador."
+  },
+  "base64": {
+    "h1Title": "Herramientas de Conversión Base64",
+    "tagline": "Convierte datos codificados Base64 a PDFs, imágenes y archivos al instante",
+    "description": "Herramientas profesionales de conversión Base64 para desarrolladores e ingenieros de datos. Decodifica cadenas Base64 y conviértelas en documentos PDF, imágenes GIF, archivos PNG y otros formatos con vista previa instantánea y descarga. Nuestras herramientas basadas en navegador manejan grandes cargas Base64, validan el formato de codificación y proporcionan conversión en tiempo real con manejo apropiado de errores. Perfectas para depuración de API, recuperación de datos, procesamiento de adjuntos de correo y flujos de web scraping donde el contenido codificado Base64 necesita convertirse en archivos utilizables.",
+    "benefits": [
+      "Decodificación y conversión Base64 instantánea",
+      "Vista previa antes de descargar archivos",
+      "Soporte para múltiples formatos de salida",
+      "Validación de codificación Base64",
+      "Maneja archivos hasta 10MB"
+    ],
+    "useCases": [
+      "Extracción de datos de respuesta API",
+      "Recuperación de adjuntos de correo",
+      "Conversión de datos de web scraping",
+      "Procesamiento de payload JSON",
+      "Extracción de blob de base de datos"
+    ],
+    "keywords": [
+      "base64 a pdf",
+      "base64 a imagen",
+      "decodificador base64",
+      "convertidor base64",
+      "decodificar base64",
+      "base64 a gif",
+      "convertidor archivo base64",
+      "decodificador data uri"
+    ],
+    "faqs": [
+      {
+        "question": "¿A qué formatos de archivo puedo convertir Base64?",
+        "answer": "Actualmente soportamos conversión a formatos PDF y GIF, con más formatos (PNG, JPEG, DOCX) próximamente."
+      },
+      {
+        "question": "¿Hay un límite de tamaño para la conversión Base64?",
+        "answer": "Puedes convertir cadenas Base64 que representan archivos de hasta 10MB. La conversión ocurre completamente en tu navegador."
+      },
+      {
+        "question": "¿Cómo sé si mi cadena Base64 es válida?",
+        "answer": "Nuestras herramientas validan automáticamente el formato Base64 y verifican las cabeceras de archivo (como firmas GIF o PDF) antes de la conversión."
+      }
+    ],
+    "metaDescription": "Convierte Base64 a PDF, GIF e imágenes instantáneamente. Herramientas profesionales de decodificación y conversión Base64 para desarrolladores. Conversión gratuita, segura, basada en navegador con vista previa."
+  },
+  "text": {
+    "h1Title": "Herramientas de Texto y Formato",
+    "tagline": "Utilidades avanzadas de procesamiento y formateo de texto",
+    "description": "Herramientas completas de manipulación y formateo de texto para escritores, desarrolladores y creadores de contenido. Transforma, analiza y formatea texto con potentes utilidades incluyendo convertidores de mayúsculas/minúsculas, contadores de texto, testers regex y procesadores markdown. Maneja todo desde transformaciones simples de texto hasta complejas tareas de coincidencia de patrones y formateo. Perfectas para edición de contenido, documentación de código, limpieza de datos y flujos de análisis de texto.",
+    "benefits": [
+      "Transformación y formateo de texto instantáneo",
+      "Coincidencia de patrones regex avanzada",
+      "Vista previa y conversión markdown",
+      "Conteo de caracteres y palabras",
+      "Soporte de texto multiidioma"
+    ],
+    "useCases": [
+      "Edición y formateo de contenido",
+      "Documentación de código",
+      "Limpieza y normalización de datos",
+      "Coincidencia y extracción de patrones",
+      "Análisis de texto y estadísticas"
+    ],
+    "keywords": [
+      "formateador texto",
+      "convertidor mayúsculas minúsculas",
+      "tester regex",
+      "editor markdown",
+      "contador texto",
+      "manipulación cadenas",
+      "herramientas texto",
+      "utilidades formateo"
+    ],
+    "faqs": [
+      {
+        "question": "¿Puedo procesar archivos de texto grandes?",
+        "answer": "Sí, nuestras herramientas pueden manejar archivos de texto de hasta 10MB con procesamiento instantáneo y vista previa en tiempo real."
+      },
+      {
+        "question": "¿Soportan coincidencia de patrones regex?",
+        "answer": "Nuestro tester regex soporta regex PCRE completo con coincidencia en tiempo real, grupos y operaciones de reemplazo."
+      },
+      {
+        "question": "¿Está disponible la vista previa markdown?",
+        "answer": "Sí, proporcionamos vista previa markdown en vivo con soporte markdown estilo GitHub y resaltado de sintaxis."
+      }
+    ],
+    "metaDescription": "Herramientas profesionales de formateo y procesamiento de texto. Convertidor mayúsculas/minúsculas, tester regex, editor markdown y más. Utilidades de texto online gratuitas para desarrolladores y escritores."
+  },
+  "generators": {
+    "h1Title": "Herramientas Generadoras",
+    "tagline": "Genera identificadores únicos, datos de prueba y marcadores de posición",
+    "description": "Herramientas generadoras profesionales para crear UUIDs, contraseñas, lorem ipsum, datos de prueba e identificadores únicos. Utilidades esenciales para desarrolladores, diseñadores e ingenieros QA que necesitan contenido generado confiable y conforme a estándares. Crea GUIDs, contraseñas seguras, datos mock, paletas de colores y contenido placeholder instantáneamente. Perfectas para desarrollo de aplicaciones, pruebas, prototipado y flujos de diseño.",
+    "benefits": [
+      "Generación UUID/GUID conforme a estándares",
+      "Contraseñas criptográficamente seguras",
+      "Generación de datos de prueba realistas",
+      "Variantes lorem ipsum personalizadas",
+      "Opciones de generación masiva instantánea"
+    ],
+    "useCases": [
+      "Sembrado de bases de datos",
+      "Pruebas de API",
+      "Prototipado UI/UX",
+      "Pruebas de seguridad",
+      "Creación de datos mock"
+    ],
+    "keywords": [
+      "generador uuid",
+      "generador contraseñas",
+      "lorem ipsum",
+      "generador datos prueba",
+      "generador guid",
+      "generador aleatorio",
+      "datos mock",
+      "contenido placeholder"
+    ],
+    "faqs": [
+      {
+        "question": "¿Los UUIDs generados son verdaderamente únicos?",
+        "answer": "Sí, usamos métodos criptográficamente seguros para generar UUIDs conformes RFC con garantía de unicidad."
+      },
+      {
+        "question": "¿Qué tan seguras son las contraseñas generadas?",
+        "answer": "Las contraseñas se generan usando funciones aleatorias criptográficamente seguras con reglas de complejidad personalizables."
+      },
+      {
+        "question": "¿Puedo generar datos en masa?",
+        "answer": "Sí, la mayoría de los generadores soportan generación masiva con opciones de exportación en varios formatos como JSON o CSV."
+      }
+    ],
+    "metaDescription": "Genera UUIDs, contraseñas seguras, lorem ipsum y datos de prueba instantáneamente. Herramientas generadoras profesionales para desarrolladores. Gratis, rápido y conforme a estándares."
+  },
+  "web": {
+    "h1Title": "Herramientas Web y Diseño",
+    "tagline": "Utilidades esenciales para desarrollo web y diseño",
+    "description": "Herramientas completas de desarrollo web y diseño para crear, optimizar y probar aplicaciones web. Desde generadores de favicon hasta convertidores de color, desde formateadores CSS hasta validadores HTML, nuestras herramientas ayudan a optimizar tu flujo de desarrollo web. Perfectas para desarrolladores front-end, diseñadores UI/UX y webmasters que necesitan utilidades rápidas y confiables para tareas diarias. Todas las herramientas funcionan en el navegador para resultados instantáneos y máxima privacidad.",
+    "benefits": [
+      "Generación de favicon instantánea para todas las plataformas",
+      "Conversión de formato de color y generación de paletas",
+      "Optimización y formateo CSS",
+      "Validación y embellecimiento HTML",
+      "Utilidades de prueba de diseño responsive"
+    ],
+    "useCases": [
+      "Optimización de sitios web",
+      "Creación de sistemas de diseño",
+      "Pruebas entre navegadores",
+      "Optimización de rendimiento",
+      "Generación de recursos"
+    ],
+    "keywords": [
+      "generador favicon",
+      "convertidor color",
+      "formateador css",
+      "validador html",
+      "herramientas web",
+      "utilidades diseño",
+      "optimización sitios web",
+      "herramientas frontend"
+    ],
+    "faqs": [
+      {
+        "question": "¿Qué formatos de favicon soportan?",
+        "answer": "Generamos todos los formatos de favicon estándar incluyendo ICO, PNG e íconos Apple Touch para cobertura completa de plataformas."
+      },
+      {
+        "question": "¿Puedo convertir entre formatos de color?",
+        "answer": "Sí, convierte entre HEX, RGB, HSL y otros formatos con nuestro convertidor de color y generador de paletas."
+      },
+      {
+        "question": "¿Proporcionan optimización CSS?",
+        "answer": "Nuestras herramientas CSS incluyen formateo, minificación y optimización para mejor rendimiento y mantenibilidad."
+      }
+    ],
+    "metaDescription": "Herramientas de desarrollo web y diseño para generación de favicon, conversión de color, formateo CSS y más. Utilidades esenciales para desarrolladores frontend. Gratis e instantáneo."
+  },
+  "dev": {
+    "h1Title": "Utilidades para Desarrolladores",
+    "tagline": "Herramientas profesionales para desarrollo de software moderno",
+    "description": "Utilidades esenciales para desarrolladores y herramientas de programación diseñadas para flujos de desarrollo de software modernos. Desde formateadores SQL hasta testers regex, desde constructores de expresiones cron hasta verificadores diff, nuestro kit de herramientas completo ayuda a los desarrolladores a escribir, depurar y optimizar código más eficientemente. Todas las herramientas incluyen resaltado de sintaxis, validación y procesamiento en tiempo real para acelerar tu proceso de desarrollo.",
+    "benefits": [
+      "Resaltado de sintaxis para todos los lenguajes principales",
+      "Validación en tiempo real y detección de errores",
+      "Formateo y embellecimiento de código",
+      "Comparación y fusión diff",
+      "Validación de expresiones cron"
+    ],
+    "useCases": [
+      "Revisión de código y depuración",
+      "Optimización de consultas de base de datos",
+      "Configuración de programación de tareas",
+      "Gestión de configuración",
+      "Desarrollo de API"
+    ],
+    "keywords": [
+      "formateador sql",
+      "tester regex",
+      "expresión cron",
+      "verificador diff",
+      "herramientas desarrollador",
+      "formateador código",
+      "utilidades programación",
+      "herramientas depuración"
+    ],
+    "faqs": [
+      {
+        "question": "¿Qué lenguajes de programación soportan?",
+        "answer": "Soportamos SQL, JavaScript, JSON, XML, HTML, CSS y muchos otros lenguajes con resaltado de sintaxis apropiado."
+      },
+      {
+        "question": "¿Puedo validar expresiones cron?",
+        "answer": "Sí, nuestro constructor cron valida expresiones y muestra los próximos tiempos de ejecución con soporte de zona horaria."
+      },
+      {
+        "question": "¿Ofrecen herramientas de comparación de código?",
+        "answer": "Nuestro verificador diff soporta vistas diff lado a lado y unificadas con resaltado de sintaxis para todos los tipos de archivo."
+      }
+    ],
+    "metaDescription": "Utilidades para desarrolladores para formateo SQL, pruebas regex, expresiones cron y optimización de código. Herramientas de programación profesionales para desarrollo moderno. Gratis e instantáneo."
+  },
+  "formatters": {
+    "h1Title": "Herramientas de Formateo de Código",
+    "tagline": "Embellece y formatea código en cualquier lenguaje",
+    "description": "Herramientas profesionales de formateo y embellecimiento de código para todos los lenguajes de programación y formatos de datos principales. Formatea instantáneamente consultas SQL, objetos JSON, documentos XML, marcado HTML y hojas de estilo CSS con sangría apropiada, resaltado de sintaxis y validación. Nuestros formateadores ayudan a mantener un estilo de código consistente, mejorar la legibilidad y detectar errores de sintaxis antes del despliegue. Esenciales para revisiones de código, documentación y mantenimiento de bases de código limpias.",
+    "benefits": [
+      "Soporte para más de 15 lenguajes y formatos",
+      "Reglas de formateo personalizables",
+      "Detección de errores de sintaxis",
+      "Opciones de minificación y compresión",
+      "Preservar comentarios y estructura"
+    ],
+    "useCases": [
+      "Preparación de revisión de código",
+      "Formateo de respuesta API",
+      "Optimización de consultas de base de datos",
+      "Limpieza de archivos de configuración",
+      "Ejemplos de documentación"
+    ],
+    "keywords": [
+      "formateador código",
+      "formateador json",
+      "formateador sql",
+      "embellecedor xml",
+      "formateador css",
+      "embellecedor código",
+      "resaltado sintaxis",
+      "estilo código"
+    ],
+    "faqs": [
+      {
+        "question": "¿Qué formatos se pueden embellecer?",
+        "answer": "Soportamos JSON, SQL, XML, HTML, CSS, JavaScript y muchos otros formatos con opciones de formateo personalizables."
+      },
+      {
+        "question": "¿También puedo minificar el código?",
+        "answer": "Sí, la mayoría de los formateadores incluyen opciones tanto de embellecimiento como de minificación para necesidades de optimización y despliegue."
+      },
+      {
+        "question": "¿Los formateadores validan la sintaxis?",
+        "answer": "Todos los formateadores incluyen validación de sintaxis y resaltarán errores con mensajes útiles para depuración."
+      }
+    ],
+    "metaDescription": "Formateadores de código profesionales para JSON, SQL, XML, HTML, CSS y más. Embellece, valida y minifica código instantáneamente. Herramientas de formateo online gratuitas para desarrolladores."
+  },
+  "social": {
+    "h1Title": "Herramientas de Redes Sociales",
+    "tagline": "Crea contenido impresionante para Instagram, WhatsApp y plataformas sociales",
+    "description": "Herramientas profesionales de redes sociales para creadores de contenido, influencers y marketers. Genera fuentes Unicode estilizadas para bios de Instagram, estados de WhatsApp, publicaciones de Twitter y contenido de Facebook. Crea estilos de texto llamativos, fuentes elegantes y caracteres únicos que funcionan en todas las plataformas sociales. Perfectas para destacar tu perfil, crear publicaciones atractivas y agregar personalidad a tu presencia en redes sociales. Todas las herramientas funcionan en el navegador con vista previa instantánea y copia con un clic.",
+    "benefits": [
+      "Más de 22 estilos de fuente Unicode únicos",
+      "Indicadores de compatibilidad de plataforma",
+      "Contadores de caracteres para bio y publicaciones de Instagram",
+      "Funcionalidad de vista previa y copia instantánea",
+      "Funciona en todas las plataformas de redes sociales"
+    ],
+    "useCases": [
+      "Optimización de bio de Instagram",
+      "Estilización de estado de WhatsApp",
+      "Personalización de perfil de Twitter",
+      "Mejora de publicaciones de Facebook",
+      "Branding en redes sociales"
+    ],
+    "keywords": [
+      "fuentes instagram",
+      "fuentes bio instagram",
+      "generador texto elegante",
+      "texto unicode",
+      "texto estilizado",
+      "fuentes cool",
+      "fuentes whatsapp",
+      "fuentes redes sociales",
+      "decorador texto",
+      "fuentes aesthetic"
+    ],
+    "faqs": [
+      {
+        "question": "¿Estas fuentes funcionan en todas las plataformas de redes sociales?",
+        "answer": "Sí, nuestras fuentes Unicode funcionan en Instagram, WhatsApp, Twitter, Facebook, TikTok y la mayoría de las plataformas sociales. Indicamos la compatibilidad para cada estilo."
+      },
+      {
+        "question": "¿Las fuentes se mostrarán correctamente para todos?",
+        "answer": "Sí, estos son caracteres Unicode soportados por todos los dispositivos y plataformas modernas. Todos verán tu texto estilizado correctamente."
+      },
+      {
+        "question": "¿Puedo usar estas fuentes en mi bio de Instagram?",
+        "answer": "¡Absolutamente! Nuestra herramienta incluye un contador de caracteres específico para bios de Instagram (150 caracteres) y publicaciones (2200 caracteres)."
+      }
+    ],
+    "metaDescription": "Genera fuentes Unicode estilizadas para Instagram, WhatsApp y redes sociales. Crea texto elegante, fuentes cool y estilos aesthetic para bios y publicaciones. Gratis, instantáneo y funciona en todas partes."
+  },
+  "pdf": {
+    "h1Title": "Herramientas PDF",
+    "tagline": "Herramientas PDF profesionales para conversión, edición y optimización",
+    "description": "Herramientas PDF profesionales para conversión de documentos, edición, fusión, división y optimización. Convierte archivos PDF a Word (DOCX), Excel, imágenes y otros formatos con preservación de alta fidelidad del formato. Fusiona múltiples PDFs, divide documentos, comprime archivos, extrae páginas y rota páginas con potente procesamiento del lado del servidor. Perfectas para gestión de documentos, flujos digitales, procesamiento de formularios y operaciones por lotes. Todo el procesamiento ocurre de forma segura con limpieza automática de archivos.",
+    "benefits": [
+      "Conversión PDF a Word de alta calidad",
+      "Preserva formato, imágenes y tablas",
+      "Fusiona y divide documentos PDF",
+      "Comprime PDFs sin pérdida de calidad",
+      "Extrae y rota páginas"
+    ],
+    "useCases": [
+      "Conversión de formato de documento",
+      "Edición y modificación de PDF",
+      "Procesamiento por lotes de PDF",
+      "Extracción y llenado de formularios",
+      "Flujos de trabajo de documentos digitales"
+    ],
+    "keywords": [
+      "pdf a word",
+      "convertidor pdf",
+      "editor pdf",
+      "fusionar pdf",
+      "dividir pdf",
+      "comprimir pdf",
+      "herramientas pdf",
+      "convertidor documentos"
+    ],
+    "faqs": [
+      {
+        "question": "¿Qué tan precisa es la conversión de PDF a Word?",
+        "answer": "Nuestro convertidor de PDF a Word usa algoritmos avanzados para preservar formato, imágenes, tablas y diseño de texto con más del 90% de precisión, comparable a herramientas profesionales como Adobe Acrobat."
+      },
+      {
+        "question": "¿Qué límites de tamaño de archivo tienen?",
+        "answer": "Puedes procesar archivos PDF de hasta 10MB. Todas las conversiones ocurren en servidores seguros con limpieza automática después del procesamiento."
+      },
+      {
+        "question": "¿Mis datos están seguros durante la conversión?",
+        "answer": "Sí, todas las conversiones ocurren en servidores seguros con transmisión encriptada. Los archivos se eliminan automáticamente después del procesamiento y nunca almacenamos ni accedemos a tus documentos."
+      }
+    ],
+    "metaDescription": "Herramientas PDF profesionales para conversión a Word, edición, fusión, división y compresión. Procesamiento de documentos de alta calidad con preservación de formato. Gratis, seguro e instantáneo."
+  }
+}
