@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = categories.find((cat) => cat.id === params.category);
-  const seoContent = getCategorySEO(params.category);
+  const seoContent = await getCategorySEO(params.category, 'en'); // Default English
 
   if (!category || !seoContent) {
     return {};
@@ -46,10 +46,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function CategoryPage({ params }: Props) {
+export default async function CategoryPage({ params }: Props) {
   const category = categories.find((cat) => cat.id === params.category);
 
   if (!category) {
+    notFound();
+  }
+
+  const seoContent = await getCategorySEO(params.category, 'en');
+
+  if (!seoContent) {
     notFound();
   }
 
@@ -57,7 +63,10 @@ export default function CategoryPage({ params }: Props) {
     <Suspense
       fallback={<div className="animate-pulse">Loading category...</div>}
     >
-      <CategoryPageContent categoryId={params.category} />
+      <CategoryPageContent
+        categoryId={params.category}
+        seoContent={seoContent}
+      />
     </Suspense>
   );
 }
