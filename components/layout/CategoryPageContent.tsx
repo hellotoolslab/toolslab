@@ -10,7 +10,7 @@ import {
 import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
 import { SearchBar } from '@/components/SearchBar';
 import {
-  getCategorySEO,
+  type CategorySEO,
   generateCategoryStructuredData,
 } from '@/lib/category-seo';
 import { getToolById } from '@/lib/tools';
@@ -29,19 +29,18 @@ import Script from 'next/script';
 
 interface CategoryPageContentProps {
   categoryId: string;
+  seoContent: CategorySEO;
 }
 
 export default function CategoryPageContent({
   categoryId,
+  seoContent,
 }: CategoryPageContentProps) {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const category = categories.find((cat) => cat.id === categoryId);
-  const seoContent = getCategorySEO(categoryId);
 
   const tools = category ? getToolsByCategory(category.id) : [];
-  const structuredData = seoContent
-    ? generateCategoryStructuredData(seoContent)
-    : null;
+  const structuredData = generateCategoryStructuredData(seoContent);
 
   // Track category page engagement - BEFORE early return
   useEffect(() => {
@@ -53,7 +52,7 @@ export default function CategoryPageContent({
     });
   }, [categoryId, category, tools.length]);
 
-  if (!category || !seoContent) {
+  if (!category) {
     return <div>Category not found</div>;
   }
 

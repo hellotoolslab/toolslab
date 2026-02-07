@@ -10,7 +10,7 @@ import {
 import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
 import { SearchBar } from '@/components/SearchBar';
 import {
-  getCategorySEO,
+  type CategorySEO,
   generateCategoryStructuredData,
 } from '@/lib/category-seo';
 import { getToolById } from '@/lib/tools';
@@ -33,20 +33,21 @@ interface LocaleCategoryPageContentProps {
   categoryId: string;
   locale: Locale;
   dictionary: Dictionary;
+  seoContent: CategorySEO;
 }
 
 export default function LocaleCategoryPageContent({
   categoryId,
   locale,
   dictionary,
+  seoContent,
 }: LocaleCategoryPageContentProps) {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const { createHref } = useLocale();
 
   const category = categories.find((cat) => cat.id === categoryId);
-  const seoContent = getCategorySEO(categoryId);
 
-  if (!category || !seoContent) {
+  if (!category) {
     return <div>Category not found</div>;
   }
 
@@ -405,7 +406,7 @@ export default function LocaleCategoryPageContent({
 
               {/* Title inline */}
               <h1 className="text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl lg:text-4xl">
-                {categoryName}
+                {seoContent.h1Title}
               </h1>
 
               {/* Category count badge */}
@@ -420,16 +421,14 @@ export default function LocaleCategoryPageContent({
               </span>
             </div>
 
-            {/* Description */}
+            {/* Tagline */}
             <p className="mb-4 text-base text-gray-700 dark:text-gray-300 sm:text-lg">
-              {categoryDescription}
+              {seoContent.tagline}
             </p>
 
             {/* SEO Description - proper separation */}
             <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400 md:line-clamp-none">
-              {locale === 'it'
-                ? `Scopri ${tools.length} strumenti professionali per ${categoryName.toLowerCase()}. Tutti gratuiti, sicuri e senza registrazione.`
-                : seoContent.description}
+              {seoContent.description}
             </p>
 
             {/* Benefits Grid - Compact */}

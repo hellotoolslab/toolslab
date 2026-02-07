@@ -45,7 +45,7 @@ export async function generateMetadata({
   }
 
   const category = categories.find((cat) => cat.id === categoryId);
-  const seoContent = getCategorySEO(categoryId);
+  const seoContent = await getCategorySEO(categoryId, locale as Locale);
 
   if (!category || !seoContent) {
     return {
@@ -115,6 +115,11 @@ export default async function LocaleCategoryPage({
   }
 
   const dict = await getDictionary(locale as Locale);
+  const seoContent = await getCategorySEO(categoryId, locale as Locale);
+
+  if (!seoContent) {
+    notFound();
+  }
 
   return (
     <Suspense
@@ -124,6 +129,7 @@ export default async function LocaleCategoryPage({
         categoryId={categoryId}
         locale={locale as Locale}
         dictionary={dict}
+        seoContent={seoContent}
       />
     </Suspense>
   );
